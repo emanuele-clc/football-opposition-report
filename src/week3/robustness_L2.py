@@ -1,10 +1,10 @@
 """Settimana 3 - prove di robustezza del modulo L2 (solo partite di esplorazione, prime 70%).
-Uso: python robustness_L2.py <matches.json> "<Squadra>" [cartella_dati=.]   (richiede sequences_clustering.py nella stessa cartella)
+Uso: python robustness_L2.py <matches.json> "<Squadra>" [cartella_dati=.]   (importa sequences_clustering.py da ../week2)
 1) stabilita' con bootstrap sulle PARTITE (non sulle sequenze); 2) sensibilita' al taglio x e a k; 3) K-Means contro mistura gaussiana e Ward;
 4) prevedibilita' della famiglia con validazione incrociata per partita (le partite riservate restano intatte)."""
 import sys, json, warnings
 import numpy as np, pandas as pd
-warnings.filterwarnings("ignore"); sys.path.insert(0, ".")
+warnings.filterwarnings("ignore"); import os; sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "week2"))
 import sequences_clustering as S
 from sklearn.cluster import KMeans, AgglomerativeClustering
 from sklearn.mixture import GaussianMixture

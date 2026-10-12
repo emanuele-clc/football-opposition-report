@@ -38,7 +38,10 @@ python src/week2/compare_teams.py matches/9_281.json "Bayer Leverkusen" matches/
 # 4 — robustness (week 3)
 python src/week3/robustness_L2.py matches/9_281.json "Bayer Leverkusen" .
 python src/week3/robustness_L2.py matches/2_27.json "Leicester City" .
+python src/week3/stability_null_baseline.py matches/9_281.json "Bayer Leverkusen" .
+python src/week3/stability_null_baseline.py matches/2_27.json "Leicester City" .
 ```
+On Windows add `-X utf8` after `python` (data files are UTF-8).
 All scripts use a fixed seed. Results are reproducible on the same data.
 
 ## Results summary (exploration data only — last 30% untouched)
@@ -86,6 +89,18 @@ Crude zone/set-up definitions; null result reported honestly.
 - **k sensitivity**: k = 5 gives best balance of Jaccard and silhouette for build-up
 - **Method comparison**: GMM and Ward give similar silhouette (~0.18–0.19); ARI between methods 0.50–0.70 (moderate agreement, confirming the continuum)
 
+### Stability vs null baselines (week 3, match-bootstrap, same pipeline)
+Mean Jaccard of the observed partition vs two structure-free nulls (shuffled features; Gaussian with same mean/covariance).
+
+| | Observed | Shuffle | Gaussian |
+|---|---|---|---|
+| Leverkusen build-up (k=5) | 0.80 | 0.48 | 0.56 |
+| Leverkusen advanced (k=3) | 0.88 | 0.40 | 0.84 |
+| Leicester build-up (k=5) | 0.69 | 0.43 | 0.57 |
+| Leicester advanced (k=3) | 0.85 | 0.44 | 0.62 |
+
+Build-up (both teams) and Leicester advanced are clearly above both nulls. Leverkusen advanced is **not** clearly above the Gaussian null: treat it as a slicing of a continuum, not demonstrated structure. Script: `src/week3/stability_null_baseline.py` (on Windows run with `python -X utf8`).
+
 ## Declared researcher degrees of freedom
 1. Phase split at x = 45 (tested 35–55)
 2. k = 5 (build-up) and k = 3 (advanced): chosen by match-bootstrap on Leverkusen exploration
@@ -97,6 +112,7 @@ Crude zone/set-up definitions; null result reported honestly.
 - Silhouette ≈ 0.18: stable slices of a continuum
 - Week 2 bootstrap was on sequences; week 3 adds match-level resampling
 - Different leagues and eras (Bundesliga 23/24 vs PL 15/16)
+- Leverkusen advanced stability is not distinguishable from a Gaussian null (0.88 vs 0.84)
 - Build-up predictability significant; advanced phase not significant for either team
 - Exploitability not significant: crude definitions, near-empty cells, median 9 defenders visible (not 11)
 - StatsBomb Open Data, non-commercial licence
