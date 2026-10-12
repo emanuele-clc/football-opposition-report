@@ -2,7 +2,7 @@
 Uso: python final_L2.py <matches.json> "<Squadra>" [cartella_dati=.]   (richiede sequences_clustering.py nella stessa cartella)
 Scelte fatte SOLO sulle prime 70% partite (esplorazione) guardando stabilita' e silhouette: va dichiarato nella tesi (gradi di liberta' del ricercatore).
 Le ultime partite restano riservate alla validazione e non vengono usate qui."""
-import sys, os, json, collections
+import sys, json, collections
 import numpy as np, pandas as pd
 import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
 sys.path.insert(0, ".")
@@ -10,7 +10,6 @@ import sequences_clustering as S
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
-EN = os.environ.get("FIG_LANG", "it") == "en"   # FIG_LANG=en: etichette della figura in inglese
 CUT = 45; K = {"costruzione": 5, "avanzata": 3}
 df, nm = S.extract(); k0 = int(round(nm * 0.7)); ex = df[df.gi < k0].reset_index(drop=True)
 ex["w0"] = (ex.y0 - 40).abs(); ex["w1"] = (ex.y1 - 40).abs(); ex["side0"] = np.where(ex.y0 < 40, "sx", "dx")
@@ -54,6 +53,6 @@ for i, nme in enumerate(names):
     for p in m.sample(min(25, len(m)), random_state=0).path:
         P = np.array(p); ax.plot(P[:, 0], P[:, 1], color="#1F3A5F", alpha=0.18, lw=1)
     ax.annotate("", xy=(m.x1.mean(), m.y1.mean()), xytext=(m.x0.mean(), m.y0.mean()), arrowprops=dict(arrowstyle="->", color="#B3262D", lw=2.4))
-    pr = [p for p in prof if p["cl"] == nme][0]; ax.set_title(f"{nme}  (n={pr['n']}, {'stability' if EN else "stabilita'"} {pr['jaccard']:.2f})", fontsize=9)
-plt.suptitle(f"{S.TEAM}: sequence families (exploration). Top row: build-up (start in own half). Bottom row: advanced phase. Red arrow = average path" if EN else f"{S.TEAM}: famiglie di sequenze (esplorazione). Riga alta: costruzione (inizio nella propria meta' campo). Riga bassa: fase avanzata. Freccia rossa = percorso medio", fontsize=10)
-plt.tight_layout(); plt.savefig(f"{S.BASE}/fig_L2_{S.TEAM.replace(' ','_')}{'_EN' if EN else ''}.png", dpi=140)
+    pr = [p for p in prof if p["cl"] == nme][0]; ax.set_title(f"{nme}  (n={pr['n']}, stabilita' {pr['jaccard']:.2f})", fontsize=9)
+plt.suptitle(f"{S.TEAM}: famiglie di sequenze (esplorazione). Riga alta: costruzione (inizio nella propria meta' campo). Riga bassa: fase avanzata. Freccia rossa = percorso medio", fontsize=10)
+plt.tight_layout(); plt.savefig(f"{S.BASE}/fig_L2_{S.TEAM.replace(' ','_')}.png", dpi=140)

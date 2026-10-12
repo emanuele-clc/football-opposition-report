@@ -17,7 +17,7 @@ def zone(x, y): return min(int(np.searchsorted(XB, x, side="right") - 1), 3) * 3
 ZN = [f"{c}{r}" for c in "ABCD" for r in "sCd"]     # A..D = lunghezza (A: propria area, D: ultimo terzo), s/C/d = sinistra/centro/destra
 
 def extract():
-    ms = sorted([g for g in json.load(open(MF)) if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])], key=lambda g: g["match_date"])
+    ms = sorted([g for g in json.load(open(MF, encoding='utf-8')) if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])], key=lambda g: g["match_date"])    
     rows = []
     for gi, g in enumerate(ms):
         ev = json.load(open(f"{BASE}/ev/{g['match_id']}.json")); poss = collections.OrderedDict()

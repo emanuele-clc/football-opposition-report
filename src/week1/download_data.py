@@ -10,7 +10,7 @@ def curl(url, fn):
     if os.path.exists(fn) and os.path.getsize(fn) > 100: return
     subprocess.run(["curl", "-sS", "-m", "120", "-o", fn, url])
 curl(f"{BASE}/competitions.json", "competitions.json"); curl(f"{BASE}/matches/{cid}/{sid}.json", f"matches/{cid}_{sid}.json")
-ms = json.load(open(f"matches/{cid}_{sid}.json"))
+ms = json.load(open(f"matches/{cid}_{sid}.json", encoding="utf-8"))
 if team: ms = [g for g in ms if team in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])]
 jobs = []
 for g in ms:

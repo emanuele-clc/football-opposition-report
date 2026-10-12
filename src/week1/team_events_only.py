@@ -4,7 +4,7 @@ import numpy as np, pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import log_loss, accuracy_score
 BASE="."; mf=sys.argv[1]; TEAM=sys.argv[2]; rng=np.random.default_rng(42)
-ms=sorted([g for g in json.load(open(mf)) if TEAM in (g['home_team']['home_team_name'],g['away_team']['away_team_name'])],key=lambda g:g['match_date'])
+ms=sorted([g for g in json.load(open(mf, encoding="utf-8")) if TEAM in (g['home_team']['home_team_name'],g['away_team']['away_team_name'])],key=lambda g:g['match_date'])
 def zone(end,y0):
     d=end[1] if y0<40 else 80-end[1]
     if end[0]<102 or d<18: return "corto/fuori area"
@@ -12,7 +12,7 @@ def zone(end,y0):
 Z=["corto/fuori area","primo palo","centro","secondo palo"]
 rows=[];gk=0;gk_short=0;poss=0
 for gi,g in enumerate(ms):
-    ev=json.load(open(f"{BASE}/ev/{g['match_id']}.json")); sc={"L":0,"O":0}; ps=set()
+    ev=json.load(open(f"{BASE}/ev/{g['match_id']}.json", encoding="utf-8")); sc={"L":0,"O":0}; ps=set()
     for i,e in enumerate(ev):
         t=e['team']['name']; ty=e['type']['name']
         if t==TEAM and 'possession' in e: ps.add(e['possession'])

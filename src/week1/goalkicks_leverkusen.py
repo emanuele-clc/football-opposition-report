@@ -3,9 +3,9 @@ import json, math, sys
 import numpy as np
 BASE = sys.argv[1] if len(sys.argv) > 1 else "."
 TEAM = "Bayer Leverkusen"
-m = sorted(json.load(open(f"{BASE}/matches/9_281.json")), key=lambda g: g["match_date"]); rows = []
+m = sorted(json.load(open(f"{BASE}/matches/9_281.json", encoding="utf-8")), key=lambda g: g["match_date"]); rows = []
 for gi, g in enumerate(m):
-    ev = json.load(open(f"{BASE}/ev/{g['match_id']}.json")); fr = {d["event_uuid"]: d for d in json.load(open(f"{BASE}/t360/{g['match_id']}.json"))}
+    ev = json.load(open(f"{BASE}/ev/{g['match_id']}.json", encoding="utf-8")); fr = {d["event_uuid"]: d for d in json.load(open(f"{BASE}/t360/{g['match_id']}.json", encoding="utf-8"))}
     sc = {"L": 0, "O": 0}
     for e in ev:
         t = e["team"]["name"]; ty = e["type"]["name"]

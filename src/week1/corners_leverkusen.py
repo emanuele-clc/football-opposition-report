@@ -1,16 +1,15 @@
 """Settimana 1 - fattibilita': calci d'angolo del Bayer Leverkusen 2023/24 (StatsBomb Open Data, con 360).
 Dati: StatsBomb Open Data (licenza non commerciale, citare StatsBomb). Eseguire dopo aver scaricato eventi e frame 360
 nelle cartelle ev/ e t360/ (vedi download_data.py)."""
-import json, math, collections, sys, os
+import json, math, collections, sys
 import numpy as np, pandas as pd
 import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 
 BASE = sys.argv[1] if len(sys.argv) > 1 else "."
-EN = os.environ.get("FIG_LANG", "it") == "en"   # FIG_LANG=en: etichette della figura in inglese
 TEAM = "Bayer Leverkusen"
 rng = np.random.default_rng(42)
-matches = sorted(json.load(open(f"{BASE}/matches/9_281.json")), key=lambda g: g["match_date"])
+matches = sorted(json.load(open(f"{BASE}/matches/9_281.json", encoding="utf-8")), key=lambda g: g["match_date"])
 
 def zone(end, y0):
     ex, ey = end[0], end[1]
@@ -23,8 +22,8 @@ def zone(end, y0):
 rows = []
 for gi, g in enumerate(matches):
     mid = g["match_id"]
-    ev = json.load(open(f"{BASE}/ev/{mid}.json"))
-    fr = {d["event_uuid"]: d for d in json.load(open(f"{BASE}/t360/{mid}.json"))}
+    ev = json.load(open(f"{BASE}/ev/{mid}.json", encoding="utf-8"))
+    fr = {d["event_uuid"]: d for d in json.load(open(f"{BASE}/t360/{mid}.json", encoding="utf-8"))}
     score = {"L": 0, "O": 0}
     for i, e in enumerate(ev):
         t = e["team"]["name"]; ty = e["type"]["name"]
@@ -123,11 +122,11 @@ json.dump(res, open(f"{BASE}/results_corners.json", "w"), indent=1, default=floa
 
 # figure
 fig, ax = plt.subplots(1, 3, figsize=(13, 3.6))
-c = [res["zone_counts"][z] for z in Z]; ax[0].bar(range(4), c, color="#2F6DB5"); ax[0].set_xticks(range(4)); ax[0].set_xticklabels(["short/\noutside box", "near\npost", "centre", "far\npost"] if EN else ["corto/\nfuori area", "primo\npalo", "centro", "secondo\npalo"], fontsize=8)
-ax[0].set_title(("Where the corners arrive (n=%d)" if EN else "Dove arrivano i corner (n=%d)") % len(df), fontsize=9); ax[0].set_ylabel("corners" if EN else "corner")
+c = [res["zone_counts"][z] for z in Z]; ax[0].bar(range(4), c, color="#2F6DB5"); ax[0].set_xticks(range(4)); ax[0].set_xticklabels(["corto/\nfuori area", "primo\npalo", "centro", "secondo\npalo"], fontsize=8)
+ax[0].set_title("Dove arrivano i corner (n=%d)" % len(df), fontsize=9); ax[0].set_ylabel("corner")
 zz = [z for z in Z if z in res["xg_by_zone"]]; m = [res["xg_by_zone"][z]["mean"] for z in zz]; lo = [res["xg_by_zone"][z]["ci"][0] for z in zz]; hi = [res["xg_by_zone"][z]["ci"][1] for z in zz]
-ax[1].bar(range(len(zz)), m, yerr=[np.array(m) - lo, np.array(hi) - m], color="#E07B00", capsize=3); ax[1].set_xticks(range(len(zz))); ax[1].set_xticklabels([({"corto/fuori area": "short/outside box", "primo palo": "near post", "centro": "centre", "secondo palo": "far post"}[z] if EN else z).replace(" ", "\n") for z in zz], fontsize=8)
-ax[1].set_title("Mean xG per corner, 95% interval" if EN else "xG medio per corner, con intervallo 95%", fontsize=9)
-ax[2].hist(perm, bins=30, color="#C9D3E0"); ax[2].axvline(obs, color="#B3262D"); ax[2].set_title("Observed exploitability (red) vs chance" if EN else "Exploitability osservata (rossa) contro il caso", fontsize=9); ax[2].set_xlabel("xG per corner" if EN else "xG per corner")
-plt.tight_layout(); plt.savefig(f"{BASE}/fig_corners{'_EN' if EN else ''}.png", dpi=150)
+ax[1].bar(range(len(zz)), m, yerr=[np.array(m) - lo, np.array(hi) - m], color="#E07B00", capsize=3); ax[1].set_xticks(range(len(zz))); ax[1].set_xticklabels([z.replace(" ", "\n") for z in zz], fontsize=8)
+ax[1].set_title("xG medio per corner, con intervallo 95%", fontsize=9)
+ax[2].hist(perm, bins=30, color="#C9D3E0"); ax[2].axvline(obs, color="#B3262D"); ax[2].set_title("Exploitability osservata (rossa) contro il caso", fontsize=9); ax[2].set_xlabel("xG per corner")
+plt.tight_layout(); plt.savefig("fig_corners.png", dpi=150)
 print(json.dumps(res, indent=1, default=float))
