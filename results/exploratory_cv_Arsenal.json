@@ -1,0 +1,29 @@
+{
+ "team": "Arsenal",
+ "n_partite": 38,
+ "nota": "ESPLORATIVO, non pre-registrato",
+ "costruzione": {
+  "n": 1063,
+  "guadagno": 0.12261035026950375,
+  "ci95": [
+   0.09631219277986908,
+   0.14563666072800535
+  ],
+  "quota_partite_positive": 0.9210526315789473,
+  "mediana_per_partita": 0.1273114884717229,
+  "guadagno_prime70": 0.11956553834876492,
+  "guadagno_ultime30": 0.13024750228191792
+ },
+ "avanzata": {
+  "n": 803,
+  "guadagno": 0.07792571353824494,
+  "ci95": [
+   0.03849206337629833,
+   0.1134988433359893
+  ],
+  "quota_partite_positive": 0.8157894736842105,
+  "mediana_per_partita": 0.08602691447075583,
+  "guadagno_prime70": 0.07044074444677707,
+  "guadagno_ultime30": 0.09657304957916271
+ }
+}

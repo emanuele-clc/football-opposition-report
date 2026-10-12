@@ -1,0 +1,29 @@
+{
+ "team": "Bayer Leverkusen",
+ "n_partite": 34,
+ "nota": "ESPLORATIVO, non pre-registrato",
+ "costruzione": {
+  "n": 880,
+  "guadagno": 0.12522775485215315,
+  "ci95": [
+   0.08664429661999914,
+   0.1588289013268564
+  ],
+  "quota_partite_positive": 0.8529411764705882,
+  "mediana_per_partita": 0.13992822294366375,
+  "guadagno_prime70": 0.12237476025118486,
+  "guadagno_ultime30": 0.1319940523923806
+ },
+ "avanzata": {
+  "n": 764,
+  "guadagno": 0.0011284937079298989,
+  "ci95": [
+   -0.020499596012050827,
+   0.02250644998356397
+  ],
+  "quota_partite_positive": 0.5588235294117647,
+  "mediana_per_partita": 0.0045582289714771376,
+  "guadagno_prime70": 0.003824975170816852,
+  "guadagno_ultime30": -0.0059385880407738165
+ }
+}

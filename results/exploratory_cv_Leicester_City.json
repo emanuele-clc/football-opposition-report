@@ -1,0 +1,29 @@
+{
+ "team": "Leicester City",
+ "n_partite": 38,
+ "nota": "ESPLORATIVO, non pre-registrato",
+ "costruzione": {
+  "n": 870,
+  "guadagno": 0.16399402995539872,
+  "ci95": [
+   0.1322006639675148,
+   0.1975734333958603
+  ],
+  "quota_partite_positive": 0.9210526315789473,
+  "mediana_per_partita": 0.1534895163141578,
+  "guadagno_prime70": 0.16831292485371083,
+  "guadagno_ultime30": 0.1535198596508308
+ },
+ "avanzata": {
+  "n": 779,
+  "guadagno": 0.04307217651271826,
+  "ci95": [
+   0.01697004621029361,
+   0.0673864176060305
+  ],
+  "quota_partite_positive": 0.7368421052631579,
+  "mediana_per_partita": 0.04521681115206616,
+  "guadagno_prime70": 0.04252989270716053,
+  "guadagno_ultime30": 0.04435863333282925
+ }
+}

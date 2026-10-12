@@ -1,0 +1,29 @@
+{
+ "team": "Barcelona",
+ "n_partite": 38,
+ "nota": "ESPLORATIVO, non pre-registrato",
+ "costruzione": {
+  "n": 1053,
+  "guadagno": 0.13067189333182122,
+  "ci95": [
+   0.10730901365061818,
+   0.15301670516186558
+  ],
+  "quota_partite_positive": 0.9736842105263158,
+  "mediana_per_partita": 0.13048713864690886,
+  "guadagno_prime70": 0.1267874409371482,
+  "guadagno_ultime30": 0.14015452711881718
+ },
+ "avanzata": {
+  "n": 814,
+  "guadagno": 0.06924795105337857,
+  "ci95": [
+   0.045696102836999535,
+   0.0908462398891598
+  ],
+  "quota_partite_positive": 0.868421052631579,
+  "mediana_per_partita": 0.07530773858056972,
+  "guadagno_prime70": 0.06988506425646615,
+  "guadagno_ultime30": 0.0677508661193744
+ }
+}
