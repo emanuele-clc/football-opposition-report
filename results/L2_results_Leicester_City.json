@@ -1,0 +1,343 @@
+{
+ "stabilita": {
+  "costruzione": {
+   "k": 5,
+   "n": 616,
+   "silhouette": 0.15958103271605234,
+   "ari": 0.6714477242781313,
+   "ari_ci": [
+    0.4327610942485182,
+    0.9067732375105375
+   ],
+   "jaccard": [
+    0.6999361514793919,
+    0.7439853196100401,
+    0.8374429078374286,
+    0.5994830852843808,
+    0.6757709940383825
+   ]
+  },
+  "avanzata": {
+   "k": 3,
+   "n": 548,
+   "silhouette": 0.19072106966982613,
+   "ari": 0.7992108701428609,
+   "ari_ci": [
+    0.5862350471865182,
+    0.9351570344210121
+   ],
+   "jaccard": [
+    0.8946592836428969,
+    0.8492886549898084,
+    0.8712280975273643
+   ]
+  }
+ },
+ "profili": [
+  {
+   "cl": "C1",
+   "fase": "costruzione",
+   "n": 160,
+   "quota_fase": 0.26,
+   "quota_totale": 0.14,
+   "jaccard": 0.84,
+   "x0": 10.2,
+   "x1": 94.0,
+   "larg_inizio": 7.2,
+   "larg_fine": 18.3,
+   "passaggi": 4.3,
+   "lanci_lunghi": 0.39,
+   "direttezza": 0.58,
+   "durata_s": 15.9,
+   "lato_sx": 0.4,
+   "tiro": 0.094,
+   "inizio": {
+    "Regular Play": 0.47,
+    "From Goal Kick": 0.44,
+    "From Keeper": 0.09,
+    "From Counter": 0.01
+   },
+   "trigrammi": [
+    [
+     "AC > Cd > Dd",
+     0.07
+    ],
+    [
+     "AC > Cd > CC",
+     0.06
+    ],
+    [
+     "Bs > Cs > Ds",
+     0.06
+    ]
+   ]
+  },
+  {
+   "cl": "C2",
+   "fase": "costruzione",
+   "n": 85,
+   "quota_fase": 0.14,
+   "quota_totale": 0.07,
+   "jaccard": 0.7,
+   "x0": 20.0,
+   "x1": 94.4,
+   "larg_inizio": 16.4,
+   "larg_fine": 16.4,
+   "passaggi": 12.2,
+   "lanci_lunghi": 0.23,
+   "direttezza": 0.21,
+   "durata_s": 47.7,
+   "lato_sx": 0.36,
+   "tiro": 0.306,
+   "inizio": {
+    "Regular Play": 0.61,
+    "From Goal Kick": 0.2,
+    "From Throw In": 0.11,
+    "From Keeper": 0.07,
+    "From Counter": 0.01
+   },
+   "trigrammi": [
+    [
+     "CC > Cd > Dd",
+     0.15
+    ],
+    [
+     "Cd > Dd > DC",
+     0.15
+    ],
+    [
+     "Cs > Ds > DC",
+     0.15
+    ]
+   ]
+  },
+  {
+   "cl": "C3",
+   "fase": "costruzione",
+   "n": 125,
+   "quota_fase": 0.2,
+   "quota_totale": 0.11,
+   "jaccard": 0.74,
+   "x0": 26.4,
+   "x1": 52.7,
+   "larg_inizio": 22.4,
+   "larg_fine": 25.5,
+   "passaggi": 3.9,
+   "lanci_lunghi": 0.13,
+   "direttezza": 0.35,
+   "durata_s": 8.8,
+   "lato_sx": 0.54,
+   "tiro": 0.0,
+   "inizio": {
+    "Regular Play": 0.76,
+    "From Throw In": 0.17,
+    "From Goal Kick": 0.05,
+    "From Counter": 0.02,
+    "From Keeper": 0.01
+   },
+   "trigrammi": [
+    [
+     "As > Bs > Cs",
+     0.08
+    ],
+    [
+     "Bs > As > Bs",
+     0.07
+    ],
+    [
+     "As > Bs > As",
+     0.06
+    ]
+   ]
+  },
+  {
+   "cl": "C4",
+   "fase": "costruzione",
+   "n": 124,
+   "quota_fase": 0.2,
+   "quota_totale": 0.11,
+   "jaccard": 0.6,
+   "x0": 30.6,
+   "x1": 95.0,
+   "larg_inizio": 26.4,
+   "larg_fine": 19.6,
+   "passaggi": 6.2,
+   "lanci_lunghi": 0.29,
+   "direttezza": 0.36,
+   "durata_s": 21.7,
+   "lato_sx": 0.51,
+   "tiro": 0.137,
+   "inizio": {
+    "Regular Play": 0.71,
+    "From Throw In": 0.28,
+    "From Keeper": 0.01
+   },
+   "trigrammi": [
+    [
+     "BC > Bd > Cd",
+     0.09
+    ],
+    [
+     "Cd > Dd > DC",
+     0.06
+    ],
+    [
+     "Bs > Cs > CC",
+     0.06
+    ]
+   ]
+  },
+  {
+   "cl": "C5",
+   "fase": "costruzione",
+   "n": 122,
+   "quota_fase": 0.2,
+   "quota_totale": 0.1,
+   "jaccard": 0.68,
+   "x0": 31.1,
+   "x1": 94.1,
+   "larg_inizio": 23.5,
+   "larg_fine": 17.0,
+   "passaggi": 3.9,
+   "lanci_lunghi": 0.19,
+   "direttezza": 0.66,
+   "durata_s": 9.8,
+   "lato_sx": 0.53,
+   "tiro": 0.172,
+   "inizio": {
+    "Regular Play": 0.72,
+    "From Throw In": 0.2,
+    "From Counter": 0.07
+   },
+   "trigrammi": [
+    [
+     "Bs > Cs > Ds",
+     0.1
+    ],
+    [
+     "BC > Bd > Cd",
+     0.08
+    ],
+    [
+     "Bd > Cd > Dd",
+     0.08
+    ]
+   ]
+  },
+  {
+   "cl": "A1",
+   "fase": "avanzata",
+   "n": 255,
+   "quota_fase": 0.47,
+   "quota_totale": 0.22,
+   "jaccard": 0.89,
+   "x0": 62.3,
+   "x1": 101.0,
+   "larg_inizio": 28.1,
+   "larg_fine": 16.5,
+   "passaggi": 4.4,
+   "lanci_lunghi": 0.22,
+   "direttezza": 0.39,
+   "durata_s": 11.9,
+   "lato_sx": 0.52,
+   "tiro": 0.129,
+   "inizio": {
+    "Regular Play": 0.59,
+    "From Throw In": 0.38,
+    "From Keeper": 0.02,
+    "From Counter": 0.01
+   },
+   "trigrammi": [
+    [
+     "Cs > Ds > DC",
+     0.1
+    ],
+    [
+     "Cs > Ds > Cs",
+     0.06
+    ],
+    [
+     "Bd > Cd > Bd",
+     0.06
+    ]
+   ]
+  },
+  {
+   "cl": "A2",
+   "fase": "avanzata",
+   "n": 84,
+   "quota_fase": 0.15,
+   "quota_totale": 0.07,
+   "jaccard": 0.87,
+   "x0": 70.5,
+   "x1": 96.6,
+   "larg_inizio": 29.8,
+   "larg_fine": 19.0,
+   "passaggi": 11.7,
+   "lanci_lunghi": 0.21,
+   "direttezza": 0.09,
+   "durata_s": 41.5,
+   "lato_sx": 0.49,
+   "tiro": 0.179,
+   "inizio": {
+    "From Throw In": 0.52,
+    "Regular Play": 0.45,
+    "From Keeper": 0.02
+   },
+   "trigrammi": [
+    [
+     "Cs > Ds > DC",
+     0.15
+    ],
+    [
+     "Cs > Ds > Cs",
+     0.15
+    ],
+    [
+     "Cs > Bs > BC",
+     0.13
+    ]
+   ]
+  },
+  {
+   "cl": "A3",
+   "fase": "avanzata",
+   "n": 209,
+   "quota_fase": 0.38,
+   "quota_totale": 0.18,
+   "jaccard": 0.85,
+   "x0": 81.9,
+   "x1": 83.8,
+   "larg_inizio": 35.1,
+   "larg_fine": 26.8,
+   "passaggi": 4.8,
+   "lanci_lunghi": 0.13,
+   "direttezza": 0.04,
+   "durata_s": 12.9,
+   "lato_sx": 0.44,
+   "tiro": 0.062,
+   "inizio": {
+    "From Throw In": 0.72,
+    "Regular Play": 0.27,
+    "From Counter": 0.0,
+    "From Keeper": 0.0
+   },
+   "trigrammi": [
+    [
+     "Cd > Dd > Cd",
+     0.1
+    ],
+    [
+     "Dd > Cd > Dd",
+     0.09
+    ],
+    [
+     "Ds > Cs > Ds",
+     0.07
+    ]
+   ]
+  }
+ ],
+ "n_sequenze": 1164,
+ "n_partite_esplorazione": 27
+}

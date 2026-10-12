@@ -1,0 +1,25 @@
+{
+ "team": "Leicester City",
+ "partite": 38,
+ "possessi": 6822,
+ "rinvii": 329,
+ "rinvii_corti": 5,
+ "corner": 196,
+ "zone": {
+  "corto/fuori area": 44,
+  "primo palo": 17,
+  "centro": 119,
+  "secondo palo": 16
+ },
+ "entropia": 1.5219283474063197,
+ "entropia_ci": [
+  1.35388206707413,
+  1.655063302366108
+ ],
+ "xg_corner": 0.04074628444387755,
+ "acc_model": 0.5128205128205128,
+ "acc_base": 0.6282051282051282,
+ "ll_model": 1.0687853812953525,
+ "ll_base": 0.9986196318511913,
+ "n_test": 78
+}

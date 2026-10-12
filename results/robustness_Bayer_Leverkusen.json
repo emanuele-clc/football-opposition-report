@@ -1,0 +1,208 @@
+{
+ "team": "Bayer Leverkusen",
+ "n_matches_expl": 24,
+ "n_seq_expl": 1172,
+ "match_bootstrap_x45": {
+  "costruzione": {
+   "n": 619,
+   "k": 5,
+   "silhouette": 0.179520484128358,
+   "jaccard_mean": 0.8170658178858451,
+   "jaccard_min": 0.7504952045140765,
+   "ari": 0.7537466706755298
+  },
+  "avanzata": {
+   "n": 553,
+   "k": 3,
+   "silhouette": 0.18922414279687086,
+   "jaccard_mean": 0.8861671840845319,
+   "jaccard_min": 0.8789692299090937,
+   "ari": 0.823768528480821
+  }
+ },
+ "cut_sensitivity": {
+  "35": {
+   "costruzione": {
+    "n": 482,
+    "k": 5,
+    "silhouette": 0.18973980049512185,
+    "jaccard_mean": 0.8110257593566423,
+    "jaccard_min": 0.6555999404669504,
+    "ari": 0.7638033756811632
+   },
+   "avanzata": {
+    "n": 690,
+    "k": 3,
+    "silhouette": 0.18905815828828554,
+    "jaccard_mean": 0.8963142716670714,
+    "jaccard_min": 0.8918926300354033,
+    "ari": 0.8395759617428393
+   }
+  },
+  "40": {
+   "costruzione": {
+    "n": 540,
+    "k": 5,
+    "silhouette": 0.186383484671101,
+    "jaccard_mean": 0.8248905693986437,
+    "jaccard_min": 0.7281412651996113,
+    "ari": 0.7737668498625306
+   },
+   "avanzata": {
+    "n": 632,
+    "k": 3,
+    "silhouette": 0.19118786894343642,
+    "jaccard_mean": 0.8997045821914935,
+    "jaccard_min": 0.8906471267385909,
+    "ari": 0.8462225235791586
+   }
+  },
+  "45": {
+   "costruzione": {
+    "n": 619,
+    "k": 5,
+    "silhouette": 0.179520484128358,
+    "jaccard_mean": 0.7926810004506444,
+    "jaccard_min": 0.7480462145639328,
+    "ari": 0.7283710130265697
+   },
+   "avanzata": {
+    "n": 553,
+    "k": 3,
+    "silhouette": 0.18922414279687086,
+    "jaccard_mean": 0.8894009234604529,
+    "jaccard_min": 0.8789295458829371,
+    "ari": 0.8274191409394921
+   }
+  },
+  "50": {
+   "costruzione": {
+    "n": 690,
+    "k": 5,
+    "silhouette": 0.17327692502047526,
+    "jaccard_mean": 0.78289575847115,
+    "jaccard_min": 0.7157701877745891,
+    "ari": 0.7110794963636936
+   },
+   "avanzata": {
+    "n": 482,
+    "k": 3,
+    "silhouette": 0.19200111177573007,
+    "jaccard_mean": 0.871986261536111,
+    "jaccard_min": 0.8550095825023621,
+    "ari": 0.806359183696512
+   }
+  },
+  "55": {
+   "costruzione": {
+    "n": 740,
+    "k": 5,
+    "silhouette": 0.1717199364100191,
+    "jaccard_mean": 0.7555654219703094,
+    "jaccard_min": 0.6615875797572623,
+    "ari": 0.6796378100889441
+   },
+   "avanzata": {
+    "n": 432,
+    "k": 3,
+    "silhouette": 0.19508010469018788,
+    "jaccard_mean": 0.8650322658420535,
+    "jaccard_min": 0.8391015823111884,
+    "ari": 0.799983102551769
+   }
+  }
+ },
+ "k_sensitivity": {
+  "costruzione_k3": {
+   "jaccard_mean": 0.8817702861601928,
+   "jaccard_min": 0.8328432136964514,
+   "silhouette": 0.19801394446822743
+  },
+  "costruzione_k4": {
+   "jaccard_mean": 0.6986172408239528,
+   "jaccard_min": 0.5638735840531457,
+   "silhouette": 0.17742333763724857
+  },
+  "costruzione_k5": {
+   "jaccard_mean": 0.7967013047641649,
+   "jaccard_min": 0.7402743742272382,
+   "silhouette": 0.179520484128358
+  },
+  "costruzione_k6": {
+   "jaccard_mean": 0.720527602158256,
+   "jaccard_min": 0.554795386997278,
+   "silhouette": 0.17917561702786175
+  },
+  "costruzione_k7": {
+   "jaccard_mean": 0.6688327974969337,
+   "jaccard_min": 0.4813766677872862,
+   "silhouette": 0.1801540611237179
+  },
+  "avanzata_k2": {
+   "jaccard_mean": 0.8678375327019653,
+   "jaccard_min": 0.8492771817760264,
+   "silhouette": 0.1900924146818267
+  },
+  "avanzata_k3": {
+   "jaccard_mean": 0.8627320358359225,
+   "jaccard_min": 0.85686144448379,
+   "silhouette": 0.18922414279687086
+  },
+  "avanzata_k4": {
+   "jaccard_mean": 0.7372492559396879,
+   "jaccard_min": 0.6243029646223447,
+   "silhouette": 0.18963987944235897
+  },
+  "avanzata_k5": {
+   "jaccard_mean": 0.6887831401580874,
+   "jaccard_min": 0.5508848473445915,
+   "silhouette": 0.17069008113382036
+  }
+ },
+ "methods": {
+  "costruzione": {
+   "sil_kmeans": 0.179520484128358,
+   "sil_gmm": 0.12611915288951525,
+   "sil_ward": 0.1426650013497575,
+   "ari_kmeans_gmm": 0.4609880670428598,
+   "ari_kmeans_ward": 0.36724010547704106
+  },
+  "avanzata": {
+   "sil_kmeans": 0.18922414279687086,
+   "sil_gmm": 0.1624914501297886,
+   "sil_ward": 0.15746750603792706,
+   "ari_kmeans_gmm": 0.5401777300708639,
+   "ari_kmeans_ward": 0.437346184910571
+  }
+ },
+ "pred": {
+  "costruzione": {
+   "entropy": 2.2468300729389816,
+   "entropy_max": 2.321928094887362,
+   "logloss_model": 1.449023705612541,
+   "logloss_base": 1.5632914101263846,
+   "gain_mean": 0.11426770451384353,
+   "gain_ci": [
+    0.07998219839760452,
+    0.14969314945818857
+   ],
+   "acc_model": 0.3134087237479806,
+   "acc_base": 0.2197092084006462,
+   "n": 619
+  },
+  "avanzata": {
+   "entropy": 1.5774029805047771,
+   "entropy_max": 1.584962500721156,
+   "logloss_model": 1.0946848332071404,
+   "logloss_base": 1.1013812295271634,
+   "gain_mean": 0.006696396320023216,
+   "gain_ci": [
+    -0.022818801600735846,
+    0.031907719271410485
+   ],
+   "acc_model": 0.4448462929475588,
+   "acc_base": 0.30560578661844484,
+   "n": 553
+  }
+ }
+}

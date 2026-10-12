@@ -1,0 +1,208 @@
+{
+ "team": "Leicester City",
+ "n_matches_expl": 27,
+ "n_seq_expl": 1164,
+ "match_bootstrap_x45": {
+  "costruzione": {
+   "n": 616,
+   "k": 5,
+   "silhouette": 0.15958103271605234,
+   "jaccard_mean": 0.7038219604150622,
+   "jaccard_min": 0.5953089941646167,
+   "ari": 0.6568701555390768
+  },
+  "avanzata": {
+   "n": 548,
+   "k": 3,
+   "silhouette": 0.19072106966982613,
+   "jaccard_mean": 0.8572305908341158,
+   "jaccard_min": 0.8292309404481532,
+   "ari": 0.7799683811344293
+  }
+ },
+ "cut_sensitivity": {
+  "35": {
+   "costruzione": {
+    "n": 479,
+    "k": 5,
+    "silhouette": 0.16098028315086022,
+    "jaccard_mean": 0.6496413879738607,
+    "jaccard_min": 0.5233982697324628,
+    "ari": 0.616967144239022
+   },
+   "avanzata": {
+    "n": 685,
+    "k": 3,
+    "silhouette": 0.18986016760297172,
+    "jaccard_mean": 0.8983184081983654,
+    "jaccard_min": 0.8844636182105324,
+    "ari": 0.8460691355967962
+   }
+  },
+  "40": {
+   "costruzione": {
+    "n": 538,
+    "k": 5,
+    "silhouette": 0.156781555227312,
+    "jaccard_mean": 0.6879378403875412,
+    "jaccard_min": 0.615120430841151,
+    "ari": 0.6369720239107
+   },
+   "avanzata": {
+    "n": 626,
+    "k": 3,
+    "silhouette": 0.1888762665087441,
+    "jaccard_mean": 0.8892357746203386,
+    "jaccard_min": 0.872432534206183,
+    "ari": 0.8221088180562053
+   }
+  },
+  "45": {
+   "costruzione": {
+    "n": 616,
+    "k": 5,
+    "silhouette": 0.15958103271605234,
+    "jaccard_mean": 0.7338107097141793,
+    "jaccard_min": 0.6589209581745005,
+    "ari": 0.6872541241832657
+   },
+   "avanzata": {
+    "n": 548,
+    "k": 3,
+    "silhouette": 0.19072106966982613,
+    "jaccard_mean": 0.8601448581559085,
+    "jaccard_min": 0.8396105325608438,
+    "ari": 0.7913327471674104
+   }
+  },
+  "50": {
+   "costruzione": {
+    "n": 685,
+    "k": 5,
+    "silhouette": 0.16071017443051464,
+    "jaccard_mean": 0.6974427314500622,
+    "jaccard_min": 0.603480395436515,
+    "ari": 0.6324965838065826
+   },
+   "avanzata": {
+    "n": 479,
+    "k": 3,
+    "silhouette": 0.19248736036418126,
+    "jaccard_mean": 0.864006741321056,
+    "jaccard_min": 0.8388370349027329,
+    "ari": 0.8083000867430132
+   }
+  },
+  "55": {
+   "costruzione": {
+    "n": 755,
+    "k": 5,
+    "silhouette": 0.16252465268585542,
+    "jaccard_mean": 0.7688372228171707,
+    "jaccard_min": 0.7001788959474078,
+    "ari": 0.7077503892132601
+   },
+   "avanzata": {
+    "n": 409,
+    "k": 3,
+    "silhouette": 0.18836643913145573,
+    "jaccard_mean": 0.8326550546211496,
+    "jaccard_min": 0.8045656102732889,
+    "ari": 0.7595401293411544
+   }
+  }
+ },
+ "k_sensitivity": {
+  "costruzione_k3": {
+   "jaccard_mean": 0.8876982014463098,
+   "jaccard_min": 0.877711467616851,
+   "silhouette": 0.19525988613433906
+  },
+  "costruzione_k4": {
+   "jaccard_mean": 0.795361657269256,
+   "jaccard_min": 0.7021866756474976,
+   "silhouette": 0.1717688576267973
+  },
+  "costruzione_k5": {
+   "jaccard_mean": 0.6891253017142149,
+   "jaccard_min": 0.5653081702165337,
+   "silhouette": 0.15958103271605234
+  },
+  "costruzione_k6": {
+   "jaccard_mean": 0.6153081627131523,
+   "jaccard_min": 0.5226165246079646,
+   "silhouette": 0.16125411182328836
+  },
+  "costruzione_k7": {
+   "jaccard_mean": 0.6703952500688108,
+   "jaccard_min": 0.530643361204472,
+   "silhouette": 0.16194051376005839
+  },
+  "avanzata_k2": {
+   "jaccard_mean": 0.8244631728402154,
+   "jaccard_min": 0.7652860734162046,
+   "silhouette": 0.2309413620964762
+  },
+  "avanzata_k3": {
+   "jaccard_mean": 0.8436333956348895,
+   "jaccard_min": 0.8112683034037453,
+   "silhouette": 0.19072106966982613
+  },
+  "avanzata_k4": {
+   "jaccard_mean": 0.7341777897463982,
+   "jaccard_min": 0.602521789305722,
+   "silhouette": 0.18426307518241747
+  },
+  "avanzata_k5": {
+   "jaccard_mean": 0.5883575660594704,
+   "jaccard_min": 0.4358345687578638,
+   "silhouette": 0.17802674922849862
+  }
+ },
+ "methods": {
+  "costruzione": {
+   "sil_kmeans": 0.15958103271605234,
+   "sil_gmm": 0.1059076639295821,
+   "sil_ward": 0.12663404900443848,
+   "ari_kmeans_gmm": 0.3938589097072377,
+   "ari_kmeans_ward": 0.5080378043006616
+  },
+  "avanzata": {
+   "sil_kmeans": 0.19072106966982613,
+   "sil_gmm": 0.14203046035502148,
+   "sil_ward": 0.141509288678472,
+   "ari_kmeans_gmm": 0.4131407429519502,
+   "ari_kmeans_ward": 0.3978201644020845
+  }
+ },
+ "pred": {
+  "costruzione": {
+   "entropy": 2.2945461867872905,
+   "entropy_max": 2.321928094887362,
+   "logloss_model": 1.4417853755856174,
+   "logloss_base": 1.6000258063289476,
+   "gain_mean": 0.15824043074333044,
+   "gain_ci": [
+    0.11976209004794038,
+    0.19760198427693257
+   ],
+   "acc_model": 0.3425324675324675,
+   "acc_base": 0.2597402597402597,
+   "n": 616
+  },
+  "avanzata": {
+   "entropy": 1.4587020674179554,
+   "entropy_max": 1.584962500721156,
+   "logloss_model": 0.9900451798642037,
+   "logloss_base": 1.018006099004324,
+   "gain_mean": 0.02796091914012033,
+   "gain_ci": [
+    -0.011801151286099956,
+    0.06265795031924834
+   ],
+   "acc_model": 0.5602189781021898,
+   "acc_base": 0.4653284671532847,
+   "n": 548
+  }
+ }
+}

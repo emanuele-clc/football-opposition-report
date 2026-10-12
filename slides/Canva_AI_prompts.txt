@@ -1,0 +1,97 @@
+CANVA AI PROMPTS - 15 slides + 3 backup slides (English)
+===========================================================
+How to use: paste the MASTER PROMPT first to set the style, then paste one SLIDE PROMPT at a time (or all together if Canva accepts it). Upload the two figures first:
+  - fig_L2_Bayer_Leverkusen_EN.png  (slide 8)
+  - fig_corners_EN.png              (slide 12)
+Always add at the end of each prompt: "Use exactly the text and numbers I give. Do not invent or change any number."
+
+------------------------------------------------------------
+MASTER PROMPT (style)
+------------------------------------------------------------
+Create a 16:9 presentation for a master's thesis proposal in artificial intelligence applied to football analytics. Style: serious, technical, minimal, academic but modern. Dark navy background (#0B1020), off-white text (#F2EFE6), green accent (#5B9A3E) for labels and lines, orange accent (#E8620C) only for key numbers. Headings in a bold condensed sans-serif (Anton, Bebas Neue or Oswald), body text in a clean sans-serif (Inter or Roboto), at least 22 pt for body text. Lots of empty space, thin green dividing lines, simple line icons, football pitch drawn as thin white line art only where needed. No stock photos, no fake dashboards, no decorative clutter. Maximum 5 short lines of text per slide. Charts must be flat and clean, with axis labels and the exact values I give.
+
+------------------------------------------------------------
+SLIDE 1 - Title
+------------------------------------------------------------
+Title slide. Large title: "AUTOMATED FOOTBALL OPPOSITION REPORT". Subtitle: "Measuring stability, predictability and exploitability of tactical patterns with open data". Bottom left: "Emanuele Colecchia - Master's thesis proposal". Faint football pitch line art on the right.
+
+------------------------------------------------------------
+SLIDE 2 - What exists, and what is missing
+------------------------------------------------------------
+Title: "WHAT EXISTS, AND WHAT IS MISSING". Three columns with small headers.
+Column 1 "Commercial platforms": "Wyscout, Hudl (incl. StatsBomb): data, video, xG. No published method or uncertainty on pattern stability (public documentation only)".
+Column 2 "Research": "Clustering of possessions and styles on StatsBomb data. Defence positioning with 360 frames. TacticAI (DeepMind + Liverpool FC, 2024)".
+Column 3 "Gap (this thesis)": "Stability + predictability + exploitability, together, on open data, with uncertainty".
+Highlight the third column with an orange border.
+
+------------------------------------------------------------
+SLIDE 3 - Research question
+------------------------------------------------------------
+Title: "RESEARCH QUESTION". One large sentence: "Can we identify recurring tactical patterns automatically, and quantify - with uncertainty - how stable and predictable they are, and whether that predictability is exploitable?" Below, three small boxes in a row: "STABILITY: does the pattern come back if the data change?", "PREDICTABILITY: how well can we guess the next choice vs a simple guess?", "EXPLOITABILITY: how much xG would a defence gain by knowing the habit?". Thin arrows between the boxes.
+
+------------------------------------------------------------
+SLIDE 4 - Architecture and data
+------------------------------------------------------------
+Title: "ARCHITECTURE AND DATA". Left: a simple diagram with two boxes under one header "Event data": box "L2 - open play: sequences, families, stability, predictability" and box "L3 - corner kicks: 360 frames, defensive set-up, exploitability". Right: a small card "Data: StatsBomb Open Data (non-commercial licence). Bayer Leverkusen 2023/24: 34 matches, with 360. Leicester City 2015/16: 38 matches, events only." Bottom strip: a timeline bar split 70% / 30% labelled "70% build the method" and "30% kept apart".
+
+------------------------------------------------------------
+SLIDE 5 - From events to sequences, and a failed first attempt
+------------------------------------------------------------
+Title: "FROM EVENTS TO SEQUENCES". Left: a pitch line-art with a path of 4 numbered points and arrows (goal kick, pass, pass, ball lost) captioned "A sequence: a chain of passes and carries by one team". Right: two stacked cards. Card 1 (grey, crossed out feel): "Attempt 1: 12 zones as 0/1 + 29 components - silhouette 0.07-0.11, stability < 0.6". Card 2 (green): "Attempt 2: 11 continuous variables, split at x = 45 - stable groups". Bottom: "About 1,170 sequences per team".
+
+------------------------------------------------------------
+SLIDE 6 - K-Means
+------------------------------------------------------------
+Title: "K-MEANS: HOW THE FAMILIES ARE BUILT". Left: a flat scatter diagram with 3 coloured groups of dots and a larger dot as the centre of each group. Right: 4 short lines: "k centres, each sequence goes to the nearest", "Why: simple, fast, readable centres", "Limits: round groups, k chosen in advance", "k = 5 (build-up), k = 3 (advanced). Silhouette about 0.18: stable slices of a continuum".
+
+------------------------------------------------------------
+SLIDE 7 - Bootstrap and the Jaccard index
+------------------------------------------------------------
+Title: "BOOTSTRAP AND THE JACCARD INDEX". Left: a flow of 4 boxes with arrows: "Data" -> "Resample with replacement (x200)" -> "Cluster again" -> "Compare with the original". Right: a big formula card "J = |A and B| / |A or B|" with a small Venn diagram of two overlapping circles, and three coloured chips: green "0.75 or more: stable", amber "0.60-0.75: probable", red "below 0.60: unstable". Footer small text: "Limit: resamples sequences, not matches".
+
+------------------------------------------------------------
+SLIDE 8 - Results: the eight families of Bayer Leverkusen
+------------------------------------------------------------
+Title: "RESULTS: 8 FAMILIES, BAYER LEVERKUSEN". Place the uploaded image fig_L2_Bayer_Leverkusen_EN.png as large as possible across the slide. Under it a one-line caption: "Build-up: 5 families. Advanced phase: 3 families. Stability 0.78-0.89". On the right or below, a compact table with 5 rows: "C1 | long, patient build-up | 13 passes, 40 s, 24% with a shot", "C3 | very long possession | 32 passes, 98 s", "C4 | short build-up that stops near halfway | shot 0.7%", "A2 | prolonged possession in the final third | 22 passes, 65 s", "A3 | lateral circulation without progression | 58% from throw-ins". Note: "Names are my descriptions, checked on 3 sequences each".
+
+------------------------------------------------------------
+SLIDE 9 - Results: Leverkusen against Leicester
+------------------------------------------------------------
+Title: "BAYER LEVERKUSEN VS LEICESTER CITY". A comparison table with two columns (Leverkusen 2023/24, Leicester 2015/16) and these rows: "Passes per sequence | 10.7 | 5.6", "Long passes | 11% | 22%", "Average duration | 31 s | 18 s", "Sequences ending in a shot | 17.5% | 12.0%", "Build-up stability (mean Jaccard) | 0.83 | 0.71". Highlight the numbers in orange. Footer: "Descriptive only: different league, era and data version; k chosen on Leverkusen".
+
+------------------------------------------------------------
+SLIDE 10 - Predictability: Shannon entropy and goal kicks
+------------------------------------------------------------
+Title: "PREDICTABILITY: SHANNON ENTROPY". Top: the formula "H = - sum p log2 p (bits)". Left chart: two horizontal stacked bars. Bar 1 labelled "90% short / 10% long -> 0.47 bits (predictable)". Bar 2 labelled "50% short / 50% long -> 1.00 bit (coin toss)". Right: small bar chart "Leverkusen goal kicks, share kicked short: ahead 44% (n=100), level 65% (n=69), behind 88% (n=16)". Bottom line: "Test on 61 kicks: log-loss 0.674 vs 0.688, accuracy 0.56 vs 0.66: inconclusive".
+
+------------------------------------------------------------
+SLIDE 11 - L3: game theory and exploitability
+------------------------------------------------------------
+Title: "L3: GAME THEORY AND EXPLOITABILITY". Centre: a 3 x 3 grid diagram: rows "Delivery zone: near post / centre / far post", columns "Defensive set-up: near / balanced / far", cells empty with "xG" written lightly. Right: three lines: "Value = xG of shots in the same possession after the corner", "Exploitability = xG per corner gained by a defence that knows the habits", "Permutation test: shuffle xG 1,000 times". Small note: "Best-response gain, not a full Nash equilibrium".
+
+------------------------------------------------------------
+SLIDE 12 - L3 results: a negative, honest answer
+------------------------------------------------------------
+Title: "L3 RESULTS: NOT SIGNIFICANT (SO FAR)". Place the uploaded image fig_corners_EN.png across the slide. Under it three facts in a row: "Leverkusen: 236 corners, 148 with 360 - xG 0.046 per corner", "Exploitability 0.026 vs chance 0.015 - p = 0.17", "Pooled Euro 2020, Euro 2024, World Cup 2022: 846 corners with 360 - p = 0.41". Footer: "Not proof of absence: crude zones, near-empty cells, partial frames".
+
+------------------------------------------------------------
+SLIDE 13 - Limits, stated clearly
+------------------------------------------------------------
+Title: "LIMITS". Six short lines with small green check-box icons: "Low silhouette (0.18): slices of a continuum", "Bootstrap on sequences, not matches", "Different leagues and eras", "Choices on exploration data: k, x = 45, representation (one attempt discarded)", "Last 10 Leverkusen matches already used as exploratory test: final validation needs new data", "Non-commercial licence; family names are my descriptions".
+
+------------------------------------------------------------
+SLIDE 14 - Roadmap and a possible collaboration
+------------------------------------------------------------
+Title: "ROADMAP: 6-7 MONTHS". Horizontal timeline with 4 steps: "1 Resample matches, not sequences", "2 Predictability of the families: entropy, baseline, test", "3 Corner study with better set-up definitions", "4 One-page automated report". Under the timeline, a dashed-border box: "Optional, with consent: 15-minute feedback from an analyst at LASK Linz. The tool can run inside the club. If no reply: complete on open data".
+
+------------------------------------------------------------
+SLIDE 15 - Summary and questions
+------------------------------------------------------------
+Title: "SUMMARY". A horizontal chain of 6 small boxes: "Events -> Sequences -> Families -> Stability -> Predictability -> Exploitability". Below, one sentence: "Contribution: integration and rigour on open data, not pattern discovery. Negative results are reported." Then three questions as numbered items: "1 Main contribution: stability and predictability?", "2 Is the scope adequate for a master's thesis?", "3 Which validation criteria?". End with "Thank you".
+
+------------------------------------------------------------
+BACKUP SLIDES (not counted in the 20 minutes)
+------------------------------------------------------------
+BACKUP 1 - "TECHNICAL TERMS (1/3)": three cards. "K-MEANS: k centres, assign each item to the nearest, move the centre to the group's mean, repeat." "SILHOUETTE: from -1 to 1; near 1 well separated, near 0 overlapping." "BOOTSTRAP: resample with replacement to see how much the result depends on the sample."
+BACKUP 2 - "TECHNICAL TERMS (2/3)": three cards. "JACCARD INDEX: |A and B| / |A or B|; 1 identical, 0 nothing in common." "SHANNON ENTROPY: uncertainty in bits; 0 certain, 1 for a fair coin." "BASELINE: the simplest rule; a model must beat it on unseen data."
+BACKUP 3 - "TECHNICAL TERMS (3/3)": three cards. "LOG-LOSS: scores predicted probabilities; lower is better." "PERMUTATION TEST AND P-VALUE: shuffle outcomes; p = share of shuffles at least as extreme as observed." "EXPLOITABILITY: xG gained by the best response to a known strategy."

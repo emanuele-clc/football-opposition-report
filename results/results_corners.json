@@ -1,0 +1,114 @@
+{
+ "n_corner": 236,
+ "n_corner_360": 148,
+ "zone_counts": {
+  "corto/fuori area": 71,
+  "primo palo": 10,
+  "centro": 149,
+  "secondo palo": 6
+ },
+ "entropy": 1.268163341790252,
+ "entropy_max": 2.0,
+ "entropy_ci": [
+  1.1074553544823929,
+  1.3949633231108827
+ ],
+ "zone_counts_lato_y_basso": {
+  "corto/fuori area": 31,
+  "primo palo": 5,
+  "centro": 69,
+  "secondo palo": 3
+ },
+ "entropy_lato_y_basso": 1.2786578621978475,
+ "zone_counts_lato_y_alto": {
+  "corto/fuori area": 40,
+  "primo palo": 5,
+  "centro": 80,
+  "secondo palo": 3
+ },
+ "entropy_lato_y_alto": 1.257844536225908,
+ "xg_mean_all": 0.04581335394449153,
+ "xg_mean_ci": [
+  0.03370121164549787,
+  0.05849464766497881
+ ],
+ "xg_by_zone": {
+  "corto/fuori area": {
+   "n": 71,
+   "mean": 0.026910241752112676,
+   "ci": [
+    0.01482155702605634,
+    0.04175843435507042
+   ]
+  },
+  "primo palo": {
+   "n": 10,
+   "mean": 0.026934371100000003,
+   "ci": [
+    0.006980106,
+    0.04987679386249997
+   ]
+  },
+  "centro": {
+   "n": 149,
+   "mean": 0.055481089701342266,
+   "ci": [
+    0.03933903524731544,
+    0.07380826518590604
+   ]
+  },
+  "secondo palo": {
+   "n": 6,
+   "mean": 0.06088304833333333,
+   "ci": [
+    0.0,
+    0.18264914499999998
+   ]
+  }
+ },
+ "pred": {
+  "n_train": 166,
+  "n_test": 70,
+  "acc_model": 0.5857142857142857,
+  "acc_baseline": 0.5857142857142857,
+  "ll_model": 1.0342527093715266,
+  "ll_baseline": 1.0234485592146505
+ },
+ "setup_counts": {
+  "carico vicino": 76,
+  "equilibrato": 63,
+  "carico lontano": 9
+ },
+ "opp_in_box_visible": {
+  "median": 9.0,
+  "min": 5,
+  "max": 10
+ },
+ "cells": {
+  "corto/fuori area|carico vicino": 3,
+  "corto/fuori area|equilibrato": 16,
+  "corto/fuori area|carico lontano": 2,
+  "primo palo|carico vicino": 4,
+  "primo palo|equilibrato": 2,
+  "primo palo|carico lontano": 0,
+  "centro|carico vicino": 68,
+  "centro|equilibrato": 41,
+  "centro|carico lontano": 7,
+  "secondo palo|carico vicino": 1,
+  "secondo palo|equilibrato": 4,
+  "secondo palo|carico lontano": 0
+ },
+ "exploit_obs_xg": 0.026131369038610033,
+ "exploit_boot_ci": [
+  0.009417725510725932,
+  0.04587119493636263
+ ],
+ "exploit_null_mean": 0.015073805868991937,
+ "exploit_null_p95": 0.03256149038892857,
+ "exploit_pvalue": 0.166,
+ "best_setup_train": "equilibrato",
+ "test360_n": 41,
+ "test_best_n": 16,
+ "test_best_xg": 0.06890143393749999,
+ "test_other_xg": 0.045767161759999994
+}
