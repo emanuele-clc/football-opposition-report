@@ -101,6 +101,13 @@ Mean Jaccard of the observed partition vs two structure-free nulls (shuffled fea
 
 Build-up (both teams) and Leicester advanced are clearly above both nulls. Leverkusen advanced is **not** clearly above the Gaussian null: treat it as a slicing of a continuum, not demonstrated structure. Script: `src/week3/stability_null_baseline.py` (on Windows run with `python -X utf8`).
 
+## Held-out validation (week 4)
+Protocol: `docs/protocol_holdout.md` (committed before running). Script: `src/week4/validate_holdout.py`. Status: **not yet run** on the held-out matches.
+```bash
+python src/week4/validate_holdout.py matches/9_281.json "Bayer Leverkusen" . --confirm
+python src/week4/validate_holdout.py matches/2_27.json "Leicester City" . --confirm
+```
+
 ## Declared researcher degrees of freedom
 1. Phase split at x = 45 (tested 35–55)
 2. k = 5 (build-up) and k = 3 (advanced): chosen by match-bootstrap on Leverkusen exploration
