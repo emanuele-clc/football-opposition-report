@@ -1,0 +1,106 @@
+{
+ "team": "Arsenal",
+ "modo": "VALIDAZIONE RISERVATE",
+ "partite_train": 27,
+ "partite_test": 11,
+ "n_seq_train": 1333,
+ "n_seq_test": 533,
+ "costruzione": {
+  "n_train": 760,
+  "n_test": 303,
+  "quote_train": {
+   "C1": 0.214,
+   "C2": 0.276,
+   "C3": 0.088,
+   "C4": 0.213,
+   "C5": 0.208
+  },
+  "quote_test": {
+   "C1": 0.191,
+   "C2": 0.29,
+   "C3": 0.142,
+   "C4": 0.228,
+   "C5": 0.149
+  },
+  "max_scarto_quote": 0.05937988535695676,
+  "silhouette_congelata_test": 0.1734051848239691,
+  "ari_riadattamento_descrittivo": 0.7868727502816707,
+  "H2_pass": true,
+  "logloss_modello": 1.4854052120814283,
+  "logloss_baseline": 1.598184173871172,
+  "guadagno": 0.11277896178974392,
+  "guadagno_ci95": [
+   0.077154388170477,
+   0.14257741377689306
+  ],
+  "accuratezza_modello": 0.33993399339933994,
+  "accuratezza_baseline": 0.29042904290429045,
+  "H1_pass": true,
+  "tiro_train": {
+   "C1": 0.221,
+   "C2": 0.181,
+   "C3": 0.328,
+   "C4": 0.012,
+   "C5": 0.158
+  },
+  "tiro_test": {
+   "C1": 0.172,
+   "C2": 0.102,
+   "C3": 0.326,
+   "C4": 0.014,
+   "C5": 0.156
+  },
+  "H3_guadagno": 0.03479771857550224,
+  "H3_ci95": [
+   0.0171467610316693,
+   0.057372414426098646
+  ],
+  "H3_pass": true,
+  "guadagno_modello_feature_descrittivo": 0.07554687507996287
+ },
+ "avanzata": {
+  "n_train": 573,
+  "n_test": 230,
+  "quote_train": {
+   "A1": 0.417,
+   "A2": 0.215,
+   "A3": 0.368
+  },
+  "quote_test": {
+   "A1": 0.396,
+   "A2": 0.278,
+   "A3": 0.326
+  },
+  "max_scarto_quote": 0.06360118370134304,
+  "silhouette_congelata_test": 0.18379506161838263,
+  "ari_riadattamento_descrittivo": 0.646130968631371,
+  "H2_pass": true,
+  "logloss_modello": 1.0553513210916718,
+  "logloss_baseline": 1.0998972733221,
+  "guadagno": 0.04454595223042788,
+  "guadagno_ci95": [
+   0.0030971947316828616,
+   0.08371088684998833
+  ],
+  "accuratezza_modello": 0.5217391304347826,
+  "accuratezza_baseline": 0.39565217391304347,
+  "H1_pass": true,
+  "tiro_train": {
+   "A1": 0.184,
+   "A2": 0.244,
+   "A3": 0.114
+  },
+  "tiro_test": {
+   "A1": 0.242,
+   "A2": 0.219,
+   "A3": 0.08
+  },
+  "H3_guadagno": 0.012928634441034346,
+  "H3_ci95": [
+   -0.0008418271469809738,
+   0.02989034302664508
+  ],
+  "H3_pass": false,
+  "guadagno_modello_feature_descrittivo": 0.05906086830208743
+ }
+}

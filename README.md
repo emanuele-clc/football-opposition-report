@@ -119,6 +119,18 @@ Results on held-out matches (Leverkusen 10, Leicester 11), model frozen on explo
 
 By the pre-registered rule the build-up claim is **confirmed for both teams**. The advanced phase shows no out-of-sample predictability, consistent with exploration. This tests stability over time within the same teams and seasons, not generalisation to other teams, and does not show tactical meaning.
 
+## Replication on two new teams (week 4)
+Protocol: `docs/protocol_replication.md` (committed before running). Script: `src/week4/validate_replication.py`. Teams: Barcelona (La Liga 2015/16) and Arsenal (Premier League 2015/16), 27 exploration + 11 held-out matches each, settings frozen from the first two teams. Run once; results unedited in `results/holdout_Barcelona.json` and `results/holdout_Arsenal.json` (the script uses the same file naming as the first held-out run).
+
+| | H1 predictability gain, 95% CI | H2 (max share change / silhouette) | H3 shots, gain 95% CI |
+|---|---|---|---|
+| Arsenal build-up | +0.113 [+0.077, +0.143] pass | 0.06 / 0.17 pass | +0.035 [+0.017, +0.057] pass |
+| Barcelona build-up | +0.024 [-0.034, +0.077] **not confirmed** | 0.06 / 0.15 pass | +0.038 [+0.023, +0.055] pass |
+| Arsenal advanced | +0.045 [+0.003, +0.084] (not in criterion) | 0.06 / 0.18 pass | +0.013 [-0.001, +0.030] not confirmed |
+| Barcelona advanced | +0.068 [+0.005, +0.130] (not in criterion) | 0.02 / 0.18 pass | +0.015 [+0.003, +0.031] pass |
+
+By the pre-registered rule the build-up claim (H1 and H2) holds for Arsenal and not for Barcelona: **partially replicated, 3 out of 4 teams** counting Leverkusen and Leicester. H2 (families reproduced) holds for all four teams. H3 was only run on the two new teams: shot information in the build-up families is supported for both teams, in the advanced phase for one of two. The advanced-phase H1 results are outside the pre-registered criterion, have lower bounds close to zero and are not interpreted as confirmation.
+
 ## Declared researcher degrees of freedom
 1. Phase split at x = 45 (tested 35–55)
 2. k = 5 (build-up) and k = 3 (advanced): chosen by match-bootstrap on Leverkusen exploration

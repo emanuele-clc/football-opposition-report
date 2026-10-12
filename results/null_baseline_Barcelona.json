@@ -1,0 +1,36 @@
+{
+ "costruzione": {
+  "osservato": {
+   "jaccard_mean": 0.6865735778358601,
+   "jaccard_min": 0.6161906989333202,
+   "silhouette": 0.17727783788291582
+  },
+  "null_shuffle": {
+   "jaccard_mean": 0.35891885429020054,
+   "jaccard_min": 0.3175414546741536,
+   "silhouette": 0.07663421672318613
+  },
+  "null_gauss": {
+   "jaccard_mean": 0.5381094291339831,
+   "jaccard_min": 0.48737063920523693,
+   "silhouette": 0.12246630898372388
+  }
+ },
+ "avanzata": {
+  "osservato": {
+   "jaccard_mean": 0.8458102259836241,
+   "jaccard_min": 0.7918320988505275,
+   "silhouette": 0.19848635850187973
+  },
+  "null_shuffle": {
+   "jaccard_mean": 0.4926797676221373,
+   "jaccard_min": 0.4214167175611743,
+   "silhouette": 0.08089755429494605
+  },
+  "null_gauss": {
+   "jaccard_mean": 0.7458113823916744,
+   "jaccard_min": 0.7273498626139299,
+   "silhouette": 0.15431980525255773
+  }
+ }
+}
