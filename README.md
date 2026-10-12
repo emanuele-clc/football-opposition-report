@@ -102,11 +102,22 @@ Mean Jaccard of the observed partition vs two structure-free nulls (shuffled fea
 Build-up (both teams) and Leicester advanced are clearly above both nulls. Leverkusen advanced is **not** clearly above the Gaussian null: treat it as a slicing of a continuum, not demonstrated structure. Script: `src/week3/stability_null_baseline.py` (on Windows run with `python -X utf8`).
 
 ## Held-out validation (week 4)
-Protocol: `docs/protocol_holdout.md` (committed before running). Script: `src/week4/validate_holdout.py`. Status: **not yet run** on the held-out matches.
+Protocol: `docs/protocol_holdout.md` (committed before running). Script: `src/week4/validate_holdout.py`. Status: **run once on 12 October 2026**, results unedited in `results/holdout_*.json`.
 ```bash
 python src/week4/validate_holdout.py matches/9_281.json "Bayer Leverkusen" . --confirm
 python src/week4/validate_holdout.py matches/2_27.json "Leicester City" . --confirm
 ```
+
+Results on held-out matches (Leverkusen 10, Leicester 11), model frozen on exploration:
+
+| | Predictability gain (log-loss), 95% CI | Max change in family share | Silhouette (frozen) | H1 / H2 |
+|---|---|---|---|---|
+| Leverkusen build-up | +0.099 [+0.062, +0.137] | 0.06 | 0.18 | pass / pass |
+| Leicester build-up | +0.185 [+0.137, +0.236] | 0.03 | 0.16 | pass / pass |
+| Leverkusen advanced | -0.004 [-0.034, +0.029] | 0.07 | 0.17 | not confirmed / pass (not in criterion) |
+| Leicester advanced | +0.034 [-0.012, +0.079] | 0.10 | 0.19 | not confirmed / pass (not in criterion) |
+
+By the pre-registered rule the build-up claim is **confirmed for both teams**. The advanced phase shows no out-of-sample predictability, consistent with exploration. This tests stability over time within the same teams and seasons, not generalisation to other teams, and does not show tactical meaning.
 
 ## Declared researcher degrees of freedom
 1. Phase split at x = 45 (tested 35–55)

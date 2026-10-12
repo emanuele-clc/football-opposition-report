@@ -1,0 +1,68 @@
+{
+ "team": "Bayer Leverkusen",
+ "modo": "VALIDAZIONE RISERVATE",
+ "partite_train": 24,
+ "partite_test": 10,
+ "n_seq_train": 1172,
+ "n_seq_test": 472,
+ "costruzione": {
+  "n_train": 619,
+  "n_test": 261,
+  "quote_train": {
+   "C1": 0.244,
+   "C2": 0.204,
+   "C3": 0.086,
+   "C4": 0.244,
+   "C5": 0.223
+  },
+  "quote_test": {
+   "C1": 0.23,
+   "C2": 0.238,
+   "C3": 0.096,
+   "C4": 0.18,
+   "C5": 0.257
+  },
+  "max_scarto_quote": 0.06386521332763884,
+  "silhouette_congelata_test": 0.1751530798667884,
+  "ari_riadattamento_descrittivo": 0.4300605066751638,
+  "H2_pass": true,
+  "logloss_modello": 1.4777810278904497,
+  "logloss_baseline": 1.5772174737783726,
+  "guadagno": 0.099436445887923,
+  "guadagno_ci95": [
+   0.061561090145192045,
+   0.13700692683327023
+  ],
+  "accuratezza_modello": 0.31800766283524906,
+  "accuratezza_baseline": 0.22988505747126436,
+  "H1_pass": true
+ },
+ "avanzata": {
+  "n_train": 553,
+  "n_test": 211,
+  "quote_train": {
+   "A1": 0.356,
+   "A2": 0.286,
+   "A3": 0.358
+  },
+  "quote_test": {
+   "A1": 0.427,
+   "A2": 0.275,
+   "A3": 0.299
+  },
+  "max_scarto_quote": 0.0703015863493397,
+  "silhouette_congelata_test": 0.1700422830625462,
+  "ari_riadattamento_descrittivo": 0.5693745402663396,
+  "H2_pass": true,
+  "logloss_modello": 1.0956904369925495,
+  "logloss_baseline": 1.0912837340543786,
+  "guadagno": -0.0044067029381709,
+  "guadagno_ci95": [
+   -0.03399521216351109,
+   0.028551853718562746
+  ],
+  "accuratezza_modello": 0.4265402843601896,
+  "accuratezza_baseline": 0.2985781990521327,
+  "H1_pass": false
+ }
+}

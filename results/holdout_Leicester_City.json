@@ -1,0 +1,68 @@
+{
+ "team": "Leicester City",
+ "modo": "VALIDAZIONE RISERVATE",
+ "partite_train": 27,
+ "partite_test": 11,
+ "n_seq_train": 1164,
+ "n_seq_test": 485,
+ "costruzione": {
+  "n_train": 616,
+  "n_test": 254,
+  "quote_train": {
+   "C1": 0.26,
+   "C2": 0.138,
+   "C3": 0.203,
+   "C4": 0.201,
+   "C5": 0.198
+  },
+  "quote_test": {
+   "C1": 0.248,
+   "C2": 0.154,
+   "C3": 0.228,
+   "C4": 0.185,
+   "C5": 0.185
+  },
+  "max_scarto_quote": 0.025424378770835476,
+  "silhouette_congelata_test": 0.16334536624787646,
+  "ari_riadattamento_descrittivo": 0.5365987985081586,
+  "H2_pass": true,
+  "logloss_modello": 1.4143628371606398,
+  "logloss_baseline": 1.5989014170284541,
+  "guadagno": 0.18453857986781425,
+  "guadagno_ci95": [
+   0.13721331643521031,
+   0.23640061378523866
+  ],
+  "accuratezza_modello": 0.3661417322834646,
+  "accuratezza_baseline": 0.24803149606299213,
+  "H1_pass": true
+ },
+ "avanzata": {
+  "n_train": 548,
+  "n_test": 231,
+  "quote_train": {
+   "A1": 0.465,
+   "A2": 0.153,
+   "A3": 0.381
+  },
+  "quote_test": {
+   "A1": 0.411,
+   "A2": 0.251,
+   "A3": 0.338
+  },
+  "max_scarto_quote": 0.09779757954940435,
+  "silhouette_congelata_test": 0.19088187493225536,
+  "ari_riadattamento_descrittivo": 0.7666497140986538,
+  "H2_pass": true,
+  "logloss_modello": 1.077475313696938,
+  "logloss_baseline": 1.110996140730622,
+  "guadagno": 0.03352082703368397,
+  "guadagno_ci95": [
+   -0.011900362110208866,
+   0.07946308876977065
+  ],
+  "accuratezza_modello": 0.5021645021645021,
+  "accuratezza_baseline": 0.41125541125541126,
+  "H1_pass": false
+ }
+}
