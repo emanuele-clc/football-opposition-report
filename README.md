@@ -13,12 +13,15 @@ and test whether **exploitability** exists on corner kicks.
 ```
 src/week1/       download, goal kicks, corners (L3)
 src/week2/       sequence extraction and clustering (L2)
-src/week3/       robustness: match-bootstrap, sensitivity, predictability
+src/week3/       robustness: match-bootstrap, sensitivity, predictability, null baselines
+src/week4/       held-out validation, replication on new teams, exploratory analyses
+src/report/      automated opposition report generator (L2)
+examples/        example reports (HTML)
 results/         JSON + CSV outputs (no raw event files)
 figures/         PNG charts (IT and EN labels)
 data_info/       competitions.json + match lists only (event files ~2.3 GB, not included)
 slides/          Canva AI prompts + 20-min speech (Word)
-docs/            Methodology protocol
+docs/            Methodology protocol + pre-registered protocols (held-out validation, replication)
 ```
 
 ## How to run
@@ -27,6 +30,8 @@ pip install numpy pandas scikit-learn matplotlib scipy statsbombpy
 # 1 — download
 python src/week1/download_data.py 9 281 "Bayer Leverkusen"   # Bundesliga 2023/24
 python src/week1/download_data.py 2 27  "Leicester City"      # PL 2015/16
+python src/week1/download_data.py 11 27 "Barcelona"           # La Liga 2015/16 (events only)
+python src/week1/download_data.py 2 27  "Arsenal"            # PL 2015/16 (events only)
 # 2 — L1: goal kicks & corners
 python src/week1/goalkicks_leverkusen.py .
 FIG_LANG=en python src/week1/corners_leverkusen.py .
@@ -40,11 +45,22 @@ python src/week3/robustness_L2.py matches/9_281.json "Bayer Leverkusen" .
 python src/week3/robustness_L2.py matches/2_27.json "Leicester City" .
 python src/week3/stability_null_baseline.py matches/9_281.json "Bayer Leverkusen" .
 python src/week3/stability_null_baseline.py matches/2_27.json "Leicester City" .
+# 5 — held-out validation and replication (week 4; run ONCE per team, after committing docs/protocol_*.md)
+python src/week4/validate_holdout.py matches/9_281.json "Bayer Leverkusen" . --confirm
+python src/week4/validate_holdout.py matches/2_27.json "Leicester City" . --confirm
+python src/week4/validate_replication.py matches/11_27.json "Barcelona" . --confirm
+python src/week4/validate_replication.py matches/2_27.json "Arsenal" . --confirm
+# 6 — exploratory analyses, not pre-registered (repeat for each team)
+python src/week4/exploratory_cv_all_matches.py matches/11_27.json "Barcelona" .
+python src/week4/exploratory_ablation.py matches/11_27.json "Barcelona" .
+python src/week4/exploratory_context.py matches/11_27.json "Barcelona" .
+# 7 — automated opposition report (run it for all teams twice so each report finds the others as reference)
+python src/report/make_report.py matches/11_27.json "Barcelona" .
 ```
 On Windows add `-X utf8` after `python` (data files are UTF-8).
 All scripts use a fixed seed. Results are reproducible on the same data.
 
-## Results summary (exploration data only — last 30% untouched)
+## Results summary (weeks 1-3: exploration data only; held-out and replication results further down)
 
 ### L2 — Sequence families
 
@@ -166,19 +182,37 @@ With all matches, Barcelona's build-up gain is in line with the other teams, and
 ### L3 corners: what the test could detect (Leverkusen, 148 corners with 360)
 Average xG per corner is 0.046. Under no real effect, the exploitability statistic already averages 0.015 (selecting the best setup on the same data biases it upwards) and its 95th percentile is 0.033, i.e. about 70% of the average xG per corner. Observed: 0.026 (p = 0.17). So the test could only flag very large effects. Most corners fall in one cell: 116 of 148 are in the "centre" zone, and only 9 have a "far-post load" setup. Out of sample (41 corners), the setup chosen as best on training data did worse (xG 0.069 vs 0.046 for the others). The null result is therefore weak evidence of absence.
 
+### Exploratory, not pre-registered: what drives the predictability
+Same cross-validation as above. Build-up gain with different inputs (log-loss gain over the family-frequency baseline). Scripts: `src/week4/exploratory_ablation.py`, `src/week4/exploratory_context.py`.
+
+| Team | Full model | Play pattern only | Minute + half only | Previous family only | Full context added on top of play pattern |
+|---|---|---|---|---|---|
+| Barcelona | +0.131 | +0.139 | -0.001 | -0.009 | -0.010 |
+| Arsenal | +0.123 | +0.139 | 0.000 | -0.016 | -0.028 |
+| Leverkusen | +0.125 | +0.135 | -0.007 | -0.001 | -0.008 |
+| Leicester | +0.164 | +0.176 | +0.002 | -0.011 | -0.022 |
+
+Practically all of the predictability comes from how the sequence starts (play pattern). Score state, home/away, minute, half and the previous family add nothing (the advanced phase gives the same picture, with smaller gains). The gain is real but should be described as "families depend on how the sequence starts", not as tactical predictability from match context. This is partly by construction: the start position is one of the 11 features that define the families.
+
+## Automated opposition report
+`src/report/make_report.py` turns the validated settings into a report for one team: style with intervals and a comparison with reference teams, the families with share, profile, shot rate, per-match variation and stability, a structure check against structure-free baselines, and how sequence start types map to families. Output: a self-contained HTML file (print to PDF from the browser) plus a JSON with all numbers. Examples in `examples/`. It is descriptive: it does not recommend tactics, family names are numbered labels, and coaches have not yet validated their tactical meaning.
+
 ## Declared researcher degrees of freedom
 1. Phase split at x = 45 (tested 35–55)
 2. k = 5 (build-up) and k = 3 (advanced): chosen by match-bootstrap on Leverkusen exploration
 3. First representation discarded (12 zones × 0/1 + 29 PCA → stability < 0.60)
 4. 70/30 time split by match date; validation untouched
 5. Corner zones and defensive set-up categories are author-defined
+6. Replication teams (Barcelona, Arsenal) chosen for data completeness and style contrast; thresholds in the protocols were calibrated on the first two teams
+7. Report reliability labels (stable at 0.75, moderate at 0.60) and the 0.10 structure margin are author conventions
 
 ## Key limitations
 - Silhouette ≈ 0.18: stable slices of a continuum
 - Week 2 bootstrap was on sequences; week 3 adds match-level resampling
 - Different leagues and eras (Bundesliga 23/24 vs PL 15/16)
 - Leverkusen advanced stability is not distinguishable from a Gaussian null (0.88 vs 0.84)
-- Build-up predictability significant; advanced phase not significant for either team
+- Held-out build-up predictability confirmed for 3 of 4 teams (not Barcelona), but it comes from how sequences start; context adds nothing
+- Tactical meaning of the families not validated by coaches; only four teams (three from 2015/16)
 - Exploitability not significant: crude definitions, near-empty cells, median 9 defenders visible (not 11)
 - StatsBomb Open Data, non-commercial licence
 
