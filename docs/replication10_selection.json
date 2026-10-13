@@ -1,0 +1,102 @@
+{
+ "seed": 20261013,
+ "rule": "Selezione delle squadre per la replica su 10 squadre (protocollo: docs/protocol_replication10.md).\nRegola fissata prima: stagioni complete 2015/2016 di La Liga, Serie A e Ligue 1 (competizioni con almeno 300 partite disponibili), squadre con almeno 30 partite,\nescluse le 4 squadre gia' usate. Sorteggio stratificato per campionato con seed fisso: 2 squadre primarie + 1 di riserva per campionato (la riserva si usa solo\nper un guasto tecnico, mai per un risultato).",
+ "already_used": [
+  "Arsenal",
+  "Barcelona",
+  "Bayer Leverkusen",
+  "Leicester City"
+ ],
+ "teams": [
+  {
+   "team": "Atlético Madrid",
+   "league": "La Liga",
+   "season": "2015/2016",
+   "competition_id": 11,
+   "season_id": 27,
+   "matches": 38,
+   "role": "primary",
+   "candidates_in_stratum": 19
+  },
+  {
+   "team": "Real Madrid",
+   "league": "La Liga",
+   "season": "2015/2016",
+   "competition_id": 11,
+   "season_id": 27,
+   "matches": 38,
+   "role": "primary",
+   "candidates_in_stratum": 19
+  },
+  {
+   "team": "Granada",
+   "league": "La Liga",
+   "season": "2015/2016",
+   "competition_id": 11,
+   "season_id": 27,
+   "matches": 38,
+   "role": "reserve",
+   "candidates_in_stratum": 19
+  },
+  {
+   "team": "Napoli",
+   "league": "Serie A",
+   "season": "2015/2016",
+   "competition_id": 12,
+   "season_id": 27,
+   "matches": 38,
+   "role": "primary",
+   "candidates_in_stratum": 20
+  },
+  {
+   "team": "Sassuolo",
+   "league": "Serie A",
+   "season": "2015/2016",
+   "competition_id": 12,
+   "season_id": 27,
+   "matches": 38,
+   "role": "primary",
+   "candidates_in_stratum": 20
+  },
+  {
+   "team": "AC Milan",
+   "league": "Serie A",
+   "season": "2015/2016",
+   "competition_id": 12,
+   "season_id": 27,
+   "matches": 38,
+   "role": "reserve",
+   "candidates_in_stratum": 20
+  },
+  {
+   "team": "Gazélec Ajaccio",
+   "league": "Ligue 1",
+   "season": "2015/2016",
+   "competition_id": 7,
+   "season_id": 27,
+   "matches": 37,
+   "role": "primary",
+   "candidates_in_stratum": 20
+  },
+  {
+   "team": "Bordeaux",
+   "league": "Ligue 1",
+   "season": "2015/2016",
+   "competition_id": 7,
+   "season_id": 27,
+   "matches": 37,
+   "role": "primary",
+   "candidates_in_stratum": 20
+  },
+  {
+   "team": "Olympique de Marseille",
+   "league": "Ligue 1",
+   "season": "2015/2016",
+   "competition_id": 7,
+   "season_id": 27,
+   "matches": 38,
+   "role": "reserve",
+   "candidates_in_stratum": 20
+  }
+ ]
+}
