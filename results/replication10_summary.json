@@ -1,0 +1,201 @@
+{
+ "squadre_eseguite": 10,
+ "build_up_H1_e_H2": 8,
+ "intervallo_wilson_95": [
+  0.49015684672072346,
+  0.9433190520193067
+ ],
+ "H1_solo": 8,
+ "H2_solo": 10,
+ "H3_build_up": [
+  6,
+  8
+ ],
+ "H3_advanced": [
+  2,
+  8
+ ],
+ "verdetto": "la regola del protocollo e' SODDISFATTA (soglia: almeno 7 su 10; ottenuto 8 su 10)",
+ "squadre": [
+  {
+   "team": "Bayer Leverkusen",
+   "league": "Bundesliga 2023/24",
+   "status": "eseguita",
+   "H1": true,
+   "H2": true,
+   "gain": 0.099436445887923,
+   "gain_ci": [
+    0.061561090145192045,
+    0.13700692683327023
+   ],
+   "build_up_pass": true,
+   "H3_build": null,
+   "H3_adv": null,
+   "H1_adv": false,
+   "H2_adv": true,
+   "E1_margin": 0.24398896695746142
+  },
+  {
+   "team": "Leicester City",
+   "league": "Premier League 2015/16",
+   "status": "eseguita",
+   "H1": true,
+   "H2": true,
+   "gain": 0.18453857986781425,
+   "gain_ci": [
+    0.13721331643521031,
+    0.23640061378523866
+   ],
+   "build_up_pass": true,
+   "H3_build": null,
+   "H3_adv": null,
+   "H1_adv": false,
+   "H2_adv": true,
+   "E1_margin": 0.1256148249725565
+  },
+  {
+   "team": "Barcelona",
+   "league": "La Liga 2015/16",
+   "status": "eseguita",
+   "H1": false,
+   "H2": true,
+   "gain": 0.024226505524890765,
+   "gain_ci": [
+    -0.03402426808238482,
+    0.07715697700793109
+   ],
+   "build_up_pass": false,
+   "H3_build": true,
+   "H3_adv": true,
+   "H1_adv": true,
+   "H2_adv": true,
+   "E1_margin": 0.14846414870187707
+  },
+  {
+   "team": "Arsenal",
+   "league": "Premier League 2015/16",
+   "status": "eseguita",
+   "H1": true,
+   "H2": true,
+   "gain": 0.11277896178974392,
+   "gain_ci": [
+    0.077154388170477,
+    0.14257741377689306
+   ],
+   "build_up_pass": true,
+   "H3_build": true,
+   "H3_adv": false,
+   "H1_adv": true,
+   "H2_adv": true,
+   "E1_margin": 0.055422260923119304
+  },
+  {
+   "team": "Atlético Madrid",
+   "league": "La Liga 2015/16",
+   "status": "eseguita",
+   "H1": true,
+   "H2": true,
+   "gain": 0.0979878837362996,
+   "gain_ci": [
+    0.0369433232305276,
+    0.16290106594940645
+   ],
+   "build_up_pass": true,
+   "H3_build": true,
+   "H3_adv": false,
+   "H1_adv": true,
+   "H2_adv": true,
+   "E1_margin": 0.029177510775427518
+  },
+  {
+   "team": "Real Madrid",
+   "league": "La Liga 2015/16",
+   "status": "eseguita",
+   "H1": true,
+   "H2": true,
+   "gain": 0.10302461636015751,
+   "gain_ci": [
+    0.08550245212071268,
+    0.12556357391299305
+   ],
+   "build_up_pass": true,
+   "H3_build": true,
+   "H3_adv": true,
+   "H1_adv": true,
+   "H2_adv": true,
+   "E1_margin": 0.00019055322337147018
+  },
+  {
+   "team": "Napoli",
+   "league": "Serie A 2015/16",
+   "status": "eseguita",
+   "H1": true,
+   "H2": true,
+   "gain": 0.10517179860232174,
+   "gain_ci": [
+    0.056674888551509574,
+    0.15433633756166582
+   ],
+   "build_up_pass": true,
+   "H3_build": true,
+   "H3_adv": false,
+   "H1_adv": true,
+   "H2_adv": true,
+   "E1_margin": 0.10679000605256539
+  },
+  {
+   "team": "Sassuolo",
+   "league": "Serie A 2015/16",
+   "status": "eseguita",
+   "H1": false,
+   "H2": true,
+   "gain": 0.03452465355306434,
+   "gain_ci": [
+    -0.0012389126190397752,
+    0.07475958083672143
+   ],
+   "build_up_pass": false,
+   "H3_build": false,
+   "H3_adv": false,
+   "H1_adv": true,
+   "H2_adv": true,
+   "E1_margin": -0.014350952077831214
+  },
+  {
+   "team": "Gazélec Ajaccio",
+   "league": "Ligue 1 2015/16",
+   "status": "eseguita",
+   "H1": true,
+   "H2": true,
+   "gain": 0.10019288308426821,
+   "gain_ci": [
+    0.04613949033247038,
+    0.1467485995495241
+   ],
+   "build_up_pass": true,
+   "H3_build": true,
+   "H3_adv": false,
+   "H1_adv": true,
+   "H2_adv": true,
+   "E1_margin": 0.00037685381136653984
+  },
+  {
+   "team": "Bordeaux",
+   "league": "Ligue 1 2015/16",
+   "status": "eseguita",
+   "H1": true,
+   "H2": true,
+   "gain": 0.09066792681178477,
+   "gain_ci": [
+    0.0469291170769228,
+    0.13232985679109566
+   ],
+   "build_up_pass": true,
+   "H3_build": false,
+   "H3_adv": false,
+   "H1_adv": true,
+   "H2_adv": true,
+   "E1_margin": 0.076523141127533
+  }
+ ]
+}

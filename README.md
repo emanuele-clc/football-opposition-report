@@ -50,6 +50,10 @@ python src/week4/validate_holdout.py matches/9_281.json "Bayer Leverkusen" . --c
 python src/week4/validate_holdout.py matches/2_27.json "Leicester City" . --confirm
 python src/week4/validate_replication.py matches/11_27.json "Barcelona" . --confirm
 python src/week4/validate_replication.py matches/2_27.json "Arsenal" . --confirm
+# 5b — replication on 10 teams: seeded selection, run (download + E1 + validation, once per team), summary (docs/protocol_replication10.md)
+python src/week4/select_teams.py data_info docs/replication10_selection.json
+python src/week4/run_new_teams.py docs/replication10_selection.json --confirm
+python src/week4/summarize_replication10.py docs/replication10_selection.json .
 # 6 — exploratory analyses, not pre-registered (repeat for each team)
 python src/week4/exploratory_cv_all_matches.py matches/11_27.json "Barcelona" .
 python src/week4/exploratory_ablation.py matches/11_27.json "Barcelona" .
@@ -197,6 +201,26 @@ Practically all of the predictability comes from how the sequence starts (play p
 ## Automated opposition report
 `src/report/make_report.py` turns the validated settings into a report for one team: style with intervals and a comparison with reference teams, the families with share, profile, shot rate, per-match variation and stability, a structure check against structure-free baselines, and how sequence start types map to families. Output: a self-contained HTML file (print to PDF from the browser) plus a JSON with all numbers. Examples in `examples/`. It is descriptive: it does not recommend tactics, family names are numbered labels, and coaches have not yet validated their tactical meaning.
 
+## Replication on 10 teams (week 4)
+Protocol: `docs/protocol_replication10.md` (committed before running). Six new teams drawn at random with a fixed seed (20261013), stratified by league (La Liga, Serie A, Ligue 1, season 2015/16, two primary teams each), added to the four teams already analysed. Scripts: `src/week4/select_teams.py`, `run_new_teams.py`, `summarize_replication10.py`. Each team run once; results in `results/holdout_<team>.json`, `results/null_baseline_<team>.json` and `results/replication10_summary.json`.
+
+| Team | League | Build-up gain (H1) | H1 | H2 | H3 build-up / advanced | E1 margin over null |
+|---|---|---|---|---|---|---|
+| Bayer Leverkusen | Bundesliga 23/24 | +0.099 | pass | pass | not tested | +0.24 |
+| Leicester City | Premier League 15/16 | +0.185 | pass | pass | not tested | +0.13 |
+| Barcelona | La Liga 15/16 | +0.024 | **no** | pass | pass / pass | +0.15 |
+| Arsenal | Premier League 15/16 | +0.113 | pass | pass | pass / no | +0.06 |
+| Atlético Madrid | La Liga 15/16 | +0.098 | pass | pass | pass / no | +0.03 |
+| Real Madrid | La Liga 15/16 | +0.103 | pass | pass | pass / pass | +0.00 |
+| Napoli | Serie A 15/16 | +0.105 | pass | pass | pass / no | +0.11 |
+| Sassuolo | Serie A 15/16 | +0.035 | **no** | pass | no / no | -0.01 |
+| Gazélec Ajaccio | Ligue 1 15/16 | +0.100 | pass | pass | pass / no | +0.00 |
+| Bordeaux | Ligue 1 15/16 | +0.091 | pass | pass | no / no | +0.08 |
+
+**Result by the pre-registered rule.** H1 and H2 pass in **8 of 10 teams** (95% Wilson interval 0.49 to 0.94); the rule (at least 7 of 10) is met. H3 for the build-up passes in 6 of the 8 teams where it was tested (rule: at least 6 of 8); in the advanced phase in 2 of 8 (reported only). H1 fails for Barcelona and Sassuolo.
+
+**How far this goes.** (1) The build-up gain comes from how sequences start (play pattern), see the ablation above; this is a regularity of the families, not tactical predictability from match context. (2) The stability margin over a single Gaussian blob (E1, margin of at least 0.10) holds in only 4 of 10 teams (Leverkusen, Leicester, Barcelona, Napoli), and the advanced phase is often at the level of the structure-free null: for many teams the families are slices of a continuum, not separate clusters. (3) H2 passes everywhere but is a lenient test: its silhouette threshold (0.10) is below what structure-free data already gives (0.12-0.14 in the null baselines), and a frozen partition of a stable distribution keeps stable shares. (4) A model on the raw features predicts shots better than the families (+0.05 to +0.11 against +0.01 to +0.05), so the families keep only part of that information.
+
 ## Declared researcher degrees of freedom
 1. Phase split at x = 45 (tested 35–55)
 2. k = 5 (build-up) and k = 3 (advanced): chosen by match-bootstrap on Leverkusen exploration
@@ -211,8 +235,9 @@ Practically all of the predictability comes from how the sequence starts (play p
 - Week 2 bootstrap was on sequences; week 3 adds match-level resampling
 - Different leagues and eras (Bundesliga 23/24 vs PL 15/16)
 - Leverkusen advanced stability is not distinguishable from a Gaussian null (0.88 vs 0.84)
-- Held-out build-up predictability confirmed for 3 of 4 teams (not Barcelona), but it comes from how sequences start; context adds nothing
-- Tactical meaning of the families not validated by coaches; only four teams (three from 2015/16)
+- Held-out build-up predictability (H1 and H2) confirmed in 8 of 10 teams (not Barcelona, Sassuolo), but it comes from how sequences start; context adds nothing
+- Stability above a structure-free Gaussian null (margin 0.10) in only 4 of 10 teams; the H2 silhouette threshold is lenient; the families are better described as slices of a continuum than as distinct clusters
+- Tactical meaning of the families not validated by coaches; ten teams, nine from 2015/16, only six drawn at random
 - Exploitability not significant: crude definitions, near-empty cells, median 9 defenders visible (not 11)
 - StatsBomb Open Data, non-commercial licence
 
