@@ -131,6 +131,41 @@ Protocol: `docs/protocol_replication.md` (committed before running). Script: `sr
 
 By the pre-registered rule the build-up claim (H1 and H2) holds for Arsenal and not for Barcelona: **partially replicated, 3 out of 4 teams** counting Leverkusen and Leicester. H2 (families reproduced) holds for all four teams. H3 was only run on the two new teams: shot information in the build-up families is supported for both teams, in the advanced phase for one of two. The advanced-phase H1 results are outside the pre-registered criterion, have lower bounds close to zero and are not interpreted as confirmation.
 
+### Exploration check E1 (stability vs null baselines, new teams)
+Mean Jaccard, match-bootstrap, exploration matches. E1 criterion (descriptive): build-up above both nulls by at least 0.10.
+
+| | Observed | Shuffle | Gaussian | E1 |
+|---|---|---|---|---|
+| Barcelona build-up (k=5) | 0.69 | 0.36 | 0.54 | holds (+0.15) |
+| Arsenal build-up (k=5) | 0.69 | 0.44 | 0.63 | does not hold (+0.06) |
+| Barcelona advanced (k=3) | 0.85 | 0.49 | 0.75 | (not in criterion) |
+| Arsenal advanced (k=3) | 0.83 | 0.44 | 0.85 | (not in criterion) |
+
+### Summary across the four teams (build-up)
+| Team | Stability margin over Gaussian null | H1 held-out predictability | H2 families reproduced | H3 shots |
+|---|---|---|---|---|
+| Leverkusen | +0.24 | pass | pass | not tested |
+| Leicester | +0.12 | pass | pass | not tested |
+| Barcelona | +0.15 | not confirmed | pass | pass |
+| Arsenal | +0.06 | pass | pass | pass |
+
+The size of the stability margin does not line up with held-out predictability (Barcelona has a clear margin and fails H1; Arsenal has the smallest margin and passes). With four teams this is an observation, not a finding. The held-out results (H1, H2) carry more weight than the stability comparison alone.
+
+### Exploratory, not pre-registered: predictability over all matches
+Grouped 6-fold cross-validation over all matches (families refitted inside each fold; folds do not respect time order, so slightly optimistic). Script: `src/week4/exploratory_cv_all_matches.py`.
+
+| Team | Build-up gain, 95% CI | Advanced gain, 95% CI |
+|---|---|---|
+| Barcelona | +0.131 [+0.107, +0.153] | +0.069 [+0.046, +0.091] |
+| Arsenal | +0.123 [+0.096, +0.146] | +0.078 [+0.038, +0.113] |
+| Leverkusen | +0.125 [+0.087, +0.159] | +0.001 [-0.020, +0.023] |
+| Leicester | +0.164 [+0.132, +0.198] | +0.043 [+0.017, +0.067] |
+
+With all matches, Barcelona's build-up gain is in line with the other teams, and its last 30% of matches also give about +0.14 inside the cross-validation. The non-confirmation of H1 on the 11 held-out matches is therefore not explained by those matches being unpredictable; it may come from a model trained only on the first 27 matches (change over the season) or from sampling noise, and these data cannot tell which.
+
+### L3 corners: what the test could detect (Leverkusen, 148 corners with 360)
+Average xG per corner is 0.046. Under no real effect, the exploitability statistic already averages 0.015 (selecting the best setup on the same data biases it upwards) and its 95th percentile is 0.033, i.e. about 70% of the average xG per corner. Observed: 0.026 (p = 0.17). So the test could only flag very large effects. Most corners fall in one cell: 116 of 148 are in the "centre" zone, and only 9 have a "far-post load" setup. Out of sample (41 corners), the setup chosen as best on training data did worse (xG 0.069 vs 0.046 for the others). The null result is therefore weak evidence of absence.
+
 ## Declared researcher degrees of freedom
 1. Phase split at x = 45 (tested 35–55)
 2. k = 5 (build-up) and k = 3 (advanced): chosen by match-bootstrap on Leverkusen exploration
