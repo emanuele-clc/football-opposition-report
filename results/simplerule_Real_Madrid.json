@@ -1,0 +1,43 @@
+{
+ "team": "Real Madrid",
+ "modo": "PARTITE RISERVATE",
+ "partite_test": 11,
+ "costruzione": {
+  "n_test": 326,
+  "tiro_test": 0.15337423312883436,
+  "guadagno_famiglie": 0.046962451253666326,
+  "guadagno_x1": 0.08157364259242081,
+  "celle_x1": 5,
+  "diff_x1": -0.0346111913387545,
+  "diff_x1_ci95": [
+   -0.0529797930683714,
+   -0.015935118726506433
+  ],
+  "verdetto": "regola semplice meglio",
+  "guadagno_net_x": 0.05818696237161233,
+  "celle_net_x": 5,
+  "diff_net_x": -0.011224511117946019,
+  "guadagno_n_pass": 0.012952503304545906,
+  "celle_n_pass": 5,
+  "diff_n_pass": 0.03400994794912041
+ },
+ "avanzata": {
+  "n_test": 240,
+  "tiro_test": 0.19166666666666668,
+  "guadagno_famiglie": 0.012262792520547246,
+  "guadagno_x1": 0.03500323624508565,
+  "celle_x1": 3,
+  "diff_x1": -0.02274044372453842,
+  "diff_x1_ci95": [
+   -0.05677764103950032,
+   0.02233736289754175
+  ],
+  "verdetto": "nessuna differenza",
+  "guadagno_net_x": 0.01449427374689712,
+  "celle_net_x": 3,
+  "diff_net_x": -0.002231481226349876,
+  "guadagno_n_pass": -0.00046774364789832696,
+  "celle_n_pass": 3,
+  "diff_n_pass": 0.012730536168445572
+ }
+}

@@ -1,0 +1,43 @@
+{
+ "team": "Sassuolo",
+ "modo": "PARTITE RISERVATE",
+ "partite_test": 11,
+ "costruzione": {
+  "n_test": 309,
+  "tiro_test": 0.13268608414239483,
+  "guadagno_famiglie": 0.02441462283025912,
+  "guadagno_x1": 0.0817790760588929,
+  "celle_x1": 5,
+  "diff_x1": -0.05736445322863379,
+  "diff_x1_ci95": [
+   -0.08598971957798562,
+   -0.029776936262974056
+  ],
+  "verdetto": "regola semplice meglio",
+  "guadagno_net_x": 0.03868811423944763,
+  "celle_net_x": 5,
+  "diff_net_x": -0.014273491409188509,
+  "guadagno_n_pass": -0.014327011854973367,
+  "celle_n_pass": 4,
+  "diff_n_pass": 0.038741634685232486
+ },
+ "avanzata": {
+  "n_test": 234,
+  "tiro_test": 0.1111111111111111,
+  "guadagno_famiglie": 0.004512901846376607,
+  "guadagno_x1": 0.02887522646528169,
+  "celle_x1": 3,
+  "diff_x1": -0.024362324618905085,
+  "diff_x1_ci95": [
+   -0.03548203874284045,
+   -0.012844026509883439
+  ],
+  "verdetto": "regola semplice meglio",
+  "guadagno_net_x": 0.005140716276551101,
+  "celle_net_x": 3,
+  "diff_net_x": -0.0006278144301744915,
+  "guadagno_n_pass": 0.0011592880412199247,
+  "celle_n_pass": 3,
+  "diff_n_pass": 0.0033536138051566827
+ }
+}

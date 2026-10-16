@@ -1,0 +1,43 @@
+{
+ "team": "Gazélec Ajaccio",
+ "modo": "PARTITE RISERVATE",
+ "partite_test": 11,
+ "costruzione": {
+  "n_test": 302,
+  "tiro_test": 0.11589403973509933,
+  "guadagno_famiglie": 0.029603538337976906,
+  "guadagno_x1": 0.04911459773901252,
+  "celle_x1": 5,
+  "diff_x1": -0.019511059401035626,
+  "diff_x1_ci95": [
+   -0.04865764620915467,
+   0.008453263011976709
+  ],
+  "verdetto": "nessuna differenza",
+  "guadagno_net_x": 0.04178477467446432,
+  "celle_net_x": 5,
+  "diff_net_x": -0.012181236336487416,
+  "guadagno_n_pass": 0.010075693325493284,
+  "celle_n_pass": 4,
+  "diff_n_pass": 0.019527845012483617
+ },
+ "avanzata": {
+  "n_test": 244,
+  "tiro_test": 0.11885245901639344,
+  "guadagno_famiglie": 0.001645893695574674,
+  "guadagno_x1": 0.011019636851292348,
+  "celle_x1": 3,
+  "diff_x1": -0.009373743155717673,
+  "diff_x1_ci95": [
+   -0.02522964756794918,
+   0.007930090488750187
+  ],
+  "verdetto": "nessuna differenza",
+  "guadagno_net_x": -0.003414592518702375,
+  "celle_net_x": 3,
+  "diff_net_x": 0.0050604862142770496,
+  "guadagno_n_pass": -0.008839645861983316,
+  "celle_n_pass": 3,
+  "diff_n_pass": 0.010485539557557993
+ }
+}

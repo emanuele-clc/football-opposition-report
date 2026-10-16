@@ -240,6 +240,26 @@ Stricter than the Gaussian comparison: the null data keep each variable's own di
 
 Silhouette is above the structure-free null in all 10 teams and both phases (p of 0.01-0.02; with 100 simulations 0.01 is the smallest possible), but the gap is small: +0.016 to +0.034 in the build-up, +0.012 to +0.025 in the advanced phase. Stability does not show it: the Jaccard of the observed partition is above the null in 6 of 10 teams in the build-up (by 0.10 or more in 1) and in only 4 of 10 in the advanced phase, where the null is on average higher. So there is some structure beyond marginals and correlations, but it is weak: the families are a convenient partition of a weakly clustered continuum. The null does not reproduce non-linear dependence between variables (for example constraints between path length and distance), so part of the remaining structure may be mechanical rather than tactical.
 
+## Do the families explain shots better than a simple rule? (week 4, pre-registered)
+Protocol: `docs/protocol_simple_rule.md` (committed before running). Scripts: `src/week4/compare_simple_rules.py`, `run_simple_rule.py`. Families (frozen on exploration) against k equal-frequency bins of the position where the sequence ends (x1), same number of cells, same logistic model, outcome "sequence ends in a shot", evaluated on the held-out matches. Negative difference = the simple rule has lower log-loss than the families.
+
+| Team | Build-up: log-loss difference (rule minus families) | Verdict | Advanced: difference | Verdict |
+|---|---|---|---|---|
+| Bayer Leverkusen | -0.040 [-0.070, -0.005] | simple rule better | -0.037 [-0.061, -0.011] | simple rule better |
+| Leicester City | -0.059 [-0.093, -0.029] | simple rule better | -0.022 [-0.049, +0.004] | no difference |
+| Barcelona | -0.010 [-0.026, +0.003] | no difference | -0.015 [-0.039, +0.021] | no difference |
+| Arsenal | -0.013 [-0.043, +0.013] | no difference | -0.048 [-0.068, -0.028] | simple rule better |
+| Atlético Madrid | -0.024 [-0.043, +0.001] | no difference | -0.037 [-0.066, -0.007] | simple rule better |
+| Real Madrid | -0.035 [-0.053, -0.016] | simple rule better | -0.023 [-0.057, +0.022] | no difference |
+| Napoli | -0.011 [-0.027, +0.007] | no difference | -0.048 [-0.083, -0.021] | simple rule better |
+| Sassuolo | -0.057 [-0.086, -0.030] | simple rule better | -0.024 [-0.036, -0.013] | simple rule better |
+| Gazélec Ajaccio | -0.020 [-0.049, +0.009] | no difference | -0.009 [-0.025, +0.008] | no difference |
+| Bordeaux | -0.024 [-0.042, -0.005] | simple rule better | -0.017 [-0.034, +0.004] | no difference |
+
+**Result.** Families better in **0 of 10** teams in both phases; simple rule better in 5 of 10 in each phase; no difference in the other 5. All 20 point estimates favour the simple rule. The pre-registered rule (families better in at least 7 of 10 teams) is **not met**: the clustering describes how teams build up, but it does not explain shots better than a one-variable rule on where the sequence ends.
+
+**What this does and does not say.** It concerns one outcome (shot / no shot, not xG) and one comparator, on 10-11 held-out matches per team, and the held-out matches were already used for H1-H3. The families and the rule share information (x1 is one of the 11 features). A description can still be useful without being a better predictor (it compresses 11 variables into 5 or 3 labels, is reproducible and comparable across teams), but its added value for explaining shots is not shown. Other outcomes were deliberately not tried afterwards to avoid searching for a favourable one.
+
 ## Declared researcher degrees of freedom
 1. Phase split at x = 45 (tested 35–55)
 2. k = 5 (build-up) and k = 3 (advanced): chosen by match-bootstrap on Leverkusen exploration
@@ -256,6 +276,7 @@ Silhouette is above the structure-free null in all 10 teams and both phases (p o
 - Leverkusen advanced stability is not distinguishable from a Gaussian null (0.88 vs 0.84)
 - Held-out build-up predictability (H1 and H2) confirmed in 8 of 10 teams (not Barcelona, Sassuolo), but it comes from how sequences start; context adds nothing
 - Stability above a structure-free Gaussian null (margin 0.10) in only 4 of 10 teams; the H2 silhouette threshold is lenient; the families are better described as slices of a continuum than as distinct clusters
+- The families do not explain shots better than a one-variable end-position rule (0 of 10 teams better, pre-registered); they are a reproducible description, not a better predictor
 - Tactical meaning of the families not validated by coaches; ten teams, nine from 2015/16, only six drawn at random
 - Exploitability not significant: crude definitions, near-empty cells, median 9 defenders visible (not 11)
 - StatsBomb Open Data, non-commercial licence

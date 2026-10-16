@@ -1,0 +1,43 @@
+{
+ "team": "Atlético Madrid",
+ "modo": "PARTITE RISERVATE",
+ "partite_test": 11,
+ "costruzione": {
+  "n_test": 277,
+  "tiro_test": 0.09747292418772563,
+  "guadagno_famiglie": 0.0205780672541677,
+  "guadagno_x1": 0.04451625134408092,
+  "celle_x1": 5,
+  "diff_x1": -0.023938184089913224,
+  "diff_x1_ci95": [
+   -0.043112947451191826,
+   0.0004848545535910694
+  ],
+  "verdetto": "nessuna differenza",
+  "guadagno_net_x": 0.030437418755477005,
+  "celle_net_x": 5,
+  "diff_net_x": -0.009859351501309302,
+  "guadagno_n_pass": 0.0037889098763005443,
+  "celle_n_pass": 4,
+  "diff_n_pass": 0.016789157377867157
+ },
+ "avanzata": {
+  "n_test": 259,
+  "tiro_test": 0.16216216216216217,
+  "guadagno_famiglie": 0.005728219091952393,
+  "guadagno_x1": 0.042852823786233604,
+  "celle_x1": 3,
+  "diff_x1": -0.037124604694281214,
+  "diff_x1_ci95": [
+   -0.06644172919808758,
+   -0.006484189241853914
+  ],
+  "verdetto": "regola semplice meglio",
+  "guadagno_net_x": -0.0016545980370156585,
+  "celle_net_x": 3,
+  "diff_net_x": 0.007382817128968057,
+  "guadagno_n_pass": -0.008303833741361455,
+  "celle_n_pass": 3,
+  "diff_n_pass": 0.014032052833313853
+ }
+}

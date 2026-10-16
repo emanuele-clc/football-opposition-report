@@ -1,0 +1,43 @@
+{
+ "team": "Barcelona",
+ "modo": "PARTITE RISERVATE",
+ "partite_test": 11,
+ "costruzione": {
+  "n_test": 306,
+  "tiro_test": 0.13725490196078433,
+  "guadagno_famiglie": 0.038324102488784276,
+  "guadagno_x1": 0.04850628974470037,
+  "celle_x1": 5,
+  "diff_x1": -0.010182187255916105,
+  "diff_x1_ci95": [
+   -0.02567185852168136,
+   0.0031680784704217107
+  ],
+  "verdetto": "nessuna differenza",
+  "guadagno_net_x": 0.0439287365400828,
+  "celle_net_x": 5,
+  "diff_net_x": -0.005604634051298524,
+  "guadagno_n_pass": 0.003800481745697678,
+  "celle_n_pass": 5,
+  "diff_n_pass": 0.0345236207430866
+ },
+ "avanzata": {
+  "n_test": 243,
+  "tiro_test": 0.16872427983539096,
+  "guadagno_famiglie": 0.015229060715337934,
+  "guadagno_x1": 0.029888561088771606,
+  "celle_x1": 3,
+  "diff_x1": -0.014659500373433672,
+  "diff_x1_ci95": [
+   -0.03943943455449327,
+   0.020465751671561054
+  ],
+  "verdetto": "nessuna differenza",
+  "guadagno_net_x": 0.01031662065132432,
+  "celle_net_x": 3,
+  "diff_net_x": 0.004912440064013605,
+  "guadagno_n_pass": 0.0038428620262602013,
+  "celle_n_pass": 3,
+  "diff_n_pass": 0.011386198689077729
+ }
+}

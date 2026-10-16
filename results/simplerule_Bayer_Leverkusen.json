@@ -1,0 +1,43 @@
+{
+ "team": "Bayer Leverkusen",
+ "modo": "PARTITE RISERVATE",
+ "partite_test": 10,
+ "costruzione": {
+  "n_test": 261,
+  "tiro_test": 0.19923371647509577,
+  "guadagno_famiglie": 0.037756568110603635,
+  "guadagno_x1": 0.07795820803131286,
+  "celle_x1": 5,
+  "diff_x1": -0.040201639920709215,
+  "diff_x1_ci95": [
+   -0.07031647514785339,
+   -0.005152829529175498
+  ],
+  "verdetto": "regola semplice meglio",
+  "guadagno_net_x": 0.06169030886969165,
+  "celle_net_x": 5,
+  "diff_net_x": -0.023933740759088006,
+  "guadagno_n_pass": 0.010041706419002393,
+  "celle_n_pass": 5,
+  "diff_n_pass": 0.02771486169160125
+ },
+ "avanzata": {
+  "n_test": 211,
+  "tiro_test": 0.1990521327014218,
+  "guadagno_famiglie": 0.006178966856668151,
+  "guadagno_x1": 0.04299366353608071,
+  "celle_x1": 3,
+  "diff_x1": -0.03681469667941256,
+  "diff_x1_ci95": [
+   -0.06108399015821118,
+   -0.010900428312226542
+  ],
+  "verdetto": "regola semplice meglio",
+  "guadagno_net_x": -0.009287168813232652,
+  "celle_net_x": 3,
+  "diff_net_x": 0.015466135669900797,
+  "guadagno_n_pass": 0.0050516369880151445,
+  "celle_n_pass": 3,
+  "diff_n_pass": 0.0011273298686529985
+ }
+}
