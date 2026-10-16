@@ -1,0 +1,23 @@
+{
+ "team": "Barcelona",
+ "nota": "ESPLORATIVO, non pre-registrato; nulla = copula gaussiana (stesse marginali e correlazioni, nessun gruppo)",
+ "B": 100,
+ "costruzione": {
+  "n": 747,
+  "silhouette_osservata": 0.17727783788291582,
+  "silhouette_nulla_media": 0.1468591655416334,
+  "silhouette_nulla_p95": 0.1555661347375508,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.7018839221949424,
+  "jaccard_nullo": 0.6151656153307185
+ },
+ "avanzata": {
+  "n": 571,
+  "silhouette_osservata": 0.19848635850187973,
+  "silhouette_nulla_media": 0.1761188091754878,
+  "silhouette_nulla_p95": 0.1863361766784145,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.841398891490989,
+  "jaccard_nullo": 0.8893579942178184
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "team": "Arsenal",
+ "nota": "ESPLORATIVO, non pre-registrato; nulla = copula gaussiana (stesse marginali e correlazioni, nessun gruppo)",
+ "B": 100,
+ "costruzione": {
+  "n": 760,
+  "silhouette_osservata": 0.1633987446569339,
+  "silhouette_nulla_media": 0.14212507150874482,
+  "silhouette_nulla_p95": 0.15371245602992492,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.6588226931969419,
+  "jaccard_nullo": 0.5862453639710419
+ },
+ "avanzata": {
+  "n": 573,
+  "silhouette_osservata": 0.188285275133559,
+  "silhouette_nulla_media": 0.1737775392304835,
+  "silhouette_nulla_p95": 0.18404032910879783,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.8053466201909232,
+  "jaccard_nullo": 0.8882905564863832
+ }
+}

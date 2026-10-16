@@ -1,0 +1,23 @@
+{
+ "team": "Real Madrid",
+ "nota": "ESPLORATIVO, non pre-registrato; nulla = copula gaussiana (stesse marginali e correlazioni, nessun gruppo)",
+ "B": 100,
+ "costruzione": {
+  "n": 789,
+  "silhouette_osservata": 0.1602564782440824,
+  "silhouette_nulla_media": 0.14269683114697548,
+  "silhouette_nulla_p95": 0.15341014988137322,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.5893405744979895,
+  "jaccard_nullo": 0.6657511475589027
+ },
+ "avanzata": {
+  "n": 627,
+  "silhouette_osservata": 0.1984632097629501,
+  "silhouette_nulla_media": 0.1740193152465203,
+  "silhouette_nulla_p95": 0.18423805784804856,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.8832297752279934,
+  "jaccard_nullo": 0.8837854906510122
+ }
+}

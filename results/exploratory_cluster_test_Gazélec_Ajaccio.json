@@ -1,0 +1,23 @@
+{
+ "team": "Gazélec Ajaccio",
+ "nota": "ESPLORATIVO, non pre-registrato; nulla = copula gaussiana (stesse marginali e correlazioni, nessun gruppo)",
+ "B": 100,
+ "costruzione": {
+  "n": 769,
+  "silhouette_osservata": 0.15539493525884393,
+  "silhouette_nulla_media": 0.13884052475350775,
+  "silhouette_nulla_p95": 0.1485251224346232,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.6331470853674875,
+  "jaccard_nullo": 0.6441956352383541
+ },
+ "avanzata": {
+  "n": 547,
+  "silhouette_osservata": 0.17513473231584992,
+  "silhouette_nulla_media": 0.16319696363111846,
+  "silhouette_nulla_p95": 0.17209324243679364,
+  "p_silhouette": 0.019801980198019802,
+  "jaccard_osservato": 0.7358879395308223,
+  "jaccard_nullo": 0.8470007882993956
+ }
+}

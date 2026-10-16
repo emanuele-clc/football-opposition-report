@@ -54,6 +54,7 @@ python src/week4/validate_replication.py matches/2_27.json "Arsenal" . --confirm
 python src/week4/select_teams.py data_info docs/replication10_selection.json
 python src/week4/run_new_teams.py docs/replication10_selection.json --confirm
 python src/week4/summarize_replication10.py docs/replication10_selection.json .
+python src/week4/run_cluster_tests.py docs/replication10_selection.json   # exploratory cluster test on the 10 teams
 # 6 — exploratory analyses, not pre-registered (repeat for each team)
 python src/week4/exploratory_cv_all_matches.py matches/11_27.json "Barcelona" .
 python src/week4/exploratory_ablation.py matches/11_27.json "Barcelona" .
@@ -220,6 +221,24 @@ Protocol: `docs/protocol_replication10.md` (committed before running). Six new t
 **Result by the pre-registered rule.** H1 and H2 pass in **8 of 10 teams** (95% Wilson interval 0.49 to 0.94); the rule (at least 7 of 10) is met. H3 for the build-up passes in 6 of the 8 teams where it was tested (rule: at least 6 of 8); in the advanced phase in 2 of 8 (reported only). H1 fails for Barcelona and Sassuolo.
 
 **How far this goes.** (1) The build-up gain comes from how sequences start (play pattern), see the ablation above; this is a regularity of the families, not tactical predictability from match context. (2) The stability margin over a single Gaussian blob (E1, margin of at least 0.10) holds in only 4 of 10 teams (Leverkusen, Leicester, Barcelona, Napoli), and the advanced phase is often at the level of the structure-free null: for many teams the families are slices of a continuum, not separate clusters. (3) H2 passes everywhere but is a lenient test: its silhouette threshold (0.10) is below what structure-free data already gives (0.12-0.14 in the null baselines), and a frozen partition of a stable distribution keeps stable shares. (4) A model on the raw features predicts shots better than the families (+0.05 to +0.11 against +0.01 to +0.05), so the families keep only part of that information.
+
+### Exploratory, not pre-registered: are the families real clusters? (Monte Carlo test)
+Stricter than the Gaussian comparison: the null data keep each variable's own distribution (skew, bounded values) and the rank correlations between variables (Gaussian copula) but have no clusters. 100 null datasets per team and phase; exploration matches only. Scripts: `src/week4/exploratory_cluster_test.py`, `src/week4/run_cluster_tests.py`.
+
+| Team | Build-up silhouette (observed / null mean / p) | Build-up Jaccard (observed / null) | Advanced silhouette (observed / null mean / p) | Advanced Jaccard (observed / null) |
+|---|---|---|---|---|
+| Bayer Leverkusen | 0.180 / 0.145 / 0.01 | 0.78 / 0.75 | 0.189 / 0.171 / 0.01 | 0.89 / 0.88 |
+| Leicester City | 0.160 / 0.137 / 0.01 | 0.71 / 0.63 | 0.191 / 0.167 / 0.01 | 0.85 / 0.88 |
+| Barcelona | 0.177 / 0.147 / 0.01 | 0.70 / 0.62 | 0.198 / 0.176 / 0.01 | 0.84 / 0.89 |
+| Arsenal | 0.163 / 0.142 / 0.01 | 0.66 / 0.59 | 0.188 / 0.174 / 0.01 | 0.81 / 0.89 |
+| Atlético Madrid | 0.162 / 0.139 / 0.02 | 0.65 / 0.66 | 0.184 / 0.167 / 0.02 | 0.84 / 0.91 |
+| Real Madrid | 0.160 / 0.143 / 0.01 | 0.59 / 0.67 | 0.198 / 0.174 / 0.01 | 0.88 / 0.88 |
+| Napoli | 0.169 / 0.142 / 0.01 | 0.68 / 0.66 | 0.196 / 0.177 / 0.01 | 0.90 / 0.89 |
+| Sassuolo | 0.153 / 0.136 / 0.02 | 0.55 / 0.59 | 0.187 / 0.168 / 0.02 | 0.87 / 0.83 |
+| Gazélec Ajaccio | 0.155 / 0.139 / 0.01 | 0.63 / 0.64 | 0.175 / 0.163 / 0.02 | 0.74 / 0.85 |
+| Bordeaux | 0.171 / 0.141 / 0.01 | 0.74 / 0.64 | 0.192 / 0.167 / 0.01 | 0.90 / 0.89 |
+
+Silhouette is above the structure-free null in all 10 teams and both phases (p of 0.01-0.02; with 100 simulations 0.01 is the smallest possible), but the gap is small: +0.016 to +0.034 in the build-up, +0.012 to +0.025 in the advanced phase. Stability does not show it: the Jaccard of the observed partition is above the null in 6 of 10 teams in the build-up (by 0.10 or more in 1) and in only 4 of 10 in the advanced phase, where the null is on average higher. So there is some structure beyond marginals and correlations, but it is weak: the families are a convenient partition of a weakly clustered continuum. The null does not reproduce non-linear dependence between variables (for example constraints between path length and distance), so part of the remaining structure may be mechanical rather than tactical.
 
 ## Declared researcher degrees of freedom
 1. Phase split at x = 45 (tested 35–55)

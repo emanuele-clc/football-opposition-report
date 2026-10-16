@@ -1,0 +1,23 @@
+{
+ "team": "Bayer Leverkusen",
+ "nota": "ESPLORATIVO, non pre-registrato; nulla = copula gaussiana (stesse marginali e correlazioni, nessun gruppo)",
+ "B": 100,
+ "costruzione": {
+  "n": 619,
+  "silhouette_osservata": 0.179520484128358,
+  "silhouette_nulla_media": 0.1452832525833639,
+  "silhouette_nulla_p95": 0.1543133222829676,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.7809711142262219,
+  "jaccard_nullo": 0.7527034556009452
+ },
+ "avanzata": {
+  "n": 553,
+  "silhouette_osservata": 0.18922414279687086,
+  "silhouette_nulla_media": 0.17075694497546434,
+  "silhouette_nulla_p95": 0.1807758760910063,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.8857290115142363,
+  "jaccard_nullo": 0.8831992438603629
+ }
+}

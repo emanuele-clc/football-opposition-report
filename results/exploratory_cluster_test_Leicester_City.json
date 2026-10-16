@@ -1,0 +1,23 @@
+{
+ "team": "Leicester City",
+ "nota": "ESPLORATIVO, non pre-registrato; nulla = copula gaussiana (stesse marginali e correlazioni, nessun gruppo)",
+ "B": 100,
+ "costruzione": {
+  "n": 616,
+  "silhouette_osservata": 0.15958103271605234,
+  "silhouette_nulla_media": 0.13666449599803074,
+  "silhouette_nulla_p95": 0.14552394535473456,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.7148364207879256,
+  "jaccard_nullo": 0.629351224200741
+ },
+ "avanzata": {
+  "n": 548,
+  "silhouette_osservata": 0.19072106966982613,
+  "silhouette_nulla_media": 0.16691960141514212,
+  "silhouette_nulla_p95": 0.1783451161237385,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.846215859787275,
+  "jaccard_nullo": 0.8806564436599306
+ }
+}

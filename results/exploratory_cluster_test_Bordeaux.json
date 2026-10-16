@@ -1,0 +1,23 @@
+{
+ "team": "Bordeaux",
+ "nota": "ESPLORATIVO, non pre-registrato; nulla = copula gaussiana (stesse marginali e correlazioni, nessun gruppo)",
+ "B": 100,
+ "costruzione": {
+  "n": 656,
+  "silhouette_osservata": 0.17077278030139947,
+  "silhouette_nulla_media": 0.14148238713154002,
+  "silhouette_nulla_p95": 0.15029055659540747,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.7432604853035791,
+  "jaccard_nullo": 0.6400426621973894
+ },
+ "avanzata": {
+  "n": 543,
+  "silhouette_osservata": 0.19207104225055968,
+  "silhouette_nulla_media": 0.16706651834626243,
+  "silhouette_nulla_p95": 0.17662076376644684,
+  "p_silhouette": 0.009900990099009901,
+  "jaccard_osservato": 0.8962290505772629,
+  "jaccard_nullo": 0.8885793311064635
+ }
+}

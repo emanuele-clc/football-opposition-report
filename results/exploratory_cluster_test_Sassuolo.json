@@ -1,0 +1,23 @@
+{
+ "team": "Sassuolo",
+ "nota": "ESPLORATIVO, non pre-registrato; nulla = copula gaussiana (stesse marginali e correlazioni, nessun gruppo)",
+ "B": 100,
+ "costruzione": {
+  "n": 729,
+  "silhouette_osservata": 0.15261818100683164,
+  "silhouette_nulla_media": 0.13615426611512607,
+  "silhouette_nulla_p95": 0.14766884201668481,
+  "p_silhouette": 0.019801980198019802,
+  "jaccard_osservato": 0.5545841810246085,
+  "jaccard_nullo": 0.5917984144444592
+ },
+ "avanzata": {
+  "n": 541,
+  "silhouette_osservata": 0.18677231493484073,
+  "silhouette_nulla_media": 0.1684317381366408,
+  "silhouette_nulla_p95": 0.17739310145716258,
+  "p_silhouette": 0.019801980198019802,
+  "jaccard_osservato": 0.8749263913297675,
+  "jaccard_nullo": 0.8293419834492863
+ }
+}
