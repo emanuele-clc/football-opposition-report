@@ -370,8 +370,8 @@ export function PassNetwork({ teamKey, family, color }: { teamKey: string; famil
           {[...nodes].sort((a, b) => a.touches - b.touches).map((n) => (
             <g key={n.player}>
               <title>{n.player}: {n.touches} passes made or received</title>
-              <circle cx={n.x} cy={n.y} r={1.9 + 2.1 * Math.sqrt(n.touches / maxN)} fill="var(--sticker)" stroke={color} strokeWidth="0.8" />
-              <text x={n.x} y={n.y + 1.15} textAnchor="middle" fontSize="3.1" fontWeight="900" fontStyle="italic" fill="var(--sticker-ink)">{n.shirt ?? n.player.split(" ").map((w) => w[0]).join("").slice(0, 2)}</text>
+              <circle cx={n.x} cy={n.y} r={2.6 + 1.8 * Math.sqrt(n.touches / maxN)} fill="var(--sticker)" stroke={color} strokeWidth="0.8" />
+              <text x={n.x} y={n.y + 1.3} textAnchor="middle" fontSize="3.6" fontWeight="900" fontStyle="italic" fill="var(--sticker-ink)">{n.shirt ?? n.player.split(" ").map((w) => w[0]).join("").slice(0, 2)}</text>
             </g>
           ))}
         </g>

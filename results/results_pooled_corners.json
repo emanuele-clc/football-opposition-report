@@ -1,0 +1,47 @@
+{
+ "corner_per_torneo": {
+  "Mondiale 2022": 569,
+  "Europei 2024": 508,
+  "Europei 2020": 461
+ },
+ "corner_totali": 1538,
+ "corner_con_360": 846,
+ "corner_360_per_torneo": {
+  "Europei 2020": 258,
+  "Europei 2024": 288,
+  "Mondiale 2022": 300
+ },
+ "xg_medio_360": 0.03808604646217494,
+ "zone": {
+  "corto/fuori area": 101,
+  "primo palo": 59,
+  "centro": 650,
+  "secondo palo": 36
+ },
+ "assetti": {
+  "carico vicino": 549,
+  "equilibrato": 242,
+  "carico lontano": 55
+ },
+ "exploit_obs": 0.007312178373558329,
+ "exploit_ci95_boot": [
+  0.00221661833857448,
+  0.025099469508674126
+ ],
+ "exploit_null_mean": 0.006911602590825089,
+ "exploit_null_p95": 0.016095915583909916,
+ "exploit_pvalue": 0.414,
+ "test_euro2024": {
+  "assetto_migliore": "equilibrato",
+  "n": 288,
+  "xg_assetto": 0.03214823762790698,
+  "n_assetto": 86,
+  "xg_altri": 0.02741594572920792,
+  "n_altri": 202,
+  "differenza": 0.004732291898699059,
+  "ci95": [
+   -0.013925144542603043,
+   0.028937792901914564
+  ]
+ }
+}

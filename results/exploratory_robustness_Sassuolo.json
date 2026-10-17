@@ -1,0 +1,127 @@
+{
+ "team": "Sassuolo",
+ "nota": "ESPLORATIVO, non pre-registrato; solo partite di esplorazione; il metodo della tesi non cambia",
+ "BJ": 40,
+ "metodi": {
+  "costruzione": {
+   "n": 729,
+   "k": 5,
+   "kmeans": {
+    "ari_vs_kmeans": 1.0,
+    "silhouette": 0.15261818100683164,
+    "jaccard": 0.5831232772010104
+   },
+   "gmm": {
+    "ari_vs_kmeans": 0.24748669650899405,
+    "silhouette": 0.06230548345343954,
+    "jaccard": 0.5791807276309358
+   },
+   "ward": {
+    "ari_vs_kmeans": 0.3682980942298086,
+    "silhouette": 0.11348346915691927,
+    "jaccard": 0.4221812900597125
+   }
+  },
+  "avanzata": {
+   "n": 541,
+   "k": 3,
+   "kmeans": {
+    "ari_vs_kmeans": 1.0,
+    "silhouette": 0.18677231493484073,
+    "jaccard": 0.859404455199638
+   },
+   "gmm": {
+    "ari_vs_kmeans": 0.3616120900713786,
+    "silhouette": 0.13802616438038076,
+    "jaccard": 0.5725276746048557
+   },
+   "ward": {
+    "ari_vs_kmeans": 0.3062485192347551,
+    "silhouette": 0.17271487110954586,
+    "jaccard": 0.49006606232585054
+   }
+  }
+ },
+ "sensibilita": {
+  "costruzione_x45_k4": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 4,
+   "n": 729,
+   "jaccard": 0.5465071469243062,
+   "jaccard_null_gauss": 0.6500158347002046,
+   "margin": -0.10350868777589839,
+   "silhouette": 0.15713957040729915
+  },
+  "costruzione_x45_k5": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 5,
+   "n": 729,
+   "jaccard": 0.5586862593497832,
+   "jaccard_null_gauss": 0.6449127005235935,
+   "margin": -0.08622644117381029,
+   "silhouette": 0.15261818100683164
+  },
+  "costruzione_x45_k6": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 6,
+   "n": 729,
+   "jaccard": 0.602989617219246,
+   "jaccard_null_gauss": 0.5528108546530532,
+   "margin": 0.0501787625661928,
+   "silhouette": 0.16136435582678516
+  },
+  "costruzione_x40_k5": {
+   "fase": "costruzione",
+   "cut": 40,
+   "k": 5,
+   "n": 659,
+   "jaccard": 0.5708469516740318,
+   "jaccard_null_gauss": 0.6014252993353347,
+   "margin": -0.030578347661302963,
+   "silhouette": 0.15453079303848732
+  },
+  "costruzione_x50_k5": {
+   "fase": "costruzione",
+   "cut": 50,
+   "k": 5,
+   "n": 805,
+   "jaccard": 0.6014188662946278,
+   "jaccard_null_gauss": 0.5288662470946771,
+   "margin": 0.07255261919995071,
+   "silhouette": 0.15103287089257653
+  },
+  "avanzata_x45_k2": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 2,
+   "n": 541,
+   "jaccard": 0.7795945447154933,
+   "jaccard_null_gauss": 0.8940966959368803,
+   "margin": -0.11450215122138707,
+   "silhouette": 0.19117450755519477
+  },
+  "avanzata_x45_k3": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 3,
+   "n": 541,
+   "jaccard": 0.8919502507241618,
+   "jaccard_null_gauss": 0.67427676352521,
+   "margin": 0.21767348719895174,
+   "silhouette": 0.18677231493484073
+  },
+  "avanzata_x45_k4": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 4,
+   "n": 541,
+   "jaccard": 0.7332083746844243,
+   "jaccard_null_gauss": 0.5992402537428536,
+   "margin": 0.13396812094157073,
+   "silhouette": 0.1876762863956378
+  }
+ }
+}

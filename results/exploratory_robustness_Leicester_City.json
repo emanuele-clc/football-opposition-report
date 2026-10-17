@@ -1,0 +1,127 @@
+{
+ "team": "Leicester City",
+ "nota": "ESPLORATIVO, non pre-registrato; solo partite di esplorazione; il metodo della tesi non cambia",
+ "BJ": 40,
+ "metodi": {
+  "costruzione": {
+   "n": 616,
+   "k": 5,
+   "kmeans": {
+    "ari_vs_kmeans": 1.0,
+    "silhouette": 0.15958103271605234,
+    "jaccard": 0.7308676487184262
+   },
+   "gmm": {
+    "ari_vs_kmeans": 0.3297880178219262,
+    "silhouette": 0.09101757254694652,
+    "jaccard": 0.6207074875951677
+   },
+   "ward": {
+    "ari_vs_kmeans": 0.5080378043006616,
+    "silhouette": 0.12663404900443848,
+    "jaccard": 0.5440152427156556
+   }
+  },
+  "avanzata": {
+   "n": 548,
+   "k": 3,
+   "kmeans": {
+    "ari_vs_kmeans": 1.0,
+    "silhouette": 0.19072106966982613,
+    "jaccard": 0.8472902688661842
+   },
+   "gmm": {
+    "ari_vs_kmeans": 0.21372591773449692,
+    "silhouette": 0.1104094407414149,
+    "jaccard": 0.5378721521246355
+   },
+   "ward": {
+    "ari_vs_kmeans": 0.3978201644020845,
+    "silhouette": 0.141509288678472,
+    "jaccard": 0.6139584509581003
+   }
+  }
+ },
+ "sensibilita": {
+  "costruzione_x45_k4": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 4,
+   "n": 616,
+   "jaccard": 0.7967465067502092,
+   "jaccard_null_gauss": 0.600993914917401,
+   "margin": 0.19575259183280824,
+   "silhouette": 0.1717688576267973
+  },
+  "costruzione_x45_k5": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 5,
+   "n": 616,
+   "jaccard": 0.7121335139275353,
+   "jaccard_null_gauss": 0.5858150505502403,
+   "margin": 0.12631846337729502,
+   "silhouette": 0.15958103271605234
+  },
+  "costruzione_x45_k6": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 6,
+   "n": 616,
+   "jaccard": 0.6492742445608087,
+   "jaccard_null_gauss": 0.5445466522377992,
+   "margin": 0.10472759232300954,
+   "silhouette": 0.16125411182328836
+  },
+  "costruzione_x40_k5": {
+   "fase": "costruzione",
+   "cut": 40,
+   "k": 5,
+   "n": 538,
+   "jaccard": 0.657251206690256,
+   "jaccard_null_gauss": 0.6557800336171928,
+   "margin": 0.0014711730730632144,
+   "silhouette": 0.156781555227312
+  },
+  "costruzione_x50_k5": {
+   "fase": "costruzione",
+   "cut": 50,
+   "k": 5,
+   "n": 685,
+   "jaccard": 0.737298127635908,
+   "jaccard_null_gauss": 0.6411205627481317,
+   "margin": 0.09617756488777629,
+   "silhouette": 0.16071017443051464
+  },
+  "avanzata_x45_k2": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 2,
+   "n": 548,
+   "jaccard": 0.8027073194160068,
+   "jaccard_null_gauss": 0.826781903497819,
+   "margin": -0.024074584081812178,
+   "silhouette": 0.2309413620964762
+  },
+  "avanzata_x45_k3": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 3,
+   "n": 548,
+   "jaccard": 0.858403579297461,
+   "jaccard_null_gauss": 0.7642276989608096,
+   "margin": 0.09417588033665147,
+   "silhouette": 0.19072106966982613
+  },
+  "avanzata_x45_k4": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 4,
+   "n": 548,
+   "jaccard": 0.7023077044092636,
+   "jaccard_null_gauss": 0.610898350136788,
+   "margin": 0.09140935427247565,
+   "silhouette": 0.18426307518241747
+  }
+ }
+}

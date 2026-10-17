@@ -3,6 +3,7 @@ import { api, type Rank, type TeamData, type TeamSummary } from "../api";
 import { FamilyLanes, Note, Replay, ShareStrip } from "../charts";
 import { fmt, ordinal } from "../format";
 import { famLine, familyClips } from "./Overview";
+import StyleMap from "./StyleMap";
 
 /* Two teams on the same scales: every fact as a row of dots, the two teams highlighted. */
 function DuoRow({ a, b, ka, kb }: { a: Rank; b: Rank; ka: string; kb: string }) {
@@ -62,6 +63,7 @@ export default function Compare({ d, teams, events }: { d: TeamData; teams: Team
           </select>
         </label>
       </div>
+      <section style={{ marginBottom: 40 }}><StyleMap current={d.key} other={other} /></section>
       {err && <Note kind="caution" tag="Not loaded">{err}</Note>}
       {!o && !err && <div aria-busy="true"><div className="skeleton" style={{ height: 300 }} /></div>}
       {o && (

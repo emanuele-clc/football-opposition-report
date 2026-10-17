@@ -40,6 +40,8 @@ for t in teams:
         filled = list(csv.DictReader(open(os.path.join(data, f"review_{k}_filled.csv"), encoding="utf-8", newline="")))
         check(res.status_code == 200 and filled[0]["coherent_with_family"] == "yes" and len(filled) == n, f"{t['team']}: review saved to review_{k}_filled.csv")
         check(open(os.path.join(data, f"review_{k}.csv"), encoding="utf-8").read() == before, f"{t['team']}: original review sheet unchanged")
+sm = c.get("/api/stylemap").json()
+check(len(sm["teams"]) == len(teams) and all(len(t["nearest"]) == min(3, len(teams) - 1) for t in sm["teams"]), f"style map places {len(teams)} teams with their nearest teams")
 check(c.get("/api/teams/Nobody").status_code == 404, "unknown team gives 404")
 check(c.get("/..%2F..%2Fsrc%2Foppreport.py").text.lstrip().lower().startswith("<!doctype") or not os.path.isdir(server.DIST), "no file served from outside the frontend build")
 shutil.rmtree(tmp)

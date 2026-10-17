@@ -1,0 +1,127 @@
+{
+ "team": "Gazélec Ajaccio",
+ "nota": "ESPLORATIVO, non pre-registrato; solo partite di esplorazione; il metodo della tesi non cambia",
+ "BJ": 40,
+ "metodi": {
+  "costruzione": {
+   "n": 769,
+   "k": 5,
+   "kmeans": {
+    "ari_vs_kmeans": 1.0,
+    "silhouette": 0.15539493525884393,
+    "jaccard": 0.5678685251812299
+   },
+   "gmm": {
+    "ari_vs_kmeans": 0.34254756526435365,
+    "silhouette": 0.06493978324902362,
+    "jaccard": 0.5564375213710754
+   },
+   "ward": {
+    "ari_vs_kmeans": 0.32203032115193475,
+    "silhouette": 0.12053199096851135,
+    "jaccard": 0.44733573306150803
+   }
+  },
+  "avanzata": {
+   "n": 547,
+   "k": 3,
+   "kmeans": {
+    "ari_vs_kmeans": 1.0,
+    "silhouette": 0.17513473231584992,
+    "jaccard": 0.7416230712523609
+   },
+   "gmm": {
+    "ari_vs_kmeans": 0.31695459762591954,
+    "silhouette": 0.12259656358363409,
+    "jaccard": 0.8056902789000953
+   },
+   "ward": {
+    "ari_vs_kmeans": 0.4841914267692534,
+    "silhouette": 0.13995248637584576,
+    "jaccard": 0.45155196737377135
+   }
+  }
+ },
+ "sensibilita": {
+  "costruzione_x45_k4": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 4,
+   "n": 769,
+   "jaccard": 0.6926112280575581,
+   "jaccard_null_gauss": 0.7418637562058288,
+   "margin": -0.049252528148270636,
+   "silhouette": 0.16895425188321495
+  },
+  "costruzione_x45_k5": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 5,
+   "n": 769,
+   "jaccard": 0.6216633833898716,
+   "jaccard_null_gauss": 0.6659590718546685,
+   "margin": -0.04429568846479692,
+   "silhouette": 0.15539493525884393
+  },
+  "costruzione_x45_k6": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 6,
+   "n": 769,
+   "jaccard": 0.6368611771936847,
+   "jaccard_null_gauss": 0.4850763146394721,
+   "margin": 0.15178486255421264,
+   "silhouette": 0.1619836303687185
+  },
+  "costruzione_x40_k5": {
+   "fase": "costruzione",
+   "cut": 40,
+   "k": 5,
+   "n": 696,
+   "jaccard": 0.686708948539543,
+   "jaccard_null_gauss": 0.5018134436704228,
+   "margin": 0.1848955048691202,
+   "silhouette": 0.16532611637821318
+  },
+  "costruzione_x50_k5": {
+   "fase": "costruzione",
+   "cut": 50,
+   "k": 5,
+   "n": 855,
+   "jaccard": 0.6914516400561241,
+   "jaccard_null_gauss": 0.6008626595126283,
+   "margin": 0.09058898054349585,
+   "silhouette": 0.16415704850771165
+  },
+  "avanzata_x45_k2": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 2,
+   "n": 547,
+   "jaccard": 0.852152456615874,
+   "jaccard_null_gauss": 0.8877504340216968,
+   "margin": -0.03559797740582282,
+   "silhouette": 0.19173271628256264
+  },
+  "avanzata_x45_k3": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 3,
+   "n": 547,
+   "jaccard": 0.7915641340124884,
+   "jaccard_null_gauss": 0.6500329524386133,
+   "margin": 0.14153118157387512,
+   "silhouette": 0.17513473231584992
+  },
+  "avanzata_x45_k4": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 4,
+   "n": 547,
+   "jaccard": 0.6481259076407404,
+   "jaccard_null_gauss": 0.660568023864223,
+   "margin": -0.012442116223482569,
+   "silhouette": 0.16572459864549158
+  }
+ }
+}

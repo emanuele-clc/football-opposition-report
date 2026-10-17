@@ -255,7 +255,8 @@ def paths(key: str):
     """Cached in <data>/app_cache. Needs <data>/ev."""
     team_name = need(key)["team"]; cache = os.path.join(DATA, "app_cache", f"paths_{key}.json")
     if os.path.exists(cache) and os.path.getmtime(cache) >= os.path.getmtime(os.path.join(DATA, f"clips_{key}.csv")):
-        return json.load(open(cache, encoding="utf-8"))
+        res = json.load(open(cache, encoding="utf-8"))
+        if all("at" in q for q in res["paths"]): return res
     if not os.path.isdir(os.path.join(DATA, "ev")): raise HTTPException(404, "Paths need the raw event files in <data>/ev.")
     out, rows = [], clip_index(key)
     by_match = {}
@@ -264,7 +265,7 @@ def paths(key: str):
         ev = json.load(open(os.path.join(DATA, "ev", f"{m}.json"), encoding="utf-8"))
         for r in rs:
             pts = possession_path(ev, team_name, int(r["half"]), int(r["minute"]), int(r["second"]))
-            if pts: out.append({"family": r["family"], "shot": int(r["ended_in_shot"]), "pts": pts})
+            if pts: out.append({"family": r["family"], "shot": int(r["ended_in_shot"]), "pts": pts, "at": [int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"])]})
     res = {"team": team_name, "n": len(out), "of": len(rows), "paths": out}
     os.makedirs(os.path.dirname(cache), exist_ok=True); json.dump(res, open(cache, "w", encoding="utf-8"))
     return res
@@ -401,6 +402,48 @@ def replay_gif(key: str, match: int, half: int, minute: int, second: int, window
     return StreamingResponse(iter([data]), media_type="image/gif", headers={"Content-Disposition": f"attachment; filename*=UTF-8''{quote(name)}"})
 
 
+# "More like this": the sequences of the season closest to a chosen one (same numbers the families are built on, standardised).
+def _seq_features(pts, passes, dur):
+    import numpy as np
+    P = np.array(pts, dtype=float); L = float(np.sum(np.linalg.norm(np.diff(P, axis=0), axis=1))) if len(P) > 1 else 0.0
+    return [P[0, 0], abs(P[0, 1] - 40), P[-1, 0], abs(P[-1, 1] - 40), P[-1, 0] - P[0, 0], L, (P[-1, 0] - P[0, 0]) / max(L, 1), float(passes), float(P[:, 1].std()), float(dur)]
+
+
+@app.get("/api/teams/{key}/similar")
+def similar(key: str, match: int, half: int, minute: int, second: int, n: int = 8):
+    import numpy as np
+    by_at = {tuple(q["at"]): q for q in paths(key)["paths"]}
+    rows = [r for r in clip_index(key) if (int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"])) in by_at]
+    pth = [by_at[(int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"]))] for r in rows]
+    X = np.array([_seq_features(q["pts"], int(r["passes"]), int(r["duration_s"])) for q, r in zip(pth, rows)])
+    Z = (X - X.mean(0)) / np.where(X.std(0) > 0, X.std(0), 1)
+    i = next((j for j, r in enumerate(rows) if int(r["match"]) == match and int(r["half"]) == half and int(r["minute"]) == minute and int(r["second"]) == second), None)
+    if i is None: raise HTTPException(404, "This clip is not in the sequence list.")
+    d = np.sqrt(((Z - Z[i]) ** 2).sum(1)); d[i] = np.inf; order = np.argsort(d)[:max(1, min(n, 20))]
+    typical = float(np.median(np.sort(np.sqrt(((Z[:, None, :] - Z[None, :200, :]) ** 2).sum(-1)), axis=0)[1]))  # median nearest-neighbour distance, for scale
+    return {"of": rows[i], "similar": [{**rows[j], "distance": round(float(d[j]), 2), "pts": pth[j]["pts"]} for j in order], "typical_nn_distance": round(typical, 2)}
+
+
+# Style map: every team in the folder placed by its numbers (principal components of the standardised facts used for the ranks).
+@app.get("/api/stylemap")
+def stylemap():
+    import numpy as np
+    ts = teams(); keys = list(ts); per = {k: {r["id"]: r for r in ranks(k)} for k in keys}
+    ids = [m[0] for m in METRICS if all(m[0] in per[k] for k in keys)]
+    if len(keys) < 3 or len(ids) < 3: raise HTTPException(400, "The style map needs at least 3 teams with the same sheets.")
+    X = np.array([[per[k][i]["value"] for i in ids] for k in keys]); Z = (X - X.mean(0)) / np.where(X.std(0) > 0, X.std(0), 1)
+    U, S_, Vt = np.linalg.svd(Z, full_matrices=False); pc = U[:, :2] * S_[:2]; var = (S_ ** 2) / (S_ ** 2).sum()
+    for a in range(2):
+        j = int(np.argmax(np.abs(Vt[a])))
+        if Vt[a, j] < 0: Vt[a] *= -1; pc[:, a] *= -1
+    lab = {m[0]: m[2] for m in METRICS}
+    axes = [{"explained": round(float(var[a]), 3), "loadings": sorted(({"id": i, "label": lab[i], "weight": round(float(Vt[a, n]), 3)} for n, i in enumerate(ids)), key=lambda x: -abs(x["weight"]))[:4]} for a in range(2)]
+    D = np.sqrt(((Z[:, None, :] - Z[None]) ** 2).sum(-1))
+    pts = [{"key": k, "team": ts[k]["team"], "period": ts[k]["period"], "x": round(float(pc[n, 0]), 3), "y": round(float(pc[n, 1]), 3),
+            "nearest": [{"team": ts[keys[m]]["team"], "distance": round(float(D[n, m]), 2)} for m in np.argsort(D[n])[1:4]]} for n, k in enumerate(keys)]
+    return {"metrics": [lab[i] for i in ids], "axes": axes, "teams": pts}
+
+
 # Analyst review inside the app: the same sheet and five questions as review_<Team>.csv/.html (src/report/make_report.py).
 QUESTIONS = ["Does this description match what you know about this team? What is right and what is wrong?", "Which parts would you use before a match and which would you skip?",
              "What is missing that you would need?", "Do the reliability notes change how you read the report?",
@@ -505,4 +548,6 @@ if os.path.isdir(DIST):
     def spa(path: str):
         f = os.path.realpath(os.path.join(DIST, path))
         inside = f.startswith(os.path.realpath(DIST) + os.sep)
-        return FileResponse(f if inside and os.path.isfile(f) else os.path.join(DIST, "index.html"))
+        if inside and os.path.isfile(f) and not f.endswith("index.html"): return FileResponse(f)
+        # The page itself is never cached, so a rebuilt app shows up on a normal reload.
+        return FileResponse(os.path.join(DIST, "index.html"), headers={"Cache-Control": "no-store"})

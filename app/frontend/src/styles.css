@@ -373,6 +373,15 @@ a.chg:hover { transform: translateY(-2px) rotate(-0.4deg); }
 .net-key { display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: 12.5px; color: var(--sticker-ink-2); padding: 4px 0 2px; }
 .net-key b { color: var(--sticker-ink); font-style: italic; font-weight: 900; margin-right: 3px; }
 
+.like-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.like { border: 1.5px solid var(--sticker-line); background: var(--sticker); border-radius: 10px; padding: 6px; cursor: pointer; text-align: left; color: var(--sticker-ink); transition: transform 240ms var(--spring), border-color 160ms; }
+.like:hover { transform: translateY(-2px); border-color: var(--sticker-ink); }
+.like svg { display: block; width: 100%; height: auto; border-radius: 6px; }
+.like-meta { display: block; font-size: 12.5px; margin-top: 5px; line-height: 1.3; }
+.like-meta small { display: block; color: var(--sticker-ink-2); }
+ol.near { margin: 8px 0 0; padding-left: 20px; font-size: 15px; }
+ol.near li { margin: 4px 0; }
+
 /* Share strip */
 .share-strip { display: flex; height: 64px; border-radius: 12px; background: var(--sticker); padding: 5px; gap: 4px; box-shadow: var(--lift); }
 .share-strip button { border: 0; padding: 0 10px; background: var(--rib); color: var(--sticker-ink); border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; min-width: 0; overflow: hidden; transition: flex-grow 700ms var(--out), filter 200ms; }

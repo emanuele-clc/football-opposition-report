@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { api, type ClipRow, type TeamData } from "../api";
+import { api, type ClipRef, type ClipRow, type TeamData } from "../api";
 import { Icon, Note, PlayIcon, Replay, rib } from "../charts";
 import { clock } from "../format";
 import { toRef, useClips } from "../useClips";
 import VideoSync from "./VideoSync";
+import MoreLikeThis from "./MoreLikeThis";
 
 const KINDS: [string, string][] = [["sequences", "Sequences"], ["restarts", "Restarts"], ["setpieces", "Set pieces"], ["transitions", "Transitions"]];
 type SortKey = "date" | "minute" | "passes" | "duration_s" | "family";
@@ -18,7 +19,8 @@ export default function Clips({ d, kind, family, events, setFilter }: { d: TeamD
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "date", dir: 1 });
   const [page, setPage] = useState(0);
   const [sel, setSel] = useState(0);
-  useEffect(() => { setPage(0); setSel(0); }, [family, opponent, half, shot, kind, d.key]);
+  const [like, setLike] = useState<{ clips: ClipRef[]; index: number } | null>(null);
+  useEffect(() => { setPage(0); setSel(0); setLike(null); }, [family, opponent, half, shot, kind, d.key]);
 
   const families = useMemo(() => [...new Set((rows ?? []).map((r) => r.family))].sort(), [rows]);
   const opponents = useMemo(() => [...new Set((rows ?? []).map((r) => r.opponent))].sort(), [rows]);
@@ -122,12 +124,15 @@ export default function Clips({ d, kind, family, events, setFilter }: { d: TeamD
             <div className="sticker" style={rib(famIndex(shown[sel]?.family ?? ""))}>
               <span className="no">{shown[sel]?.family}</span>
               {events ? (
-                <Replay teamKey={d.key} clips={refs} index={Math.min(sel, refs.length - 1)} onIndex={goSel} />
+                like ? <Replay teamKey={d.key} clips={like.clips} index={like.index} onIndex={(i) => setLike({ ...like, index: i })} />
+                : <Replay teamKey={d.key} clips={refs} index={Math.min(sel, refs.length - 1)} onIndex={goSel} />
               ) : (
                 <div className="note info" style={{ margin: 14 }}><span className="tag">Replays</span>Replays need the raw event files: start the app with --data-dir on the StatsBomb folder.</div>
               )}
-              {refs[sel] && <div className="replay-cap"><p>{refs[sel].detail}{kind === "transitions" ? " · from 6 s before to 10 s after; opponent in red" : ""}</p></div>}
+              {like && <div className="replay-cap"><p>Similar sequence {like.index + 1} of {like.clips.length}: {like.clips[like.index].detail}. <button type="button" className="ctl" onClick={() => setLike(null)}>Back to the list</button></p></div>}
+              {!like && refs[sel] && <div className="replay-cap"><p>{refs[sel].detail}{kind === "transitions" ? " · from 6 s before to 10 s after; opponent in red" : ""}</p></div>}
             </div>
+            {kind === "sequences" && events && <MoreLikeThis teamKey={d.key} row={shown[sel]} onPlay={(c, i) => setLike({ clips: c, index: i })} />}
             <VideoSync row={shown[sel]} />
           </aside>
         </div>

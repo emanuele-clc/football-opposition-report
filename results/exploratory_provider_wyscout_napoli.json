@@ -1,0 +1,92 @@
+{
+ "nota": "ESPLORATIVO: stesso club, fornitore e stagione diversi (StatsBomb 2015/16 vs Wyscout 2017/18, possessi ricostruiti). Serve a mostrare che il report gira su un secondo fornitore e dove le definizioni divergono; NON e' un confronto di stile tra stagioni.",
+ "fonte_wyscout": "Pappalardo et al. 2019, Scientific Data, CC BY 4.0; src/adapters/wyscout_to_generic_csv.py",
+ "partite": [
+  38,
+  38
+ ],
+ "sequenze": [
+  2280,
+  2377
+ ],
+ "stile": {
+  "passes": [
+   8.648,
+   9.3
+  ],
+  "long": [
+   0.129,
+   0.195
+  ],
+  "dur": [
+   23.281,
+   23.432
+  ],
+  "shot": [
+   0.161,
+   0.146
+  ],
+  "buildup_share": [
+   0.518,
+   0.517
+  ]
+ },
+ "struttura": {
+  "build-up": [
+   "clear structure",
+   "clear structure"
+  ],
+  "advanced": [
+   "clear structure",
+   "clear structure"
+  ]
+ },
+ "riprese_n": {
+  "Goal kick": [
+   249,
+   241
+  ],
+  "Keeper": [
+   98,
+   39
+  ],
+  "Throw-in own half": [
+   382,
+   365
+  ],
+  "Throw-in opp. half": [
+   521,
+   501
+  ]
+ },
+ "riprese_corte": {
+  "Goal kick": [
+   0.45,
+   0.29
+  ],
+  "Keeper": [
+   0.68,
+   0.38
+  ],
+  "Throw-in own half": [
+   0.93,
+   0.87
+  ],
+  "Throw-in opp. half": [
+   0.94,
+   0.88
+  ]
+ },
+ "corner_n": [
+  223,
+  242
+ ],
+ "perdite_per_partita": [
+  69.7,
+  50.3
+ ],
+ "recuperi_per_partita": [
+  74.2,
+  60.3
+ ]
+}

@@ -61,3 +61,10 @@ a = tst[tst.setup == best].xg; b = tst[tst.setup != best].xg
 print("  xG con assetto migliore: %.3f (n=%d) | altri: %.3f (n=%d) | differenza %.3f" % (a.mean(), len(a), b.mean(), len(b), a.mean() - b.mean()))
 bd = [rng.choice(a.values, len(a)).mean() - rng.choice(b.values, len(b)).mean() for _ in range(2000)]
 print("  IC95 della differenza: %.3f ... %.3f" % tuple(np.percentile(bd, [2.5, 97.5])))
+# Saves the numbers printed above (added 17 Oct 2026 so the result has a file in results/; the analysis above is unchanged).
+json.dump(dict(corner_per_torneo=tot_corner, corner_totali=int(len(df)), corner_con_360=int(len(d3)), corner_360_per_torneo={k: int(v) for k, v in d3.groupby("torneo").size().items()},
+               xg_medio_360=float(d3.xg.mean()), zone=d3.zone.value_counts().reindex(Z).fillna(0).astype(int).to_dict(), assetti=d3.setup.value_counts().reindex(S).fillna(0).astype(int).to_dict(),
+               exploit_obs=float(obs), exploit_ci95_boot=[float(v) for v in np.percentile(boot, [2.5, 97.5])], exploit_null_mean=float(np.mean(perm)), exploit_null_p95=float(np.percentile(perm, 95)),
+               exploit_pvalue=float((np.array(perm) >= obs).mean()), test_euro2024=dict(assetto_migliore=best, n=int(len(tst)), xg_assetto=float(a.mean()), n_assetto=int(len(a)), xg_altri=float(b.mean()),
+               n_altri=int(len(b)), differenza=float(a.mean() - b.mean()), ci95=[float(v) for v in np.percentile(bd, [2.5, 97.5])])),
+          open(f"{BASE}/results_pooled_corners.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)

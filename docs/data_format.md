@@ -40,6 +40,13 @@ The few extra sequences with `possession_id` (1 for Barcelona, 4 for Leverkusen)
 
 So with reconstructed possessions the numbers are usable for a rough picture but are biased and not comparable with numbers from provider-supplied possessions. Prefer the provider's possession identifiers.
 
+## Second provider tested: Wyscout public data
+`src/adapters/wyscout_to_generic_csv.py` converts the Wyscout public soccer-logs (Pappalardo et al. 2019, Scientific Data, CC BY 4.0; figshare collection 4415000) to this format. Tested on Napoli, Serie A 2017/18 (38 matches, 69,547 events): the full report, restart, set-piece and transition sheets run unchanged.
+- The data has no possession identifiers and no xG: possessions are reconstructed (biased, see above) and xG columns stay empty.
+- Goal kicks have a placeholder start position ((0,0) or (100,100)); the adapter puts them in the six-yard box (x 5, y 50). Before this fix only 6% of goal kicks looked short (StatsBomb, Napoli 2015/16: 45%): check every restart definition when adding a provider.
+- Keeper distributions are inferred (a pass by the keeper right after a save or a run off the line), so they are undercounted.
+- Use for a rough picture; do not mix ranks from this provider with StatsBomb teams.
+
 ## Mapping hints (from memory; check against your provider's documentation)
 - Opta-style feeds: positions on a 0-100 scale in the attacking direction of the team; pass end coordinates are usually event qualifiers; restarts appear as qualifiers or event types (goal kick, throw-in, corner).
 - Wyscout-style feeds: positions on a 0-100 scale; the clock is often given per half, so convert to a cumulative minute; restarts appear as sub-event types.

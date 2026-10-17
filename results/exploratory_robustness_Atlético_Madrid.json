@@ -1,0 +1,127 @@
+{
+ "team": "Atlético Madrid",
+ "nota": "ESPLORATIVO, non pre-registrato; solo partite di esplorazione; il metodo della tesi non cambia",
+ "BJ": 40,
+ "metodi": {
+  "costruzione": {
+   "n": 724,
+   "k": 5,
+   "kmeans": {
+    "ari_vs_kmeans": 1.0,
+    "silhouette": 0.16154241526046847,
+    "jaccard": 0.6984696475580905
+   },
+   "gmm": {
+    "ari_vs_kmeans": 0.459129817796084,
+    "silhouette": 0.10748883634537887,
+    "jaccard": 0.5887427884121039
+   },
+   "ward": {
+    "ari_vs_kmeans": 0.381837866164769,
+    "silhouette": 0.11854767761118735,
+    "jaccard": 0.5044854367465574
+   }
+  },
+  "avanzata": {
+   "n": 614,
+   "k": 3,
+   "kmeans": {
+    "ari_vs_kmeans": 1.0,
+    "silhouette": 0.18373293821163234,
+    "jaccard": 0.8176030476384767
+   },
+   "gmm": {
+    "ari_vs_kmeans": 0.23037431965507071,
+    "silhouette": 0.10178877568096839,
+    "jaccard": 0.7272303339953008
+   },
+   "ward": {
+    "ari_vs_kmeans": 0.3687457872696609,
+    "silhouette": 0.14753619467871354,
+    "jaccard": 0.5856676575623453
+   }
+  }
+ },
+ "sensibilita": {
+  "costruzione_x45_k4": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 4,
+   "n": 724,
+   "jaccard": 0.8233930670965387,
+   "jaccard_null_gauss": 0.6203189222008332,
+   "margin": 0.20307414489570552,
+   "silhouette": 0.1757966431156271
+  },
+  "costruzione_x45_k5": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 5,
+   "n": 724,
+   "jaccard": 0.6666561721612634,
+   "jaccard_null_gauss": 0.6725918114559475,
+   "margin": -0.005935639294684103,
+   "silhouette": 0.16154241526046847
+  },
+  "costruzione_x45_k6": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 6,
+   "n": 724,
+   "jaccard": 0.6535022911004177,
+   "jaccard_null_gauss": 0.5470885543098902,
+   "margin": 0.10641373679052746,
+   "silhouette": 0.16935837061693623
+  },
+  "costruzione_x40_k5": {
+   "fase": "costruzione",
+   "cut": 40,
+   "k": 5,
+   "n": 642,
+   "jaccard": 0.6772315849173809,
+   "jaccard_null_gauss": 0.605052467676819,
+   "margin": 0.07217911724056192,
+   "silhouette": 0.16393425624195365
+  },
+  "costruzione_x50_k5": {
+   "fase": "costruzione",
+   "cut": 50,
+   "k": 5,
+   "n": 812,
+   "jaccard": 0.7138692151637003,
+   "jaccard_null_gauss": 0.649598649168284,
+   "margin": 0.06427056599541625,
+   "silhouette": 0.15909113295317734
+  },
+  "avanzata_x45_k2": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 2,
+   "n": 614,
+   "jaccard": 0.8221856545305375,
+   "jaccard_null_gauss": 0.8402111053929355,
+   "margin": -0.01802545086239804,
+   "silhouette": 0.19743417865155
+  },
+  "avanzata_x45_k3": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 3,
+   "n": 614,
+   "jaccard": 0.8010002967135774,
+   "jaccard_null_gauss": 0.7205567945686834,
+   "margin": 0.08044350214489404,
+   "silhouette": 0.18373293821163234
+  },
+  "avanzata_x45_k4": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 4,
+   "n": 614,
+   "jaccard": 0.71422489579514,
+   "jaccard_null_gauss": 0.6288957132383818,
+   "margin": 0.08532918255675825,
+   "silhouette": 0.1876353994507652
+  }
+ }
+}

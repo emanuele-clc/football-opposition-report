@@ -1,0 +1,70 @@
+{
+ "nota": "ESPLORATIVO, non pre-registrato; solo partite di esplorazione; riepilogo di exploratory_robustness_<Squadra>.json (src/week4/exploratory_robustness.py)",
+ "squadre": 10,
+ "metodi_costruzione": {
+  "ari_gmm_vs_kmeans_range": [
+   0.25,
+   0.46
+  ],
+  "ari_ward_vs_kmeans_range": [
+   0.23,
+   0.51
+  ],
+  "kmeans_piu_stabile_in": 10,
+  "kmeans_silhouette_piu_alta_in": 10
+ },
+ "metodi_avanzata": {
+  "ari_gmm_vs_kmeans_range": [
+   0.21,
+   0.55
+  ],
+  "ari_ward_vs_kmeans_range": [
+   0.24,
+   0.53
+  ],
+  "kmeans_piu_stabile_in": 9,
+  "kmeans_silhouette_piu_alta_in": 10
+ },
+ "sensibilita_margine_su_nullo": {
+  "costruzione_x45_k4": {
+   "min": -0.1,
+   "max": 0.21,
+   "squadre_margine_>=0.10": 6
+  },
+  "costruzione_x45_k5": {
+   "min": -0.09,
+   "max": 0.25,
+   "squadre_margine_>=0.10": 3
+  },
+  "costruzione_x45_k6": {
+   "min": 0.02,
+   "max": 0.2,
+   "squadre_margine_>=0.10": 7
+  },
+  "costruzione_x40_k5": {
+   "min": -0.03,
+   "max": 0.21,
+   "squadre_margine_>=0.10": 5
+  },
+  "costruzione_x50_k5": {
+   "min": -0.1,
+   "max": 0.14,
+   "squadre_margine_>=0.10": 1
+  },
+  "avanzata_x45_k2": {
+   "min": -0.2,
+   "max": 0.11,
+   "squadre_margine_>=0.10": 1
+  },
+  "avanzata_x45_k3": {
+   "min": 0.02,
+   "max": 0.22,
+   "squadre_margine_>=0.10": 5
+  },
+  "avanzata_x45_k4": {
+   "min": -0.08,
+   "max": 0.14,
+   "squadre_margine_>=0.10": 4
+  }
+ }
+}

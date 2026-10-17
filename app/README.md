@@ -4,6 +4,12 @@ A local web app over the files that `src/oppreport.py` writes. FastAPI backend (
 No new estimates: every number comes from `report_/restarts_/setpieces_/transitions_<Team>.json` and the clip CSVs.
 
 ## Run
+One script does everything (stops an app already on the port, installs what is missing, rebuilds the frontend, clears the app cache, runs the tests, starts the app):
+```powershell
+powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1                      # data in C:\Users\ecole\sbdata
+powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -DataDir <folder> -Port 8770 -SaltaTest
+```
+Step by step:
 ```powershell
 pip install -r requirements.txt
 cd app\frontend; npm install; npm run build; cd ..\..
@@ -26,6 +32,8 @@ Opens http://127.0.0.1:8765. Ctrl+C stops it.
 - **Families → Pass network**: who passes to whom inside a family, players at their average position, shirt numbers with a key.
 - **GIF** button on every replay: downloads the replay as an animated GIF to send to the players.
 - **Overview → What changed in the last 5 matches**: restart figures where the last 5 matches fall outside the season interval (a hint to check on video).
+- **Compare → Style map**: every team in the folder placed by its numbers (first two principal components of the standardised facts), with the closest teams. Descriptive; mixed leagues and seasons.
+- **Clips → More like this**: the 8 sequences of the season closest to the selected one (start, end, path, passes, duration), click to replay.
 - **Add team** (only with a data folder that has `matches/` and `ev/`): runs `src/oppreport.py` for a chosen team and shows its log.
 - **Theme and print**: dark by default, light with the sun button (or `?theme=light` in the address); printing uses a white page.
 

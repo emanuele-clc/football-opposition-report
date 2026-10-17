@@ -1,0 +1,127 @@
+{
+ "team": "Barcelona",
+ "nota": "ESPLORATIVO, non pre-registrato; solo partite di esplorazione; il metodo della tesi non cambia",
+ "BJ": 40,
+ "metodi": {
+  "costruzione": {
+   "n": 747,
+   "k": 5,
+   "kmeans": {
+    "ari_vs_kmeans": 1.0,
+    "silhouette": 0.17727783788291582,
+    "jaccard": 0.6900672229967516
+   },
+   "gmm": {
+    "ari_vs_kmeans": 0.3292786242117117,
+    "silhouette": 0.10079110742045683,
+    "jaccard": 0.5888060437199869
+   },
+   "ward": {
+    "ari_vs_kmeans": 0.5062076941568657,
+    "silhouette": 0.15083147380709258,
+    "jaccard": 0.5131544562783686
+   }
+  },
+  "avanzata": {
+   "n": 571,
+   "k": 3,
+   "kmeans": {
+    "ari_vs_kmeans": 1.0,
+    "silhouette": 0.19848635850187973,
+    "jaccard": 0.8590781562620714
+   },
+   "gmm": {
+    "ari_vs_kmeans": 0.5120658272859461,
+    "silhouette": 0.17520528747739406,
+    "jaccard": 0.7119796460803639
+   },
+   "ward": {
+    "ari_vs_kmeans": 0.46769656492104356,
+    "silhouette": 0.18240055475412492,
+    "jaccard": 0.6621407548931274
+   }
+  }
+ },
+ "sensibilita": {
+  "costruzione_x45_k4": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 4,
+   "n": 747,
+   "jaccard": 0.7897608018151614,
+   "jaccard_null_gauss": 0.662084498404419,
+   "margin": 0.12767630341074243,
+   "silhouette": 0.17856985408182627
+  },
+  "costruzione_x45_k5": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 5,
+   "n": 747,
+   "jaccard": 0.7151006541512656,
+   "jaccard_null_gauss": 0.6434300874359934,
+   "margin": 0.07167056671527217,
+   "silhouette": 0.17727783788291582
+  },
+  "costruzione_x45_k6": {
+   "fase": "costruzione",
+   "cut": 45,
+   "k": 6,
+   "n": 747,
+   "jaccard": 0.6045425737216832,
+   "jaccard_null_gauss": 0.4703524588583519,
+   "margin": 0.13419011486333127,
+   "silhouette": 0.16738460811059236
+  },
+  "costruzione_x40_k5": {
+   "fase": "costruzione",
+   "cut": 40,
+   "k": 5,
+   "n": 651,
+   "jaccard": 0.7197250214473708,
+   "jaccard_null_gauss": 0.5207225423019454,
+   "margin": 0.19900247914542546,
+   "silhouette": 0.18162746608813046
+  },
+  "costruzione_x50_k5": {
+   "fase": "costruzione",
+   "cut": 50,
+   "k": 5,
+   "n": 835,
+   "jaccard": 0.6607880679489245,
+   "jaccard_null_gauss": 0.5898952285299331,
+   "margin": 0.07089283941899138,
+   "silhouette": 0.1758839111583194
+  },
+  "avanzata_x45_k2": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 2,
+   "n": 571,
+   "jaccard": 0.7292100191008544,
+   "jaccard_null_gauss": 0.8908737318982396,
+   "margin": -0.16166371279738523,
+   "silhouette": 0.184400223156579
+  },
+  "avanzata_x45_k3": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 3,
+   "n": 571,
+   "jaccard": 0.8703920801624777,
+   "jaccard_null_gauss": 0.8266226071525651,
+   "margin": 0.04376947300991263,
+   "silhouette": 0.19848635850187973
+  },
+  "avanzata_x45_k4": {
+   "fase": "avanzata",
+   "cut": 45,
+   "k": 4,
+   "n": 571,
+   "jaccard": 0.7096558541719286,
+   "jaccard_null_gauss": 0.723780609594699,
+   "margin": -0.014124755422770474,
+   "silhouette": 0.1802647667309361
+  }
+ }
+}

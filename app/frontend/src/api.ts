@@ -54,6 +54,8 @@ export interface ReviewRow { family: string; date: string; opponent: string; hal
 export interface ReviewData { rows: ReviewRow[]; questions: string[]; answers: { reviewer: string; role: string; saved: string; questions: { question: string; answer: string }[] } | null; filled_file: string | null }
 export interface RestartPass { kind: string; match: number; half: number; minute: number; second: number; x: number; y: number; ex: number; ey: number; short: number; receiver: string; complete: number; opp_half: number; shot: number; lost_own_half: number }
 export interface NetworkData { team: string; families: Record<string, { sequences: number; nodes: { player: string; shirt: number | null; touches: number; x: number; y: number }[]; edges: { a: string; b: string; passes: number }[] }> }
+export interface StyleMapData { metrics: string[]; axes: { explained: number; loadings: { id: string; label: string; weight: number }[] }[]; teams: { key: string; team: string; period: string; x: number; y: number; nearest: { team: string; distance: number }[] }[] }
+export interface SimilarData { of: Record<string, string>; similar: (Record<string, string> & { distance: number; pts: [number, number][] })[]; typical_nn_distance: number }
 export interface Job { id: string; team: string; key: string; source: string; status: "running" | "done" | "failed"; log: string[] }
 
 async function get<T>(url: string): Promise<T> {
@@ -85,6 +87,9 @@ export const api = {
   network: (key: string) => get<NetworkData>(`/api/teams/${encodeURIComponent(key)}/network`),
   gifUrl: (key: string, c: ClipRef) =>
     `/api/teams/${encodeURIComponent(key)}/replay.gif?match=${c.match}&half=${c.half}&minute=${c.minute}&second=${c.second}${c.window ? "&window=true" : ""}&title=${encodeURIComponent(c.title)}`,
+  stylemap: () => get<StyleMapData>("/api/stylemap"),
+  similar: (key: string, r: { match: number; half: number; minute: number; second: number }) =>
+    get<SimilarData>(`/api/teams/${encodeURIComponent(key)}/similar?match=${r.match}&half=${r.half}&minute=${r.minute}&second=${r.second}`),
   sources: () => get<Source[]>("/api/sources"),
   job: (id: string) => get<Job>(`/api/jobs/${id}`),
   startJob: async (source: string, team: string): Promise<Job> => {
