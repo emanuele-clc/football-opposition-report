@@ -463,6 +463,8 @@ def gameplan(key: str, mine: str | None = None):
 @app.get("/api/teams/{key}/gameplan/events")
 def gameplan_events(key: str):
     name = need(key)["team"]
+    pre = load("keyplayers", key)  # written by src/report/keyplayers.py; works without the raw events
+    if pre: return pre
     return cached(key, "gameplan_events", lambda: GP.events_view(name, team_matches(key), os.path.join(DATA, "ev")))
 
 

@@ -1,0 +1,260 @@
+{
+ "team": "Bayer Leverkusen",
+ "matches": 34,
+ "players": [
+  {
+   "id": "buildup",
+   "role": "Builds through",
+   "unit": "passes received in own half",
+   "note": "Who the build-up goes through: pressing or marking them may disrupt it.",
+   "top": [
+    {
+     "player": "Granit Xhaka",
+     "full": "Granit Xhaka",
+     "shirt": 34,
+     "keeper": false,
+     "total": 1167,
+     "matches": 33,
+     "per_match": 35.36
+    },
+    {
+     "player": "Jonathan Tah",
+     "full": "Jonathan Tah",
+     "shirt": 4,
+     "keeper": false,
+     "total": 1165,
+     "matches": 31,
+     "per_match": 37.58
+    },
+    {
+     "player": "Edmond Fayçal Tapsoba",
+     "full": "Edmond Fayçal Tapsoba",
+     "shirt": 12,
+     "keeper": false,
+     "total": 967,
+     "matches": 27,
+     "per_match": 35.81
+    }
+   ]
+  },
+  {
+   "id": "final_third",
+   "role": "Breaks the lines",
+   "unit": "passes and carries into the final third",
+   "note": "Who moves the ball into the final third: watch how they receive.",
+   "top": [
+    {
+     "player": "Granit Xhaka",
+     "full": "Granit Xhaka",
+     "shirt": 34,
+     "keeper": false,
+     "total": 413,
+     "matches": 33,
+     "per_match": 12.52
+    },
+    {
+     "player": "Edmond Fayçal Tapsoba",
+     "full": "Edmond Fayçal Tapsoba",
+     "shirt": 12,
+     "keeper": false,
+     "total": 240,
+     "matches": 27,
+     "per_match": 8.89
+    },
+    {
+     "player": "Florian Wirtz",
+     "full": "Florian Wirtz",
+     "shirt": 10,
+     "keeper": false,
+     "total": 229,
+     "matches": 32,
+     "per_match": 7.16
+    }
+   ]
+  },
+  {
+   "id": "xg",
+   "role": "Main threat",
+   "unit": "xG from shots",
+   "note": "Who the chances fall to (penalties included).",
+   "top": [
+    {
+     "player": "Victor Okoh Boniface",
+     "full": "Victor Okoh Boniface",
+     "shirt": 22,
+     "keeper": false,
+     "total": 15.97,
+     "matches": 23,
+     "per_match": 0.69
+    },
+    {
+     "player": "Jeremie Frimpong",
+     "full": "Jeremie Frimpong",
+     "shirt": 30,
+     "keeper": false,
+     "total": 8.72,
+     "matches": 31,
+     "per_match": 0.28
+    },
+    {
+     "player": "Florian Wirtz",
+     "full": "Florian Wirtz",
+     "shirt": 10,
+     "keeper": false,
+     "total": 8.47,
+     "matches": 32,
+     "per_match": 0.26
+    }
+   ]
+  },
+  {
+   "id": "corners",
+   "role": "Takes corners",
+   "unit": "corners taken",
+   "note": "Check their deliveries in Set pieces.",
+   "top": [
+    {
+     "player": "Alejandro Grimaldo García",
+     "full": "Alejandro Grimaldo García",
+     "shirt": 20,
+     "keeper": false,
+     "total": 112,
+     "matches": 33,
+     "per_match": 3.39
+    },
+    {
+     "player": "Jonas Hofmann",
+     "full": "Jonas Hofmann",
+     "shirt": 7,
+     "keeper": false,
+     "total": 97,
+     "matches": 32,
+     "per_match": 3.03
+    },
+    {
+     "player": "Florian Wirtz",
+     "full": "Florian Wirtz",
+     "shirt": 10,
+     "keeper": false,
+     "total": 21,
+     "matches": 32,
+     "per_match": 0.66
+    }
+   ]
+  },
+  {
+   "id": "free_kicks",
+   "role": "Takes free kicks",
+   "unit": "free kicks in the opponent half",
+   "note": "Direct and indirect free kicks.",
+   "top": [
+    {
+     "player": "Alejandro Grimaldo García",
+     "full": "Alejandro Grimaldo García",
+     "shirt": 20,
+     "keeper": false,
+     "total": 51,
+     "matches": 33,
+     "per_match": 1.55
+    },
+    {
+     "player": "Jonas Hofmann",
+     "full": "Jonas Hofmann",
+     "shirt": 7,
+     "keeper": false,
+     "total": 26,
+     "matches": 32,
+     "per_match": 0.81
+    },
+    {
+     "player": "Granit Xhaka",
+     "full": "Granit Xhaka",
+     "shirt": 34,
+     "keeper": false,
+     "total": 24,
+     "matches": 33,
+     "per_match": 0.73
+    }
+   ]
+  },
+  {
+   "id": "losses",
+   "role": "Loses the ball in own half",
+   "unit": "balls lost in own half",
+   "note": "Where pressure may pay. Players who have the ball most also lose it most (a goalkeeper here is mostly long balls that do not arrive): read it with Builds through.",
+   "top": [
+    {
+     "player": "Lukáš Hrádecký",
+     "full": "Lukáš Hrádecký",
+     "shirt": 1,
+     "keeper": true,
+     "total": 177,
+     "matches": 33,
+     "per_match": 5.36
+    },
+    {
+     "player": "Edmond Fayçal Tapsoba",
+     "full": "Edmond Fayçal Tapsoba",
+     "shirt": 12,
+     "keeper": false,
+     "total": 116,
+     "matches": 27,
+     "per_match": 4.3
+    },
+    {
+     "player": "Granit Xhaka",
+     "full": "Granit Xhaka",
+     "shirt": 34,
+     "keeper": false,
+     "total": 108,
+     "matches": 33,
+     "per_match": 3.27
+    }
+   ]
+  }
+ ],
+ "timeline": [
+  {
+   "slot": "0-15",
+   "goals_for": 9,
+   "goals_against": 5,
+   "xg_for": 0.162,
+   "xg_against": 0.115
+  },
+  {
+   "slot": "15-30",
+   "goals_for": 11,
+   "goals_against": 1,
+   "xg_for": 0.311,
+   "xg_against": 0.098
+  },
+  {
+   "slot": "30-45",
+   "goals_for": 17,
+   "goals_against": 5,
+   "xg_for": 0.478,
+   "xg_against": 0.196
+  },
+  {
+   "slot": "45-60",
+   "goals_for": 14,
+   "goals_against": 6,
+   "xg_for": 0.288,
+   "xg_against": 0.152
+  },
+  {
+   "slot": "60-75",
+   "goals_for": 16,
+   "goals_against": 3,
+   "xg_for": 0.336,
+   "xg_against": 0.112
+  },
+  {
+   "slot": "75-90",
+   "goals_for": 22,
+   "goals_against": 4,
+   "xg_for": 0.563,
+   "xg_against": 0.145
+  }
+ ]
+}

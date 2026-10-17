@@ -1,0 +1,260 @@
+{
+ "team": "Arsenal",
+ "matches": 38,
+ "players": [
+  {
+   "id": "buildup",
+   "role": "Builds through",
+   "unit": "passes received in own half",
+   "note": "Who the build-up goes through: pressing or marking them may disrupt it.",
+   "top": [
+    {
+     "player": "Laurent Koscielny",
+     "full": "Laurent Koscielny",
+     "shirt": 6,
+     "keeper": false,
+     "total": 962,
+     "matches": 33,
+     "per_match": 29.15
+    },
+    {
+     "player": "Per Mertesacker",
+     "full": "Per Mertesacker",
+     "shirt": 4,
+     "keeper": false,
+     "total": 744,
+     "matches": 24,
+     "per_match": 31.0
+    },
+    {
+     "player": "Aaron Ramsey",
+     "full": "Aaron Ramsey",
+     "shirt": 16,
+     "keeper": false,
+     "total": 686,
+     "matches": 31,
+     "per_match": 22.13
+    }
+   ]
+  },
+  {
+   "id": "final_third",
+   "role": "Breaks the lines",
+   "unit": "passes and carries into the final third",
+   "note": "Who moves the ball into the final third: watch how they receive.",
+   "top": [
+    {
+     "player": "Mesut Özil",
+     "full": "Mesut Özil",
+     "shirt": 10,
+     "keeper": false,
+     "total": 323,
+     "matches": 35,
+     "per_match": 9.23
+    },
+    {
+     "player": "Aaron Ramsey",
+     "full": "Aaron Ramsey",
+     "shirt": 16,
+     "keeper": false,
+     "total": 293,
+     "matches": 31,
+     "per_match": 9.45
+    },
+    {
+     "player": "Héctor Bellerín Moruno",
+     "full": "Héctor Bellerín Moruno",
+     "shirt": 2,
+     "keeper": false,
+     "total": 238,
+     "matches": 36,
+     "per_match": 6.61
+    }
+   ]
+  },
+  {
+   "id": "xg",
+   "role": "Main threat",
+   "unit": "xG from shots",
+   "note": "Who the chances fall to (penalties included).",
+   "top": [
+    {
+     "player": "Olivier Giroud",
+     "full": "Olivier Giroud",
+     "shirt": 12,
+     "keeper": false,
+     "total": 13.02,
+     "matches": 38,
+     "per_match": 0.34
+    },
+    {
+     "player": "Alexis Alejandro Sánchez Sánchez",
+     "full": "Alexis Alejandro Sánchez Sánchez",
+     "shirt": 17,
+     "keeper": false,
+     "total": 11.26,
+     "matches": 30,
+     "per_match": 0.38
+    },
+    {
+     "player": "Aaron Ramsey",
+     "full": "Aaron Ramsey",
+     "shirt": 16,
+     "keeper": false,
+     "total": 7.37,
+     "matches": 31,
+     "per_match": 0.24
+    }
+   ]
+  },
+  {
+   "id": "corners",
+   "role": "Takes corners",
+   "unit": "corners taken",
+   "note": "Check their deliveries in Set pieces.",
+   "top": [
+    {
+     "player": "Mesut Özil",
+     "full": "Mesut Özil",
+     "shirt": 10,
+     "keeper": false,
+     "total": 141,
+     "matches": 35,
+     "per_match": 4.03
+    },
+    {
+     "player": "Santiago Cazorla González",
+     "full": "Santiago Cazorla González",
+     "shirt": 19,
+     "keeper": false,
+     "total": 42,
+     "matches": 15,
+     "per_match": 2.8
+    },
+    {
+     "player": "Alexis Alejandro Sánchez Sánchez",
+     "full": "Alexis Alejandro Sánchez Sánchez",
+     "shirt": 17,
+     "keeper": false,
+     "total": 15,
+     "matches": 30,
+     "per_match": 0.5
+    }
+   ]
+  },
+  {
+   "id": "free_kicks",
+   "role": "Takes free kicks",
+   "unit": "free kicks in the opponent half",
+   "note": "Direct and indirect free kicks.",
+   "top": [
+    {
+     "player": "Mesut Özil",
+     "full": "Mesut Özil",
+     "shirt": 10,
+     "keeper": false,
+     "total": 80,
+     "matches": 35,
+     "per_match": 2.29
+    },
+    {
+     "player": "Santiago Cazorla González",
+     "full": "Santiago Cazorla González",
+     "shirt": 19,
+     "keeper": false,
+     "total": 39,
+     "matches": 15,
+     "per_match": 2.6
+    },
+    {
+     "player": "Aaron Ramsey",
+     "full": "Aaron Ramsey",
+     "shirt": 16,
+     "keeper": false,
+     "total": 25,
+     "matches": 31,
+     "per_match": 0.81
+    }
+   ]
+  },
+  {
+   "id": "losses",
+   "role": "Loses the ball in own half",
+   "unit": "balls lost in own half",
+   "note": "Where pressure may pay. Players who have the ball most also lose it most (a goalkeeper here is mostly long balls that do not arrive): read it with Builds through.",
+   "top": [
+    {
+     "player": "Petr Čech",
+     "full": "Petr Čech",
+     "shirt": 33,
+     "keeper": true,
+     "total": 383,
+     "matches": 34,
+     "per_match": 11.26
+    },
+    {
+     "player": "Ignacio Monreal Eraso",
+     "full": "Ignacio Monreal Eraso",
+     "shirt": 18,
+     "keeper": false,
+     "total": 200,
+     "matches": 37,
+     "per_match": 5.41
+    },
+    {
+     "player": "Laurent Koscielny",
+     "full": "Laurent Koscielny",
+     "shirt": 6,
+     "keeper": false,
+     "total": 174,
+     "matches": 33,
+     "per_match": 5.27
+    }
+   ]
+  }
+ ],
+ "timeline": [
+  {
+   "slot": "0-15",
+   "goals_for": 10,
+   "goals_against": 3,
+   "xg_for": 0.279,
+   "xg_against": 0.069
+  },
+  {
+   "slot": "15-30",
+   "goals_for": 10,
+   "goals_against": 5,
+   "xg_for": 0.198,
+   "xg_against": 0.102
+  },
+  {
+   "slot": "30-45",
+   "goals_for": 15,
+   "goals_against": 12,
+   "xg_for": 0.311,
+   "xg_against": 0.209
+  },
+  {
+   "slot": "45-60",
+   "goals_for": 7,
+   "goals_against": 6,
+   "xg_for": 0.221,
+   "xg_against": 0.154
+  },
+  {
+   "slot": "60-75",
+   "goals_for": 12,
+   "goals_against": 4,
+   "xg_for": 0.302,
+   "xg_against": 0.157
+  },
+  {
+   "slot": "75-90",
+   "goals_for": 11,
+   "goals_against": 6,
+   "xg_for": 0.401,
+   "xg_against": 0.193
+  }
+ ]
+}

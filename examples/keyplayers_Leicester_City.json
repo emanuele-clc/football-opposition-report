@@ -1,0 +1,260 @@
+{
+ "team": "Leicester City",
+ "matches": 38,
+ "players": [
+  {
+   "id": "buildup",
+   "role": "Builds through",
+   "unit": "passes received in own half",
+   "note": "Who the build-up goes through: pressing or marking them may disrupt it.",
+   "top": [
+    {
+     "player": "Danny Drinkwater",
+     "full": "Danny Drinkwater",
+     "shirt": 4,
+     "keeper": false,
+     "total": 644,
+     "matches": 35,
+     "per_match": 18.4
+    },
+    {
+     "player": "Christian Fuchs",
+     "full": "Christian Fuchs",
+     "shirt": 28,
+     "keeper": false,
+     "total": 420,
+     "matches": 32,
+     "per_match": 13.12
+    },
+    {
+     "player": "N''Golo Kanté",
+     "full": "N''Golo Kanté",
+     "shirt": 14,
+     "keeper": false,
+     "total": 400,
+     "matches": 36,
+     "per_match": 11.11
+    }
+   ]
+  },
+  {
+   "id": "final_third",
+   "role": "Breaks the lines",
+   "unit": "passes and carries into the final third",
+   "note": "Who moves the ball into the final third: watch how they receive.",
+   "top": [
+    {
+     "player": "Danny Drinkwater",
+     "full": "Danny Drinkwater",
+     "shirt": 4,
+     "keeper": false,
+     "total": 294,
+     "matches": 35,
+     "per_match": 8.4
+    },
+    {
+     "player": "Riyad Mahrez",
+     "full": "Riyad Mahrez",
+     "shirt": 26,
+     "keeper": false,
+     "total": 190,
+     "matches": 37,
+     "per_match": 5.14
+    },
+    {
+     "player": "N''Golo Kanté",
+     "full": "N''Golo Kanté",
+     "shirt": 14,
+     "keeper": false,
+     "total": 186,
+     "matches": 36,
+     "per_match": 5.17
+    }
+   ]
+  },
+  {
+   "id": "xg",
+   "role": "Main threat",
+   "unit": "xG from shots",
+   "note": "Who the chances fall to (penalties included).",
+   "top": [
+    {
+     "player": "Jamie Vardy",
+     "full": "Jamie Vardy",
+     "shirt": 9,
+     "keeper": false,
+     "total": 22.3,
+     "matches": 36,
+     "per_match": 0.62
+    },
+    {
+     "player": "Riyad Mahrez",
+     "full": "Riyad Mahrez",
+     "shirt": 26,
+     "keeper": false,
+     "total": 12.16,
+     "matches": 37,
+     "per_match": 0.33
+    },
+    {
+     "player": "Shinji Okazaki",
+     "full": "Shinji Okazaki",
+     "shirt": 20,
+     "keeper": false,
+     "total": 7.12,
+     "matches": 36,
+     "per_match": 0.2
+    }
+   ]
+  },
+  {
+   "id": "corners",
+   "role": "Takes corners",
+   "unit": "corners taken",
+   "note": "Check their deliveries in Set pieces.",
+   "top": [
+    {
+     "player": "Marc Albrighton",
+     "full": "Marc Albrighton",
+     "shirt": 11,
+     "keeper": false,
+     "total": 75,
+     "matches": 38,
+     "per_match": 1.97
+    },
+    {
+     "player": "Christian Fuchs",
+     "full": "Christian Fuchs",
+     "shirt": 28,
+     "keeper": false,
+     "total": 66,
+     "matches": 32,
+     "per_match": 2.06
+    },
+    {
+     "player": "Riyad Mahrez",
+     "full": "Riyad Mahrez",
+     "shirt": 26,
+     "keeper": false,
+     "total": 35,
+     "matches": 37,
+     "per_match": 0.95
+    }
+   ]
+  },
+  {
+   "id": "free_kicks",
+   "role": "Takes free kicks",
+   "unit": "free kicks in the opponent half",
+   "note": "Direct and indirect free kicks.",
+   "top": [
+    {
+     "player": "Marc Albrighton",
+     "full": "Marc Albrighton",
+     "shirt": 11,
+     "keeper": false,
+     "total": 55,
+     "matches": 38,
+     "per_match": 1.45
+    },
+    {
+     "player": "Danny Drinkwater",
+     "full": "Danny Drinkwater",
+     "shirt": 4,
+     "keeper": false,
+     "total": 46,
+     "matches": 35,
+     "per_match": 1.31
+    },
+    {
+     "player": "Riyad Mahrez",
+     "full": "Riyad Mahrez",
+     "shirt": 26,
+     "keeper": false,
+     "total": 44,
+     "matches": 37,
+     "per_match": 1.19
+    }
+   ]
+  },
+  {
+   "id": "losses",
+   "role": "Loses the ball in own half",
+   "unit": "balls lost in own half",
+   "note": "Where pressure may pay. Players who have the ball most also lose it most (a goalkeeper here is mostly long balls that do not arrive): read it with Builds through.",
+   "top": [
+    {
+     "player": "Kasper Schmeichel",
+     "full": "Kasper Schmeichel",
+     "shirt": 1,
+     "keeper": true,
+     "total": 741,
+     "matches": 38,
+     "per_match": 19.5
+    },
+    {
+     "player": "Christian Fuchs",
+     "full": "Christian Fuchs",
+     "shirt": 28,
+     "keeper": false,
+     "total": 270,
+     "matches": 32,
+     "per_match": 8.44
+    },
+    {
+     "player": "Danny Drinkwater",
+     "full": "Danny Drinkwater",
+     "shirt": 4,
+     "keeper": false,
+     "total": 254,
+     "matches": 35,
+     "per_match": 7.26
+    }
+   ]
+  }
+ ],
+ "timeline": [
+  {
+   "slot": "0-15",
+   "goals_for": 6,
+   "goals_against": 3,
+   "xg_for": 0.191,
+   "xg_against": 0.126
+  },
+  {
+   "slot": "15-30",
+   "goals_for": 12,
+   "goals_against": 5,
+   "xg_for": 0.328,
+   "xg_against": 0.169
+  },
+  {
+   "slot": "30-45",
+   "goals_for": 10,
+   "goals_against": 5,
+   "xg_for": 0.207,
+   "xg_against": 0.173
+  },
+  {
+   "slot": "45-60",
+   "goals_for": 11,
+   "goals_against": 4,
+   "xg_for": 0.235,
+   "xg_against": 0.153
+  },
+  {
+   "slot": "60-75",
+   "goals_for": 14,
+   "goals_against": 8,
+   "xg_for": 0.313,
+   "xg_against": 0.261
+  },
+  {
+   "slot": "75-90",
+   "goals_for": 15,
+   "goals_against": 11,
+   "xg_for": 0.471,
+   "xg_against": 0.331
+  }
+ ]
+}

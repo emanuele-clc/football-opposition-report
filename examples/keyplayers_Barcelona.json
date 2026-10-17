@@ -1,0 +1,260 @@
+{
+ "team": "Barcelona",
+ "matches": 38,
+ "players": [
+  {
+   "id": "buildup",
+   "role": "Builds through",
+   "unit": "passes received in own half",
+   "note": "Who the build-up goes through: pressing or marking them may disrupt it.",
+   "top": [
+    {
+     "player": "Javier Alejandro Mascherano",
+     "full": "Javier Alejandro Mascherano",
+     "shirt": 14,
+     "keeper": false,
+     "total": 1256,
+     "matches": 32,
+     "per_match": 39.25
+    },
+    {
+     "player": "Gerard Piqué Bernabéu",
+     "full": "Gerard Piqué Bernabéu",
+     "shirt": 3,
+     "keeper": false,
+     "total": 1218,
+     "matches": 30,
+     "per_match": 40.6
+    },
+    {
+     "player": "Sergio Busquets i Burgos",
+     "full": "Sergio Busquets i Burgos",
+     "shirt": 5,
+     "keeper": false,
+     "total": 952,
+     "matches": 35,
+     "per_match": 27.2
+    }
+   ]
+  },
+  {
+   "id": "final_third",
+   "role": "Breaks the lines",
+   "unit": "passes and carries into the final third",
+   "note": "Who moves the ball into the final third: watch how they receive.",
+   "top": [
+    {
+     "player": "Lionel Andrés Messi Cuccittini",
+     "full": "Lionel Andrés Messi Cuccittini",
+     "shirt": 10,
+     "keeper": false,
+     "total": 364,
+     "matches": 33,
+     "per_match": 11.03
+    },
+    {
+     "player": "Andrés Iniesta Luján",
+     "full": "Andrés Iniesta Luján",
+     "shirt": 8,
+     "keeper": false,
+     "total": 337,
+     "matches": 28,
+     "per_match": 12.04
+    },
+    {
+     "player": "Neymar da Silva Santos Junior",
+     "full": "Neymar da Silva Santos Junior",
+     "shirt": 11,
+     "keeper": false,
+     "total": 285,
+     "matches": 34,
+     "per_match": 8.38
+    }
+   ]
+  },
+  {
+   "id": "xg",
+   "role": "Main threat",
+   "unit": "xG from shots",
+   "note": "Who the chances fall to (penalties included).",
+   "top": [
+    {
+     "player": "Luis Alberto Suárez Díaz",
+     "full": "Luis Alberto Suárez Díaz",
+     "shirt": 9,
+     "keeper": false,
+     "total": 27.65,
+     "matches": 35,
+     "per_match": 0.79
+    },
+    {
+     "player": "Lionel Andrés Messi Cuccittini",
+     "full": "Lionel Andrés Messi Cuccittini",
+     "shirt": 10,
+     "keeper": false,
+     "total": 21.26,
+     "matches": 33,
+     "per_match": 0.64
+    },
+    {
+     "player": "Neymar da Silva Santos Junior",
+     "full": "Neymar da Silva Santos Junior",
+     "shirt": 11,
+     "keeper": false,
+     "total": 20.47,
+     "matches": 34,
+     "per_match": 0.6
+    }
+   ]
+  },
+  {
+   "id": "corners",
+   "role": "Takes corners",
+   "unit": "corners taken",
+   "note": "Check their deliveries in Set pieces.",
+   "top": [
+    {
+     "player": "Neymar da Silva Santos Junior",
+     "full": "Neymar da Silva Santos Junior",
+     "shirt": 11,
+     "keeper": false,
+     "total": 125,
+     "matches": 34,
+     "per_match": 3.68
+    },
+    {
+     "player": "Ivan Rakitić",
+     "full": "Ivan Rakitić",
+     "shirt": 4,
+     "keeper": false,
+     "total": 53,
+     "matches": 36,
+     "per_match": 1.47
+    },
+    {
+     "player": "Lionel Andrés Messi Cuccittini",
+     "full": "Lionel Andrés Messi Cuccittini",
+     "shirt": 10,
+     "keeper": false,
+     "total": 33,
+     "matches": 33,
+     "per_match": 1.0
+    }
+   ]
+  },
+  {
+   "id": "free_kicks",
+   "role": "Takes free kicks",
+   "unit": "free kicks in the opponent half",
+   "note": "Direct and indirect free kicks.",
+   "top": [
+    {
+     "player": "Lionel Andrés Messi Cuccittini",
+     "full": "Lionel Andrés Messi Cuccittini",
+     "shirt": 10,
+     "keeper": false,
+     "total": 91,
+     "matches": 33,
+     "per_match": 2.76
+    },
+    {
+     "player": "Neymar da Silva Santos Junior",
+     "full": "Neymar da Silva Santos Junior",
+     "shirt": 11,
+     "keeper": false,
+     "total": 54,
+     "matches": 34,
+     "per_match": 1.59
+    },
+    {
+     "player": "Sergio Busquets i Burgos",
+     "full": "Sergio Busquets i Burgos",
+     "shirt": 5,
+     "keeper": false,
+     "total": 44,
+     "matches": 35,
+     "per_match": 1.26
+    }
+   ]
+  },
+  {
+   "id": "losses",
+   "role": "Loses the ball in own half",
+   "unit": "balls lost in own half",
+   "note": "Where pressure may pay. Players who have the ball most also lose it most (a goalkeeper here is mostly long balls that do not arrive): read it with Builds through.",
+   "top": [
+    {
+     "player": "Jordi Alba Ramos",
+     "full": "Jordi Alba Ramos",
+     "shirt": 18,
+     "keeper": false,
+     "total": 164,
+     "matches": 31,
+     "per_match": 5.29
+    },
+    {
+     "player": "Claudio Andrés Bravo Muñoz",
+     "full": "Claudio Andrés Bravo Muñoz",
+     "shirt": 13,
+     "keeper": true,
+     "total": 157,
+     "matches": 32,
+     "per_match": 4.91
+    },
+    {
+     "player": "Gerard Piqué Bernabéu",
+     "full": "Gerard Piqué Bernabéu",
+     "shirt": 3,
+     "keeper": false,
+     "total": 139,
+     "matches": 30,
+     "per_match": 4.63
+    }
+   ]
+  }
+ ],
+ "timeline": [
+  {
+   "slot": "0-15",
+   "goals_for": 11,
+   "goals_against": 5,
+   "xg_for": 0.371,
+   "xg_against": 0.136
+  },
+  {
+   "slot": "15-30",
+   "goals_for": 15,
+   "goals_against": 5,
+   "xg_for": 0.325,
+   "xg_against": 0.098
+  },
+  {
+   "slot": "30-45",
+   "goals_for": 16,
+   "goals_against": 3,
+   "xg_for": 0.325,
+   "xg_against": 0.119
+  },
+  {
+   "slot": "45-60",
+   "goals_for": 25,
+   "goals_against": 6,
+   "xg_for": 0.422,
+   "xg_against": 0.178
+  },
+  {
+   "slot": "60-75",
+   "goals_for": 20,
+   "goals_against": 3,
+   "xg_for": 0.501,
+   "xg_against": 0.128
+  },
+  {
+   "slot": "75-90",
+   "goals_for": 25,
+   "goals_against": 7,
+   "xg_for": 0.462,
+   "xg_against": 0.201
+  }
+ ]
+}

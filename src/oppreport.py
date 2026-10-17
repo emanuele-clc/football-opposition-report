@@ -35,10 +35,12 @@ r = subprocess.run(py + [os.path.join(here, "report", "defending.py"), mf, a.tea
 if r.returncode: print("Scheda della fase difensiva saltata: servono eventi difensivi in stile StatsBomb (Pressure, Duel, ...), assenti nel CSV generico.")
 r = subprocess.run(py + [os.path.join(here, "report", "matchups.py"), mf, a.team, base], env=env)
 if r.returncode: print("Scheda dei confronti per avversario saltata: servono eventi difensivi e moduli in stile StatsBomb.")
+r = subprocess.run(py + [os.path.join(here, "report", "keyplayers.py"), mf, a.team, base], env=env)
+if r.returncode: print("Giocatori chiave saltati: servono gli eventi in stile StatsBomb.")
 r = subprocess.run(py + [os.path.join(here, "report", "summary.py"), a.team, base], env=env)
 if r.returncode: sys.exit("Pagina di preparazione fallita.")
 fn = a.team.replace(" ", "_")
-for f in (f"prep_{fn}.html", f"report_{fn}.html", f"report_{fn}.json", f"clips_{fn}.csv", f"review_{fn}.csv", f"review_{fn}.html", f"restarts_{fn}.html", f"restarts_{fn}.json", f"restart_clips_{fn}.csv", f"setpieces_{fn}.html", f"setpieces_{fn}.json", f"setpiece_clips_{fn}.csv", f"transitions_{fn}.html", f"transitions_{fn}.json", f"transition_clips_{fn}.csv", f"defending_{fn}.html", f"defending_{fn}.json", f"matchups_{fn}.json"):
+for f in (f"prep_{fn}.html", f"report_{fn}.html", f"report_{fn}.json", f"clips_{fn}.csv", f"review_{fn}.csv", f"review_{fn}.html", f"restarts_{fn}.html", f"restarts_{fn}.json", f"restart_clips_{fn}.csv", f"setpieces_{fn}.html", f"setpieces_{fn}.json", f"setpiece_clips_{fn}.csv", f"transitions_{fn}.html", f"transitions_{fn}.json", f"transition_clips_{fn}.csv", f"defending_{fn}.html", f"defending_{fn}.json", f"matchups_{fn}.json", f"keyplayers_{fn}.json"):
     if os.path.exists(os.path.join(base, f)): shutil.copy(os.path.join(base, f), os.path.join(out, f))
 if a.xml:
     for c in (f"clips_{fn}.csv", f"restart_clips_{fn}.csv", f"setpiece_clips_{fn}.csv", f"transition_clips_{fn}.csv"):

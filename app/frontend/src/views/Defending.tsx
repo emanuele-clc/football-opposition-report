@@ -16,11 +16,17 @@ function PressureMap({ grid, height }: { grid: number[][]; height: number }) {
           <g key={`${i}-${j}`}>
             <rect x={i * 20 + 0.6} y={j * 20 + 0.6} width="18.8" height="18.8" rx="1.5" fill="var(--sticker)" />
             <rect x={i * 20 + 0.6} y={j * 20 + 0.6} width="18.8" height="18.8" rx="1.5" fill={`color-mix(in srgb, var(--coral) ${Math.round(a * 100)}%, transparent)`} />
-            <text x={i * 20 + 10} y={j * 20 + 11.6} textAnchor="middle" fontSize="4.2" fontWeight="850" fontStyle="italic" fill="var(--sticker-ink)">{v.toFixed(1)}</text>
           </g>
         );
       }))}
       <line x1={height} x2={height} y1="-1" y2="81" stroke="var(--yellow)" strokeWidth="0.9" strokeDasharray="2 1.4" />
+      {/* numbers on top of the line, on a small label so the line never hides them */}
+      {grid.map((col, i) => col.map((v, j) => (
+        <g key={`t${i}-${j}`}>
+          <rect x={i * 20 + 4.2} y={j * 20 + 7.4} width="11.6" height="5.6" rx="1.4" fill="var(--sticker)" fillOpacity="0.85" />
+          <text x={i * 20 + 10} y={j * 20 + 11.6} textAnchor="middle" fontSize="4.2" fontWeight="850" fontStyle="italic" fill="var(--sticker-ink)">{v.toFixed(1)}</text>
+        </g>
+      )))}
       <rect x={height - 13} y="-2.6" width="26" height="4.6" rx="1.2" fill="var(--sticker-ink)" />
       <text x={height} y="0.6" textAnchor="middle" fontSize="2.8" fontWeight="750" fill="var(--yellow)">defensive actions, mean x {height.toFixed(0)}</text>
     </Pitch>

@@ -49,8 +49,9 @@ for t in teams:
         check(open(os.path.join(data, f"review_{k}.csv"), encoding="utf-8").read() == before, f"{t['team']}: original review sheet unchanged")
     gp = c.get(f"/api/teams/{k}/gameplan").json()
     check(all(e["value"] == r[e["id"]]["value"] and e["rank"] == r[e["id"]]["rank"] for h in gp["hints"] for e in h["evidence"]), f"{t['team']}: game plan hints show the same values and ranks as the ranking")
-    if os.path.isdir(os.path.join(src, "ev")) and d.get("matchups"):
-        tl = server.GP.events_view(t["team"], server.team_matches(k), os.path.join(src, "ev"))["timeline"]
+    if d.get("matchups") and (os.path.exists(os.path.join(data, f"keyplayers_{k}.json")) or os.path.isdir(os.path.join(src, "ev"))):
+        kp = c.get(f"/api/teams/{k}/gameplan/events").json() if os.path.exists(os.path.join(data, f"keyplayers_{k}.json")) else server.GP.events_view(t["team"], server.team_matches(k), os.path.join(src, "ev"))
+        tl = kp["timeline"]
         gf = sum(int(m["score"].split("-")[0]) for m in d["matchups"]["per_match"]); ga = sum(int(m["score"].split("-")[1]) for m in d["matchups"]["per_match"])
         check((sum(x["goals_for"] for x in tl), sum(x["goals_against"] for x in tl)) == (gf, ga), f"{t['team']}: timeline goals {gf}-{ga} equal the match scores")
     other = next((x["key"] for x in teams if x["key"] != k), None)
