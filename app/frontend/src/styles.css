@@ -507,6 +507,22 @@ footer { padding: 22px var(--gutter) 30px; border-top: 1px solid var(--board-lin
 .brief { margin-top: 16px; padding: 16px 18px; border-radius: 14px; background: color-mix(in srgb, var(--rib, var(--yellow)) 14%, transparent); border-left: 4px solid var(--yellow); }
 .sticker .pills button:not([aria-pressed="true"]) { color: var(--sticker-ink); border-color: color-mix(in srgb, var(--sticker-ink) 22%, transparent); background: transparent; }
 .sticker .pills button:not([aria-pressed="true"]):hover { background: color-mix(in srgb, var(--sticker-ink) 8%, transparent); }
+.players { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.players li { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: center; gap: 10px; }
+.shirt { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 900; font-style: italic; font-size: 15px; background: var(--sticker-ink); color: var(--sticker); }
+.shirt[data-first] { background: var(--rib, var(--yellow)); color: var(--sticker-ink); box-shadow: 0 0 0 2px var(--sticker-ink); }
+.pname { font-weight: 750; color: var(--sticker-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pname small { font-size: 10px; font-weight: 850; padding: 1px 5px; border-radius: 4px; background: var(--sticker-ink); color: var(--sticker); margin-left: 4px; }
+.pval { text-align: right; line-height: 1.1; color: var(--sticker-ink); }
+.pval b { font-size: 18px; font-style: italic; font-weight: 900; display: block; }
+.pval small { font-size: 10.5px; opacity: 0.7; }
+.timeline { width: 100%; height: auto; color: var(--sticker-ink); margin: 8px 0; }
+.watch { margin: 0; padding-left: 20px; display: grid; gap: 10px; }
+.watch li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: baseline; }
+.watch li small { display: block; color: var(--sticker-ink-2); font-size: 12px; }
+.watch .score { font-weight: 900; font-style: italic; font-size: 18px; }
+.watch a { font-weight: 750; font-size: 13px; white-space: nowrap; }
+@media print { .players li, .watch li { break-inside: avoid; } }
 .brief h3 { margin: 0 0 8px; }
 .brief ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; line-height: 1.5; }
 .layout-matchup { grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); }

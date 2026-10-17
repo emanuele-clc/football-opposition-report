@@ -460,6 +460,12 @@ def gameplan(key: str, mine: str | None = None):
     return GP.build(key, mine if mine != key else None, teams, ranks, load)
 
 
+@app.get("/api/teams/{key}/gameplan/events")
+def gameplan_events(key: str):
+    name = need(key)["team"]
+    return cached(key, "gameplan_events", lambda: GP.events_view(name, team_matches(key), os.path.join(DATA, "ev")))
+
+
 # Analyst review inside the app: the same sheet and five questions as review_<Team>.csv/.html (src/report/make_report.py).
 QUESTIONS = ["Does this description match what you know about this team? What is right and what is wrong?", "Which parts would you use before a match and which would you skip?",
              "What is missing that you would need?", "Do the reliability notes change how you read the report?",

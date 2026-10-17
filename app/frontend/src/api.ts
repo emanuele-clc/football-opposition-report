@@ -49,11 +49,19 @@ export interface Matchups {
 }
 export interface GPEvidence { id: string; label: string; value: number; unit: string; rank: number; of: number; team?: "you" | "opponent" }
 export interface GPFormations { most_used: { formation: string; raw: string; matches: number }[]; last5: { formation: string; raw: string; opponent: string; date: string }[]; matches: number }
+export interface GPPlayer { player: string; full: string; shirt: number | null; keeper: boolean; total: number; matches: number; per_match: number }
+export interface GPEvents {
+  matches: number;
+  players: { id: string; role: string; unit: string; note: string; top: GPPlayer[] }[];
+  timeline: { slot: string; goals_for: number; goals_against: number; xg_for: number; xg_against: number }[];
+}
+export interface GPWatch { rule: string; matches: { match: number; date: string; opponent: string; venue: string; score: string; opp_formation: string; opp_ppda: number; xg_for: number; xg_against: number; distance: number | null }[] }
 export interface GamePlan {
   opponent: string; mine: string | null; teams_in_folder: number; k: number;
   brief: { intro: string; priorities: string[]; phases: Record<"with_ball" | "without_ball" | "transitions" | "set_pieces", { title: string; lines: string[] }> };
   formations: { opponent: GPFormations | null; mine: GPFormations | null };
   profile: GPEvidence[];
+  watch_first: GPWatch | null;
   hints: { id: string; side: "opp" | "both"; title: string; why: string; look: string; tab: string; evidence: GPEvidence[] }[];
   opp_past: { split: string; label: string; unit: string; a: number; b: number; ga: string; gb: string; n_a: number; n_b: number }[];
   my_vs_press: { groups: [string, string]; n_a: number; n_b: number; metrics: MatchupMetric[] } | null;
@@ -112,6 +120,7 @@ export const api = {
   gifUrl: (key: string, c: ClipRef) =>
     `/api/teams/${encodeURIComponent(key)}/replay.gif?match=${c.match}&half=${c.half}&minute=${c.minute}&second=${c.second}${c.window ? "&window=true" : ""}&title=${encodeURIComponent(c.title)}`,
   stylemap: () => get<StyleMapData>("/api/stylemap"),
+  gameplanEvents: (key: string) => get<GPEvents>(`/api/teams/${encodeURIComponent(key)}/gameplan/events`),
   gameplan: (key: string, mine: string) => get<GamePlan>(`/api/teams/${encodeURIComponent(key)}/gameplan${mine ? `?mine=${encodeURIComponent(mine)}` : ""}`),
   similar: (key: string, r: { match: number; half: number; minute: number; second: number }) =>
     get<SimilarData>(`/api/teams/${encodeURIComponent(key)}/similar?match=${r.match}&half=${r.half}&minute=${r.minute}&second=${r.second}`),

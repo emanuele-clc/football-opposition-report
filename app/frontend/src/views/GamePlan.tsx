@@ -1,5 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
-import { api, type GamePlan as Plan, type TeamData, type TeamSummary } from "../api";
+import { api, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSummary } from "../api";
+import { Icon } from "../charts";
 import { Note, Pitch, rib } from "../charts";
 import { fmt, ordinal } from "../format";
 
@@ -14,6 +15,30 @@ const store = { get: () => { try { return localStorage.getItem(MINE_KEY) ?? ""; 
 
 const place = (r: number, of: number) => (r === 1 ? `highest of ${of}` : r === of ? `lowest of ${of}` : `${ordinal(r)} of ${of}`);
 const unit = (u: string) => u as "pct" | "num" | "num2";
+
+/* Goals (numbers) and xG per match (bars) by 15-minute slot: scored above the line, conceded below. */
+function Timeline({ t }: { t: GPEvents["timeline"] }) {
+  const max = Math.max(...t.flatMap((s) => [s.xg_for, s.xg_against]), 0.05);
+  const H = 70, W = 60;
+  return (
+    <svg viewBox={`0 0 ${t.length * W + 20} ${2 * H + 40}`} className="timeline" role="img" aria-label={t.map((s) => `${s.slot}: ${s.goals_for} scored, ${s.goals_against} conceded`).join("; ")}>
+      <line x1="10" x2={t.length * W + 10} y1={H + 20} y2={H + 20} stroke="currentColor" strokeOpacity="0.35" />
+      <line x1={10 + 3 * W} x2={10 + 3 * W} y1="8" y2={2 * H + 32} stroke="currentColor" strokeOpacity="0.25" strokeDasharray="3 3" />
+      {t.map((s, i) => {
+        const x = 10 + i * W + 10, w = W - 20, hf = (H * s.xg_for) / max, ha = (H * s.xg_against) / max;
+        return (
+          <g key={s.slot} className="enter" style={{ "--i": i } as CSSProperties}>
+            <rect x={x} y={H + 20 - hf} width={w} height={hf} rx="4" fill="var(--lime)" />
+            <rect x={x} y={H + 20} width={w} height={ha} rx="4" fill="var(--coral)" />
+            <text x={x + w / 2} y={H + 14 - hf} textAnchor="middle" fontSize="13" fontWeight="850" fill="currentColor">{s.goals_for}</text>
+            <text x={x + w / 2} y={H + 36 + ha} textAnchor="middle" fontSize="13" fontWeight="850" fill="currentColor">{s.goals_against}</text>
+            <text x={x + w / 2} y={2 * H + 38} textAnchor="middle" fontSize="10.5" fill="currentColor" fillOpacity="0.7">{s.slot}'</text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
 
 /* Starting formation drawn schematically: goalkeeper, then one line per digit (e.g. 3-4-2-1), mirrored for the opponent. */
 function Shape({ raw, side }: { raw: string; side: "left" | "right" }) {
@@ -42,6 +67,8 @@ export default function GamePlan({ d, teams }: { d: TeamData; teams: TeamSummary
   const [plan, setPlan] = useState<Plan | null>(null);
   const [err, setErr] = useState("");
   const [topic, setTopic] = useState<Topic>("priorities");
+  const [evs, setEvs] = useState<GPEvents | null | "none">(null);
+  useEffect(() => { setEvs(null); api.gameplanEvents(d.key).then(setEvs).catch(() => setEvs("none")); }, [d.key]);
   const my = mine && mine !== d.key && teams.some((t) => t.key === mine) ? mine : "";
 
   useEffect(() => {
@@ -59,6 +86,7 @@ export default function GamePlan({ d, teams }: { d: TeamData; teams: TeamSummary
         <p>Preparing to play {d.team}: their shape, how they play and where to look. Hints come from fixed rules on how they rank among the {P?.teams_in_folder ?? "…"} teams in this folder. They say where to look on video, not what will work.</p>
       </div>
       <div className="filters" style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+        <button type="button" className="icon-btn" onClick={() => window.print()} aria-label="Print the match plan" style={{ order: 2, marginLeft: "auto" }}>{Icon.print}<span>Print match plan</span></button>
         <label htmlFor="mine" style={{ fontWeight: 750 }}>Your team</label>
         <select id="mine" className="pill-select" value={my} onChange={(e) => { setMine(e.target.value); store.set(e.target.value); }}>
           <option value="">None (opponent only)</option>
@@ -123,6 +151,57 @@ export default function GamePlan({ d, teams }: { d: TeamData; teams: TeamSummary
               </div>
             )}
           </section>
+
+          {evs && evs !== "none" && (
+            <section className="section" aria-labelledby="kp-h">
+              <div className="section-head"><h2 id="kp-h">Key players</h2><p>From all {evs.matches} matches: top 3 per role. Per match = matches in which the player appears. Names and shirt numbers as in the StatsBomb data.</p></div>
+              <div className="fam-row" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
+                {evs.players.map((r, n) => (
+                  <article key={r.id} className="sticker fam-front enter" style={{ ...rib(n), "--i": n } as CSSProperties}>
+                    <div className="ribbon" />
+                    <div className="body">
+                      <h3 style={{ margin: "2px 0 8px" }}>{r.role}</h3>
+                      <ol className="players">
+                        {r.top.map((p, i) => (
+                          <li key={p.full} title={p.full}>
+                            <span className="shirt" data-first={i === 0 || undefined}>{p.shirt ?? "–"}</span>
+                            <span className="pname">{p.player}{p.keeper && <small> GK</small>}</span>
+                            <span className="pval"><b>{r.id === "xg" ? p.per_match.toFixed(2) : p.per_match.toFixed(1)}</b><small>/match · {r.id === "xg" ? p.total.toFixed(1) : p.total} in {p.matches}</small></span>
+                          </li>
+                        ))}
+                      </ol>
+                      <p style={{ fontSize: 12, marginTop: 8 }}>{r.unit}. {r.note}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <div className="layout-2" style={{ marginTop: 28, display: "grid", gap: 24, gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
+            {evs && evs !== "none" && (
+              <div className="sticker pad">
+                <h3>When they score and concede</h3>
+                <Timeline t={evs.timeline} />
+                <p className="s-muted" style={{ fontSize: 12.5 }}>Bars: xG per match in each 15 minutes, <b style={{ color: "var(--sticker-ink)" }}>created</b> above (green), <b style={{ color: "var(--sticker-ink)" }}>conceded</b> below (red). Numbers: goals in the season. Stoppage time counts in the last slot of each half. Goals per slot are few: a single slot can move a lot by chance.</p>
+              </div>
+            )}
+            {P.watch_first && (
+              <div className="sticker pad">
+                <h3>Watch first</h3>
+                <p className="s-muted" style={{ fontSize: 12.5, margin: "4px 0 8px" }}>{P.mine ? <>Their matches against {P.watch_first.rule}: the closest to how {P.mine} defends.</> : <>Pick your team above to see their matches against opponents that defended like you. Now: {P.watch_first.rule}.</>}</p>
+                <ol className="watch">
+                  {P.watch_first.matches.map((m) => (
+                    <li key={m.match}>
+                      <span><b>{m.opponent}</b> <small>{m.date} · {m.venue} · {m.opp_formation ? m.opp_formation.split("").join("-") : "–"} · opp. PPDA {m.opp_ppda.toFixed(1)}</small></span>
+                      <span className="score">{m.score}</span>
+                      <a href={`#/${d.key}/clips/sequences?opponent=${encodeURIComponent(m.opponent)}`}>Clips →</a>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+          </div>
 
           <div className="layout-2" style={{ marginTop: 28, display: "grid", gap: 24, gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
             <div className="sticker pad">

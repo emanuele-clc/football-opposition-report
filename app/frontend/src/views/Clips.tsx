@@ -13,7 +13,7 @@ const time = (r: ClipRow) => r.half * 1e4 + r.minute * 60 + r.second;
 
 export default function Clips({ d, kind, family, events, setFilter }: { d: TeamData; kind: string; family: string; events: boolean; setFilter: (kind: string, family: string) => void }) {
   const { rows, error } = useClips(d.key, kind);
-  const [opponent, setOpponent] = useState("");
+  const [opponent, setOpponent] = useState(() => new URLSearchParams(location.hash.split("?")[1] ?? "").get("opponent") ?? "");
   const [half, setHalf] = useState(0);
   const [shot, setShot] = useState(false);
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "date", dir: 1 });
