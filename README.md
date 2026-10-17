@@ -19,7 +19,7 @@ src/report/      automated opposition report generator (L2), clip list, analyst 
 src/adapters/    converter from a generic events CSV (any provider) to the pipeline format
 src/oppreport.py one command to generate the report
 tests/           adapter round-trip test
-examples/        example reports (HTML)
+examples/        example outputs for 4 teams: report, restart sheet, clip lists, review sheets
 results/         JSON + CSV outputs (no raw event files)
 figures/         PNG charts (IT and EN labels)
 data_info/       competitions.json + match lists only (event files ~2.3 GB, not included)

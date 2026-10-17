@@ -1,1 +1,5 @@
 ev/
+__pycache__/
+*.pyc
+run_logs/
+reports/
