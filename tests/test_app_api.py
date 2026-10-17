@@ -53,7 +53,7 @@ for t in teams:
     if other:
         gp2 = c.get(f"/api/teams/{k}/gameplan", params={"mine": other}).json()
         check(gp2["mine"] == teams[[x["key"] for x in teams].index(other)]["team"] and all(h["side"] == "opp" or len(h["evidence"]) > 0 for h in gp2["hints"]), f"{t['team']}: game plan with your team")
-check(c.post(f"/api/teams/{teams[0]['key']}/gameplan/ask", json={"question": "test"}).status_code in ((501,) if not os.environ.get("ANTHROPIC_API_KEY") else (200, 502)), "AI assistant off without an API key")
+check(all(len(c.get(f"/api/teams/{x['key']}/gameplan").json()["brief"]["phases"]) == 4 for x in teams), "coach brief has the four phases for every team")
 sm = c.get("/api/stylemap").json()
 check(len(sm["teams"]) == len(teams) and all(len(t["nearest"]) == min(3, len(teams) - 1) for t in sm["teams"]), f"style map places {len(teams)} teams with their nearest teams")
 check(c.get("/api/teams/Nobody").status_code == 404, "unknown team gives 404")

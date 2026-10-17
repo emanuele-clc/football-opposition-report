@@ -50,7 +50,8 @@ export interface Matchups {
 export interface GPEvidence { id: string; label: string; value: number; unit: string; rank: number; of: number; team?: "you" | "opponent" }
 export interface GPFormations { most_used: { formation: string; raw: string; matches: number }[]; last5: { formation: string; raw: string; opponent: string; date: string }[]; matches: number }
 export interface GamePlan {
-  opponent: string; mine: string | null; teams_in_folder: number; k: number; ai: boolean;
+  opponent: string; mine: string | null; teams_in_folder: number; k: number;
+  brief: { intro: string; priorities: string[]; phases: Record<"with_ball" | "without_ball" | "transitions" | "set_pieces", { title: string; lines: string[] }> };
   formations: { opponent: GPFormations | null; mine: GPFormations | null };
   profile: GPEvidence[];
   hints: { id: string; side: "opp" | "both"; title: string; why: string; look: string; tab: string; evidence: GPEvidence[] }[];
@@ -112,12 +113,6 @@ export const api = {
     `/api/teams/${encodeURIComponent(key)}/replay.gif?match=${c.match}&half=${c.half}&minute=${c.minute}&second=${c.second}${c.window ? "&window=true" : ""}&title=${encodeURIComponent(c.title)}`,
   stylemap: () => get<StyleMapData>("/api/stylemap"),
   gameplan: (key: string, mine: string) => get<GamePlan>(`/api/teams/${encodeURIComponent(key)}/gameplan${mine ? `?mine=${encodeURIComponent(mine)}` : ""}`),
-  askGameplan: async (key: string, question: string, mine: string) => {
-    const r = await fetch(`/api/teams/${encodeURIComponent(key)}/gameplan/ask`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question, mine: mine || null }) });
-    const j = await r.json();
-    if (!r.ok) throw new Error(j.detail ?? "The AI request failed.");
-    return j as { answer: string };
-  },
   similar: (key: string, r: { match: number; half: number; minute: number; second: number }) =>
     get<SimilarData>(`/api/teams/${encodeURIComponent(key)}/similar?match=${r.match}&half=${r.half}&minute=${r.minute}&second=${r.second}`),
   sources: () => get<Source[]>("/api/sources"),

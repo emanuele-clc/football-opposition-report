@@ -3,8 +3,9 @@ HINTS, NOT ADVICE. Each hint fires from a fixed rule on where the opponent (and 
 that made it fire. No rule was tested for whether following it changes results: they say where to look on video, not what will work.
 Rules (fixed before looking at their output): 'top' = among the k highest of n teams, 'bottom' = among the k lowest, k = max(1, n // 5); no rank-based hint
 with fewer than 4 teams. Matchup facts come from matchups_<Team>.json (only 'clear' differences not linked to how the groups are formed).
-'Ask the AI' (optional) sends this page's numbers and the question to the Claude API: only with ANTHROPIC_API_KEY set; the data leave the computer."""
-import json, os
+Coach brief: the fired hints rewritten as a short plan by phase (with the ball, without the ball, transitions, set pieces) and three priorities. Written by
+fixed templates from the same numbers, offline: no language model and no external service."""
+import json
 
 FORM = lambda f: "-".join(f) if f and f.isdigit() else (f or "unknown")
 
@@ -49,7 +50,7 @@ RULES = [
      "Their xG conceded per match is among the lowest here.", "Chances will be few: set pieces and transitions may count more than usual.", "defending"),
     ("my_short_vs_press", "both", lambda O, M: M("gk_short", "top") and (O("ppda", "bottom") or O("press_final", "top")), ["gk_short", "ppda", "press_final"],
      "Your short build-up meets their press", "You play goal kicks short more than most teams; they press high or hard.",
-     "The key duel of the match: look at your own past matches against a high press (below) and decide whether to keep building short.", "matchups"),
+     "The key duel of the match: look at your own past matches against a high press on this page and decide whether to keep building short.", "matchups"),
     ("my_press_vs_short", "both", lambda O, M: M("press_final", "top") and O("gk_short", "top"), ["press_final", "gk_short"],
      "Your high press meets their short build-up", "You press often in the final third; they play goal kicks short.",
      "Check on video how they escaped high pressure in past matches (Restarts → where the first pass goes).", "restarts"),
@@ -108,18 +109,30 @@ def build(opp_key, my_key, teams, ranks, load):
             "formations": {"opponent": formations(opp_key), "mine": formations(my_key) if my_key else None},
             "profile": [{"id": r["id"], "label": r["label"], "value": r["value"], "unit": r["unit"], "rank": r["rank"], "of": r["of"]} for r in extreme],
             "hints": hints, "opp_past": past(opp_key), "my_vs_press": my_press,
-            "ai": bool(os.environ.get("ANTHROPIC_API_KEY"))}
+            "brief": brief(hints, past(opp_key), ts[opp_key]["team"], ts[my_key]["team"] if my_key else None)}
 
 
-SYSTEM = """You help a football analyst prepare a match against an opponent. You only know the numbers in the JSON below (StatsBomb open data, descriptive,
-ranked against the other teams in the folder; seasons can differ). Rules: use only these numbers and say which ones you use; say clearly when the data cannot
-answer (for example which formation would win: nothing here was tested for that); give ideas to check on video, not certainties; never invent players,
-injuries or facts not in the data. Answer in the language of the question, in at most 180 words, plain text with short lines."""
+PHASE = {"with_ball": ("press_hard", "press_high", "def_high", "def_deep", "solid", "leaky", "my_short_vs_press", "my_long_vs_high"),
+         "without_ball": ("gk_short_hi", "gk_short_lo", "direct", "patient", "my_press_vs_short"),
+         "transitions": ("lose_ball", "win_high"), "set_pieces": ("corners",)}
+PHASE_TITLE = {"with_ball": "With the ball", "without_ball": "Without the ball", "transitions": "Transitions", "set_pieces": "Set pieces"}
 
 
-def ask(plan, question):
-    import anthropic
-    client = anthropic.Anthropic()
-    msg = client.messages.create(model=os.environ.get("OPPREPORT_MODEL", "claude-opus-5-5"), max_tokens=700, system=SYSTEM,
-                                 messages=[{"role": "user", "content": f"DATA:\n{json.dumps(plan, ensure_ascii=False)}\n\nQUESTION: {question}"}])
-    return "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+def brief(hints, past, opp, mine):
+    """Same hints, as a plan by phase. Priority: 'you vs them' hints first, then hints where the opponent is the most extreme team of the folder."""
+    def prio(h):
+        ext = any(e["rank"] in (1, e["of"]) for e in h["evidence"] if e.get("team", "opponent") == "opponent")
+        return (h["side"] == "both") * 2 + ext
+    phases = {}
+    for ph, ids in PHASE.items():
+        hs = sorted([h for h in hints if h["id"] in ids], key=prio, reverse=True)
+        lines = [f"{h['title']}. {h['look']}" for h in hs]
+        if ph == "without_ball":
+            f = lambda v, u: f"{100 * v:.0f}%" if u == "pct" else f"{v:.2f}" if u == "num2" else f"{v:.1f}"
+            lines += [f"Their past matches: {p['label']} {f(p['a'], p['unit'])} per match {p['ga']} and {f(p['b'], p['unit'])} {p['gb']} ({p['n_a']} and {p['n_b']} matches)."
+                      for p in past if p["split"] == "Opponent pressing"]
+        phases[ph] = {"title": PHASE_TITLE[ph], "lines": lines or [f"Nothing stands out in {opp}'s numbers for this phase: prepare as usual and check on video."]}
+    top = sorted(hints, key=prio, reverse=True)[:3]
+    return {"priorities": [f"{h['title']}. {h['look']}" for h in top],
+            "phases": phases,
+            "intro": f"Plan against {opp}" + (f" for {mine}" if mine else "") + f", from {len(hints)} hints. Written by fixed rules from the numbers on this page, offline; hints to check on video, not tested advice."}

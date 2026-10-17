@@ -504,6 +504,11 @@ footer { padding: 22px var(--gutter) 30px; border-top: 1px solid var(--board-lin
   .sections { order: 3; width: 100%; margin-left: 0; }
   .bar-actions { margin-left: auto; }
 }
+.brief { margin-top: 16px; padding: 16px 18px; border-radius: 14px; background: color-mix(in srgb, var(--rib, var(--yellow)) 14%, transparent); border-left: 4px solid var(--yellow); }
+.sticker .pills button:not([aria-pressed="true"]) { color: var(--sticker-ink); border-color: color-mix(in srgb, var(--sticker-ink) 22%, transparent); background: transparent; }
+.sticker .pills button:not([aria-pressed="true"]):hover { background: color-mix(in srgb, var(--sticker-ink) 8%, transparent); }
+.brief h3 { margin: 0 0 8px; }
+.brief ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; line-height: 1.5; }
 .layout-matchup { grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); }
 @media (max-width: 1120px) {
   .layout-matchup { grid-template-columns: minmax(0, 1fr); }

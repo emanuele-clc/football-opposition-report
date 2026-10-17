@@ -5,6 +5,11 @@ import { fmt, ordinal } from "../format";
 
 const TAB_LABEL: Record<string, string> = { restarts: "Restarts", defending: "Defending", transitions: "Transitions", "build-up": "Families", setpieces: "Set pieces", matchups: "Matchups" };
 const MINE_KEY = "oppreport.mine";
+type Topic = "priorities" | "with_ball" | "without_ball" | "transitions" | "set_pieces";
+const QUESTIONS: [Topic, (t: string) => string][] = [
+  ["priorities", () => "What matters most?"], ["with_ball", (t) => `How do we play out against ${t}?`], ["without_ball", (t) => `How do we defend against ${t}?`],
+  ["transitions", () => "Where can we win the ball?"], ["set_pieces", () => "Set pieces?"],
+];
 const store = { get: () => { try { return localStorage.getItem(MINE_KEY) ?? ""; } catch { return ""; } }, set: (v: string) => { try { localStorage.setItem(MINE_KEY, v); } catch { /* private mode */ } } };
 
 const place = (r: number, of: number) => (r === 1 ? `highest of ${of}` : r === of ? `lowest of ${of}` : `${ordinal(r)} of ${of}`);
@@ -36,19 +41,14 @@ export default function GamePlan({ d, teams }: { d: TeamData; teams: TeamSummary
   const [mine, setMine] = useState(() => new URLSearchParams(location.search).get("mine") ?? store.get());
   const [plan, setPlan] = useState<Plan | null>(null);
   const [err, setErr] = useState("");
-  const [q, setQ] = useState(""); const [answer, setAnswer] = useState(""); const [asking, setAsking] = useState(false);
+  const [topic, setTopic] = useState<Topic>("priorities");
   const my = mine && mine !== d.key && teams.some((t) => t.key === mine) ? mine : "";
 
   useEffect(() => {
-    setPlan(null); setErr(""); setAnswer("");
+    setPlan(null); setErr("");
     api.gameplan(d.key, my).then(setPlan).catch((e) => setErr(String(e.message ?? e)));
   }, [d.key, my]);
 
-  const ask = async () => {
-    setAsking(true); setAnswer("");
-    try { setAnswer((await api.askGameplan(d.key, q, my)).answer); } catch (e) { setAnswer(`⚠ ${(e as Error).message}`); }
-    setAsking(false);
-  };
 
   if (err) return <div className="state"><h2>No game plan</h2><p>{err}</p></div>;
   const P = plan; const fo = P?.formations.opponent; const fm = P?.formations.mine;
@@ -147,20 +147,16 @@ export default function GamePlan({ d, teams }: { d: TeamData; teams: TeamSummary
           </div>
 
           <section className="section" aria-labelledby="ai-h">
-            <div className="section-head"><h2 id="ai-h">Ask the AI</h2><p>Claude answers using only the numbers on this page, and says when they cannot answer. The question and these numbers are sent to the Claude API.</p></div>
-            {P.ai ? (
-              <div className="sticker pad">
-                <label htmlFor="q" style={{ fontWeight: 750 }}>Your question</label>
-                <textarea id="q" rows={3} value={q} maxLength={1000} onChange={(e) => setQ(e.target.value)} placeholder={`e.g. How could we get out of ${d.team}'s press?`} style={{ width: "100%", marginTop: 6, font: "inherit", padding: 10, borderRadius: 10 }} />
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
-                  {[`What are ${d.team}'s weak points in these numbers?`, `Should we press their goal kicks?`, `Which matches of ${d.team} should I watch first?`].map((s) => <button key={s} type="button" className="chip" style={{ border: 0, cursor: "pointer" }} onClick={() => setQ(s)}>{s}</button>)}
-                  <button type="button" className="play-btn" disabled={asking || !q.trim()} onClick={ask} style={{ marginLeft: "auto" }}>{asking ? "Thinking…" : "Ask"}</button>
-                </div>
-                {answer && <div style={{ marginTop: 14, whiteSpace: "pre-wrap", lineHeight: 1.5 }} aria-live="polite">{answer}</div>}
+            <div className="section-head"><h2 id="ai-h">Coach brief</h2><p>{P.brief.intro}</p></div>
+            <div className="sticker pad">
+              <div className="pills" role="group" aria-label="Choose a question">
+                {QUESTIONS.map(([t, label]) => <button key={t} type="button" aria-pressed={topic === t} onClick={() => setTopic(t)}>{label(d.team)}</button>)}
               </div>
-            ) : (
-              <Note kind="info" tag="Off">To turn it on, set an Anthropic API key before starting the app: in PowerShell <code>$env:ANTHROPIC_API_KEY = "sk-ant-…"</code>, then start the app from the same window. The numbers on this page are sent to the Claude API: do not use it with club data you may not share.</Note>
-            )}
+              <div className="brief enter" key={topic} aria-live="polite">
+                <h3>{topic === "priorities" ? "Three priorities" : P.brief.phases[topic].title}</h3>
+                <ol>{(topic === "priorities" ? (P.brief.priorities.length ? P.brief.priorities : [`No rule fired: nothing in ${d.team}'s numbers is at the extremes. Prepare as usual and use the video.`]) : P.brief.phases[topic].lines).map((l, i) => <li key={i}>{l}</li>)}</ol>
+              </div>
+            </div>
           </section>
 
           <div style={{ marginTop: 18 }}>

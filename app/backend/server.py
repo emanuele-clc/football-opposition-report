@@ -453,25 +453,11 @@ def stylemap():
 
 
 # Game plan: formations, style in a few lines and rule-based hints (app/backend/gameplan.py). Hints, not advice.
-class AskIn(BaseModel):
-    question: str
-    mine: str | None = None
-
-
 @app.get("/api/teams/{key}/gameplan")
 def gameplan(key: str, mine: str | None = None):
     need(key)
     if mine: need(mine)
     return GP.build(key, mine if mine != key else None, teams, ranks, load)
-
-
-@app.post("/api/teams/{key}/gameplan/ask")
-def gameplan_ask(key: str, body: AskIn):
-    if not os.environ.get("ANTHROPIC_API_KEY"): raise HTTPException(501, "Set ANTHROPIC_API_KEY before starting the app to use the AI assistant.")
-    if not body.question.strip() or len(body.question) > 1000: raise HTTPException(400, "Write a question (up to 1000 characters).")
-    plan = gameplan(key, body.mine)
-    try: return {"answer": GP.ask(plan, body.question.strip())}
-    except Exception as e: raise HTTPException(502, f"The AI request failed: {e}")
 
 
 # Analyst review inside the app: the same sheet and five questions as review_<Team>.csv/.html (src/report/make_report.py).
