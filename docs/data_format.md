@@ -38,7 +38,7 @@ So with reconstructed possessions the numbers are usable for a rough picture but
 - Always ask the provider for: coordinate system and attacking direction, whether the clock is cumulative, how possessions and restarts are marked.
 
 ## Video times
-To get video times in the clip list, give a file `offsets.csv` with columns `match_id, half1_start, half2_start`: the video second at which the first and the second half kick off. Pass it with `--video-offsets offsets.csv`. Video time = half start + match clock (minus 2700 s in the second half). Matches missing from the file get an empty video time.
+To get video times in the clip list, give a file `offsets.csv` with columns `match_id, half1_start, half2_start`: the video second at which the first and the second half kick off. Pass it with `--video-offsets offsets.csv` (example: `examples/offsets_example.csv`, one Barcelona match). Video time = half start + match clock (minus 2700 s in the second half). Matches missing from the file get an empty video time.
 
 ## What to ask a club
 Provider and export format; coordinate convention; whether possession identifiers and restart markers are included; at least 30 matches of the opponent or of the league for reference; what can be published; whether a confidentiality agreement is needed.

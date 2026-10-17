@@ -26,4 +26,4 @@ for mid, g in clips.groupby("match"):
     rows = "".join(f"<row><code>{E(c)}</code><R>{int(col[c][0] * 65535)}</R><G>{int(col[c][1] * 65535)}</G><B>{int(col[c][2] * 65535)}</B></row>" for c in codes if c in set(g.family.astype(str)))
     f = os.path.join(out, f"{team}_{g.date.iloc[0]}_{str(g.opponent.iloc[0]).replace(' ', '_')}_{mid}.xml")
     open(f, "w", encoding="utf-8").write(f"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<file><ALL_INSTANCES>{''.join(inst)}</ALL_INSTANCES><ROWS>{rows}</ROWS></file>\n")
-print(f"{clips.match.nunique() - len(missing)} file XML in {out}" + (f"; {len(missing)} partite senza offset saltate: {', '.join(missing)}" if missing else ""))
+print(f"{clips.match.nunique() - len(missing)} file XML in {out}" + (f"; {len(missing)} partite saltate perche' assenti da offsets.csv" if missing else ""))

@@ -16,7 +16,10 @@ if a.csv:
     r = subprocess.run(py + [os.path.join(here, "adapters", "generic_csv.py"), os.path.abspath(a.csv), base, "--coords", a.coords] if a.coords == "120x80" else py + [os.path.join(here, "adapters", "generic_csv.py"), os.path.abspath(a.csv), base])
     if r.returncode: sys.exit("Conversione fallita: controlla i messaggi sopra e docs/data_format.md")
     mf = os.path.join(base, "matches", "generic.json")
-else: base = os.path.abspath(a.data_dir); mf = os.path.abspath(a.statsbomb)
+else:
+    base = os.path.abspath(a.data_dir); mf = a.statsbomb if os.path.exists(a.statsbomb) else os.path.join(base, a.statsbomb); mf = os.path.abspath(mf)
+    if not os.path.exists(mf): sys.exit(f"File partite non trovato: {a.statsbomb} (cercato qui e in {base})")
+if a.video_offsets and not os.path.exists(a.video_offsets): sys.exit(f"File degli offset video non trovato: {a.video_offsets}. Togli --video-offsets oppure crea il file (docs/data_format.md, sezione Video times).")
 env = dict(os.environ, MPLBACKEND="Agg")
 if a.video_offsets: env["OPPREPORT_OFFSETS"] = os.path.abspath(a.video_offsets)
 print("Genero il report (qualche minuto: ricampionamenti per le stime di affidabilita')...")
