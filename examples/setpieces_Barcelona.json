@@ -1,0 +1,147 @@
+{
+ "team": "Barcelona",
+ "matches": 38,
+ "kinds": {
+  "Corner": {
+   "n": 221,
+   "per_match": 5.815789473684211,
+   "shot": 0.3167420814479638,
+   "shot_ci": [
+    0.2533084112149533,
+    0.3839295132610006
+   ],
+   "goals": 11,
+   "xg": 0.04130947047511312,
+   "zones": {
+    "short / outside box": {
+     "n": 76,
+     "share": 0.3438914027149321,
+     "ci": [
+      0.2785002250948614,
+      0.4033261556129773
+     ],
+     "shot": 0.3026315789473684,
+     "xg": 0.04145854464473684
+    },
+    "near post": {
+     "n": 19,
+     "share": 0.08597285067873303,
+     "ci": [
+      0.05234245720641294,
+      0.12315270935960591
+     ],
+     "shot": 0.2631578947368421,
+     "xg": 0.06293965421052632
+    },
+    "centre": {
+     "n": 124,
+     "share": 0.5610859728506787,
+     "ci": [
+      0.49792061733726367,
+      0.6200985456955708
+     ],
+     "shot": 0.33064516129032256,
+     "xg": 0.03841134598387096
+    },
+    "far post": {
+     "n": 2,
+     "share": 0.00904977375565611,
+     "ci": [
+      0.0,
+      0.02283366846801558
+     ],
+     "shot": 0.5,
+     "xg": 0.009841625
+    }
+   },
+   "by_side": {
+    "left": {
+     "n": 120,
+     "zones": {
+      "short / outside box": 0.30833333333333335,
+      "near post": 0.1,
+      "centre": 0.5833333333333334,
+      "far post": 0.008333333333333333
+     }
+    },
+    "right": {
+     "n": 101,
+     "zones": {
+      "short / outside box": 0.38613861386138615,
+      "near post": 0.06930693069306931,
+      "centre": 0.5346534653465347,
+      "far post": 0.009900990099009901
+     }
+    }
+   },
+   "takers": {
+    "Neymar da Silva Santos Junior": 125,
+    "Ivan Rakitić": 53,
+    "Lionel Andrés Messi Cuccittini": 33
+   },
+   "receivers": {
+    "Lionel Andrés Messi Cuccittini": 23,
+    "Neymar da Silva Santos Junior": 20,
+    "Gerard Piqué Bernabéu": 15,
+    "Andrés Iniesta Luján": 14,
+    "Luis Alberto Suárez Díaz": 11
+   }
+  },
+  "Free kick": {
+   "n": 147,
+   "per_match": 3.8684210526315788,
+   "shot": 0.5578231292517006,
+   "shot_ci": [
+    0.4941141034727144,
+    0.6209278711484594
+   ],
+   "goals": 8,
+   "xg": 0.040579580040816327,
+   "zones": {
+    "cross into box": {
+     "n": 45,
+     "share": 0.30612244897959184,
+     "ci": [
+      0.23773421235253298,
+      0.37400914634146337
+     ],
+     "shot": 0.3333333333333333,
+     "xg": 0.02953296693333333
+    },
+    "played short / wide": {
+     "n": 46,
+     "share": 0.3129251700680272,
+     "ci": [
+      0.2535211267605634,
+      0.37267080745341613
+     ],
+     "shot": 0.2391304347826087,
+     "xg": 0.039178495195652176
+    },
+    "direct shot": {
+     "n": 56,
+     "share": 0.38095238095238093,
+     "ci": [
+      0.31815738025415446,
+      0.44532833614864864
+     ],
+     "shot": 1.0,
+     "xg": 0.050607213839285715
+    }
+   },
+   "by_side": {},
+   "takers": {
+    "Lionel Andrés Messi Cuccittini": 79,
+    "Neymar da Silva Santos Junior": 38,
+    "Ivan Rakitić": 10
+   },
+   "receivers": {
+    "Neymar da Silva Santos Junior": 11,
+    "Lionel Andrés Messi Cuccittini": 11,
+    "Andrés Iniesta Luján": 10,
+    "Ivan Rakitić": 7,
+    "Luis Alberto Suárez Díaz": 7
+   }
+  }
+ }
+}

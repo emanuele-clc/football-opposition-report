@@ -105,6 +105,28 @@
      ]
     }
    },
+   "receivers": {
+    "Olivier Giroud": {
+     "n": 114,
+     "share": 0.40714285714285714
+    },
+    "Laurent Koscielny": {
+     "n": 12,
+     "share": 0.04285714285714286
+    },
+    "Per Mertesacker": {
+     "n": 11,
+     "share": 0.039285714285714285
+    },
+    "Alexis Alejandro Sánchez Sánchez": {
+     "n": 10,
+     "share": 0.03571428571428571
+    },
+    "Héctor Bellerín Moruno": {
+     "n": 10,
+     "share": 0.03571428571428571
+    }
+   },
    "by_length": {
     "short": {
      "n": 25,
@@ -221,6 +243,28 @@
       0.0,
       0.0
      ]
+    }
+   },
+   "receivers": {
+    "Olivier Giroud": {
+     "n": 18,
+     "share": 0.13740458015267176
+    },
+    "Héctor Bellerín Moruno": {
+     "n": 16,
+     "share": 0.12213740458015267
+    },
+    "Mesut Özil": {
+     "n": 14,
+     "share": 0.10687022900763359
+    },
+    "Aaron Ramsey": {
+     "n": 10,
+     "share": 0.07633587786259542
+    },
+    "Gabriel Armando de Abreu": {
+     "n": 10,
+     "share": 0.07633587786259542
     }
    },
    "by_length": {
@@ -341,6 +385,28 @@
      ]
     }
    },
+   "receivers": {
+    "Olivier Giroud": {
+     "n": 66,
+     "share": 0.23487544483985764
+    },
+    "Mesut Özil": {
+     "n": 33,
+     "share": 0.11743772241992882
+    },
+    "Per Mertesacker": {
+     "n": 27,
+     "share": 0.09608540925266904
+    },
+    "Laurent Koscielny": {
+     "n": 25,
+     "share": 0.08896797153024912
+    },
+    "Aaron Ramsey": {
+     "n": 24,
+     "share": 0.08540925266903915
+    }
+   },
    "by_length": {
     "short": {
      "n": 252,
@@ -457,6 +523,28 @@
       0.09090909090909091,
       0.24
      ]
+    }
+   },
+   "receivers": {
+    "Mesut Özil": {
+     "n": 117,
+     "share": 0.2671232876712329
+    },
+    "Olivier Giroud": {
+     "n": 54,
+     "share": 0.1232876712328767
+    },
+    "Aaron Ramsey": {
+     "n": 51,
+     "share": 0.11643835616438356
+    },
+    "Alexis Alejandro Sánchez Sánchez": {
+     "n": 36,
+     "share": 0.0821917808219178
+    },
+    "Santiago Cazorla González": {
+     "n": 27,
+     "share": 0.06164383561643835
     }
    },
    "by_length": {

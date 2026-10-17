@@ -2,17 +2,17 @@
 Cosi' qualunque fornitore di dati si collega mappando le sue colonne al CSV generico (vedi docs/data_format.md).
 Uso:  python generic_csv.py eventi.csv cartella_uscita [--coords 100|120x80] [--validate-only]
 Colonne obbligatorie: match_id, match_date, home_team, away_team, period, minute, second, team, event_type, x, y
-Colonne facoltative:  end_x, end_y, possession_id, restart, pass_length, shot_goal
+Colonne facoltative:  end_x, end_y, possession_id, restart, pass_length, shot_goal, player, recipient, xg
 - event_type: pass, carry, shot, dribble, altro (qualunque altro valore = altro). minute e' cumulativo (secondo tempo parte da 45), period 1 o 2.
 - x da 0 (propria porta) a 100 (porta avversaria), y da 0 a 100; la squadra che compie l'evento attacca sempre da sinistra a destra (--coords 100, default). Con --coords 120x80 si usano le misure 120 x 80.
 - possession_id: se manca, viene ricostruito (nuova possessione quando un'altra squadra compie un pass/carry/shot/dribble, quando c'e' una ripresa, o cambia il tempo).
-- restart: sul primo evento di una ripresa: goal_kick, throw_in, corner, free_kick, kick_off, penalty (altrimenti vuoto). Senza questa colonna tutte le possessioni sono 'gioco normale' e le riprese da fermo NON si escludono.
+- restart: sul primo evento di una ripresa: goal_kick, throw_in, corner, free_kick, kick_off, penalty, keeper (portiere che rimette in gioco dopo una presa; altrimenti vuoto). Senza questa colonna tutte le possessioni sono 'gioco normale' e le riprese da fermo NON si escludono.
 - pass_length: in metri nella griglia 120x80; se manca si calcola dalle coordinate."""
 import sys, os, json
 import numpy as np, pandas as pd
 REQ = ["match_id", "match_date", "home_team", "away_team", "period", "minute", "second", "team", "event_type", "x", "y"]
 TYPE = {"pass": "Pass", "carry": "Carry", "shot": "Shot", "dribble": "Dribble"}
-RESTART = {"goal_kick": "From Goal Kick", "throw_in": "From Throw In", "corner": "From Corner", "free_kick": "From Free Kick", "kick_off": "From Kick Off", "penalty": "From Free Kick"}
+RESTART = {"goal_kick": "From Goal Kick", "throw_in": "From Throw In", "corner": "From Corner", "free_kick": "From Free Kick", "kick_off": "From Kick Off", "penalty": "From Free Kick", "keeper": "From Keeper"}
 CTRL = {"pass", "carry", "shot", "dribble"}
 
 def validate(df):
@@ -84,6 +84,9 @@ def convert(csv_path, out_dir, coords="100"):
             elif r.event_type == "pass": e["pass"] = {"end_location": e["location"], "length": 0.0}
             elif r.event_type == "carry": e["carry"] = {"end_location": e["location"]}
             if r.event_type == "shot": e["shot"] = {"outcome": {"name": "Goal" if "shot_goal" in g.columns and r.shot_goal == 1 else "Other"}}
+            if r.event_type == "shot" and "xg" in g.columns and pd.notna(r.xg): e["shot"]["statsbomb_xg"] = float(r.xg)
+            if "player" in g.columns and pd.notna(r.player): e["player"] = {"name": str(r.player)}
+            if r.event_type == "pass" and "recipient" in g.columns and pd.notna(r.recipient): e["pass"]["recipient"] = {"name": str(r.recipient)}
             evs.append(e)
         json.dump(evs, open(f"{out_dir}/ev/{mid}.json", "w", encoding="utf-8"))
         r0 = g.iloc[0]; matches.append({"match_id": mid if not str(mid).isdigit() else int(mid), "match_date": str(r0.match_date), "home_team": {"home_team_name": r0.home_team}, "away_team": {"away_team_name": r0.away_team}})

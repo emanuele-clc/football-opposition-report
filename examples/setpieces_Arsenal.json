@@ -1,0 +1,147 @@
+{
+ "team": "Arsenal",
+ "matches": 38,
+ "kinds": {
+  "Corner": {
+   "n": 227,
+   "per_match": 5.973684210526316,
+   "shot": 0.3700440528634361,
+   "shot_ci": [
+    0.3111938775510204,
+    0.4239667338709677
+   ],
+   "goals": 7,
+   "xg": 0.03989824210792951,
+   "zones": {
+    "short / outside box": {
+     "n": 26,
+     "share": 0.1145374449339207,
+     "ci": [
+      0.07509634387351778,
+      0.15853792844095843
+     ],
+     "shot": 0.3076923076923077,
+     "xg": 0.023935732576923073
+    },
+    "near post": {
+     "n": 11,
+     "share": 0.048458149779735685,
+     "ci": [
+      0.01968503937007874,
+      0.08544077855340047
+     ],
+     "shot": 0.2727272727272727,
+     "xg": 0.05072258295454545
+    },
+    "centre": {
+     "n": 183,
+     "share": 0.8061674008810573,
+     "ci": [
+      0.7513195868459026,
+      0.8577415155741516
+     ],
+     "shot": 0.39344262295081966,
+     "xg": 0.04280215197814208
+    },
+    "far post": {
+     "n": 7,
+     "share": 0.030837004405286344,
+     "ci": [
+      0.009214485617490479,
+      0.054863991381632095
+     ],
+     "shot": 0.14285714285714285,
+     "xg": 0.006261383857142857
+    }
+   },
+   "by_side": {
+    "left": {
+     "n": 107,
+     "zones": {
+      "short / outside box": 0.11214953271028037,
+      "near post": 0.037383177570093455,
+      "centre": 0.822429906542056,
+      "far post": 0.028037383177570093
+     }
+    },
+    "right": {
+     "n": 120,
+     "zones": {
+      "short / outside box": 0.11666666666666667,
+      "near post": 0.058333333333333334,
+      "centre": 0.7916666666666666,
+      "far post": 0.03333333333333333
+     }
+    }
+   },
+   "takers": {
+    "Mesut Özil": 141,
+    "Santiago Cazorla González": 42,
+    "Alexis Alejandro Sánchez Sánchez": 15
+   },
+   "receivers": {
+    "Olivier Giroud": 36,
+    "Gabriel Armando de Abreu": 17,
+    "Laurent Koscielny": 16,
+    "Alexis Alejandro Sánchez Sánchez": 11,
+    "Per Mertesacker": 8
+   }
+  },
+  "Free kick": {
+   "n": 96,
+   "per_match": 2.526315789473684,
+   "shot": 0.4479166666666667,
+   "shot_ci": [
+    0.3486161220492733,
+    0.5444471947194719
+   ],
+   "goals": 7,
+   "xg": 0.04641377855729167,
+   "zones": {
+    "cross into box": {
+     "n": 64,
+     "share": 0.6666666666666666,
+     "ci": [
+      0.5714285714285714,
+      0.75
+     ],
+     "shot": 0.375,
+     "xg": 0.0517731575546875
+    },
+    "played short / wide": {
+     "n": 14,
+     "share": 0.14583333333333334,
+     "ci": [
+      0.0784313725490196,
+      0.22988505747126436
+     ],
+     "shot": 0.07142857142857142,
+     "xg": 0.0065623507142857146
+    },
+    "direct shot": {
+     "n": 18,
+     "share": 0.1875,
+     "ci": [
+      0.12293827367012379,
+      0.2584880312652662
+     ],
+     "shot": 1.0,
+     "xg": 0.058353763777777776
+    }
+   },
+   "by_side": {},
+   "takers": {
+    "Mesut Özil": 47,
+    "Santiago Cazorla González": 20,
+    "Alexis Alejandro Sánchez Sánchez": 18
+   },
+   "receivers": {
+    "Olivier Giroud": 14,
+    "Laurent Koscielny": 10,
+    "Gabriel Armando de Abreu": 5,
+    "Alexis Alejandro Sánchez Sánchez": 5,
+    "Mesut Özil": 4
+   }
+  }
+ }
+}

@@ -5,7 +5,7 @@ Coordinate in uscita: 120 x 80 (come StatsBomb), quindi la conversione va fatta 
 import sys, os, json
 import pandas as pd
 TYPE = {"Pass": "pass", "Carry": "carry", "Shot": "shot", "Dribble": "dribble"}
-RESTART = {"From Goal Kick": "goal_kick", "From Throw In": "throw_in", "From Corner": "corner", "From Free Kick": "free_kick", "From Kick Off": "kick_off"}
+RESTART = {"From Goal Kick": "goal_kick", "From Throw In": "throw_in", "From Corner": "corner", "From Free Kick": "free_kick", "From Kick Off": "kick_off", "From Keeper": "keeper"}
 
 def export(mf, team, base, out, possession=True, restart=True):
     ms = sorted([g for g in json.load(open(mf, encoding="utf-8")) if team in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])], key=lambda g: g["match_date"])
@@ -18,7 +18,8 @@ def export(mf, team, base, out, possession=True, restart=True):
             first = e["possession"] not in seen; seen.add(e["possession"])
             r = dict(match_id=g["match_id"], match_date=g["match_date"], home_team=g["home_team"]["home_team_name"], away_team=g["away_team"]["away_team_name"],
                      period=e["period"], minute=e["minute"], second=e["second"], team=e["team"]["name"], event_type=t, x=loc[0], y=loc[1], end_x=end[0], end_y=end[1],
-                     pass_length=e["pass"].get("length") if t == "pass" else None, shot_goal=int(e["shot"]["outcome"]["name"] == "Goal") if t == "shot" else None)
+                     pass_length=e["pass"].get("length") if t == "pass" else None, shot_goal=int(e["shot"]["outcome"]["name"] == "Goal") if t == "shot" else None,
+                     player=(e.get("player") or {}).get("name"), recipient=(e["pass"].get("recipient") or {}).get("name") if t == "pass" else None, xg=e["shot"].get("statsbomb_xg") if t == "shot" else None)
             if possession: r["possession_id"] = e["possession"]
             if restart: r["restart"] = RESTART.get(e["play_pattern"]["name"], "") if first else ""
             rows.append(r)

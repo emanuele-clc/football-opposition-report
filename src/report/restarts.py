@@ -6,8 +6,9 @@ Definitions (fixed before looking at any team):
 - first pass: first pass of the team in the possession. Short = under 30 m (as in the long-pass share of the report). Side = end of the first pass, y in thirds (left, centre, right; StatsBomb y small = left).
 - outcomes of the possession: reached the opponent half (any team action ending at x >= 60), reached the final third (x >= 80), shot, ended in own half (no shot and the last team action ends at x < 60: ball lost, out of play or foul).
 Intervals are 95% bootstrap over matches. 'Last 5' uses only the five most recent matches and is shown with its own interval: with 5 matches it is wide."""
-import sys, os, json, html as H
+import sys, os, io, json, base64, html as H
 import numpy as np, pandas as pd
+import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
 MF, TEAM = sys.argv[1], sys.argv[2]; BASE = sys.argv[3] if len(sys.argv) > 3 else "."
 PP = {"From Goal Kick": "Goal kick", "From Keeper": "Keeper", "From Throw In": "Throw-in"}
 
@@ -35,7 +36,8 @@ def extract():
             t0 = es[0]["minute"] * 60 + es[0]["second"]; t1 = es[-1]["minute"] * 60 + es[-1]["second"]
             rows.append(dict(match=g["match_id"], gi=gi, data=g["match_date"], avv=opp, tempo=es[0]["period"], minuto=es[0]["minute"], sec=es[0]["second"], kind=kind,
                              short=int(p0["pass"].get("length", 0) < 30), side="left" if y < 80 / 3 else ("right" if y > 160 / 3 else "centre"), n_pass=len(passes), dur=max(t1 - t0, 0),
-                             opp_half=int(max(xs) >= 60), final_third=int(max(xs) >= 80), shot=int(shot), lost_own_half=int(not shot and xs[-1] < 60)))
+                             opp_half=int(max(xs) >= 60), final_third=int(max(xs) >= 80), shot=int(shot), lost_own_half=int(not shot and xs[-1] < 60),
+                             px0=p0["location"][0], py0=p0["location"][1], px1=p0["pass"]["end_location"][0], py1=y, receiver=((p0["pass"].get("recipient") or {}).get("name"))))
     return pd.DataFrame(rows), len(ms)
 
 def boot(d, col, games, B=1000, seed=0):
@@ -43,6 +45,22 @@ def boot(d, col, games, B=1000, seed=0):
     for _ in range(B):
         v = np.concatenate([by[g] for g in rng.choice(games, len(games))]); out.append(v.mean() if len(v) else np.nan)
     return [float(np.nanpercentile(out, 2.5)), float(np.nanpercentile(out, 97.5))]
+
+def pitch(d, title):
+    """First pass of each restart: start to end on the pitch (own goal on the left), short in blue, long in orange; thick arrows = mean of each group."""
+    fig, ax = plt.subplots(figsize=(7.2, 4.4)); ax.set_facecolor("#3d7a3d")
+    for xy in ([[0, 0], [120, 0], [120, 80], [0, 80], [0, 0]], [[60, 0], [60, 80]], [[0, 18], [18, 18], [18, 62], [0, 62]], [[120, 18], [102, 18], [102, 62], [120, 62]], [[0, 30], [6, 30], [6, 50], [0, 50]]):
+        a = np.array(xy); ax.plot(a[:, 0], a[:, 1], color="white", lw=1)
+    for sh, c in ((1, "#4FA3FF"), (0, "#FF9F40")):
+        q = d[d.short == sh]
+        for r in q.itertuples(): ax.plot([r.px0, r.px1], [r.py0, r.py1], color=c, lw=0.5, alpha=0.35)
+        ax.scatter(q.px1, q.py1, s=9, color=c, alpha=0.8, label=f"{'short' if sh else 'long'} ({len(q)})")
+        for side in ("left", "centre", "right"):
+            z = q[q.side == side]
+            if len(z) >= max(5, 0.1 * len(d)): ax.annotate("", (z.px1.mean(), z.py1.mean()), (z.px0.mean(), z.py0.mean()), arrowprops=dict(arrowstyle="-|>", color=c, lw=2.5))
+    ax.set_xlim(-2, 122); ax.set_ylim(82, -2); ax.set_aspect("equal"); ax.set_xticks([]); ax.set_yticks([]); ax.legend(loc="lower right", fontsize=8)
+    ax.set_title(f"{title}: where the first pass goes (attacking left to right; top = left side)", fontsize=9)
+    b = io.BytesIO(); fig.savefig(b, format="png", dpi=110, bbox_inches="tight"); plt.close(fig); return base64.b64encode(b.getvalue()).decode()
 
 if __name__ == "__main__":
     df, nm = extract(); fn = TEAM.replace(" ", "_"); games = np.arange(nm); last = games[-5:]
@@ -56,6 +74,7 @@ if __name__ == "__main__":
         res["kinds"][k] = dict(n=int(len(d)), per_match=float(len(d) / nm), n_last5=int(len(dl)), passes=float(d.n_pass.mean()),
                                metrics={m: dict(season=float(d[m].mean()), ci=boot(d, m, games), last5=float(dl[m].mean()) if len(dl) else None, last5_ci=boot(dl, m, last) if len(dl) else None) for m, _ in METRICS})
         # short vs long goal kicks behave differently: outcome by first-pass length
+        if d.receiver.notna().mean() > 0.5: res["kinds"][k]["receivers"] = {p: dict(n=int(c), share=float(c / len(d))) for p, c in d.receiver.value_counts().head(5).items()}
         res["kinds"][k]["by_length"] = {lab: dict(n=int(len(q)), opp_half=float(q.opp_half.mean()), lost_own_half=float(q.lost_own_half.mean()), shot=float(q.shot.mean())) for lab, q in (("short", d[d.short == 1]), ("long", d[d.short == 0])) if len(q)}
     json.dump(res, open(f"{BASE}/restarts_{fn}.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     lab = lambda r: f"{r.kind} {'short' if r.short else 'long'} {r.side}"
@@ -70,6 +89,8 @@ if __name__ == "__main__":
             v = r["metrics"][m]; out = v["last5"] is not None and not (v["ci"][0] <= v["last5"] <= v["ci"][1])
             h.append(f"<tr{' class=diff' if out else ''}><td>{name}</td><td>{pc(v['season'])}</td><td>{ci(v['ci'])}</td><td>{pc(v['last5'])}</td><td>{ci(v['last5_ci'])}</td></tr>")
         h.append("</table>")
+        if k in ("Goal kick", "Keeper"): h.append(f"<img src='data:image/png;base64,{pitch(df[df.kind == k], k)}' style='width:70%'>")
+        if r.get("receivers"): h.append("<p><b>First pass received by:</b> " + ", ".join(f"{H.escape(p)} {pc(q['share'])}" for p, q in r["receivers"].items()) + " (completed passes only).</p>")
         if len(r["by_length"]) == 2:
             h.append("<table><tr><th>First pass</th><th>n</th><th>Reached opponent half</th><th>Ended in own half</th><th>Shot</th></tr>" + "".join(f"<tr><td>{lb}</td><td>{q['n']}</td><td>{pc(q['opp_half'])}</td><td>{pc(q['lost_own_half'])}</td><td>{pc(q['shot'])}</td></tr>" for lb, q in r["by_length"].items()) + "</table>")
     h.append(f"<p class='small'>Clips: restart_clips_{fn}.csv lists every possession above, labelled e.g. 'Goal kick short left'; convert it with src/report/clips_to_xml.py to import into a video tool. Limits: event data only, so the opponent's press and off-ball positions are not seen; 'ended in own half' uses the last recorded action of the possession.</p></body></html>")

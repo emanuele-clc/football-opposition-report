@@ -105,6 +105,28 @@
      ]
     }
    },
+   "receivers": {
+    "Jonathan Tah": {
+     "n": 24,
+     "share": 0.12972972972972974
+    },
+    "Lukáš Hrádecký": {
+     "n": 22,
+     "share": 0.11891891891891893
+    },
+    "Piero Martín Hincapié Reyna": {
+     "n": 18,
+     "share": 0.0972972972972973
+    },
+    "Victor Okoh Boniface": {
+     "n": 16,
+     "share": 0.08648648648648649
+    },
+    "Edmond Fayçal Tapsoba": {
+     "n": 14,
+     "share": 0.07567567567567568
+    }
+   },
    "by_length": {
     "short": {
      "n": 103,
@@ -221,6 +243,28 @@
       0.0,
       0.0
      ]
+    }
+   },
+   "receivers": {
+    "Granit Xhaka": {
+     "n": 25,
+     "share": 0.24752475247524752
+    },
+    "Edmond Fayçal Tapsoba": {
+     "n": 14,
+     "share": 0.13861386138613863
+    },
+    "Odilon Kossonou": {
+     "n": 9,
+     "share": 0.0891089108910891
+    },
+    "Piero Martín Hincapié Reyna": {
+     "n": 8,
+     "share": 0.07920792079207921
+    },
+    "Alejandro Grimaldo García": {
+     "n": 8,
+     "share": 0.07920792079207921
     }
    },
    "by_length": {
@@ -341,6 +385,28 @@
      ]
     }
    },
+   "receivers": {
+    "Edmond Fayçal Tapsoba": {
+     "n": 35,
+     "share": 0.14344262295081966
+    },
+    "Exequiel Alejandro Palacios": {
+     "n": 28,
+     "share": 0.11475409836065574
+    },
+    "Granit Xhaka": {
+     "n": 27,
+     "share": 0.11065573770491803
+    },
+    "Jonas Hofmann": {
+     "n": 26,
+     "share": 0.10655737704918032
+    },
+    "Robert Andrich": {
+     "n": 26,
+     "share": 0.10655737704918032
+    }
+   },
    "by_length": {
     "short": {
      "n": 230,
@@ -457,6 +523,28 @@
       0.17391304347826086,
       0.34146341463414637
      ]
+    }
+   },
+   "receivers": {
+    "Florian Wirtz": {
+     "n": 55,
+     "share": 0.16516516516516516
+    },
+    "Exequiel Alejandro Palacios": {
+     "n": 41,
+     "share": 0.12312312312312312
+    },
+    "Granit Xhaka": {
+     "n": 39,
+     "share": 0.11711711711711711
+    },
+    "Jonas Hofmann": {
+     "n": 38,
+     "share": 0.11411411411411411
+    },
+    "Jonathan Tah": {
+     "n": 23,
+     "share": 0.06906906906906907
     }
    },
    "by_length": {

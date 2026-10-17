@@ -1,0 +1,305 @@
+family,match,date,opponent,half,minute,second,start_type,passes,duration_s,ended_in_shot
+Corner centre,3754237,2015-08-08,Sunderland,2,57,32,Corner,1,2,1
+Corner centre,3754203,2015-08-15,West Ham United,2,64,28,Corner,4,39,0
+Corner centre,3754203,2015-08-15,West Ham United,2,67,12,Corner,2,3,0
+Corner centre,3753987,2015-08-22,Tottenham Hotspur,1,10,45,Corner,2,5,1
+Corner centre,3753987,2015-08-22,Tottenham Hotspur,2,86,56,Corner,3,9,1
+Corner centre,3754023,2015-08-29,AFC Bournemouth,2,58,11,Corner,5,55,0
+Corner centre,3754106,2015-09-13,Aston Villa,1,35,11,Corner,1,0,0
+Corner centre,3754146,2015-09-19,Stoke City,1,30,43,Corner,4,25,1
+Corner centre,3754146,2015-09-19,Stoke City,2,49,15,Corner,4,8,0
+Corner centre,3754174,2015-09-26,Arsenal,1,5,4,Corner,4,15,0
+Corner centre,3754174,2015-09-26,Arsenal,2,65,0,Corner,3,10,1
+Corner centre,3754174,2015-09-26,Arsenal,2,83,41,Corner,2,6,0
+Corner centre,3754174,2015-09-26,Arsenal,2,84,27,Corner,1,0,0
+Corner centre,3754174,2015-09-26,Arsenal,2,85,57,Corner,1,2,1
+Corner centre,3754335,2015-10-03,Norwich City,1,20,27,Corner,6,24,0
+Corner centre,3754335,2015-10-03,Norwich City,1,24,55,Corner,2,11,0
+Corner centre,3754335,2015-10-03,Norwich City,2,68,57,Corner,1,0,0
+Corner centre,3754335,2015-10-03,Norwich City,2,69,55,Corner,1,0,0
+Corner centre,3754335,2015-10-03,Norwich City,2,70,12,Corner,1,0,0
+Corner centre,3754335,2015-10-03,Norwich City,2,87,16,Corner,1,2,1
+Corner centre,3754335,2015-10-03,Norwich City,2,90,15,Corner,2,4,0
+Corner centre,3754302,2015-10-17,Southampton,1,22,16,Corner,3,9,1
+Corner centre,3754302,2015-10-17,Southampton,1,22,53,Corner,1,2,1
+Corner centre,3754302,2015-10-17,Southampton,1,23,20,Corner,4,7,0
+Corner centre,3754302,2015-10-17,Southampton,1,41,46,Corner,2,15,1
+Corner centre,3754302,2015-10-17,Southampton,2,54,3,Corner,1,4,1
+Corner centre,3754302,2015-10-17,Southampton,2,70,5,Corner,1,5,1
+Corner centre,3754302,2015-10-17,Southampton,2,72,1,Corner,1,0,0
+Corner centre,3754263,2015-10-24,Crystal Palace,1,8,19,Corner,1,0,0
+Corner centre,3754006,2015-10-31,West Bromwich Albion,1,33,38,Corner,10,54,1
+Corner centre,3754006,2015-10-31,West Bromwich Albion,2,48,55,Corner,1,0,0
+Corner centre,3754156,2015-11-07,Watford,2,61,49,Corner,1,1,1
+Corner centre,3754156,2015-11-07,Watford,2,67,40,Corner,1,0,0
+Corner centre,3754156,2015-11-07,Watford,2,77,4,Corner,1,2,1
+Corner centre,3754211,2015-11-21,Newcastle United,1,41,48,Corner,1,1,1
+Corner centre,3754211,2015-11-21,Newcastle United,2,51,55,Corner,1,0,0
+Corner centre,3754211,2015-11-21,Newcastle United,2,58,24,Corner,1,1,1
+Corner centre,3754211,2015-11-21,Newcastle United,2,58,55,Corner,1,0,0
+Corner centre,3754085,2015-12-05,Swansea City,1,4,38,Corner,1,2,1
+Corner centre,3754085,2015-12-05,Swansea City,1,29,32,Corner,2,7,0
+Corner centre,3754085,2015-12-05,Swansea City,1,31,56,Corner,5,25,0
+Corner centre,3754085,2015-12-05,Swansea City,2,59,19,Corner,1,0,0
+Corner centre,3754085,2015-12-05,Swansea City,2,60,57,Corner,3,30,0
+Corner centre,3754166,2015-12-19,Everton,1,9,40,Corner,5,15,1
+Corner centre,3754166,2015-12-19,Everton,1,42,9,Corner,1,0,0
+Corner centre,3754343,2015-12-26,Liverpool,1,17,29,Corner,1,0,0
+Corner centre,3754343,2015-12-26,Liverpool,1,41,44,Corner,2,3,0
+Corner centre,3754343,2015-12-26,Liverpool,2,70,19,Corner,1,0,0
+Corner centre,3754343,2015-12-26,Liverpool,2,73,49,Corner,1,0,0
+Corner centre,3754343,2015-12-26,Liverpool,2,88,53,Corner,7,27,0
+Corner centre,3754045,2015-12-29,Manchester City,1,42,13,Corner,7,20,0
+Corner centre,3754058,2016-01-02,AFC Bournemouth,2,50,53,Corner,1,2,1
+Corner centre,3754058,2016-01-02,AFC Bournemouth,2,60,30,Corner,1,0,0
+Corner centre,3754058,2016-01-02,AFC Bournemouth,2,65,8,Corner,1,0,0
+Corner centre,3754058,2016-01-02,AFC Bournemouth,2,65,40,Corner,1,3,1
+Corner centre,3754058,2016-01-02,AFC Bournemouth,2,80,27,Corner,1,0,0
+Corner centre,3754058,2016-01-02,AFC Bournemouth,2,88,36,Corner,2,8,1
+Corner centre,3754065,2016-01-13,Tottenham Hotspur,2,51,2,Corner,1,4,1
+Corner centre,3754250,2016-01-16,Aston Villa,1,18,40,Corner,6,22,0
+Corner centre,3754250,2016-01-16,Aston Villa,2,78,59,Corner,3,7,1
+Corner centre,3754341,2016-01-23,Stoke City,1,2,31,Corner,1,5,0
+Corner centre,3754341,2016-01-23,Stoke City,1,18,18,Corner,1,2,1
+Corner centre,3754341,2016-01-23,Stoke City,1,21,11,Corner,1,0,0
+Corner centre,3754341,2016-01-23,Stoke City,1,41,46,Corner,1,3,1
+Corner centre,3754275,2016-02-02,Liverpool,1,8,32,Corner,7,48,0
+Corner centre,3754275,2016-02-02,Liverpool,1,28,25,Corner,1,2,1
+Corner centre,3754290,2016-02-06,Manchester City,1,10,51,Corner,4,20,1
+Corner centre,3754290,2016-02-06,Manchester City,2,59,14,Corner,1,2,1
+Corner centre,3754290,2016-02-06,Manchester City,2,84,29,Corner,1,9,1
+Corner centre,3754261,2016-02-14,Arsenal,1,39,1,Corner,2,7,1
+Corner centre,3754049,2016-02-27,Norwich City,1,14,9,Corner,2,6,0
+Corner centre,3754049,2016-02-27,Norwich City,2,60,50,Corner,5,20,0
+Corner centre,3754231,2016-03-01,West Bromwich Albion,1,3,17,Corner,8,31,0
+Corner centre,3754231,2016-03-01,West Bromwich Albion,1,13,18,Corner,1,3,1
+Corner centre,3754231,2016-03-01,West Bromwich Albion,2,58,12,Corner,4,10,0
+Corner centre,3754231,2016-03-01,West Bromwich Albion,2,70,30,Corner,1,2,1
+Corner centre,3754231,2016-03-01,West Bromwich Albion,2,77,23,Corner,1,0,0
+Corner centre,3754231,2016-03-01,West Bromwich Albion,2,85,32,Corner,6,29,1
+Corner centre,3754289,2016-03-05,Watford,1,20,7,Corner,5,15,0
+Corner centre,3754289,2016-03-05,Watford,2,58,58,Corner,5,11,0
+Corner centre,3754289,2016-03-05,Watford,2,59,41,Corner,5,29,0
+Corner centre,3754289,2016-03-05,Watford,2,69,42,Corner,4,30,0
+Corner centre,3754289,2016-03-05,Watford,2,77,3,Corner,1,2,1
+Corner centre,3754002,2016-03-14,Newcastle United,1,18,25,Corner,1,2,1
+Corner centre,3754002,2016-03-14,Newcastle United,1,45,26,Corner,1,0,0
+Corner centre,3754002,2016-03-14,Newcastle United,2,50,54,Corner,3,23,1
+Corner centre,3754002,2016-03-14,Newcastle United,2,69,4,Corner,2,8,0
+Corner centre,3754181,2016-03-19,Crystal Palace,1,19,56,Corner,1,0,0
+Corner centre,3754181,2016-03-19,Crystal Palace,2,69,59,Corner,6,18,0
+Corner centre,3754181,2016-03-19,Crystal Palace,2,79,39,Corner,1,4,1
+Corner centre,3754181,2016-03-19,Crystal Palace,2,87,29,Corner,1,0,0
+Corner centre,3753982,2016-04-03,Southampton,1,12,22,Corner,1,0,0
+Corner centre,3753982,2016-04-03,Southampton,2,83,35,Corner,3,10,1
+Corner centre,3754152,2016-04-10,Sunderland,1,14,5,Corner,1,2,1
+Corner centre,3754152,2016-04-10,Sunderland,1,23,44,Corner,2,10,0
+Corner centre,3754228,2016-04-24,Swansea City,1,26,12,Corner,3,6,1
+Corner centre,3754228,2016-04-24,Swansea City,1,28,19,Corner,1,10,0
+Corner centre,3754228,2016-04-24,Swansea City,2,66,32,Corner,3,11,0
+Corner centre,3754228,2016-04-24,Swansea City,2,70,51,Corner,9,32,1
+Corner centre,3754165,2016-05-01,Manchester United,1,29,52,Corner,2,7,0
+Corner centre,3754165,2016-05-01,Manchester United,1,40,10,Corner,1,2,1
+Corner centre,3754165,2016-05-01,Manchester United,2,46,7,Corner,1,3,1
+Corner centre,3754165,2016-05-01,Manchester United,2,50,36,Corner,1,1,1
+Corner centre,3754165,2016-05-01,Manchester United,2,53,52,Corner,6,20,1
+Corner centre,3754033,2016-05-07,Everton,1,37,0,Corner,1,4,1
+Corner centre,3754033,2016-05-07,Everton,1,44,35,Corner,1,3,1
+Corner centre,3754033,2016-05-07,Everton,2,69,27,Corner,5,16,0
+Corner centre,3754033,2016-05-07,Everton,2,70,14,Corner,1,6,1
+Corner centre,3754033,2016-05-07,Everton,2,74,52,Corner,1,1,1
+Corner centre,3754033,2016-05-07,Everton,2,82,53,Corner,1,4,1
+Corner centre,3754033,2016-05-07,Everton,2,88,56,Corner,2,11,1
+Corner centre,3754033,2016-05-07,Everton,2,91,50,Corner,1,2,1
+Corner centre,3754033,2016-05-07,Everton,2,93,30,Corner,1,0,0
+Corner centre,3754229,2016-05-15,Chelsea,1,23,33,Corner,5,23,0
+Corner centre,3754229,2016-05-15,Chelsea,1,32,54,Corner,4,7,1
+Corner centre,3754229,2016-05-15,Chelsea,1,46,28,Corner,1,0,0
+Corner centre,3754229,2016-05-15,Chelsea,2,46,33,Corner,2,7,0
+Corner centre,3754229,2016-05-15,Chelsea,2,68,26,Corner,4,25,1
+Corner centre,3754229,2016-05-15,Chelsea,2,69,14,Corner,1,0,0
+Corner far post,3754237,2015-08-08,Sunderland,1,13,7,Corner,2,29,0
+Corner far post,3754237,2015-08-08,Sunderland,2,58,6,Corner,1,2,1
+Corner far post,3754237,2015-08-08,Sunderland,2,86,54,Corner,1,0,0
+Corner far post,3754203,2015-08-15,West Ham United,2,73,26,Corner,1,3,1
+Corner far post,3754023,2015-08-29,AFC Bournemouth,1,8,41,Corner,1,0,0
+Corner far post,3754023,2015-08-29,AFC Bournemouth,2,96,32,Corner,1,0,0
+Corner far post,3754146,2015-09-19,Stoke City,1,31,38,Corner,7,24,0
+Corner far post,3754211,2015-11-21,Newcastle United,1,5,45,Corner,3,13,1
+Corner far post,3754186,2015-11-28,Manchester United,1,12,35,Corner,1,0,0
+Corner far post,3754343,2015-12-26,Liverpool,2,74,16,Corner,1,0,0
+Corner far post,3754065,2016-01-13,Tottenham Hotspur,2,51,26,Corner,1,0,0
+Corner far post,3754065,2016-01-13,Tottenham Hotspur,2,82,40,Corner,1,3,1
+Corner far post,3754049,2016-02-27,Norwich City,2,73,12,Corner,1,2,1
+Corner far post,3753982,2016-04-03,Southampton,1,17,11,Corner,4,20,0
+Corner far post,3754152,2016-04-10,Sunderland,1,26,38,Corner,1,3,1
+Corner far post,3754033,2016-05-07,Everton,2,77,54,Corner,1,0,0
+Corner near post,3754237,2015-08-08,Sunderland,2,58,34,Corner,5,15,0
+Corner near post,3754203,2015-08-15,West Ham United,1,25,36,Corner,2,3,1
+Corner near post,3754023,2015-08-29,AFC Bournemouth,2,82,28,Corner,1,0,0
+Corner near post,3754106,2015-09-13,Aston Villa,2,53,28,Corner,1,0,0
+Corner near post,3754106,2015-09-13,Aston Villa,2,71,9,Corner,1,2,1
+Corner near post,3754106,2015-09-13,Aston Villa,2,76,10,Corner,2,7,0
+Corner near post,3754146,2015-09-19,Stoke City,2,52,45,Corner,1,2,1
+Corner near post,3754006,2015-10-31,West Bromwich Albion,1,4,12,Corner,2,6,0
+Corner near post,3754156,2015-11-07,Watford,2,61,15,Corner,1,7,0
+Corner near post,3754211,2015-11-21,Newcastle United,1,30,20,Corner,3,6,1
+Corner near post,3754058,2016-01-02,AFC Bournemouth,2,82,58,Corner,1,1,1
+Corner near post,3754341,2016-01-23,Stoke City,1,40,51,Corner,2,2,0
+Corner near post,3754341,2016-01-23,Stoke City,2,80,14,Corner,3,11,0
+Corner near post,3753982,2016-04-03,Southampton,1,2,57,Corner,2,3,1
+Corner near post,3754152,2016-04-10,Sunderland,1,1,27,Corner,1,1,1
+Corner near post,3754152,2016-04-10,Sunderland,1,46,48,Corner,5,22,0
+Corner near post,3754152,2016-04-10,Sunderland,2,55,51,Corner,5,12,0
+Corner short / outside box,3754237,2015-08-08,Sunderland,2,93,22,Corner,1,1,0
+Corner short / outside box,3754174,2015-09-26,Arsenal,1,22,2,Corner,2,3,0
+Corner short / outside box,3754335,2015-10-03,Norwich City,1,42,24,Corner,2,13,1
+Corner short / outside box,3754263,2015-10-24,Crystal Palace,2,93,49,Corner,2,3,0
+Corner short / outside box,3754263,2015-10-24,Crystal Palace,2,94,6,Corner,4,9,0
+Corner short / outside box,3754006,2015-10-31,West Bromwich Albion,2,94,20,Corner,5,8,0
+Corner short / outside box,3754211,2015-11-21,Newcastle United,1,41,6,Corner,3,6,0
+Corner short / outside box,3754211,2015-11-21,Newcastle United,2,79,39,Corner,3,6,1
+Corner short / outside box,3754211,2015-11-21,Newcastle United,2,93,6,Corner,1,0,0
+Corner short / outside box,3754085,2015-12-05,Swansea City,2,86,53,Corner,3,3,0
+Corner short / outside box,3754085,2015-12-05,Swansea City,2,87,55,Corner,1,0,0
+Corner short / outside box,3754085,2015-12-05,Swansea City,2,88,47,Corner,3,7,1
+Corner short / outside box,3754013,2015-12-14,Chelsea,2,66,24,Corner,3,6,1
+Corner short / outside box,3754065,2016-01-13,Tottenham Hotspur,1,25,48,Corner,2,3,0
+Corner short / outside box,3754065,2016-01-13,Tottenham Hotspur,1,26,18,Corner,3,4,0
+Corner short / outside box,3754065,2016-01-13,Tottenham Hotspur,2,49,47,Corner,3,7,1
+Corner short / outside box,3754065,2016-01-13,Tottenham Hotspur,2,50,19,Corner,4,12,1
+Corner short / outside box,3754065,2016-01-13,Tottenham Hotspur,2,73,21,Corner,3,5,0
+Corner short / outside box,3754250,2016-01-16,Aston Villa,2,57,48,Corner,3,7,1
+Corner short / outside box,3754250,2016-01-16,Aston Villa,2,58,22,Corner,2,2,0
+Corner short / outside box,3754341,2016-01-23,Stoke City,1,41,16,Corner,2,6,0
+Corner short / outside box,3754341,2016-01-23,Stoke City,2,57,2,Corner,3,6,0
+Corner short / outside box,3754275,2016-02-02,Liverpool,1,34,38,Corner,2,6,0
+Corner short / outside box,3754231,2016-03-01,West Bromwich Albion,1,28,20,Corner,3,6,0
+Corner short / outside box,3754231,2016-03-01,West Bromwich Albion,1,28,46,Corner,2,7,0
+Corner short / outside box,3754231,2016-03-01,West Bromwich Albion,1,29,51,Corner,3,10,1
+Corner short / outside box,3754231,2016-03-01,West Bromwich Albion,2,66,54,Corner,3,11,1
+Corner short / outside box,3754231,2016-03-01,West Bromwich Albion,2,90,51,Corner,4,16,1
+Corner short / outside box,3754289,2016-03-05,Watford,1,3,3,Corner,2,5,1
+Corner short / outside box,3754289,2016-03-05,Watford,1,5,42,Corner,4,18,0
+Corner short / outside box,3754289,2016-03-05,Watford,1,41,9,Corner,3,9,1
+Corner short / outside box,3754002,2016-03-14,Newcastle United,1,35,52,Corner,6,24,0
+Corner short / outside box,3754002,2016-03-14,Newcastle United,2,90,8,Corner,2,3,0
+Corner short / outside box,3754002,2016-03-14,Newcastle United,2,90,30,Corner,2,9,0
+Corner short / outside box,3754002,2016-03-14,Newcastle United,2,93,1,Corner,1,0,0
+Corner short / outside box,3754181,2016-03-19,Crystal Palace,1,20,19,Corner,4,8,0
+Corner short / outside box,3754181,2016-03-19,Crystal Palace,2,89,38,Corner,2,9,0
+Corner short / outside box,3754181,2016-03-19,Crystal Palace,2,93,34,Corner,1,1,0
+Corner short / outside box,3753982,2016-04-03,Southampton,1,11,28,Corner,2,2,0
+Corner short / outside box,3753982,2016-04-03,Southampton,2,64,2,Corner,3,5,0
+Corner short / outside box,3753982,2016-04-03,Southampton,2,90,16,Corner,4,6,0
+Corner short / outside box,3754152,2016-04-10,Sunderland,2,91,31,Corner,6,15,0
+Corner short / outside box,3754033,2016-05-07,Everton,1,36,22,Corner,3,7,1
+Corner short / outside box,3754033,2016-05-07,Everton,2,85,38,Corner,3,8,1
+Free kick cross into box,3754237,2015-08-08,Sunderland,1,10,16,Free kick,1,1,1
+Free kick cross into box,3754237,2015-08-08,Sunderland,1,16,36,Free kick,6,26,0
+Free kick cross into box,3754237,2015-08-08,Sunderland,1,47,13,Free kick,4,31,0
+Free kick cross into box,3754237,2015-08-08,Sunderland,2,75,23,Free kick,1,13,0
+Free kick cross into box,3754237,2015-08-08,Sunderland,2,85,22,Free kick,1,0,0
+Free kick cross into box,3754203,2015-08-15,West Ham United,1,35,42,Free kick,6,20,0
+Free kick cross into box,3753987,2015-08-22,Tottenham Hotspur,1,9,12,Free kick,3,13,0
+Free kick cross into box,3753987,2015-08-22,Tottenham Hotspur,1,10,18,Free kick,1,0,0
+Free kick cross into box,3753987,2015-08-22,Tottenham Hotspur,2,60,15,Free kick,3,20,0
+Free kick cross into box,3753987,2015-08-22,Tottenham Hotspur,2,61,46,Free kick,2,5,0
+Free kick cross into box,3753987,2015-08-22,Tottenham Hotspur,2,83,41,Free kick,3,14,0
+Free kick cross into box,3753987,2015-08-22,Tottenham Hotspur,2,88,57,Free kick,1,0,0
+Free kick cross into box,3754023,2015-08-29,AFC Bournemouth,2,74,52,Free kick,1,0,0
+Free kick cross into box,3754106,2015-09-13,Aston Villa,1,9,5,Free kick,1,2,1
+Free kick cross into box,3754106,2015-09-13,Aston Villa,2,80,4,Free kick,2,14,0
+Free kick cross into box,3754106,2015-09-13,Aston Villa,2,80,50,Free kick,1,0,0
+Free kick cross into box,3754106,2015-09-13,Aston Villa,2,85,42,Free kick,1,0,0
+Free kick cross into box,3754174,2015-09-26,Arsenal,1,37,43,Free kick,1,0,0
+Free kick cross into box,3754174,2015-09-26,Arsenal,1,43,14,Free kick,1,0,0
+Free kick cross into box,3754174,2015-09-26,Arsenal,2,74,14,Free kick,11,42,0
+Free kick cross into box,3754335,2015-10-03,Norwich City,2,53,15,Free kick,1,0,0
+Free kick cross into box,3754302,2015-10-17,Southampton,2,52,40,Free kick,1,3,1
+Free kick cross into box,3754302,2015-10-17,Southampton,2,55,30,Free kick,1,0,0
+Free kick cross into box,3754302,2015-10-17,Southampton,2,68,38,Free kick,7,22,0
+Free kick cross into box,3754302,2015-10-17,Southampton,2,75,23,Free kick,5,16,0
+Free kick cross into box,3754302,2015-10-17,Southampton,2,76,12,Free kick,1,0,0
+Free kick cross into box,3754263,2015-10-24,Crystal Palace,2,55,46,Free kick,6,17,1
+Free kick cross into box,3754263,2015-10-24,Crystal Palace,2,84,18,Free kick,2,0,0
+Free kick cross into box,3754156,2015-11-07,Watford,1,3,37,Free kick,1,3,1
+Free kick cross into box,3754156,2015-11-07,Watford,1,18,12,Free kick,1,0,0
+Free kick cross into box,3754156,2015-11-07,Watford,2,59,50,Free kick,3,10,0
+Free kick cross into box,3754211,2015-11-21,Newcastle United,1,16,28,Free kick,2,6,0
+Free kick cross into box,3754211,2015-11-21,Newcastle United,1,20,15,Free kick,1,0,0
+Free kick cross into box,3754186,2015-11-28,Manchester United,2,87,27,Free kick,2,6,0
+Free kick cross into box,3754085,2015-12-05,Swansea City,2,88,22,Free kick,1,2,1
+Free kick cross into box,3754013,2015-12-14,Chelsea,1,12,17,Free kick,1,0,0
+Free kick cross into box,3754013,2015-12-14,Chelsea,1,37,0,Free kick,5,12,0
+Free kick cross into box,3754343,2015-12-26,Liverpool,2,78,45,Free kick,1,0,0
+Free kick cross into box,3754045,2015-12-29,Manchester City,1,14,58,Free kick,1,1,1
+Free kick cross into box,3754045,2015-12-29,Manchester City,2,90,47,Free kick,4,19,0
+Free kick cross into box,3754065,2016-01-13,Tottenham Hotspur,1,41,58,Free kick,3,12,0
+Free kick cross into box,3754065,2016-01-13,Tottenham Hotspur,2,49,7,Free kick,4,13,0
+Free kick cross into box,3754250,2016-01-16,Aston Villa,1,12,14,Free kick,1,1,1
+Free kick cross into box,3754341,2016-01-23,Stoke City,1,20,35,Free kick,1,0,0
+Free kick cross into box,3754341,2016-01-23,Stoke City,1,40,28,Free kick,1,0,0
+Free kick cross into box,3754341,2016-01-23,Stoke City,2,51,27,Free kick,1,0,0
+Free kick cross into box,3754341,2016-01-23,Stoke City,2,92,43,Free kick,1,0,0
+Free kick cross into box,3754290,2016-02-06,Manchester City,1,2,24,Free kick,1,1,1
+Free kick cross into box,3754290,2016-02-06,Manchester City,2,58,32,Free kick,2,9,0
+Free kick cross into box,3754290,2016-02-06,Manchester City,2,69,25,Free kick,1,0,0
+Free kick cross into box,3754049,2016-02-27,Norwich City,1,31,28,Free kick,1,0,0
+Free kick cross into box,3754231,2016-03-01,West Bromwich Albion,1,29,28,Free kick,1,0,0
+Free kick cross into box,3754231,2016-03-01,West Bromwich Albion,2,86,55,Free kick,2,7,0
+Free kick cross into box,3754231,2016-03-01,West Bromwich Albion,2,88,38,Free kick,5,20,0
+Free kick cross into box,3754231,2016-03-01,West Bromwich Albion,2,90,42,Free kick,1,0,0
+Free kick cross into box,3754289,2016-03-05,Watford,2,70,59,Free kick,1,1,1
+Free kick cross into box,3754002,2016-03-14,Newcastle United,1,23,58,Free kick,3,8,1
+Free kick cross into box,3754002,2016-03-14,Newcastle United,2,47,5,Free kick,1,0,0
+Free kick cross into box,3754002,2016-03-14,Newcastle United,2,52,23,Free kick,3,16,1
+Free kick cross into box,3754002,2016-03-14,Newcastle United,2,64,37,Free kick,14,48,0
+Free kick cross into box,3753982,2016-04-03,Southampton,1,2,24,Free kick,2,9,0
+Free kick cross into box,3753982,2016-04-03,Southampton,2,46,14,Free kick,1,0,0
+Free kick cross into box,3753982,2016-04-03,Southampton,2,74,48,Free kick,3,11,1
+Free kick cross into box,3753982,2016-04-03,Southampton,2,91,37,Free kick,1,0,0
+Free kick cross into box,3754152,2016-04-10,Sunderland,1,5,47,Free kick,4,19,1
+Free kick cross into box,3754227,2016-04-17,West Ham United,1,9,19,Free kick,1,2,1
+Free kick cross into box,3754227,2016-04-17,West Ham United,1,36,52,Free kick,15,57,0
+Free kick cross into box,3754228,2016-04-24,Swansea City,1,29,15,Free kick,1,2,1
+Free kick cross into box,3754165,2016-05-01,Manchester United,1,9,14,Free kick,1,0,0
+Free kick cross into box,3754165,2016-05-01,Manchester United,1,16,9,Free kick,1,2,1
+Free kick cross into box,3754165,2016-05-01,Manchester United,2,63,56,Free kick,1,1,1
+Free kick cross into box,3754033,2016-05-07,Everton,1,29,59,Free kick,1,0,0
+Free kick cross into box,3754033,2016-05-07,Everton,1,39,55,Free kick,1,1,1
+Free kick cross into box,3754033,2016-05-07,Everton,2,48,56,Free kick,1,0,0
+Free kick cross into box,3754229,2016-05-15,Chelsea,2,47,56,Free kick,1,0,0
+Free kick direct shot,3754203,2015-08-15,West Ham United,2,71,7,Free kick,0,0,1
+Free kick direct shot,3753987,2015-08-22,Tottenham Hotspur,2,84,37,Free kick,5,26,1
+Free kick direct shot,3754302,2015-10-17,Southampton,2,64,39,Free kick,2,9,1
+Free kick direct shot,3754263,2015-10-24,Crystal Palace,1,9,15,Free kick,0,2,1
+Free kick direct shot,3754211,2015-11-21,Newcastle United,2,79,9,Free kick,0,0,1
+Free kick direct shot,3754250,2016-01-16,Aston Villa,1,14,34,Free kick,0,0,1
+Free kick direct shot,3754341,2016-01-23,Stoke City,2,81,47,Free kick,0,0,1
+Free kick direct shot,3754275,2016-02-02,Liverpool,1,25,40,Free kick,0,0,1
+Free kick direct shot,3754275,2016-02-02,Liverpool,1,30,29,Free kick,1,5,1
+Free kick direct shot,3754049,2016-02-27,Norwich City,1,46,22,Free kick,0,0,1
+Free kick direct shot,3754228,2016-04-24,Swansea City,2,63,54,Free kick,0,0,1
+Free kick direct shot,3754033,2016-05-07,Everton,1,44,10,Free kick,0,0,1
+Free kick direct shot,3754033,2016-05-07,Everton,2,52,38,Free kick,0,0,1
+Free kick played short / wide,3754237,2015-08-08,Sunderland,1,8,49,Free kick,1,3,1
+Free kick played short / wide,3754023,2015-08-29,AFC Bournemouth,1,1,21,Free kick,1,0,0
+Free kick played short / wide,3754106,2015-09-13,Aston Villa,2,79,5,Free kick,2,6,1
+Free kick played short / wide,3754106,2015-09-13,Aston Villa,2,92,34,Free kick,2,9,0
+Free kick played short / wide,3754156,2015-11-07,Watford,1,38,56,Free kick,2,4,0
+Free kick played short / wide,3754156,2015-11-07,Watford,2,93,9,Free kick,3,8,0
+Free kick played short / wide,3754156,2015-11-07,Watford,2,93,47,Free kick,3,5,0
+Free kick played short / wide,3754085,2015-12-05,Swansea City,1,36,29,Free kick,3,3,0
+Free kick played short / wide,3754343,2015-12-26,Liverpool,1,4,6,Free kick,2,7,0
+Free kick played short / wide,3754045,2015-12-29,Manchester City,1,2,46,Free kick,1,0,0
+Free kick played short / wide,3754045,2015-12-29,Manchester City,2,76,21,Free kick,1,0,1
+Free kick played short / wide,3754058,2016-01-02,AFC Bournemouth,2,88,13,Free kick,2,5,1
+Free kick played short / wide,3754341,2016-01-23,Stoke City,2,89,25,Free kick,3,13,0
+Free kick played short / wide,3754261,2016-02-14,Arsenal,1,47,31,Free kick,2,6,0
+Free kick played short / wide,3754049,2016-02-27,Norwich City,2,48,43,Free kick,2,1,0
+Free kick played short / wide,3754049,2016-02-27,Norwich City,2,57,17,Free kick,1,2,1
+Free kick played short / wide,3754289,2016-03-05,Watford,2,58,13,Free kick,7,15,1
+Free kick played short / wide,3753982,2016-04-03,Southampton,2,89,53,Free kick,1,0,0
+Free kick played short / wide,3754229,2016-05-15,Chelsea,1,14,46,Free kick,3,5,0
+Free kick played short / wide,3754229,2016-05-15,Chelsea,2,93,2,Free kick,1,0,0

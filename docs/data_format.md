@@ -15,9 +15,12 @@ The report pipeline reads StatsBomb-style events. To use data from any other pro
 | x, y | yes for pass/carry/shot/dribble | position; with the default `--coords 100`, x from 0 (own goal) to 100 (opponent goal) and y from 0 to 100 |
 | end_x, end_y | passes and carries | end position, same scale |
 | possession_id | strongly recommended | possession identifier; if missing it is reconstructed (see below) |
-| restart | strongly recommended | on the first event of a restart: `goal_kick`, `throw_in`, `corner`, `free_kick`, `kick_off`, `penalty` |
+| restart | strongly recommended | on the first event of a restart: `goal_kick`, `throw_in`, `corner`, `free_kick`, `kick_off`, `penalty`, `keeper` (goalkeeper puts the ball back in play after holding it) |
 | pass_length | optional | length in metres on a 120 x 80 pitch; computed from coordinates if missing |
 | shot_goal | optional | 1 if the shot was a goal |
+| player | optional | player performing the event (enables takers and receivers in the sheets) |
+| recipient | optional | for passes: player who received it |
+| xg | optional | for shots: expected goals from the provider |
 
 Convention: the team performing an event always attacks from left to right. If the provider uses real pitch coordinates (e.g. 105 x 68 m) rescale them to 0-100 first. With 120 x 80 coordinates use `--coords 120x80`.
 
@@ -28,7 +31,10 @@ The report analyses open-play possessions with at least 3 passes. Without `resta
 
 Measured on one team (Barcelona 2015/16, 38 matches, StatsBomb data exported to this format; `tests/test_adapter_roundtrip.py`):
 - with `possession_id` and `restart`: 1867 sequences reproduced out of 1867 (1 extra); features identical;
-- with reconstructed possessions: 2170 sequences instead of 1867, 1507 of the 1867 (81%) reproduced identically, passes per sequence 8.3 instead of 9.3, shot rate 13.6% instead of 15.2%.
+- with reconstructed possessions: 2182 sequences instead of 1867, 1534 of the 1867 (82%) reproduced identically, passes per sequence 8.3 instead of 9.3, shot rate 13.6% instead of 15.2%.
+- restart and set-piece sheets: with `possession_id` 1083 of 1085 restart possessions and 368 of 368 set pieces reproduced (Bayer Leverkusen 2023/24: 863 of 863 and 310 of 310, including player names and xG); with reconstructed possessions all are found but about 6% of restart possessions and 3% of set pieces differ in at least one outcome.
+
+The few extra sequences with `possession_id` (1 for Barcelona, 4 for Leverkusen) are possessions that StatsBomb labels with the play pattern 'Other', which the generic format cannot express.
 
 So with reconstructed possessions the numbers are usable for a rough picture but are biased and not comparable with numbers from provider-supplied possessions. Prefer the provider's possession identifiers.
 

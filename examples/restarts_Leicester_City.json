@@ -105,6 +105,28 @@
      ]
     }
    },
+   "receivers": {
+    "Jamie Vardy": {
+     "n": 62,
+     "share": 0.1884498480243161
+    },
+    "José Leonardo Ulloa": {
+     "n": 54,
+     "share": 0.1641337386018237
+    },
+    "Shinji Okazaki": {
+     "n": 47,
+     "share": 0.14285714285714285
+    },
+    "Riyad Mahrez": {
+     "n": 20,
+     "share": 0.060790273556231005
+    },
+    "Marc Albrighton": {
+     "n": 13,
+     "share": 0.03951367781155015
+    }
+   },
    "by_length": {
     "short": {
      "n": 5,
@@ -221,6 +243,28 @@
       0.0,
       0.2727272727272727
      ]
+    }
+   },
+   "receivers": {
+    "Riyad Mahrez": {
+     "n": 16,
+     "share": 0.13333333333333333
+    },
+    "Jamie Vardy": {
+     "n": 14,
+     "share": 0.11666666666666667
+    },
+    "José Leonardo Ulloa": {
+     "n": 14,
+     "share": 0.11666666666666667
+    },
+    "Marc Albrighton": {
+     "n": 8,
+     "share": 0.06666666666666667
+    },
+    "Danny Drinkwater": {
+     "n": 7,
+     "share": 0.058333333333333334
     }
    },
    "by_length": {
@@ -341,6 +385,28 @@
      ]
     }
    },
+   "receivers": {
+    "Shinji Okazaki": {
+     "n": 64,
+     "share": 0.18233618233618235
+    },
+    "Jamie Vardy": {
+     "n": 62,
+     "share": 0.17663817663817663
+    },
+    "José Leonardo Ulloa": {
+     "n": 54,
+     "share": 0.15384615384615385
+    },
+    "Danny Drinkwater": {
+     "n": 29,
+     "share": 0.08262108262108261
+    },
+    "N''Golo Kanté": {
+     "n": 19,
+     "share": 0.05413105413105413
+    }
+   },
    "by_length": {
     "short": {
      "n": 260,
@@ -457,6 +523,28 @@
       0.15384615384615385,
       0.21428571428571427
      ]
+    }
+   },
+   "receivers": {
+    "Shinji Okazaki": {
+     "n": 72,
+     "share": 0.12857142857142856
+    },
+    "Jamie Vardy": {
+     "n": 70,
+     "share": 0.125
+    },
+    "José Leonardo Ulloa": {
+     "n": 69,
+     "share": 0.12321428571428572
+    },
+    "Danny Drinkwater": {
+     "n": 68,
+     "share": 0.12142857142857143
+    },
+    "Riyad Mahrez": {
+     "n": 52,
+     "share": 0.09285714285714286
     }
    },
    "by_length": {
