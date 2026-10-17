@@ -9,6 +9,28 @@ Take event data from a football team, find recurring possession patterns,
 measure their **stability** and **predictability** with uncertainty intervals,
 and test whether **exploitability** exists on corner kicks.
 
+## Start the app (Windows, PowerShell)
+One command rebuilds, tests and starts the local app, then opens the browser at **http://127.0.0.1:8765**:
+```powershell
+cd C:\Users\ecole\Downloads\football-opposition-report
+powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1
+```
+It stops an app already running on port 8765, installs what is missing, rebuilds the frontend, clears the app cache, runs `tests/test_app_api.py` (expect `ALL OK` twice) and starts the server. Stop it with **Ctrl+C**.
+
+Options:
+```powershell
+powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -Port 8770                 # another port: open http://127.0.0.1:8770
+powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -DataDir D:\other_data     # another data folder (default C:\Users\ecole\sbdata)
+powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -SaltaTest                 # skip the tests, start faster
+```
+Without the script (after the first build):
+```powershell
+python -X utf8 app\run.py --data-dir C:\Users\ecole\sbdata            # port 8765
+python -X utf8 app\run.py --data-dir C:\Users\ecole\sbdata --port 8770
+python -X utf8 app\run.py                                             # the 4 example teams in examples\ (no replays)
+```
+First time on a new PC: `pip install -r requirements.txt`, then `cd app\frontend; npm install; npm run build`. If the page looks old, press Ctrl+F5. The app runs only on this PC (127.0.0.1); nothing is published. Features: `app/README.md`.
+
 ## Repository structure
 ```
 src/week1/       download, goal kicks, corners (L3)
@@ -77,7 +99,7 @@ python src/oppreport.py --statsbomb matches/9_281.json --data-dir <data> --team 
 Output: `prep_<Team>.html` (one-page match preparation with the main facts, ranked against the other teams, and links to the sheets), `report_<Team>.html`, `restarts_<Team>.html` (one page on how the team plays out from goal kicks, keeper distributions and throw-ins, with `restart_clips_<Team>.csv` and the receivers of the first pass), `setpieces_<Team>.html` (corners and attacking free kicks: delivery zones, takers, receivers, shots, with `setpiece_clips_<Team>.csv`), `transitions_<Team>.html` (where the ball is lost and won back, counter-press, shots in the 10 s after; with `transition_clips_<Team>.csv`; add `--xml` for one XML timeline per match to import into a video tool, not yet tested in Sportscode or Nacsport), `clips_<Team>.csv` (every sequence with family, minute and, with `--video-offsets`, video time), `review_<Team>.csv/.html` (sheet for an analyst to check the families). Input format: `docs/data_format.md`; how to read the report: `docs/analyst_guide.md`. The adapter was tested by exporting StatsBomb data to the generic format: with possession identifiers the sequences are reproduced (1867 of 1867 on Barcelona 2015/16); with reconstructed possessions the numbers are biased (passes per sequence 8.3 instead of 9.3). Not yet tried on real club data.
 
 ## Reproducibility check
-`python -X utf8 tests/reproduce_results.py <data_dir> <new_work_dir>` reruns the held-out validation, the simple-rule comparison, the null baselines, the sample-size study and the 10-team summary with the committed code and seeds in a separate folder, and compares every file with `results/` (nothing in `results/` is overwritten; this checks the numbers, it is not a second validation). Run on 17 October 2026: **41 of 41 files identical**.
+`python -X utf8 tests/reproduce_results.py <data_dir> <new_work_dir>` reruns the held-out validation, the simple-rule comparison, the null baselines, the sample-size study and the 10-team summary with the committed code and seeds in a separate folder, and compares every file with `results/` (nothing in `results/` is overwritten; this checks the numbers, it is not a second validation). Run on 17 October 2026: **41 of 41 files identical**. With `--only-new --tournaments <folder with Euro 2020/2024 and World Cup 2022 data>` it reruns only the exploratory method comparison and sensitivity (`exploratory_robustness_<Team>.json`) and the pooled corners (`results_pooled_corners.json`): **11 of 11 identical** (17 October 2026).
 `python -X utf8 tests/test_adapter_roundtrip.py <matches.json> "<Team>" <data_dir>` checks the generic CSV adapter (sequences, restart sheet and set-piece sheet; see `docs/data_format.md`).
 
 ## Results summary (weeks 1-3: exploration data only; held-out and replication results further down)

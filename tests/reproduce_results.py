@@ -1,13 +1,15 @@
 """Reproducibility check: reruns the result scripts (held-out validation, simple-rule comparison, null baselines, sample size, 10-team summary) with the same code
 and seeds in a SEPARATE work folder and compares every output with results/ in the repo. Nothing in results/ is written or replaced, and no decision depends on the
 rerun: it only checks that the committed numbers come out of the committed code (it is not a second validation).
-Usage:  python -X utf8 tests/reproduce_results.py <data_dir with matches/ and ev/> <work_dir> [--jobs 6] [--only "Team"]
+Usage:  python -X utf8 tests/reproduce_results.py <data_dir with matches/ and ev/> <work_dir> [--jobs 6] [--only "Team"] [--tournaments <dir>] [--only-new]
+Since 17 Oct 2026 it also reruns exploratory_robustness.py (methods and sensitivity) and, with --tournaments (folder with the Euro 2020/2024 and World Cup 2022 data),
+src/week1/pooled_corners.py. --only-new reruns only these two.
 Takes about 15-20 minutes for 10 teams on a laptop. Exit code 0 if every file is identical."""
 import sys, os, json, math, shutil, subprocess, argparse, concurrent.futures as cf
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")); RES = os.path.join(REPO, "results")
 TEAMS = [("9_281", "Bayer Leverkusen"), ("2_27", "Leicester City"), ("11_27", "Barcelona"), ("2_27", "Arsenal"), ("11_27", "Atlético Madrid"), ("11_27", "Real Madrid"),
          ("12_27", "Napoli"), ("12_27", "Sassuolo"), ("7_27", "Gazélec Ajaccio"), ("7_27", "Bordeaux")]
-ap = argparse.ArgumentParser(); ap.add_argument("data_dir"); ap.add_argument("work_dir"); ap.add_argument("--jobs", type=int, default=6); ap.add_argument("--only"); a = ap.parse_args()
+ap = argparse.ArgumentParser(); ap.add_argument("data_dir"); ap.add_argument("work_dir"); ap.add_argument("--jobs", type=int, default=6); ap.add_argument("--only"); ap.add_argument("--tournaments"); ap.add_argument("--only-new", action="store_true"); a = ap.parse_args()
 WD = os.path.abspath(a.work_dir)
 if os.path.abspath(WD) in (os.path.abspath(a.data_dir), RES): sys.exit("work_dir must be a new, separate folder")
 os.makedirs(WD, exist_ok=True); shutil.copytree(os.path.join(a.data_dir, "matches"), os.path.join(WD, "matches"), dirs_exist_ok=True)
@@ -15,7 +17,9 @@ os.makedirs(WD, exist_ok=True); shutil.copytree(os.path.join(a.data_dir, "matche
 def scripts(team):
     fn = team.replace(" ", "_"); h = json.load(open(f"{RES}/holdout_{fn}.json", encoding="utf-8"))
     hv = "validate_replication.py" if "H3_pass" in h["costruzione"] else "validate_holdout.py"   # the first two teams were validated before H3 existed
-    return [(f"week4/{hv}", ["--confirm"]), ("week4/compare_simple_rules.py", ["--confirm"]), ("week3/stability_null_baseline.py", []), ("week4/sample_size.py", [])]
+    new = [("week4/exploratory_robustness.py", [])]
+    if a.only_new: return new
+    return [(f"week4/{hv}", ["--confirm"]), ("week4/compare_simple_rules.py", ["--confirm"]), ("week3/stability_null_baseline.py", []), ("week4/sample_size.py", [])] + new
 
 def job(arg):
     m, team, (sc, fl) = arg   # data_dir is passed as the data folder; outputs go to the current folder WD (scripts write to their data folder argument)
@@ -31,7 +35,11 @@ if not os.path.exists(ev):
 jobs = [(m, t, s) for m, t in TEAMS if not a.only or t == a.only for s in scripts(t)]
 with cf.ThreadPoolExecutor(a.jobs) as ex:
     for line in ex.map(job, jobs): print(line, flush=True)
-if not a.only: subprocess.run([sys.executable, "-X", "utf8", os.path.join(REPO, "src", "week4", "summarize_replication10.py"), os.path.join(REPO, "docs", "replication10_selection.json"), WD, os.path.join(WD, "replication10_summary.json")], capture_output=True)
+if a.tournaments:
+    r = subprocess.run([sys.executable, "-X", "utf8", os.path.join(REPO, "src", "week1", "pooled_corners.py"), os.path.abspath(a.tournaments)], capture_output=True, text=True, encoding="utf-8")
+    print(f"pooled corners exit {r.returncode}"); src = os.path.join(os.path.abspath(a.tournaments), "results_pooled_corners.json")
+    if os.path.exists(src): shutil.copy(src, os.path.join(WD, "results_pooled_corners.json"))
+if not a.only and not a.only_new: subprocess.run([sys.executable, "-X", "utf8", os.path.join(REPO, "src", "week4", "summarize_replication10.py"), os.path.join(REPO, "docs", "replication10_selection.json"), WD, os.path.join(WD, "replication10_summary.json")], capture_output=True)
 
 def diffs(x, y, p=""):
     if isinstance(x, dict) and isinstance(y, dict):
