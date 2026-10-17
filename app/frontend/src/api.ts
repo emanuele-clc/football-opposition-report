@@ -34,13 +34,20 @@ export interface Transitions {
   recoveries: { n: number; per_match: number; shot10: number; shot10_ci: CI; by_third: Record<string, Third> };
   last5: { losses_per_match: number; regain5: number; recoveries_final_third_per_match: number };
 }
+export interface Defending {
+  team: string; matches: number;
+  ppda: { value: number; ci: CI; last5: number; opp_passes: number; actions: number };
+  pressures: { per_match: number; ci: CI; last5: number; by_third: Record<string, { share: number; per_match: number }>; counterpress_share: number; counterpress_ci: CI; grid_per_match: number[][] };
+  height: { mean_x: number; ci: CI; median_x: number | null; last5: number; actions_per_match: number };
+  conceded: { shots_per_match: number; shots_ci: CI; xg_per_match: number; xg_ci: CI; last5_shots: number; last5_xg: number };
+}
 export interface Rank {
-  id: string; group: string; label: string; sheet: string; unit: "pct" | "num"; caution: string | null; value: number; ci: CI | null;
+  id: string; group: string; label: string; sheet: string; unit: "pct" | "num" | "num2"; caution: string | null; value: number; ci: CI | null;
   rank: number; of: number; teams: { key: string; team: string; value: number }[];
 }
 export interface TeamSummary { key: string; team: string; matches: number; period: string; sequences: number; sheets: string[]; clips: string[] }
 export interface TeamData extends TeamSummary {
-  report: Report; restarts: Restarts | null; setpieces: SetPieces | null; transitions: Transitions | null; ranks: Rank[]; references: string[];
+  report: Report; restarts: Restarts | null; setpieces: SetPieces | null; transitions: Transitions | null; defending: Defending | null; ranks: Rank[]; references: string[];
 }
 export interface Info { data_dir: string; is_examples: boolean; can_generate: boolean; has_events: boolean }
 export interface ClipRow { family: string; match: number; date: string; opponent: string; half: number; minute: number; second: number; start_type: string; passes: number; duration_s: number; ended_in_shot: number; video_time?: string }

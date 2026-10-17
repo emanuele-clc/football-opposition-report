@@ -34,6 +34,7 @@ Opens http://127.0.0.1:8765. Ctrl+C stops it.
 - **Overview → What changed in the last 5 matches**: restart figures where the last 5 matches fall outside the season interval (a hint to check on video).
 - **Compare → Style map**: every team in the folder placed by its numbers (first two principal components of the standardised facts), with the closest teams. Descriptive; mixed leagues and seasons.
 - **Clips → More like this**: the 8 sequences of the season closest to the selected one (start, end, path, passes, duration), click to replay.
+- **Defending**: how the team defends without the ball (StatsBomb events only): pressures per match on a pitch grid with the mean height of the defensive actions, PPDA, shots and xG conceded, last 5 matches, ranks against the other teams. From `src/report/defending.py`.
 - **Add team** (only with a data folder that has `matches/` and `ev/`): runs `src/oppreport.py` for a chosen team and shows its log.
 - **Theme and print**: dark by default, light with the sun button (or `?theme=light` in the address); printing uses a white page.
 

@@ -494,7 +494,9 @@ footer { padding: 22px var(--gutter) 30px; border-top: 1px solid var(--board-lin
 .sticker .table-wrap { background: none; }
 @media (max-width: 1680px) {
   .bar-actions .icon-btn span { display: none; }
-  .sections a { padding: 8px 12px; }
+  .sections a { padding: 8px 10px; font-size: 13.5px; }
+  .brand { font-size: 23px; }
+  .pill-select { max-width: 250px; }
 }
 @media (max-width: 1120px) {
   .sections { -webkit-mask-image: linear-gradient(to right, #000 85%, transparent); mask-image: linear-gradient(to right, #000 85%, transparent); padding-right: 40px; }

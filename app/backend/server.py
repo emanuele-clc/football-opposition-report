@@ -14,7 +14,7 @@ from pydantic import BaseModel
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DATA = os.path.abspath(os.environ.get("OPPREPORT_DATA") or os.path.join(ROOT, "examples"))
 DIST = os.path.join(ROOT, "app", "frontend", "dist")
-SHEETS = ("report", "restarts", "setpieces", "transitions")
+SHEETS = ("report", "restarts", "setpieces", "transitions", "defending")
 CLIPS = {"sequences": "clips", "restarts": "restart_clips", "setpieces": "setpiece_clips", "transitions": "transition_clips"}
 INT_COLS = {"match", "half", "minute", "second", "passes", "duration_s", "ended_in_shot"}
 
@@ -67,6 +67,12 @@ METRICS = [
      "The counter-press share varied little between the teams we tested (17-19%): it describes, it does not separate styles."),
     ("high_rec_pm", "Transitions", "Recoveries per match in the final third", "transitions", lambda d: d["recoveries"]["by_third"]["final third"]["per_match"],
      lambda d: d["recoveries"]["by_third"]["final third"]["per_match_ci"], "num", None),
+    ("ppda", "Defending", "PPDA: opponent passes per defensive action", "defending", lambda d: d["ppda"]["value"], lambda d: d["ppda"]["ci"], "num",
+     "PPDA: lower means more intense pressing; it also depends on how much the opponent has the ball, so read it with the pressures in the final third."),
+    ("press_pm", "Defending", "Pressures per match", "defending", lambda d: d["pressures"]["per_match"], lambda d: d["pressures"]["ci"], "num", None),
+    ("press_final", "Defending", "Share of pressures in the final third", "defending", lambda d: d["pressures"]["by_third"]["final third"]["share"], None, "pct", None),
+    ("def_height", "Defending", "Height of defensive actions (mean x, 0-120)", "defending", lambda d: d["height"]["mean_x"], lambda d: d["height"]["ci"], "num", None),
+    ("xga_pm", "Defending", "xG conceded per match", "defending", lambda d: d["conceded"]["xg_per_match"], lambda d: d["conceded"]["xg_ci"], "num2", None),
 ]
 
 
@@ -224,7 +230,7 @@ def export_xml(key: str, kind: str, family: str = "", opponent: str = "", shot: 
 @app.get("/sheets/{name}")
 def sheet(name: str):
     """The printable HTML sheets written by the pipeline (prep_, report_, restarts_, ...)."""
-    if not re.fullmatch(r"(prep|report|restarts|setpieces|transitions|review)_[^/\\]+\.html", name): raise HTTPException(404, "Not a report sheet.")
+    if not re.fullmatch(r"(prep|report|restarts|setpieces|transitions|defending|review)_[^/\\]+\.html", name): raise HTTPException(404, "Not a report sheet.")
     p = os.path.join(DATA, name)
     if not os.path.exists(p): raise HTTPException(404, f"{name} not found in {DATA}.")
     return HTMLResponse(open(p, encoding="utf-8").read())

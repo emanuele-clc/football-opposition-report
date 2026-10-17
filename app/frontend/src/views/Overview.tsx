@@ -3,7 +3,7 @@ import type { ClipRef, Family, Rank, TeamData } from "../api";
 import { FamilyLanes, FamilySticker, Note, RankRow, Replay, rib, ShareStrip, third } from "../charts";
 import { fmt, n1, ordinal, pc } from "../format";
 
-const TAB_OF: Record<string, string> = { report: "build-up", restarts: "restarts", setpieces: "setpieces", transitions: "transitions" };
+const TAB_OF: Record<string, string> = { report: "build-up", restarts: "restarts", setpieces: "setpieces", transitions: "transitions", defending: "defending" };
 
 /* Five facts where this team sits furthest from the middle of the other teams: the most extreme fact of each section first, then the next most extreme. */
 function keyPoints(ranks: Rank[]) {
@@ -27,6 +27,11 @@ const WORDS: Record<string, [string, string]> = {
   losses_pm: ["Most losses per match", "Fewest losses per match"],
   regain5: ["Most balls regained within 5 s of a loss", "Fewest balls regained within 5 s of a loss"],
   high_rec_pm: ["Most recoveries in the final third", "Fewest recoveries in the final third"],
+  ppda: ["Highest PPDA (least intense pressing)", "Lowest PPDA (most intense pressing)"],
+  press_pm: ["Most pressures per match", "Fewest pressures per match"],
+  press_final: ["Most pressures in the final third", "Fewest pressures in the final third"],
+  def_height: ["Highest defensive actions", "Deepest defensive actions"],
+  xga_pm: ["Most xG conceded per match", "Least xG conceded per match"],
 };
 const phrase = (r: Rank) => {
   const w = WORDS[r.id];
@@ -209,7 +214,7 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
           </div>
         </details>
         <p className="small no-print" style={{ marginTop: 18 }}>
-          Printable sheets from the pipeline: {[["prep", "one-page preparation"], ["report", "families and style"], ["restarts", "restarts"], ["setpieces", "set pieces"], ["transitions", "transitions"]].map(([k, l], i) => (
+          Printable sheets from the pipeline: {[["prep", "one-page preparation"], ["report", "families and style"], ["restarts", "restarts"], ["setpieces", "set pieces"], ["transitions", "transitions"], ["defending", "defending"]].map(([k, l], i) => (
             <span key={k}>{i ? " · " : ""}<a href={`/sheets/${k}_${d.key}.html`} target="_blank" rel="noreferrer">{l}</a></span>
           ))}
         </p>
