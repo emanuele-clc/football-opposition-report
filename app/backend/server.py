@@ -10,6 +10,8 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse, HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import gameplan as GP
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DATA = os.path.abspath(os.environ.get("OPPREPORT_DATA") or os.path.join(ROOT, "examples"))
@@ -448,6 +450,28 @@ def stylemap():
     pts = [{"key": k, "team": ts[k]["team"], "period": ts[k]["period"], "x": round(float(pc[n, 0]), 3), "y": round(float(pc[n, 1]), 3),
             "nearest": [{"team": ts[keys[m]]["team"], "distance": round(float(D[n, m]), 2)} for m in np.argsort(D[n])[1:4]]} for n, k in enumerate(keys)]
     return {"metrics": [lab[i] for i in ids], "axes": axes, "teams": pts}
+
+
+# Game plan: formations, style in a few lines and rule-based hints (app/backend/gameplan.py). Hints, not advice.
+class AskIn(BaseModel):
+    question: str
+    mine: str | None = None
+
+
+@app.get("/api/teams/{key}/gameplan")
+def gameplan(key: str, mine: str | None = None):
+    need(key)
+    if mine: need(mine)
+    return GP.build(key, mine if mine != key else None, teams, ranks, load)
+
+
+@app.post("/api/teams/{key}/gameplan/ask")
+def gameplan_ask(key: str, body: AskIn):
+    if not os.environ.get("ANTHROPIC_API_KEY"): raise HTTPException(501, "Set ANTHROPIC_API_KEY before starting the app to use the AI assistant.")
+    if not body.question.strip() or len(body.question) > 1000: raise HTTPException(400, "Write a question (up to 1000 characters).")
+    plan = gameplan(key, body.mine)
+    try: return {"answer": GP.ask(plan, body.question.strip())}
+    except Exception as e: raise HTTPException(502, f"The AI request failed: {e}")
 
 
 # Analyst review inside the app: the same sheet and five questions as review_<Team>.csv/.html (src/report/make_report.py).

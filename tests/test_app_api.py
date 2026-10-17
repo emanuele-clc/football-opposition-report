@@ -47,6 +47,13 @@ for t in teams:
         filled = list(csv.DictReader(open(os.path.join(data, f"review_{k}_filled.csv"), encoding="utf-8", newline="")))
         check(res.status_code == 200 and filled[0]["coherent_with_family"] == "yes" and len(filled) == n, f"{t['team']}: review saved to review_{k}_filled.csv")
         check(open(os.path.join(data, f"review_{k}.csv"), encoding="utf-8").read() == before, f"{t['team']}: original review sheet unchanged")
+    gp = c.get(f"/api/teams/{k}/gameplan").json()
+    check(all(e["value"] == r[e["id"]]["value"] and e["rank"] == r[e["id"]]["rank"] for h in gp["hints"] for e in h["evidence"]), f"{t['team']}: game plan hints show the same values and ranks as the ranking")
+    other = next((x["key"] for x in teams if x["key"] != k), None)
+    if other:
+        gp2 = c.get(f"/api/teams/{k}/gameplan", params={"mine": other}).json()
+        check(gp2["mine"] == teams[[x["key"] for x in teams].index(other)]["team"] and all(h["side"] == "opp" or len(h["evidence"]) > 0 for h in gp2["hints"]), f"{t['team']}: game plan with your team")
+check(c.post(f"/api/teams/{teams[0]['key']}/gameplan/ask", json={"question": "test"}).status_code in ((501,) if not os.environ.get("ANTHROPIC_API_KEY") else (200, 502)), "AI assistant off without an API key")
 sm = c.get("/api/stylemap").json()
 check(len(sm["teams"]) == len(teams) and all(len(t["nearest"]) == min(3, len(teams) - 1) for t in sm["teams"]), f"style map places {len(teams)} teams with their nearest teams")
 check(c.get("/api/teams/Nobody").status_code == 404, "unknown team gives 404")
