@@ -1,16 +1,16 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import { api, type MatchupMetric, type TeamData, type WithoutData } from "../api";
-import { Note, rib } from "../charts";
+import { Note } from "../charts";
 import { fmt } from "../format";
 
 /* What happened in past matches against different opponents. Descriptive: never a recommendation. */
 const SPLITS: [string, string][] = [["opp_press", "Opponent pressing"], ["back_line", "Opponent back line"], ["venue", "Home or away"], ["without", "Without a player"]];
-const VERDICT: Record<string, { tag: string; rib: number }> = { clear: { tag: "clear difference", rib: 0 }, uncertain: { tag: "uncertain", rib: 1 }, "small group": { tag: "group too small", rib: 3 } };
+const VERDICT: Record<string, { tag: string; cls: string }> = { clear: { tag: "clear difference", cls: "chip strong" }, uncertain: { tag: "uncertain", cls: "chip quiet" }, "small group": { tag: "group too small", cls: "chip quiet" } };
 
 function DiffBar({ m }: { m: MatchupMetric }) {
   const span = Math.max(Math.abs(m.ci[0]), Math.abs(m.ci[1]), Math.abs(m.diff), 1e-6) * 1.15;
   const X = (v: number) => 150 + (v / span) * 140;
-  const col = m.verdict === "clear" ? "var(--yellow)" : "var(--on-board-3)";
+  const col = m.verdict === "clear" ? "var(--sticker-ink)" : "var(--on-board-3)";
   return (
     <svg viewBox="0 0 300 26" className="ivl" role="img" aria-label={`${m.label}: difference ${fmt(m.diff, m.unit as "num")}, 95% ${fmt(m.ci[0], m.unit as "num")} to ${fmt(m.ci[1], m.unit as "num")}`}>
       <line x1="10" x2="290" y1="13" y2="13" stroke="var(--board-line)" strokeWidth="2" />
@@ -52,7 +52,7 @@ function WithoutPlayer({ d }: { d: TeamData }) {
                   <tr key={x.id}>
                     <td>{x.label}</td><td className="num">{x.a != null ? fmt(x.a, unit(x.unit)) : "–"}</td><td className="num">{x.b != null ? fmt(x.b, unit(x.unit)) : "–"}</td>
                     <td>{x.diff != null && x.ci ? <DiffBar m={{ ...x, diff: x.diff, ci: x.ci, a: x.a ?? 0, b: x.b ?? 0, direction: "", linked: false } as MatchupMetric} /> : null}</td>
-                    <td className="l"><span className="chip" style={rib(VERDICT[x.verdict].rib)}>{VERDICT[x.verdict].tag}</span></td>
+                    <td className="l"><span className={VERDICT[x.verdict].cls}>{VERDICT[x.verdict].tag}</span></td>
                   </tr>))}</tbody>
               </table>
             </div>
@@ -101,7 +101,7 @@ export default function Matchups({ d }: { d: TeamData }) {
       <div className="layout-split layout-matchup" style={{ marginTop: 24 }}>
         <section className="sticker pad" aria-labelledby="mu-h">
           <h3 id="mu-h">{ga} ({S.n_a} matches) vs {gb} ({S.n_b})</h3>
-          <p className="s-muted" style={{ fontSize: 12.5, margin: "4px 0 10px" }}>Rule: {S.rule}. Bar = difference ({ga} minus {gb}) with its 95% interval; yellow = clear, grey = uncertain.</p>
+          <p className="s-muted" style={{ fontSize: 12.5, margin: "4px 0 10px" }}>Rule: {S.rule}. Bar = difference ({ga} minus {gb}) with its 95% interval; dark = clear, grey = uncertain.</p>
           <div className="table-wrap">
             <table>
               <thead><tr><th>Per match</th><th>{ga}</th><th>{gb}</th><th style={{ minWidth: 170 }}>Difference</th><th className="l">Verdict</th></tr></thead>
@@ -111,7 +111,7 @@ export default function Matchups({ d }: { d: TeamData }) {
                     <td>{m.label}{m.linked && <small style={{ display: "block", color: "var(--sticker-ink-2)" }}>partly by construction</small>}</td>
                     <td className="num">{fmt(m.a, unit(m))}</td><td className="num">{fmt(m.b, unit(m))}</td>
                     <td><DiffBar m={m} /></td>
-                    <td className="l"><span className="chip" style={rib(VERDICT[m.verdict].rib)}>{VERDICT[m.verdict].tag}</span></td>
+                    <td className="l"><span className={VERDICT[m.verdict].cls}>{VERDICT[m.verdict].tag}</span></td>
                   </tr>
                 ))}
               </tbody>
@@ -146,7 +146,7 @@ export default function Matchups({ d }: { d: TeamData }) {
                 <tr key={r.match}>
                   <td className="l">{r.date}</td><td className="l">{r.opponent}</td><td className="l">{r.venue}</td><td><b>{r.score}</b></td>
                   <td>{r.opp_formation || "–"}</td><td>{r.opp_ppda.toFixed(1)}</td>
-                  <td className="l"><span className="chip" style={{ ...rib(groupOf(r) === ga ? 0 : 1) } as CSSProperties}>{groupOf(r)}</span></td>
+                  <td className="l"><span className={groupOf(r) === ga ? "chip strong" : "chip quiet"}>{groupOf(r)}</span></td>
                   <td>{r.xg_for.toFixed(2)}</td><td>{r.xg_against.toFixed(2)}</td><td>{r.lost_own_half}</td>
                 </tr>
               ))}

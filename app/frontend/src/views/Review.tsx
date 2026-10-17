@@ -67,7 +67,7 @@ export default function Review({ d, events }: { d: TeamData; events: boolean }) 
       </div>
       {saved && <div style={{ marginBottom: 14 }}><Note kind="info" tag="Review">{saved}</Note></div>}
 
-      <div className="layout-split" style={{ gridTemplateColumns: "minmax(0, 1.15fr) minmax(0, 1fr)" }}>
+      <div className="layout-split layout-clips">
         <div className="table-wrap">
           <table className="clip-table">
             <thead><tr><th></th><th className="l">Family</th><th className="l">Match</th><th>Half, time</th><th>Passes</th><th>Shot</th><th className="l">Fits the family?</th></tr></thead>

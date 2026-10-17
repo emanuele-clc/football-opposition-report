@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { SetPieceKind, TeamData } from "../api";
-import { Bars, Interval, Note, Pitch, Replay, rib } from "../charts";
+import { Bars, Interval, Note, Pitch, Replay, plain } from "../charts";
 import { pc } from "../format";
 import { pickRecent, toRef, useClips } from "../useClips";
 
@@ -72,7 +72,7 @@ export default function SetPieces({ d, events, go }: { d: TeamData; events: bool
 
       <div className="layout-split" style={{ marginTop: 28 }}>
         <div className="stack">
-        <section className="sticker" style={rib(3)} aria-labelledby="sp-h">
+        <section className="sticker" style={plain} aria-labelledby="sp-h">
           <span className="no">{kind === "Corner" ? "Corners" : "Free kicks"}</span>
           <Replay teamKey={d.key} clips={clips} index={Math.min(idx, Math.max(clips.length - 1, 0))} onIndex={setIdx}
             fallback={kind === "Corner" ? <CornerZones k={k} /> : <div className="note info" style={{ margin: 14 }}><span className="tag">Replays</span>Replays need the raw event files.</div>} />

@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import type { ClipRef, TeamData } from "../api";
-import { AllPaths, FamilyLanes, PassNetwork, FamilySticker, Interval, Note, PlayIcon, Replay, RIBS, rib, ShareStrip } from "../charts";
+import { AllPaths, FamilyLanes, PassNetwork, Interval, Note, PlayIcon, Replay, RIBS, rib, ShareStrip } from "../charts";
 import { clock, pc } from "../format";
 import { famLine, familyClips } from "./Overview";
 
@@ -63,9 +63,20 @@ export default function Families({ d, phase, events, family, go }: { d: TeamData
           </div>
         </section>
         <div>
-          <div className="fam-row" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))" }}>
-            {P.families.map((f, i) => <FamilySticker key={phase + f.fam} f={f} i={i} total={P.n} selected={f.fam === fam.fam} onPick={() => choose(f.fam)} />)}
-          </div>
+          <section className="sticker pad fam-detail" style={rib(fi)} aria-label={`${fam.fam} in numbers`}>
+            <span className="no">{fam.fam}</span>
+            <div className="line" style={{ marginTop: 8 }}><span className="code">{fam.fam}</span><span className="s-muted">{fam.n} sequences</span><span className="share">{pc(fam.share)}</span></div>
+            <dl>
+              <dt>Share (95%)</dt><dd>{ci(fam.share_ci)}</dd>
+              <dt>Per match (p10–p90)</dt><dd>{ci(fam.per_match_p10_p90)}</dd>
+              <dt>Passes</dt><dd>{fam.passes.toFixed(1)}</dd>
+              <dt>Duration</dt><dd>{Math.round(fam.dur)} s</dd>
+              <dt>Long passes</dt><dd>{pc(fam.long)}</dd>
+              <dt>Start to end (x)</dt><dd>{Math.round(fam.x0)} → {Math.round(fam.x1)}</dd>
+              <dt>Shot rate (95%)</dt><dd>{pc(fam.shot)} ({ci(fam.shot_ci)})</dd>
+              <dt>Stability</dt><dd>{fam.jaccard.toFixed(2)} {fam.reliability}</dd>
+            </dl>
+          </section>
           <div style={{ marginTop: 18 }}>
             <Note kind={P.margin >= 0.1 ? "ok" : "caution"} tag={P.verdict}>
               Stability {P.jaccard_mean.toFixed(2)} against {P.null_shuffle.toFixed(2)} (shuffled features) and {P.null_gauss.toFixed(2)} (single Gaussian blob).

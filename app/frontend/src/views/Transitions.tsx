@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { TeamData, Third } from "../api";
-import { Note, Pitch, Replay, rib } from "../charts";
+import { Note, Pitch, Replay, plain } from "../charts";
 import { pc } from "../format";
 import { pickRecent, toRef, useClips } from "../useClips";
 
@@ -52,7 +52,7 @@ export default function Transitions({ d, events, go }: { d: TeamData; events: bo
       </div>
 
       <div className="layout-2">
-        <section className="sticker" style={rib(3)} aria-labelledby="lo-h">
+        <section className="sticker" style={plain} aria-labelledby="lo-h">
           <span className="no">Losses</span>
           <div className="pitch-wrap"><Thirds data={l.by_third} color="var(--coral)" label="Losses per match by third" lines={(t) => [`regained in 5 s: ${pc(t.regain5 ?? 0)}`, `shot against in 10 s: ${pc(t.conceded10 ?? 0)}`]} /></div>
           <div className="replay-cap"><div>
@@ -60,7 +60,7 @@ export default function Transitions({ d, events, go }: { d: TeamData; events: bo
             <p>Ball regained within 5 s after {pc(l.regain5)} ({ci(l.regain5_ci)}); opponent shoots within 10 s after {pc(l.conceded10)} ({ci(l.conceded10_ci)}). Last 5 matches: {T.last5.losses_per_match.toFixed(1)} per match, regained {pc(T.last5.regain5)}.</p>
           </div></div>
         </section>
-        <section className="sticker" style={rib(2)} aria-labelledby="re-h">
+        <section className="sticker" style={plain} aria-labelledby="re-h">
           <span className="no">Recoveries</span>
           <div className="pitch-wrap"><Thirds data={r.by_third} color="var(--lime)" label="Recoveries per match by third" lines={(t) => [`shot in 10 s: ${pc(t.shot10 ?? 0)}`, `reached final third: ${pc(t.final_third ?? 0)}`]} /></div>
           <div className="replay-cap"><div>
@@ -81,7 +81,7 @@ export default function Transitions({ d, events, go }: { d: TeamData; events: bo
           </div>
         </div>
         <div className="layout-split">
-          <div className="sticker" style={rib(0)}>
+          <div className="sticker" style={plain}>
             <Replay teamKey={d.key} clips={clips} index={Math.min(idx, Math.max(clips.length - 1, 0))} onIndex={setIdx}
               fallback={<div className="note info" style={{ margin: 14 }}><span className="tag">Replays</span>{events ? (rows ? "No clips of this kind." : "Loading the clip list…") : "Replays need the raw event files."}</div>} />
             {clips[idx] && <div className="replay-cap"><p>From 6 s before to 10 s after: {clips[idx].detail}. Opponent actions in red.</p></div>}

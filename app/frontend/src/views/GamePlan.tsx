@@ -1,7 +1,7 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSummary } from "../api";
 import { Icon } from "../charts";
-import { Note, Pitch, Replay, rib } from "../charts";
+import { Note, Pitch, Replay, plain } from "../charts";
 import { fmt, ordinal } from "../format";
 
 const TAB_LABEL: Record<string, string> = { restarts: "Restarts", defending: "Defending", transitions: "Transitions", "build-up": "Families", setpieces: "Set pieces", matchups: "Matchups" };
@@ -122,7 +122,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
       {!P ? <div className="state" style={{ marginTop: 24 }}><p>Loading…</p></div> : (
         <>
           <div className="layout-split" style={{ marginTop: 24 }}>
-            <section className="sticker" style={rib(3)} aria-labelledby="gp-shape">
+            <section className="sticker" style={plain} aria-labelledby="gp-shape">
               <span className="no">Shapes</span>
               <div className="pitch-wrap">
                 <Pitch label={`Starting formations: ${fm ? `${P.mine} ${fm.most_used[0]?.formation} against ` : ""}${d.team} ${fo?.most_used[0]?.formation ?? "unknown"}`}>
@@ -143,7 +143,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                     <thead><tr><th>Formation</th><th>Matches</th><th>Share</th></tr></thead>
                     <tbody>{fo.most_used.map((f) => <tr key={f.raw}><td><b>{f.formation}</b></td><td>{f.matches}</td><td>{fmt(f.matches / fo.matches, "pct")}</td></tr>)}</tbody>
                   </table>
-                  <p className="s-muted" style={{ fontSize: 12.5, marginTop: 10 }}>Last 5: {fo.last5.map((f, i) => <span key={i} className="chip" style={{ ...rib(4), marginRight: 4 }} title={`${f.date} vs ${f.opponent}`}>{f.formation}</span>)}</p>
+                  <p className="s-muted" style={{ fontSize: 12.5, marginTop: 10 }}>Last 5: {fo.last5.map((f, i) => <span key={i} className="chip" style={{ ...plain, marginRight: 4 }} title={`${f.date} vs ${f.opponent}`}>{f.formation}</span>)}</p>
                 </div>
               )}
               <div className="sticker pad">
@@ -160,10 +160,10 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             {P.hints.length === 0 ? <p>No rule fired: {d.team} is not at the extremes of any measure here.</p> : (
               <div className="fam-row" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}>
                 {P.hints.map((h, n) => (
-                  <article key={h.id} className="sticker fam-front enter" style={{ ...rib(h.side === "both" ? 2 : n % 5), "--i": n } as CSSProperties}>
+                  <article key={h.id} className="sticker fam-front enter" style={{ ...plain, "--i": n } as CSSProperties}>
                     <div className="ribbon" />
                     <div className="body">
-                      {h.side === "both" && <span className="chip" style={{ ...rib(1), marginBottom: 6 }}>you vs them</span>}
+                      {h.side === "both" && <span className="chip" style={{ ...plain, marginBottom: 6 }}>you vs them</span>}
                       <h3 style={{ margin: "2px 0 6px" }}>{h.title}</h3>
                       <p>{h.why}</p>
                       <p style={{ color: "var(--sticker-ink)", fontWeight: 650 }}>{h.look}</p>
@@ -182,7 +182,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             <section className="section" aria-labelledby="pz-h">
               <div className="section-head"><h2 id="pz-h">Where pressing hurts them</h2><p>Their own half, own goal on the left. Each zone: share of their open-play passes completed when under pressure, against the other {P.pressure_zones.teams_in_reference} teams in the same zone. Red = below the others, green = above; dashed outline = at least 5 points below with 40+ passes.</p></div>
               <div className="layout-split">
-                <div className="sticker" style={rib(0)}><span className="no">Under pressure</span><div className="pitch-wrap"><PressureZones pz={P.pressure_zones} team={d.team} /></div></div>
+                <div className="sticker" style={plain}><span className="no">Under pressure</span><div className="pitch-wrap"><PressureZones pz={P.pressure_zones} team={d.team} /></div></div>
                 <div className="stack">
                   <div className="sticker pad">
                     <h3>Overall</h3>
@@ -203,7 +203,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             <section className="section" aria-labelledby="br-h">
               <div className="section-head"><h2 id="br-h">Where they hurt you on the break</h2><p>Where {d.team} win the ball back (they attack left to right). Zone colour = share of their recoveries there followed by a shot within 10 s; dots = each of the {P.breaks.shots.length} recoveries that led to a shot, click one to replay it. Overall {Math.round(1000 * P.breaks.rate) / 10}% of {P.breaks.n} recoveries.</p></div>
               <div className="layout-split">
-                <div className="sticker" style={rib(4)}><span className="no">Breaks</span><div className="pitch-wrap">
+                <div className="sticker" style={plain}><span className="no">Breaks</span><div className="pitch-wrap">
                   <Pitch label={`${d.team}: recoveries followed by a shot within 10 seconds`}>
                     {P.breaks.zones.map((z, i) => {
                       const r = z.n ? z.shot10 / z.n : 0; const few = z.n < 30;
@@ -234,7 +234,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             <section className="section" aria-labelledby="fz-h">
               <div className="section-head"><h2 id="fz-h">Where they foul</h2><p>Fouls committed per match in each zone of their own half (own goal on the left), against the other {P.foul_zones.teams_in_reference} teams; handballs excluded. Overall {P.foul_zones.total_per_match.toFixed(1)} per match in their half, others {P.foul_zones.ref_total_per_match?.toFixed(1) ?? "–"}.</p></div>
               <div className="layout-split">
-                <div className="sticker" style={rib(3)}><span className="no">Fouls</span><div className="pitch-wrap">
+                <div className="sticker" style={plain}><span className="no">Fouls</span><div className="pitch-wrap">
                   <Pitch label={`${d.team}: fouls per match by zone of their own half`}>
                     {P.foul_zones.zones.map((z, i) => {
                       const diff = z.per_match - (z.ref_per_match ?? z.per_match); const cx = (z.x0 + z.x1) / 2, cy = (z.y0 + z.y1) / 2;
@@ -259,7 +259,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
               <div className="section-head"><h2 id="kp-h">Key players</h2><p>From all {evs.matches} matches: top 3 per role. Per match = matches in which the player appears. Names and shirt numbers as in the StatsBomb data.</p></div>
               <div className="fam-row" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
                 {evs.players.map((r, n) => (
-                  <article key={r.id} className="sticker fam-front enter" style={{ ...rib(n), "--i": n } as CSSProperties}>
+                  <article key={r.id} className="sticker fam-front enter" style={{ ...plain, "--i": n } as CSSProperties}>
                     <div className="ribbon" />
                     <div className="body">
                       <h3 style={{ margin: "2px 0 8px" }}>{r.role}</h3>

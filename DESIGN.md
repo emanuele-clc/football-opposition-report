@@ -235,7 +235,7 @@ The palette is a dark navy board with white cards and five saturated sticker rib
 Light theme (`data-theme="light"`) swaps the board to board-light / board-raised-light. On-board text becomes ink, the pitch becomes pitch-light with green chalk lines, the replay trail becomes trail-light (cobalt), opponent becomes them-light, caution becomes caution-light, and stickers gain a 1.5px ink keyline (`rgba(18,26,51,0.2)`).
 
 ### Named Rules
-**The Ribbon Order Rule.** Families and sticker series take ribbons in fixed order: yellow, sky, lime, coral, lilac, then repeat. A family's code is always printed on its ribbon, so colour is never the only cue.
+**The Ribbon Order Rule.** Only families take coloured ribbons, in fixed order: yellow, sky, lime, coral, lilac, then repeat. A family's code is always printed on its ribbon, so colour is never the only cue. Every other sticker (shapes, hints, key players, maps, key points) wears the plain ribbon (`--plain`, #c9d1ea; #b9c3dd in light theme), so colour on screen always means a family.
 
 **The Yellow Means Live Rule.** On chrome, yellow marks only what is selected, active, focused or "this team". Do not use it as a general highlight.
 
@@ -265,7 +265,9 @@ Light theme (`data-theme="light"`) swaps the board to board-light / board-raised
 
 ## Layout
 
-The page has a full-width sticky top bar (minimum 64px high), a team header, and a main area with a fluid gutter of clamp(16px, 2.2vw, 32px) on both sides. Sections are 60px apart. Each section opens with a section head: the heading on the left and a short explanation (70ch max) or the controls on the right, wrapping when space runs out.
+The page has a full-width sticky top bar (minimum 64px high), a team header, and a main area with a fluid gutter of clamp(16px, 2.2vw, 32px) on both sides. Sections are 60px apart. Each section opens with a section head: the heading, then its short explanation underneath (75ch max), read in one line of sight. Controls (pills) sit to the right of the heading.
+
+Navigation has two levels: the top bar shows five groups (Summary, With the ball, Without the ball, Context, Video & review; the current one underlined in yellow), and a pill row under the team name shows the sections of that group. Lists of many similar items (what changed in the last 5 matches, cautions) are ruled lists or one note with bullets, never a wall of cards.
 
 Grids in use: the hero (1.42fr / minmax(320px, 1fr), 28px gap), a split (1.25fr / 1fr), two equal columns, family stickers on an auto-fit grid (minimum 150px, 16px gap), and rank rows in two columns 44px apart. Stacks use 16px between items and the key-point list uses 14px.
 
@@ -336,7 +338,7 @@ A raised-board panel (12px radius, 12px 14px padding, 14px text) with a state ta
 - **Checkbox:** accent-color yellow, 17px.
 
 ### Navigation
-The sticky deep-navy top bar holds: the brand in yellow condensed italic (26px, 22px on mobile), the team pill select, section links as pills (650 14px, pale text, 8% white on hover, solid yellow with ink text when current), and icon buttons. Below 1120px the links move to their own scrolling row with a fade-out on the right. Section changes use a view transition: the old page fades and moves up 6px in 150ms, and the new one rises 12px in 380ms.
+The sticky deep-navy top bar holds: the brand in yellow condensed italic (26px, 22px on mobile), the team pill select (its own row on phones), five group links (700 14.5px, pale text; the current group white with a 2.5px yellow underline), and icon buttons. The sections of the current group are outlined pills under the team name, the current one solid yellow. Below 1120px the links move to their own scrolling row with a fade-out on the right. Section changes use a view transition: the old page fades and moves up 6px in 150ms, and the new one rises 12px in 380ms.
 
 ### Tables
 Right-aligned numbers, first column left-aligned. Rows are separated by board-line rules. Headers use the uppercase label style. Sortable headers use a CSS triangle. Hovered rows get a faint tint, and the selected row gets a 14% yellow wash. A wide table scrolls sideways, with yellow glows at its edges showing there is more to scroll.

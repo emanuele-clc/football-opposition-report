@@ -21,6 +21,15 @@ const TABS: [string, string][] = [
   ["overview", "Overview"], ["gameplan", "Game plan"], ["goals", "Goals"], ["build-up", "Families"], ["restarts", "Restarts"],
   ["setpieces", "Set pieces"], ["transitions", "Transitions"], ["defending", "Defending"], ["matchups", "Matchups"], ["clips", "Clips"], ["compare", "Compare"], ["review", "Review"],
 ];
+/* Twelve sections in five groups: the top bar names the group, the row under the team name the section. */
+const GROUPS: [string, string[]][] = [
+  ["Summary", ["overview", "gameplan"]],
+  ["With the ball", ["build-up", "restarts", "setpieces", "goals"]],
+  ["Without the ball", ["transitions", "defending"]],
+  ["Context", ["matchups", "compare"]],
+  ["Video & review", ["clips", "review"]],
+];
+const groupOf = (tab: string) => GROUPS.find(([, t]) => t.includes(tab === "advanced" ? "build-up" : tab === "coach" ? "gameplan" : tab)) ?? GROUPS[0];
 const TOUR = ["overview", "gameplan", "goals", "build-up", "restarts", "setpieces", "transitions", "defending", "compare"];
 const TOUR_MS = 15000;
 
@@ -114,8 +123,8 @@ export default function App() {
           {teams?.map((t) => <option key={t.key} value={t.key}>{t.team} · {t.period.slice(0, 4)}/{t.period.slice(16, 18)}</option>)}
         </select>
         <nav className="sections" aria-label="Sections">
-          {TABS.map(([k, label]) => (
-            <a key={k} href={route.key && route.key !== "new" ? href({ key: route.key, tab: k }) : "#/"} aria-current={(route.tab === k || (k === "build-up" && route.tab === "advanced")) && route.key !== "new" ? "page" : undefined}>{label}</a>
+          {GROUPS.map(([label, tabs]) => (
+            <a key={label} href={route.key && route.key !== "new" ? href({ key: route.key, tab: tabs[0] }) : "#/"} aria-current={groupOf(route.tab)[0] === label && route.key !== "new" ? "true" : undefined}>{label}</a>
           ))}
         </nav>
         <div className="bar-actions">
@@ -150,6 +159,13 @@ export default function App() {
               <span><b>{current.sequences.toLocaleString("en")} sequences</b>{current.report.phases["build-up"].n} build-up · {current.report.phases.advanced.n} advanced</span>
               <span><b>{current.references.length} other teams</b>to compare with</span>
             </div>
+            {groupOf(route.tab)[1].length > 1 && (
+              <nav className="subnav no-print" aria-label={groupOf(route.tab)[0]}>
+                {groupOf(route.tab)[1].map((k) => (
+                  <a key={k} href={href({ key: current.key, tab: k })} aria-current={route.tab === k || (k === "build-up" && route.tab === "advanced") ? "page" : undefined}>{TABS.find(([t]) => t === k)?.[1]}</a>
+                ))}
+              </nav>
+            )}
           </div>
           <main key={current.key}>
             {route.tab === "overview" && <Overview d={current} events={events} go={go} />}

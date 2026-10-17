@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ClipRef, RestartKind, TeamData } from "../api";
-import { Bars, Interval, Note, Replay, rib } from "../charts";
+import { Bars, Interval, Note, Replay, plain } from "../charts";
 import { pc } from "../format";
 import { pickRecent, toRef, useClips } from "../useClips";
 import PressingMap from "./PressingMap";
@@ -43,7 +43,7 @@ export default function Restarts({ d, events, go }: { d: TeamData; events: boole
       </div>
 
       <div className="layout-split" style={{ marginTop: 28 }}>
-        <section className="sticker" style={rib(ki)} aria-labelledby="rs-h">
+        <section className="sticker" style={plain} aria-labelledby="rs-h">
           <span className="no">{kind}</span>
           <Replay teamKey={d.key} clips={clips} index={Math.min(idx, Math.max(clips.length - 1, 0))} onIndex={setIdx}
             fallback={<div className="note info" style={{ margin: 14 }}><span className="tag">Replays</span>{events ? "Loading the clip list…" : "Replays need the raw event files (start the app on the StatsBomb folder)."}</div>} />
@@ -60,7 +60,7 @@ export default function Restarts({ d, events, go }: { d: TeamData; events: boole
         <section className="sticker pad" aria-labelledby="out-h">
           <h3 id="out-h">What happens next</h3>
           <p className="s-muted" style={{ fontSize: 13, margin: "4px 0 6px" }}>Dark mark = season with its interval, coral diamond = last 5 matches.</p>
-          <table>
+          <div className="table-wrap"><table>
             <thead><tr><th>Outcome</th><th>Season</th><th style={{ minWidth: 130 }}>0 to 100%</th><th style={{ whiteSpace: "nowrap" }}>Last 5</th></tr></thead>
             <tbody>
               {LABELS.filter(([m]) => k.metrics[m]).map(([m, label]) => {
@@ -75,7 +75,7 @@ export default function Restarts({ d, events, go }: { d: TeamData; events: boole
                 );
               })}
             </tbody>
-          </table>
+          </table></div>
           {flagged > 0 && <div style={{ marginTop: 12 }}><Note kind="caution" tag="Check on video">Highlighted: the last 5 matches fall outside the season interval. A hint, not proof of a change; with 5 matches the interval is wide.</Note></div>}
         </section>
       </div>
@@ -98,7 +98,7 @@ export default function Restarts({ d, events, go }: { d: TeamData; events: boole
             <p className="small" style={{ marginTop: 10 }}>Short = under 30 m. Side = end of the first pass, y in thirds. Ended in own half = no shot and the last team action ends at x &lt; 60 (ball lost, out of play or foul).</p>
           </section>
         )}
-        {rec.length > 0 && (
+        {!events && rec.length > 0 && (
           <section className="sticker pad" aria-labelledby="rc-h">
             <h3 id="rc-h">Who receives the first pass</h3>
             <div style={{ marginTop: 10 }}><Bars items={rec} total={k.n} i={ki} /></div>

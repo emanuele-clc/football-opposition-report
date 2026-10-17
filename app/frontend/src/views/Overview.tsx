@@ -1,6 +1,6 @@
 import { useState, type CSSProperties } from "react";
 import type { ClipRef, Family, Rank, TeamData } from "../api";
-import { FamilyLanes, FamilySticker, Note, RankRow, Replay, rib, ShareStrip, third } from "../charts";
+import { FamilyLanes, Note, RankRow, Replay, rib, ShareStrip, third } from "../charts";
 import { fmt, n1, ordinal, pc } from "../format";
 
 const TAB_OF: Record<string, string> = { report: "build-up", restarts: "restarts", setpieces: "setpieces", transitions: "transitions", defending: "defending" };
@@ -91,7 +91,7 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
           <h3 id="kp-h" style={{ color: "var(--accent-text)", marginBottom: 14 }}>Key points</h3>
           <div className="kp-list">
             {kps.map((r, i) => (
-              <a key={r.id} className="kp sticker enter" style={{ ...rib(i), "--i": i + 1 } as CSSProperties} href={`#/${encodeURIComponent(d.key)}/${TAB_OF[r.sheet]}`}>
+              <a key={r.id} className="kp sticker enter" style={{ "--i": i + 1 } as CSSProperties} href={`#/${encodeURIComponent(d.key)}/${TAB_OF[r.sheet]}`}>
                 <span className="dot" aria-hidden="true">{i + 1}</span>
                 <span>
                   <p>{phrase(r)}: <b>{fmt(r.value, r.unit)}</b></p>
@@ -102,27 +102,20 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
             ))}
           </div>
           <p className="small" style={{ marginTop: 12, marginBottom: 4 }}>Where {d.team} is furthest from the other {d.references.length} teams in this folder: the most extreme fact of each section first. 1st = highest value. Click a fact for its section, a family to replay it.</p>
-          <h3 style={{ color: "var(--accent-text)", margin: "26px 0 12px" }}>{phase === "build-up" ? "Build-up" : "Advanced"} families</h3>
+          <div className="fam-head">
+            <h3 style={{ color: "var(--accent-text)" }}>Families</h3>
+            <div className="pills" role="group" aria-label="Phase">
+              {(["build-up", "advanced"] as const).map((p) => (
+                <button key={p} type="button" aria-pressed={phase === p} onClick={() => { setPhase(p); choose(d.report.phases[p].families[0].fam); }}>
+                  {p === "build-up" ? "Build-up" : "Advanced"}
+                </button>
+              ))}
+            </div>
+          </div>
           <ShareStrip families={P.families} pick={fam.fam} onPick={choose} />
+          <p className="small" style={{ marginTop: 10 }}>{phase === "build-up" ? "Build-up: sequences starting at x < 45." : "Advanced: sequences starting at x ≥ 45."} Click a family to replay it. B1, A2… are labels, not tactical categories. <a href={`#/${encodeURIComponent(d.key)}/${phase}`}>Every number per family →</a></p>
         </section>
       </div>
-
-      <section className="section" style={{ marginTop: 40 }} aria-labelledby="fam-h">
-        <div className="section-head">
-          <h2 id="fam-h">Sequence families</h2>
-          <div className="pills" role="group" aria-label="Phase">
-            {(["build-up", "advanced"] as const).map((p) => (
-              <button key={p} type="button" aria-pressed={phase === p} onClick={() => { setPhase(p); choose(d.report.phases[p].families[0].fam); }}>
-                {p === "build-up" ? "Build-up (start x < 45)" : "Advanced (start x ≥ 45)"}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="fam-row">
-          {P.families.map((f, i) => <FamilySticker key={phase + f.fam} f={f} i={i} total={P.n} selected={f.fam === fam.fam} onPick={() => { choose(f.fam); scrollTo({ top: 0, behavior: "smooth" }); }} />)}
-        </div>
-        <p className="small" style={{ marginTop: 12 }}>Hover a sticker to turn it over. Click to replay its typical sequences. B1, A2… are labels, not tactical categories.</p>
-      </section>
 
       <section className="section" aria-labelledby="chg-h">
         <div className="section-head">
@@ -135,15 +128,14 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
           if (!d.restarts) return <p className="small">No restart sheet for this team.</p>;
           if (!ch.length) return <Note kind="ok" tag="No change">No restart figure of the last 5 matches falls outside its season interval.</Note>;
           return (
-            <div className="fam-row" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
-              {ch.map(({ k, m, x }, i) => (
-                <a key={k + m} className="sticker pad enter chg" style={{ ...rib(x.last5! > x.season ? 2 : 3), "--i": i } as CSSProperties} href={`#/${encodeURIComponent(d.key)}/restarts`}>
-                  <span className="chip">{x.last5! > x.season ? "more often" : "less often"}</span>
-                  <p style={{ marginTop: 8, fontWeight: 700 }}>{k}: {LAB[m] ?? m}</p>
-                  <p className="chg-n"><b>{pc(x.last5!)}</b> <span className="s-muted">last 5 · season {pc(x.season)} ({pc(x.ci[0])}–{pc(x.ci[1])})</span></p>
-                </a>
+            <ul className="chg-list">
+              {ch.map(({ k, m, x }) => (
+                <li key={k + m}>
+                  <a href={`#/${encodeURIComponent(d.key)}/restarts`}>{k}: {LAB[m] ?? m}<span className="dir">{x.last5! > x.season ? "more often" : "less often"} than in the season · season {pc(x.season)} ({pc(x.ci[0])}–{pc(x.ci[1])})</span></a>
+                  <span className="v">{pc(x.last5!)}<small>last 5</small></span>
+                </li>
               ))}
-            </div>
+            </ul>
           );
         })()}
       </section>
@@ -162,7 +154,11 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
           ))}
         </div>
         <div className="stack" style={{ marginTop: 18 }}>
-          {[...new Set(d.ranks.filter((r) => r.caution).map((r) => r.caution!))].map((c) => <Note key={c} kind="caution" tag="* Caution">{c}</Note>)}
+          {d.ranks.some((r) => r.caution) && (
+            <Note kind="caution" tag="* Caution">
+              <ul className="cautions">{[...new Set(d.ranks.filter((r) => r.caution).map((r) => r.caution!))].map((c) => <li key={c}>{c}</li>)}</ul>
+            </Note>
+          )}
           <p className="small">Reference teams ({d.references.length}): {d.references.join(", ") || "none"}. They may come from other leagues and seasons, so ranks are a rough guide.</p>
         </div>
       </section>

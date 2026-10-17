@@ -90,7 +90,7 @@ export default function Clips({ d, kind, family, events, setFilter }: { d: TeamD
         </div>
       )}
       {rows && shown.length > 0 && (
-        <div className="layout-split" style={{ gridTemplateColumns: "minmax(0, 1.15fr) minmax(0, 1fr)" }}>
+        <div className="layout-split layout-clips">
           <div>
             <div className="table-wrap">
               <table className="clip-table">

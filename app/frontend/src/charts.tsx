@@ -5,6 +5,8 @@ import { clock, fmt, n1, ordinal, pc } from "./format";
 /* Each family wears one ribbon colour; its code is always printed on it, so colour is never the only cue. */
 export const RIBS = ["var(--yellow)", "var(--sky)", "var(--lime)", "var(--coral)", "var(--lilac)"];
 export const rib = (i: number) => ({ "--rib": RIBS[i % RIBS.length] }) as CSSProperties;
+/* Everything that is not a family wears the plain ribbon: colour stays a signal, not decoration. */
+export const plain = { "--rib": "var(--plain)" } as CSSProperties;
 export const third = (x: number) => (x < 40 ? "own third" : x < 80 ? "middle third" : "final third");
 const reduced = () => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { api, type ClipRef, type GPEvents, type TeamData } from "../api";
-import { Note, Pitch, Replay, rib } from "../charts";
+import { Note, Pitch, Replay, plain } from "../charts";
 
 /* Every goal scored and conceded, on one pitch and replayable. Origin = StatsBomb play pattern (how the possession started). */
 const COLOR: Record<string, string> = {
@@ -50,7 +50,7 @@ export default function Goals({ d, events }: { d: TeamData; events: boolean }) {
       </div>
 
       <div className="layout-split">
-        <section className="sticker" style={rib(0)} aria-labelledby="gm-h">
+        <section className="sticker" style={plain} aria-labelledby="gm-h">
           <span className="no">Goal map</span>
           <div className="pitch-wrap">
             <Pitch label={`Goals: ${n("for")} scored at the right end, ${n("against")} conceded at the left end`}>

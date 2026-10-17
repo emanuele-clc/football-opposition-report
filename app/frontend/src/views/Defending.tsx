@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import type { TeamData } from "../api";
-import { Note, Pitch, RankRow, rib } from "../charts";
+import { Note, Pitch, RankRow, plain } from "../charts";
 import { pc } from "../format";
 
 const THIRDS = ["own third", "middle third", "final third"] as const;
@@ -45,7 +45,7 @@ export default function Defending({ d }: { d: TeamData }) {
       </div>
 
       <div className="layout-split">
-        <section className="sticker" style={rib(3)} aria-labelledby="pm-h">
+        <section className="sticker" style={plain} aria-labelledby="pm-h">
           <span className="no">Pressing</span>
           <div className="pitch-wrap"><PressureMap grid={D.pressures.grid_per_match} height={D.height.mean_x} /></div>
           <div className="replay-cap"><div>
@@ -61,7 +61,7 @@ export default function Defending({ d }: { d: TeamData }) {
               { k: "Shots against", v: D.conceded.shots_per_match.toFixed(1), ci: `${D.conceded.shots_ci[0].toFixed(1)}–${D.conceded.shots_ci[1].toFixed(1)}`, l5: D.conceded.last5_shots.toFixed(1), sub: "opponent shots per match", i: 0 },
               { k: "xG against", v: D.conceded.xg_per_match.toFixed(2), ci: `${D.conceded.xg_ci[0].toFixed(2)}–${D.conceded.xg_ci[1].toFixed(2)}`, l5: D.conceded.last5_xg.toFixed(2), sub: "StatsBomb xG of opponent shots per match", i: 4 },
             ].map((c, n) => (
-              <div key={c.k} className="sticker fam-front enter" style={{ ...rib(c.i), "--i": n } as CSSProperties}>
+              <div key={c.k} className="sticker fam-front enter" style={{ ...plain, "--i": n } as CSSProperties}>
                 <div className="ribbon" />
                 <div className="body">
                   <div className="line"><span className="code" style={{ fontSize: 22 }}>{c.k}</span><span className="share">{c.v}</span></div>
