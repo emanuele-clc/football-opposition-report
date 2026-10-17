@@ -5,7 +5,7 @@
 # Passi: 1) ferma l'app gia' accesa sulla stessa porta  2) installa cio' che manca  3) ricompila il frontend
 #        4) svuota la cache dell'app (mappe e reti vengono ricalcolate)  5) esegue i test  6) avvia l'app e apre il browser
 param(
-    [string]$DataDir = "C:\Users\ecole\sbdata",
+    [string]$DataDir = $(if ($env:OPPREPORT_DATA) { $env:OPPREPORT_DATA } else { Join-Path $PSScriptRoot "examples" }),
     [int]$Port = 8765,
     [switch]$SaltaTest
 )

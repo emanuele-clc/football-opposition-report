@@ -6,7 +6,7 @@ No new estimates: every number comes from `report_/restarts_/setpieces_/transiti
 ## Run
 One script does everything (stops an app already on the port, installs what is missing, rebuilds the frontend, clears the app cache, runs the tests, starts the app):
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1                      # data in C:\Users\ecole\sbdata
+powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1                      # data in $env:OPPREPORT_DATA, else examples\
 powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -DataDir <folder> -Port 8770 -SaltaTest
 ```
 Step by step:
@@ -14,7 +14,7 @@ Step by step:
 pip install -r requirements.txt
 cd app\frontend; npm install; npm run build; cd ..\..
 python -X utf8 app\run.py                                   # example teams in examples\
-python -X utf8 app\run.py --data-dir C:\Users\ecole\sbdata  # all teams processed there (10 thesis teams)
+python -X utf8 app\run.py --data-dir <data_folder>  # all teams processed there (e.g. the 10 thesis teams)
 ```
 Opens http://127.0.0.1:8765. Ctrl+C stops it.
 

@@ -12,21 +12,23 @@ and test whether **exploitability** exists on corner kicks.
 ## Start the app (Windows, PowerShell)
 One command rebuilds, tests and starts the local app, then opens the browser at **http://127.0.0.1:8765**:
 ```powershell
-cd C:\Users\ecole\Downloads\football-opposition-report
+cd <repo>                                   # the folder where you cloned this repository
 powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1
 ```
 It stops an app already running on port 8765, installs what is missing, rebuilds the frontend, clears the app cache, runs `tests/test_app_api.py` (expect `ALL OK` twice) and starts the server. Stop it with **Ctrl+C**.
 
+`<data_folder>` below is the folder with the pipeline outputs (`report_<Team>.json`, clip CSVs) and, for replays, the raw StatsBomb files in `ev/` (see How to run). The script uses the environment variable `OPPREPORT_DATA` if it is set, otherwise the example teams in `examples/` (no replays). To set it once: `setx OPPREPORT_DATA <data_folder>`, then open a new PowerShell window.
+
 Options:
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -Port 8770                 # another port: open http://127.0.0.1:8770
-powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -DataDir D:\other_data     # another data folder (default C:\Users\ecole\sbdata)
+powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -DataDir <data_folder>     # another data folder
 powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -SaltaTest                 # skip the tests, start faster
 ```
 Without the script (after the first build):
 ```powershell
-python -X utf8 app\run.py --data-dir C:\Users\ecole\sbdata            # port 8765
-python -X utf8 app\run.py --data-dir C:\Users\ecole\sbdata --port 8770
+python -X utf8 app\run.py --data-dir <data_folder>                    # port 8765
+python -X utf8 app\run.py --data-dir <data_folder> --port 8770
 python -X utf8 app\run.py                                             # the 4 example teams in examples\ (no replays)
 ```
 First time on a new PC: `pip install -r requirements.txt`, then `cd app\frontend; npm install; npm run build`. If the page looks old, press Ctrl+F5. The app runs only on this PC (127.0.0.1); nothing is published. Features: `app/README.md`.

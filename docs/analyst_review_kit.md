@@ -25,7 +25,7 @@ Click **Save review**: the app writes `review_<Team>_filled.csv` and `review_<Te
 
 ## After the review
 ```powershell
-python -X utf8 src\report\summarize_review.py C:\Users\ecole\sbdata\review_<Team>_filled.csv --out results\analyst_review_<Team>_<n>.json
+python -X utf8 src\report\summarize_review.py <data_folder>\review_<Team>_filled.csv --out results\analyst_review_<Team>_<n>.json
 ```
 Report per family the share of yes or partly, all "no" comments, and the five answers verbatim. With 3 sequences per family this is descriptive, not an estimate. Do not change the families, the report or the questions between reviewers.
 

@@ -3,7 +3,7 @@ Serves the files that src/oppreport.py writes (report_/restarts_/setpieces_/tran
 ranks each team against the other teams found in the same folder, exports filtered clip lists (CSV, video-tool XML)
 and can run the pipeline for a new team when the folder holds StatsBomb match lists and events.
 No new estimates: every number comes from the pipeline files.
-Run:  python -X utf8 app/run.py [--data-dir C:\\Users\\ecole\\sbdata]"""
+Run:  python -X utf8 app/run.py [--data-dir <data_folder>]"""
 import csv, functools, glob, io, json, os, re, subprocess, sys, tempfile, threading, time, uuid, zipfile
 from urllib.parse import quote
 from fastapi import FastAPI, HTTPException, Query
