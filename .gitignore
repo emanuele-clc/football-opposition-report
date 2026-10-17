@@ -8,3 +8,7 @@ app/frontend/node_modules/
 app/frontend/dist/
 app_cache/
 .impeccable/
+
+.codex/
+.cursor/
+.gemini/
