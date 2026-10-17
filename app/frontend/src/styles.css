@@ -523,6 +523,14 @@ footer { padding: 22px var(--gutter) 30px; border-top: 1px solid var(--board-lin
 .watch .score { font-weight: 900; font-style: italic; font-size: 18px; }
 .watch a { font-weight: 750; font-size: 13px; white-space: nowrap; }
 @media print { .players li, .watch li { break-inside: avoid; } }
+.origin { margin-top: 12px; }
+.origin-head { display: flex; justify-content: space-between; font-size: 13px; color: var(--sticker-ink); }
+.origin-head span { font-weight: 900; font-style: italic; font-size: 20px; }
+.origin-bar { display: flex; height: 22px; border-radius: 8px; overflow: hidden; gap: 2px; margin: 4px 0 6px; outline: 1.5px solid var(--sticker-ink); }
+.origin-bar span { min-width: 4px; }
+.origin-keys { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--sticker-ink); }
+.origin-keys i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; outline: 1px solid var(--sticker-ink); }
+.origin-keys small { opacity: 0.65; }
 .brief h3 { margin: 0 0 8px; }
 .brief ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; line-height: 1.5; }
 .layout-matchup { grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); }

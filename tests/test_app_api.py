@@ -54,6 +54,13 @@ for t in teams:
         tl = kp["timeline"]
         gf = sum(int(m["score"].split("-")[0]) for m in d["matchups"]["per_match"]); ga = sum(int(m["score"].split("-")[1]) for m in d["matchups"]["per_match"])
         check((sum(x["goals_for"] for x in tl), sum(x["goals_against"] for x in tl)) == (gf, ga), f"{t['team']}: timeline goals {gf}-{ga} equal the match scores")
+        if "goals" in kp:
+            check((sum(g["side"] == "for" for g in kp["goals"]), sum(g["side"] == "against" for g in kp["goals"])) == (gf, ga), f"{t['team']}: goal list has {gf} scored and {ga} conceded")
+    if os.path.exists(os.path.join(data, f"keyplayers_{k}.json")) and d.get("matchups"):
+        wp = c.get(f"/api/teams/{k}/without").json()["players"]; p0 = next((p for p in wp if p["usable"]), wp[0])
+        w = c.get(f"/api/teams/{k}/without", params={"player": p0["player"]}).json()
+        check(w["n_with"] + w["n_without"] == d["matchups"]["matches"] and w["n_with"] == p0["starts"], f"{t['team']}: without {p0['player']}: {w['n_with']} + {w['n_without']} matches")
+        check(all(m["verdict"] == "small group" for m in w["metrics"]) if min(w["n_with"], w["n_without"]) < 6 else True, f"{t['team']}: small groups never called clear (without a player)")
     other = next((x["key"] for x in teams if x["key"] != k), None)
     if other:
         gp2 = c.get(f"/api/teams/{k}/gameplan", params={"mine": other}).json()

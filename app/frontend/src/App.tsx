@@ -6,6 +6,7 @@ import Clips from "./views/Clips";
 import Compare from "./views/Compare";
 import Defending from "./views/Defending";
 import GamePlan from "./views/GamePlan";
+import Goals from "./views/Goals";
 import Matchups from "./views/Matchups";
 import Review from "./views/Review";
 import Families from "./views/Families";
@@ -16,10 +17,10 @@ import SetPieces from "./views/SetPieces";
 import Transitions from "./views/Transitions";
 
 const TABS: [string, string][] = [
-  ["overview", "Overview"], ["gameplan", "Game plan"], ["build-up", "Families"], ["restarts", "Restarts"],
+  ["overview", "Overview"], ["gameplan", "Game plan"], ["goals", "Goals"], ["build-up", "Families"], ["restarts", "Restarts"],
   ["setpieces", "Set pieces"], ["transitions", "Transitions"], ["defending", "Defending"], ["matchups", "Matchups"], ["clips", "Clips"], ["compare", "Compare"], ["review", "Review"],
 ];
-const TOUR = ["overview", "gameplan", "build-up", "restarts", "setpieces", "transitions", "defending", "compare"];
+const TOUR = ["overview", "gameplan", "goals", "build-up", "restarts", "setpieces", "transitions", "defending", "compare"];
 const TOUR_MS = 15000;
 
 // Route: #/<team key>/<tab>[/<clip list>][?family=B1]
@@ -157,6 +158,7 @@ export default function App() {
             {route.tab === "transitions" && <Transitions d={current} events={events} go={go} />}
             {route.tab === "defending" && <Defending d={current} />}
             {route.tab === "gameplan" && teams && <GamePlan d={current} teams={teams} />}
+            {route.tab === "goals" && <Goals d={current} events={events} />}
             {route.tab === "matchups" && <Matchups d={current} />}
             {route.tab === "compare" && teams && <Compare d={current} teams={teams} events={events} />}
             {route.tab === "review" && <Review d={current} events={events} />}

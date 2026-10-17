@@ -16,7 +16,7 @@ import gameplan as GP
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DATA = os.path.abspath(os.environ.get("OPPREPORT_DATA") or os.path.join(ROOT, "examples"))
 DIST = os.path.join(ROOT, "app", "frontend", "dist")
-SHEETS = ("report", "restarts", "setpieces", "transitions", "defending", "matchups")
+SHEETS = ("report", "restarts", "setpieces", "transitions", "defending", "matchups", "keyplayers")
 CLIPS = {"sequences": "clips", "restarts": "restart_clips", "setpieces": "setpiece_clips", "transitions": "transition_clips"}
 INT_COLS = {"match", "half", "minute", "second", "passes", "duration_s", "ended_in_shot"}
 
@@ -69,6 +69,8 @@ METRICS = [
      "The counter-press share varied little between the teams we tested (17-19%): it describes, it does not separate styles."),
     ("high_rec_pm", "Transitions", "Recoveries per match in the final third", "transitions", lambda d: d["recoveries"]["by_third"]["final third"]["per_match"],
      lambda d: d["recoveries"]["by_third"]["final third"]["per_match_ci"], "num", None),
+    ("up_compl", "Defending", "Own-half pass completion under pressure", "keyplayers", lambda d: d["under_pressure_total"]["completion"], None, "pct",
+     "How well the team plays out when pressed in its own half (open-play passes flagged under pressure by StatsBomb)."),
     ("ppda", "Defending", "PPDA: opponent passes per defensive action", "defending", lambda d: d["ppda"]["value"], lambda d: d["ppda"]["ci"], "num",
      "PPDA: lower means more intense pressing; it also depends on how much the opponent has the ball, so read it with the pressures in the final third."),
     ("press_pm", "Defending", "Pressures per match", "defending", lambda d: d["pressures"]["per_match"], lambda d: d["pressures"]["ci"], "num", None),
@@ -146,16 +148,18 @@ def secs(ts):
 
 
 @app.get("/api/teams/{key}/replay")
-def replay(key: str, match: int, half: int, minute: int, second: int, window: bool = False):
+def replay(key: str, match: int, half: int, minute: int, second: int, window: bool = False, possession: int = 0):
     """Possession that starts at this clip time (sequences, restarts, set pieces) or, with window=true, every action from 6 s before to 10 s after
     (losses and recoveries). Coordinates are turned so that the team always attacks left to right (0-120 x 0-80)."""
     team_name = need(key)["team"]; ev = events(match)
-    at = [e for e in ev if e.get("period") == half and e.get("minute") == minute and e.get("second") == second and e["type"]["name"] in ACTIONS]
+    by_pos = [e for e in ev if e.get("period") == half and e.get("possession") == possession] if possession else []
+    at = by_pos[:1] or [e for e in ev if e.get("period") == half and e.get("minute") == minute and e.get("second") == second and e["type"]["name"] in ACTIONS]
     if not at:
         at = [e for e in ev if e.get("period") == half and e.get("minute") == minute and abs(e.get("second", -9) - second) <= 1 and e["type"]["name"] in ACTIONS]
     if not at: raise HTTPException(404, "No action found at that time in the event file.")
     first = next((e for e in at if e["team"]["name"] == team_name), at[0]); t0 = secs(first["timestamp"])
-    if window: chosen = [e for e in ev if e.get("period") == half and t0 - 6 <= secs(e["timestamp"]) <= t0 + 10]
+    if by_pos: chosen = by_pos; first = by_pos[0]; t0 = secs(first["timestamp"])
+    elif window: chosen = [e for e in ev if e.get("period") == half and t0 - 6 <= secs(e["timestamp"]) <= t0 + 10]
     else: chosen = [e for e in ev if e.get("period") == half and e.get("possession") == first.get("possession")]
     out = []
     for e in chosen:
@@ -372,11 +376,11 @@ def network(key: str):
 
 # A replay as an animated GIF, to send to the players (same actions as /replay).
 @app.get("/api/teams/{key}/replay.gif")
-def replay_gif(key: str, match: int, half: int, minute: int, second: int, window: bool = False, title: str = ""):
+def replay_gif(key: str, match: int, half: int, minute: int, second: int, window: bool = False, title: str = "", possession: int = 0):
     import matplotlib; matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.animation import FuncAnimation, PillowWriter
-    r = replay(key, match, half, minute, second, window); acts = r["actions"]; team_name = need(key)["team"]
+    r = replay(key, match, half, minute, second, window, possession); acts = r["actions"]; team_name = need(key)["team"]
     fig, ax = plt.subplots(figsize=(7.2, 5.0), dpi=100); fig.patch.set_facecolor("#121a33"); fig.subplots_adjust(0.02, 0.1, 0.98, 0.88)
     ax.set_facecolor("#163a2a"); ax.set_xlim(-3, 123); ax.set_ylim(83, -3); ax.set_aspect("equal"); ax.axis("off")
     ax.add_patch(plt.Rectangle((-3, -3), 126, 86, color="#163a2a", lw=0))
@@ -458,6 +462,17 @@ def gameplan(key: str, mine: str | None = None):
     need(key)
     if mine: need(mine)
     return GP.build(key, mine if mine != key else None, teams, ranks, load)
+
+
+@app.get("/api/teams/{key}/without")
+def without_player(key: str, player: str = ""):
+    need(key)
+    try: _, rows = read_clips(key, "sequences")
+    except HTTPException: rows = []
+    res = GP.without(key, player, load, rows)
+    if res is None: raise HTTPException(404, "Needs matchups_ and keyplayers_ files with starting elevens (rerun src/oppreport.py).")
+    if player and player not in {p["player"] for p in res["players"]}: raise HTTPException(404, f"{player} never started for this team.")
+    return res
 
 
 @app.get("/api/teams/{key}/gameplan/events")

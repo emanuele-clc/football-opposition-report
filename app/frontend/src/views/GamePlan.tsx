@@ -40,6 +40,30 @@ function Timeline({ t }: { t: GPEvents["timeline"] }) {
   );
 }
 
+/* Their own half (own goal on the left) in 3 x 3 zones: completion under pressure, against the other teams in the folder. */
+function PressureZones({ pz, team }: { pz: NonNullable<Plan["pressure_zones"]>; team: string }) {
+  return (
+    <Pitch label={`${team}: pass completion under pressure by zone of their own half`}>
+      {pz.zones.map((z, i) => {
+        const d = z.diff ?? 0; const col = z.few ? "var(--board-raised)" : d < 0 ? "var(--coral)" : "var(--lime)";
+        const a = z.few ? 0.35 : Math.min(0.9, 0.18 + Math.abs(d) * 5);
+        const cx = (z.x0 + z.x1) / 2, cy = (z.y0 + z.y1) / 2;
+        return (
+          <g key={i} className="enter" style={{ "--i": i } as CSSProperties}>
+            <rect x={z.x0 + 0.6} y={z.y0 + 0.6} width={z.x1 - z.x0 - 1.2} height={z.y1 - z.y0 - 1.2} rx="1.5" fill="var(--sticker)" />
+            <rect x={z.x0 + 0.6} y={z.y0 + 0.6} width={z.x1 - z.x0 - 1.2} height={z.y1 - z.y0 - 1.2} rx="1.5" fill={col} fillOpacity={a}
+              stroke={z.weaker ? "var(--sticker-ink)" : "none"} strokeWidth="0.9" strokeDasharray={z.weaker ? "2 1" : undefined} />
+            <text x={cx} y={cy - 1.6} textAnchor="middle" fontSize="4.4" fontWeight="900" fontStyle="italic" fill="var(--sticker-ink)">{Math.round(100 * z.up_completion)}%</text>
+            <text x={cx} y={cy + 3} textAnchor="middle" fontSize="2.3" fontWeight="700" fill="var(--sticker-ink)">others {z.ref_completion != null ? Math.round(100 * z.ref_completion) : "–"}%</text>
+            <text x={cx} y={cy + 6.4} textAnchor="middle" fontSize="2" fill="var(--sticker-ink)" fillOpacity="0.75">{z.few ? `only ${z.under_pressure}` : `n ${z.under_pressure} · ${Math.round(100 * z.up_long_share)}% long`}</text>
+          </g>
+        );
+      })}
+      <text x="90" y="41" textAnchor="middle" fontSize="3.2" fontWeight="800" fill="var(--pitch-line)">← their own half · they attack →</text>
+    </Pitch>
+  );
+}
+
 /* Starting formation drawn schematically: goalkeeper, then one line per digit (e.g. 3-4-2-1), mirrored for the opponent. */
 function Shape({ raw, side }: { raw: string; side: "left" | "right" }) {
   const lines = raw.split("").map(Number).filter((n) => n > 0);
@@ -151,6 +175,25 @@ export default function GamePlan({ d, teams }: { d: TeamData; teams: TeamSummary
               </div>
             )}
           </section>
+
+          {P.pressure_zones && (
+            <section className="section" aria-labelledby="pz-h">
+              <div className="section-head"><h2 id="pz-h">Where pressing hurts them</h2><p>Their own half, own goal on the left. Each zone: share of their open-play passes completed when under pressure, against the other {P.pressure_zones.teams_in_reference} teams in the same zone. Red = below the others, green = above; dashed outline = at least 5 points below with 40+ passes.</p></div>
+              <div className="layout-split">
+                <div className="sticker" style={rib(0)}><span className="no">Under pressure</span><div className="pitch-wrap"><PressureZones pz={P.pressure_zones} team={d.team} /></div></div>
+                <div className="stack">
+                  <div className="sticker pad">
+                    <h3>Overall</h3>
+                    <p style={{ marginTop: 6 }}>In their own half {d.team} complete <b>{Math.round(100 * P.pressure_zones.total.completion)}%</b> of passes under pressure and <b>{Math.round(100 * P.pressure_zones.total.free_completion)}%</b> when free ({P.pressure_zones.total.passes} passes under pressure in {P.pressure_zones.matches} matches).</p>
+                    <p style={{ marginTop: 8 }}>{P.pressure_zones.zones.some((z) => z.weaker)
+                      ? <>Zones clearly below the other teams: <b>{P.pressure_zones.zones.filter((z) => z.weaker).length}</b>. Start the pressing plan from the darkest red one and check it on video.</>
+                      : <>No zone is clearly below the other teams: under pressure they play out about as well as the others or better. Pressing them is not suggested by these numbers.</>}</p>
+                  </div>
+                  <Note kind="caution" tag="Read with care">Pressure is StatsBomb's flag on the pass (a player pressing within a short time). Zones near their own goal are hard for every team, which is why each zone is compared with the others in the same place. Completion does not say whether the ball was then won.</Note>
+                </div>
+              </div>
+            </section>
+          )}
 
           {evs && evs !== "none" && (
             <section className="section" aria-labelledby="kp-h">

@@ -89,6 +89,9 @@ def build(opp_key, my_key, teams, ranks, load):
             hints.append({"id": hid, "side": side, "title": title, "why": why, "look": look, "tab": tab,
                           "evidence": ev(OR, ids) if side == "opp" else [{**e, "team": "opponent"} for e in ev(OR, ids)] + [{**e, "team": "you"} for e in ev(MR, ids)]})
 
+    pz = pressure_zones(opp_key, list(ts), load); ph = pressure_hint(pz)
+    if ph: hints.insert(0, ph)
+
     def past(key):
         mu = load("matchups", key)
         if not mu: return []
@@ -111,12 +114,13 @@ def build(opp_key, my_key, teams, ranks, load):
             "formations": {"opponent": formations(opp_key), "mine": formations(my_key) if my_key else None},
             "profile": [{"id": r["id"], "label": r["label"], "value": r["value"], "unit": r["unit"], "rank": r["rank"], "of": r["of"]} for r in extreme],
             "hints": hints, "opp_past": past(opp_key), "my_vs_press": my_press,
+            "pressure_zones": pz,
             "watch_first": watch_first(load("matchups", opp_key), load("defending", my_key) if my_key else None, load("matchups", my_key) if my_key else None) if load("matchups", opp_key) else None,
             "brief": brief(hints, past(opp_key), ts[opp_key]["team"], ts[my_key]["team"] if my_key else None)}
 
 
 PHASE = {"with_ball": ("press_hard", "press_high", "def_high", "def_deep", "solid", "leaky", "my_short_vs_press", "my_long_vs_high"),
-         "without_ball": ("gk_short_hi", "gk_short_lo", "direct", "patient", "my_press_vs_short"),
+         "without_ball": ("press_zone", "gk_short_hi", "gk_short_lo", "direct", "patient", "my_press_vs_short"),
          "transitions": ("lose_ball", "win_high"), "set_pieces": ("corners",)}
 PHASE_TITLE = {"with_ball": "With the ball", "without_ball": "Without the ball", "transitions": "Transitions", "set_pieces": "Set pieces"}
 
@@ -158,3 +162,75 @@ def watch_first(opp_mu, my_def, my_mu, n=5):
     sc = sorted(rows, key=dist)
     return {"rule": f"opponents whose PPDA in that match was closest to yours ({ppda:.1f}) and with your back line ({line}, from {FORM(f)})",
             "matches": [dict(r, distance=dist(r)) for r in sc[:n]]}
+
+
+# Where pressing hurts them: each own-half zone against the other teams in the folder (pooled), from keyplayers_<Team>.json.
+# 'weaker' = completion under pressure at least 5 points below the other teams in that zone, with 40+ passes under pressure (fixed rule).
+def pressure_zones(key, keys, load):
+    me = load("keyplayers", key)
+    if not me or "under_pressure" not in me: return None
+    others = [load("keyplayers", k) for k in keys if k != key]; others = [o for o in others if o and "under_pressure" in o]
+    zones = []
+    for i, z in enumerate(me["under_pressure"]):
+        up = sum(o["under_pressure"][i]["under_pressure"] for o in others); ok = sum(o["under_pressure"][i]["up_ok"] for o in others)
+        lg = sum(o["under_pressure"][i]["up_long"] for o in others)
+        ref = ok / up if up else None; ref_long = lg / up if up else None
+        diff = None if ref is None else z["up_completion"] - ref
+        zones.append({**z, "ref_completion": ref, "ref_long_share": ref_long, "diff": diff, "weaker": bool(diff is not None and diff <= -0.05 and not z["few"])})
+    return {"zones": zones, "total": me["under_pressure_total"], "teams_in_reference": len(others), "matches": me["matches"]}
+
+
+def zone_name(z):
+    depth = {0: "around their own box", 20: "in their own third", 40: "just inside their half"}[z["x0"]]
+    side = "left" if z["y0"] == 0 else "centre" if z["y0"] < 30 else "right"
+    return f"{side}, {depth}"
+
+
+def pressure_hint(pz):
+    weak = sorted([z for z in pz["zones"] if z["weaker"]], key=lambda z: z["diff"]) if pz else []
+    if not weak: return None
+    z = weak[0]
+    return {"id": "press_zone", "side": "opp", "title": "Where pressing hurts them",
+            "why": f"Under pressure {zone_name(z)} they complete {z['up_completion']:.0%} of passes, against {z['ref_completion']:.0%} for the other teams there ({z['under_pressure']} passes)."
+                   + (f" {len(weak) - 1} more zone(s) below the others." if len(weak) > 1 else ""),
+            "look": "A pressing trigger worth checking on video: what happens when the ball reaches that zone, and who has it.", "tab": "gameplan",
+            "evidence": []}
+
+
+# Without a player: matches the player started vs matches he did not start (StatsBomb starting eleven). Same verdict rule as the matchup sheet.
+WITHOUT_METRICS = [("xg_for", "xG created", "num2"), ("xg_against", "xG conceded", "num2"), ("shots_for", "Shots", "num"), ("shots_against", "Shots conceded", "num"),
+                   ("points", "Points per match", "num2"), ("own_half_completion", "Own-half pass completion", "pct"), ("lost_own_half", "Balls lost in own half", "num")]
+
+
+def without(key, player, load, clip_rows):
+    import numpy as np
+    kp, mu = load("keyplayers", key), load("matchups", key)
+    if not kp or not mu or "starters" not in kp: return None
+    starts = {}
+    for names in kp["starters"].values():
+        for n in names: starts[n] = starts.get(n, 0) + 1
+    n_all = len(mu["per_match"])
+    players = [{"player": p, "starts": s, "not_started": n_all - s, "usable": min(s, n_all - s) >= 6} for p, s in sorted(starts.items(), key=lambda x: -x[1])]
+    if not player: return {"players": players}
+    rows = {str(r["match"]): r for r in mu["per_match"]}
+    A = [m for m in rows if player in kp["starters"].get(m, [])]; Bm = [m for m in rows if m not in A]
+    seq = {}
+    for r in clip_rows: seq.setdefault(str(r["match"]), []).append(r)
+    fams = sorted({r["family"] for r in clip_rows if r["family"].startswith("B")})
+    stats = [(m, l, u, (lambda ms, m=m: float(np.mean([rows[x][m] for x in ms])) if ms else np.nan)) for m, l, u in WITHOUT_METRICS]
+    def ratio(ms, f):
+        tot = sum(1 for x in ms for r in seq.get(x, []) if r["family"].startswith("B")); return sum(1 for x in ms for r in seq.get(x, []) if r["family"] == f) / tot if tot else np.nan
+    def passes(ms):
+        rs = [int(r["passes"]) for x in ms for r in seq.get(x, [])]; return float(np.mean(rs)) if rs else np.nan
+    stats.append(("passes", "Passes per sequence", "num", passes))
+    stats += [(f"fam_{f}", f"Share of build-up family {f}", "pct", (lambda ms, f=f: ratio(ms, f))) for f in fams]
+    rng = np.random.default_rng(0); out = []
+    for mid, lab, unit, st in stats:
+        a, b = st(A), st(Bm)
+        if not A or not Bm: out.append({"id": mid, "label": lab, "unit": unit, "a": a if A else None, "b": b if Bm else None, "diff": None, "ci": None, "verdict": "small group"}); continue
+        d = [st(list(rng.choice(A, len(A)))) - st(list(rng.choice(Bm, len(Bm)))) for _ in range(1000)]
+        lo, hi = (float(v) for v in np.nanpercentile(d, [2.5, 97.5]))
+        verdict = "small group" if min(len(A), len(Bm)) < 6 else ("clear" if lo > 0 or hi < 0 else "uncertain")
+        out.append({"id": mid, "label": lab, "unit": unit, "a": float(a), "b": float(b), "diff": float(a - b), "ci": [lo, hi], "verdict": verdict})
+    return {"players": players, "player": player, "n_with": len(A), "n_without": len(Bm), "metrics": out,
+            "without_matches": [{"date": rows[m]["date"], "opponent": rows[m]["opponent"], "score": rows[m]["score"]} for m in Bm]}

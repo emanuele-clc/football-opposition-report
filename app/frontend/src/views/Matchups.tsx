@@ -1,10 +1,10 @@
-import { useState, type CSSProperties } from "react";
-import type { MatchupMetric, TeamData } from "../api";
+import { useEffect, useState, type CSSProperties } from "react";
+import { api, type MatchupMetric, type TeamData, type WithoutData } from "../api";
 import { Note, rib } from "../charts";
 import { fmt } from "../format";
 
 /* What happened in past matches against different opponents. Descriptive: never a recommendation. */
-const SPLITS: [string, string][] = [["opp_press", "Opponent pressing"], ["back_line", "Opponent back line"], ["venue", "Home or away"]];
+const SPLITS: [string, string][] = [["opp_press", "Opponent pressing"], ["back_line", "Opponent back line"], ["venue", "Home or away"], ["without", "Without a player"]];
 const VERDICT: Record<string, { tag: string; rib: number }> = { clear: { tag: "clear difference", rib: 0 }, uncertain: { tag: "uncertain", rib: 1 }, "small group": { tag: "group too small", rib: 3 } };
 
 function DiffBar({ m }: { m: MatchupMetric }) {
@@ -21,10 +21,68 @@ function DiffBar({ m }: { m: MatchupMetric }) {
   );
 }
 
+/* Matches a player started vs matches he did not start. Same verdict rule as the other splits. */
+function WithoutPlayer({ d }: { d: TeamData }) {
+  const [player, setPlayer] = useState(() => new URLSearchParams(location.search).get("player") ?? "");
+  const [res, setRes] = useState<WithoutData | null>(null);
+  const [err, setErr] = useState("");
+  useEffect(() => { setErr(""); api.without(d.key, player).then(setRes).catch((e) => setErr(String(e.message ?? e))); }, [d.key, player]);
+  const first = useState(d.key)[0];
+  useEffect(() => { if (d.key !== first) setPlayer(""); }, [d.key, first]);
+  if (err) return <div className="state" style={{ marginTop: 24 }}><p>{err}</p></div>;
+  if (!res) return <div className="state" style={{ marginTop: 24 }}><p>Loading…</p></div>;
+  const unit = (u: string) => u as "pct" | "num" | "num2";
+  return (
+    <div style={{ marginTop: 24 }}>
+      <div className="filters" style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+        <label htmlFor="wp" style={{ fontWeight: 750 }}>Player</label>
+        <select id="wp" className="pill-select" value={player} onChange={(e) => setPlayer(e.target.value)}>
+          <option value="">Choose a player…</option>
+          {res.players.map((p) => <option key={p.player} value={p.player}>{p.player} · started {p.starts}, not {p.not_started}{p.usable ? "" : " (too few)"}</option>)}
+        </select>
+      </div>
+      {!player || !res.metrics ? <p style={{ marginTop: 16 }}>Pick a player: the app compares the matches he started with the matches he did not (starting elevens in the data). Useful when he is injured or suspended for the next match. Players who started almost every match leave too few matches without them.</p> : (
+        <div className="layout-split layout-matchup" style={{ marginTop: 20 }}>
+          <section className="sticker pad">
+            <h3>With {res.player} starting ({res.n_with}) vs without ({res.n_without})</h3>
+            <div className="table-wrap" style={{ marginTop: 8 }}>
+              <table>
+                <thead><tr><th>Per match</th><th>With</th><th>Without</th><th style={{ minWidth: 170 }}>Difference</th><th className="l">Verdict</th></tr></thead>
+                <tbody>{res.metrics.map((x) => (
+                  <tr key={x.id}>
+                    <td>{x.label}</td><td className="num">{x.a != null ? fmt(x.a, unit(x.unit)) : "–"}</td><td className="num">{x.b != null ? fmt(x.b, unit(x.unit)) : "–"}</td>
+                    <td>{x.diff != null && x.ci ? <DiffBar m={{ ...x, diff: x.diff, ci: x.ci, a: x.a ?? 0, b: x.b ?? 0, direction: "", linked: false } as MatchupMetric} /> : null}</td>
+                    <td className="l"><span className="chip" style={rib(VERDICT[x.verdict].rib)}>{VERDICT[x.verdict].tag}</span></td>
+                  </tr>))}</tbody>
+              </table>
+            </div>
+          </section>
+          <div className="stack">
+            <div className="sticker pad">
+              <h3>In words</h3>
+              {res.metrics.some((x) => x.verdict === "clear")
+                ? <ul className="read" style={{ marginTop: 6 }}>{res.metrics.filter((x) => x.verdict === "clear").map((x) => <li key={x.id}><b>{x.label}</b>: {fmt(x.a ?? 0, unit(x.unit))} with him, {fmt(x.b ?? 0, unit(x.unit))} without.</li>)}</ul>
+                : <p style={{ marginTop: 8 }}>{Math.min(res.n_with ?? 0, res.n_without ?? 0) < 6 ? "Too few matches in one group: nothing can be said." : "No clear difference: without him the numbers stay within chance."}</p>}
+              {res.without_matches && res.without_matches.length > 0 && <p className="s-muted" style={{ fontSize: 12.5, marginTop: 10 }}>Matches without him: {res.without_matches.map((w) => `${w.opponent} ${w.score}`).join(", ")}.</p>}
+            </div>
+            <Note kind="caution" tag="Not cause and effect">The matches without him also differ in opponent, venue and other absences. About one 'clear' result in 20 is expected by chance with this many rows.</Note>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Matchups({ d }: { d: TeamData }) {
   const M = d.matchups;
-  const [split, setSplit] = useState("opp_press");
+  const [split, setSplit] = useState(() => new URLSearchParams(location.search).get("split") ?? "opp_press");
   if (!M) return <div className="state"><h2>No matchup sheet</h2><p>matchups_{d.key}.json is not in the data folder. It needs StatsBomb-style events with formations; run src/oppreport.py on StatsBomb data.</p></div>;
+  const pills = (
+    <div className="pills" role="group" aria-label="Split the matches by">
+      {SPLITS.map(([k, l]) => <button key={k} type="button" aria-pressed={split === k} onClick={() => setSplit(k)}>{l}</button>)}
+    </div>
+  );
+  if (split === "without") return (<><div className="section-head"><h2>Matchups</h2><p>How {d.team}'s numbers changed without one of its players. What happened in the past, to check on video.</p></div>{pills}<WithoutPlayer d={d} /></>);
   const S = M.splits[split]; const [ga, gb] = S.groups;
   const clear = S.metrics.filter((m) => m.verdict === "clear" && !m.linked);
   const unit = (m: MatchupMetric) => m.unit as "pct" | "num" | "num2";

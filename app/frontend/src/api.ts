@@ -53,15 +53,26 @@ export interface GPPlayer { player: string; full: string; shirt: number | null; 
 export interface GPEvents {
   matches: number;
   players: { id: string; role: string; unit: string; note: string; top: GPPlayer[] }[];
+  goals: { side: "for" | "against"; match: number; date: string | null; opponent: string; half: number; minute: number; second: number; start_minute: number; start_second: number;
+    possession: number | null; scorer: string; xg: number | null; origin: string; body: string | null; x: number | null; y: number | null }[];
+  goals_by_origin: { for: Record<string, number>; against: Record<string, number> };
   timeline: { slot: string; goals_for: number; goals_against: number; xg_for: number; xg_against: number }[];
 }
 export interface GPWatch { rule: string; matches: { match: number; date: string; opponent: string; venue: string; score: string; opp_formation: string; opp_ppda: number; xg_for: number; xg_against: number; distance: number | null }[] }
+export interface PZone { x0: number; x1: number; y0: number; y1: number; passes: number; under_pressure: number; up_share: number; up_completion: number; free_completion: number; up_long_share: number; few: boolean; ref_completion: number | null; ref_long_share: number | null; diff: number | null; weaker: boolean }
+export interface WithoutData {
+  players: { player: string; starts: number; not_started: number; usable: boolean }[];
+  player?: string; n_with?: number; n_without?: number;
+  metrics?: { id: string; label: string; unit: string; a: number | null; b: number | null; diff: number | null; ci: [number, number] | null; verdict: "clear" | "uncertain" | "small group" }[];
+  without_matches?: { date: string; opponent: string; score: string }[];
+}
 export interface GamePlan {
   opponent: string; mine: string | null; teams_in_folder: number; k: number;
   brief: { intro: string; priorities: string[]; phases: Record<"with_ball" | "without_ball" | "transitions" | "set_pieces", { title: string; lines: string[] }> };
   formations: { opponent: GPFormations | null; mine: GPFormations | null };
   profile: GPEvidence[];
   watch_first: GPWatch | null;
+  pressure_zones: { zones: PZone[]; total: { passes: number; completion: number; free_completion: number }; teams_in_reference: number; matches: number } | null;
   hints: { id: string; side: "opp" | "both"; title: string; why: string; look: string; tab: string; evidence: GPEvidence[] }[];
   opp_past: { split: string; label: string; unit: string; a: number; b: number; ga: string; gb: string; n_a: number; n_b: number }[];
   my_vs_press: { groups: [string, string]; n_a: number; n_b: number; metrics: MatchupMetric[] } | null;
@@ -80,7 +91,7 @@ export interface Source { file: string; competition: string; season: string; tea
 export interface Action { t: number; type: string; us: boolean; player: string; x: number; y: number; ex?: number; ey?: number; ok?: boolean; to?: string; long?: boolean; kind?: string; outcome?: string; xg?: number | null }
 export interface Replay { match: number; half: number; minute: number; second: number; play_pattern: string; actions: Action[] }
 /* One clip to replay: where it is in the events, plus what to say about it. */
-export interface ClipRef { match: number; half: number; minute: number; second: number; window?: boolean; title: string; detail: string }
+export interface ClipRef { match: number; half: number; minute: number; second: number; window?: boolean; possession?: number; title: string; detail: string }
 export interface PathsData { team: string; n: number; of: number; paths: { family: string; shot: number; pts: [number, number][] }[] }
 export interface ReviewRow { family: string; date: string; opponent: string; half: string; minute: string; second: string; start_type: string; passes: string; duration_s: string; ended_in_shot: string; coherent_with_family: string; comment: string; match: string | null }
 export interface ReviewData { rows: ReviewRow[]; questions: string[]; answers: { reviewer: string; role: string; saved: string; questions: { question: string; answer: string }[] } | null; filled_file: string | null }
@@ -106,7 +117,7 @@ export const api = {
   team: (key: string) => get<TeamData>(`/api/teams/${encodeURIComponent(key)}`),
   clips: (key: string, kind: string) => get<{ columns: string[]; rows: ClipRow[] }>(`/api/teams/${encodeURIComponent(key)}/clips/${kind}`),
   replay: (key: string, c: ClipRef) =>
-    get<Replay>(`/api/teams/${encodeURIComponent(key)}/replay?match=${c.match}&half=${c.half}&minute=${c.minute}&second=${c.second}${c.window ? "&window=true" : ""}`),
+    get<Replay>(`/api/teams/${encodeURIComponent(key)}/replay?match=${c.match}&half=${c.half}&minute=${c.minute}&second=${c.second}${c.window ? "&window=true" : ""}${c.possession ? `&possession=${c.possession}` : ""}`),
   paths: (key: string) => get<PathsData>(`/api/teams/${encodeURIComponent(key)}/paths`),
   review: (key: string) => get<ReviewData>(`/api/teams/${encodeURIComponent(key)}/review`),
   saveReview: async (key: string, body: { verdicts: string[]; comments: string[]; answers: string[]; reviewer: string; role: string }) => {
@@ -118,8 +129,9 @@ export const api = {
   pressing: (key: string) => get<{ team: string; restarts: RestartPass[] }>(`/api/teams/${encodeURIComponent(key)}/pressing`),
   network: (key: string) => get<NetworkData>(`/api/teams/${encodeURIComponent(key)}/network`),
   gifUrl: (key: string, c: ClipRef) =>
-    `/api/teams/${encodeURIComponent(key)}/replay.gif?match=${c.match}&half=${c.half}&minute=${c.minute}&second=${c.second}${c.window ? "&window=true" : ""}&title=${encodeURIComponent(c.title)}`,
+    `/api/teams/${encodeURIComponent(key)}/replay.gif?match=${c.match}&half=${c.half}&minute=${c.minute}&second=${c.second}${c.window ? "&window=true" : ""}${c.possession ? `&possession=${c.possession}` : ""}&title=${encodeURIComponent(c.title)}`,
   stylemap: () => get<StyleMapData>("/api/stylemap"),
+  without: (key: string, player: string) => get<WithoutData>(`/api/teams/${encodeURIComponent(key)}/without${player ? `?player=${encodeURIComponent(player)}` : ""}`),
   gameplanEvents: (key: string) => get<GPEvents>(`/api/teams/${encodeURIComponent(key)}/gameplan/events`),
   gameplan: (key: string, mine: string) => get<GamePlan>(`/api/teams/${encodeURIComponent(key)}/gameplan${mine ? `?mine=${encodeURIComponent(mine)}` : ""}`),
   similar: (key: string, r: { match: number; half: number; minute: number; second: number }) =>
