@@ -23,7 +23,6 @@ examples/        example outputs for 4 teams: report, restart sheet, clip lists,
 results/         JSON + CSV outputs (no raw event files)
 figures/         PNG charts (IT and EN labels)
 data_info/       competitions.json + match lists only (event files ~2.3 GB, not included)
-slides/          Canva AI prompts + 20-min speech (Word)
 docs/            Methodology protocol + pre-registered protocols (held-out validation, replication)
 ```
 
