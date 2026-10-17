@@ -4,7 +4,7 @@ Da eventi in CSV generico (qualunque fornitore, vedi docs/data_format.md):
 Da dati aperti StatsBomb gia' scaricati:
     python src/oppreport.py --statsbomb matches/9_281.json --data-dir <cartella dati> --team "Bayer Leverkusen" --out reports
 Produce in --out: report_<Squadra>.html (e .json), clips_<Squadra>.csv (tutte le sequenze con la famiglia e il tempo video), review_<Squadra>.csv/.html (scheda per l'analista),
-restarts_<Squadra>.html (uscite da rinvio, portiere e rimesse) con restart_clips_<Squadra>.csv, setpieces_<Squadra>.html (corner e punizioni) con setpiece_clips_<Squadra>.csv; con --xml anche xml/ (un file per partita da importare nel programma video)."""
+restarts_<Squadra>.html (uscite da rinvio, portiere e rimesse) con restart_clips_<Squadra>.csv, setpieces_<Squadra>.html (corner e punizioni) con setpiece_clips_<Squadra>.csv, transitions_<Squadra>.html (perdite, recuperi, transizioni) con transition_clips_<Squadra>.csv; con --xml anche xml/ (un file per partita da importare nel programma video)."""
 import argparse, os, sys, subprocess, shutil
 ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 ap.add_argument("--team", required=True); ap.add_argument("--out", default="reports"); ap.add_argument("--csv"); ap.add_argument("--statsbomb"); ap.add_argument("--data-dir", default=".")
@@ -29,10 +29,12 @@ r = subprocess.run(py + [os.path.join(here, "report", "restarts.py"), mf, a.team
 if r.returncode: sys.exit("Scheda delle uscite da fermo fallita.")
 r = subprocess.run(py + [os.path.join(here, "report", "setpieces.py"), mf, a.team, base], env=env)
 if r.returncode: sys.exit("Scheda delle palle inattive fallita.")
+r = subprocess.run(py + [os.path.join(here, "report", "transitions.py"), mf, a.team, base], env=env)
+if r.returncode: sys.exit("Scheda delle transizioni fallita.")
 fn = a.team.replace(" ", "_")
-for f in (f"report_{fn}.html", f"report_{fn}.json", f"clips_{fn}.csv", f"review_{fn}.csv", f"review_{fn}.html", f"restarts_{fn}.html", f"restarts_{fn}.json", f"restart_clips_{fn}.csv", f"setpieces_{fn}.html", f"setpieces_{fn}.json", f"setpiece_clips_{fn}.csv"):
+for f in (f"report_{fn}.html", f"report_{fn}.json", f"clips_{fn}.csv", f"review_{fn}.csv", f"review_{fn}.html", f"restarts_{fn}.html", f"restarts_{fn}.json", f"restart_clips_{fn}.csv", f"setpieces_{fn}.html", f"setpieces_{fn}.json", f"setpiece_clips_{fn}.csv", f"transitions_{fn}.html", f"transitions_{fn}.json", f"transition_clips_{fn}.csv"):
     if os.path.exists(os.path.join(base, f)): shutil.copy(os.path.join(base, f), os.path.join(out, f))
 if a.xml:
-    for c in (f"clips_{fn}.csv", f"restart_clips_{fn}.csv", f"setpiece_clips_{fn}.csv"):
+    for c in (f"clips_{fn}.csv", f"restart_clips_{fn}.csv", f"setpiece_clips_{fn}.csv", f"transition_clips_{fn}.csv"):
         subprocess.run(py + [os.path.join(here, "report", "clips_to_xml.py"), os.path.join(out, c), os.path.join(out, "xml", c[:-4])] + (["--video-offsets", os.path.abspath(a.video_offsets)] if a.video_offsets else []))
-print(f"Fatto. File in {out}: report_{fn}.html, restarts_{fn}.html, setpieces_{fn}.html, clips_{fn}.csv, restart_clips_{fn}.csv, review_{fn}.csv/.html" + (", xml/" if a.xml else ""))
+print(f"Fatto. File in {out}: report_{fn}.html, restarts_{fn}.html, setpieces_{fn}.html, transitions_{fn}.html, clips_{fn}.csv, restart_clips_{fn}.csv, review_{fn}.csv/.html" + (", xml/" if a.xml else ""))

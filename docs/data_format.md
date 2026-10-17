@@ -34,6 +34,8 @@ Measured on one team (Barcelona 2015/16, 38 matches, StatsBomb data exported to 
 - with reconstructed possessions: 2182 sequences instead of 1867, 1534 of the 1867 (82%) reproduced identically, passes per sequence 8.3 instead of 9.3, shot rate 13.6% instead of 15.2%.
 - restart and set-piece sheets: with `possession_id` 1083 of 1085 restart possessions and 368 of 368 set pieces reproduced (Bayer Leverkusen 2023/24: 863 of 863 and 310 of 310, including player names and xG); with reconstructed possessions all are found but about 6% of restart possessions and 3% of set pieces differ in at least one outcome.
 
+- transition sheet: it does not use `possession_id` (it reads the order of actions): 1899 of 1899 losses and 2144 of 2149 recoveries identical with or without it (Leverkusen).
+
 The few extra sequences with `possession_id` (1 for Barcelona, 4 for Leverkusen) are possessions that StatsBomb labels with the play pattern 'Other', which the generic format cannot express.
 
 So with reconstructed possessions the numbers are usable for a rough picture but are biased and not comparable with numbers from provider-supplied possessions. Prefer the provider's possession identifiers.
