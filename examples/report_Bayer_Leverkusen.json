@@ -37,6 +37,44 @@
       0.1383116883116883,
       0.34838709677419355
      ],
+     "examples": [
+      {
+       "date": "2024-02-03",
+       "opponent": "Darmstadt 98",
+       "half": 1,
+       "minute": 23,
+       "second": 29,
+       "video": "",
+       "start": "From Keeper",
+       "passes": 13,
+       "dur": 46.0,
+       "shot": true
+      },
+      {
+       "date": "2023-12-03",
+       "opponent": "Borussia Dortmund",
+       "half": 1,
+       "minute": 42,
+       "second": 36,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 12,
+       "dur": 34.0,
+       "shot": false
+      },
+      {
+       "date": "2023-09-24",
+       "opponent": "FC Heidenheim",
+       "half": 2,
+       "minute": 49,
+       "second": 11,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 15,
+       "dur": 40.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.8389018380444242,
      "reliability": "stable"
     },
@@ -63,6 +101,44 @@
      "per_match_p10_p90": [
       0.09696969696969697,
       0.31873684210526315
+     ],
+     "examples": [
+      {
+       "date": "2024-01-20",
+       "opponent": "RB Leipzig",
+       "half": 1,
+       "minute": 38,
+       "second": 9,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 21.0,
+       "shot": false
+      },
+      {
+       "date": "2023-08-26",
+       "opponent": "Borussia M\u00f6nchengladbach",
+       "half": 2,
+       "minute": 58,
+       "second": 25,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 5,
+       "dur": 18.0,
+       "shot": false
+      },
+      {
+       "date": "2023-08-26",
+       "opponent": "Borussia M\u00f6nchengladbach",
+       "half": 2,
+       "minute": 48,
+       "second": 47,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 6,
+       "dur": 11.0,
+       "shot": false
+      }
      ],
      "jaccard": 0.8064862219071809,
      "reliability": "stable"
@@ -91,6 +167,44 @@
       0.009375000000000008,
       0.18680555555555556
      ],
+     "examples": [
+      {
+       "date": "2024-03-03",
+       "opponent": "FC K\u00f6ln",
+       "half": 2,
+       "minute": 79,
+       "second": 45,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 28,
+       "dur": 97.0,
+       "shot": true
+      },
+      {
+       "date": "2024-03-30",
+       "opponent": "Hoffenheim",
+       "half": 2,
+       "minute": 48,
+       "second": 3,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 28,
+       "dur": 83.0,
+       "shot": true
+      },
+      {
+       "date": "2023-09-30",
+       "opponent": "FSV Mainz 05",
+       "half": 1,
+       "minute": 30,
+       "second": 43,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 30,
+       "dur": 92.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.8821294005578574,
      "reliability": "stable"
     },
@@ -118,6 +232,44 @@
       0.1,
       0.40056980056980057
      ],
+     "examples": [
+      {
+       "date": "2023-08-19",
+       "opponent": "RB Leipzig",
+       "half": 2,
+       "minute": 79,
+       "second": 57,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 3.0,
+       "shot": false
+      },
+      {
+       "date": "2023-12-10",
+       "opponent": "VfB Stuttgart",
+       "half": 1,
+       "minute": 13,
+       "second": 57,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 7,
+       "dur": 21.0,
+       "shot": false
+      },
+      {
+       "date": "2023-08-26",
+       "opponent": "Borussia M\u00f6nchengladbach",
+       "half": 1,
+       "minute": 24,
+       "second": 6,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 6.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.8725076556943953,
      "reliability": "stable"
     },
@@ -144,6 +296,44 @@
      "per_match_p10_p90": [
       0.12840909090909092,
       0.38351648351648354
+     ],
+     "examples": [
+      {
+       "date": "2023-09-30",
+       "opponent": "FSV Mainz 05",
+       "half": 2,
+       "minute": 49,
+       "second": 13,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 10,
+       "dur": 25.0,
+       "shot": false
+      },
+      {
+       "date": "2024-01-27",
+       "opponent": "Borussia M\u00f6nchengladbach",
+       "half": 1,
+       "minute": 33,
+       "second": 42,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 16,
+       "dur": 41.0,
+       "shot": false
+      },
+      {
+       "date": "2024-04-06",
+       "opponent": "Union Berlin",
+       "half": 1,
+       "minute": 22,
+       "second": 23,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 11,
+       "dur": 27.0,
+       "shot": false
+      }
      ],
      "jaccard": 0.8191039146593816,
      "reliability": "stable"
@@ -240,6 +430,44 @@
       0.25576923076923075,
       0.5
      ],
+     "examples": [
+      {
+       "date": "2024-02-23",
+       "opponent": "FSV Mainz 05",
+       "half": 1,
+       "minute": 38,
+       "second": 49,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 6,
+       "dur": 20.0,
+       "shot": false
+      },
+      {
+       "date": "2024-03-10",
+       "opponent": "Wolfsburg",
+       "half": 1,
+       "minute": 2,
+       "second": 32,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 8,
+       "dur": 15.0,
+       "shot": false
+      },
+      {
+       "date": "2023-10-08",
+       "opponent": "FC K\u00f6ln",
+       "half": 2,
+       "minute": 84,
+       "second": 19,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 8,
+       "dur": 22.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.8820568721589501,
      "reliability": "stable"
     },
@@ -267,6 +495,44 @@
       0.15236842105263157,
       0.38173076923076926
      ],
+     "examples": [
+      {
+       "date": "2023-10-08",
+       "opponent": "FC K\u00f6ln",
+       "half": 2,
+       "minute": 57,
+       "second": 28,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 21,
+       "dur": 55.0,
+       "shot": false
+      },
+      {
+       "date": "2024-03-17",
+       "opponent": "Freiburg",
+       "half": 2,
+       "minute": 84,
+       "second": 50,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 21,
+       "dur": 70.0,
+       "shot": true
+      },
+      {
+       "date": "2023-11-12",
+       "opponent": "Union Berlin",
+       "half": 1,
+       "minute": 6,
+       "second": 59,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 21,
+       "dur": 51.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.8866446615749985,
      "reliability": "stable"
     },
@@ -293,6 +559,44 @@
      "per_match_p10_p90": [
       0.23529411764705882,
       0.5
+     ],
+     "examples": [
+      {
+       "date": "2023-12-17",
+       "opponent": "Eintracht Frankfurt",
+       "half": 2,
+       "minute": 55,
+       "second": 42,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 8,
+       "dur": 13.0,
+       "shot": false
+      },
+      {
+       "date": "2023-12-20",
+       "opponent": "Bochum",
+       "half": 1,
+       "minute": 32,
+       "second": 43,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 5,
+       "dur": 30.0,
+       "shot": false
+      },
+      {
+       "date": "2023-11-25",
+       "opponent": "Werder Bremen",
+       "half": 1,
+       "minute": 22,
+       "second": 12,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 8,
+       "dur": 23.0,
+       "shot": false
+      }
      ],
      "jaccard": 0.8632179704923482,
      "reliability": "stable"
@@ -336,6 +640,36 @@
      }
     }
    ]
+  }
+ },
+ "reliability": {
+  "3": {
+   "passes": 1.7369368256546815,
+   "long": 0.02371381044765244,
+   "shot": 0.05191372769798133,
+   "build_up": 0.1217027417027417,
+   "advanced": 0.11339743100259958
+  },
+  "5": {
+   "passes": 1.265443103125585,
+   "long": 0.016374317907666157,
+   "shot": 0.040934229066644894,
+   "build_up": 0.08928181818181818,
+   "advanced": 0.09347343961409496
+  },
+  "8": {
+   "passes": 0.9955704937688015,
+   "long": 0.013217938722426013,
+   "shot": 0.02947927752172619,
+   "build_up": 0.07116744246331404,
+   "advanced": 0.0674048679959898
+  },
+  "10": {
+   "passes": 0.8775640124922931,
+   "long": 0.011520194040599117,
+   "shot": 0.025737626191731117,
+   "build_up": 0.05972897423432181,
+   "advanced": 0.06207032422091691
   }
  },
  "style": {

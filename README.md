@@ -15,7 +15,10 @@ src/week1/       download, goal kicks, corners (L3)
 src/week2/       sequence extraction and clustering (L2)
 src/week3/       robustness: match-bootstrap, sensitivity, predictability, null baselines
 src/week4/       held-out validation, replication on new teams, exploratory analyses
-src/report/      automated opposition report generator (L2)
+src/report/      automated opposition report generator (L2), clip list, analyst review sheet
+src/adapters/    converter from a generic events CSV (any provider) to the pipeline format
+src/oppreport.py one command to generate the report
+tests/           adapter round-trip test
 examples/        example reports (HTML)
 results/         JSON + CSV outputs (no raw event files)
 figures/         PNG charts (IT and EN labels)
@@ -64,6 +67,14 @@ python src/report/make_report.py matches/11_27.json "Barcelona" .
 ```
 On Windows add `-X utf8` after `python` (data files are UTF-8).
 All scripts use a fixed seed. Results are reproducible on the same data.
+
+## Quick start (for analysts)
+```bash
+pip install -r requirements.txt
+python src/oppreport.py --csv events.csv --team "Team name" --out reports        # events from any provider, see docs/data_format.md
+python src/oppreport.py --statsbomb matches/9_281.json --data-dir <data> --team "Bayer Leverkusen" --out reports   # StatsBomb open data
+```
+Output: `report_<Team>.html`, `clips_<Team>.csv` (every sequence with family, minute and, with `--video-offsets`, video time), `review_<Team>.csv/.html` (sheet for an analyst to check the families). Input format: `docs/data_format.md`; how to read the report: `docs/analyst_guide.md`. The adapter was tested by exporting StatsBomb data to the generic format: with possession identifiers the sequences are reproduced (1867 of 1867 on Barcelona 2015/16); with reconstructed possessions the numbers are biased (passes per sequence 8.3 instead of 9.3). Not yet tried on real club data.
 
 ## Results summary (weeks 1-3: exploration data only; held-out and replication results further down)
 

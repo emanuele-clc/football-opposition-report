@@ -41,7 +41,7 @@ def extract():
             t0 = es[0]["minute"] * 60 + es[0]["second"]; t1 = es[-1]["minute"] * 60 + es[-1]["second"]
             lp = np.mean([p["pass"].get("length", 0) >= 30 for p in passes])
             opp = g["away_team"]["away_team_name"] if g["home_team"]["home_team_name"] == TEAM else g["home_team"]["home_team_name"]
-            rows.append(dict(match=g["match_id"], gi=gi, data=g["match_date"], avv=opp, minuto=es[0]["minute"], tempo=es[0]["period"], pid=pid, play_pattern=pp, n_pass=len(passes), n_pts=len(P),
+            rows.append(dict(match=g["match_id"], gi=gi, data=g["match_date"], avv=opp, minuto=es[0]["minute"], sec=es[0]["second"], tempo=es[0]["period"], pid=pid, play_pattern=pp, n_pass=len(passes), n_pts=len(P),
                              x0=P[0, 0], y0=P[0, 1], x1=P[-1, 0], y1=P[-1, 1], net_x=P[-1, 0] - P[0, 0], path_len=L,
                              directness=float(np.clip((P[-1, 0] - P[0, 0]) / max(L, 1), -1, 1)), long_share=float(lp),
                              width_std=float(P[:, 1].std()), mean_x=float(P[:, 0].mean()), dur=max(t1 - t0, 0), shot=int(shot),

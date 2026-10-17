@@ -37,6 +37,44 @@
       0.098125,
       0.2671957671957673
      ],
+     "examples": [
+      {
+       "date": "2016-04-20",
+       "opponent": "RC Deportivo La Coru\u00f1a",
+       "half": 2,
+       "minute": 62,
+       "second": 4,
+       "video": "",
+       "start": "From Goal Kick",
+       "passes": 15,
+       "dur": 37.0,
+       "shot": true
+      },
+      {
+       "date": "2015-12-12",
+       "opponent": "RC Deportivo La Coru\u00f1a",
+       "half": 2,
+       "minute": 55,
+       "second": 34,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 11,
+       "dur": 29.0,
+       "shot": false
+      },
+      {
+       "date": "2015-12-30",
+       "opponent": "Real Betis",
+       "half": 1,
+       "minute": 18,
+       "second": 55,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 13,
+       "dur": 51.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.5256540281022408,
      "reliability": "unstable"
     },
@@ -63,6 +101,44 @@
      "per_match_p10_p90": [
       0.1375,
       0.3287500000000002
+     ],
+     "examples": [
+      {
+       "date": "2015-11-28",
+       "opponent": "Real Sociedad",
+       "half": 1,
+       "minute": 35,
+       "second": 27,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 3,
+       "dur": 9.0,
+       "shot": false
+      },
+      {
+       "date": "2015-11-21",
+       "opponent": "Real Madrid",
+       "half": 1,
+       "minute": 16,
+       "second": 26,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 25.0,
+       "shot": false
+      },
+      {
+       "date": "2015-12-05",
+       "opponent": "Valencia",
+       "half": 1,
+       "minute": 16,
+       "second": 40,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 3,
+       "dur": 13.0,
+       "shot": false
+      }
      ],
      "jaccard": 0.711304473138607,
      "reliability": "moderate"
@@ -91,6 +167,44 @@
       0.0,
       0.17954545454545456
      ],
+     "examples": [
+      {
+       "date": "2016-03-20",
+       "opponent": "Villarreal",
+       "half": 1,
+       "minute": 30,
+       "second": 22,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 26,
+       "dur": 91.0,
+       "shot": false
+      },
+      {
+       "date": "2016-02-17",
+       "opponent": "Sporting Gij\u00f3n",
+       "half": 1,
+       "minute": 13,
+       "second": 33,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 22,
+       "dur": 74.0,
+       "shot": false
+      },
+      {
+       "date": "2015-12-05",
+       "opponent": "Valencia",
+       "half": 2,
+       "minute": 47,
+       "second": 33,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 20,
+       "dur": 78.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.6745274542369948,
      "reliability": "moderate"
     },
@@ -118,6 +232,44 @@
       0.11929411764705881,
       0.3610909090909091
      ],
+     "examples": [
+      {
+       "date": "2016-02-28",
+       "opponent": "Sevilla",
+       "half": 2,
+       "minute": 82,
+       "second": 16,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 11.0,
+       "shot": false
+      },
+      {
+       "date": "2016-03-12",
+       "opponent": "Getafe",
+       "half": 2,
+       "minute": 46,
+       "second": 1,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 7.0,
+       "shot": false
+      },
+      {
+       "date": "2015-10-25",
+       "opponent": "Eibar",
+       "half": 1,
+       "minute": 7,
+       "second": 42,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 8,
+       "dur": 25.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.7451527718841001,
      "reliability": "moderate"
     },
@@ -144,6 +296,44 @@
      "per_match_p10_p90": [
       0.17467391304347826,
       0.41000000000000014
+     ],
+     "examples": [
+      {
+       "date": "2016-05-08",
+       "opponent": "Espanyol",
+       "half": 1,
+       "minute": 4,
+       "second": 25,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 8,
+       "dur": 26.0,
+       "shot": false
+      },
+      {
+       "date": "2015-12-30",
+       "opponent": "Real Betis",
+       "half": 2,
+       "minute": 70,
+       "second": 41,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 8,
+       "dur": 27.0,
+       "shot": true
+      },
+      {
+       "date": "2015-09-26",
+       "opponent": "Las Palmas",
+       "half": 1,
+       "minute": 16,
+       "second": 46,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 7,
+       "dur": 24.0,
+       "shot": false
+      }
      ],
      "jaccard": 0.6911908526479387,
      "reliability": "moderate"
@@ -240,6 +430,44 @@
       0.2818181818181818,
       0.5883333333333334
      ],
+     "examples": [
+      {
+       "date": "2015-10-25",
+       "opponent": "Eibar",
+       "half": 1,
+       "minute": 40,
+       "second": 49,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 6,
+       "dur": 15.0,
+       "shot": true
+      },
+      {
+       "date": "2015-09-12",
+       "opponent": "Atl\u00e9tico Madrid",
+       "half": 1,
+       "minute": 45,
+       "second": 44,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 6,
+       "dur": 12.0,
+       "shot": false
+      },
+      {
+       "date": "2015-08-29",
+       "opponent": "M\u00e1laga",
+       "half": 1,
+       "minute": 44,
+       "second": 14,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 7,
+       "dur": 18.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.9032195883560956,
      "reliability": "stable"
     },
@@ -267,6 +495,44 @@
       0.08238636363636365,
       0.3130434782608697
      ],
+     "examples": [
+      {
+       "date": "2016-04-02",
+       "opponent": "Real Madrid",
+       "half": 1,
+       "minute": 15,
+       "second": 50,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 22,
+       "dur": 71.0,
+       "shot": true
+      },
+      {
+       "date": "2016-03-12",
+       "opponent": "Getafe",
+       "half": 2,
+       "minute": 78,
+       "second": 19,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 20,
+       "dur": 69.0,
+       "shot": false
+      },
+      {
+       "date": "2015-11-28",
+       "opponent": "Real Sociedad",
+       "half": 2,
+       "minute": 77,
+       "second": 22,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 21,
+       "dur": 77.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.8488562008171624,
      "reliability": "stable"
     },
@@ -293,6 +559,44 @@
      "per_match_p10_p90": [
       0.2372549019607843,
       0.5313025210084034
+     ],
+     "examples": [
+      {
+       "date": "2015-10-25",
+       "opponent": "Eibar",
+       "half": 1,
+       "minute": 6,
+       "second": 7,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 10,
+       "dur": 21.0,
+       "shot": false
+      },
+      {
+       "date": "2015-10-03",
+       "opponent": "Sevilla",
+       "half": 1,
+       "minute": 15,
+       "second": 0,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 9,
+       "dur": 21.0,
+       "shot": false
+      },
+      {
+       "date": "2015-12-05",
+       "opponent": "Valencia",
+       "half": 2,
+       "minute": 74,
+       "second": 16,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 8,
+       "dur": 21.0,
+       "shot": false
+      }
      ],
      "jaccard": 0.8980609236178446,
      "reliability": "stable"
@@ -327,6 +631,36 @@
      }
     }
    ]
+  }
+ },
+ "reliability": {
+  "3": {
+   "passes": 1.4395991147517937,
+   "long": 0.03213894664732076,
+   "shot": 0.04953925866007891,
+   "build_up": 0.10742759070469914,
+   "advanced": 0.12446779571779576
+  },
+  "5": {
+   "passes": 1.1307891019868854,
+   "long": 0.023429205303648316,
+   "shot": 0.03861875990289526,
+   "build_up": 0.08206022958013161,
+   "advanced": 0.0981624758220503
+  },
+  "8": {
+   "passes": 0.7487342833272347,
+   "long": 0.01757344955826077,
+   "shot": 0.028911459818784655,
+   "build_up": 0.05774652423879677,
+   "advanced": 0.07039822793086781
+  },
+  "10": {
+   "passes": 0.6659125911363385,
+   "long": 0.01419482717737408,
+   "shot": 0.02167011978012059,
+   "build_up": 0.051073705345697266,
+   "advanced": 0.061515151515151544
   }
  },
  "style": {

@@ -37,6 +37,44 @@
       0.1235,
       0.2905393457117596
      ],
+     "examples": [
+      {
+       "date": "2015-12-28",
+       "opponent": "AFC Bournemouth",
+       "half": 1,
+       "minute": 14,
+       "second": 24,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 14,
+       "dur": 36.0,
+       "shot": false
+      },
+      {
+       "date": "2015-09-19",
+       "opponent": "Chelsea",
+       "half": 1,
+       "minute": 30,
+       "second": 6,
+       "video": "",
+       "start": "From Goal Kick",
+       "passes": 13,
+       "dur": 40.0,
+       "shot": false
+      },
+      {
+       "date": "2016-04-09",
+       "opponent": "West Ham United",
+       "half": 1,
+       "minute": 18,
+       "second": 24,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 11,
+       "dur": 47.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.6345030746015466,
      "reliability": "moderate"
     },
@@ -63,6 +101,44 @@
      "per_match_p10_p90": [
       0.19625,
       0.3825000000000001
+     ],
+     "examples": [
+      {
+       "date": "2015-10-31",
+       "opponent": "Swansea City",
+       "half": 1,
+       "minute": 39,
+       "second": 7,
+       "video": "",
+       "start": "From Keeper",
+       "passes": 4,
+       "dur": 10.0,
+       "shot": false
+      },
+      {
+       "date": "2016-01-17",
+       "opponent": "Stoke City",
+       "half": 2,
+       "minute": 51,
+       "second": 32,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 15.0,
+       "shot": false
+      },
+      {
+       "date": "2016-01-13",
+       "opponent": "Liverpool",
+       "half": 1,
+       "minute": 46,
+       "second": 0,
+       "video": "",
+       "start": "From Keeper",
+       "passes": 3,
+       "dur": 12.0,
+       "shot": false
+      }
      ],
      "jaccard": 0.7794631951354356,
      "reliability": "stable"
@@ -91,6 +167,44 @@
       0.07976190476190476,
       0.32400000000000007
      ],
+     "examples": [
+      {
+       "date": "2016-04-17",
+       "opponent": "Crystal Palace",
+       "half": 2,
+       "minute": 61,
+       "second": 50,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 9.0,
+       "shot": false
+      },
+      {
+       "date": "2016-01-13",
+       "opponent": "Liverpool",
+       "half": 2,
+       "minute": 51,
+       "second": 19,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 6,
+       "dur": 12.0,
+       "shot": false
+      },
+      {
+       "date": "2016-04-09",
+       "opponent": "West Ham United",
+       "half": 1,
+       "minute": 45,
+       "second": 23,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 5,
+       "dur": 11.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.8865638747157193,
      "reliability": "stable"
     },
@@ -118,6 +232,44 @@
       0.0,
       0.1772946859903382
      ],
+     "examples": [
+      {
+       "date": "2016-04-17",
+       "opponent": "Crystal Palace",
+       "half": 1,
+       "minute": 3,
+       "second": 51,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 23,
+       "dur": 69.0,
+       "shot": true
+      },
+      {
+       "date": "2016-04-30",
+       "opponent": "Norwich City",
+       "half": 1,
+       "minute": 29,
+       "second": 34,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 26,
+       "dur": 67.0,
+       "shot": false
+      },
+      {
+       "date": "2016-03-02",
+       "opponent": "Swansea City",
+       "half": 2,
+       "minute": 52,
+       "second": 8,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 27,
+       "dur": 84.0,
+       "shot": false
+      }
+     ],
      "jaccard": 0.7675932568697361,
      "reliability": "stable"
     },
@@ -144,6 +296,44 @@
      "per_match_p10_p90": [
       0.13655172413793104,
       0.3070588235294119
+     ],
+     "examples": [
+      {
+       "date": "2016-03-02",
+       "opponent": "Swansea City",
+       "half": 2,
+       "minute": 84,
+       "second": 59,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 6,
+       "dur": 28.0,
+       "shot": false
+      },
+      {
+       "date": "2016-04-17",
+       "opponent": "Crystal Palace",
+       "half": 2,
+       "minute": 93,
+       "second": 47,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 5,
+       "dur": 15.0,
+       "shot": false
+      },
+      {
+       "date": "2015-11-29",
+       "opponent": "Norwich City",
+       "half": 1,
+       "minute": 25,
+       "second": 25,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 6,
+       "dur": 12.0,
+       "shot": false
+      }
      ],
      "jaccard": 0.7793951721274694,
      "reliability": "stable"
@@ -240,6 +430,44 @@
       0.2691699604743083,
       0.5433155080213906
      ],
+     "examples": [
+      {
+       "date": "2016-01-24",
+       "opponent": "Chelsea",
+       "half": 2,
+       "minute": 86,
+       "second": 30,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 17.0,
+       "shot": true
+      },
+      {
+       "date": "2015-08-29",
+       "opponent": "Newcastle United",
+       "half": 1,
+       "minute": 27,
+       "second": 24,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 11.0,
+       "shot": false
+      },
+      {
+       "date": "2016-03-19",
+       "opponent": "Everton",
+       "half": 2,
+       "minute": 91,
+       "second": 49,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 8,
+       "dur": 23.0,
+       "shot": true
+      }
+     ],
      "jaccard": 0.8979905434599256,
      "reliability": "stable"
     },
@@ -267,6 +495,44 @@
       0.09035087719298246,
       0.3693913043478262
      ],
+     "examples": [
+      {
+       "date": "2015-11-21",
+       "opponent": "West Bromwich Albion",
+       "half": 1,
+       "minute": 25,
+       "second": 37,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 16,
+       "dur": 54.0,
+       "shot": false
+      },
+      {
+       "date": "2015-08-29",
+       "opponent": "Newcastle United",
+       "half": 1,
+       "minute": 30,
+       "second": 25,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 19,
+       "dur": 53.0,
+       "shot": true
+      },
+      {
+       "date": "2015-10-17",
+       "opponent": "Watford",
+       "half": 1,
+       "minute": 6,
+       "second": 32,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 16,
+       "dur": 48.0,
+       "shot": true
+      }
+     ],
      "jaccard": 0.8975725524654237,
      "reliability": "stable"
     },
@@ -293,6 +559,44 @@
      "per_match_p10_p90": [
       0.19625,
       0.5
+     ],
+     "examples": [
+      {
+       "date": "2015-10-24",
+       "opponent": "Everton",
+       "half": 1,
+       "minute": 0,
+       "second": 28,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 8,
+       "dur": 19.0,
+       "shot": false
+      },
+      {
+       "date": "2015-09-12",
+       "opponent": "Stoke City",
+       "half": 1,
+       "minute": 6,
+       "second": 30,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 7,
+       "dur": 16.0,
+       "shot": false
+      },
+      {
+       "date": "2015-09-12",
+       "opponent": "Stoke City",
+       "half": 1,
+       "minute": 1,
+       "second": 52,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 5,
+       "dur": 13.0,
+       "shot": false
+      }
      ],
      "jaccard": 0.8424012639550368,
      "reliability": "stable"
@@ -336,6 +640,36 @@
      }
     }
    ]
+  }
+ },
+ "reliability": {
+  "3": {
+   "passes": 1.4939682305843596,
+   "long": 0.027313647028930188,
+   "shot": 0.05458165735751432,
+   "build_up": 0.09527218436858483,
+   "advanced": 0.13579934620174344
+  },
+  "5": {
+   "passes": 1.0796308635676737,
+   "long": 0.0213050491383635,
+   "shot": 0.03972671737559554,
+   "build_up": 0.07858927106920915,
+   "advanced": 0.0993706851733186
+  },
+  "8": {
+   "passes": 0.8355221675178404,
+   "long": 0.014800218203762847,
+   "shot": 0.029343856293382018,
+   "build_up": 0.059923884354492876,
+   "advanced": 0.07076911497354069
+  },
+  "10": {
+   "passes": 0.6534419193807519,
+   "long": 0.013628174759842588,
+   "shot": 0.02835535928662223,
+   "build_up": 0.04514504363327094,
+   "advanced": 0.05830242501947744
   }
  },
  "style": {
