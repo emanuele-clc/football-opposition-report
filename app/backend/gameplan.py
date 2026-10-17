@@ -115,6 +115,7 @@ def build(opp_key, my_key, teams, ranks, load):
             "profile": [{"id": r["id"], "label": r["label"], "value": r["value"], "unit": r["unit"], "rank": r["rank"], "of": r["of"]} for r in extreme],
             "hints": hints, "opp_past": past(opp_key), "my_vs_press": my_press,
             "pressure_zones": pz,
+            "foul_zones": foul_zones(opp_key, list(ts), load), "breaks": breaks(opp_key, load),
             "watch_first": watch_first(load("matchups", opp_key), load("defending", my_key) if my_key else None, load("matchups", my_key) if my_key else None) if load("matchups", opp_key) else None,
             "brief": brief(hints, past(opp_key), ts[opp_key]["team"], ts[my_key]["team"] if my_key else None)}
 
@@ -190,6 +191,10 @@ def pressure_hint(pz):
     weak = sorted([z for z in pz["zones"] if z["weaker"]], key=lambda z: z["diff"]) if pz else []
     if not weak: return None
     z = weak[0]
+    if len(weak) >= 5:   # below the others almost everywhere: a general trait (often a more direct style), not one weak spot
+        return {"id": "press_zone", "side": "opp", "title": "Less secure under pressure everywhere",
+                "why": f"Under pressure in their own half they complete {pz['total']['completion']:.0%} of passes and are below the other teams in {len(weak)} of 9 zones; the biggest gap is {zone_name(z)} ({z['up_completion']:.0%} vs {z['ref_completion']:.0%}).",
+                "look": "Pressing them in their half may force errors or long balls anywhere: check on video how they react to pressure and who they look for.", "tab": "gameplan", "evidence": []}
     return {"id": "press_zone", "side": "opp", "title": "Where pressing hurts them",
             "why": f"Under pressure {zone_name(z)} they complete {z['up_completion']:.0%} of passes, against {z['ref_completion']:.0%} for the other teams there ({z['under_pressure']} passes)."
                    + (f" {len(weak) - 1} more zone(s) below the others." if len(weak) > 1 else ""),
@@ -234,3 +239,21 @@ def without(key, player, load, clip_rows):
         out.append({"id": mid, "label": lab, "unit": unit, "a": float(a), "b": float(b), "diff": float(a - b), "ci": [lo, hi], "verdict": verdict})
     return {"players": players, "player": player, "n_with": len(A), "n_without": len(Bm), "metrics": out,
             "without_matches": [{"date": rows[m]["date"], "opponent": rows[m]["opponent"], "score": rows[m]["score"]} for m in Bm]}
+
+
+# Where they foul: fouls committed per match in each own-half zone, against the other teams in the folder (per match, pooled). Descriptive.
+def foul_zones(key, keys, load):
+    me = load("keyplayers", key)
+    if not me or "fouls" not in me: return None
+    others = [o for o in (load("keyplayers", k) for k in keys if k != key) if o and "fouls" in o]
+    n_o = sum(o["matches"] for o in others)
+    zones = [{**z, "ref_per_match": (sum(o["fouls"][i]["fouls"] for o in others) / n_o) if n_o else None} for i, z in enumerate(me["fouls"])]
+    return {"zones": zones, "matches": me["matches"], "teams_in_reference": len(others),
+            "total_per_match": sum(z["fouls"] for z in zones) / max(me["matches"], 1), "ref_total_per_match": (sum(sum(z["fouls"] for z in o["fouls"]) for o in others) / n_o) if n_o else None}
+
+
+# Where they hurt you on the break: their recoveries by zone with the share followed by a shot within 10 s (transitions_<Team>.json), and each such recovery.
+def breaks(key, load):
+    tr = load("transitions", key)
+    if not tr or "recovery_zones" not in tr: return None
+    return {"zones": tr["recovery_zones"], "shots": tr["recovery_shots"], "rate": tr["recoveries"]["shot10"], "n": tr["recoveries"]["n"], "matches": tr["matches"]}

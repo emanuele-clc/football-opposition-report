@@ -1,4 +1,4 @@
-"""Reruns the descriptive sheets of the app (defending, matchups, key players) in an empty folder and checks the JSON files are identical
+"""Reruns the descriptive sheets of the app (defending, matchups, key players, transitions) in an empty folder and checks the JSON files are identical
 to the ones in the data folder. The raw events are linked, not copied.
 Usage:  python -X utf8 tests/reproduce_sheets.py <data_folder>      (the folder with matches/, ev/ and the sheets of the 10 thesis teams)"""
 import filecmp, os, shutil, subprocess, sys, tempfile
@@ -21,7 +21,7 @@ same = diff = 0
 try:
     for mid, team in TEAMS:
         k = team.replace(" ", "_")
-        for s in ("defending", "matchups", "keyplayers"):
+        for s in ("defending", "matchups", "keyplayers", "transitions"):
             ref = os.path.join(data, f"{s}_{k}.json")
             if not os.path.exists(ref): print("missing", ref); diff += 1; continue
             subprocess.run([sys.executable, "-X", "utf8", os.path.join(rep, f"{s}.py"), os.path.join("matches", f"{mid}.json"), team, "."], cwd=tmp, capture_output=True)

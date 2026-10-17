@@ -61,6 +61,8 @@ for t in teams:
         w = c.get(f"/api/teams/{k}/without", params={"player": p0["player"]}).json()
         check(w["n_with"] + w["n_without"] == d["matchups"]["matches"] and w["n_with"] == p0["starts"], f"{t['team']}: without {p0['player']}: {w['n_with']} + {w['n_without']} matches")
         check(all(m["verdict"] == "small group" for m in w["metrics"]) if min(w["n_with"], w["n_without"]) < 6 else True, f"{t['team']}: small groups never called clear (without a player)")
+    if gp.get("foul_zones"):
+        check(len(gp["foul_zones"]["zones"]) == 9 and (gp["breaks"] is None or len(gp["breaks"]["zones"]) == 12), f"{t['team']}: foul zones and break map present")
     other = next((x["key"] for x in teams if x["key"] != k), None)
     if other:
         gp2 = c.get(f"/api/teams/{k}/gameplan", params={"mine": other}).json()

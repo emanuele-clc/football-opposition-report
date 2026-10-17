@@ -6,6 +6,7 @@ import Clips from "./views/Clips";
 import Compare from "./views/Compare";
 import Defending from "./views/Defending";
 import GamePlan from "./views/GamePlan";
+import CoachSheet from "./views/CoachSheet";
 import Goals from "./views/Goals";
 import Matchups from "./views/Matchups";
 import Review from "./views/Review";
@@ -142,7 +143,7 @@ export default function App() {
         <main aria-busy="true"><div className="skeleton" style={{ height: 60, width: "45%" }} /><div className="skeleton" style={{ height: 420 }} />{Array.from({ length: 4 }, (_, i) => <div key={i} className="skeleton" />)}</main>
       ) : (
         <>
-          <div className="team-head">
+          <div className="team-head" hidden={route.tab === "coach"}>
             <h1>{current.team}</h1>
             <div className="facts">
               <span><b>{current.matches} matches</b>{current.period.replace(" to ", " – ")}</span>
@@ -157,7 +158,8 @@ export default function App() {
             {route.tab === "setpieces" && <SetPieces d={current} events={events} go={go} />}
             {route.tab === "transitions" && <Transitions d={current} events={events} go={go} />}
             {route.tab === "defending" && <Defending d={current} />}
-            {route.tab === "gameplan" && teams && <GamePlan d={current} teams={teams} />}
+            {route.tab === "gameplan" && teams && <GamePlan d={current} teams={teams} events={events} />}
+            {route.tab === "coach" && <CoachSheet d={current} />}
             {route.tab === "goals" && <Goals d={current} events={events} />}
             {route.tab === "matchups" && <Matchups d={current} />}
             {route.tab === "compare" && teams && <Compare d={current} teams={teams} events={events} />}

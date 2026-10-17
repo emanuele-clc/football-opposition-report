@@ -7,7 +7,8 @@
 param(
     [string]$DataDir = $(if ($env:OPPREPORT_DATA) { $env:OPPREPORT_DATA } else { Join-Path $PSScriptRoot "examples" }),
     [int]$Port = 8765,
-    [switch]$SaltaTest
+    [switch]$SaltaTest,
+    [switch]$Lan   # anche dai tablet dello staff sulla stessa rete Wi-Fi (nessun login: solo su reti fidate)
 )
 $ErrorActionPreference = "Continue"   # native tools write warnings to stderr: exit codes are checked instead
 $env:PYTHONWARNINGS = "ignore"
@@ -59,4 +60,4 @@ if ($SaltaTest) { Passo 5 "Test saltati (-SaltaTest)" } else {
 }
 
 Passo 6 "Avvio l'app su http://127.0.0.1:$Port (Ctrl+C per fermarla)"
-python -X utf8 app\run.py --data-dir $DataDir --port $Port
+if ($Lan) { python -X utf8 app\run.py --data-dir $DataDir --port $Port --lan } else { python -X utf8 app\run.py --data-dir $DataDir --port $Port }

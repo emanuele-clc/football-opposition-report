@@ -531,6 +531,22 @@ footer { padding: 22px var(--gutter) 30px; border-top: 1px solid var(--board-lin
 .origin-keys { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--sticker-ink); }
 .origin-keys i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; outline: 1px solid var(--sticker-ink); }
 .origin-keys small { opacity: 0.65; }
+.coach { max-width: 880px; margin: 0 auto; background: var(--sticker); color: var(--sticker-ink); border-radius: 18px; padding: 28px 32px; }
+.coach-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.coach-actions a { color: var(--sticker-ink); font-weight: 750; }
+.coach-actions .icon-btn { color: var(--sticker-ink); border-color: color-mix(in srgb, var(--sticker-ink) 30%, transparent); background: transparent; }
+.coach-head { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; align-items: center; border-bottom: 3px solid var(--sticker-ink); padding-bottom: 12px; }
+.coach-head small { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 800; font-size: 11px; }
+.coach-head h1 { margin: 0; font-style: italic; font-weight: 900; font-stretch: 62%; text-transform: uppercase; font-size: 44px; line-height: 1; }
+.coach-head p, .coach-shape p { margin: 4px 0 0; font-size: 13px; }
+.coach-block { margin-top: 14px; }
+.coach-block h2 { margin: 0 0 4px; font-size: 15px; text-transform: uppercase; font-style: italic; font-weight: 900; letter-spacing: 0.02em; }
+.coach-block ol, .coach-block ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; font-size: 13.5px; line-height: 1.4; }
+.coach-block p { margin: 0; font-size: 13.5px; line-height: 1.4; }
+.coach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+.coach-foot { margin-top: 16px; font-size: 10.5px; opacity: 0.7; border-top: 1px solid currentColor; padding-top: 6px; }
+@media (max-width: 720px) { .coach-head, .coach-grid { grid-template-columns: minmax(0, 1fr); } .coach { padding: 18px; } }
+@media print { .coach { max-width: none; padding: 0; border-radius: 0; } .bar, .page-head, footer { display: none !important; } }
 .brief h3 { margin: 0 0 8px; }
 .brief ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; line-height: 1.5; }
 .layout-matchup { grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); }

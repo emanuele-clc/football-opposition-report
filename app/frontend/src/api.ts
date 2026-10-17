@@ -72,6 +72,8 @@ export interface GamePlan {
   formations: { opponent: GPFormations | null; mine: GPFormations | null };
   profile: GPEvidence[];
   watch_first: GPWatch | null;
+  foul_zones: { zones: { x0: number; x1: number; y0: number; y1: number; fouls: number; cards: number; per_match: number; ref_per_match: number | null }[]; matches: number; teams_in_reference: number; total_per_match: number; ref_total_per_match: number | null } | null;
+  breaks: { zones: { x0: number; x1: number; y0: number; y1: number; n: number; shot10: number }[]; shots: { match: number; date: string; opponent: string; half: number; minute: number; second: number; x: number; y: number }[]; rate: number; n: number; matches: number } | null;
   pressure_zones: { zones: PZone[]; total: { passes: number; completion: number; free_completion: number }; teams_in_reference: number; matches: number } | null;
   hints: { id: string; side: "opp" | "both"; title: string; why: string; look: string; tab: string; evidence: GPEvidence[] }[];
   opp_past: { split: string; label: string; unit: string; a: number; b: number; ga: string; gb: string; n_a: number; n_b: number }[];

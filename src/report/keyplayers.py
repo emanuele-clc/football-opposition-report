@@ -20,6 +20,7 @@ ORIGIN = {"Regular Play": "Open play", "From Counter": "Counter-attack", "From C
 # - under pressure (own half, x < 60, 3 x 3 zones: x 0-20 / 20-40 / 40-60, y thirds of 0-80): open-play passes by the team; share made under pressure
 #   (StatsBomb 'under_pressure' flag), completion under pressure and when free, share of long passes (30+ m) under pressure, and Dispossessed/Miscontrol
 #   under pressure. Zones with fewer than 40 passes under pressure are marked 'few'.
+# - fouls (own half, same 3 x 3 zones): fouls committed by the team (StatsBomb 'Foul Committed', handballs excluded), with the yellow and red cards given for them.
 # - starters: the team's starting eleven in each match (StatsBomb 'Starting XI'), for the 'without a player' comparison in the app.
 ZX, ZY = (20, 40, 60), (80 / 3, 160 / 3, 80)
 SET = {"Corner", "Free Kick", "Throw-in", "Goal Kick", "Kick Off"}
@@ -40,6 +41,7 @@ def events_view(team_name, match_ids, ev_dir, meta=None):
     Z = {(i, j): {"passes": 0, "under_pressure": 0, "up_ok": 0, "free_ok": 0, "up_long": 0, "up_lost": 0} for i in range(3) for j in range(3)}
     zone = lambda l: (next(i for i, v in enumerate(ZX) if l[0] < v), next(j for j, v in enumerate(ZY) if l[1] <= v)) if l and l[0] < 60 else None
     starters = {}
+    F = {(i, j): {"fouls": 0, "cards": 0} for i in range(3) for j in range(3)}
 
     def add(k, p, v=1): C[k][p] = C[k].get(p, 0) + v
     for m in match_ids:
@@ -81,6 +83,8 @@ def events_view(team_name, match_ids, ev_dir, meta=None):
                 if e.get("under_pressure"): zz["under_pressure"] += 1; zz["up_ok"] += good; zz["up_long"] += e["pass"].get("length", 0) >= 30; zz["up_lost"] += not good
                 else: zz["free_ok"] += good
             if t in ("Dispossessed", "Miscontrol") and z and e.get("under_pressure"): Z[z]["up_lost"] += 1
+            if t == "Foul Committed" and z and e.get("foul_committed", {}).get("type", {}).get("name") != "Handball":
+                F[z]["fouls"] += 1; F[z]["cards"] += "card" in e.get("foul_committed", {})
             if t == "Pass":
                 pa = e["pass"]; ok = "outcome" not in pa; typ = pa.get("type", {}).get("name")
                 if ok and typ not in SET and pa.get("recipient") and pa["end_location"][0] < 60: add("buildup", pa["recipient"]["name"])
@@ -108,6 +112,7 @@ def events_view(team_name, match_ids, ev_dir, meta=None):
     return {"matches": n, "players": [{"id": k, "role": r, "unit": u, "note": note, "top": top(k)} for k, r, u, note in roles],
             "goals": goals,
             "starters": starters,
+            "fouls": [{"x0": [0, 20, 40][i], "x1": ZX[i], "y0": [0, ZY[0], ZY[1]][j], "y1": ZY[j], **v, "per_match": round(v["fouls"] / max(n, 1), 3)} for (i, j), v in sorted(F.items())],
             "under_pressure": [{"x0": [0, 20, 40][i], "x1": ZX[i], "y0": [0, ZY[0], ZY[1]][j], "y1": ZY[j], **v,
                                 "up_share": round(v["under_pressure"] / max(v["passes"], 1), 3), "up_completion": round(v["up_ok"] / max(v["under_pressure"], 1), 3),
                                 "free_completion": round(v["free_ok"] / max(v["passes"] - v["under_pressure"], 1), 3), "up_long_share": round(v["up_long"] / max(v["under_pressure"], 1), 3),

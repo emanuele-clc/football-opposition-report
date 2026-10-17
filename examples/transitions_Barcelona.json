@@ -83,5 +83,965 @@
   "losses_per_match": 53.6,
   "regain5": 0.16417910447761194,
   "recoveries_final_third_per_match": 5.8
- }
+ },
+ "recovery_zones": [
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 255,
+   "shot10": 0
+  },
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 280,
+   "shot10": 0
+  },
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 204,
+   "shot10": 2
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 375,
+   "shot10": 3
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 302,
+   "shot10": 9
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 306,
+   "shot10": 5
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 204,
+   "shot10": 18
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 158,
+   "shot10": 18
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 208,
+   "shot10": 13
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 35,
+   "shot10": 4
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 20,
+   "shot10": 11
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 32,
+   "shot10": 3
+  }
+ ],
+ "recovery_shots": [
+  {
+   "match": 267422,
+   "date": "2015-08-29",
+   "opponent": "Málaga",
+   "half": 2,
+   "minute": 49,
+   "second": 30,
+   "x": 92.9,
+   "y": 22.5
+  },
+  {
+   "match": 267422,
+   "date": "2015-08-29",
+   "opponent": "Málaga",
+   "half": 2,
+   "minute": 57,
+   "second": 59,
+   "x": 83.9,
+   "y": 59.4
+  },
+  {
+   "match": 267422,
+   "date": "2015-08-29",
+   "opponent": "Málaga",
+   "half": 2,
+   "minute": 83,
+   "second": 19,
+   "x": 84.1,
+   "y": 42.7
+  },
+  {
+   "match": 266166,
+   "date": "2015-09-12",
+   "opponent": "Atlético Madrid",
+   "half": 1,
+   "minute": 34,
+   "second": 17,
+   "x": 27.1,
+   "y": 57.5
+  },
+  {
+   "match": 266490,
+   "date": "2015-09-20",
+   "opponent": "Levante UD",
+   "half": 1,
+   "minute": 20,
+   "second": 53,
+   "x": 56.1,
+   "y": 41.8
+  },
+  {
+   "match": 266490,
+   "date": "2015-09-20",
+   "opponent": "Levante UD",
+   "half": 2,
+   "minute": 89,
+   "second": 7,
+   "x": 63.2,
+   "y": 74.8
+  },
+  {
+   "match": 266467,
+   "date": "2015-09-23",
+   "opponent": "Celta Vigo",
+   "half": 2,
+   "minute": 54,
+   "second": 59,
+   "x": 48.6,
+   "y": 72.0
+  },
+  {
+   "match": 266467,
+   "date": "2015-09-23",
+   "opponent": "Celta Vigo",
+   "half": 2,
+   "minute": 63,
+   "second": 50,
+   "x": 96.3,
+   "y": 25.5
+  },
+  {
+   "match": 267611,
+   "date": "2015-09-26",
+   "opponent": "Las Palmas",
+   "half": 2,
+   "minute": 71,
+   "second": 40,
+   "x": 74.1,
+   "y": 36.8
+  },
+  {
+   "match": 3825617,
+   "date": "2015-10-03",
+   "opponent": "Sevilla",
+   "half": 1,
+   "minute": 4,
+   "second": 7,
+   "x": 75.4,
+   "y": 60.3
+  },
+  {
+   "match": 3825617,
+   "date": "2015-10-03",
+   "opponent": "Sevilla",
+   "half": 2,
+   "minute": 45,
+   "second": 31,
+   "x": 75.4,
+   "y": 73.5
+  },
+  {
+   "match": 3825617,
+   "date": "2015-10-03",
+   "opponent": "Sevilla",
+   "half": 2,
+   "minute": 63,
+   "second": 51,
+   "x": 97.5,
+   "y": 35.2
+  },
+  {
+   "match": 3825617,
+   "date": "2015-10-03",
+   "opponent": "Sevilla",
+   "half": 2,
+   "minute": 72,
+   "second": 9,
+   "x": 62.9,
+   "y": 5.0
+  },
+  {
+   "match": 3825627,
+   "date": "2015-10-17",
+   "opponent": "Rayo Vallecano",
+   "half": 1,
+   "minute": 9,
+   "second": 4,
+   "x": 92.7,
+   "y": 57.5
+  },
+  {
+   "match": 3825627,
+   "date": "2015-10-17",
+   "opponent": "Rayo Vallecano",
+   "half": 2,
+   "minute": 69,
+   "second": 48,
+   "x": 55.7,
+   "y": 66.5
+  },
+  {
+   "match": 3825637,
+   "date": "2015-10-25",
+   "opponent": "Eibar",
+   "half": 1,
+   "minute": 3,
+   "second": 49,
+   "x": 69.2,
+   "y": 62.6
+  },
+  {
+   "match": 3825637,
+   "date": "2015-10-25",
+   "opponent": "Eibar",
+   "half": 1,
+   "minute": 34,
+   "second": 16,
+   "x": 70.9,
+   "y": 15.1
+  },
+  {
+   "match": 3825637,
+   "date": "2015-10-25",
+   "opponent": "Eibar",
+   "half": 1,
+   "minute": 41,
+   "second": 0,
+   "x": 86.7,
+   "y": 27.1
+  },
+  {
+   "match": 3825637,
+   "date": "2015-10-25",
+   "opponent": "Eibar",
+   "half": 2,
+   "minute": 47,
+   "second": 41,
+   "x": 98.6,
+   "y": 10.1
+  },
+  {
+   "match": 3825637,
+   "date": "2015-10-25",
+   "opponent": "Eibar",
+   "half": 2,
+   "minute": 84,
+   "second": 3,
+   "x": 44.6,
+   "y": 56.0
+  },
+  {
+   "match": 3825645,
+   "date": "2015-10-31",
+   "opponent": "Getafe",
+   "half": 1,
+   "minute": 13,
+   "second": 48,
+   "x": 87.2,
+   "y": 21.1
+  },
+  {
+   "match": 3825645,
+   "date": "2015-10-31",
+   "opponent": "Getafe",
+   "half": 1,
+   "minute": 36,
+   "second": 5,
+   "x": 79.8,
+   "y": 3.8
+  },
+  {
+   "match": 3825645,
+   "date": "2015-10-31",
+   "opponent": "Getafe",
+   "half": 2,
+   "minute": 62,
+   "second": 41,
+   "x": 77.3,
+   "y": 12.1
+  },
+  {
+   "match": 3825660,
+   "date": "2015-11-08",
+   "opponent": "Villarreal",
+   "half": 1,
+   "minute": 24,
+   "second": 38,
+   "x": 77.0,
+   "y": 18.0
+  },
+  {
+   "match": 3825660,
+   "date": "2015-11-08",
+   "opponent": "Villarreal",
+   "half": 1,
+   "minute": 26,
+   "second": 0,
+   "x": 44.6,
+   "y": 53.3
+  },
+  {
+   "match": 3825660,
+   "date": "2015-11-08",
+   "opponent": "Villarreal",
+   "half": 1,
+   "minute": 30,
+   "second": 30,
+   "x": 77.6,
+   "y": 46.3
+  },
+  {
+   "match": 3825660,
+   "date": "2015-11-08",
+   "opponent": "Villarreal",
+   "half": 2,
+   "minute": 59,
+   "second": 29,
+   "x": 82.8,
+   "y": 46.4
+  },
+  {
+   "match": 3825660,
+   "date": "2015-11-08",
+   "opponent": "Villarreal",
+   "half": 2,
+   "minute": 78,
+   "second": 57,
+   "x": 76.4,
+   "y": 26.0
+  },
+  {
+   "match": 3825660,
+   "date": "2015-11-08",
+   "opponent": "Villarreal",
+   "half": 2,
+   "minute": 84,
+   "second": 20,
+   "x": 56.5,
+   "y": 15.8
+  },
+  {
+   "match": 3825660,
+   "date": "2015-11-08",
+   "opponent": "Villarreal",
+   "half": 2,
+   "minute": 90,
+   "second": 12,
+   "x": 50.7,
+   "y": 17.7
+  },
+  {
+   "match": 266424,
+   "date": "2015-11-21",
+   "opponent": "Real Madrid",
+   "half": 1,
+   "minute": 23,
+   "second": 53,
+   "x": 64.9,
+   "y": 43.4
+  },
+  {
+   "match": 266424,
+   "date": "2015-11-21",
+   "opponent": "Real Madrid",
+   "half": 1,
+   "minute": 38,
+   "second": 27,
+   "x": 59.9,
+   "y": 30.1
+  },
+  {
+   "match": 266424,
+   "date": "2015-11-21",
+   "opponent": "Real Madrid",
+   "half": 2,
+   "minute": 54,
+   "second": 26,
+   "x": 72.8,
+   "y": 55.1
+  },
+  {
+   "match": 266885,
+   "date": "2015-11-28",
+   "opponent": "Real Sociedad",
+   "half": 1,
+   "minute": 21,
+   "second": 1,
+   "x": 63.9,
+   "y": 64.7
+  },
+  {
+   "match": 266885,
+   "date": "2015-11-28",
+   "opponent": "Real Sociedad",
+   "half": 2,
+   "minute": 59,
+   "second": 0,
+   "x": 92.5,
+   "y": 31.2
+  },
+  {
+   "match": 267274,
+   "date": "2015-12-05",
+   "opponent": "Valencia",
+   "half": 2,
+   "minute": 57,
+   "second": 55,
+   "x": 74.7,
+   "y": 67.8
+  },
+  {
+   "match": 266961,
+   "date": "2015-12-12",
+   "opponent": "RC Deportivo La Coruña",
+   "half": 2,
+   "minute": 49,
+   "second": 1,
+   "x": 72.6,
+   "y": 51.4
+  },
+  {
+   "match": 266961,
+   "date": "2015-12-12",
+   "opponent": "RC Deportivo La Coruña",
+   "half": 2,
+   "minute": 66,
+   "second": 24,
+   "x": 54.4,
+   "y": 34.0
+  },
+  {
+   "match": 266961,
+   "date": "2015-12-12",
+   "opponent": "RC Deportivo La Coruña",
+   "half": 2,
+   "minute": 69,
+   "second": 57,
+   "x": 36.5,
+   "y": 53.2
+  },
+  {
+   "match": 267327,
+   "date": "2015-12-30",
+   "opponent": "Real Betis",
+   "half": 2,
+   "minute": 45,
+   "second": 53,
+   "x": 92.3,
+   "y": 37.7
+  },
+  {
+   "match": 267327,
+   "date": "2015-12-30",
+   "opponent": "Real Betis",
+   "half": 2,
+   "minute": 61,
+   "second": 2,
+   "x": 93.3,
+   "y": 32.7
+  },
+  {
+   "match": 267327,
+   "date": "2015-12-30",
+   "opponent": "Real Betis",
+   "half": 2,
+   "minute": 66,
+   "second": 31,
+   "x": 61.2,
+   "y": 44.2
+  },
+  {
+   "match": 266620,
+   "date": "2016-01-09",
+   "opponent": "Granada",
+   "half": 1,
+   "minute": 26,
+   "second": 26,
+   "x": 92.2,
+   "y": 33.2
+  },
+  {
+   "match": 266620,
+   "date": "2016-01-09",
+   "opponent": "Granada",
+   "half": 1,
+   "minute": 27,
+   "second": 51,
+   "x": 61.4,
+   "y": 52.5
+  },
+  {
+   "match": 266620,
+   "date": "2016-01-09",
+   "opponent": "Granada",
+   "half": 1,
+   "minute": 37,
+   "second": 20,
+   "x": 71.0,
+   "y": 5.3
+  },
+  {
+   "match": 266620,
+   "date": "2016-01-09",
+   "opponent": "Granada",
+   "half": 2,
+   "minute": 85,
+   "second": 25,
+   "x": 100.3,
+   "y": 51.6
+  },
+  {
+   "match": 266149,
+   "date": "2016-01-17",
+   "opponent": "Athletic Club",
+   "half": 1,
+   "minute": 21,
+   "second": 37,
+   "x": 72.2,
+   "y": 30.5
+  },
+  {
+   "match": 266149,
+   "date": "2016-01-17",
+   "opponent": "Athletic Club",
+   "half": 1,
+   "minute": 22,
+   "second": 35,
+   "x": 68.4,
+   "y": 24.4
+  },
+  {
+   "match": 266149,
+   "date": "2016-01-17",
+   "opponent": "Athletic Club",
+   "half": 1,
+   "minute": 28,
+   "second": 3,
+   "x": 93.0,
+   "y": 50.2
+  },
+  {
+   "match": 266149,
+   "date": "2016-01-17",
+   "opponent": "Athletic Club",
+   "half": 1,
+   "minute": 30,
+   "second": 14,
+   "x": 30.6,
+   "y": 53.0
+  },
+  {
+   "match": 266149,
+   "date": "2016-01-17",
+   "opponent": "Athletic Club",
+   "half": 2,
+   "minute": 55,
+   "second": 5,
+   "x": 90.0,
+   "y": 15.0
+  },
+  {
+   "match": 265894,
+   "date": "2016-01-23",
+   "opponent": "Málaga",
+   "half": 1,
+   "minute": 43,
+   "second": 6,
+   "x": 70.4,
+   "y": 56.8
+  },
+  {
+   "match": 266160,
+   "date": "2016-02-07",
+   "opponent": "Levante UD",
+   "half": 1,
+   "minute": 24,
+   "second": 25,
+   "x": 41.0,
+   "y": 57.3
+  },
+  {
+   "match": 266160,
+   "date": "2016-02-07",
+   "opponent": "Levante UD",
+   "half": 2,
+   "minute": 91,
+   "second": 0,
+   "x": 20.8,
+   "y": 60.8
+  },
+  {
+   "match": 266254,
+   "date": "2016-02-14",
+   "opponent": "Celta Vigo",
+   "half": 1,
+   "minute": 14,
+   "second": 34,
+   "x": 89.7,
+   "y": 5.6
+  },
+  {
+   "match": 266254,
+   "date": "2016-02-14",
+   "opponent": "Celta Vigo",
+   "half": 1,
+   "minute": 29,
+   "second": 38,
+   "x": 77.8,
+   "y": 26.7
+  },
+  {
+   "match": 266254,
+   "date": "2016-02-14",
+   "opponent": "Celta Vigo",
+   "half": 2,
+   "minute": 55,
+   "second": 35,
+   "x": 88.5,
+   "y": 63.8
+  },
+  {
+   "match": 266254,
+   "date": "2016-02-14",
+   "opponent": "Celta Vigo",
+   "half": 2,
+   "minute": 74,
+   "second": 24,
+   "x": 93.1,
+   "y": 65.9
+  },
+  {
+   "match": 266254,
+   "date": "2016-02-14",
+   "opponent": "Celta Vigo",
+   "half": 2,
+   "minute": 79,
+   "second": 22,
+   "x": 64.7,
+   "y": 40.2
+  },
+  {
+   "match": 266254,
+   "date": "2016-02-14",
+   "opponent": "Celta Vigo",
+   "half": 2,
+   "minute": 89,
+   "second": 52,
+   "x": 32.4,
+   "y": 51.0
+  },
+  {
+   "match": 266815,
+   "date": "2016-02-17",
+   "opponent": "Sporting Gijón",
+   "half": 2,
+   "minute": 71,
+   "second": 33,
+   "x": 64.1,
+   "y": 23.9
+  },
+  {
+   "match": 267273,
+   "date": "2016-02-20",
+   "opponent": "Las Palmas",
+   "half": 1,
+   "minute": 40,
+   "second": 55,
+   "x": 94.0,
+   "y": 40.9
+  },
+  {
+   "match": 265839,
+   "date": "2016-02-28",
+   "opponent": "Sevilla",
+   "half": 1,
+   "minute": 35,
+   "second": 58,
+   "x": 91.1,
+   "y": 28.6
+  },
+  {
+   "match": 266653,
+   "date": "2016-03-03",
+   "opponent": "Rayo Vallecano",
+   "half": 1,
+   "minute": 22,
+   "second": 50,
+   "x": 46.8,
+   "y": 39.8
+  },
+  {
+   "match": 266056,
+   "date": "2016-03-06",
+   "opponent": "Eibar",
+   "half": 1,
+   "minute": 40,
+   "second": 54,
+   "x": 65.0,
+   "y": 24.0
+  },
+  {
+   "match": 266498,
+   "date": "2016-03-12",
+   "opponent": "Getafe",
+   "half": 1,
+   "minute": 26,
+   "second": 11,
+   "x": 74.9,
+   "y": 23.9
+  },
+  {
+   "match": 266498,
+   "date": "2016-03-12",
+   "opponent": "Getafe",
+   "half": 1,
+   "minute": 30,
+   "second": 57,
+   "x": 49.9,
+   "y": 49.4
+  },
+  {
+   "match": 266106,
+   "date": "2016-03-20",
+   "opponent": "Villarreal",
+   "half": 1,
+   "minute": 9,
+   "second": 54,
+   "x": 94.9,
+   "y": 36.2
+  },
+  {
+   "match": 266106,
+   "date": "2016-03-20",
+   "opponent": "Villarreal",
+   "half": 1,
+   "minute": 12,
+   "second": 2,
+   "x": 55.3,
+   "y": 20.3
+  },
+  {
+   "match": 266106,
+   "date": "2016-03-20",
+   "opponent": "Villarreal",
+   "half": 1,
+   "minute": 34,
+   "second": 18,
+   "x": 99.1,
+   "y": 32.3
+  },
+  {
+   "match": 266106,
+   "date": "2016-03-20",
+   "opponent": "Villarreal",
+   "half": 2,
+   "minute": 89,
+   "second": 19,
+   "x": 82.2,
+   "y": 60.5
+  },
+  {
+   "match": 267533,
+   "date": "2016-04-02",
+   "opponent": "Real Madrid",
+   "half": 1,
+   "minute": 18,
+   "second": 47,
+   "x": 77.2,
+   "y": 34.6
+  },
+  {
+   "match": 266557,
+   "date": "2016-04-17",
+   "opponent": "Valencia",
+   "half": 1,
+   "minute": 32,
+   "second": 42,
+   "x": 85.3,
+   "y": 27.6
+  },
+  {
+   "match": 266557,
+   "date": "2016-04-17",
+   "opponent": "Valencia",
+   "half": 1,
+   "minute": 36,
+   "second": 31,
+   "x": 85.0,
+   "y": 69.1
+  },
+  {
+   "match": 266557,
+   "date": "2016-04-17",
+   "opponent": "Valencia",
+   "half": 2,
+   "minute": 62,
+   "second": 47,
+   "x": 91.9,
+   "y": 74.2
+  },
+  {
+   "match": 265944,
+   "date": "2016-04-23",
+   "opponent": "Sporting Gijón",
+   "half": 1,
+   "minute": 15,
+   "second": 38,
+   "x": 82.3,
+   "y": 46.1
+  },
+  {
+   "match": 265944,
+   "date": "2016-04-23",
+   "opponent": "Sporting Gijón",
+   "half": 2,
+   "minute": 53,
+   "second": 18,
+   "x": 64.4,
+   "y": 25.5
+  },
+  {
+   "match": 265944,
+   "date": "2016-04-23",
+   "opponent": "Sporting Gijón",
+   "half": 2,
+   "minute": 55,
+   "second": 11,
+   "x": 63.3,
+   "y": 45.6
+  },
+  {
+   "match": 265944,
+   "date": "2016-04-23",
+   "opponent": "Sporting Gijón",
+   "half": 2,
+   "minute": 69,
+   "second": 51,
+   "x": 77.8,
+   "y": 18.0
+  },
+  {
+   "match": 265944,
+   "date": "2016-04-23",
+   "opponent": "Sporting Gijón",
+   "half": 2,
+   "minute": 87,
+   "second": 16,
+   "x": 82.6,
+   "y": 68.2
+  },
+  {
+   "match": 266986,
+   "date": "2016-04-30",
+   "opponent": "Real Betis",
+   "half": 1,
+   "minute": 25,
+   "second": 33,
+   "x": 74.9,
+   "y": 17.3
+  },
+  {
+   "match": 266986,
+   "date": "2016-04-30",
+   "opponent": "Real Betis",
+   "half": 2,
+   "minute": 53,
+   "second": 11,
+   "x": 86.3,
+   "y": 30.8
+  },
+  {
+   "match": 266986,
+   "date": "2016-04-30",
+   "opponent": "Real Betis",
+   "half": 2,
+   "minute": 72,
+   "second": 55,
+   "x": 63.6,
+   "y": 20.5
+  },
+  {
+   "match": 265958,
+   "date": "2016-05-08",
+   "opponent": "Espanyol",
+   "half": 1,
+   "minute": 31,
+   "second": 57,
+   "x": 45.8,
+   "y": 56.9
+  },
+  {
+   "match": 265958,
+   "date": "2016-05-08",
+   "opponent": "Espanyol",
+   "half": 2,
+   "minute": 51,
+   "second": 24,
+   "x": 87.5,
+   "y": 51.8
+  },
+  {
+   "match": 265958,
+   "date": "2016-05-08",
+   "opponent": "Espanyol",
+   "half": 2,
+   "minute": 68,
+   "second": 12,
+   "x": 64.2,
+   "y": 10.2
+  }
+ ]
 }

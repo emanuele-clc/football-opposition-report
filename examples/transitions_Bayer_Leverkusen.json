@@ -83,5 +83,1185 @@
   "losses_per_match": 54.2,
   "regain5": 0.18081180811808117,
   "recoveries_final_third_per_match": 4.8
- }
+ },
+ "recovery_zones": [
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 186,
+   "shot10": 1
+  },
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 307,
+   "shot10": 4
+  },
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 177,
+   "shot10": 2
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 279,
+   "shot10": 6
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 254,
+   "shot10": 4
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 272,
+   "shot10": 9
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 173,
+   "shot10": 12
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 161,
+   "shot10": 23
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 232,
+   "shot10": 16
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 32,
+   "shot10": 8
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 26,
+   "shot10": 16
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 50,
+   "shot10": 7
+  }
+ ],
+ "recovery_shots": [
+  {
+   "match": 3895052,
+   "date": "2023-08-19",
+   "opponent": "RB Leipzig",
+   "half": 1,
+   "minute": 1,
+   "second": 56,
+   "x": 92.5,
+   "y": 35.0
+  },
+  {
+   "match": 3895052,
+   "date": "2023-08-19",
+   "opponent": "RB Leipzig",
+   "half": 1,
+   "minute": 22,
+   "second": 55,
+   "x": 84.5,
+   "y": 60.3
+  },
+  {
+   "match": 3895052,
+   "date": "2023-08-19",
+   "opponent": "RB Leipzig",
+   "half": 2,
+   "minute": 56,
+   "second": 27,
+   "x": 52.2,
+   "y": 68.7
+  },
+  {
+   "match": 3895052,
+   "date": "2023-08-19",
+   "opponent": "RB Leipzig",
+   "half": 2,
+   "minute": 63,
+   "second": 11,
+   "x": 48.0,
+   "y": 62.3
+  },
+  {
+   "match": 3895060,
+   "date": "2023-08-26",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 1,
+   "minute": 29,
+   "second": 50,
+   "x": 103.7,
+   "y": 54.2
+  },
+  {
+   "match": 3895060,
+   "date": "2023-08-26",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 1,
+   "minute": 30,
+   "second": 45,
+   "x": 88.9,
+   "y": 53.2
+  },
+  {
+   "match": 3895060,
+   "date": "2023-08-26",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 1,
+   "minute": 40,
+   "second": 20,
+   "x": 92.6,
+   "y": 59.8
+  },
+  {
+   "match": 3895060,
+   "date": "2023-08-26",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 1,
+   "minute": 42,
+   "second": 33,
+   "x": 70.5,
+   "y": 53.2
+  },
+  {
+   "match": 3895060,
+   "date": "2023-08-26",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 1,
+   "minute": 45,
+   "second": 0,
+   "x": 69.2,
+   "y": 23.4
+  },
+  {
+   "match": 3895060,
+   "date": "2023-08-26",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 1,
+   "minute": 46,
+   "second": 39,
+   "x": 67.6,
+   "y": 51.4
+  },
+  {
+   "match": 3895060,
+   "date": "2023-08-26",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 2,
+   "minute": 55,
+   "second": 29,
+   "x": 73.8,
+   "y": 4.4
+  },
+  {
+   "match": 3895060,
+   "date": "2023-08-26",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 2,
+   "minute": 83,
+   "second": 50,
+   "x": 54.4,
+   "y": 6.0
+  },
+  {
+   "match": 3895067,
+   "date": "2023-09-02",
+   "opponent": "Darmstadt 98",
+   "half": 1,
+   "minute": 20,
+   "second": 10,
+   "x": 48.8,
+   "y": 65.5
+  },
+  {
+   "match": 3895067,
+   "date": "2023-09-02",
+   "opponent": "Darmstadt 98",
+   "half": 2,
+   "minute": 73,
+   "second": 44,
+   "x": 90.3,
+   "y": 33.2
+  },
+  {
+   "match": 3895074,
+   "date": "2023-09-15",
+   "opponent": "Bayern Munich",
+   "half": 1,
+   "minute": 30,
+   "second": 40,
+   "x": 55.7,
+   "y": 20.3
+  },
+  {
+   "match": 3895074,
+   "date": "2023-09-15",
+   "opponent": "Bayern Munich",
+   "half": 1,
+   "minute": 31,
+   "second": 5,
+   "x": 67.8,
+   "y": 38.0
+  },
+  {
+   "match": 3895074,
+   "date": "2023-09-15",
+   "opponent": "Bayern Munich",
+   "half": 1,
+   "minute": 31,
+   "second": 32,
+   "x": 83.7,
+   "y": 34.4
+  },
+  {
+   "match": 3895074,
+   "date": "2023-09-15",
+   "opponent": "Bayern Munich",
+   "half": 2,
+   "minute": 50,
+   "second": 57,
+   "x": 60.0,
+   "y": 53.7
+  },
+  {
+   "match": 3895074,
+   "date": "2023-09-15",
+   "opponent": "Bayern Munich",
+   "half": 2,
+   "minute": 80,
+   "second": 8,
+   "x": 98.9,
+   "y": 30.6
+  },
+  {
+   "match": 3895086,
+   "date": "2023-09-24",
+   "opponent": "FC Heidenheim",
+   "half": 1,
+   "minute": 33,
+   "second": 58,
+   "x": 74.2,
+   "y": 64.2
+  },
+  {
+   "match": 3895086,
+   "date": "2023-09-24",
+   "opponent": "FC Heidenheim",
+   "half": 1,
+   "minute": 38,
+   "second": 17,
+   "x": 103.5,
+   "y": 70.2
+  },
+  {
+   "match": 3895086,
+   "date": "2023-09-24",
+   "opponent": "FC Heidenheim",
+   "half": 1,
+   "minute": 44,
+   "second": 32,
+   "x": 70.5,
+   "y": 48.1
+  },
+  {
+   "match": 3895086,
+   "date": "2023-09-24",
+   "opponent": "FC Heidenheim",
+   "half": 1,
+   "minute": 44,
+   "second": 53,
+   "x": 99.6,
+   "y": 45.4
+  },
+  {
+   "match": 3895086,
+   "date": "2023-09-24",
+   "opponent": "FC Heidenheim",
+   "half": 2,
+   "minute": 56,
+   "second": 34,
+   "x": 93.5,
+   "y": 5.9
+  },
+  {
+   "match": 3895086,
+   "date": "2023-09-24",
+   "opponent": "FC Heidenheim",
+   "half": 2,
+   "minute": 81,
+   "second": 48,
+   "x": 30.4,
+   "y": 77.4
+  },
+  {
+   "match": 3895095,
+   "date": "2023-09-30",
+   "opponent": "FSV Mainz 05",
+   "half": 2,
+   "minute": 64,
+   "second": 12,
+   "x": 54.0,
+   "y": 21.0
+  },
+  {
+   "match": 3895107,
+   "date": "2023-10-08",
+   "opponent": "FC Köln",
+   "half": 1,
+   "minute": 0,
+   "second": 29,
+   "x": 38.4,
+   "y": 56.9
+  },
+  {
+   "match": 3895107,
+   "date": "2023-10-08",
+   "opponent": "FC Köln",
+   "half": 2,
+   "minute": 46,
+   "second": 19,
+   "x": 70.2,
+   "y": 32.5
+  },
+  {
+   "match": 3895107,
+   "date": "2023-10-08",
+   "opponent": "FC Köln",
+   "half": 2,
+   "minute": 53,
+   "second": 27,
+   "x": 74.1,
+   "y": 9.4
+  },
+  {
+   "match": 3895107,
+   "date": "2023-10-08",
+   "opponent": "FC Köln",
+   "half": 2,
+   "minute": 67,
+   "second": 50,
+   "x": 86.7,
+   "y": 63.1
+  },
+  {
+   "match": 3895107,
+   "date": "2023-10-08",
+   "opponent": "FC Köln",
+   "half": 2,
+   "minute": 77,
+   "second": 37,
+   "x": 20.1,
+   "y": 34.2
+  },
+  {
+   "match": 3895113,
+   "date": "2023-10-21",
+   "opponent": "Wolfsburg",
+   "half": 1,
+   "minute": 30,
+   "second": 7,
+   "x": 10.5,
+   "y": 40.6
+  },
+  {
+   "match": 3895113,
+   "date": "2023-10-21",
+   "opponent": "Wolfsburg",
+   "half": 1,
+   "minute": 43,
+   "second": 9,
+   "x": 54.8,
+   "y": 33.1
+  },
+  {
+   "match": 3895113,
+   "date": "2023-10-21",
+   "opponent": "Wolfsburg",
+   "half": 2,
+   "minute": 61,
+   "second": 27,
+   "x": 94.8,
+   "y": 43.1
+  },
+  {
+   "match": 3895113,
+   "date": "2023-10-21",
+   "opponent": "Wolfsburg",
+   "half": 2,
+   "minute": 76,
+   "second": 40,
+   "x": 83.3,
+   "y": 53.5
+  },
+  {
+   "match": 3895121,
+   "date": "2023-10-29",
+   "opponent": "Freiburg",
+   "half": 1,
+   "minute": 0,
+   "second": 37,
+   "x": 85.2,
+   "y": 78.5
+  },
+  {
+   "match": 3895121,
+   "date": "2023-10-29",
+   "opponent": "Freiburg",
+   "half": 1,
+   "minute": 15,
+   "second": 43,
+   "x": 85.4,
+   "y": 39.4
+  },
+  {
+   "match": 3895121,
+   "date": "2023-10-29",
+   "opponent": "Freiburg",
+   "half": 2,
+   "minute": 49,
+   "second": 18,
+   "x": 82.6,
+   "y": 8.3
+  },
+  {
+   "match": 3895121,
+   "date": "2023-10-29",
+   "opponent": "Freiburg",
+   "half": 2,
+   "minute": 58,
+   "second": 50,
+   "x": 20.6,
+   "y": 48.8
+  },
+  {
+   "match": 3895121,
+   "date": "2023-10-29",
+   "opponent": "Freiburg",
+   "half": 2,
+   "minute": 59,
+   "second": 49,
+   "x": 92.5,
+   "y": 36.1
+  },
+  {
+   "match": 3895121,
+   "date": "2023-10-29",
+   "opponent": "Freiburg",
+   "half": 2,
+   "minute": 73,
+   "second": 8,
+   "x": 58.8,
+   "y": 18.9
+  },
+  {
+   "match": 3895134,
+   "date": "2023-11-04",
+   "opponent": "Hoffenheim",
+   "half": 1,
+   "minute": 9,
+   "second": 29,
+   "x": 76.3,
+   "y": 56.7
+  },
+  {
+   "match": 3895134,
+   "date": "2023-11-04",
+   "opponent": "Hoffenheim",
+   "half": 2,
+   "minute": 68,
+   "second": 56,
+   "x": 94.5,
+   "y": 4.0
+  },
+  {
+   "match": 3895139,
+   "date": "2023-11-12",
+   "opponent": "Union Berlin",
+   "half": 1,
+   "minute": 10,
+   "second": 44,
+   "x": 82.6,
+   "y": 60.7
+  },
+  {
+   "match": 3895139,
+   "date": "2023-11-12",
+   "opponent": "Union Berlin",
+   "half": 1,
+   "minute": 22,
+   "second": 21,
+   "x": 96.1,
+   "y": 17.6
+  },
+  {
+   "match": 3895139,
+   "date": "2023-11-12",
+   "opponent": "Union Berlin",
+   "half": 1,
+   "minute": 25,
+   "second": 22,
+   "x": 71.7,
+   "y": 14.8
+  },
+  {
+   "match": 3895139,
+   "date": "2023-11-12",
+   "opponent": "Union Berlin",
+   "half": 1,
+   "minute": 44,
+   "second": 3,
+   "x": 51.8,
+   "y": 42.0
+  },
+  {
+   "match": 3895153,
+   "date": "2023-11-25",
+   "opponent": "Werder Bremen",
+   "half": 1,
+   "minute": 20,
+   "second": 50,
+   "x": 80.7,
+   "y": 43.3
+  },
+  {
+   "match": 3895153,
+   "date": "2023-11-25",
+   "opponent": "Werder Bremen",
+   "half": 2,
+   "minute": 74,
+   "second": 56,
+   "x": 72.0,
+   "y": 19.1
+  },
+  {
+   "match": 3895158,
+   "date": "2023-12-03",
+   "opponent": "Borussia Dortmund",
+   "half": 2,
+   "minute": 72,
+   "second": 55,
+   "x": 104.2,
+   "y": 41.6
+  },
+  {
+   "match": 3895158,
+   "date": "2023-12-03",
+   "opponent": "Borussia Dortmund",
+   "half": 2,
+   "minute": 78,
+   "second": 37,
+   "x": 54.3,
+   "y": 57.9
+  },
+  {
+   "match": 3895167,
+   "date": "2023-12-10",
+   "opponent": "VfB Stuttgart",
+   "half": 1,
+   "minute": 23,
+   "second": 50,
+   "x": 102.5,
+   "y": 47.2
+  },
+  {
+   "match": 3895167,
+   "date": "2023-12-10",
+   "opponent": "VfB Stuttgart",
+   "half": 1,
+   "minute": 25,
+   "second": 33,
+   "x": 29.7,
+   "y": 14.1
+  },
+  {
+   "match": 3895167,
+   "date": "2023-12-10",
+   "opponent": "VfB Stuttgart",
+   "half": 1,
+   "minute": 32,
+   "second": 36,
+   "x": 53.6,
+   "y": 35.4
+  },
+  {
+   "match": 3895167,
+   "date": "2023-12-10",
+   "opponent": "VfB Stuttgart",
+   "half": 1,
+   "minute": 33,
+   "second": 59,
+   "x": 44.2,
+   "y": 12.4
+  },
+  {
+   "match": 3895167,
+   "date": "2023-12-10",
+   "opponent": "VfB Stuttgart",
+   "half": 2,
+   "minute": 48,
+   "second": 25,
+   "x": 83.9,
+   "y": 57.7
+  },
+  {
+   "match": 3895167,
+   "date": "2023-12-10",
+   "opponent": "VfB Stuttgart",
+   "half": 2,
+   "minute": 54,
+   "second": 21,
+   "x": 88.6,
+   "y": 11.3
+  },
+  {
+   "match": 3895180,
+   "date": "2023-12-17",
+   "opponent": "Eintracht Frankfurt",
+   "half": 2,
+   "minute": 49,
+   "second": 36,
+   "x": 96.6,
+   "y": 52.7
+  },
+  {
+   "match": 3895182,
+   "date": "2023-12-20",
+   "opponent": "Bochum",
+   "half": 1,
+   "minute": 33,
+   "second": 38,
+   "x": 67.7,
+   "y": 24.9
+  },
+  {
+   "match": 3895182,
+   "date": "2023-12-20",
+   "opponent": "Bochum",
+   "half": 1,
+   "minute": 41,
+   "second": 42,
+   "x": 82.9,
+   "y": 33.4
+  },
+  {
+   "match": 3895194,
+   "date": "2024-01-13",
+   "opponent": "Augsburg",
+   "half": 1,
+   "minute": 17,
+   "second": 2,
+   "x": 92.4,
+   "y": 55.8
+  },
+  {
+   "match": 3895194,
+   "date": "2024-01-13",
+   "opponent": "Augsburg",
+   "half": 1,
+   "minute": 41,
+   "second": 3,
+   "x": 76.0,
+   "y": 75.3
+  },
+  {
+   "match": 3895194,
+   "date": "2024-01-13",
+   "opponent": "Augsburg",
+   "half": 2,
+   "minute": 93,
+   "second": 44,
+   "x": 102.1,
+   "y": 46.8
+  },
+  {
+   "match": 3895202,
+   "date": "2024-01-20",
+   "opponent": "RB Leipzig",
+   "half": 1,
+   "minute": 5,
+   "second": 47,
+   "x": 72.3,
+   "y": 64.3
+  },
+  {
+   "match": 3895202,
+   "date": "2024-01-20",
+   "opponent": "RB Leipzig",
+   "half": 1,
+   "minute": 25,
+   "second": 58,
+   "x": 109.5,
+   "y": 15.5
+  },
+  {
+   "match": 3895202,
+   "date": "2024-01-20",
+   "opponent": "RB Leipzig",
+   "half": 2,
+   "minute": 82,
+   "second": 26,
+   "x": 93.3,
+   "y": 23.9
+  },
+  {
+   "match": 3895210,
+   "date": "2024-01-27",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 1,
+   "minute": 10,
+   "second": 53,
+   "x": 82.2,
+   "y": 42.4
+  },
+  {
+   "match": 3895210,
+   "date": "2024-01-27",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 1,
+   "minute": 18,
+   "second": 11,
+   "x": 66.4,
+   "y": 44.9
+  },
+  {
+   "match": 3895210,
+   "date": "2024-01-27",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 1,
+   "minute": 22,
+   "second": 56,
+   "x": 105.0,
+   "y": 55.7
+  },
+  {
+   "match": 3895210,
+   "date": "2024-01-27",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 2,
+   "minute": 56,
+   "second": 1,
+   "x": 19.5,
+   "y": 33.5
+  },
+  {
+   "match": 3895210,
+   "date": "2024-01-27",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 2,
+   "minute": 59,
+   "second": 32,
+   "x": 60.6,
+   "y": 43.2
+  },
+  {
+   "match": 3895210,
+   "date": "2024-01-27",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 2,
+   "minute": 64,
+   "second": 38,
+   "x": 89.1,
+   "y": 62.0
+  },
+  {
+   "match": 3895210,
+   "date": "2024-01-27",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 2,
+   "minute": 68,
+   "second": 24,
+   "x": 86.1,
+   "y": 30.3
+  },
+  {
+   "match": 3895210,
+   "date": "2024-01-27",
+   "opponent": "Borussia Mönchengladbach",
+   "half": 2,
+   "minute": 93,
+   "second": 17,
+   "x": 64.3,
+   "y": 66.0
+  },
+  {
+   "match": 3895220,
+   "date": "2024-02-03",
+   "opponent": "Darmstadt 98",
+   "half": 1,
+   "minute": 17,
+   "second": 42,
+   "x": 86.6,
+   "y": 34.7
+  },
+  {
+   "match": 3895220,
+   "date": "2024-02-03",
+   "opponent": "Darmstadt 98",
+   "half": 1,
+   "minute": 44,
+   "second": 24,
+   "x": 92.7,
+   "y": 41.9
+  },
+  {
+   "match": 3895220,
+   "date": "2024-02-03",
+   "opponent": "Darmstadt 98",
+   "half": 2,
+   "minute": 74,
+   "second": 41,
+   "x": 103.3,
+   "y": 66.2
+  },
+  {
+   "match": 3895232,
+   "date": "2024-02-10",
+   "opponent": "Bayern Munich",
+   "half": 1,
+   "minute": 10,
+   "second": 14,
+   "x": 84.0,
+   "y": 40.1
+  },
+  {
+   "match": 3895232,
+   "date": "2024-02-10",
+   "opponent": "Bayern Munich",
+   "half": 2,
+   "minute": 48,
+   "second": 53,
+   "x": 56.6,
+   "y": 51.5
+  },
+  {
+   "match": 3895232,
+   "date": "2024-02-10",
+   "opponent": "Bayern Munich",
+   "half": 2,
+   "minute": 87,
+   "second": 22,
+   "x": 39.9,
+   "y": 65.5
+  },
+  {
+   "match": 3895232,
+   "date": "2024-02-10",
+   "opponent": "Bayern Munich",
+   "half": 2,
+   "minute": 94,
+   "second": 31,
+   "x": 21.9,
+   "y": 63.2
+  },
+  {
+   "match": 3895244,
+   "date": "2024-02-17",
+   "opponent": "FC Heidenheim",
+   "half": 2,
+   "minute": 74,
+   "second": 0,
+   "x": 90.7,
+   "y": 10.5
+  },
+  {
+   "match": 3895250,
+   "date": "2024-02-23",
+   "opponent": "FSV Mainz 05",
+   "half": 1,
+   "minute": 39,
+   "second": 24,
+   "x": 113.0,
+   "y": 49.4
+  },
+  {
+   "match": 3895258,
+   "date": "2024-03-03",
+   "opponent": "FC Köln",
+   "half": 1,
+   "minute": 24,
+   "second": 33,
+   "x": 104.4,
+   "y": 50.2
+  },
+  {
+   "match": 3895275,
+   "date": "2024-03-17",
+   "opponent": "Freiburg",
+   "half": 1,
+   "minute": 44,
+   "second": 50,
+   "x": 109.7,
+   "y": 24.9
+  },
+  {
+   "match": 3895286,
+   "date": "2024-03-30",
+   "opponent": "Hoffenheim",
+   "half": 1,
+   "minute": 5,
+   "second": 19,
+   "x": 79.4,
+   "y": 7.7
+  },
+  {
+   "match": 3895286,
+   "date": "2024-03-30",
+   "opponent": "Hoffenheim",
+   "half": 1,
+   "minute": 17,
+   "second": 24,
+   "x": 85.6,
+   "y": 35.4
+  },
+  {
+   "match": 3895286,
+   "date": "2024-03-30",
+   "opponent": "Hoffenheim",
+   "half": 2,
+   "minute": 69,
+   "second": 30,
+   "x": 104.4,
+   "y": 65.8
+  },
+  {
+   "match": 3895286,
+   "date": "2024-03-30",
+   "opponent": "Hoffenheim",
+   "half": 2,
+   "minute": 86,
+   "second": 45,
+   "x": 82.1,
+   "y": 26.8
+  },
+  {
+   "match": 3895292,
+   "date": "2024-04-06",
+   "opponent": "Union Berlin",
+   "half": 1,
+   "minute": 6,
+   "second": 27,
+   "x": 88.7,
+   "y": 47.2
+  },
+  {
+   "match": 3895292,
+   "date": "2024-04-06",
+   "opponent": "Union Berlin",
+   "half": 1,
+   "minute": 26,
+   "second": 58,
+   "x": 82.4,
+   "y": 44.0
+  },
+  {
+   "match": 3895292,
+   "date": "2024-04-06",
+   "opponent": "Union Berlin",
+   "half": 2,
+   "minute": 76,
+   "second": 9,
+   "x": 62.2,
+   "y": 35.7
+  },
+  {
+   "match": 3895302,
+   "date": "2024-04-14",
+   "opponent": "Werder Bremen",
+   "half": 1,
+   "minute": 15,
+   "second": 51,
+   "x": 68.1,
+   "y": 53.5
+  },
+  {
+   "match": 3895302,
+   "date": "2024-04-14",
+   "opponent": "Werder Bremen",
+   "half": 2,
+   "minute": 71,
+   "second": 28,
+   "x": 83.2,
+   "y": 52.4
+  },
+  {
+   "match": 3895302,
+   "date": "2024-04-14",
+   "opponent": "Werder Bremen",
+   "half": 2,
+   "minute": 82,
+   "second": 21,
+   "x": 26.0,
+   "y": 53.7
+  },
+  {
+   "match": 3895302,
+   "date": "2024-04-14",
+   "opponent": "Werder Bremen",
+   "half": 2,
+   "minute": 89,
+   "second": 16,
+   "x": 30.9,
+   "y": 21.7
+  },
+  {
+   "match": 3895309,
+   "date": "2024-04-21",
+   "opponent": "Borussia Dortmund",
+   "half": 1,
+   "minute": 0,
+   "second": 10,
+   "x": 76.6,
+   "y": 38.2
+  },
+  {
+   "match": 3895320,
+   "date": "2024-04-27",
+   "opponent": "VfB Stuttgart",
+   "half": 1,
+   "minute": 7,
+   "second": 6,
+   "x": 79.2,
+   "y": 8.8
+  },
+  {
+   "match": 3895320,
+   "date": "2024-04-27",
+   "opponent": "VfB Stuttgart",
+   "half": 1,
+   "minute": 23,
+   "second": 38,
+   "x": 71.6,
+   "y": 54.6
+  },
+  {
+   "match": 3895333,
+   "date": "2024-05-05",
+   "opponent": "Eintracht Frankfurt",
+   "half": 1,
+   "minute": 9,
+   "second": 14,
+   "x": 93.6,
+   "y": 53.1
+  },
+  {
+   "match": 3895333,
+   "date": "2024-05-05",
+   "opponent": "Eintracht Frankfurt",
+   "half": 1,
+   "minute": 29,
+   "second": 52,
+   "x": 87.4,
+   "y": 17.9
+  },
+  {
+   "match": 3895340,
+   "date": "2024-05-12",
+   "opponent": "Bochum",
+   "half": 1,
+   "minute": 37,
+   "second": 6,
+   "x": 98.5,
+   "y": 29.5
+  },
+  {
+   "match": 3895340,
+   "date": "2024-05-12",
+   "opponent": "Bochum",
+   "half": 2,
+   "minute": 49,
+   "second": 47,
+   "x": 95.8,
+   "y": 25.3
+  },
+  {
+   "match": 3895340,
+   "date": "2024-05-12",
+   "opponent": "Bochum",
+   "half": 2,
+   "minute": 58,
+   "second": 23,
+   "x": 62.6,
+   "y": 71.3
+  },
+  {
+   "match": 3895340,
+   "date": "2024-05-12",
+   "opponent": "Bochum",
+   "half": 2,
+   "minute": 77,
+   "second": 4,
+   "x": 56.0,
+   "y": 54.2
+  },
+  {
+   "match": 3895340,
+   "date": "2024-05-12",
+   "opponent": "Bochum",
+   "half": 2,
+   "minute": 82,
+   "second": 0,
+   "x": 78.2,
+   "y": 20.5
+  },
+  {
+   "match": 3895340,
+   "date": "2024-05-12",
+   "opponent": "Bochum",
+   "half": 2,
+   "minute": 93,
+   "second": 26,
+   "x": 42.3,
+   "y": 54.0
+  },
+  {
+   "match": 3895348,
+   "date": "2024-05-18",
+   "opponent": "Augsburg",
+   "half": 1,
+   "minute": 11,
+   "second": 12,
+   "x": 113.9,
+   "y": 35.1
+  }
+ ]
 }

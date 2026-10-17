@@ -10,6 +10,8 @@ Definitions (fixed before looking at any team):
 - counter-press regain: the team acts again within 5 s of the opponent's first action, in open play. Across 5 test teams this share varied little (17-19%),
   so it describes the team but separates styles poorly; read it with the losses by third and the recoveries in the final third. Shot conceded after a loss: the opponent shoots within 10 s, before the team regains.
 - after a recovery: shot within 10 s and before the opponent touches the ball again; reached the final third (x >= 80) in the same spell of possession.
+- danger map (JSON 'recovery_zones', 'recovery_shots'): recoveries by zone of a 4 x 3 grid (x quarters, y thirds) with the share followed by a shot within 10 s,
+  and the location and time of every recovery followed by a shot within 10 s (to replay it).
 - thirds on the team's own attacking direction: own (x < 40), middle (40-80), final (x >= 80). Intervals: 95% bootstrap over matches."""
 import sys, os, io, json, base64, html as H
 import numpy as np, pandas as pd
@@ -80,6 +82,11 @@ if __name__ == "__main__":
                                                 shot10=float(R.shot10[R.third == t].mean()), shot=float(R.shot[R.third == t].mean()), final_third=float(R.final_third[R.third == t].mean())) for t in THIRDS if (R.third == t).any()})
     last = games[-5:]; L5, R5 = L[L.gi.isin(last)], R[R.gi.isin(last)]
     res["last5"] = dict(losses_per_match=float(len(L5) / len(last)), regain5=float(L5.regain5.mean()) if len(L5) else None, recoveries_final_third_per_match=float((R5.third == THIRDS[2]).sum() / len(last)))
+    zx = np.minimum((R.x // 30).astype(int), 3); zy = np.minimum((R.y // (80 / 3)).astype(int), 2)
+    res["recovery_zones"] = [dict(x0=30 * i, x1=30 * (i + 1), y0=round(80 / 3 * j, 2), y1=round(80 / 3 * (j + 1), 2), n=int(((zx == i) & (zy == j)).sum()),
+                                  shot10=int(R.shot10[(zx == i) & (zy == j)].sum())) for i in range(4) for j in range(3)]
+    res["recovery_shots"] = [dict(match=int(r.match), date=r.data, opponent=r.avv, half=int(r.tempo), minute=int(r.minuto), second=int(r.sec), x=float(r.x), y=float(r.y))
+                             for r in R[R.shot10 == 1].itertuples()]
     json.dump(res, open(f"{BASE}/transitions_{fn}.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     cols = ["family", "match", "data", "avv", "tempo", "minuto", "sec", "start_type", "n_pass", "dur", "shot"]
     clips = pd.concat([L.assign(family=["Loss " + t + (" - regained in 5 s" if r else "") for t, r in zip(L.third, L.regain5)], start_type="loss", shot=L.conceded10),
