@@ -5,6 +5,7 @@ import { Icon } from "./charts";
 import Clips from "./views/Clips";
 import Compare from "./views/Compare";
 import Defending from "./views/Defending";
+import Matchups from "./views/Matchups";
 import Review from "./views/Review";
 import Families from "./views/Families";
 import NewTeam from "./views/NewTeam";
@@ -15,7 +16,7 @@ import Transitions from "./views/Transitions";
 
 const TABS: [string, string][] = [
   ["overview", "Overview"], ["build-up", "Families"], ["restarts", "Restarts"],
-  ["setpieces", "Set pieces"], ["transitions", "Transitions"], ["defending", "Defending"], ["clips", "Clips"], ["compare", "Compare"], ["review", "Review"],
+  ["setpieces", "Set pieces"], ["transitions", "Transitions"], ["defending", "Defending"], ["matchups", "Matchups"], ["clips", "Clips"], ["compare", "Compare"], ["review", "Review"],
 ];
 const TOUR = ["overview", "build-up", "restarts", "setpieces", "transitions", "defending", "compare"];
 const TOUR_MS = 15000;
@@ -154,6 +155,7 @@ export default function App() {
             {route.tab === "setpieces" && <SetPieces d={current} events={events} go={go} />}
             {route.tab === "transitions" && <Transitions d={current} events={events} go={go} />}
             {route.tab === "defending" && <Defending d={current} />}
+            {route.tab === "matchups" && <Matchups d={current} />}
             {route.tab === "compare" && teams && <Compare d={current} teams={teams} events={events} />}
             {route.tab === "review" && <Review d={current} events={events} />}
             {route.tab === "clips" && (

@@ -33,12 +33,14 @@ r = subprocess.run(py + [os.path.join(here, "report", "transitions.py"), mf, a.t
 if r.returncode: sys.exit("Scheda delle transizioni fallita.")
 r = subprocess.run(py + [os.path.join(here, "report", "defending.py"), mf, a.team, base], env=env)
 if r.returncode: print("Scheda della fase difensiva saltata: servono eventi difensivi in stile StatsBomb (Pressure, Duel, ...), assenti nel CSV generico.")
+r = subprocess.run(py + [os.path.join(here, "report", "matchups.py"), mf, a.team, base], env=env)
+if r.returncode: print("Scheda dei confronti per avversario saltata: servono eventi difensivi e moduli in stile StatsBomb.")
 r = subprocess.run(py + [os.path.join(here, "report", "summary.py"), a.team, base], env=env)
 if r.returncode: sys.exit("Pagina di preparazione fallita.")
 fn = a.team.replace(" ", "_")
-for f in (f"prep_{fn}.html", f"report_{fn}.html", f"report_{fn}.json", f"clips_{fn}.csv", f"review_{fn}.csv", f"review_{fn}.html", f"restarts_{fn}.html", f"restarts_{fn}.json", f"restart_clips_{fn}.csv", f"setpieces_{fn}.html", f"setpieces_{fn}.json", f"setpiece_clips_{fn}.csv", f"transitions_{fn}.html", f"transitions_{fn}.json", f"transition_clips_{fn}.csv", f"defending_{fn}.html", f"defending_{fn}.json"):
+for f in (f"prep_{fn}.html", f"report_{fn}.html", f"report_{fn}.json", f"clips_{fn}.csv", f"review_{fn}.csv", f"review_{fn}.html", f"restarts_{fn}.html", f"restarts_{fn}.json", f"restart_clips_{fn}.csv", f"setpieces_{fn}.html", f"setpieces_{fn}.json", f"setpiece_clips_{fn}.csv", f"transitions_{fn}.html", f"transitions_{fn}.json", f"transition_clips_{fn}.csv", f"defending_{fn}.html", f"defending_{fn}.json", f"matchups_{fn}.json"):
     if os.path.exists(os.path.join(base, f)): shutil.copy(os.path.join(base, f), os.path.join(out, f))
 if a.xml:
     for c in (f"clips_{fn}.csv", f"restart_clips_{fn}.csv", f"setpiece_clips_{fn}.csv", f"transition_clips_{fn}.csv"):
         subprocess.run(py + [os.path.join(here, "report", "clips_to_xml.py"), os.path.join(out, c), os.path.join(out, "xml", c[:-4])] + (["--video-offsets", os.path.abspath(a.video_offsets)] if a.video_offsets else []))
-print(f"Fatto. Apri {os.path.join(out, f'prep_{fn}.html')}. Altri file: report_{fn}.html, restarts_{fn}.html, setpieces_{fn}.html, transitions_{fn}.html, defending_{fn}.html, clips_{fn}.csv, restart_clips_{fn}.csv, review_{fn}.csv/.html" + (", xml/" if a.xml else ""))
+print(f"Fatto. Apri {os.path.join(out, f'prep_{fn}.html')}. Altri file: report_{fn}.html, restarts_{fn}.html, setpieces_{fn}.html, transitions_{fn}.html, defending_{fn}.html, matchups_{fn}.json (sezione Matchups dell'app), clips_{fn}.csv, restart_clips_{fn}.csv, review_{fn}.csv/.html" + (", xml/" if a.xml else ""))

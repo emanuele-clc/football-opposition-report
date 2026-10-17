@@ -41,13 +41,19 @@ export interface Defending {
   height: { mean_x: number; ci: CI; median_x: number | null; last5: number; actions_per_match: number };
   conceded: { shots_per_match: number; shots_ci: CI; xg_per_match: number; xg_ci: CI; last5_shots: number; last5_xg: number };
 }
+export interface MatchupMetric { id: string; label: string; unit: string; direction: string; linked: boolean; a: number; b: number; diff: number; ci: CI; verdict: "clear" | "uncertain" | "small group" }
+export interface Matchups {
+  team: string; matches: number; note: string; min_group: number; median_opp_ppda: number; formations_used: string[];
+  splits: Record<string, { label: string; n_a: number; n_b: number; groups: [string, string]; rule: string; metrics: MatchupMetric[] }>;
+  per_match: { match: number; date: string; opponent: string; venue: string; score: string; formation: string; opp_formation: string; opp_back_line: string; opp_press: string; opp_ppda: number; xg_for: number; xg_against: number; lost_own_half: number }[];
+}
 export interface Rank {
   id: string; group: string; label: string; sheet: string; unit: "pct" | "num" | "num2"; caution: string | null; value: number; ci: CI | null;
   rank: number; of: number; teams: { key: string; team: string; value: number }[];
 }
 export interface TeamSummary { key: string; team: string; matches: number; period: string; sequences: number; sheets: string[]; clips: string[] }
 export interface TeamData extends TeamSummary {
-  report: Report; restarts: Restarts | null; setpieces: SetPieces | null; transitions: Transitions | null; defending: Defending | null; ranks: Rank[]; references: string[];
+  report: Report; restarts: Restarts | null; setpieces: SetPieces | null; transitions: Transitions | null; defending: Defending | null; matchups: Matchups | null; ranks: Rank[]; references: string[];
 }
 export interface Info { data_dir: string; is_examples: boolean; can_generate: boolean; has_events: boolean }
 export interface ClipRow { family: string; match: number; date: string; opponent: string; half: number; minute: number; second: number; start_type: string; passes: number; duration_s: number; ended_in_shot: number; video_time?: string }

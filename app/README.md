@@ -35,6 +35,7 @@ Opens http://127.0.0.1:8765. Ctrl+C stops it.
 - **Compare → Style map**: every team in the folder placed by its numbers (first two principal components of the standardised facts), with the closest teams. Descriptive; mixed leagues and seasons.
 - **Clips → More like this**: the 8 sequences of the season closest to the selected one (start, end, path, passes, duration), click to replay.
 - **Defending**: how the team defends without the ball (StatsBomb events only): pressures per match on a pitch grid with the mean height of the defensive actions, PPDA, shots and xG conceded, last 5 matches, ranks against the other teams. From `src/report/defending.py`.
+- **Matchups**: the team's past matches split by opponent pressing (opponent PPDA in that match, above or below the median), opponent back line (three/five or four, from the starting formation) and home/away; per-match xG, shots, balls lost in the own half, pass completion under pressure, points, with the difference and its 95% interval and a verdict (clear / uncertain / group too small). Descriptive, not a recommendation of formation or style. From `src/report/matchups.py`.
 - **Add team** (only with a data folder that has `matches/` and `ev/`): runs `src/oppreport.py` for a chosen team and shows its log.
 - **Theme and print**: dark by default, light with the sun button (or `?theme=light` in the address); printing uses a white page.
 

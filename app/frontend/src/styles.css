@@ -498,7 +498,15 @@ footer { padding: 22px var(--gutter) 30px; border-top: 1px solid var(--board-lin
   .brand { font-size: 23px; }
   .pill-select { max-width: 250px; }
 }
+/* Ten sections no longer fit beside the brand and team picker: below 1600px the nav takes its own row. */
+@media (max-width: 1600px) {
+  .bar { flex-wrap: wrap; row-gap: 10px; }
+  .sections { order: 3; width: 100%; margin-left: 0; }
+  .bar-actions { margin-left: auto; }
+}
+.layout-matchup { grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); }
 @media (max-width: 1120px) {
+  .layout-matchup { grid-template-columns: minmax(0, 1fr); }
   .sections { -webkit-mask-image: linear-gradient(to right, #000 85%, transparent); mask-image: linear-gradient(to right, #000 85%, transparent); padding-right: 40px; }
   .layout-hero, .layout-split, .layout-2 { grid-template-columns: minmax(0, 1fr); }
   .ranks { grid-template-columns: minmax(0, 1fr); }

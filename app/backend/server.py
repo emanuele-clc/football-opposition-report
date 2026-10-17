@@ -14,7 +14,7 @@ from pydantic import BaseModel
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DATA = os.path.abspath(os.environ.get("OPPREPORT_DATA") or os.path.join(ROOT, "examples"))
 DIST = os.path.join(ROOT, "app", "frontend", "dist")
-SHEETS = ("report", "restarts", "setpieces", "transitions", "defending")
+SHEETS = ("report", "restarts", "setpieces", "transitions", "defending", "matchups")
 CLIPS = {"sequences": "clips", "restarts": "restart_clips", "setpieces": "setpiece_clips", "transitions": "transition_clips"}
 INT_COLS = {"match", "half", "minute", "second", "passes", "duration_s", "ended_in_shot"}
 

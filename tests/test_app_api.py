@@ -33,6 +33,13 @@ for t in teams:
         exp = [x for x in rows if x["family"] == fam]
         got = list(csv.DictReader(io.StringIO(c.get(f"/api/teams/{k}/export/{kind}.csv", params={"family": fam}).text)))
         check(got == exp, f"{t['team']}: CSV export for {fam} identical to the clip CSV rows")
+    if os.path.exists(os.path.join(data, f"defending_{k}.json")):
+        de = json.load(open(os.path.join(data, f"defending_{k}.json"), encoding="utf-8"))
+        check(abs(r["ppda"]["value"] - de["ppda"]["value"]) < 1e-12, f"{t['team']}: PPDA rank equals defending JSON")
+    if os.path.exists(os.path.join(data, f"matchups_{k}.json")):
+        mu = d["matchups"]; v = mu["splits"]["venue"]; pr = mu["splits"]["opp_press"]
+        check(v["n_a"] + v["n_b"] == pr["n_a"] + pr["n_b"] == len(mu["per_match"]) == mu["matches"], f"{t['team']}: matchup groups add up to {mu['matches']} matches")
+        check(all(m["verdict"] == "small group" for s in mu["splits"].values() if min(s["n_a"], s["n_b"]) < mu["min_group"] for m in s["metrics"]), f"{t['team']}: small groups never called clear")
     if os.path.exists(os.path.join(data, f"review_{k}.csv")):
         before = open(os.path.join(data, f"review_{k}.csv"), encoding="utf-8").read()
         rv = c.get(f"/api/teams/{k}/review").json(); n = len(rv["rows"])
