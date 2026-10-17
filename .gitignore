@@ -4,3 +4,7 @@ __pycache__/
 run_logs/
 reports/
 slides/
+app/frontend/node_modules/
+app/frontend/dist/
+app_cache/
+.impeccable/

@@ -18,6 +18,7 @@ src/week4/       held-out validation, replication on new teams, exploratory anal
 src/report/      automated opposition report generator (L2), clip list, analyst review sheet
 src/adapters/    converter from a generic events CSV (any provider) to the pipeline format
 src/oppreport.py one command to generate the report
+app/             local web app over the report files (FastAPI + React): replays, comparison, clip export, analyst review (see app/README.md)
 tests/           adapter round-trip test
 examples/        example outputs for 4 teams: report, restart, set-piece and transition sheets, clip lists, review sheets
 results/         JSON + CSV outputs (no raw event files)
