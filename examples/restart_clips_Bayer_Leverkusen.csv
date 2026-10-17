@@ -1,0 +1,864 @@
+family,match,date,opponent,half,minute,second,start_type,passes,duration_s,ended_in_shot
+Goal kick long centre,3895095,2023-09-30,FSV Mainz 05,1,6,36,Goal kick,1,3,0
+Goal kick long centre,3895095,2023-09-30,FSV Mainz 05,1,19,25,Goal kick,1,0,0
+Goal kick long centre,3895095,2023-09-30,FSV Mainz 05,1,33,45,Goal kick,28,74,0
+Goal kick long centre,3895113,2023-10-21,Wolfsburg,1,17,22,Goal kick,1,0,0
+Goal kick long centre,3895113,2023-10-21,Wolfsburg,2,68,30,Goal kick,10,35,1
+Goal kick long centre,3895121,2023-10-29,Freiburg,2,91,25,Goal kick,2,4,0
+Goal kick long centre,3895121,2023-10-29,Freiburg,2,95,16,Goal kick,2,4,0
+Goal kick long centre,3895134,2023-11-04,Hoffenheim,1,30,27,Goal kick,1,0,0
+Goal kick long centre,3895134,2023-11-04,Hoffenheim,2,71,40,Goal kick,2,8,0
+Goal kick long centre,3895134,2023-11-04,Hoffenheim,2,79,58,Goal kick,1,10,0
+Goal kick long centre,3895139,2023-11-12,Union Berlin,2,64,50,Goal kick,20,54,1
+Goal kick long centre,3895158,2023-12-03,Borussia Dortmund,2,82,16,Goal kick,13,35,0
+Goal kick long centre,3895158,2023-12-03,Borussia Dortmund,2,94,25,Goal kick,6,14,0
+Goal kick long centre,3895167,2023-12-10,VfB Stuttgart,1,27,33,Goal kick,3,7,0
+Goal kick long centre,3895194,2024-01-13,Augsburg,2,47,35,Goal kick,3,14,1
+Goal kick long centre,3895244,2024-02-17,FC Heidenheim,2,76,38,Goal kick,5,17,1
+Goal kick long centre,3895250,2024-02-23,FSV Mainz 05,2,54,57,Goal kick,3,7,0
+Goal kick long centre,3895302,2024-04-14,Werder Bremen,2,50,24,Goal kick,1,0,0
+Goal kick long centre,3895320,2024-04-27,VfB Stuttgart,1,13,56,Goal kick,1,0,0
+Goal kick long centre,3895333,2024-05-05,Eintracht Frankfurt,1,45,36,Goal kick,1,0,0
+Goal kick long centre,3895333,2024-05-05,Eintracht Frankfurt,2,69,36,Goal kick,1,5,0
+Goal kick long centre,3895333,2024-05-05,Eintracht Frankfurt,2,93,45,Goal kick,1,0,0
+Goal kick long centre,3895340,2024-05-12,Bochum,1,42,24,Goal kick,11,35,0
+Goal kick long centre,3895340,2024-05-12,Bochum,2,60,52,Goal kick,1,0,0
+Goal kick long centre,3895348,2024-05-18,Augsburg,2,67,4,Goal kick,15,79,1
+Goal kick long left,3895052,2023-08-19,RB Leipzig,1,43,55,Goal kick,12,46,0
+Goal kick long left,3895052,2023-08-19,RB Leipzig,2,67,19,Goal kick,1,0,0
+Goal kick long left,3895060,2023-08-26,Borussia Mönchengladbach,2,64,34,Goal kick,2,6,0
+Goal kick long left,3895060,2023-08-26,Borussia Mönchengladbach,2,70,19,Goal kick,25,72,0
+Goal kick long left,3895074,2023-09-15,Bayern Munich,2,53,39,Goal kick,1,0,0
+Goal kick long left,3895095,2023-09-30,FSV Mainz 05,2,80,36,Goal kick,2,3,0
+Goal kick long left,3895107,2023-10-08,FC Köln,2,71,10,Goal kick,2,7,0
+Goal kick long left,3895134,2023-11-04,Hoffenheim,1,43,23,Goal kick,29,91,1
+Goal kick long left,3895153,2023-11-25,Werder Bremen,1,40,42,Goal kick,13,39,0
+Goal kick long left,3895220,2024-02-03,Darmstadt 98,2,55,16,Goal kick,2,3,0
+Goal kick long left,3895232,2024-02-10,Bayern Munich,1,12,42,Goal kick,14,35,0
+Goal kick long left,3895232,2024-02-10,Bayern Munich,2,79,53,Goal kick,2,4,0
+Goal kick long left,3895232,2024-02-10,Bayern Munich,2,82,24,Goal kick,1,0,0
+Goal kick long left,3895232,2024-02-10,Bayern Munich,2,90,53,Goal kick,5,17,0
+Goal kick long left,3895232,2024-02-10,Bayern Munich,2,92,40,Goal kick,1,0,0
+Goal kick long left,3895275,2024-03-17,Freiburg,1,23,14,Goal kick,25,96,0
+Goal kick long left,3895286,2024-03-30,Hoffenheim,2,94,41,Goal kick,2,5,0
+Goal kick long left,3895292,2024-04-06,Union Berlin,1,35,46,Goal kick,10,33,0
+Goal kick long left,3895333,2024-05-05,Eintracht Frankfurt,1,41,50,Goal kick,3,12,0
+Goal kick long left,3895333,2024-05-05,Eintracht Frankfurt,2,51,17,Goal kick,2,8,0
+Goal kick long left,3895333,2024-05-05,Eintracht Frankfurt,2,60,39,Goal kick,4,14,0
+Goal kick long right,3895052,2023-08-19,RB Leipzig,2,60,34,Goal kick,6,8,0
+Goal kick long right,3895052,2023-08-19,RB Leipzig,2,92,3,Goal kick,2,5,0
+Goal kick long right,3895060,2023-08-26,Borussia Mönchengladbach,1,27,21,Goal kick,15,30,0
+Goal kick long right,3895074,2023-09-15,Bayern Munich,1,2,39,Goal kick,3,10,0
+Goal kick long right,3895074,2023-09-15,Bayern Munich,1,11,12,Goal kick,2,7,0
+Goal kick long right,3895074,2023-09-15,Bayern Munich,1,46,14,Goal kick,1,0,0
+Goal kick long right,3895095,2023-09-30,FSV Mainz 05,2,54,6,Goal kick,9,31,0
+Goal kick long right,3895107,2023-10-08,FC Köln,1,9,57,Goal kick,1,0,0
+Goal kick long right,3895121,2023-10-29,Freiburg,2,92,35,Goal kick,1,0,0
+Goal kick long right,3895134,2023-11-04,Hoffenheim,2,47,10,Goal kick,1,0,0
+Goal kick long right,3895134,2023-11-04,Hoffenheim,2,63,57,Goal kick,1,0,0
+Goal kick long right,3895167,2023-12-10,VfB Stuttgart,1,36,14,Goal kick,8,14,0
+Goal kick long right,3895167,2023-12-10,VfB Stuttgart,2,57,23,Goal kick,1,0,0
+Goal kick long right,3895167,2023-12-10,VfB Stuttgart,2,92,35,Goal kick,18,55,1
+Goal kick long right,3895182,2023-12-20,Bochum,1,3,39,Goal kick,4,7,0
+Goal kick long right,3895182,2023-12-20,Bochum,2,48,26,Goal kick,10,23,0
+Goal kick long right,3895182,2023-12-20,Bochum,2,73,28,Goal kick,15,54,0
+Goal kick long right,3895194,2024-01-13,Augsburg,1,12,15,Goal kick,2,8,0
+Goal kick long right,3895202,2024-01-20,RB Leipzig,2,93,32,Goal kick,1,0,0
+Goal kick long right,3895232,2024-02-10,Bayern Munich,1,43,1,Goal kick,2,4,0
+Goal kick long right,3895244,2024-02-17,FC Heidenheim,1,35,23,Goal kick,5,18,0
+Goal kick long right,3895244,2024-02-17,FC Heidenheim,2,78,11,Goal kick,17,54,0
+Goal kick long right,3895244,2024-02-17,FC Heidenheim,2,89,54,Goal kick,1,0,0
+Goal kick long right,3895244,2024-02-17,FC Heidenheim,2,92,2,Goal kick,6,17,0
+Goal kick long right,3895250,2024-02-23,FSV Mainz 05,2,47,20,Goal kick,4,8,0
+Goal kick long right,3895250,2024-02-23,FSV Mainz 05,2,71,0,Goal kick,1,0,0
+Goal kick long right,3895250,2024-02-23,FSV Mainz 05,2,93,47,Goal kick,2,6,0
+Goal kick long right,3895258,2024-03-03,FC Köln,1,48,28,Goal kick,6,22,0
+Goal kick long right,3895258,2024-03-03,FC Köln,2,50,59,Goal kick,2,5,0
+Goal kick long right,3895275,2024-03-17,Freiburg,2,90,50,Goal kick,2,5,0
+Goal kick long right,3895275,2024-03-17,Freiburg,2,93,39,Goal kick,1,0,0
+Goal kick long right,3895320,2024-04-27,VfB Stuttgart,2,59,0,Goal kick,1,0,0
+Goal kick long right,3895333,2024-05-05,Eintracht Frankfurt,2,46,51,Goal kick,2,7,0
+Goal kick long right,3895333,2024-05-05,Eintracht Frankfurt,2,53,2,Goal kick,2,5,0
+Goal kick long right,3895340,2024-05-12,Bochum,1,11,14,Goal kick,3,14,0
+Goal kick long right,3895348,2024-05-18,Augsburg,2,87,14,Goal kick,23,54,1
+Goal kick short centre,3895052,2023-08-19,RB Leipzig,1,7,24,Goal kick,9,26,1
+Goal kick short centre,3895060,2023-08-26,Borussia Mönchengladbach,1,3,52,Goal kick,5,12,0
+Goal kick short centre,3895060,2023-08-26,Borussia Mönchengladbach,2,46,2,Goal kick,29,111,0
+Goal kick short centre,3895060,2023-08-26,Borussia Mönchengladbach,2,50,14,Goal kick,6,14,0
+Goal kick short centre,3895060,2023-08-26,Borussia Mönchengladbach,2,51,4,Goal kick,5,26,1
+Goal kick short centre,3895060,2023-08-26,Borussia Mönchengladbach,2,54,24,Goal kick,14,41,1
+Goal kick short centre,3895060,2023-08-26,Borussia Mönchengladbach,2,61,21,Goal kick,22,52,0
+Goal kick short centre,3895060,2023-08-26,Borussia Mönchengladbach,2,85,47,Goal kick,21,75,1
+Goal kick short centre,3895067,2023-09-02,Darmstadt 98,1,42,25,Goal kick,17,60,0
+Goal kick short centre,3895074,2023-09-15,Bayern Munich,1,36,27,Goal kick,13,31,0
+Goal kick short centre,3895074,2023-09-15,Bayern Munich,2,65,18,Goal kick,6,17,0
+Goal kick short centre,3895074,2023-09-15,Bayern Munich,2,81,12,Goal kick,5,13,0
+Goal kick short centre,3895086,2023-09-24,FC Heidenheim,1,15,21,Goal kick,9,29,0
+Goal kick short centre,3895095,2023-09-30,FSV Mainz 05,2,81,59,Goal kick,10,31,1
+Goal kick short centre,3895107,2023-10-08,FC Köln,1,25,20,Goal kick,18,54,1
+Goal kick short centre,3895113,2023-10-21,Wolfsburg,1,1,7,Goal kick,21,54,0
+Goal kick short centre,3895113,2023-10-21,Wolfsburg,2,51,39,Goal kick,12,32,1
+Goal kick short centre,3895113,2023-10-21,Wolfsburg,2,82,58,Goal kick,3,7,0
+Goal kick short centre,3895121,2023-10-29,Freiburg,1,1,48,Goal kick,3,8,0
+Goal kick short centre,3895121,2023-10-29,Freiburg,2,80,31,Goal kick,7,32,0
+Goal kick short centre,3895121,2023-10-29,Freiburg,2,83,18,Goal kick,5,19,0
+Goal kick short centre,3895134,2023-11-04,Hoffenheim,2,50,49,Goal kick,3,7,0
+Goal kick short centre,3895139,2023-11-12,Union Berlin,2,80,30,Goal kick,10,29,0
+Goal kick short centre,3895158,2023-12-03,Borussia Dortmund,2,67,48,Goal kick,9,29,0
+Goal kick short centre,3895182,2023-12-20,Bochum,1,17,5,Goal kick,2,2,0
+Goal kick short centre,3895182,2023-12-20,Bochum,2,49,31,Goal kick,10,25,0
+Goal kick short centre,3895194,2024-01-13,Augsburg,1,18,23,Goal kick,2,11,0
+Goal kick short centre,3895194,2024-01-13,Augsburg,2,64,39,Goal kick,13,67,0
+Goal kick short centre,3895202,2024-01-20,RB Leipzig,1,9,29,Goal kick,7,29,1
+Goal kick short centre,3895202,2024-01-20,RB Leipzig,1,19,2,Goal kick,16,40,0
+Goal kick short centre,3895220,2024-02-03,Darmstadt 98,1,11,8,Goal kick,7,11,0
+Goal kick short centre,3895220,2024-02-03,Darmstadt 98,1,20,42,Goal kick,17,65,0
+Goal kick short centre,3895220,2024-02-03,Darmstadt 98,1,27,20,Goal kick,4,7,0
+Goal kick short centre,3895220,2024-02-03,Darmstadt 98,1,36,8,Goal kick,5,23,0
+Goal kick short centre,3895232,2024-02-10,Bayern Munich,1,2,4,Goal kick,2,3,0
+Goal kick short centre,3895232,2024-02-10,Bayern Munich,2,66,56,Goal kick,2,2,0
+Goal kick short centre,3895244,2024-02-17,FC Heidenheim,1,22,15,Goal kick,17,50,0
+Goal kick short centre,3895244,2024-02-17,FC Heidenheim,2,46,55,Goal kick,11,35,0
+Goal kick short centre,3895244,2024-02-17,FC Heidenheim,2,53,11,Goal kick,7,23,0
+Goal kick short centre,3895250,2024-02-23,FSV Mainz 05,1,22,42,Goal kick,2,4,0
+Goal kick short centre,3895250,2024-02-23,FSV Mainz 05,2,68,20,Goal kick,6,16,0
+Goal kick short centre,3895258,2024-03-03,FC Köln,2,62,24,Goal kick,20,79,0
+Goal kick short centre,3895258,2024-03-03,FC Köln,2,92,8,Goal kick,7,25,0
+Goal kick short centre,3895266,2024-03-10,Wolfsburg,2,89,41,Goal kick,3,7,0
+Goal kick short centre,3895275,2024-03-17,Freiburg,1,12,2,Goal kick,12,42,0
+Goal kick short centre,3895275,2024-03-17,Freiburg,1,19,41,Goal kick,4,7,0
+Goal kick short centre,3895275,2024-03-17,Freiburg,1,25,17,Goal kick,13,41,0
+Goal kick short centre,3895275,2024-03-17,Freiburg,1,41,38,Goal kick,16,50,0
+Goal kick short centre,3895275,2024-03-17,Freiburg,2,52,17,Goal kick,6,17,1
+Goal kick short centre,3895275,2024-03-17,Freiburg,2,56,34,Goal kick,19,50,1
+Goal kick short centre,3895286,2024-03-30,Hoffenheim,2,46,9,Goal kick,6,19,0
+Goal kick short centre,3895292,2024-04-06,Union Berlin,1,25,42,Goal kick,4,19,0
+Goal kick short centre,3895292,2024-04-06,Union Berlin,1,38,18,Goal kick,3,5,0
+Goal kick short centre,3895292,2024-04-06,Union Berlin,1,39,2,Goal kick,4,8,0
+Goal kick short centre,3895292,2024-04-06,Union Berlin,2,65,18,Goal kick,3,11,0
+Goal kick short centre,3895292,2024-04-06,Union Berlin,2,80,34,Goal kick,18,48,1
+Goal kick short centre,3895302,2024-04-14,Werder Bremen,1,32,49,Goal kick,4,13,0
+Goal kick short centre,3895309,2024-04-21,Borussia Dortmund,1,16,8,Goal kick,6,11,0
+Goal kick short centre,3895309,2024-04-21,Borussia Dortmund,1,32,23,Goal kick,2,3,0
+Goal kick short centre,3895309,2024-04-21,Borussia Dortmund,2,84,0,Goal kick,10,32,0
+Goal kick short centre,3895309,2024-04-21,Borussia Dortmund,2,93,43,Goal kick,10,30,0
+Goal kick short centre,3895320,2024-04-27,VfB Stuttgart,1,31,21,Goal kick,3,11,0
+Goal kick short centre,3895320,2024-04-27,VfB Stuttgart,2,55,48,Goal kick,2,12,0
+Goal kick short centre,3895320,2024-04-27,VfB Stuttgart,2,73,58,Goal kick,2,1,0
+Goal kick short centre,3895333,2024-05-05,Eintracht Frankfurt,1,40,45,Goal kick,9,25,1
+Goal kick short centre,3895340,2024-05-12,Bochum,1,3,14,Goal kick,3,7,0
+Goal kick short centre,3895340,2024-05-12,Bochum,1,6,15,Goal kick,2,1,0
+Goal kick short centre,3895340,2024-05-12,Bochum,1,17,49,Goal kick,9,26,0
+Goal kick short centre,3895340,2024-05-12,Bochum,2,83,37,Goal kick,22,69,1
+Goal kick short centre,3895348,2024-05-18,Augsburg,2,60,44,Goal kick,9,33,0
+Goal kick short left,3895052,2023-08-19,RB Leipzig,2,78,59,Goal kick,3,6,0
+Goal kick short left,3895074,2023-09-15,Bayern Munich,1,25,30,Goal kick,8,26,0
+Goal kick short left,3895095,2023-09-30,FSV Mainz 05,1,4,54,Goal kick,3,5,0
+Goal kick short left,3895113,2023-10-21,Wolfsburg,2,73,3,Goal kick,1,0,0
+Goal kick short left,3895134,2023-11-04,Hoffenheim,2,68,24,Goal kick,13,54,1
+Goal kick short left,3895139,2023-11-12,Union Berlin,1,24,23,Goal kick,17,49,0
+Goal kick short left,3895194,2024-01-13,Augsburg,1,22,3,Goal kick,3,5,0
+Goal kick short left,3895194,2024-01-13,Augsburg,1,31,23,Goal kick,3,20,1
+Goal kick short left,3895194,2024-01-13,Augsburg,1,37,13,Goal kick,29,100,0
+Goal kick short left,3895202,2024-01-20,RB Leipzig,1,13,36,Goal kick,2,6,0
+Goal kick short left,3895202,2024-01-20,RB Leipzig,2,86,4,Goal kick,3,8,0
+Goal kick short left,3895258,2024-03-03,FC Köln,1,10,30,Goal kick,4,7,0
+Goal kick short left,3895258,2024-03-03,FC Köln,1,35,20,Goal kick,9,28,0
+Goal kick short left,3895292,2024-04-06,Union Berlin,1,12,34,Goal kick,3,5,0
+Goal kick short left,3895302,2024-04-14,Werder Bremen,2,69,17,Goal kick,26,96,1
+Goal kick short left,3895302,2024-04-14,Werder Bremen,2,75,5,Goal kick,9,32,0
+Goal kick short left,3895320,2024-04-27,VfB Stuttgart,2,48,46,Goal kick,5,13,0
+Goal kick short left,3895320,2024-04-27,VfB Stuttgart,2,71,48,Goal kick,2,4,0
+Goal kick short left,3895320,2024-04-27,VfB Stuttgart,2,79,11,Goal kick,4,11,0
+Goal kick short left,3895333,2024-05-05,Eintracht Frankfurt,2,48,59,Goal kick,2,5,0
+Goal kick short right,3895086,2023-09-24,FC Heidenheim,2,85,7,Goal kick,7,13,0
+Goal kick short right,3895107,2023-10-08,FC Köln,2,63,54,Goal kick,14,46,0
+Goal kick short right,3895107,2023-10-08,FC Köln,2,77,10,Goal kick,1,0,0
+Goal kick short right,3895158,2023-12-03,Borussia Dortmund,1,24,30,Goal kick,14,47,0
+Goal kick short right,3895220,2024-02-03,Darmstadt 98,1,0,28,Goal kick,6,16,0
+Goal kick short right,3895232,2024-02-10,Bayern Munich,1,7,3,Goal kick,4,8,0
+Goal kick short right,3895232,2024-02-10,Bayern Munich,2,51,43,Goal kick,4,12,0
+Goal kick short right,3895286,2024-03-30,Hoffenheim,1,25,57,Goal kick,4,14,0
+Goal kick short right,3895286,2024-03-30,Hoffenheim,1,42,50,Goal kick,7,23,1
+Goal kick short right,3895340,2024-05-12,Bochum,1,7,14,Goal kick,3,5,0
+Goal kick short right,3895348,2024-05-18,Augsburg,1,41,48,Goal kick,5,21,1
+Goal kick short right,3895348,2024-05-18,Augsburg,2,57,31,Goal kick,8,33,0
+Goal kick short right,3895348,2024-05-18,Augsburg,2,86,21,Goal kick,2,6,0
+Keeper long centre,3895052,2023-08-19,RB Leipzig,1,9,29,Keeper,2,8,0
+Keeper long centre,3895139,2023-11-12,Union Berlin,2,53,1,Keeper,3,7,0
+Keeper long centre,3895210,2024-01-27,Borussia Mönchengladbach,2,90,50,Keeper,13,36,1
+Keeper long centre,3895333,2024-05-05,Eintracht Frankfurt,2,89,31,Keeper,1,10,0
+Keeper long left,3895052,2023-08-19,RB Leipzig,2,50,23,Keeper,1,4,0
+Keeper long left,3895052,2023-08-19,RB Leipzig,2,57,57,Keeper,27,87,0
+Keeper long left,3895052,2023-08-19,RB Leipzig,2,77,21,Keeper,1,0,0
+Keeper long left,3895074,2023-09-15,Bayern Munich,1,16,44,Keeper,1,6,0
+Keeper long left,3895095,2023-09-30,FSV Mainz 05,2,47,58,Keeper,2,5,0
+Keeper long left,3895107,2023-10-08,FC Köln,1,46,49,Keeper,12,36,0
+Keeper long left,3895113,2023-10-21,Wolfsburg,2,93,23,Keeper,11,46,0
+Keeper long left,3895134,2023-11-04,Hoffenheim,1,13,35,Keeper,9,42,0
+Keeper long left,3895167,2023-12-10,VfB Stuttgart,1,12,15,Keeper,1,12,0
+Keeper long left,3895220,2024-02-03,Darmstadt 98,1,38,5,Keeper,5,15,0
+Keeper long left,3895232,2024-02-10,Bayern Munich,2,63,51,Keeper,5,13,0
+Keeper long left,3895244,2024-02-17,FC Heidenheim,1,11,4,Keeper,2,7,0
+Keeper long left,3895244,2024-02-17,FC Heidenheim,2,57,27,Keeper,4,13,0
+Keeper long left,3895258,2024-03-03,FC Köln,2,55,16,Keeper,8,23,0
+Keeper long left,3895286,2024-03-30,Hoffenheim,2,95,56,Keeper,1,15,0
+Keeper long left,3895333,2024-05-05,Eintracht Frankfurt,2,74,14,Keeper,9,13,0
+Keeper long left,3895340,2024-05-12,Bochum,1,45,6,Keeper,8,22,0
+Keeper long right,3895074,2023-09-15,Bayern Munich,1,35,57,Keeper,3,15,0
+Keeper long right,3895113,2023-10-21,Wolfsburg,2,80,44,Keeper,3,8,0
+Keeper long right,3895167,2023-12-10,VfB Stuttgart,1,2,43,Keeper,1,8,0
+Keeper long right,3895180,2023-12-17,Eintracht Frankfurt,1,4,14,Keeper,3,7,0
+Keeper long right,3895220,2024-02-03,Darmstadt 98,2,75,28,Keeper,3,12,1
+Keeper long right,3895250,2024-02-23,FSV Mainz 05,1,3,41,Keeper,2,23,0
+Keeper long right,3895250,2024-02-23,FSV Mainz 05,2,48,39,Keeper,1,0,0
+Keeper long right,3895250,2024-02-23,FSV Mainz 05,2,90,48,Keeper,1,0,0
+Keeper long right,3895333,2024-05-05,Eintracht Frankfurt,1,26,49,Keeper,18,76,0
+Keeper long right,3895333,2024-05-05,Eintracht Frankfurt,2,70,37,Keeper,10,36,0
+Keeper short centre,3895052,2023-08-19,RB Leipzig,1,21,48,Keeper,14,49,0
+Keeper short centre,3895060,2023-08-26,Borussia Mönchengladbach,1,38,27,Keeper,3,27,1
+Keeper short centre,3895074,2023-09-15,Bayern Munich,1,3,1,Keeper,2,7,0
+Keeper short centre,3895086,2023-09-24,FC Heidenheim,1,21,44,Keeper,10,38,0
+Keeper short centre,3895086,2023-09-24,FC Heidenheim,1,43,19,Keeper,10,28,0
+Keeper short centre,3895086,2023-09-24,FC Heidenheim,2,86,43,Keeper,26,69,0
+Keeper short centre,3895107,2023-10-08,FC Köln,2,85,2,Keeper,13,40,0
+Keeper short centre,3895121,2023-10-29,Freiburg,1,26,43,Keeper,5,16,1
+Keeper short centre,3895121,2023-10-29,Freiburg,1,45,29,Keeper,5,23,0
+Keeper short centre,3895139,2023-11-12,Union Berlin,1,42,47,Keeper,4,15,0
+Keeper short centre,3895158,2023-12-03,Borussia Dortmund,1,35,35,Keeper,6,23,0
+Keeper short centre,3895158,2023-12-03,Borussia Dortmund,2,69,42,Keeper,3,11,0
+Keeper short centre,3895167,2023-12-10,VfB Stuttgart,2,71,14,Keeper,3,21,0
+Keeper short centre,3895180,2023-12-17,Eintracht Frankfurt,2,52,40,Keeper,21,64,0
+Keeper short centre,3895182,2023-12-20,Bochum,1,23,38,Keeper,5,12,0
+Keeper short centre,3895202,2024-01-20,RB Leipzig,1,28,20,Keeper,43,128,0
+Keeper short centre,3895210,2024-01-27,Borussia Mönchengladbach,1,26,59,Keeper,5,19,0
+Keeper short centre,3895220,2024-02-03,Darmstadt 98,1,27,54,Keeper,1,1,0
+Keeper short centre,3895232,2024-02-10,Bayern Munich,2,55,16,Keeper,2,4,0
+Keeper short centre,3895250,2024-02-23,FSV Mainz 05,1,9,40,Keeper,18,48,0
+Keeper short centre,3895250,2024-02-23,FSV Mainz 05,1,27,46,Keeper,5,12,1
+Keeper short centre,3895275,2024-03-17,Freiburg,2,45,0,Keeper,32,103,0
+Keeper short centre,3895286,2024-03-30,Hoffenheim,1,39,56,Keeper,13,52,1
+Keeper short centre,3895302,2024-04-14,Werder Bremen,2,50,46,Keeper,5,12,0
+Keeper short centre,3895333,2024-05-05,Eintracht Frankfurt,1,7,15,Keeper,9,32,0
+Keeper short centre,3895333,2024-05-05,Eintracht Frankfurt,1,13,45,Keeper,20,62,0
+Keeper short centre,3895333,2024-05-05,Eintracht Frankfurt,1,40,3,Keeper,1,0,0
+Keeper short centre,3895333,2024-05-05,Eintracht Frankfurt,2,66,27,Keeper,2,7,0
+Keeper short left,3895060,2023-08-26,Borussia Mönchengladbach,2,76,10,Keeper,2,8,0
+Keeper short left,3895074,2023-09-15,Bayern Munich,2,51,52,Keeper,4,6,0
+Keeper short left,3895086,2023-09-24,FC Heidenheim,2,46,41,Keeper,3,11,0
+Keeper short left,3895095,2023-09-30,FSV Mainz 05,1,24,49,Keeper,18,38,0
+Keeper short left,3895113,2023-10-21,Wolfsburg,1,15,28,Keeper,7,23,0
+Keeper short left,3895113,2023-10-21,Wolfsburg,1,37,42,Keeper,4,9,0
+Keeper short left,3895121,2023-10-29,Freiburg,2,53,47,Keeper,29,101,0
+Keeper short left,3895139,2023-11-12,Union Berlin,1,8,29,Keeper,6,15,1
+Keeper short left,3895153,2023-11-25,Werder Bremen,1,29,25,Keeper,9,21,0
+Keeper short left,3895167,2023-12-10,VfB Stuttgart,1,18,37,Keeper,43,130,0
+Keeper short left,3895182,2023-12-20,Bochum,1,14,31,Keeper,14,36,0
+Keeper short left,3895194,2024-01-13,Augsburg,2,80,15,Keeper,10,33,0
+Keeper short left,3895210,2024-01-27,Borussia Mönchengladbach,2,93,53,Keeper,9,32,1
+Keeper short left,3895220,2024-02-03,Darmstadt 98,1,19,35,Keeper,2,9,0
+Keeper short left,3895220,2024-02-03,Darmstadt 98,1,23,29,Keeper,13,46,1
+Keeper short left,3895220,2024-02-03,Darmstadt 98,2,90,43,Keeper,4,15,0
+Keeper short left,3895244,2024-02-17,FC Heidenheim,2,82,11,Keeper,11,34,0
+Keeper short left,3895250,2024-02-23,FSV Mainz 05,2,74,45,Keeper,21,59,0
+Keeper short left,3895275,2024-03-17,Freiburg,2,62,32,Keeper,20,83,0
+Keeper short left,3895302,2024-04-14,Werder Bremen,2,88,8,Keeper,12,54,0
+Keeper short right,3895067,2023-09-02,Darmstadt 98,2,49,19,Keeper,9,40,0
+Keeper short right,3895067,2023-09-02,Darmstadt 98,2,66,23,Keeper,13,36,1
+Keeper short right,3895074,2023-09-15,Bayern Munich,2,71,31,Keeper,30,96,0
+Keeper short right,3895095,2023-09-30,FSV Mainz 05,2,90,20,Keeper,6,24,0
+Keeper short right,3895121,2023-10-29,Freiburg,2,48,10,Keeper,49,171,1
+Keeper short right,3895134,2023-11-04,Hoffenheim,2,53,32,Keeper,4,11,0
+Keeper short right,3895153,2023-11-25,Werder Bremen,1,27,59,Keeper,18,45,0
+Keeper short right,3895158,2023-12-03,Borussia Dortmund,2,53,47,Keeper,10,28,0
+Keeper short right,3895167,2023-12-10,VfB Stuttgart,1,36,34,Keeper,2,3,0
+Keeper short right,3895202,2024-01-20,RB Leipzig,1,24,30,Keeper,34,92,1
+Keeper short right,3895202,2024-01-20,RB Leipzig,2,58,21,Keeper,9,22,0
+Keeper short right,3895210,2024-01-27,Borussia Mönchengladbach,1,22,25,Keeper,4,16,0
+Keeper short right,3895220,2024-02-03,Darmstadt 98,1,45,50,Keeper,6,20,0
+Keeper short right,3895232,2024-02-10,Bayern Munich,1,26,33,Keeper,3,6,0
+Keeper short right,3895244,2024-02-17,FC Heidenheim,1,5,47,Keeper,3,10,0
+Keeper short right,3895250,2024-02-23,FSV Mainz 05,1,15,5,Keeper,14,41,1
+Keeper short right,3895250,2024-02-23,FSV Mainz 05,2,73,39,Keeper,5,12,0
+Keeper short right,3895258,2024-03-03,FC Köln,2,65,24,Keeper,10,38,0
+Keeper short right,3895275,2024-03-17,Freiburg,2,69,22,Keeper,2,16,0
+Keeper short right,3895292,2024-04-06,Union Berlin,2,92,14,Keeper,20,64,0
+Keeper short right,3895333,2024-05-05,Eintracht Frankfurt,1,37,17,Keeper,9,37,0
+Keeper short right,3895340,2024-05-12,Bochum,1,5,5,Keeper,7,24,0
+Throw-in opp. half long centre,3895074,2023-09-15,Bayern Munich,2,58,18,Throw-in opp. half,18,49,0
+Throw-in opp. half long centre,3895134,2023-11-04,Hoffenheim,1,19,34,Throw-in opp. half,1,0,0
+Throw-in opp. half long centre,3895182,2023-12-20,Bochum,2,67,51,Throw-in opp. half,8,21,1
+Throw-in opp. half long centre,3895286,2024-03-30,Hoffenheim,1,41,54,Throw-in opp. half,2,1,0
+Throw-in opp. half long centre,3895340,2024-05-12,Bochum,2,67,14,Throw-in opp. half,9,24,0
+Throw-in opp. half long left,3895086,2023-09-24,FC Heidenheim,2,48,22,Throw-in opp. half,5,8,0
+Throw-in opp. half long left,3895113,2023-10-21,Wolfsburg,1,45,0,Throw-in opp. half,27,68,0
+Throw-in opp. half long left,3895258,2024-03-03,FC Köln,1,26,38,Throw-in opp. half,4,9,0
+Throw-in opp. half long left,3895286,2024-03-30,Hoffenheim,1,45,36,Throw-in opp. half,10,25,1
+Throw-in opp. half long left,3895333,2024-05-05,Eintracht Frankfurt,2,53,56,Throw-in opp. half,3,10,0
+Throw-in opp. half long right,3895060,2023-08-26,Borussia Mönchengladbach,2,84,57,Throw-in opp. half,6,17,0
+Throw-in opp. half long right,3895086,2023-09-24,FC Heidenheim,1,44,0,Throw-in opp. half,17,55,1
+Throw-in opp. half long right,3895095,2023-09-30,FSV Mainz 05,1,37,56,Throw-in opp. half,19,51,0
+Throw-in opp. half long right,3895158,2023-12-03,Borussia Dortmund,2,54,38,Throw-in opp. half,12,43,0
+Throw-in opp. half long right,3895182,2023-12-20,Bochum,1,26,41,Throw-in opp. half,14,70,0
+Throw-in opp. half long right,3895194,2024-01-13,Augsburg,1,44,12,Throw-in opp. half,1,0,0
+Throw-in opp. half long right,3895266,2024-03-10,Wolfsburg,1,4,57,Throw-in opp. half,15,35,0
+Throw-in opp. half long right,3895286,2024-03-30,Hoffenheim,2,52,44,Throw-in opp. half,8,26,0
+Throw-in opp. half long right,3895348,2024-05-18,Augsburg,1,28,56,Throw-in opp. half,15,36,0
+Throw-in opp. half short left,3895052,2023-08-19,RB Leipzig,1,42,3,Throw-in opp. half,4,5,0
+Throw-in opp. half short left,3895052,2023-08-19,RB Leipzig,2,46,15,Throw-in opp. half,1,1,0
+Throw-in opp. half short left,3895052,2023-08-19,RB Leipzig,2,46,28,Throw-in opp. half,4,3,0
+Throw-in opp. half short left,3895052,2023-08-19,RB Leipzig,2,84,30,Throw-in opp. half,1,2,0
+Throw-in opp. half short left,3895060,2023-08-26,Borussia Mönchengladbach,1,5,13,Throw-in opp. half,5,10,0
+Throw-in opp. half short left,3895060,2023-08-26,Borussia Mönchengladbach,1,12,35,Throw-in opp. half,2,1,0
+Throw-in opp. half short left,3895060,2023-08-26,Borussia Mönchengladbach,1,25,6,Throw-in opp. half,14,27,0
+Throw-in opp. half short left,3895060,2023-08-26,Borussia Mönchengladbach,1,35,27,Throw-in opp. half,10,23,0
+Throw-in opp. half short left,3895060,2023-08-26,Borussia Mönchengladbach,2,88,1,Throw-in opp. half,19,65,0
+Throw-in opp. half short left,3895067,2023-09-02,Darmstadt 98,1,16,33,Throw-in opp. half,16,72,0
+Throw-in opp. half short left,3895067,2023-09-02,Darmstadt 98,1,28,2,Throw-in opp. half,5,16,0
+Throw-in opp. half short left,3895067,2023-09-02,Darmstadt 98,2,51,27,Throw-in opp. half,17,50,0
+Throw-in opp. half short left,3895067,2023-09-02,Darmstadt 98,2,53,54,Throw-in opp. half,2,2,0
+Throw-in opp. half short left,3895067,2023-09-02,Darmstadt 98,2,54,4,Throw-in opp. half,15,40,0
+Throw-in opp. half short left,3895067,2023-09-02,Darmstadt 98,2,57,15,Throw-in opp. half,6,14,0
+Throw-in opp. half short left,3895067,2023-09-02,Darmstadt 98,2,59,26,Throw-in opp. half,19,55,1
+Throw-in opp. half short left,3895067,2023-09-02,Darmstadt 98,2,71,38,Throw-in opp. half,6,10,1
+Throw-in opp. half short left,3895067,2023-09-02,Darmstadt 98,2,89,53,Throw-in opp. half,4,13,1
+Throw-in opp. half short left,3895074,2023-09-15,Bayern Munich,1,10,34,Throw-in opp. half,1,1,0
+Throw-in opp. half short left,3895074,2023-09-15,Bayern Munich,1,21,50,Throw-in opp. half,9,18,1
+Throw-in opp. half short left,3895074,2023-09-15,Bayern Munich,1,27,55,Throw-in opp. half,4,15,0
+Throw-in opp. half short left,3895074,2023-09-15,Bayern Munich,2,49,21,Throw-in opp. half,15,46,0
+Throw-in opp. half short left,3895074,2023-09-15,Bayern Munich,2,88,54,Throw-in opp. half,2,2,0
+Throw-in opp. half short left,3895074,2023-09-15,Bayern Munich,2,89,27,Throw-in opp. half,13,48,0
+Throw-in opp. half short left,3895086,2023-09-24,FC Heidenheim,2,52,42,Throw-in opp. half,20,65,0
+Throw-in opp. half short left,3895086,2023-09-24,FC Heidenheim,2,59,48,Throw-in opp. half,6,25,0
+Throw-in opp. half short left,3895086,2023-09-24,FC Heidenheim,2,91,43,Throw-in opp. half,6,14,0
+Throw-in opp. half short left,3895086,2023-09-24,FC Heidenheim,2,92,15,Throw-in opp. half,15,48,0
+Throw-in opp. half short left,3895095,2023-09-30,FSV Mainz 05,2,46,34,Throw-in opp. half,5,15,0
+Throw-in opp. half short left,3895107,2023-10-08,FC Köln,1,0,49,Throw-in opp. half,9,14,0
+Throw-in opp. half short left,3895107,2023-10-08,FC Köln,1,20,36,Throw-in opp. half,13,26,1
+Throw-in opp. half short left,3895107,2023-10-08,FC Köln,1,24,10,Throw-in opp. half,18,53,0
+Throw-in opp. half short left,3895107,2023-10-08,FC Köln,2,80,44,Throw-in opp. half,1,1,0
+Throw-in opp. half short left,3895107,2023-10-08,FC Köln,2,80,53,Throw-in opp. half,1,0,0
+Throw-in opp. half short left,3895113,2023-10-21,Wolfsburg,1,9,48,Throw-in opp. half,10,22,0
+Throw-in opp. half short left,3895113,2023-10-21,Wolfsburg,1,44,47,Throw-in opp. half,5,5,0
+Throw-in opp. half short left,3895113,2023-10-21,Wolfsburg,1,46,53,Throw-in opp. half,4,9,0
+Throw-in opp. half short left,3895113,2023-10-21,Wolfsburg,2,48,47,Throw-in opp. half,34,98,0
+Throw-in opp. half short left,3895113,2023-10-21,Wolfsburg,2,90,10,Throw-in opp. half,1,0,0
+Throw-in opp. half short left,3895113,2023-10-21,Wolfsburg,2,90,23,Throw-in opp. half,2,1,0
+Throw-in opp. half short left,3895121,2023-10-29,Freiburg,1,7,4,Throw-in opp. half,4,14,0
+Throw-in opp. half short left,3895121,2023-10-29,Freiburg,1,38,30,Throw-in opp. half,15,47,1
+Throw-in opp. half short left,3895121,2023-10-29,Freiburg,2,46,47,Throw-in opp. half,2,1,0
+Throw-in opp. half short left,3895121,2023-10-29,Freiburg,2,57,19,Throw-in opp. half,10,28,0
+Throw-in opp. half short left,3895121,2023-10-29,Freiburg,2,68,20,Throw-in opp. half,4,15,0
+Throw-in opp. half short left,3895134,2023-11-04,Hoffenheim,1,10,50,Throw-in opp. half,3,4,0
+Throw-in opp. half short left,3895134,2023-11-04,Hoffenheim,1,14,26,Throw-in opp. half,20,71,0
+Throw-in opp. half short left,3895134,2023-11-04,Hoffenheim,1,22,25,Throw-in opp. half,8,29,0
+Throw-in opp. half short left,3895134,2023-11-04,Hoffenheim,2,53,55,Throw-in opp. half,21,73,0
+Throw-in opp. half short left,3895139,2023-11-12,Union Berlin,2,59,57,Throw-in opp. half,18,49,0
+Throw-in opp. half short left,3895139,2023-11-12,Union Berlin,2,60,58,Throw-in opp. half,44,106,1
+Throw-in opp. half short left,3895153,2023-11-25,Werder Bremen,1,5,38,Throw-in opp. half,5,9,0
+Throw-in opp. half short left,3895153,2023-11-25,Werder Bremen,1,11,56,Throw-in opp. half,10,31,0
+Throw-in opp. half short left,3895153,2023-11-25,Werder Bremen,1,16,52,Throw-in opp. half,4,7,0
+Throw-in opp. half short left,3895153,2023-11-25,Werder Bremen,2,46,55,Throw-in opp. half,26,62,0
+Throw-in opp. half short left,3895153,2023-11-25,Werder Bremen,2,73,39,Throw-in opp. half,2,3,0
+Throw-in opp. half short left,3895153,2023-11-25,Werder Bremen,2,74,44,Throw-in opp. half,5,19,1
+Throw-in opp. half short left,3895158,2023-12-03,Borussia Dortmund,1,5,40,Throw-in opp. half,7,27,1
+Throw-in opp. half short left,3895158,2023-12-03,Borussia Dortmund,1,10,0,Throw-in opp. half,7,16,0
+Throw-in opp. half short left,3895158,2023-12-03,Borussia Dortmund,1,41,50,Throw-in opp. half,5,11,1
+Throw-in opp. half short left,3895158,2023-12-03,Borussia Dortmund,2,57,27,Throw-in opp. half,5,9,0
+Throw-in opp. half short left,3895158,2023-12-03,Borussia Dortmund,2,80,1,Throw-in opp. half,13,34,0
+Throw-in opp. half short left,3895158,2023-12-03,Borussia Dortmund,2,83,31,Throw-in opp. half,9,22,0
+Throw-in opp. half short left,3895158,2023-12-03,Borussia Dortmund,2,92,26,Throw-in opp. half,7,18,0
+Throw-in opp. half short left,3895167,2023-12-10,VfB Stuttgart,1,28,37,Throw-in opp. half,4,14,1
+Throw-in opp. half short left,3895167,2023-12-10,VfB Stuttgart,1,34,16,Throw-in opp. half,4,8,0
+Throw-in opp. half short left,3895167,2023-12-10,VfB Stuttgart,2,52,55,Throw-in opp. half,52,164,1
+Throw-in opp. half short left,3895167,2023-12-10,VfB Stuttgart,2,61,28,Throw-in opp. half,16,53,0
+Throw-in opp. half short left,3895167,2023-12-10,VfB Stuttgart,2,77,22,Throw-in opp. half,5,6,0
+Throw-in opp. half short left,3895167,2023-12-10,VfB Stuttgart,2,90,50,Throw-in opp. half,1,0,0
+Throw-in opp. half short left,3895167,2023-12-10,VfB Stuttgart,2,90,56,Throw-in opp. half,1,1,0
+Throw-in opp. half short left,3895180,2023-12-17,Eintracht Frankfurt,1,12,49,Throw-in opp. half,23,57,1
+Throw-in opp. half short left,3895180,2023-12-17,Eintracht Frankfurt,1,25,33,Throw-in opp. half,9,16,0
+Throw-in opp. half short left,3895180,2023-12-17,Eintracht Frankfurt,2,74,2,Throw-in opp. half,21,62,1
+Throw-in opp. half short left,3895182,2023-12-20,Bochum,1,37,46,Throw-in opp. half,18,49,0
+Throw-in opp. half short left,3895182,2023-12-20,Bochum,2,66,52,Throw-in opp. half,18,49,0
+Throw-in opp. half short left,3895182,2023-12-20,Bochum,2,90,18,Throw-in opp. half,24,85,1
+Throw-in opp. half short left,3895194,2024-01-13,Augsburg,1,3,29,Throw-in opp. half,29,91,0
+Throw-in opp. half short left,3895194,2024-01-13,Augsburg,1,5,37,Throw-in opp. half,6,21,0
+Throw-in opp. half short left,3895194,2024-01-13,Augsburg,1,14,55,Throw-in opp. half,35,106,0
+Throw-in opp. half short left,3895194,2024-01-13,Augsburg,2,54,36,Throw-in opp. half,26,117,1
+Throw-in opp. half short left,3895194,2024-01-13,Augsburg,2,87,14,Throw-in opp. half,5,16,0
+Throw-in opp. half short left,3895194,2024-01-13,Augsburg,2,90,57,Throw-in opp. half,3,8,0
+Throw-in opp. half short left,3895202,2024-01-20,RB Leipzig,2,56,57,Throw-in opp. half,16,32,0
+Throw-in opp. half short left,3895210,2024-01-27,Borussia Mönchengladbach,1,0,10,Throw-in opp. half,53,142,0
+Throw-in opp. half short left,3895210,2024-01-27,Borussia Mönchengladbach,1,8,53,Throw-in opp. half,17,45,0
+Throw-in opp. half short left,3895210,2024-01-27,Borussia Mönchengladbach,2,63,57,Throw-in opp. half,21,56,1
+Throw-in opp. half short left,3895210,2024-01-27,Borussia Mönchengladbach,2,77,40,Throw-in opp. half,9,26,1
+Throw-in opp. half short left,3895220,2024-02-03,Darmstadt 98,2,50,52,Throw-in opp. half,13,52,1
+Throw-in opp. half short left,3895220,2024-02-03,Darmstadt 98,2,55,35,Throw-in opp. half,12,29,0
+Throw-in opp. half short left,3895220,2024-02-03,Darmstadt 98,2,63,40,Throw-in opp. half,12,27,1
+Throw-in opp. half short left,3895220,2024-02-03,Darmstadt 98,2,72,2,Throw-in opp. half,14,44,1
+Throw-in opp. half short left,3895220,2024-02-03,Darmstadt 98,2,76,34,Throw-in opp. half,2,1,0
+Throw-in opp. half short left,3895232,2024-02-10,Bayern Munich,1,17,31,Throw-in opp. half,2,4,1
+Throw-in opp. half short left,3895232,2024-02-10,Bayern Munich,2,75,17,Throw-in opp. half,3,3,0
+Throw-in opp. half short left,3895232,2024-02-10,Bayern Munich,2,75,50,Throw-in opp. half,4,8,0
+Throw-in opp. half short left,3895244,2024-02-17,FC Heidenheim,1,9,52,Throw-in opp. half,3,8,0
+Throw-in opp. half short left,3895244,2024-02-17,FC Heidenheim,1,20,51,Throw-in opp. half,2,2,0
+Throw-in opp. half short left,3895244,2024-02-17,FC Heidenheim,1,32,22,Throw-in opp. half,13,29,0
+Throw-in opp. half short left,3895244,2024-02-17,FC Heidenheim,1,42,29,Throw-in opp. half,7,29,0
+Throw-in opp. half short left,3895244,2024-02-17,FC Heidenheim,2,49,38,Throw-in opp. half,7,22,1
+Throw-in opp. half short left,3895244,2024-02-17,FC Heidenheim,2,68,0,Throw-in opp. half,4,9,0
+Throw-in opp. half short left,3895244,2024-02-17,FC Heidenheim,2,88,9,Throw-in opp. half,1,2,0
+Throw-in opp. half short left,3895244,2024-02-17,FC Heidenheim,2,92,39,Throw-in opp. half,3,6,0
+Throw-in opp. half short left,3895250,2024-02-23,FSV Mainz 05,1,28,7,Throw-in opp. half,3,8,0
+Throw-in opp. half short left,3895250,2024-02-23,FSV Mainz 05,1,43,37,Throw-in opp. half,4,8,1
+Throw-in opp. half short left,3895250,2024-02-23,FSV Mainz 05,2,50,49,Throw-in opp. half,6,14,0
+Throw-in opp. half short left,3895258,2024-03-03,FC Köln,1,5,35,Throw-in opp. half,2,3,0
+Throw-in opp. half short left,3895258,2024-03-03,FC Köln,1,5,45,Throw-in opp. half,6,16,0
+Throw-in opp. half short left,3895258,2024-03-03,FC Köln,1,33,53,Throw-in opp. half,4,10,0
+Throw-in opp. half short left,3895258,2024-03-03,FC Köln,1,36,37,Throw-in opp. half,7,16,1
+Throw-in opp. half short left,3895258,2024-03-03,FC Köln,1,46,33,Throw-in opp. half,17,53,0
+Throw-in opp. half short left,3895266,2024-03-10,Wolfsburg,1,5,36,Throw-in opp. half,10,24,0
+Throw-in opp. half short left,3895266,2024-03-10,Wolfsburg,1,16,53,Throw-in opp. half,7,21,0
+Throw-in opp. half short left,3895266,2024-03-10,Wolfsburg,2,58,34,Throw-in opp. half,4,9,0
+Throw-in opp. half short left,3895266,2024-03-10,Wolfsburg,2,58,47,Throw-in opp. half,8,21,0
+Throw-in opp. half short left,3895266,2024-03-10,Wolfsburg,2,76,1,Throw-in opp. half,30,74,0
+Throw-in opp. half short left,3895275,2024-03-17,Freiburg,1,4,38,Throw-in opp. half,23,65,0
+Throw-in opp. half short left,3895275,2024-03-17,Freiburg,1,17,55,Throw-in opp. half,13,43,0
+Throw-in opp. half short left,3895275,2024-03-17,Freiburg,1,33,3,Throw-in opp. half,2,4,0
+Throw-in opp. half short left,3895275,2024-03-17,Freiburg,1,34,41,Throw-in opp. half,29,85,0
+Throw-in opp. half short left,3895286,2024-03-30,Hoffenheim,1,2,36,Throw-in opp. half,1,1,0
+Throw-in opp. half short left,3895286,2024-03-30,Hoffenheim,1,7,18,Throw-in opp. half,37,106,0
+Throw-in opp. half short left,3895286,2024-03-30,Hoffenheim,1,9,58,Throw-in opp. half,13,37,1
+Throw-in opp. half short left,3895286,2024-03-30,Hoffenheim,1,38,41,Throw-in opp. half,12,35,0
+Throw-in opp. half short left,3895286,2024-03-30,Hoffenheim,2,46,41,Throw-in opp. half,4,13,0
+Throw-in opp. half short left,3895286,2024-03-30,Hoffenheim,2,58,48,Throw-in opp. half,19,41,0
+Throw-in opp. half short left,3895286,2024-03-30,Hoffenheim,2,73,32,Throw-in opp. half,6,16,1
+Throw-in opp. half short left,3895286,2024-03-30,Hoffenheim,2,74,52,Throw-in opp. half,8,23,1
+Throw-in opp. half short left,3895286,2024-03-30,Hoffenheim,2,85,16,Throw-in opp. half,4,10,0
+Throw-in opp. half short left,3895286,2024-03-30,Hoffenheim,2,90,0,Throw-in opp. half,6,12,1
+Throw-in opp. half short left,3895292,2024-04-06,Union Berlin,1,41,52,Throw-in opp. half,13,41,1
+Throw-in opp. half short left,3895292,2024-04-06,Union Berlin,2,47,39,Throw-in opp. half,13,45,0
+Throw-in opp. half short left,3895292,2024-04-06,Union Berlin,2,70,43,Throw-in opp. half,1,1,0
+Throw-in opp. half short left,3895292,2024-04-06,Union Berlin,2,89,55,Throw-in opp. half,9,24,1
+Throw-in opp. half short left,3895302,2024-04-14,Werder Bremen,2,64,21,Throw-in opp. half,3,7,0
+Throw-in opp. half short left,3895309,2024-04-21,Borussia Dortmund,1,19,15,Throw-in opp. half,9,27,0
+Throw-in opp. half short left,3895309,2024-04-21,Borussia Dortmund,1,24,31,Throw-in opp. half,22,66,0
+Throw-in opp. half short left,3895309,2024-04-21,Borussia Dortmund,1,39,36,Throw-in opp. half,3,6,0
+Throw-in opp. half short left,3895309,2024-04-21,Borussia Dortmund,1,40,3,Throw-in opp. half,2,3,0
+Throw-in opp. half short left,3895309,2024-04-21,Borussia Dortmund,1,40,24,Throw-in opp. half,1,1,0
+Throw-in opp. half short left,3895309,2024-04-21,Borussia Dortmund,1,42,48,Throw-in opp. half,5,8,1
+Throw-in opp. half short left,3895309,2024-04-21,Borussia Dortmund,2,66,9,Throw-in opp. half,17,52,0
+Throw-in opp. half short left,3895309,2024-04-21,Borussia Dortmund,2,73,51,Throw-in opp. half,1,1,0
+Throw-in opp. half short left,3895320,2024-04-27,VfB Stuttgart,2,81,28,Throw-in opp. half,4,10,0
+Throw-in opp. half short left,3895320,2024-04-27,VfB Stuttgart,2,82,41,Throw-in opp. half,2,3,0
+Throw-in opp. half short left,3895333,2024-05-05,Eintracht Frankfurt,1,11,14,Throw-in opp. half,9,25,1
+Throw-in opp. half short left,3895333,2024-05-05,Eintracht Frankfurt,1,42,12,Throw-in opp. half,21,80,1
+Throw-in opp. half short left,3895333,2024-05-05,Eintracht Frankfurt,2,55,5,Throw-in opp. half,8,23,0
+Throw-in opp. half short left,3895333,2024-05-05,Eintracht Frankfurt,2,72,8,Throw-in opp. half,2,3,0
+Throw-in opp. half short left,3895333,2024-05-05,Eintracht Frankfurt,2,94,32,Throw-in opp. half,10,27,0
+Throw-in opp. half short left,3895340,2024-05-12,Bochum,1,37,1,Throw-in opp. half,15,36,1
+Throw-in opp. half short left,3895340,2024-05-12,Bochum,1,44,20,Throw-in opp. half,5,7,0
+Throw-in opp. half short left,3895340,2024-05-12,Bochum,2,56,38,Throw-in opp. half,12,45,1
+Throw-in opp. half short left,3895340,2024-05-12,Bochum,2,64,7,Throw-in opp. half,12,38,0
+Throw-in opp. half short left,3895340,2024-05-12,Bochum,2,90,36,Throw-in opp. half,4,8,1
+Throw-in opp. half short left,3895348,2024-05-18,Augsburg,1,6,2,Throw-in opp. half,10,41,0
+Throw-in opp. half short left,3895348,2024-05-18,Augsburg,1,10,0,Throw-in opp. half,8,31,0
+Throw-in opp. half short right,3895052,2023-08-19,RB Leipzig,1,18,20,Throw-in opp. half,24,63,0
+Throw-in opp. half short right,3895052,2023-08-19,RB Leipzig,1,32,53,Throw-in opp. half,10,28,1
+Throw-in opp. half short right,3895052,2023-08-19,RB Leipzig,2,62,25,Throw-in opp. half,2,2,0
+Throw-in opp. half short right,3895052,2023-08-19,RB Leipzig,2,62,39,Throw-in opp. half,11,41,1
+Throw-in opp. half short right,3895060,2023-08-26,Borussia Mönchengladbach,1,8,28,Throw-in opp. half,14,25,1
+Throw-in opp. half short right,3895060,2023-08-26,Borussia Mönchengladbach,2,48,4,Throw-in opp. half,2,6,0
+Throw-in opp. half short right,3895060,2023-08-26,Borussia Mönchengladbach,2,52,10,Throw-in opp. half,2,2,0
+Throw-in opp. half short right,3895067,2023-09-02,Darmstadt 98,1,14,29,Throw-in opp. half,19,67,1
+Throw-in opp. half short right,3895067,2023-09-02,Darmstadt 98,1,40,22,Throw-in opp. half,10,19,0
+Throw-in opp. half short right,3895067,2023-09-02,Darmstadt 98,1,49,3,Throw-in opp. half,2,4,0
+Throw-in opp. half short right,3895067,2023-09-02,Darmstadt 98,2,55,41,Throw-in opp. half,11,39,0
+Throw-in opp. half short right,3895067,2023-09-02,Darmstadt 98,2,88,36,Throw-in opp. half,25,68,0
+Throw-in opp. half short right,3895074,2023-09-15,Bayern Munich,1,3,39,Throw-in opp. half,2,1,0
+Throw-in opp. half short right,3895074,2023-09-15,Bayern Munich,1,13,16,Throw-in opp. half,4,10,0
+Throw-in opp. half short right,3895074,2023-09-15,Bayern Munich,2,61,10,Throw-in opp. half,7,12,0
+Throw-in opp. half short right,3895086,2023-09-24,FC Heidenheim,1,5,21,Throw-in opp. half,4,7,1
+Throw-in opp. half short right,3895086,2023-09-24,FC Heidenheim,1,23,4,Throw-in opp. half,3,10,0
+Throw-in opp. half short right,3895086,2023-09-24,FC Heidenheim,1,42,33,Throw-in opp. half,10,31,0
+Throw-in opp. half short right,3895086,2023-09-24,FC Heidenheim,1,46,7,Throw-in opp. half,3,5,0
+Throw-in opp. half short right,3895086,2023-09-24,FC Heidenheim,2,51,38,Throw-in opp. half,25,58,0
+Throw-in opp. half short right,3895086,2023-09-24,FC Heidenheim,2,78,44,Throw-in opp. half,3,1,0
+Throw-in opp. half short right,3895095,2023-09-30,FSV Mainz 05,1,6,54,Throw-in opp. half,20,39,0
+Throw-in opp. half short right,3895095,2023-09-30,FSV Mainz 05,1,46,27,Throw-in opp. half,2,1,0
+Throw-in opp. half short right,3895095,2023-09-30,FSV Mainz 05,2,72,37,Throw-in opp. half,14,41,0
+Throw-in opp. half short right,3895107,2023-10-08,FC Köln,2,61,50,Throw-in opp. half,12,30,0
+Throw-in opp. half short right,3895107,2023-10-08,FC Köln,2,62,27,Throw-in opp. half,5,10,0
+Throw-in opp. half short right,3895107,2023-10-08,FC Köln,2,79,0,Throw-in opp. half,12,35,0
+Throw-in opp. half short right,3895113,2023-10-21,Wolfsburg,1,3,27,Throw-in opp. half,10,33,0
+Throw-in opp. half short right,3895113,2023-10-21,Wolfsburg,1,9,5,Throw-in opp. half,6,17,0
+Throw-in opp. half short right,3895113,2023-10-21,Wolfsburg,1,17,57,Throw-in opp. half,5,9,0
+Throw-in opp. half short right,3895113,2023-10-21,Wolfsburg,2,47,39,Throw-in opp. half,1,3,0
+Throw-in opp. half short right,3895113,2023-10-21,Wolfsburg,2,74,47,Throw-in opp. half,12,32,0
+Throw-in opp. half short right,3895113,2023-10-21,Wolfsburg,2,81,7,Throw-in opp. half,3,3,0
+Throw-in opp. half short right,3895113,2023-10-21,Wolfsburg,2,81,22,Throw-in opp. half,3,6,0
+Throw-in opp. half short right,3895121,2023-10-29,Freiburg,1,0,32,Throw-in opp. half,3,13,1
+Throw-in opp. half short right,3895121,2023-10-29,Freiburg,1,4,41,Throw-in opp. half,5,13,0
+Throw-in opp. half short right,3895121,2023-10-29,Freiburg,1,14,41,Throw-in opp. half,23,46,0
+Throw-in opp. half short right,3895121,2023-10-29,Freiburg,1,29,20,Throw-in opp. half,1,1,0
+Throw-in opp. half short right,3895121,2023-10-29,Freiburg,1,37,45,Throw-in opp. half,14,34,0
+Throw-in opp. half short right,3895121,2023-10-29,Freiburg,1,39,23,Throw-in opp. half,6,15,0
+Throw-in opp. half short right,3895121,2023-10-29,Freiburg,2,90,11,Throw-in opp. half,1,0,0
+Throw-in opp. half short right,3895134,2023-11-04,Hoffenheim,1,11,16,Throw-in opp. half,9,25,0
+Throw-in opp. half short right,3895134,2023-11-04,Hoffenheim,1,24,12,Throw-in opp. half,8,38,1
+Throw-in opp. half short right,3895134,2023-11-04,Hoffenheim,1,37,51,Throw-in opp. half,11,44,0
+Throw-in opp. half short right,3895134,2023-11-04,Hoffenheim,2,66,46,Throw-in opp. half,5,10,1
+Throw-in opp. half short right,3895134,2023-11-04,Hoffenheim,2,91,0,Throw-in opp. half,1,2,0
+Throw-in opp. half short right,3895139,2023-11-12,Union Berlin,1,12,11,Throw-in opp. half,26,84,0
+Throw-in opp. half short right,3895139,2023-11-12,Union Berlin,1,26,29,Throw-in opp. half,4,11,0
+Throw-in opp. half short right,3895139,2023-11-12,Union Berlin,1,36,32,Throw-in opp. half,8,23,0
+Throw-in opp. half short right,3895139,2023-11-12,Union Berlin,1,40,52,Throw-in opp. half,34,89,0
+Throw-in opp. half short right,3895139,2023-11-12,Union Berlin,2,58,46,Throw-in opp. half,15,42,0
+Throw-in opp. half short right,3895153,2023-11-25,Werder Bremen,1,1,48,Throw-in opp. half,15,32,0
+Throw-in opp. half short right,3895153,2023-11-25,Werder Bremen,2,48,15,Throw-in opp. half,6,23,1
+Throw-in opp. half short right,3895158,2023-12-03,Borussia Dortmund,1,23,1,Throw-in opp. half,2,4,0
+Throw-in opp. half short right,3895158,2023-12-03,Borussia Dortmund,1,36,16,Throw-in opp. half,11,22,0
+Throw-in opp. half short right,3895158,2023-12-03,Borussia Dortmund,1,39,45,Throw-in opp. half,18,38,0
+Throw-in opp. half short right,3895158,2023-12-03,Borussia Dortmund,1,43,17,Throw-in opp. half,19,51,0
+Throw-in opp. half short right,3895158,2023-12-03,Borussia Dortmund,2,85,57,Throw-in opp. half,4,9,1
+Throw-in opp. half short right,3895158,2023-12-03,Borussia Dortmund,2,89,25,Throw-in opp. half,8,16,0
+Throw-in opp. half short right,3895167,2023-12-10,VfB Stuttgart,1,9,22,Throw-in opp. half,1,0,0
+Throw-in opp. half short right,3895167,2023-12-10,VfB Stuttgart,1,17,29,Throw-in opp. half,12,28,0
+Throw-in opp. half short right,3895167,2023-12-10,VfB Stuttgart,2,46,17,Throw-in opp. half,9,19,1
+Throw-in opp. half short right,3895167,2023-12-10,VfB Stuttgart,2,63,21,Throw-in opp. half,5,8,0
+Throw-in opp. half short right,3895180,2023-12-17,Eintracht Frankfurt,1,4,34,Throw-in opp. half,5,8,0
+Throw-in opp. half short right,3895180,2023-12-17,Eintracht Frankfurt,1,6,54,Throw-in opp. half,2,2,0
+Throw-in opp. half short right,3895180,2023-12-17,Eintracht Frankfurt,1,24,13,Throw-in opp. half,13,48,0
+Throw-in opp. half short right,3895180,2023-12-17,Eintracht Frankfurt,1,28,34,Throw-in opp. half,19,47,0
+Throw-in opp. half short right,3895180,2023-12-17,Eintracht Frankfurt,1,36,50,Throw-in opp. half,6,27,0
+Throw-in opp. half short right,3895180,2023-12-17,Eintracht Frankfurt,1,40,32,Throw-in opp. half,6,8,0
+Throw-in opp. half short right,3895180,2023-12-17,Eintracht Frankfurt,1,43,6,Throw-in opp. half,5,22,0
+Throw-in opp. half short right,3895180,2023-12-17,Eintracht Frankfurt,2,63,37,Throw-in opp. half,12,26,0
+Throw-in opp. half short right,3895180,2023-12-17,Eintracht Frankfurt,2,64,18,Throw-in opp. half,15,45,0
+Throw-in opp. half short right,3895180,2023-12-17,Eintracht Frankfurt,2,66,22,Throw-in opp. half,5,8,0
+Throw-in opp. half short right,3895182,2023-12-20,Bochum,1,24,49,Throw-in opp. half,9,16,0
+Throw-in opp. half short right,3895182,2023-12-20,Bochum,1,32,43,Throw-in opp. half,5,30,0
+Throw-in opp. half short right,3895182,2023-12-20,Bochum,1,47,58,Throw-in opp. half,2,1,0
+Throw-in opp. half short right,3895194,2024-01-13,Augsburg,1,5,18,Throw-in opp. half,3,8,0
+Throw-in opp. half short right,3895194,2024-01-13,Augsburg,1,13,17,Throw-in opp. half,16,40,0
+Throw-in opp. half short right,3895194,2024-01-13,Augsburg,1,14,10,Throw-in opp. half,6,13,0
+Throw-in opp. half short right,3895194,2024-01-13,Augsburg,2,58,0,Throw-in opp. half,14,34,1
+Throw-in opp. half short right,3895194,2024-01-13,Augsburg,2,87,38,Throw-in opp. half,6,20,1
+Throw-in opp. half short right,3895202,2024-01-20,RB Leipzig,1,14,50,Throw-in opp. half,2,2,0
+Throw-in opp. half short right,3895202,2024-01-20,RB Leipzig,1,24,12,Throw-in opp. half,2,4,0
+Throw-in opp. half short right,3895202,2024-01-20,RB Leipzig,1,44,57,Throw-in opp. half,13,53,0
+Throw-in opp. half short right,3895202,2024-01-20,RB Leipzig,2,53,13,Throw-in opp. half,5,8,0
+Throw-in opp. half short right,3895202,2024-01-20,RB Leipzig,2,71,57,Throw-in opp. half,20,55,1
+Throw-in opp. half short right,3895202,2024-01-20,RB Leipzig,2,83,43,Throw-in opp. half,3,10,0
+Throw-in opp. half short right,3895210,2024-01-27,Borussia Mönchengladbach,1,2,40,Throw-in opp. half,32,98,1
+Throw-in opp. half short right,3895210,2024-01-27,Borussia Mönchengladbach,1,44,33,Throw-in opp. half,24,52,1
+Throw-in opp. half short right,3895210,2024-01-27,Borussia Mönchengladbach,2,69,4,Throw-in opp. half,2,1,0
+Throw-in opp. half short right,3895210,2024-01-27,Borussia Mönchengladbach,2,75,13,Throw-in opp. half,6,17,0
+Throw-in opp. half short right,3895210,2024-01-27,Borussia Mönchengladbach,2,76,35,Throw-in opp. half,20,52,0
+Throw-in opp. half short right,3895210,2024-01-27,Borussia Mönchengladbach,2,82,43,Throw-in opp. half,7,18,0
+Throw-in opp. half short right,3895210,2024-01-27,Borussia Mönchengladbach,2,83,28,Throw-in opp. half,22,71,1
+Throw-in opp. half short right,3895220,2024-02-03,Darmstadt 98,1,5,39,Throw-in opp. half,2,1,0
+Throw-in opp. half short right,3895220,2024-02-03,Darmstadt 98,1,31,27,Throw-in opp. half,5,8,1
+Throw-in opp. half short right,3895232,2024-02-10,Bayern Munich,1,8,32,Throw-in opp. half,3,3,0
+Throw-in opp. half short right,3895232,2024-02-10,Bayern Munich,1,8,41,Throw-in opp. half,6,15,0
+Throw-in opp. half short right,3895232,2024-02-10,Bayern Munich,1,11,53,Throw-in opp. half,11,26,0
+Throw-in opp. half short right,3895232,2024-02-10,Bayern Munich,1,35,5,Throw-in opp. half,4,3,0
+Throw-in opp. half short right,3895232,2024-02-10,Bayern Munich,2,52,43,Throw-in opp. half,4,12,0
+Throw-in opp. half short right,3895232,2024-02-10,Bayern Munich,2,59,39,Throw-in opp. half,2,5,0
+Throw-in opp. half short right,3895244,2024-02-17,FC Heidenheim,2,93,53,Throw-in opp. half,2,5,0
+Throw-in opp. half short right,3895250,2024-02-23,FSV Mainz 05,1,47,18,Throw-in opp. half,8,18,0
+Throw-in opp. half short right,3895250,2024-02-23,FSV Mainz 05,2,52,26,Throw-in opp. half,6,16,1
+Throw-in opp. half short right,3895250,2024-02-23,FSV Mainz 05,2,56,19,Throw-in opp. half,2,1,0
+Throw-in opp. half short right,3895250,2024-02-23,FSV Mainz 05,2,56,34,Throw-in opp. half,1,0,0
+Throw-in opp. half short right,3895250,2024-02-23,FSV Mainz 05,2,56,41,Throw-in opp. half,2,1,0
+Throw-in opp. half short right,3895250,2024-02-23,FSV Mainz 05,2,59,35,Throw-in opp. half,8,26,0
+Throw-in opp. half short right,3895250,2024-02-23,FSV Mainz 05,2,60,10,Throw-in opp. half,2,2,0
+Throw-in opp. half short right,3895250,2024-02-23,FSV Mainz 05,2,82,48,Throw-in opp. half,3,1,0
+Throw-in opp. half short right,3895258,2024-03-03,FC Köln,1,7,2,Throw-in opp. half,3,2,0
+Throw-in opp. half short right,3895258,2024-03-03,FC Köln,1,9,28,Throw-in opp. half,9,16,0
+Throw-in opp. half short right,3895258,2024-03-03,FC Köln,1,39,41,Throw-in opp. half,3,2,0
+Throw-in opp. half short right,3895258,2024-03-03,FC Köln,1,39,48,Throw-in opp. half,15,60,1
+Throw-in opp. half short right,3895258,2024-03-03,FC Köln,2,49,19,Throw-in opp. half,10,21,0
+Throw-in opp. half short right,3895258,2024-03-03,FC Köln,2,49,47,Throw-in opp. half,11,35,0
+Throw-in opp. half short right,3895258,2024-03-03,FC Köln,2,74,20,Throw-in opp. half,45,144,1
+Throw-in opp. half short right,3895258,2024-03-03,FC Köln,2,82,13,Throw-in opp. half,22,54,1
+Throw-in opp. half short right,3895258,2024-03-03,FC Köln,2,88,58,Throw-in opp. half,6,22,0
+Throw-in opp. half short right,3895266,2024-03-10,Wolfsburg,1,21,36,Throw-in opp. half,2,1,0
+Throw-in opp. half short right,3895266,2024-03-10,Wolfsburg,1,21,44,Throw-in opp. half,9,30,1
+Throw-in opp. half short right,3895266,2024-03-10,Wolfsburg,1,34,11,Throw-in opp. half,20,49,0
+Throw-in opp. half short right,3895266,2024-03-10,Wolfsburg,1,44,59,Throw-in opp. half,17,60,0
+Throw-in opp. half short right,3895266,2024-03-10,Wolfsburg,2,47,16,Throw-in opp. half,10,26,0
+Throw-in opp. half short right,3895275,2024-03-17,Freiburg,2,84,50,Throw-in opp. half,21,70,1
+Throw-in opp. half short right,3895286,2024-03-30,Hoffenheim,1,37,53,Throw-in opp. half,15,35,0
+Throw-in opp. half short right,3895286,2024-03-30,Hoffenheim,2,65,42,Throw-in opp. half,8,15,0
+Throw-in opp. half short right,3895286,2024-03-30,Hoffenheim,2,69,16,Throw-in opp. half,4,19,1
+Throw-in opp. half short right,3895286,2024-03-30,Hoffenheim,2,72,33,Throw-in opp. half,2,2,0
+Throw-in opp. half short right,3895286,2024-03-30,Hoffenheim,2,78,19,Throw-in opp. half,7,24,1
+Throw-in opp. half short right,3895292,2024-04-06,Union Berlin,1,3,15,Throw-in opp. half,12,32,0
+Throw-in opp. half short right,3895292,2024-04-06,Union Berlin,1,7,6,Throw-in opp. half,9,25,0
+Throw-in opp. half short right,3895292,2024-04-06,Union Berlin,1,7,41,Throw-in opp. half,15,31,0
+Throw-in opp. half short right,3895292,2024-04-06,Union Berlin,1,32,28,Throw-in opp. half,2,0,0
+Throw-in opp. half short right,3895292,2024-04-06,Union Berlin,2,67,41,Throw-in opp. half,15,39,0
+Throw-in opp. half short right,3895302,2024-04-14,Werder Bremen,2,66,10,Throw-in opp. half,11,35,0
+Throw-in opp. half short right,3895302,2024-04-14,Werder Bremen,2,66,59,Throw-in opp. half,11,26,1
+Throw-in opp. half short right,3895309,2024-04-21,Borussia Dortmund,1,6,25,Throw-in opp. half,21,55,1
+Throw-in opp. half short right,3895309,2024-04-21,Borussia Dortmund,2,94,22,Throw-in opp. half,8,26,0
+Throw-in opp. half short right,3895320,2024-04-27,VfB Stuttgart,1,16,35,Throw-in opp. half,4,5,0
+Throw-in opp. half short right,3895320,2024-04-27,VfB Stuttgart,1,27,17,Throw-in opp. half,2,1,0
+Throw-in opp. half short right,3895320,2024-04-27,VfB Stuttgart,1,44,5,Throw-in opp. half,4,13,1
+Throw-in opp. half short right,3895320,2024-04-27,VfB Stuttgart,2,60,20,Throw-in opp. half,2,6,0
+Throw-in opp. half short right,3895320,2024-04-27,VfB Stuttgart,2,60,36,Throw-in opp. half,7,21,1
+Throw-in opp. half short right,3895320,2024-04-27,VfB Stuttgart,2,88,46,Throw-in opp. half,7,16,0
+Throw-in opp. half short right,3895320,2024-04-27,VfB Stuttgart,2,92,52,Throw-in opp. half,5,8,0
+Throw-in opp. half short right,3895333,2024-05-05,Eintracht Frankfurt,1,8,41,Throw-in opp. half,6,12,0
+Throw-in opp. half short right,3895333,2024-05-05,Eintracht Frankfurt,1,9,9,Throw-in opp. half,1,6,1
+Throw-in opp. half short right,3895340,2024-05-12,Bochum,1,20,4,Throw-in opp. half,4,12,0
+Throw-in opp. half short right,3895340,2024-05-12,Bochum,1,43,30,Throw-in opp. half,15,36,0
+Throw-in opp. half short right,3895348,2024-05-18,Augsburg,1,3,12,Throw-in opp. half,19,49,0
+Throw-in opp. half short right,3895348,2024-05-18,Augsburg,1,33,24,Throw-in opp. half,2,2,0
+Throw-in opp. half short right,3895348,2024-05-18,Augsburg,1,46,37,Throw-in opp. half,10,28,0
+Throw-in opp. half short right,3895348,2024-05-18,Augsburg,2,68,40,Throw-in opp. half,1,3,0
+Throw-in opp. half short right,3895348,2024-05-18,Augsburg,2,88,18,Throw-in opp. half,7,21,1
+Throw-in own half long centre,3895086,2023-09-24,FC Heidenheim,2,63,47,Throw-in own half,22,75,0
+Throw-in own half long centre,3895095,2023-09-30,FSV Mainz 05,2,66,19,Throw-in own half,33,89,0
+Throw-in own half long centre,3895095,2023-09-30,FSV Mainz 05,2,84,12,Throw-in own half,8,16,0
+Throw-in own half long centre,3895107,2023-10-08,FC Köln,1,16,51,Throw-in own half,3,8,0
+Throw-in own half long centre,3895244,2024-02-17,FC Heidenheim,1,44,9,Throw-in own half,5,19,0
+Throw-in own half long centre,3895266,2024-03-10,Wolfsburg,1,43,43,Throw-in own half,30,67,0
+Throw-in own half long left,3895167,2023-12-10,VfB Stuttgart,2,72,57,Throw-in own half,5,12,0
+Throw-in own half long left,3895182,2023-12-20,Bochum,1,24,0,Throw-in own half,2,15,0
+Throw-in own half long left,3895182,2023-12-20,Bochum,2,74,52,Throw-in own half,14,33,1
+Throw-in own half long left,3895340,2024-05-12,Bochum,2,51,36,Throw-in own half,6,19,0
+Throw-in own half long left,3895348,2024-05-18,Augsburg,2,48,28,Throw-in own half,2,2,0
+Throw-in own half long right,3895074,2023-09-15,Bayern Munich,1,0,53,Throw-in own half,1,0,0
+Throw-in own half long right,3895340,2024-05-12,Bochum,1,9,38,Throw-in own half,1,0,0
+Throw-in own half long right,3895340,2024-05-12,Bochum,1,12,9,Throw-in own half,1,0,0
+Throw-in own half short left,3895052,2023-08-19,RB Leipzig,2,45,59,Throw-in own half,1,2,0
+Throw-in own half short left,3895052,2023-08-19,RB Leipzig,2,82,52,Throw-in own half,3,2,0
+Throw-in own half short left,3895052,2023-08-19,RB Leipzig,2,89,21,Throw-in own half,1,0,0
+Throw-in own half short left,3895060,2023-08-26,Borussia Mönchengladbach,1,6,48,Throw-in own half,4,8,0
+Throw-in own half short left,3895060,2023-08-26,Borussia Mönchengladbach,1,7,4,Throw-in own half,23,73,0
+Throw-in own half short left,3895060,2023-08-26,Borussia Mönchengladbach,1,10,3,Throw-in own half,12,56,0
+Throw-in own half short left,3895060,2023-08-26,Borussia Mönchengladbach,1,19,23,Throw-in own half,3,3,0
+Throw-in own half short left,3895060,2023-08-26,Borussia Mönchengladbach,1,19,35,Throw-in own half,7,25,0
+Throw-in own half short left,3895060,2023-08-26,Borussia Mönchengladbach,2,64,50,Throw-in own half,2,5,0
+Throw-in own half short left,3895060,2023-08-26,Borussia Mönchengladbach,2,69,18,Throw-in own half,4,2,0
+Throw-in own half short left,3895067,2023-09-02,Darmstadt 98,1,10,49,Throw-in own half,8,24,0
+Throw-in own half short left,3895067,2023-09-02,Darmstadt 98,2,68,59,Throw-in own half,6,20,0
+Throw-in own half short left,3895074,2023-09-15,Bayern Munich,1,18,2,Throw-in own half,4,11,0
+Throw-in own half short left,3895074,2023-09-15,Bayern Munich,2,48,20,Throw-in own half,4,5,0
+Throw-in own half short left,3895074,2023-09-15,Bayern Munich,2,78,39,Throw-in own half,31,91,1
+Throw-in own half short left,3895086,2023-09-24,FC Heidenheim,1,9,50,Throw-in own half,11,27,0
+Throw-in own half short left,3895086,2023-09-24,FC Heidenheim,1,40,39,Throw-in own half,15,47,0
+Throw-in own half short left,3895095,2023-09-30,FSV Mainz 05,1,22,17,Throw-in own half,2,2,0
+Throw-in own half short left,3895095,2023-09-30,FSV Mainz 05,1,22,59,Throw-in own half,27,72,0
+Throw-in own half short left,3895095,2023-09-30,FSV Mainz 05,2,60,33,Throw-in own half,3,5,0
+Throw-in own half short left,3895095,2023-09-30,FSV Mainz 05,2,62,35,Throw-in own half,2,3,0
+Throw-in own half short left,3895095,2023-09-30,FSV Mainz 05,2,63,53,Throw-in own half,3,1,0
+Throw-in own half short left,3895095,2023-09-30,FSV Mainz 05,2,69,2,Throw-in own half,15,56,0
+Throw-in own half short left,3895095,2023-09-30,FSV Mainz 05,2,83,56,Throw-in own half,4,4,0
+Throw-in own half short left,3895095,2023-09-30,FSV Mainz 05,2,89,47,Throw-in own half,1,0,0
+Throw-in own half short left,3895107,2023-10-08,FC Köln,1,18,32,Throw-in own half,10,21,1
+Throw-in own half short left,3895107,2023-10-08,FC Köln,2,48,36,Throw-in own half,9,22,0
+Throw-in own half short left,3895107,2023-10-08,FC Köln,2,62,59,Throw-in own half,6,18,0
+Throw-in own half short left,3895107,2023-10-08,FC Köln,2,65,41,Throw-in own half,18,50,1
+Throw-in own half short left,3895113,2023-10-21,Wolfsburg,1,23,7,Throw-in own half,6,16,0
+Throw-in own half short left,3895113,2023-10-21,Wolfsburg,2,88,22,Throw-in own half,1,0,0
+Throw-in own half short left,3895121,2023-10-29,Freiburg,1,37,30,Throw-in own half,5,9,0
+Throw-in own half short left,3895121,2023-10-29,Freiburg,2,87,5,Throw-in own half,2,1,0
+Throw-in own half short left,3895134,2023-11-04,Hoffenheim,1,6,51,Throw-in own half,2,2,0
+Throw-in own half short left,3895134,2023-11-04,Hoffenheim,1,23,19,Throw-in own half,2,2,0
+Throw-in own half short left,3895134,2023-11-04,Hoffenheim,1,23,32,Throw-in own half,2,1,0
+Throw-in own half short left,3895134,2023-11-04,Hoffenheim,2,61,16,Throw-in own half,1,0,0
+Throw-in own half short left,3895134,2023-11-04,Hoffenheim,2,82,18,Throw-in own half,3,2,0
+Throw-in own half short left,3895139,2023-11-12,Union Berlin,1,1,6,Throw-in own half,12,39,0
+Throw-in own half short left,3895139,2023-11-12,Union Berlin,1,9,32,Throw-in own half,3,2,0
+Throw-in own half short left,3895153,2023-11-25,Werder Bremen,2,50,29,Throw-in own half,1,2,0
+Throw-in own half short left,3895153,2023-11-25,Werder Bremen,2,85,52,Throw-in own half,2,1,0
+Throw-in own half short left,3895153,2023-11-25,Werder Bremen,2,86,0,Throw-in own half,4,4,0
+Throw-in own half short left,3895153,2023-11-25,Werder Bremen,2,89,38,Throw-in own half,2,2,0
+Throw-in own half short left,3895158,2023-12-03,Borussia Dortmund,1,6,40,Throw-in own half,2,0,0
+Throw-in own half short left,3895158,2023-12-03,Borussia Dortmund,1,7,25,Throw-in own half,12,46,0
+Throw-in own half short left,3895158,2023-12-03,Borussia Dortmund,1,38,54,Throw-in own half,14,46,0
+Throw-in own half short left,3895158,2023-12-03,Borussia Dortmund,1,40,51,Throw-in own half,5,11,0
+Throw-in own half short left,3895158,2023-12-03,Borussia Dortmund,2,84,4,Throw-in own half,12,32,0
+Throw-in own half short left,3895158,2023-12-03,Borussia Dortmund,2,92,3,Throw-in own half,5,15,0
+Throw-in own half short left,3895167,2023-12-10,VfB Stuttgart,1,3,32,Throw-in own half,13,40,0
+Throw-in own half short left,3895167,2023-12-10,VfB Stuttgart,2,73,57,Throw-in own half,6,10,0
+Throw-in own half short left,3895167,2023-12-10,VfB Stuttgart,2,76,25,Throw-in own half,11,37,0
+Throw-in own half short left,3895180,2023-12-17,Eintracht Frankfurt,1,40,1,Throw-in own half,3,5,0
+Throw-in own half short left,3895180,2023-12-17,Eintracht Frankfurt,2,45,44,Throw-in own half,2,5,0
+Throw-in own half short left,3895180,2023-12-17,Eintracht Frankfurt,2,61,1,Throw-in own half,46,101,0
+Throw-in own half short left,3895180,2023-12-17,Eintracht Frankfurt,2,90,17,Throw-in own half,10,20,0
+Throw-in own half short left,3895182,2023-12-20,Bochum,1,7,51,Throw-in own half,5,10,0
+Throw-in own half short left,3895182,2023-12-20,Bochum,2,45,45,Throw-in own half,2,1,0
+Throw-in own half short left,3895182,2023-12-20,Bochum,2,45,54,Throw-in own half,2,4,0
+Throw-in own half short left,3895182,2023-12-20,Bochum,2,89,25,Throw-in own half,9,38,0
+Throw-in own half short left,3895194,2024-01-13,Augsburg,1,10,9,Throw-in own half,4,4,0
+Throw-in own half short left,3895194,2024-01-13,Augsburg,1,10,26,Throw-in own half,3,2,0
+Throw-in own half short left,3895194,2024-01-13,Augsburg,1,22,24,Throw-in own half,2,1,0
+Throw-in own half short left,3895194,2024-01-13,Augsburg,1,22,34,Throw-in own half,9,21,0
+Throw-in own half short left,3895194,2024-01-13,Augsburg,1,23,21,Throw-in own half,4,4,0
+Throw-in own half short left,3895194,2024-01-13,Augsburg,2,92,49,Throw-in own half,1,0,0
+Throw-in own half short left,3895202,2024-01-20,RB Leipzig,2,76,12,Throw-in own half,17,49,0
+Throw-in own half short left,3895210,2024-01-27,Borussia Mönchengladbach,1,14,35,Throw-in own half,15,34,0
+Throw-in own half short left,3895210,2024-01-27,Borussia Mönchengladbach,1,19,11,Throw-in own half,5,5,0
+Throw-in own half short left,3895210,2024-01-27,Borussia Mönchengladbach,2,47,43,Throw-in own half,6,22,0
+Throw-in own half short left,3895220,2024-02-03,Darmstadt 98,1,2,27,Throw-in own half,6,24,0
+Throw-in own half short left,3895220,2024-02-03,Darmstadt 98,1,11,29,Throw-in own half,17,65,0
+Throw-in own half short left,3895220,2024-02-03,Darmstadt 98,1,36,42,Throw-in own half,8,22,0
+Throw-in own half short left,3895220,2024-02-03,Darmstadt 98,2,56,14,Throw-in own half,8,24,0
+Throw-in own half short left,3895232,2024-02-10,Bayern Munich,1,5,35,Throw-in own half,1,3,0
+Throw-in own half short left,3895232,2024-02-10,Bayern Munich,1,10,58,Throw-in own half,6,16,0
+Throw-in own half short left,3895232,2024-02-10,Bayern Munich,1,19,0,Throw-in own half,8,20,0
+Throw-in own half short left,3895232,2024-02-10,Bayern Munich,1,30,8,Throw-in own half,15,51,0
+Throw-in own half short left,3895232,2024-02-10,Bayern Munich,1,38,22,Throw-in own half,35,100,1
+Throw-in own half short left,3895232,2024-02-10,Bayern Munich,2,93,27,Throw-in own half,1,0,0
+Throw-in own half short left,3895244,2024-02-17,FC Heidenheim,1,24,32,Throw-in own half,2,2,0
+Throw-in own half short left,3895244,2024-02-17,FC Heidenheim,1,25,29,Throw-in own half,7,22,0
+Throw-in own half short left,3895244,2024-02-17,FC Heidenheim,1,28,46,Throw-in own half,3,8,0
+Throw-in own half short left,3895244,2024-02-17,FC Heidenheim,2,68,20,Throw-in own half,9,22,0
+Throw-in own half short left,3895250,2024-02-23,FSV Mainz 05,1,1,17,Throw-in own half,6,28,0
+Throw-in own half short left,3895250,2024-02-23,FSV Mainz 05,1,8,12,Throw-in own half,5,7,0
+Throw-in own half short left,3895250,2024-02-23,FSV Mainz 05,1,8,55,Throw-in own half,7,17,0
+Throw-in own half short left,3895250,2024-02-23,FSV Mainz 05,1,17,21,Throw-in own half,11,25,0
+Throw-in own half short left,3895250,2024-02-23,FSV Mainz 05,2,54,29,Throw-in own half,2,3,0
+Throw-in own half short left,3895258,2024-03-03,FC Köln,1,10,48,Throw-in own half,2,8,0
+Throw-in own half short left,3895266,2024-03-10,Wolfsburg,1,19,33,Throw-in own half,5,12,0
+Throw-in own half short left,3895266,2024-03-10,Wolfsburg,1,20,50,Throw-in own half,14,35,1
+Throw-in own half short left,3895266,2024-03-10,Wolfsburg,1,29,3,Throw-in own half,14,33,0
+Throw-in own half short left,3895266,2024-03-10,Wolfsburg,1,30,43,Throw-in own half,16,38,0
+Throw-in own half short left,3895266,2024-03-10,Wolfsburg,2,52,39,Throw-in own half,16,46,0
+Throw-in own half short left,3895275,2024-03-17,Freiburg,1,0,42,Throw-in own half,7,14,0
+Throw-in own half short left,3895275,2024-03-17,Freiburg,1,15,9,Throw-in own half,1,0,0
+Throw-in own half short left,3895286,2024-03-30,Hoffenheim,1,44,50,Throw-in own half,10,37,0
+Throw-in own half short left,3895286,2024-03-30,Hoffenheim,2,67,10,Throw-in own half,6,22,0
+Throw-in own half short left,3895286,2024-03-30,Hoffenheim,2,74,22,Throw-in own half,7,22,0
+Throw-in own half short left,3895302,2024-04-14,Werder Bremen,2,77,12,Throw-in own half,4,14,0
+Throw-in own half short left,3895302,2024-04-14,Werder Bremen,2,87,32,Throw-in own half,7,13,0
+Throw-in own half short left,3895309,2024-04-21,Borussia Dortmund,1,36,1,Throw-in own half,3,16,0
+Throw-in own half short left,3895320,2024-04-27,VfB Stuttgart,1,0,17,Throw-in own half,11,31,0
+Throw-in own half short left,3895320,2024-04-27,VfB Stuttgart,1,20,8,Throw-in own half,1,0,0
+Throw-in own half short left,3895320,2024-04-27,VfB Stuttgart,2,74,7,Throw-in own half,10,31,0
+Throw-in own half short left,3895320,2024-04-27,VfB Stuttgart,2,95,7,Throw-in own half,3,7,0
+Throw-in own half short left,3895333,2024-05-05,Eintracht Frankfurt,1,15,35,Throw-in own half,5,12,0
+Throw-in own half short left,3895333,2024-05-05,Eintracht Frankfurt,2,46,16,Throw-in own half,2,3,0
+Throw-in own half short left,3895333,2024-05-05,Eintracht Frankfurt,2,62,52,Throw-in own half,5,10,0
+Throw-in own half short left,3895340,2024-05-12,Bochum,2,51,10,Throw-in own half,2,2,0
+Throw-in own half short left,3895348,2024-05-18,Augsburg,1,46,17,Throw-in own half,6,12,1
+Throw-in own half short left,3895348,2024-05-18,Augsburg,2,57,7,Throw-in own half,2,4,0
+Throw-in own half short right,3895052,2023-08-19,RB Leipzig,1,12,58,Throw-in own half,1,1,0
+Throw-in own half short right,3895060,2023-08-26,Borussia Mönchengladbach,1,24,36,Throw-in own half,5,17,1
+Throw-in own half short right,3895067,2023-09-02,Darmstadt 98,1,37,45,Throw-in own half,5,21,0
+Throw-in own half short right,3895067,2023-09-02,Darmstadt 98,2,74,32,Throw-in own half,7,23,0
+Throw-in own half short right,3895074,2023-09-15,Bayern Munich,1,0,29,Throw-in own half,2,1,0
+Throw-in own half short right,3895074,2023-09-15,Bayern Munich,1,9,28,Throw-in own half,2,1,0
+Throw-in own half short right,3895074,2023-09-15,Bayern Munich,1,11,45,Throw-in own half,1,0,0
+Throw-in own half short right,3895074,2023-09-15,Bayern Munich,2,65,57,Throw-in own half,7,25,0
+Throw-in own half short right,3895086,2023-09-24,FC Heidenheim,1,0,11,Throw-in own half,3,7,0
+Throw-in own half short right,3895086,2023-09-24,FC Heidenheim,1,7,46,Throw-in own half,14,46,1
+Throw-in own half short right,3895086,2023-09-24,FC Heidenheim,1,31,9,Throw-in own half,6,15,0
+Throw-in own half short right,3895086,2023-09-24,FC Heidenheim,2,67,29,Throw-in own half,7,18,0
+Throw-in own half short right,3895086,2023-09-24,FC Heidenheim,2,71,14,Throw-in own half,17,46,1
+Throw-in own half short right,3895086,2023-09-24,FC Heidenheim,2,81,44,Throw-in own half,4,14,1
+Throw-in own half short right,3895095,2023-09-30,FSV Mainz 05,1,5,20,Throw-in own half,4,9,0
+Throw-in own half short right,3895095,2023-09-30,FSV Mainz 05,2,91,50,Throw-in own half,2,1,0
+Throw-in own half short right,3895107,2023-10-08,FC Köln,1,10,24,Throw-in own half,6,9,0
+Throw-in own half short right,3895107,2023-10-08,FC Köln,1,44,53,Throw-in own half,6,16,0
+Throw-in own half short right,3895107,2023-10-08,FC Köln,2,74,50,Throw-in own half,21,52,0
+Throw-in own half short right,3895107,2023-10-08,FC Köln,2,91,15,Throw-in own half,6,15,0
+Throw-in own half short right,3895113,2023-10-21,Wolfsburg,2,50,45,Throw-in own half,2,2,0
+Throw-in own half short right,3895121,2023-10-29,Freiburg,1,16,32,Throw-in own half,18,48,0
+Throw-in own half short right,3895134,2023-11-04,Hoffenheim,1,30,56,Throw-in own half,5,8,0
+Throw-in own half short right,3895134,2023-11-04,Hoffenheim,1,31,12,Throw-in own half,2,1,0
+Throw-in own half short right,3895134,2023-11-04,Hoffenheim,1,31,25,Throw-in own half,31,83,0
+Throw-in own half short right,3895134,2023-11-04,Hoffenheim,2,67,49,Throw-in own half,2,3,0
+Throw-in own half short right,3895134,2023-11-04,Hoffenheim,2,83,1,Throw-in own half,4,8,0
+Throw-in own half short right,3895134,2023-11-04,Hoffenheim,2,93,33,Throw-in own half,7,28,0
+Throw-in own half short right,3895139,2023-11-12,Union Berlin,1,20,52,Throw-in own half,5,13,0
+Throw-in own half short right,3895139,2023-11-12,Union Berlin,1,45,56,Throw-in own half,2,1,0
+Throw-in own half short right,3895139,2023-11-12,Union Berlin,2,48,15,Throw-in own half,22,63,1
+Throw-in own half short right,3895139,2023-11-12,Union Berlin,2,66,47,Throw-in own half,4,4,0
+Throw-in own half short right,3895139,2023-11-12,Union Berlin,2,86,29,Throw-in own half,18,49,0
+Throw-in own half short right,3895153,2023-11-25,Werder Bremen,1,17,49,Throw-in own half,31,74,0
+Throw-in own half short right,3895153,2023-11-25,Werder Bremen,1,37,42,Throw-in own half,4,11,0
+Throw-in own half short right,3895153,2023-11-25,Werder Bremen,2,73,3,Throw-in own half,1,2,0
+Throw-in own half short right,3895153,2023-11-25,Werder Bremen,2,84,27,Throw-in own half,2,3,0
+Throw-in own half short right,3895153,2023-11-25,Werder Bremen,2,84,44,Throw-in own half,4,5,0
+Throw-in own half short right,3895158,2023-12-03,Borussia Dortmund,1,0,29,Throw-in own half,15,48,0
+Throw-in own half short right,3895158,2023-12-03,Borussia Dortmund,1,34,36,Throw-in own half,10,28,0
+Throw-in own half short right,3895167,2023-12-10,VfB Stuttgart,1,2,2,Throw-in own half,1,0,0
+Throw-in own half short right,3895167,2023-12-10,VfB Stuttgart,1,7,59,Throw-in own half,4,12,1
+Throw-in own half short right,3895167,2023-12-10,VfB Stuttgart,1,9,14,Throw-in own half,1,0,0
+Throw-in own half short right,3895167,2023-12-10,VfB Stuttgart,1,32,10,Throw-in own half,7,6,0
+Throw-in own half short right,3895167,2023-12-10,VfB Stuttgart,2,85,4,Throw-in own half,5,11,0
+Throw-in own half short right,3895180,2023-12-17,Eintracht Frankfurt,1,5,41,Throw-in own half,2,3,0
+Throw-in own half short right,3895180,2023-12-17,Eintracht Frankfurt,1,6,2,Throw-in own half,3,4,0
+Throw-in own half short right,3895180,2023-12-17,Eintracht Frankfurt,1,6,18,Throw-in own half,7,16,0
+Throw-in own half short right,3895180,2023-12-17,Eintracht Frankfurt,1,16,2,Throw-in own half,7,12,0
+Throw-in own half short right,3895180,2023-12-17,Eintracht Frankfurt,2,46,24,Throw-in own half,9,18,0
+Throw-in own half short right,3895180,2023-12-17,Eintracht Frankfurt,2,76,58,Throw-in own half,3,10,0
+Throw-in own half short right,3895180,2023-12-17,Eintracht Frankfurt,2,87,7,Throw-in own half,32,85,0
+Throw-in own half short right,3895180,2023-12-17,Eintracht Frankfurt,2,88,49,Throw-in own half,8,28,0
+Throw-in own half short right,3895182,2023-12-20,Bochum,1,7,39,Throw-in own half,2,1,0
+Throw-in own half short right,3895194,2024-01-13,Augsburg,1,11,33,Throw-in own half,4,8,0
+Throw-in own half short right,3895194,2024-01-13,Augsburg,1,44,52,Throw-in own half,5,6,0
+Throw-in own half short right,3895194,2024-01-13,Augsburg,2,61,39,Throw-in own half,3,2,0
+Throw-in own half short right,3895194,2024-01-13,Augsburg,2,82,50,Throw-in own half,9,25,0
+Throw-in own half short right,3895194,2024-01-13,Augsburg,2,86,18,Throw-in own half,6,18,0
+Throw-in own half short right,3895194,2024-01-13,Augsburg,2,89,48,Throw-in own half,5,19,0
+Throw-in own half short right,3895202,2024-01-20,RB Leipzig,1,12,51,Throw-in own half,2,3,0
+Throw-in own half short right,3895202,2024-01-20,RB Leipzig,1,18,24,Throw-in own half,3,2,0
+Throw-in own half short right,3895202,2024-01-20,RB Leipzig,1,43,44,Throw-in own half,2,2,0
+Throw-in own half short right,3895220,2024-02-03,Darmstadt 98,1,22,36,Throw-in own half,2,1,0
+Throw-in own half short right,3895220,2024-02-03,Darmstadt 98,1,22,48,Throw-in own half,5,6,0
+Throw-in own half short right,3895220,2024-02-03,Darmstadt 98,2,45,46,Throw-in own half,4,5,0
+Throw-in own half short right,3895232,2024-02-10,Bayern Munich,1,3,29,Throw-in own half,2,3,0
+Throw-in own half short right,3895244,2024-02-17,FC Heidenheim,1,29,9,Throw-in own half,1,2,0
+Throw-in own half short right,3895244,2024-02-17,FC Heidenheim,2,45,25,Throw-in own half,2,1,0
+Throw-in own half short right,3895244,2024-02-17,FC Heidenheim,2,70,29,Throw-in own half,7,19,0
+Throw-in own half short right,3895250,2024-02-23,FSV Mainz 05,1,0,25,Throw-in own half,2,2,0
+Throw-in own half short right,3895250,2024-02-23,FSV Mainz 05,2,48,31,Throw-in own half,3,2,0
+Throw-in own half short right,3895250,2024-02-23,FSV Mainz 05,2,53,54,Throw-in own half,5,11,0
+Throw-in own half short right,3895250,2024-02-23,FSV Mainz 05,2,59,20,Throw-in own half,2,5,0
+Throw-in own half short right,3895250,2024-02-23,FSV Mainz 05,2,73,59,Throw-in own half,4,3,0
+Throw-in own half short right,3895250,2024-02-23,FSV Mainz 05,2,86,36,Throw-in own half,8,20,0
+Throw-in own half short right,3895258,2024-03-03,FC Köln,1,1,23,Throw-in own half,9,22,0
+Throw-in own half short right,3895258,2024-03-03,FC Köln,2,64,45,Throw-in own half,6,22,0
+Throw-in own half short right,3895266,2024-03-10,Wolfsburg,1,14,10,Throw-in own half,1,2,0
+Throw-in own half short right,3895266,2024-03-10,Wolfsburg,1,32,40,Throw-in own half,4,11,0
+Throw-in own half short right,3895266,2024-03-10,Wolfsburg,1,33,39,Throw-in own half,7,19,0
+Throw-in own half short right,3895266,2024-03-10,Wolfsburg,2,85,19,Throw-in own half,10,26,1
+Throw-in own half short right,3895266,2024-03-10,Wolfsburg,2,87,47,Throw-in own half,10,23,0
+Throw-in own half short right,3895275,2024-03-17,Freiburg,1,1,11,Throw-in own half,4,14,1
+Throw-in own half short right,3895275,2024-03-17,Freiburg,2,47,54,Throw-in own half,6,23,0
+Throw-in own half short right,3895275,2024-03-17,Freiburg,2,69,50,Throw-in own half,16,40,0
+Throw-in own half short right,3895286,2024-03-30,Hoffenheim,1,1,28,Throw-in own half,3,4,0
+Throw-in own half short right,3895286,2024-03-30,Hoffenheim,2,76,21,Throw-in own half,3,9,0
+Throw-in own half short right,3895292,2024-04-06,Union Berlin,1,0,24,Throw-in own half,13,37,0
+Throw-in own half short right,3895292,2024-04-06,Union Berlin,1,5,29,Throw-in own half,9,24,1
+Throw-in own half short right,3895292,2024-04-06,Union Berlin,1,23,51,Throw-in own half,2,3,0
+Throw-in own half short right,3895292,2024-04-06,Union Berlin,1,25,8,Throw-in own half,3,3,0
+Throw-in own half short right,3895292,2024-04-06,Union Berlin,1,46,9,Throw-in own half,1,0,0
+Throw-in own half short right,3895292,2024-04-06,Union Berlin,2,57,4,Throw-in own half,19,63,0
+Throw-in own half short right,3895292,2024-04-06,Union Berlin,2,70,6,Throw-in own half,2,1,0
+Throw-in own half short right,3895292,2024-04-06,Union Berlin,2,72,11,Throw-in own half,14,64,0
+Throw-in own half short right,3895302,2024-04-14,Werder Bremen,1,26,46,Throw-in own half,10,31,0
+Throw-in own half short right,3895302,2024-04-14,Werder Bremen,2,51,6,Throw-in own half,2,1,0
+Throw-in own half short right,3895302,2024-04-14,Werder Bremen,2,56,11,Throw-in own half,12,32,0
+Throw-in own half short right,3895309,2024-04-21,Borussia Dortmund,2,59,47,Throw-in own half,2,1,0
+Throw-in own half short right,3895309,2024-04-21,Borussia Dortmund,2,76,5,Throw-in own half,5,15,0
+Throw-in own half short right,3895320,2024-04-27,VfB Stuttgart,1,3,20,Throw-in own half,3,5,0
+Throw-in own half short right,3895320,2024-04-27,VfB Stuttgart,1,8,49,Throw-in own half,15,38,0
+Throw-in own half short right,3895320,2024-04-27,VfB Stuttgart,1,27,48,Throw-in own half,1,1,0
+Throw-in own half short right,3895320,2024-04-27,VfB Stuttgart,2,78,9,Throw-in own half,10,22,0
+Throw-in own half short right,3895320,2024-04-27,VfB Stuttgart,2,80,49,Throw-in own half,2,0,0
+Throw-in own half short right,3895320,2024-04-27,VfB Stuttgart,2,91,48,Throw-in own half,18,61,0
+Throw-in own half short right,3895333,2024-05-05,Eintracht Frankfurt,2,47,54,Throw-in own half,2,2,0
+Throw-in own half short right,3895333,2024-05-05,Eintracht Frankfurt,2,75,0,Throw-in own half,4,13,0
+Throw-in own half short right,3895340,2024-05-12,Bochum,1,0,54,Throw-in own half,4,16,0
+Throw-in own half short right,3895340,2024-05-12,Bochum,1,2,8,Throw-in own half,2,0,0
+Throw-in own half short right,3895340,2024-05-12,Bochum,1,38,19,Throw-in own half,23,80,1
+Throw-in own half short right,3895340,2024-05-12,Bochum,2,71,53,Throw-in own half,5,13,0
+Throw-in own half short right,3895340,2024-05-12,Bochum,2,86,57,Throw-in own half,18,48,1
+Throw-in own half short right,3895340,2024-05-12,Bochum,2,91,26,Throw-in own half,6,16,0
+Throw-in own half short right,3895348,2024-05-18,Augsburg,1,31,44,Throw-in own half,29,81,0

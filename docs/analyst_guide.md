@@ -9,6 +9,8 @@ Open `reports/report_<Team>.html` in a browser (print to PDF from there). Detail
 
 ## What you get
 - `report_<Team>.html`: style at a glance with intervals; sequence families (build-up and advanced) with share, profile, shot rate, per-match variation and stability; how sequence start types map to families; how much to trust the report given the number of matches.
+- `restarts_<Team>.html`: one page on goal kicks, keeper distributions and throw-ins (own half and opponent half): first pass short or long, which side, how often the possession reaches the opponent half or the final third, ends in the own half or in a shot. Season with interval and last 5 matches (highlighted when outside the season interval: check on video). Every possession is in `restart_clips_<Team>.csv` with a label such as `Goal kick short left`.
+- XML for video tools: add `--xml` (and `--video-offsets offsets.csv`) to get `xml/` with one file per match (Sportscode / Nacsport timeline format). Each clip starts 3 s before the possession and ends 3 s after. Not yet tested by importing into those tools: try one match first.
 - `clips_<Team>.csv`: every sequence with its family, date, opponent, half, minute, second, start type, passes, duration, shot and (with offsets) video time. Filter by family to build a clip list in your video tool.
 - `review_<Team>.csv` and `.html`: a sheet to check the families against video and five fixed questions. Fill the column `coherent_with_family` with yes, partly or no and run `python src/report/summarize_review.py review_<Team>.csv`.
 
