@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { api, type StyleMapData } from "../api";
 import { Note } from "../charts";
 
@@ -21,7 +21,7 @@ export default function StyleMap({ current, other }: { current: string; other?: 
   return (
     <div className="layout-split" style={{ gridTemplateColumns: "minmax(0, 1.6fr) minmax(280px, 1fr)" }}>
       <div className="sticker">
-        <span className="no" style={{ "--rib": "var(--lilac)" } as React.CSSProperties}>Style map</span>
+        <span className="no">Style map</span>
         <svg viewBox="0 0 1000 400" className="pitch-svg" role="img" aria-label={`Style map of ${d.teams.length} teams`} style={{ background: "#f4f6fb", borderRadius: 9 }}>
           <line x1="40" y1="200" x2="960" y2="200" stroke="#c9d1ea" strokeDasharray="4 6" /><line x1="500" y1="40" x2="500" y2="350" stroke="#c9d1ea" strokeDasharray="4 6" />
           <text x="955" y="390" textAnchor="end" fontSize="15" fill="#4b5574">→ {side(a1.loadings, 1)}</text>

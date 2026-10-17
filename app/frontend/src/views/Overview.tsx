@@ -67,6 +67,10 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
   const kps = keyPoints(d.ranks);
   const groups = [...new Set(d.ranks.map((r) => r.group))];
   const choose = (f: string) => { setPick(f); setIdx(0); };
+  const [allRanks, setAllRanks] = useState(false);
+  // Collapsed: only the measures where the team is in the top or bottom two of the folder.
+  const edge = (r: Rank) => r.rank <= 2 || r.rank >= r.of - 1;
+  const shownRanks = allRanks ? d.ranks : d.ranks.filter(edge);
 
   return (
     <>
@@ -119,7 +123,7 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
 
       <section className="section" aria-labelledby="chg-h">
         <div className="section-head">
-          <h2 id="chg-h">What changed in the last 5 matches</h2>
+          <h2 id="chg-h">What changed in restarts, last 5 matches</h2>
           <p>Restart figures where the last 5 matches fall outside the season's 95% interval. A hint to check on video, not proof of a change: with 5 matches the interval is wide.</p>
         </div>
         {(() => {
@@ -146,13 +150,20 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
           <p>Each dot is a team in this folder, placed by its value; the big yellow dot is {d.team}. Left = lowest, right = highest.</p>
         </div>
         <div className="ranks">
+          {/* Hidden rows stay in the page so that printing always shows every measure. */}
           {groups.map((g) => (
-            <div key={g}>
+            <div key={g} className={shownRanks.some((r) => r.group === g) ? undefined : "rank-extra"}>
               <div className="group-h">{g}</div>
-              {d.ranks.filter((r) => r.group === g).map((r) => <RankRow key={r.id} r={r} current={d.key} />)}
+              {d.ranks.filter((r) => r.group === g).map((r) => <div key={r.id} className={shownRanks.includes(r) ? undefined : "rank-extra"}><RankRow r={r} current={d.key} /></div>)}
             </div>
           ))}
         </div>
+        {shownRanks.length < d.ranks.length || allRanks ? (
+          <p className="small no-print" style={{ marginTop: 14 }}>
+            {allRanks ? `All ${d.ranks.length} measures. ` : `Showing the ${shownRanks.length} measures where ${d.team} is in the top or bottom two of ${d.ranks[0]?.of ?? ""}. `}
+            <button type="button" className="link-btn" onClick={() => setAllRanks(!allRanks)} aria-expanded={allRanks}>{allRanks ? "Show only the extremes" : `Show all ${d.ranks.length}`}</button>
+          </p>
+        ) : null}
         <div className="stack" style={{ marginTop: 18 }}>
           {d.ranks.some((r) => r.caution) && (
             <Note kind="caution" tag="* Caution">

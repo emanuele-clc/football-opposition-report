@@ -592,7 +592,11 @@ footer { padding: 22px var(--gutter) 30px; border-top: 1px solid var(--board-lin
   .pill-select { background-image: none; padding: 0; font-size: 18px; }
   .brand { color: var(--on-board); }
   .flip .back { display: none; }
-  .section, .sticker { break-inside: avoid; }
+  .sticker, .rank-row, .chg-list li, .kp { break-inside: avoid; }
+  h2, h3, .section-head, .group-h { break-after: avoid; }
+  .ranks, .chg-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+  .rank-row { grid-template-columns: minmax(0, 1fr) 54px minmax(90px, 1fr) 50px; }
+  .fam-head .pills, .on-page, .link-btn { display: none; }
 }
 
 /* What changed: one ruled list instead of a wall of cards */
@@ -621,3 +625,10 @@ ul.cautions { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
   .icon-btn { min-width: 34px; height: 34px; padding: 0 8px; }
   .fam-detail .code, .fam-detail .share { font-size: 34px; }
 }
+.link-btn { border: 0; background: none; padding: 0; color: var(--on-board); font-weight: 750; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; cursor: pointer; }
+.on-page { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.on-page button { border: 0; background: var(--board-raised); color: var(--on-board-2); padding: 6px 13px; border-radius: 999px; font-weight: 650; font-size: 13.5px; cursor: pointer; }
+.on-page button:hover { color: var(--on-board); background: color-mix(in srgb, var(--board-raised) 70%, var(--on-board-3)); }
+@media print { .rank-row { break-inside: avoid; } }
+.rank-extra { display: none; }
+@media print { .rank-extra { display: block; } }

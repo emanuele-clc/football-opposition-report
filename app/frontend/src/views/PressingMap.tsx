@@ -41,7 +41,7 @@ export default function PressingMap({ teamKey, kind, onWatch }: { teamKey: strin
   return (
     <div className="layout-split">
       <div className="sticker">
-        <span className="no">Pressing map</span>
+        
         <div className="pitch-wrap">
           <Pitch label={`${kind}: first pass of ${shown.length} restarts`}>
             <defs>{Object.entries(OUT).map(([k, c]) => <marker key={k} id={`pm-${k}`} viewBox="0 0 6 6" refX="5" refY="3" markerWidth="3" markerHeight="3" orient="auto"><path d="M0 0 6 3 0 6z" fill={c} /></marker>)}</defs>

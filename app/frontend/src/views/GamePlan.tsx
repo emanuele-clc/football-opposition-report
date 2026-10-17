@@ -121,9 +121,12 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
       </div>
       {!P ? <div className="state" style={{ marginTop: 24 }}><p>Loading…</p></div> : (
         <>
+          <nav className="on-page no-print" aria-label="On this page">
+            {([["gp-shape", "Shape"], ["ai-h", "Coach brief"], ["gp-h", "Where to look"], ["pz-h", P.pressure_zones && "Pressing"], ["br-h", P.breaks && "Breaks"], ["fz-h", P.foul_zones && "Fouls"], ["kp-h", evs && evs !== "none" && "Key players"], ["past-h", "Past matches"]] as [string, string | false | null | undefined][])
+              .filter(([, l]) => l).map(([id, l]) => <button key={id} type="button" onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" })}>{l}</button>)}
+          </nav>
           <div className="layout-split" style={{ marginTop: 24 }}>
             <section className="sticker" style={plain} aria-labelledby="gp-shape">
-              <span className="no">Shapes</span>
               <div className="pitch-wrap">
                 <Pitch label={`Starting formations: ${fm ? `${P.mine} ${fm.most_used[0]?.formation} against ` : ""}${d.team} ${fo?.most_used[0]?.formation ?? "unknown"}`}>
                   {fm?.most_used[0] && <Shape raw={fm.most_used[0].raw} side="left" />}
@@ -155,6 +158,22 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             </div>
           </div>
 
+          <section className="section" aria-labelledby="ai-h">
+            <div className="section-head"><h2 id="ai-h">Coach brief</h2><p>{P.brief.intro}</p></div>
+            <div className="sticker pad">
+              <div className="pills" role="group" aria-label="Choose a question">
+                {QUESTIONS.map(([t, label]) => <button key={t} type="button" aria-pressed={topic === t} onClick={() => setTopic(t)}>{label(d.team)}</button>)}
+              </div>
+              <div className="brief enter" key={topic} aria-live="polite">
+                <h3>{topic === "priorities" ? "Three priorities" : P.brief.phases[topic].title}</h3>
+                <ol>{(topic === "priorities" ? (P.brief.priorities.length ? P.brief.priorities : [`No rule fired: nothing in ${d.team}'s numbers is at the extremes. Prepare as usual and use the video.`]) : P.brief.phases[topic].lines).map((l, i) => <li key={i}>{l}</li>)}</ol>
+              </div>
+            </div>
+            <div style={{ marginTop: 16 }}>
+              <Note kind="caution" tag="Hints, not advice">The rules were fixed in advance and are simple (top or bottom among the teams here). None was tested for whether following it wins matches: data like these cannot say which formation or style will work. Use them to choose what to watch, and decide with the staff.</Note>
+            </div>
+          </section>
+
           <section className="section" aria-labelledby="gp-h">
             <div className="section-head"><h2 id="gp-h">Where to look</h2><p>{P.hints.length} hints fired. Each one shows the numbers that triggered it. "Highest" or "lowest" is among the teams in this folder, which can be from other leagues and seasons.</p></div>
             {P.hints.length === 0 ? <p>No rule fired: {d.team} is not at the extremes of any measure here.</p> : (
@@ -182,7 +201,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             <section className="section" aria-labelledby="pz-h">
               <div className="section-head"><h2 id="pz-h">Where pressing hurts them</h2><p>Their own half, own goal on the left. Each zone: share of their open-play passes completed when under pressure, against the other {P.pressure_zones.teams_in_reference} teams in the same zone. Red = below the others, green = above; dashed outline = at least 5 points below with 40+ passes.</p></div>
               <div className="layout-split">
-                <div className="sticker" style={plain}><span className="no">Under pressure</span><div className="pitch-wrap"><PressureZones pz={P.pressure_zones} team={d.team} /></div></div>
+                <div className="sticker" style={plain}><div className="pitch-wrap"><PressureZones pz={P.pressure_zones} team={d.team} /></div></div>
                 <div className="stack">
                   <div className="sticker pad">
                     <h3>Overall</h3>
@@ -203,7 +222,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             <section className="section" aria-labelledby="br-h">
               <div className="section-head"><h2 id="br-h">Where they hurt you on the break</h2><p>Where {d.team} win the ball back (they attack left to right). Zone colour = share of their recoveries there followed by a shot within 10 s; dots = each of the {P.breaks.shots.length} recoveries that led to a shot, click one to replay it. Overall {Math.round(1000 * P.breaks.rate) / 10}% of {P.breaks.n} recoveries.</p></div>
               <div className="layout-split">
-                <div className="sticker" style={plain}><span className="no">Breaks</span><div className="pitch-wrap">
+                <div className="sticker" style={plain}><div className="pitch-wrap">
                   <Pitch label={`${d.team}: recoveries followed by a shot within 10 seconds`}>
                     {P.breaks.zones.map((z, i) => {
                       const r = z.n ? z.shot10 / z.n : 0; const few = z.n < 30;
@@ -234,7 +253,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             <section className="section" aria-labelledby="fz-h">
               <div className="section-head"><h2 id="fz-h">Where they foul</h2><p>Fouls committed per match in each zone of their own half (own goal on the left), against the other {P.foul_zones.teams_in_reference} teams; handballs excluded. Overall {P.foul_zones.total_per_match.toFixed(1)} per match in their half, others {P.foul_zones.ref_total_per_match?.toFixed(1) ?? "–"}.</p></div>
               <div className="layout-split">
-                <div className="sticker" style={plain}><span className="no">Fouls</span><div className="pitch-wrap">
+                <div className="sticker" style={plain}><div className="pitch-wrap">
                   <Pitch label={`${d.team}: fouls per match by zone of their own half`}>
                     {P.foul_zones.zones.map((z, i) => {
                       const diff = z.per_match - (z.ref_per_match ?? z.per_match); const cx = (z.x0 + z.x1) / 2, cy = (z.y0 + z.y1) / 2;
@@ -307,7 +326,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
 
           <div className="layout-2" style={{ marginTop: 28, display: "grid", gap: 24, gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
             <div className="sticker pad">
-              <h3>What happened in their past matches</h3>
+              <h3 id="past-h">What happened in their past matches</h3>
               {P.opp_past.length ? (
                 <ul className="read" style={{ marginTop: 6 }}>
                   {P.opp_past.map((p, i) => <li key={i}><b>{p.label}</b> {p.ga} ({p.n_a} matches): {fmt(p.a, unit(p.unit))} vs {fmt(p.b, unit(p.unit))} {p.gb} ({p.n_b}).</li>)}
@@ -327,22 +346,6 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             )}
           </div>
 
-          <section className="section" aria-labelledby="ai-h">
-            <div className="section-head"><h2 id="ai-h">Coach brief</h2><p>{P.brief.intro}</p></div>
-            <div className="sticker pad">
-              <div className="pills" role="group" aria-label="Choose a question">
-                {QUESTIONS.map(([t, label]) => <button key={t} type="button" aria-pressed={topic === t} onClick={() => setTopic(t)}>{label(d.team)}</button>)}
-              </div>
-              <div className="brief enter" key={topic} aria-live="polite">
-                <h3>{topic === "priorities" ? "Three priorities" : P.brief.phases[topic].title}</h3>
-                <ol>{(topic === "priorities" ? (P.brief.priorities.length ? P.brief.priorities : [`No rule fired: nothing in ${d.team}'s numbers is at the extremes. Prepare as usual and use the video.`]) : P.brief.phases[topic].lines).map((l, i) => <li key={i}>{l}</li>)}</ol>
-              </div>
-            </div>
-          </section>
-
-          <div style={{ marginTop: 18 }}>
-            <Note kind="caution" tag="Hints, not advice">The rules were fixed in advance and are simple (top or bottom among the teams here). None was tested for whether following it wins matches: data like these cannot say which formation or style will work. Use them to choose what to watch, and decide with the staff.</Note>
-          </div>
         </>
       )}
     </>
