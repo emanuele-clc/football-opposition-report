@@ -58,6 +58,9 @@ export default function NewTeam({ info, known, done }: { info: Info | null; know
         </div>
       )}
       <div className="stack" style={{ marginTop: 16, maxWidth: 900 }}>
+        {team && (src?.teams.find((t) => t.team === team)?.matches ?? 99) < 8 && !job && (
+          <Note kind="caution" tag="Few matches">Only {src?.teams.find((t) => t.team === team)?.matches} matches of {team} in this list: in the open data many teams appear only as opponents of the teams StatsBomb covered. The report runs, but with fewer than 8 matches the numbers are very rough and some intervals stay empty.</Note>
+        )}
         {team && known.includes(team) && !job && <Note kind="info" tag="Exists">A report for {team} is already in the folder. Generating again overwrites its files with a fresh run.</Note>}
         {error && <Note kind="caution" tag="Not started">{error}</Note>}
         {job && (

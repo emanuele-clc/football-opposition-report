@@ -7,7 +7,7 @@ Run:  python -X utf8 app/run.py [--data-dir <data_folder>]"""
 import csv, functools, glob, io, json, os, re, subprocess, sys, tempfile, threading, time, uuid, zipfile
 from urllib.parse import quote
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse, HTMLResponse, StreamingResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -21,7 +21,19 @@ SHEETS = ("report", "restarts", "setpieces", "transitions", "defending", "matchu
 CLIPS = {"sequences": "clips", "restarts": "restart_clips", "setpieces": "setpiece_clips", "transitions": "transition_clips", "threat": "xt_clips"}
 INT_COLS = {"match", "half", "minute", "second", "passes", "duration_s", "ended_in_shot"}
 
-app = FastAPI(title="Opposition report")
+def _finite(o):
+    """NaN/inf -> None: sheets of teams with very few matches (e.g. 2) have empty intervals, and JSON has no NaN."""
+    if isinstance(o, float): return o if o == o and o not in (float("inf"), float("-inf")) else None
+    if isinstance(o, dict): return {k: _finite(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple)): return [_finite(v) for v in o]
+    return o
+
+
+class SafeJSON(JSONResponse):
+    def render(self, content): return json.dumps(_finite(content), ensure_ascii=False, allow_nan=False, separators=(",", ":")).encode("utf-8")
+
+
+app = FastAPI(title="Opposition report", default_response_class=SafeJSON)
 
 
 def key_of(team): return team.replace(" ", "_")
