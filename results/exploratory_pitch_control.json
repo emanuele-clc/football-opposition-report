@@ -1,0 +1,157 @@
+{
+ "status": "exploratory",
+ "data": "DFL open tracking + events, Bassek et al. 2025 (CC BY 4.0), 7 matches 2022/23",
+ "params": {
+  "reaction_s": 0.7,
+  "max_speed": 5.0,
+  "sigma": 0.45,
+  "lambda_": 4.3,
+  "ball_speed": 15.0,
+  "dt": 0.04
+ },
+ "A_pass_check": {
+  "passes": 4492,
+  "completed_share": 0.8045414069456812,
+  "auc": {
+   "pc": {
+    "value": 0.8898673596605456,
+    "ci": [
+     0.877181463689016,
+     0.9011109547526549
+    ]
+   },
+   "margin": {
+    "value": 0.8506188916047817,
+    "ci": [
+     0.8414810415247824,
+     0.8587210037893132
+    ]
+   },
+   "length": {
+    "value": 0.45969341575976996,
+    "ci": [
+     0.4438136265963307,
+     0.47903444162713493
+    ]
+   },
+   "pc_minus_margin": {
+    "value": 0.039248468055763985,
+    "ci": [
+     0.033616784481332415,
+     0.044800635401246236
+    ]
+   },
+   "pc_minus_length": {
+    "value": 0.4301739439007757,
+    "ci": [
+     0.4089358337015122,
+     0.44685850357283996
+    ]
+   }
+  },
+  "pc_adds_over_margin": true,
+  "pc_adds_over_length": true,
+  "brier_pc": 0.11349128380303794,
+  "brier_base_rate": 0.157254531455545
+ },
+ "B_space": [
+  {
+   "match": "DFL-MAT-J03WMX",
+   "team": "1. FC Köln",
+   "frames": 787,
+   "opp_half_controlled": 0.22395171537484118,
+   "own_half_controlled_when_defending": 0.19344915298006404
+  },
+  {
+   "match": "DFL-MAT-J03WMX",
+   "team": "FC Bayern München",
+   "frames": 922,
+   "opp_half_controlled": 0.26358653548187166,
+   "own_half_controlled_when_defending": 0.1968407757003691
+  },
+  {
+   "match": "DFL-MAT-J03WN1",
+   "team": "Bayer 04 Leverkusen",
+   "frames": 641,
+   "opp_half_controlled": 0.24337437783225616,
+   "own_half_controlled_when_defending": 0.167867875305462
+  },
+  {
+   "match": "DFL-MAT-J03WN1",
+   "team": "VfL Bochum 1848",
+   "frames": 721,
+   "opp_half_controlled": 0.2740200449111684,
+   "own_half_controlled_when_defending": 0.20075588737835226
+  },
+  {
+   "match": "DFL-MAT-J03WOH",
+   "team": "Fortuna Düsseldorf",
+   "frames": 783,
+   "opp_half_controlled": 0.2579327069269598,
+   "own_half_controlled_when_defending": 0.20116239037471914
+  },
+  {
+   "match": "DFL-MAT-J03WOH",
+   "team": "SSV Jahn Regensburg",
+   "frames": 657,
+   "opp_half_controlled": 0.2165235196057114,
+   "own_half_controlled_when_defending": 0.19189396703764522
+  },
+  {
+   "match": "DFL-MAT-J03WOY",
+   "team": "Fortuna Düsseldorf",
+   "frames": 756,
+   "opp_half_controlled": 0.21397864701436128,
+   "own_half_controlled_when_defending": 0.17147733605796026
+  },
+  {
+   "match": "DFL-MAT-J03WOY",
+   "team": "F.C. Hansa Rostock",
+   "frames": 769,
+   "opp_half_controlled": 0.2422324911759242,
+   "own_half_controlled_when_defending": 0.1908934870244394
+  },
+  {
+   "match": "DFL-MAT-J03WPY",
+   "team": "1. FC Nürnberg",
+   "frames": 615,
+   "opp_half_controlled": 0.22087204800619434,
+   "own_half_controlled_when_defending": 0.1435319424799623
+  },
+  {
+   "match": "DFL-MAT-J03WPY",
+   "team": "Fortuna Düsseldorf",
+   "frames": 1010,
+   "opp_half_controlled": 0.260770273455917,
+   "own_half_controlled_when_defending": 0.22066395663956637
+  },
+  {
+   "match": "DFL-MAT-J03WQQ",
+   "team": "FC St. Pauli",
+   "frames": 947,
+   "opp_half_controlled": 0.2659243475637351,
+   "own_half_controlled_when_defending": 0.2176319176319176
+  },
+  {
+   "match": "DFL-MAT-J03WQQ",
+   "team": "Fortuna Düsseldorf",
+   "frames": 740,
+   "opp_half_controlled": 0.2454190797940798,
+   "own_half_controlled_when_defending": 0.17037197666817522
+  },
+  {
+   "match": "DFL-MAT-J03WR9",
+   "team": "1. FC Kaiserslautern",
+   "frames": 638,
+   "opp_half_controlled": 0.17580515748619197,
+   "own_half_controlled_when_defending": 0.13208788646055436
+  },
+  {
+   "match": "DFL-MAT-J03WR9",
+   "team": "Fortuna Düsseldorf",
+   "frames": 1072,
+   "opp_half_controlled": 0.26978666933191187,
+   "own_half_controlled_when_defending": 0.23858505000746383
+  }
+ ]
+}
