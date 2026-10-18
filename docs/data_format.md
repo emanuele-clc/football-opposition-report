@@ -47,6 +47,13 @@ So with reconstructed possessions the numbers are usable for a rough picture but
 - Keeper distributions are inferred (a pass by the keeper right after a save or a run off the line), so they are undercounted.
 - Use for a rough picture; do not mix ranks from this provider with StatsBomb teams.
 
+Same matches from both providers (exploratory; Barcelona, La Liga 2017/18, the 36 matches in both datasets; `src/week4/exploratory_provider_samematch.py`, `results/exploratory_provider_samematch_Barcelona.json`). A = StatsBomb with its possessions, B = StatsBomb with reconstructed possessions, C = Wyscout:
+- families fitted on A and applied unchanged to B and C: build-up shares within 3.5 points (B) and 2.4 points (C) of A; advanced within 6.1 (B) and 4.4 (C);
+- sequences per match 51.0 / 58.5 / 53.6; passes per sequence 9.0 / 8.2 / 8.6; shot rate 13.7% / 12.2% / 12.8%; per match, A and C correlate 0.86 (sequences) and 0.95 (passes per sequence);
+- larger gaps, all in C: long-pass share 0.21 vs 0.15; short first pass from goal kicks 23% vs 39% and from throw-ins 79-85% vs 91-96%; keeper restarts 56 vs 115; losses and recoveries per match 46-50 vs 62. Corners 202 vs 201.
+- goals from shots: 90 in all three versions (the score says 93: three own goals, which are not shots).
+So on these matches the family shares barely move between providers, while pass lengths, keeper restarts and transitions do: those sheets are not comparable across providers.
+
 ## Mapping hints (from memory; check against your provider's documentation)
 - Opta-style feeds: positions on a 0-100 scale in the attacking direction of the team; pass end coordinates are usually event qualifiers; restarts appear as qualifiers or event types (goal kick, throw-in, corner).
 - Wyscout-style feeds: positions on a 0-100 scale; the clock is often given per half, so convert to a cumulative minute; restarts appear as sub-event types.
