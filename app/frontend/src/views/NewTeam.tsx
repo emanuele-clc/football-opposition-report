@@ -19,6 +19,7 @@ export default function NewTeam({ info, known, done }: { info: Info | null; know
   useEffect(() => { logRef.current?.scrollTo(0, logRef.current.scrollHeight); }, [job?.log.length]);
 
   const src = sources?.find((s) => s.file === file);
+  const sel = src?.teams.find((t) => t.team === team);
   const start = async () => {
     setError(null);
     try { setJob(await api.startJob(file, team)); } catch (e) { setError((e as Error).message); }
@@ -51,15 +52,18 @@ export default function NewTeam({ info, known, done }: { info: Info | null; know
           <label className="field">Team
             <select value={team} onChange={(e) => setTeam(e.target.value)} disabled={job?.status === "running"}>
               <option value="">Choose a team</option>
-              {src?.teams.map((t) => <option key={t.team} value={t.team}>{t.team} · {t.matches} matches{known.includes(t.team) ? " · report exists" : ""}</option>)}
+              {src?.teams.map((t) => <option key={t.team} value={t.team}>{t.team} · {t.matches} matches{t.with_events < t.matches ? ` (${t.with_events} downloaded)` : ""}{known.includes(t.team) ? " · report exists" : ""}</option>)}
             </select>
           </label>
           <button className="btn" type="button" disabled={!team || job?.status === "running"} onClick={start}>{known.includes(team) ? "Generate again" : "Generate report"}</button>
         </div>
       )}
       <div className="stack" style={{ marginTop: 16, maxWidth: 900 }}>
-        {team && (src?.teams.find((t) => t.team === team)?.matches ?? 99) < 8 && !job && (
-          <Note kind="caution" tag="Few matches">Only {src?.teams.find((t) => t.team === team)?.matches} matches of {team} in this list: in the open data many teams appear only as opponents of the teams StatsBomb covered. The report runs, but with fewer than 8 matches the numbers are very rough and some intervals stay empty.</Note>
+        {sel && sel.matches < 8 && !job && (
+          <Note kind="caution" tag="Few matches">Only {sel.matches} matches of {team} in this list: in the open data many teams appear only as opponents of the teams StatsBomb covered. The report runs, but with fewer than 8 matches the numbers are very rough and some intervals stay empty.</Note>
+        )}
+        {sel && sel.with_events < sel.matches && !job && (
+          <Note kind="info" tag="Download first">The events of {sel.matches - sel.with_events} of the {sel.matches} matches are not in this folder yet. Generate report downloads them first from the StatsBomb open data on GitHub (about 3 MB per match; needs internet), then builds the report.</Note>
         )}
         {team && known.includes(team) && !job && <Note kind="info" tag="Exists">A report for {team} is already in the folder. Generating again overwrites its files with a fresh run.</Note>}
         {error && <Note kind="caution" tag="Not started">{error}</Note>}

@@ -107,7 +107,7 @@ export interface TrackResults {
 export interface TrackFrame { t: number; alive: number; ball: [number, number] | null; p: ([number, number] | null)[]; pc: number[] }
 export interface TrackClip { match: string; half: number; clock: string; home: string; guest: string; home_attacks: "left" | "right"; grid: [number, number]; players: { name: string; side: "home" | "guest"; gk: boolean }[]; frames: TrackFrame[] }
 export interface ClipRow { family: string; match: number; date: string; opponent: string; half: number; minute: number; second: number; start_type: string; passes: number; duration_s: number; ended_in_shot: number; video_time?: string }
-export interface Source { file: string; competition: string; season: string; teams: { team: string; matches: number }[] }
+export interface Source { file: string; competition: string; season: string; teams: { team: string; matches: number; with_events: number }[] }
 export interface Action { t: number; type: string; us: boolean; player: string; x: number; y: number; ex?: number; ey?: number; ok?: boolean; to?: string; long?: boolean; kind?: string; outcome?: string; xg?: number | null }
 export interface Replay { match: number; half: number; minute: number; second: number; play_pattern: string; actions: Action[] }
 /* One clip to replay: where it is in the events, plus what to say about it. */

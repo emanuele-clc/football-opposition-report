@@ -1128,4 +1128,10 @@ export const DICT: [string, string, string][] = [
   ["Failed", "Non riuscito", "Fehlgeschlagen"],
   ["is ready.", "è pronto.", "ist fertig."],
   ["Starting…", "Avvio…", "Start…"],
+  ["Download first", "Prima il download", "Erst herunterladen"],
+  ["The events of # of the # matches are not in this folder yet. Generate report downloads them first from the StatsBomb open data on GitHub (about # MB per match; needs internet), then builds the report.",
+    "Gli eventi di # partite su # non sono ancora in questa cartella. Genera il report li scarica prima dai dati aperti StatsBomb su GitHub (circa # MB a partita; serve internet), poi costruisce il report.",
+    "Die Ereignisse von # der # Spiele sind noch nicht in diesem Ordner. Bericht erzeugen lädt sie zuerst aus den offenen StatsBomb-Daten auf GitHub (etwa # MB pro Spiel; Internet nötig) und baut dann den Bericht."],
+  ["(# downloaded)", "(# scaricate)", "(# heruntergeladen)"],
+  ["Downloading the missing event files (# matches) from the StatsBomb open data…", "Scarico i file eventi mancanti (# partite) dai dati aperti StatsBomb…", "Fehlende Ereignisdateien (# Spiele) werden aus den offenen StatsBomb-Daten geladen…"],
 ];

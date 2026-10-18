@@ -567,12 +567,13 @@ def sources():
         try: ms = json.load(open(p, encoding="utf-8"))
         except (ValueError, OSError): continue
         if not ms: continue
-        count = {}
+        count, have = {}, {}
         for m in ms:
+            f = os.path.join(DATA, "ev", f"{m['match_id']}.json"); ok = os.path.exists(f) and os.path.getsize(f) > 100
             for side in ("home_team", "away_team"):
-                n = m[side][f"{side}_name"]; count[n] = count.get(n, 0) + 1
+                n = m[side][f"{side}_name"]; count[n] = count.get(n, 0) + 1; have[n] = have.get(n, 0) + ok
         out.append({"file": f"matches/{os.path.basename(p)}", "competition": ms[0]["competition"]["competition_name"], "season": ms[0]["season"]["season_name"],
-                    "teams": sorted(({"team": t, "matches": n} for t, n in count.items()), key=lambda x: x["team"])})
+                    "teams": sorted(({"team": t, "matches": n, "with_events": have[t]} for t, n in count.items()), key=lambda x: x["team"])})
     return out
 
 
@@ -589,6 +590,12 @@ class JobIn(BaseModel):
 
 
 def _run(job):
+    if job.get("download"):   # events of some matches not on disk yet: fetch them first (StatsBomb open data on GitHub; files already there are skipped)
+        cid, sid = os.path.basename(job["source"])[:-5].split("_")
+        job["log"].append(f"Downloading the missing event files ({job['download']} matches) from the StatsBomb open data…")
+        d = subprocess.run([sys.executable, "-X", "utf8", os.path.join(ROOT, "src", "week1", "download_data.py"), cid, sid, job["team"]], cwd=DATA,
+                           capture_output=True, text=True, encoding="utf-8", errors="replace")
+        job["log"] += [x for x in (d.stdout + d.stderr).splitlines() if x.strip()][-20:]
     cmd = [sys.executable, "-X", "utf8", os.path.join(ROOT, "src", "oppreport.py"), "--statsbomb", job["source"], "--data-dir", DATA, "--team", job["team"], "--out", os.path.join(DATA, "reports_app")]
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding="utf-8", errors="replace", env=dict(os.environ, MPLBACKEND="Agg"))
     for line in p.stdout:
@@ -602,7 +609,9 @@ def start_job(j: JobIn):
     if not src: raise HTTPException(400, f"Match list {j.source} not found in {DATA}/matches.")
     if j.team not in {t["team"] for t in src["teams"]}: raise HTTPException(400, f"{j.team} does not play in {j.source}.")
     if any(x["status"] == "running" for x in JOBS.values()): raise HTTPException(409, "A report is already being generated. Wait for it to finish.")
-    job = {"id": uuid.uuid4().hex[:8], "team": j.team, "key": key_of(j.team), "source": j.source, "status": "running", "log": [], "started": time.time(), "ended": None}
+    t = next(t for t in src["teams"] if t["team"] == j.team)
+    job = {"id": uuid.uuid4().hex[:8], "team": j.team, "key": key_of(j.team), "source": j.source, "status": "running", "log": [], "started": time.time(), "ended": None,
+           "download": t["matches"] - t["with_events"]}
     JOBS[job["id"]] = job; threading.Thread(target=_run, args=(job,), daemon=True).start()
     return job
 

@@ -5,7 +5,7 @@ Da dati aperti StatsBomb gia' scaricati:
     python src/oppreport.py --statsbomb matches/9_281.json --data-dir <cartella dati> --team "Bayer Leverkusen" --out reports
 Produce in --out: prep_<Squadra>.html (una pagina di preparazione partita con i fatti principali e i link alle schede), report_<Squadra>.html (e .json), clips_<Squadra>.csv (tutte le sequenze con la famiglia e il tempo video), review_<Squadra>.csv/.html (scheda per l'analista),
 restarts_<Squadra>.html (uscite da rinvio, portiere e rimesse) con restart_clips_<Squadra>.csv, setpieces_<Squadra>.html (corner e punizioni) con setpiece_clips_<Squadra>.csv, transitions_<Squadra>.html (perdite, recuperi, transizioni) con transition_clips_<Squadra>.csv, xthreat_<Squadra>.html (minaccia xT di passaggi e conduzioni) con xt_clips_<Squadra>.csv; con --xml anche xml/ (un file per partita da importare nel programma video)."""
-import argparse, os, sys, subprocess, shutil
+import argparse, json, os, sys, subprocess, shutil
 ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 ap.add_argument("--team", required=True); ap.add_argument("--out", default="reports"); ap.add_argument("--csv"); ap.add_argument("--statsbomb"); ap.add_argument("--data-dir", default=".")
 ap.add_argument("--video-offsets"); ap.add_argument("--xml", action="store_true", help="scrive anche i file XML per il programma video"); ap.add_argument("--coords", default="100", choices=["100", "120x80"]); a = ap.parse_args()
@@ -19,6 +19,13 @@ if a.csv:
 else:
     base = os.path.abspath(a.data_dir); mf = a.statsbomb if os.path.exists(a.statsbomb) else os.path.join(base, a.statsbomb); mf = os.path.abspath(mf)
     if not os.path.exists(mf): sys.exit(f"File partite non trovato: {a.statsbomb} (cercato qui e in {base})")
+    games = [g for g in json.load(open(mf, encoding="utf-8")) if a.team in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])]
+    if not games: sys.exit(f"{a.team} non gioca nessuna partita in {a.statsbomb}.")
+    missing = [g["match_id"] for g in games if not (os.path.exists(p := os.path.join(base, "ev", f"{g['match_id']}.json")) and os.path.getsize(p) > 100)]
+    if missing:
+        cid, sid = os.path.basename(mf)[:-5].split("_")
+        sys.exit(f"Mancano gli eventi di {len(missing)} partite su {len(games)} di {a.team} (es. ev/{missing[0]}.json). Scaricali prima, dalla cartella dati:\n"
+                 f'  cd "{base}"; python -X utf8 "{os.path.join(here, "week1", "download_data.py")}" {cid} {sid} "{a.team}"')
 if a.video_offsets and not os.path.exists(a.video_offsets): sys.exit(f"File degli offset video non trovato: {a.video_offsets}. Togli --video-offsets oppure crea il file (docs/data_format.md, sezione Video times).")
 env = dict(os.environ, MPLBACKEND="Agg")
 if a.video_offsets: env["OPPREPORT_OFFSETS"] = os.path.abspath(a.video_offsets)
