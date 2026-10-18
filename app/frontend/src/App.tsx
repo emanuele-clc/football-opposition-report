@@ -18,6 +18,7 @@ import SetPieces from "./views/SetPieces";
 import Threat from "./views/Threat";
 import Transitions from "./views/Transitions";
 import TrackingLab from "./views/TrackingLab";
+import { LANGS, setLanguage, storedLanguage, type Lang } from "./i18n";
 
 const TABS: [string, string][] = [
   ["overview", "Overview"], ["gameplan", "Game plan"], ["goals", "Goals"], ["build-up", "Families"], ["restarts", "Restarts"],
@@ -59,6 +60,12 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [theme, setTheme] = useState(stored);
   const [tour, setTour] = useState(false);
+  const [lang, setLang] = useState<Lang>(storedLanguage);
+
+  useEffect(() => {
+    setLanguage(lang);
+    try { localStorage.setItem("lang", lang); } catch { /* private window */ }
+  }, [lang]);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -132,6 +139,12 @@ export default function App() {
         <div className="bar-actions">
           {info?.can_generate && <a className="icon-btn" href="#/new" aria-current={route.key === "new" ? "page" : undefined} aria-label="Add a team">{Icon.plus}<span>Add team</span></a>}
           <button className="icon-btn" type="button" onClick={() => { if (!tour && route.key !== "new" && !TOUR.includes(route.tab)) location.hash = href({ key: route.key, tab: "overview" }); setTour(!tour); }} aria-pressed={tour} aria-label={tour ? "Stop the presentation tour" : "Start the presentation tour"}>{Icon.tour}<span>Tour</span></button>
+          <label className="icon-btn lang" translate="no" title="Language · Lingua · Sprache">
+            {Icon.globe}<span className="lang-code">{lang.toUpperCase()}</span>
+            <select value={lang} onChange={(e) => setLang(e.target.value as Lang)} aria-label="Language · Lingua · Sprache">
+              {LANGS.map(([k, name]) => <option key={k} value={k}>{name}</option>)}
+            </select>
+          </label>
           <button className="icon-btn" type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}>{theme === "dark" ? Icon.sun : Icon.moon}</button>
           <button className="icon-btn" type="button" onClick={() => print()} aria-label="Print this page">{Icon.print}<span>Print</span></button>
         </div>

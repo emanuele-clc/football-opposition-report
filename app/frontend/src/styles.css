@@ -171,6 +171,11 @@ h3 { font-size: 21px; }
 .icon-btn:hover { border-color: var(--bar-ink); }
 .icon-btn[aria-current="page"] { background: var(--sticker); color: var(--sticker-ink); }
 .icon-btn svg { width: 17px; height: 17px; flex: none; }
+/* Language: the native select sits invisibly over the pill, so the menu is the system one (keyboard and touch work as usual). */
+.lang { position: relative; letter-spacing: 0.04em; }
+.lang select { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; font-size: 16px; }
+.lang:focus-within { outline: 2px solid var(--yellow); outline-offset: 2px; }
+.bar-actions .lang .lang-code, .icon-btn.lang .lang-code { display: inline; }
 
 /* Team header */
 .team-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 28px; padding: 22px var(--gutter) 0; }
