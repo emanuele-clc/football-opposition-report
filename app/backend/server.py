@@ -12,12 +12,13 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import gameplan as GP
+import tracking as TK
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DATA = os.path.abspath(os.environ.get("OPPREPORT_DATA") or os.path.join(ROOT, "examples"))
 DIST = os.path.join(ROOT, "app", "frontend", "dist")
-SHEETS = ("report", "restarts", "setpieces", "transitions", "defending", "matchups", "keyplayers")
-CLIPS = {"sequences": "clips", "restarts": "restart_clips", "setpieces": "setpiece_clips", "transitions": "transition_clips"}
+SHEETS = ("report", "restarts", "setpieces", "transitions", "defending", "matchups", "keyplayers", "xthreat")
+CLIPS = {"sequences": "clips", "restarts": "restart_clips", "setpieces": "setpiece_clips", "transitions": "transition_clips", "threat": "xt_clips"}
 INT_COLS = {"match", "half", "minute", "second", "passes", "duration_s", "ended_in_shot"}
 
 app = FastAPI(title="Opposition report")
@@ -69,6 +70,10 @@ METRICS = [
      "The counter-press share varied little between the teams we tested (17-19%): it describes, it does not separate styles."),
     ("high_rec_pm", "Transitions", "Recoveries per match in the final third", "transitions", lambda d: d["recoveries"]["by_third"]["final third"]["per_match"],
      lambda d: d["recoveries"]["by_third"]["final third"]["per_match_ci"], "num", None),
+    ("xt_pm", "Threat", "xT added per match by passes and carries", "xthreat", lambda d: d["xt"]["per_match"], lambda d: d["xt"]["ci"], "num2",
+     "Expected Threat: how far completed passes and carries move the ball into zones that lead to goals. Only where the ball goes, not pressure or defenders."),
+    ("xt_carry_share", "Threat", "Share of xT added by carries", "xthreat", lambda d: d["xt_carry"]["per_match"] / d["xt"]["per_match"], None, "pct", None),
+    ("xt_conc_pm", "Threat", "xT conceded per match", "xthreat", lambda d: d["conceded"]["per_match"], lambda d: d["conceded"]["ci"], "num2", None),
     ("up_compl", "Defending", "Own-half pass completion under pressure", "keyplayers", lambda d: d["under_pressure_total"]["completion"], None, "pct",
      "How well the team plays out when pressed in its own half (open-play passes flagged under pressure by StatsBomb)."),
     ("ppda", "Defending", "PPDA: opponent passes per defensive action", "defending", lambda d: d["ppda"]["value"], lambda d: d["ppda"]["ci"], "num",
@@ -101,9 +106,25 @@ def ranks(key):
     return out
 
 
+@app.get("/api/tracking/matches")
+def tracking_matches():
+    if not TK.available(): raise HTTPException(404, f"No tracking data in {TK.TRACK}: download the DFL open data and run src/tracking/dfl_load.py.")
+    return TK.matches()
+
+
+@app.get("/api/tracking/results")
+def tracking_results(): return TK.results()
+
+
+@app.get("/api/tracking/clip")
+def tracking_clip(match: str, half: int, frame: int, before: float = 10.0, after: float = 3.0):
+    if not TK.available() or TK.meta(match) is None: raise HTTPException(404, f"Match {match} not in {TK.TRACK}.")
+    return TK.clip(match, half, frame, min(max(before, 1.0), 20.0), min(max(after, 0.0), 8.0))
+
+
 @app.get("/api/info")
 def info():
-    return {"data_dir": DATA, "is_examples": os.path.normcase(DATA) == os.path.normcase(os.path.join(ROOT, "examples")), "can_generate": bool(sources()),
+    return {"data_dir": DATA, "has_tracking": TK.available(), "is_examples": os.path.normcase(DATA) == os.path.normcase(os.path.join(ROOT, "examples")), "can_generate": bool(sources()),
             "has_events": os.path.isdir(os.path.join(DATA, "ev"))}
 
 
@@ -236,7 +257,7 @@ def export_xml(key: str, kind: str, family: str = "", opponent: str = "", shot: 
 @app.get("/sheets/{name}")
 def sheet(name: str):
     """The printable HTML sheets written by the pipeline (prep_, report_, restarts_, ...)."""
-    if not re.fullmatch(r"(prep|report|restarts|setpieces|transitions|defending|review)_[^/\\]+\.html", name): raise HTTPException(404, "Not a report sheet.")
+    if not re.fullmatch(r"(prep|report|restarts|setpieces|transitions|defending|xthreat|review)_[^/\\]+\.html", name): raise HTTPException(404, "Not a report sheet.")
     p = os.path.join(DATA, name)
     if not os.path.exists(p): raise HTTPException(404, f"{name} not found in {DATA}.")
     return HTMLResponse(open(p, encoding="utf-8").read())

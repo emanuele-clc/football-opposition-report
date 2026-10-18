@@ -15,22 +15,24 @@ import NewTeam from "./views/NewTeam";
 import Overview from "./views/Overview";
 import Restarts from "./views/Restarts";
 import SetPieces from "./views/SetPieces";
+import Threat from "./views/Threat";
 import Transitions from "./views/Transitions";
+import TrackingLab from "./views/TrackingLab";
 
 const TABS: [string, string][] = [
   ["overview", "Overview"], ["gameplan", "Game plan"], ["goals", "Goals"], ["build-up", "Families"], ["restarts", "Restarts"],
-  ["setpieces", "Set pieces"], ["transitions", "Transitions"], ["defending", "Defending"], ["matchups", "Matchups"], ["clips", "Clips"], ["compare", "Compare"], ["review", "Review"],
+  ["setpieces", "Set pieces"], ["threat", "Threat"], ["transitions", "Transitions"], ["defending", "Defending"], ["matchups", "Matchups"], ["clips", "Clips"], ["compare", "Compare"], ["tracking", "Tracking lab"], ["review", "Review"],
 ];
-/* Twelve sections in five groups: the top bar names the group, the row under the team name the section. */
+/* Fourteen sections in five groups: the top bar names the group, the row under the team name the section. */
 const GROUPS: [string, string[]][] = [
   ["Summary", ["overview", "gameplan"]],
-  ["With the ball", ["build-up", "restarts", "setpieces", "goals"]],
+  ["With the ball", ["build-up", "threat", "restarts", "setpieces", "goals"]],
   ["Without the ball", ["transitions", "defending"]],
-  ["Context", ["matchups", "compare"]],
+  ["Context", ["matchups", "compare", "tracking"]],
   ["Video & review", ["clips", "review"]],
 ];
 const groupOf = (tab: string) => GROUPS.find(([, t]) => t.includes(tab === "advanced" ? "build-up" : tab === "coach" ? "gameplan" : tab)) ?? GROUPS[0];
-const TOUR = ["overview", "gameplan", "goals", "build-up", "restarts", "setpieces", "transitions", "defending", "compare"];
+const TOUR = ["overview", "gameplan", "goals", "build-up", "threat", "restarts", "setpieces", "transitions", "defending", "compare"];
 const TOUR_MS = 15000;
 
 // Route: #/<team key>/<tab>[/<clip list>][?family=B1]
@@ -172,6 +174,7 @@ export default function App() {
             {(route.tab === "build-up" || route.tab === "advanced") && <Families key={route.tab} d={current} phase={route.tab} events={events} family={route.family} go={go} />}
             {route.tab === "restarts" && <Restarts d={current} events={events} go={go} />}
             {route.tab === "setpieces" && <SetPieces d={current} events={events} go={go} />}
+            {route.tab === "threat" && <Threat d={current} events={events} go={go} />}
             {route.tab === "transitions" && <Transitions d={current} events={events} go={go} />}
             {route.tab === "defending" && <Defending d={current} />}
             {route.tab === "gameplan" && teams && <GamePlan d={current} teams={teams} events={events} />}
@@ -179,6 +182,7 @@ export default function App() {
             {route.tab === "goals" && <Goals d={current} events={events} />}
             {route.tab === "matchups" && <Matchups d={current} />}
             {route.tab === "compare" && teams && <Compare d={current} teams={teams} events={events} />}
+            {route.tab === "tracking" && <TrackingLab />}
             {route.tab === "review" && <Review d={current} events={events} />}
             {route.tab === "clips" && (
               <Clips d={current} kind={current.clips.includes(route.kind) ? route.kind : "sequences"} family={route.family} events={events}

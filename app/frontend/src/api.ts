@@ -41,6 +41,13 @@ export interface Defending {
   height: { mean_x: number; ci: CI; median_x: number | null; last5: number; actions_per_match: number };
   conceded: { shots_per_match: number; shots_ci: CI; xg_per_match: number; xg_ci: CI; last5_shots: number; last5_xg: number };
 }
+export interface PerMatch { per_match: number; ci: CI; last5: number }
+export interface Threat {
+  team: string; matches: number; period: string; grid: { nx: number; ny: number; matches: number; moves: number; shots: number; goals: number };
+  xt: PerMatch; xt_pass: PerMatch; xt_carry: PerMatch; given_up: PerMatch; conceded: PerMatch;
+  origin_per_match: Record<string, number>; map_per_match: number[][];
+  players: { player: string; xt: number; per_match: number; matches: number; share: number | null }[];
+}
 export interface MatchupMetric { id: string; label: string; unit: string; direction: string; linked: boolean; a: number; b: number; diff: number; ci: CI; verdict: "clear" | "uncertain" | "small group" }
 export interface Matchups {
   team: string; matches: number; note: string; min_group: number; median_opp_ppda: number; formations_used: string[];
@@ -85,9 +92,20 @@ export interface Rank {
 }
 export interface TeamSummary { key: string; team: string; matches: number; period: string; sequences: number; sheets: string[]; clips: string[] }
 export interface TeamData extends TeamSummary {
-  report: Report; restarts: Restarts | null; setpieces: SetPieces | null; transitions: Transitions | null; defending: Defending | null; matchups: Matchups | null; ranks: Rank[]; references: string[];
+  report: Report; restarts: Restarts | null; setpieces: SetPieces | null; transitions: Transitions | null; defending: Defending | null; xthreat: Threat | null; matchups: Matchups | null; ranks: Rank[]; references: string[];
 }
-export interface Info { data_dir: string; is_examples: boolean; can_generate: boolean; has_events: boolean }
+export interface Info { data_dir: string; is_examples: boolean; can_generate: boolean; has_events: boolean; has_tracking?: boolean }
+export interface TrackGoal { half: number; frame: number; team: string; side: "home" | "guest"; player: string; clock: string; xg: number | null }
+export interface TrackMatch { match: string; date: string; competition: string; home: string; guest: string; result: string; goals: TrackGoal[] }
+type Est = { mean: number; ci: CI };
+export interface TrackResults {
+  pitch_control: null | { A_pass_check: { passes: number; completed_share: number; auc: Record<"pc" | "margin" | "length" | "pc_minus_margin" | "pc_minus_length", { value: number; ci: CI }>; pc_adds_over_margin: boolean; pc_adds_over_length: boolean; brier_pc: number; brier_base_rate: number };
+    B_space: { match: string; team: string; frames: number; opp_half_controlled: number; own_half_controlled_when_defending: number }[] };
+  ghosting: null | { horizon_s: number; samples: { train: number; test: number }; position_error_m: Record<string, Est>; line_height_error_m: Record<string, Est>;
+    position_diff: Record<string, Est & { lstm_beats: boolean }>; line_diff: Record<string, Est & { lstm_beats: boolean }>; test_mean_displacement_m: number };
+}
+export interface TrackFrame { t: number; alive: number; ball: [number, number] | null; p: ([number, number] | null)[]; pc: number[] }
+export interface TrackClip { match: string; half: number; clock: string; home: string; guest: string; home_attacks: "left" | "right"; grid: [number, number]; players: { name: string; side: "home" | "guest"; gk: boolean }[]; frames: TrackFrame[] }
 export interface ClipRow { family: string; match: number; date: string; opponent: string; half: number; minute: number; second: number; start_type: string; passes: number; duration_s: number; ended_in_shot: number; video_time?: string }
 export interface Source { file: string; competition: string; season: string; teams: { team: string; matches: number }[] }
 export interface Action { t: number; type: string; us: boolean; player: string; x: number; y: number; ex?: number; ey?: number; ok?: boolean; to?: string; long?: boolean; kind?: string; outcome?: string; xg?: number | null }
@@ -115,6 +133,9 @@ async function get<T>(url: string): Promise<T> {
 
 export const api = {
   info: () => get<Info>("/api/info"),
+  trackResults: () => get<TrackResults>("/api/tracking/results"),
+  trackMatches: () => get<TrackMatch[]>("/api/tracking/matches"),
+  trackClip: (match: string, half: number, frame: number) => get<TrackClip>(`/api/tracking/clip?match=${encodeURIComponent(match)}&half=${half}&frame=${frame}`),
   teams: () => get<TeamSummary[]>("/api/teams"),
   team: (key: string) => get<TeamData>(`/api/teams/${encodeURIComponent(key)}`),
   clips: (key: string, kind: string) => get<{ columns: string[]; rows: ClipRow[] }>(`/api/teams/${encodeURIComponent(key)}/clips/${kind}`),

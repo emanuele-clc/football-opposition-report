@@ -3,7 +3,7 @@ import type { ClipRef, Family, Rank, TeamData } from "../api";
 import { FamilyLanes, Note, RankRow, Replay, rib, ShareStrip, third } from "../charts";
 import { fmt, n1, ordinal, pc } from "../format";
 
-const TAB_OF: Record<string, string> = { report: "build-up", restarts: "restarts", setpieces: "setpieces", transitions: "transitions", defending: "defending" };
+const TAB_OF: Record<string, string> = { report: "build-up", restarts: "restarts", setpieces: "setpieces", transitions: "transitions", defending: "defending", xthreat: "threat" };
 
 /* Five facts where this team sits furthest from the middle of the other teams: the most extreme fact of each section first, then the next most extreme. */
 function keyPoints(ranks: Rank[]) {
@@ -221,7 +221,7 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
           </div>
         </details>
         <p className="small no-print" style={{ marginTop: 18 }}>
-          Printable sheets from the pipeline: {[["prep", "one-page preparation"], ["report", "families and style"], ["restarts", "restarts"], ["setpieces", "set pieces"], ["transitions", "transitions"], ["defending", "defending"]].map(([k, l], i) => (
+          Printable sheets from the pipeline: {[["prep", "one-page preparation"], ["report", "families and style"], ["restarts", "restarts"], ["setpieces", "set pieces"], ["transitions", "transitions"], ["defending", "defending"], ["xthreat", "threat"]].map(([k, l], i) => (
             <span key={k}>{i ? " · " : ""}<a href={`/sheets/${k}_${d.key}.html`} target="_blank" rel="noreferrer">{l}</a></span>
           ))}
         </p>

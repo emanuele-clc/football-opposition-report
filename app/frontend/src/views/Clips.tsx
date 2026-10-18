@@ -6,7 +6,7 @@ import { toRef, useClips } from "../useClips";
 import VideoSync from "./VideoSync";
 import MoreLikeThis from "./MoreLikeThis";
 
-const KINDS: [string, string][] = [["sequences", "Sequences"], ["restarts", "Restarts"], ["setpieces", "Set pieces"], ["transitions", "Transitions"]];
+const KINDS: [string, string][] = [["sequences", "Sequences"], ["restarts", "Restarts"], ["setpieces", "Set pieces"], ["transitions", "Transitions"], ["threat", "Biggest xT moves"]];
 type SortKey = "date" | "minute" | "passes" | "duration_s" | "family";
 const PAGE = 40;
 const time = (r: ClipRow) => r.half * 1e4 + r.minute * 60 + r.second;
