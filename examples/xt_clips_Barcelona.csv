@@ -1,0 +1,41 @@
+family,match,date,opponent,half,minute,second,start_type,passes,duration_s,ended_in_shot,player,xt
+xT pass,266236,2015-08-23,Athletic Club,2,53,49,From Throw In,1,1,1,Jordi Alba Ramos,0.2635
+xT pass,266467,2015-09-23,Celta Vigo,2,57,50,From Throw In,1,0,1,Luis Alberto Suárez Díaz,0.2540
+xT pass,3825617,2015-10-03,Sevilla,2,46,2,From Corner,1,1,1,Sergio Busquets i Burgos,0.1801
+xT pass,3825617,2015-10-03,Sevilla,2,78,33,Regular Play,1,1,1,Luis Alberto Suárez Díaz,0.2635
+xT pass,3825627,2015-10-17,Rayo Vallecano,2,69,53,From Counter,1,1,1,Luis Alberto Suárez Díaz,0.2619
+xT pass,3825637,2015-10-25,Eibar,1,20,54,Regular Play,1,1,1,Sandro Ramírez Castillo,0.1933
+xT pass,3825645,2015-10-31,Getafe,1,0,34,Regular Play,1,1,1,Neymar da Silva Santos Junior,0.2635
+xT carry,3825645,2015-10-31,Getafe,1,36,12,From Throw In,0,1,1,Luis Alberto Suárez Díaz,0.2136
+xT pass,266424,2015-11-21,Real Madrid,1,46,57,Regular Play,1,1,1,Neymar da Silva Santos Junior,0.1960
+xT pass,266885,2015-11-28,Real Sociedad,2,90,12,From Throw In,1,1,1,Neymar da Silva Santos Junior,0.2475
+xT carry,266670,2016-01-02,Espanyol,2,54,34,From Throw In,0,0,1,Luis Alberto Suárez Díaz,0.1773
+xT pass,266620,2016-01-09,Granada,1,7,6,From Free Kick,1,1,1,Arda Turan,0.2566
+xT pass,266620,2016-01-09,Granada,1,13,37,Regular Play,1,2,1,Luis Alberto Suárez Díaz,0.2031
+xT carry,266620,2016-01-09,Granada,2,82,41,Regular Play,0,1,1,Neymar da Silva Santos Junior,0.1960
+xT pass,266149,2016-01-17,Athletic Club,2,61,10,From Goal Kick,1,1,1,Neymar da Silva Santos Junior,0.2635
+xT pass,266149,2016-01-17,Athletic Club,2,67,57,Regular Play,1,2,1,Arda Turan,0.2854
+xT pass,266149,2016-01-17,Athletic Club,2,81,48,From Corner,1,1,1,Sergio Busquets i Burgos,0.2581
+xT pass,265894,2016-01-23,Málaga,2,50,52,Regular Play,1,1,1,Adriano Correia Claro,0.2585
+xT pass,266254,2016-02-14,Celta Vigo,2,46,24,From Throw In,1,1,1,Neymar da Silva Santos Junior,0.1960
+xT pass,267273,2016-02-20,Las Palmas,1,5,42,Regular Play,1,2,1,Jordi Alba Ramos,0.2406
+xT pass,267273,2016-02-20,Las Palmas,1,14,17,From Throw In,1,2,1,Andrés Iniesta Luján,0.2822
+xT pass,267273,2016-02-20,Las Palmas,1,26,44,From Free Kick,1,1,1,Lionel Andrés Messi Cuccittini,0.2607
+xT pass,267273,2016-02-20,Las Palmas,1,38,19,Regular Play,1,1,1,Luis Alberto Suárez Díaz,0.2540
+xT pass,267273,2016-02-20,Las Palmas,2,48,26,From Free Kick,1,1,1,Daniel Alves da Silva,0.2031
+xT pass,265839,2016-02-28,Sevilla,2,47,18,From Corner,1,1,1,Luis Alberto Suárez Díaz,0.2459
+xT pass,266653,2016-03-03,Rayo Vallecano,2,85,14,From Throw In,1,1,1,Jérémy Mathieu,0.2569
+xT pass,266056,2016-03-06,Eibar,1,7,7,From Throw In,1,1,1,Luis Alberto Suárez Díaz,0.2700
+xT pass,266498,2016-03-12,Getafe,1,30,9,From Corner,1,0,1,Andrés Iniesta Luján,0.1960
+xT pass,266557,2016-04-17,Valencia,1,21,38,From Corner,1,1,1,Javier Alejandro Mascherano,0.1960
+xT pass,266310,2016-04-20,RC Deportivo La Coruña,1,33,38,From Keeper,1,1,0,Daniel Alves da Silva,0.2540
+xT carry,266310,2016-04-20,RC Deportivo La Coruña,2,63,37,Regular Play,0,1,1,Neymar da Silva Santos Junior,0.2338
+xT pass,265944,2016-04-23,Sporting Gijón,1,2,49,Regular Play,1,1,1,Sergi Roberto Carnicer,0.2459
+xT pass,265944,2016-04-23,Sporting Gijón,2,62,58,Regular Play,1,1,1,Andrés Iniesta Luján,0.1976
+xT pass,265958,2016-05-08,Espanyol,1,36,55,From Corner,1,1,0,Lionel Andrés Messi Cuccittini,0.2566
+xT pass,265958,2016-05-08,Espanyol,2,82,15,From Throw In,1,1,1,Luis Alberto Suárez Díaz,0.1933
+xT pass,267506,2016-05-14,Granada,1,6,23,From Corner,1,1,1,Javier Alejandro Mascherano,0.1801
+xT pass,267506,2016-05-14,Granada,1,21,4,Regular Play,1,1,1,Jordi Alba Ramos,0.2406
+xT pass,267506,2016-05-14,Granada,1,37,13,Regular Play,1,1,1,Daniel Alves da Silva,0.2540
+xT pass,267506,2016-05-14,Granada,2,81,55,Regular Play,1,2,0,Luis Alberto Suárez Díaz,0.2777
+xT pass,267506,2016-05-14,Granada,2,87,33,From Counter,1,0,1,Neymar da Silva Santos Junior,0.2635

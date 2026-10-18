@@ -1,0 +1,41 @@
+family,match,date,opponent,half,minute,second,start_type,passes,duration_s,ended_in_shot,player,xt
+xT pass,3754237,2015-08-08,Sunderland,1,12,35,Regular Play,1,1,1,Jamie Vardy,0.2635
+xT pass,3754237,2015-08-08,Sunderland,1,28,45,From Throw In,1,2,1,Riyad Mahrez,0.2745
+xT carry,3754203,2015-08-15,West Ham United,1,30,42,From Throw In,0,0,0,Shinji Okazaki,0.1700
+xT pass,3754023,2015-08-29,AFC Bournemouth,2,77,37,From Goal Kick,1,2,0,N''Golo Kanté,0.2569
+xT pass,3754106,2015-09-13,Aston Villa,2,81,24,Regular Play,1,1,1,Danny Drinkwater,0.2585
+xT pass,3754106,2015-09-13,Aston Villa,2,88,31,Regular Play,1,2,1,Riyad Mahrez,0.1235
+xT pass,3754174,2015-09-26,Arsenal,2,88,5,From Throw In,1,2,1,Riyad Mahrez,0.2829
+xT pass,3754335,2015-10-03,Norwich City,1,6,36,Regular Play,1,1,1,Marc Albrighton,0.2581
+xT pass,3754335,2015-10-03,Norwich City,1,24,24,From Throw In,1,1,1,Jamie Vardy,0.1801
+xT pass,3754335,2015-10-03,Norwich City,1,29,21,From Throw In,1,1,1,Marc Albrighton,0.2745
+xT pass,3754335,2015-10-03,Norwich City,1,42,35,From Corner,1,2,1,Danny Simpson,0.2829
+xT pass,3754302,2015-10-17,Southampton,2,87,54,From Throw In,1,1,1,Nathan Dyer,0.2767
+xT carry,3754263,2015-10-24,Crystal Palace,2,58,53,From Counter,0,1,1,Jamie Vardy,0.1467
+xT pass,3754006,2015-10-31,West Bromwich Albion,2,56,29,Regular Play,1,2,1,Marc Albrighton,0.2635
+xT pass,3754006,2015-10-31,West Bromwich Albion,2,63,46,Regular Play,1,2,1,Marc Albrighton,0.2727
+xT carry,3754006,2015-10-31,West Bromwich Albion,2,76,18,Regular Play,0,3,1,Jamie Vardy,0.1235
+xT pass,3754211,2015-11-21,Newcastle United,1,7,23,Regular Play,1,1,1,Riyad Mahrez,0.2459
+xT pass,3754211,2015-11-21,Newcastle United,2,61,5,Regular Play,1,2,1,Riyad Mahrez,0.2619
+xT pass,3754211,2015-11-21,Newcastle United,2,79,45,From Corner,1,1,1,Marc Albrighton,0.2540
+xT pass,3754166,2015-12-19,Everton,1,9,54,From Corner,1,1,1,Marc Albrighton,0.2585
+xT pass,3754343,2015-12-26,Liverpool,2,73,29,From Free Kick,1,1,1,Christian Fuchs,0.2795
+xT pass,3754343,2015-12-26,Liverpool,2,88,37,From Throw In,1,1,1,José Leonardo Ulloa,0.1773
+xT carry,3754065,2016-01-13,Tottenham Hotspur,1,22,16,Regular Play,0,1,1,Shinji Okazaki,0.1467
+xT pass,3754250,2016-01-16,Aston Villa,2,66,8,Regular Play,1,1,1,Jamie Vardy,0.2475
+xT pass,3754275,2016-02-02,Liverpool,1,7,54,Regular Play,1,1,1,Jamie Vardy,0.2539
+xT pass,3754290,2016-02-06,Manchester City,1,21,42,Regular Play,1,1,1,Jamie Vardy,0.2635
+xT pass,3754290,2016-02-06,Manchester City,2,58,40,From Free Kick,1,1,0,Jamie Vardy,0.2635
+xT pass,3754261,2016-02-14,Arsenal,1,15,13,Regular Play,1,2,1,Marc Albrighton,0.2804
+xT pass,3754049,2016-02-27,Norwich City,1,12,39,Regular Play,1,1,1,Jamie Vardy,0.2540
+xT pass,3754231,2016-03-01,West Bromwich Albion,1,36,19,Regular Play,1,1,1,Danny Drinkwater,0.2699
+xT pass,3754231,2016-03-01,West Bromwich Albion,2,56,26,From Throw In,1,2,1,Marc Albrighton,0.2622
+xT pass,3754289,2016-03-05,Watford,1,22,12,Regular Play,1,0,1,Riyad Mahrez,0.2540
+xT pass,3754289,2016-03-05,Watford,2,58,16,From Free Kick,1,2,1,N''Golo Kanté,0.2777
+xT pass,3754002,2016-03-14,Newcastle United,2,87,16,Regular Play,1,1,1,Christian Fuchs,0.2782
+xT pass,3753982,2016-04-03,Southampton,1,2,58,From Corner,1,2,1,Shinji Okazaki,0.2700
+xT carry,3754152,2016-04-10,Sunderland,2,70,3,Regular Play,0,8,0,Riyad Mahrez,0.1315
+xT pass,3754152,2016-04-10,Sunderland,2,70,11,Regular Play,1,1,0,Riyad Mahrez,0.1467
+xT pass,3754165,2016-05-01,Manchester United,1,11,20,From Free Kick,1,1,1,Riyad Mahrez,0.2540
+xT pass,3754033,2016-05-07,Everton,1,4,56,From Throw In,1,1,1,Andrew Philip King,0.2607
+xT pass,3754033,2016-05-07,Everton,1,9,38,From Free Kick,1,1,1,Riyad Mahrez,0.2784

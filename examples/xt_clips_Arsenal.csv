@@ -1,0 +1,41 @@
+family,match,date,opponent,half,minute,second,start_type,passes,duration_s,ended_in_shot,player,xt
+xT pass,3754312,2015-08-16,Crystal Palace,2,54,15,From Throw In,1,2,1,Héctor Bellerín Moruno,0.2619
+xT pass,3754129,2015-08-24,Liverpool,1,4,46,Regular Play,1,2,1,Ignacio Monreal Eraso,0.2659
+xT carry,3754129,2015-08-24,Liverpool,2,59,30,Regular Play,0,1,1,Alexis Alejandro Sánchez Sánchez,0.1700
+xT pass,3754205,2015-08-29,Newcastle United,1,38,32,From Corner,1,0,1,Alexis Alejandro Sánchez Sánchez,0.2581
+xT pass,3754240,2015-09-12,Stoke City,1,2,34,From Free Kick,1,2,1,Santiago Cazorla González,0.2644
+xT pass,3754240,2015-09-12,Stoke City,2,91,58,Regular Play,1,0,0,Héctor Bellerín Moruno,0.1871
+xT pass,3754217,2015-09-19,Chelsea,2,91,56,From Throw In,1,2,1,Olivier Giroud,0.2635
+xT pass,3754174,2015-09-26,Leicester City,2,56,53,Regular Play,1,1,1,Mesut Özil,0.2672
+xT pass,3754174,2015-09-26,Leicester City,2,90,22,From Counter,1,1,1,Santiago Cazorla González,0.2459
+xT pass,3754171,2015-10-04,Manchester United,1,5,12,Regular Play,1,1,1,Mesut Özil,0.2540
+xT pass,3753999,2015-10-17,Watford,1,27,59,Regular Play,1,2,1,Alexis Alejandro Sánchez Sánchez,0.2635
+xT pass,3753999,2015-10-17,Watford,2,67,2,From Free Kick,1,1,1,Mesut Özil,0.1773
+xT pass,3754126,2015-10-24,Everton,1,35,35,From Throw In,1,2,1,Mesut Özil,0.2829
+xT carry,3753983,2015-10-31,Swansea City,2,67,47,From Free Kick,0,0,1,Laurent Koscielny,0.1773
+xT pass,3754265,2015-11-08,Tottenham Hotspur,2,76,0,Regular Play,1,2,1,Mesut Özil,0.2862
+xT pass,3754301,2015-11-21,West Bromwich Albion,2,66,53,From Throw In,1,2,1,Santiago Cazorla González,0.2585
+xT pass,3754301,2015-11-21,West Bromwich Albion,2,74,51,Regular Play,1,2,0,Héctor Bellerín Moruno,0.2740
+xT pass,3754301,2015-11-21,West Bromwich Albion,2,90,18,Regular Play,1,1,1,Mathieu Flamini,0.2540
+xT pass,3754038,2015-11-29,Norwich City,1,18,42,Regular Play,1,1,1,Ignacio Monreal Eraso,0.2729
+xT pass,3754038,2015-11-29,Norwich City,2,76,2,From Throw In,1,1,1,Alex Oxlade-Chamberlain,0.2617
+xT pass,3754309,2015-12-26,Southampton,2,79,10,Regular Play,1,1,1,Ignacio Monreal Eraso,0.2566
+xT pass,3754173,2015-12-28,AFC Bournemouth,2,68,59,Regular Play,1,2,1,Héctor Bellerín Moruno,0.2829
+xT pass,3754069,2016-01-02,Newcastle United,1,7,17,From Corner,1,1,0,Per Mertesacker,0.2136
+xT pass,3754069,2016-01-02,Newcastle United,2,47,48,Regular Play,1,1,1,Ignacio Monreal Eraso,0.2699
+xT pass,3754069,2016-01-02,Newcastle United,2,49,17,From Goal Kick,1,1,1,Mesut Özil,0.2771
+xT carry,3754069,2016-01-02,Newcastle United,2,78,13,From Throw In,0,0,1,Olivier Giroud,0.1700
+xT pass,3754305,2016-01-13,Liverpool,1,27,46,Regular Play,1,1,1,Theo Walcott,0.2700
+xT pass,3754201,2016-02-02,Southampton,1,43,59,From Throw In,1,1,0,Joel Nathaniel Campbell Samuels,0.2540
+xT pass,3754201,2016-02-02,Southampton,2,54,16,Regular Play,1,2,1,Héctor Bellerín Moruno,0.2777
+xT pass,3754201,2016-02-02,Southampton,2,66,53,From Corner,1,2,1,Mesut Özil,0.2745
+xT pass,3754201,2016-02-02,Southampton,2,67,44,From Corner,1,2,1,Mesut Özil,0.2805
+xT pass,3754261,2016-02-14,Leicester City,2,54,49,From Free Kick,1,2,1,Aaron Ramsey,0.2805
+xT pass,3754261,2016-02-14,Leicester City,2,86,2,Regular Play,1,2,1,Olivier Giroud,0.1773
+xT pass,3754261,2016-02-14,Leicester City,2,90,1,From Throw In,1,1,0,Alexis Alejandro Sánchez Sánchez,0.2607
+xT pass,3753976,2016-03-02,Swansea City,1,14,12,Regular Play,1,1,1,Alexis Alejandro Sánchez Sánchez,0.2766
+xT pass,3754241,2016-04-09,West Ham United,2,69,50,From Corner,1,0,1,Daniel Nii Tackie Mensah Welbeck,0.1773
+xT pass,3754284,2016-04-21,West Bromwich Albion,2,87,54,From Throw In,1,1,1,Joel Nathaniel Campbell Samuels,0.2635
+xT pass,3754041,2016-05-15,Aston Villa,1,32,27,Regular Play,1,2,1,Alexis Alejandro Sánchez Sánchez,0.2539
+xT pass,3754041,2016-05-15,Aston Villa,1,34,40,Regular Play,1,2,1,Mesut Özil,0.2809
+xT pass,3754041,2016-05-15,Aston Villa,2,77,45,Regular Play,1,1,1,Mesut Özil,0.2635

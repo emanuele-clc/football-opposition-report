@@ -8,7 +8,7 @@ import numpy as np
 TEAM = sys.argv[1]; BASE = sys.argv[2] if len(sys.argv) > 2 else "."; fn = TEAM.replace(" ", "_")
 load = lambda kind, f=fn: json.load(open(f"{BASE}/{kind}_{f}.json", encoding="utf-8")) if os.path.exists(f"{BASE}/{kind}_{f}.json") else None
 others = lambda kind: {os.path.basename(p)[len(kind) + 1:-5].replace("_", " "): json.load(open(p, encoding="utf-8")) for p in glob.glob(f"{BASE}/{kind}_*.json") if os.path.basename(p) != f"{kind}_{fn}.json"}
-REP, RS, SP, TR = load("report"), load("restarts"), load("setpieces"), load("transitions")
+REP, RS, SP, TR, XT = load("report"), load("restarts"), load("setpieces"), load("transitions"), load("xthreat")
 if REP is None: sys.exit(f"report_{fn}.json not found in {BASE}: run oppreport.py first")
 pc = lambda x: f"{100 * x:.1f}%" if 0 < x < 0.01 else f"{100 * x:.0f}%"
 
@@ -54,11 +54,15 @@ if TR:
                   + compare("transitions", lambda d: d["losses"]["per_match"], l["per_match"], "losses per match")))
     ft = r["by_third"].get("final third")
     if ft: facts.append(("Winning the ball high", f"{ft['per_match']:.1f} recoveries per match in the final third, shot within 10 s after {pc(ft['shot10'])} of them." + compare("transitions", lambda d: d["recoveries"]["by_third"]["final third"]["per_match"], ft["per_match"], "high recoveries")))
+if XT:
+    x = XT["xt"]; who = XT["players"][0] if XT["players"] else None
+    facts.append(("Moving the ball into danger", f"{x['per_match']:.2f} xT added per match by completed passes and carries (carries {pc(XT['xt_carry']['per_match'] / x['per_match'])})"
+                  + (f"; most by {H.escape(who['player'])} ({pc(who['share'])} of the team's)" if who and who["share"] else "") + "." + compare("xthreat", lambda d: d["xt"]["per_match"], x["per_match"], "xT added")))
 fam = REP["phases"]["build-up"]; top = max(fam["families"], key=lambda r: r["share"])
 facts.append(("Most common build-up family", f"{top['fam']}: {pc(top['share'])} of build-up sequences, from x {top['x0']:.0f} to {top['x1']:.0f}, {top['passes']:.1f} passes, shot rate {pc(top['shot'])}. Structure check: {fam['verdict']}."))
 
 refs = sorted(set(others("report")) | set(others("restarts")))
-links = [(f"report_{fn}.html", "Sequence families and style"), (f"restarts_{fn}.html", "Goal kicks, keeper, throw-ins"), (f"setpieces_{fn}.html", "Corners and free kicks"), (f"transitions_{fn}.html", "Losses, recoveries, transitions")]
+links = [(f"report_{fn}.html", "Sequence families and style"), (f"restarts_{fn}.html", "Goal kicks, keeper, throw-ins"), (f"setpieces_{fn}.html", "Corners and free kicks"), (f"transitions_{fn}.html", "Losses, recoveries, transitions"), (f"xthreat_{fn}.html", "Threat (xT)")]
 css = ("body{font-family:Arial,sans-serif;max-width:900px;margin:20px auto;color:#222;font-size:13.5px}h1{color:#1F3A5F;margin-bottom:0}.sub{color:#666;font-size:11.5px;margin-bottom:12px}"
        "table{border-collapse:collapse;width:100%}td{border-bottom:1px solid #ddd;padding:7px 6px;vertical-align:top}td:first-child{font-weight:bold;color:#1F3A5F;width:170px}"
        ".ref{color:#666;font-size:11.5px}.chk{background:#FFF4D6;font-size:11.5px;padding:0 4px}.links a{margin-right:14px}.small{color:#666;font-size:11px;margin-top:12px}@media print{.links{display:none}}")

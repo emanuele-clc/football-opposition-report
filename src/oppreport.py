@@ -4,7 +4,7 @@ Da eventi in CSV generico (qualunque fornitore, vedi docs/data_format.md):
 Da dati aperti StatsBomb gia' scaricati:
     python src/oppreport.py --statsbomb matches/9_281.json --data-dir <cartella dati> --team "Bayer Leverkusen" --out reports
 Produce in --out: prep_<Squadra>.html (una pagina di preparazione partita con i fatti principali e i link alle schede), report_<Squadra>.html (e .json), clips_<Squadra>.csv (tutte le sequenze con la famiglia e il tempo video), review_<Squadra>.csv/.html (scheda per l'analista),
-restarts_<Squadra>.html (uscite da rinvio, portiere e rimesse) con restart_clips_<Squadra>.csv, setpieces_<Squadra>.html (corner e punizioni) con setpiece_clips_<Squadra>.csv, transitions_<Squadra>.html (perdite, recuperi, transizioni) con transition_clips_<Squadra>.csv; con --xml anche xml/ (un file per partita da importare nel programma video)."""
+restarts_<Squadra>.html (uscite da rinvio, portiere e rimesse) con restart_clips_<Squadra>.csv, setpieces_<Squadra>.html (corner e punizioni) con setpiece_clips_<Squadra>.csv, transitions_<Squadra>.html (perdite, recuperi, transizioni) con transition_clips_<Squadra>.csv, xthreat_<Squadra>.html (minaccia xT di passaggi e conduzioni) con xt_clips_<Squadra>.csv; con --xml anche xml/ (un file per partita da importare nel programma video)."""
 import argparse, os, sys, subprocess, shutil
 ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 ap.add_argument("--team", required=True); ap.add_argument("--out", default="reports"); ap.add_argument("--csv"); ap.add_argument("--statsbomb"); ap.add_argument("--data-dir", default=".")
@@ -37,12 +37,15 @@ r = subprocess.run(py + [os.path.join(here, "report", "matchups.py"), mf, a.team
 if r.returncode: print("Scheda dei confronti per avversario saltata: servono eventi difensivi e moduli in stile StatsBomb.")
 r = subprocess.run(py + [os.path.join(here, "report", "keyplayers.py"), mf, a.team, base], env=env)
 if r.returncode: print("Giocatori chiave saltati: servono gli eventi in stile StatsBomb.")
+r = subprocess.run(py + [os.path.join(here, "report", "xthreat.py"), mf, a.team, base], env=env)
+if r.returncode: print("Scheda della minaccia (xT) saltata: servono gli esiti dei passaggi in stile StatsBomb, assenti nel CSV generico.")
 r = subprocess.run(py + [os.path.join(here, "report", "summary.py"), a.team, base], env=env)
 if r.returncode: sys.exit("Pagina di preparazione fallita.")
 fn = a.team.replace(" ", "_")
-for f in (f"prep_{fn}.html", f"report_{fn}.html", f"report_{fn}.json", f"clips_{fn}.csv", f"review_{fn}.csv", f"review_{fn}.html", f"restarts_{fn}.html", f"restarts_{fn}.json", f"restart_clips_{fn}.csv", f"setpieces_{fn}.html", f"setpieces_{fn}.json", f"setpiece_clips_{fn}.csv", f"transitions_{fn}.html", f"transitions_{fn}.json", f"transition_clips_{fn}.csv", f"defending_{fn}.html", f"defending_{fn}.json", f"matchups_{fn}.json", f"keyplayers_{fn}.json"):
+for f in (f"prep_{fn}.html", f"report_{fn}.html", f"report_{fn}.json", f"clips_{fn}.csv", f"review_{fn}.csv", f"review_{fn}.html", f"restarts_{fn}.html", f"restarts_{fn}.json", f"restart_clips_{fn}.csv", f"setpieces_{fn}.html", f"setpieces_{fn}.json", f"setpiece_clips_{fn}.csv", f"transitions_{fn}.html", f"transitions_{fn}.json", f"transition_clips_{fn}.csv", f"defending_{fn}.html", f"defending_{fn}.json", f"matchups_{fn}.json", f"keyplayers_{fn}.json", f"xthreat_{fn}.html", f"xthreat_{fn}.json", f"xt_clips_{fn}.csv"):
     if os.path.exists(os.path.join(base, f)): shutil.copy(os.path.join(base, f), os.path.join(out, f))
 if a.xml:
-    for c in (f"clips_{fn}.csv", f"restart_clips_{fn}.csv", f"setpiece_clips_{fn}.csv", f"transition_clips_{fn}.csv"):
+    for c in (f"clips_{fn}.csv", f"restart_clips_{fn}.csv", f"setpiece_clips_{fn}.csv", f"transition_clips_{fn}.csv", f"xt_clips_{fn}.csv"):
+        if not os.path.exists(os.path.join(out, c)): continue
         subprocess.run(py + [os.path.join(here, "report", "clips_to_xml.py"), os.path.join(out, c), os.path.join(out, "xml", c[:-4])] + (["--video-offsets", os.path.abspath(a.video_offsets)] if a.video_offsets else []))
-print(f"Fatto. Apri {os.path.join(out, f'prep_{fn}.html')}. Altri file: report_{fn}.html, restarts_{fn}.html, setpieces_{fn}.html, transitions_{fn}.html, defending_{fn}.html, matchups_{fn}.json (sezione Matchups dell'app), clips_{fn}.csv, restart_clips_{fn}.csv, review_{fn}.csv/.html" + (", xml/" if a.xml else ""))
+print(f"Fatto. Apri {os.path.join(out, f'prep_{fn}.html')}. Altri file: report_{fn}.html, restarts_{fn}.html, setpieces_{fn}.html, transitions_{fn}.html, defending_{fn}.html, xthreat_{fn}.html, matchups_{fn}.json (sezione Matchups dell'app), clips_{fn}.csv, restart_clips_{fn}.csv, review_{fn}.csv/.html" + (", xml/" if a.xml else ""))
