@@ -39,7 +39,7 @@ def events_view(team_name, match_ids, ev_dir, meta=None):
 
     goals = []
     Z = {(i, j): {"passes": 0, "under_pressure": 0, "up_ok": 0, "free_ok": 0, "up_long": 0, "up_lost": 0} for i in range(3) for j in range(3)}
-    zone = lambda l: (next(i for i, v in enumerate(ZX) if l[0] < v), next(j for j, v in enumerate(ZY) if l[1] <= v)) if l and l[0] < 60 else None
+    zone = lambda l: (next(i for i, v in enumerate(ZX) if l[0] < v), next(j for j, v in enumerate(ZY) if min(l[1], 80) <= v)) if l and l[0] < 60 else None   # a few events lie just off the pitch (y 80.4)
     starters = {}
     F = {(i, j): {"fouls": 0, "cards": 0} for i in range(3) for j in range(3)}
 
