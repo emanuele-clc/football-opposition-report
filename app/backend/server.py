@@ -127,7 +127,7 @@ def get_evidence():
     return {"available": True, "source": "results/evidence_grade_corrected.json", "set": ev["set"], "n_teams": ev["n_teams"], "grades": ev["grades"],
             "sanity_checks": ev["sanity_checks"], "statements": ev["statements"], "dropped": ev.get("correction", {}).get("dropped_team_matches", {}),
             "provider": {c: {k: v for k, v in r.items() if k in ("label", "seen_before", "why")} for c, r in prov["statements"].items()} if prov else None,
-            "shown_in_app": shown}
+            "provider_matches": prov["matches"] if prov else None, "shown_in_app": shown}
 
 
 def ranks(key):

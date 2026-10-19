@@ -713,7 +713,7 @@ a.grade:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
 .ev-items li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 8px 6px; margin: 0 -6px; border-top: 1px solid var(--sticker-line); font-size: 14px; line-height: 1.3; border-radius: 6px; transition: background-color 200ms; }
 .ev-items li.sel { background: rgba(255, 210, 63, 0.35); }
 .ev-inapp { font-size: 11px; font-weight: 750; color: var(--sticker-ink-2); white-space: nowrap; }
-.ev-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 28px; }
+.ev-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px 28px; }
 .ev-steps li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
 .ev-steps .dot { width: 34px; height: 34px; border-radius: 50%; background: var(--board-raised); box-shadow: inset 0 0 0 1.5px var(--board-line); display: grid; place-items: center; font-style: italic; font-stretch: 62%; font-weight: 900; font-size: 19px; }
 .ev-steps p { font-size: 15px; line-height: 1.5; max-width: 60ch; }

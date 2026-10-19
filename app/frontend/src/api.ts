@@ -104,7 +104,7 @@ export interface EvStatement {
 export interface Evidence {
   available: boolean; source?: string; set?: string; n_teams?: number; grades?: Record<Grade, number>;
   sanity_checks?: Record<string, boolean>; statements?: Record<string, EvStatement>; dropped?: Record<string, number[]>;
-  provider?: Record<string, { label: string; seen_before?: boolean; why?: string }> | null; shown_in_app?: Record<string, string[]>;
+  provider?: Record<string, { label: string; seen_before?: boolean; why?: string }> | null; shown_in_app?: Record<string, string[]>; provider_matches?: number | null;
 }
 export interface TeamSummary { key: string; team: string; matches: number; period: string; sequences: number; sheets: string[]; clips: string[] }
 export interface TeamData extends TeamSummary {

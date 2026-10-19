@@ -76,6 +76,8 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
   const helps = rows.filter(([, r]) => r.forecast !== "none").length;
   const apart = rows.filter(([, r]) => r.discrimination === "high" || r.discrimination === "medium").length, withD = rows.filter(([, r]) => r.discrimination !== "n/a").length;
   const l5worse = rows.filter(([, r]) => r.last5_verdict === "season better").length;
+  const pv = Object.values(ev.provider ?? {}).filter((p) => p.label !== "not testable");
+  const prov = ev.provider ? { same: pv.filter((p) => p.label === "same in Wyscout").length, total: pv.length } : null;
   const cov = rows.map(([, r]) => r.coverage_80), sc = Object.entries(ev.sanity_checks ?? {}), dropped = Object.entries(ev.dropped ?? {});
 
   return (
@@ -114,6 +116,7 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
           <li><span className="dot" aria-hidden="true">1</span><p>{`Most numbers (${apart} of ${withD}) really differ between teams. But only ${helps} of ${rows.length} help you guess the next match, and only ${ev.grades?.A ?? 0} clearly. Knowing a team's season is not the same as knowing what it will do on Saturday.`}</p></li>
           <li><span className="dot" aria-hidden="true">2</span><p>{`The last 5 matches mislead: the whole season guessed the next match better for ${l5worse} of ${rows.length} numbers. If something changed in the last 5, check it on video before you believe it.`}</p></li>
           <li><span className="dot" aria-hidden="true">3</span><p>{`The ranges the report shows are honest: a range meant to hold 8 times out of 10 held between ${pc(Math.min(...cov))} and ${pc(Math.max(...cov))} of the time.`}</p></li>
+          {prov && <li><span className="dot" aria-hidden="true">4</span><p>{`With another data provider (Wyscout, same ${ev.provider_matches} Barcelona matches) only ${prov.same} of ${prov.total} numbers came out the same. Compare numbers only between data from the same provider. One team only, so read this as a warning, not a measure.`}</p></li>}
         </ol>
       </section>
 
