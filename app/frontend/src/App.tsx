@@ -5,6 +5,7 @@ import { Icon } from "./charts";
 import Clips from "./views/Clips";
 import Compare from "./views/Compare";
 import Defending from "./views/Defending";
+import Evidence from "./views/Evidence";
 import GamePlan from "./views/GamePlan";
 import CoachSheet from "./views/CoachSheet";
 import Goals from "./views/Goals";
@@ -21,19 +22,19 @@ import TrackingLab from "./views/TrackingLab";
 import { LANGS, setLanguage, storedLanguage, type Lang } from "./i18n";
 
 const TABS: [string, string][] = [
-  ["overview", "Overview"], ["gameplan", "Game plan"], ["goals", "Goals"], ["build-up", "Families"], ["restarts", "Restarts"],
+  ["overview", "Overview"], ["gameplan", "Game plan"], ["evidence", "Evidence"], ["goals", "Goals"], ["build-up", "Families"], ["restarts", "Restarts"],
   ["setpieces", "Set pieces"], ["threat", "Threat"], ["transitions", "Transitions"], ["defending", "Defending"], ["matchups", "Matchups"], ["clips", "Clips"], ["compare", "Compare"], ["tracking", "Tracking lab"], ["review", "Review"],
 ];
-/* Fourteen sections in five groups: the top bar names the group, the row under the team name the section. */
+/* Fifteen sections in five groups: the top bar names the group, the row under the team name the section. */
 const GROUPS: [string, string[]][] = [
-  ["Summary", ["overview", "gameplan"]],
+  ["Summary", ["overview", "gameplan", "evidence"]],
   ["With the ball", ["build-up", "threat", "restarts", "setpieces", "goals"]],
   ["Without the ball", ["transitions", "defending"]],
   ["Context", ["matchups", "compare", "tracking"]],
   ["Video & review", ["clips", "review"]],
 ];
 const groupOf = (tab: string) => GROUPS.find(([, t]) => t.includes(tab === "advanced" ? "build-up" : tab === "coach" ? "gameplan" : tab)) ?? GROUPS[0];
-const TOUR = ["overview", "gameplan", "goals", "build-up", "threat", "restarts", "setpieces", "transitions", "defending", "compare"];
+const TOUR = ["overview", "gameplan", "goals", "build-up", "threat", "restarts", "setpieces", "transitions", "defending", "compare", "evidence"];
 const TOUR_MS = 15000;
 
 // Route: #/<team key>/<tab>[/<clip list>][?family=B1]
@@ -190,6 +191,7 @@ export default function App() {
             {route.tab === "threat" && <Threat d={current} events={events} go={go} />}
             {route.tab === "transitions" && <Transitions d={current} events={events} go={go} />}
             {route.tab === "defending" && <Defending d={current} />}
+            {route.tab === "evidence" && <Evidence d={current} focus={route.family} />}
             {route.tab === "gameplan" && teams && <GamePlan d={current} teams={teams} events={events} />}
             {route.tab === "coach" && <CoachSheet d={current} />}
             {route.tab === "goals" && <Goals d={current} events={events} />}

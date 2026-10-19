@@ -79,7 +79,7 @@ METRICS = [
     ("corner_shot", "Set pieces", "Corners: shot after", "setpieces", lambda d: d["kinds"]["Corner"]["shot"], lambda d: d["kinds"]["Corner"]["shot_ci"], "pct", None),
     ("losses_pm", "Transitions", "Losses per match", "transitions", lambda d: d["losses"]["per_match"], None, "num", None),
     ("regain5", "Transitions", "Ball regained within 5 s of a loss", "transitions", lambda d: d["losses"]["regain5"], lambda d: d["losses"]["regain5_ci"], "pct",
-     "The counter-press share varied little between the teams we tested (17-19%): it describes, it does not separate styles."),
+     "The counter-press share varies little between teams (17-19% in the teams first tested). Over 70 teams the small differences are real over a season, but a team's season value does not forecast its next match better than the league average (evidence grade C)."),
     ("high_rec_pm", "Transitions", "Recoveries per match in the final third", "transitions", lambda d: d["recoveries"]["by_third"]["final third"]["per_match"],
      lambda d: d["recoveries"]["by_third"]["final third"]["per_match_ci"], "num", None),
     ("xt_pm", "Threat", "xT added per match by passes and carries", "xthreat", lambda d: d["xt"]["per_match"], lambda d: d["xt"]["ci"], "num2",
@@ -97,7 +97,41 @@ METRICS = [
 ]
 
 
+# Evidence grade (docs/protocol_evidence_grade.md): grades of statement types, read from the committed results, never recomputed here.
+# The corrected confirmatory run is used (protocol note 1); the original stays in results/ unedited.
+EVIDENCE = os.path.join(ROOT, "results", "evidence_grade_corrected.json")
+PROVIDER = os.path.join(ROOT, "results", "evidence_provider_Barcelona.json")
+# Rank measure -> graded statement, only where the definition is the same (recoveries per match in the final third is not T21, a share; no grade).
+RANK_STATEMENT = {"passes": "S02", "long": "S03", "dur": "S06", "shot": "S05", "buildup_share": "S04", "gk_short": "R09", "gk_opp_half": "R10", "kp_short": "R12",
+                  "corner_pm": "P14", "corner_shot": "P17", "losses_pm": "T18", "regain5": "T20", "xt_pm": "A31", "up_compl": "A32", "ppda": "D23",
+                  "press_pm": "D24", "press_final": "D25", "def_height": "D26", "xga_pm": "D28"}
+
+
+@functools.lru_cache(maxsize=1)
+def _evidence(mtime):
+    return json.load(open(EVIDENCE, encoding="utf-8"))
+
+
+def evidence():
+    return _evidence(os.path.getmtime(EVIDENCE)) if os.path.exists(EVIDENCE) else None
+
+
+@app.get("/api/evidence")
+def get_evidence():
+    ev = evidence()
+    if ev is None: return {"available": False}
+    prov = json.load(open(PROVIDER, encoding="utf-8")) if os.path.exists(PROVIDER) else None
+    shown = {}
+    for mid, _, label, *_ in METRICS:
+        if mid in RANK_STATEMENT: shown.setdefault(RANK_STATEMENT[mid], []).append(label)
+    return {"available": True, "source": "results/evidence_grade_corrected.json", "set": ev["set"], "n_teams": ev["n_teams"], "grades": ev["grades"],
+            "sanity_checks": ev["sanity_checks"], "statements": ev["statements"], "dropped": ev.get("correction", {}).get("dropped_team_matches", {}),
+            "provider": {c: {k: v for k, v in r.items() if k in ("label", "seen_before", "why")} for c, r in prov["statements"].items()} if prov else None,
+            "shown_in_app": shown}
+
+
 def ranks(key):
+    ev = (evidence() or {}).get("statements", {})
     cache = {s: {k: load(s, k) for k in teams()} for s in SHEETS}
     out = []
     for mid, group, label, sheet, get, getci, unit, caution in METRICS:
@@ -114,7 +148,8 @@ def ranks(key):
             try: ci = getci(cache[sheet][key])
             except (KeyError, TypeError): ci = None
         out.append({"id": mid, "group": group, "label": label, "sheet": sheet, "unit": unit, "caution": caution, "value": mine["value"], "ci": ci,
-                    "rank": [v["key"] for v in vals].index(key) + 1, "of": len(vals), "teams": vals})
+                    "rank": [v["key"] for v in vals].index(key) + 1, "of": len(vals), "teams": vals,
+                    "statement": RANK_STATEMENT.get(mid), "grade": ev.get(RANK_STATEMENT.get(mid), {}).get("grade")})
     return out
 
 
@@ -295,13 +330,26 @@ def possession_path(ev, team_name, half, minute, second):
     return [[round(x, 1), round(y, 1)] for x, y in pts]
 
 
+def _read_cache(path):
+    """None when missing or unreadable (e.g. left half-written by a crash): the caller rebuilds it."""
+    try: return json.load(open(path, encoding="utf-8"))
+    except (OSError, ValueError): return None
+
+
+def _write_cache(path, obj):
+    """Write to a temporary file and rename: a request running in parallel never reads a half-written cache."""
+    os.makedirs(os.path.dirname(path), exist_ok=True); tmp = f"{path}.{uuid.uuid4().hex}.tmp"
+    with open(tmp, "w", encoding="utf-8") as f: json.dump(obj, f, ensure_ascii=False)
+    os.replace(tmp, path)
+
+
 @app.get("/api/teams/{key}/paths")
 def paths(key: str):
     """Cached in <data>/app_cache. Needs <data>/ev."""
     team_name = need(key)["team"]; cache = os.path.join(DATA, "app_cache", f"paths_{key}.json")
     if os.path.exists(cache) and os.path.getmtime(cache) >= os.path.getmtime(os.path.join(DATA, f"clips_{key}.csv")):
-        res = json.load(open(cache, encoding="utf-8"))
-        if all("at" in q for q in res["paths"]): return res
+        res = _read_cache(cache)
+        if res and all("at" in q for q in res["paths"]): return res
     if not os.path.isdir(os.path.join(DATA, "ev")): raise HTTPException(404, "Paths need the raw event files in <data>/ev.")
     out, rows = [], clip_index(key)
     by_match = {}
@@ -312,7 +360,7 @@ def paths(key: str):
             pts = possession_path(ev, team_name, int(r["half"]), int(r["minute"]), int(r["second"]))
             if pts: out.append({"family": r["family"], "shot": int(r["ended_in_shot"]), "pts": pts, "at": [int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"])]})
     res = {"team": team_name, "n": len(out), "of": len(rows), "paths": out}
-    os.makedirs(os.path.dirname(cache), exist_ok=True); json.dump(res, open(cache, "w", encoding="utf-8"))
+    _write_cache(cache, res)
     return res
 
 
@@ -331,8 +379,9 @@ def cached(key, name, build):
     if not os.path.isdir(os.path.join(DATA, "ev")): raise HTTPException(404, "This view needs the raw event files in <data>/ev.")
     cache = os.path.join(DATA, "app_cache", f"{name}_{key}.json")
     if os.path.exists(cache) and os.path.getmtime(cache) >= os.path.getmtime(os.path.join(DATA, f"report_{key}.json")):
-        return json.load(open(cache, encoding="utf-8"))
-    res = build(); os.makedirs(os.path.dirname(cache), exist_ok=True); json.dump(res, open(cache, "w", encoding="utf-8"), ensure_ascii=False)
+        res = _read_cache(cache)
+        if res is not None: return res
+    res = build(); _write_cache(cache, res)
     return res
 
 

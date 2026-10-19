@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
-import { api, type Action, type ClipRef, type Family, type NetworkData, type PathsData, type Rank, type Replay as ReplayData } from "./api";
+import { api, type Action, type ClipRef, type Family, type Grade, type NetworkData, type PathsData, type Rank, type Replay as ReplayData } from "./api";
 import { clock, fmt, n1, ordinal, pc } from "./format";
 
 /* Each family wears one ribbon colour; its code is always printed on it, so colour is never the only cue. */
@@ -239,6 +239,23 @@ export function ShareStrip({ families, pick, onPick }: { families: Family[]; pic
 }
 
 /* This team's value among every team in the data folder, placed by value. Hover, or focus and use the arrow keys, to name each dot. */
+/* Evidence grade of a type of number (docs/protocol_evidence_grade.md). Ink only, from solid (A) to dashed (D): grades are not families,
+   so they take no ribbon colour, and the letter is always printed. */
+export const GRADE_SAYS: Record<Grade, string> = {
+  A: "Tells teams apart and clearly helps forecast their next match.",
+  B: "Tells teams apart and helps a little to forecast their next match.",
+  C: "Tells teams apart or helps forecast the next match, not both.",
+  D: "Neither tells teams apart nor helps forecast the next match.",
+};
+export function GradeMark({ g, href }: { g?: Grade | null; href?: string }) {
+  if (!g) return null;
+  const label = `Evidence grade ${g}. ${GRADE_SAYS[g]}`;
+  return href
+    ? <a className={`grade g-${g}`} href={href} title={label} aria-label={label}>{g}</a>
+    : <span className={`grade g-${g}`} title={label} role="img" aria-label={label}>{g}</span>;
+}
+export const evidenceHref = (key: string, statement?: string | null) => `#/${encodeURIComponent(key)}/evidence${statement ? `?family=${statement}` : ""}`;
+
 export function RankRow({ r, current }: { r: Rank; current: string }) {
   const [hot, setHot] = useState<number | null>(null);
   const id = useId();
@@ -254,7 +271,7 @@ export function RankRow({ r, current }: { r: Rank; current: string }) {
   const t = hot !== null ? r.teams[hot] : null;
   return (
     <div className="rank-row">
-      <span className="lab">{r.label}{r.ci && <small>95%: {fmt(r.ci[0], r.unit)}–{fmt(r.ci[1], r.unit)}</small>}</span>
+      <span className="lab"><GradeMark g={r.grade} href={evidenceHref(current, r.statement)} />{r.label}{r.ci && <small>95%: {fmt(r.ci[0], r.unit)}–{fmt(r.ci[1], r.unit)}</small>}</span>
       <span className="val">{fmt(r.value, r.unit)}</span>
       <div className="track-cell">
         <div className="track" tabIndex={0} role="group" onKeyDown={key} onBlur={() => setHot(null)} onMouseLeave={() => setHot(null)} aria-describedby={id}

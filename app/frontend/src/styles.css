@@ -637,3 +637,65 @@ ul.cautions { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
 @media print { .rank-row { break-inside: avoid; } }
 .rank-extra { display: none; }
 @media print { .rank-extra { display: block; } }
+
+/* Evidence grade (A-D): ink only, solid to dashed, letter always printed. Grades are not families, so no ribbon colour. */
+.grade {
+  display: inline-grid; place-items: center; flex: none;
+  width: 22px; height: 22px; margin-right: 8px; vertical-align: 1px;
+  border-radius: 6px; text-decoration: none;
+  font-style: italic; font-stretch: 62%; font-weight: 900; font-size: 15px; line-height: 1;
+  color: var(--g-ink, var(--on-board)); box-shadow: inset 0 0 0 var(--g-ring, 1.5px) var(--g-line, var(--on-board-3));
+  transition: transform 220ms var(--out), box-shadow 220ms var(--out);
+}
+.grade.g-A { background: var(--on-board); color: var(--board); box-shadow: none; }
+.grade.g-B { --g-ring: 2px; --g-line: var(--on-board); }
+.grade.g-C { --g-ink: var(--on-board-2); }
+.grade.g-D { --g-ink: var(--on-board-3); box-shadow: none; outline: 1.5px dashed var(--on-board-3); outline-offset: -1.5px; }
+a.grade:hover { transform: translateY(-1px); }
+a.grade:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+.sticker .grade { --g-line: var(--sticker-ink-2); --g-ink: var(--sticker-ink); }
+.sticker .grade.g-A { background: var(--sticker-ink); color: var(--sticker); }
+.sticker .grade.g-B { --g-line: var(--sticker-ink); }
+.sticker .grade.g-C { --g-ink: var(--sticker-ink-2); }
+.sticker .grade.g-D { --g-ink: var(--sticker-ink-2); outline-color: var(--sticker-ink-2); }
+.kp .sub .grade { width: 18px; height: 18px; font-size: 12.5px; border-radius: 5px; margin-right: 6px; }
+
+.ev-fig { margin: 0; }
+.ev-fig figcaption { margin-top: 8px; font-size: 12.5px; }
+.ev-map { display: block; width: 100%; height: auto; overflow: visible; font-family: var(--face); }
+.ev-map .tick { font-size: 11px; fill: var(--sticker-ink-2); font-variant-numeric: tabular-nums; }
+.ev-map .axis { font-size: 12px; font-weight: 700; fill: var(--sticker-ink-2); }
+.ev-map .ref { stroke: var(--sticker-ink); stroke-opacity: 0.18; stroke-dasharray: 3 4; }
+.ev-map .ref.zero { stroke-opacity: 0.45; stroke-dasharray: none; }
+.ev-map .ref-l { font-size: 11px; fill: var(--sticker-ink-2); }
+.ev-map .pt { cursor: pointer; outline: none; }
+.ev-map .pt .ci { stroke: var(--sticker-ink); stroke-opacity: 0.3; stroke-width: 2; stroke-linecap: round; }
+.ev-map .pt circle { fill: var(--sticker); stroke: var(--sticker-ink-2); stroke-width: 1.5; transition: r 280ms var(--out), fill 200ms; }
+.ev-map .pt.g-A circle { fill: var(--sticker-ink); stroke: var(--sticker-ink); }
+.ev-map .pt.g-B circle { stroke: var(--sticker-ink); stroke-width: 2.4; }
+.ev-map .pt.g-D circle { stroke-dasharray: 2.5 2.5; }
+.ev-map .pt.hot circle { fill: var(--yellow); stroke: var(--sticker-ink); stroke-width: 2; stroke-dasharray: none; }
+.ev-map .pt.hot .ci { stroke-opacity: 0.7; }
+.ev-map .pt:focus-visible circle { stroke: var(--sticker-ink); stroke-width: 3; }
+.ev-map .pt-l { font-size: 12px; font-weight: 800; fill: var(--sticker-ink); paint-order: stroke; stroke: var(--sticker); stroke-width: 3px; stroke-linejoin: round; }
+.ev-map .pt-name { font-size: 13px; font-weight: 750; fill: var(--sticker-ink); paint-order: stroke; stroke: var(--sticker); stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
+
+.ev-legend { list-style: none; margin: 0; padding: 0; }
+.ev-legend li { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--board-line); font-size: 14.5px; }
+.ev-legend .grade { width: 30px; height: 30px; font-size: 20px; border-radius: 8px; margin: 0; }
+.ev-legend b { font-style: italic; font-stretch: 62%; font-weight: 900; font-size: 28px; line-height: 1; }
+
+.ev-table td:first-child { white-space: normal; min-width: 260px; }
+.ev-table td small { display: block; color: var(--on-board-3); font-size: 12px; }
+.ev-table td small.inl { display: inline; }
+.ev-table td b { font-style: italic; font-stretch: 62%; font-weight: 900; font-size: 19px; }
+.ev-table td:last-child, .ev-table th:last-child { white-space: normal; }
+.ev-table tr.grp th { text-align: left; text-transform: none; letter-spacing: 0; font-size: 14px; font-weight: 750; color: var(--on-board); padding-top: 22px; border-bottom: 1.5px solid var(--on-board-3); }
+.ev-id { display: inline-block; min-width: 34px; color: var(--on-board-3); font-size: 12px; font-weight: 750; font-variant-numeric: tabular-nums; }
+
+@media print {
+  .grade, .grade.g-A { background: none !important; color: #000 !important; box-shadow: inset 0 0 0 1.5px #000 !important; }
+  .grade.g-A { box-shadow: inset 0 0 0 3px #000 !important; }
+  .grade.g-D { box-shadow: none !important; outline: 1.5px dashed #000; }
+  .ev-table tr { break-inside: avoid; }
+}

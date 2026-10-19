@@ -89,6 +89,22 @@ export interface GamePlan {
 export interface Rank {
   id: string; group: string; label: string; sheet: string; unit: "pct" | "num" | "num2"; caution: string | null; value: number; ci: CI | null;
   rank: number; of: number; teams: { key: string; team: string; value: number }[];
+  statement?: string | null; grade?: Grade | null;
+}
+// Evidence grade of the statement types (results/evidence_grade_corrected.json, protocol docs/protocol_evidence_grade.md).
+export type Grade = "A" | "B" | "C" | "D";
+export interface EvStatement {
+  statement: string; forecasts: number; teams: number; grade: Grade;
+  skill: number; skill_ci: CI; forecast: "strong" | "weak" | "none";
+  D?: number | null; D_ci?: CI; discrimination: "high" | "medium" | "low" | "n/a";
+  coverage_80: number; coverage_ci: CI; calibration: string;
+  last5_vs_season: number; last5_ci: CI; last5_verdict: string;
+  matches_needed: string | number; items?: number;
+}
+export interface Evidence {
+  available: boolean; source?: string; set?: string; n_teams?: number; grades?: Record<Grade, number>;
+  sanity_checks?: Record<string, boolean>; statements?: Record<string, EvStatement>; dropped?: Record<string, number[]>;
+  provider?: Record<string, { label: string; seen_before?: boolean; why?: string }> | null; shown_in_app?: Record<string, string[]>;
 }
 export interface TeamSummary { key: string; team: string; matches: number; period: string; sequences: number; sheets: string[]; clips: string[] }
 export interface TeamData extends TeamSummary {
@@ -137,6 +153,7 @@ export const api = {
   trackMatches: () => get<TrackMatch[]>("/api/tracking/matches"),
   trackClip: (match: string, half: number, frame: number) => get<TrackClip>(`/api/tracking/clip?match=${encodeURIComponent(match)}&half=${half}&frame=${frame}`),
   teams: () => get<TeamSummary[]>("/api/teams"),
+  evidence: () => get<Evidence>("/api/evidence"),
   team: (key: string) => get<TeamData>(`/api/teams/${encodeURIComponent(key)}`),
   clips: (key: string, kind: string) => get<{ columns: string[]; rows: ClipRow[] }>(`/api/teams/${encodeURIComponent(key)}/clips/${kind}`),
   replay: (key: string, c: ClipRef) =>
