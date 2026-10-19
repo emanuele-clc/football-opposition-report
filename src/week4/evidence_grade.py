@@ -270,6 +270,19 @@ def guard(out):
     if git("merge-base", "--is-ancestor", c, "origin/main").returncode: sys.exit("The protocol commit is not on origin/main: push it first.")
 
 
+def drop_missing(TEAMS, data_dir):
+    """Correction of 19 Oct (protocol, note 1): drop the team-matches whose events do not contain the team's name (StatsBomb names the team differently
+    in the event file, e.g. 'Marseille' for 'Olympique de Marseille'): the team's own data of those matches are missing, not zero."""
+    dropped = {}
+    for name, R in TEAMS.items():
+        keep = [i for i, m in enumerate(R["ids"]) if name in {e["team"]["name"] for e in _load(open(os.path.join(data_dir, "ev", f"{m}.json"), encoding="utf-8"))}]
+        if len(keep) == len(R["ids"]): continue
+        dropped[name] = [R["ids"][i] for i in range(len(R["ids"])) if i not in keep]; new = {i: j for j, i in enumerate(keep)}
+        for k in ("dates", "ids", "V", "recv", "ctak"): R[k] = [R[k][i] for i in keep]
+        R["seq"] = R["seq"][R["seq"].mi.isin(keep)].assign(mi=lambda s: s.mi.map(new))
+    return dropped
+
+
 def load_teams(work): return {R["team"]: R for R in (pickle.load(open(f, "rb")) for f in sorted(glob.glob(os.path.join(work, "teams", "*.pkl"))))}
 
 
@@ -287,9 +300,15 @@ if __name__ == "__main__":
     else:
         which = sys.argv[sys.argv.index("--set") + 1] if "--set" in sys.argv else ""
         if which not in ("dev", "confirm"): sys.exit("--set dev or --set confirm")
-        out = os.path.join(REPO, "results", "evidence_grade_dev.json" if which == "dev" else "evidence_grade.json"); guard(out)
-        TEAMS = load_teams(a[1]); subjects = [t for t in TEAMS if t in DEV] if which == "dev" else [t for t in TEAMS if t not in DEV + EXCLUDED]
+        corr = sys.argv[sys.argv.index("--corrected") + 1] if "--corrected" in sys.argv else None   # data dir; protocol note 1
+        if corr and which != "confirm": sys.exit("--corrected is only for the confirmatory set (protocol note 1)")
+        out = os.path.join(REPO, "results", "evidence_grade_dev.json" if which == "dev" else ("evidence_grade_corrected.json" if corr else "evidence_grade.json")); guard(out)
+        TEAMS = load_teams(a[1]); dropped = drop_missing(TEAMS, corr) if corr else {}
+        if corr: print("dropped team-matches (team name not in the events):", {t: len(v) for t, v in dropped.items()})
+        subjects = [t for t in TEAMS if t in DEV] if which == "dev" else [t for t in TEAMS if t not in DEV + EXCLUDED]
         exp = 9 if which == "dev" else 70
         if len(subjects) != exp or len(TEAMS) != 80: sys.exit(f"expected 80 extracted teams and {exp} subjects, found {len(TEAMS)} and {len(subjects)}: run extract first")
-        res = analyse(TEAMS, subjects, which); json.dump(res, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+        res = analyse(TEAMS, subjects, which + ("-corrected" if corr else ""))
+        if corr: res["correction"] = dict(note="protocol note 1 (19 Oct 2026)", dropped_team_matches={t: [int(m) for m in v] for t, v in dropped.items()})
+        json.dump(res, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
         print("grades:", res["grades"], "| sanity checks:", res["sanity_checks"], "->", out)

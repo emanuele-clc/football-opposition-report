@@ -110,3 +110,9 @@ After step 3, `src/week4/evidence_provider.py` computes the statements that the 
 - 34 statement types, no correction for multiple comparisons; grades are descriptive.
 - Discrimination mixes league and team differences (four leagues pooled).
 - Family shares in the history before the fitting point are in-sample (as in the report).
+
+## Note 1 (19 October 2026, after the confirmatory run, before any corrected run)
+- **What was found.** In the confirmatory run (`results/evidence_grade.json`, kept unedited) PPDA (D23) had forecast skill -0.18 with discrimination 0.82, which is close to impossible. The cause is in the data, not in the method: for 20 team-matches the StatsBomb event file names the team differently from the match list ("Marseille" vs "Olympique de Marseille", 11 matches; "Caen" vs "Stade Malherbe Caen", 9 matches). The report scripts select events by the exact name, so in those matches the team had no events at all (0 sequences, 0 pressures, 0 defensive actions) while the opponent's passes were counted. A scan of all 1,517 + 34 matches found no other case; none of the thesis teams is affected.
+- **Rule of the correction (fixed before running it):** drop the team-matches whose event file does not contain the team's name, everywhere (as subject, in the history and in the league baseline). Nothing else changes: same statements, thresholds, seeds and code.
+- **Reporting.** The corrected run is written to `results/evidence_grade_corrected.json` and run once. Both files are kept and reported; the corrected one is used for the grades because the original contains missing data recorded as zeros, which the protocol never intended to measure. The development run is not rerun (no development team is affected; only its Ligue 1 baseline contained the two teams' zero matches).
+- **Consequence for the report tool:** the same name mismatch would give empty matches in a report of Marseille or Caen 2015/16; to fix in the pipeline separately.
