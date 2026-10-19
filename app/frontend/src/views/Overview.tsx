@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type ClipRef, type Evidence, type Family, type Rank, type TeamData } from "../api";
-import { evidenceHref, FamilyLanes, GradeMark, Note, RankRow, Replay, rib, ShareStrip, third } from "../charts";
+import { evidenceHref, FamilyLanes, Note, RankRow, Replay, rib, ShareStrip, third } from "../charts";
 import { fmt, n1, ordinal, pc } from "../format";
 
 const TAB_OF: Record<string, string> = { report: "build-up", restarts: "restarts", setpieces: "setpieces", transitions: "transitions", defending: "defending", xthreat: "threat" };
@@ -102,7 +102,7 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
                 <span className="dot" aria-hidden="true">{i + 1}</span>
                 <span>
                   <p>{phrase(r)}: <b>{fmt(r.value, r.unit)}</b></p>
-                  <p className="sub"><GradeMark g={r.grade} />{where(r, d.key)}{r.caution ? " · rough: see the caution below" : ""}</p>
+                  <p className="sub">{where(r, d.key)}{r.caution ? " · rough: see the caution below" : ""}</p>
                 </span>
                 <span className="badge"><b>{ordinal(r.rank)}</b><small>of {r.of}</small></span>
               </a>
@@ -147,7 +147,7 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
         })()}
         {evRows.length > 0 && (
           <div style={{ marginTop: 16 }}>
-            <Note kind="info" tag="Evidence">{`Across ${ev!.n_teams} teams, the last 5 matches forecast the next match worse than the season so far for ${evRows.filter((r) => r.last5_verdict === "season better").length} of ${evRows.length} types of number.`} <a href={evidenceHref(d.key)}>How the numbers were graded</a></Note>
+            <Note kind="caution" tag="Careful">{`Checked on ${ev!.n_teams} teams: the last 5 matches guessed the next match worse than the whole season for ${evRows.filter((r) => r.last5_verdict === "season better").length} of ${evRows.length} numbers. Treat these changes as a reason to check the video.`} <a href={evidenceHref(d.key)}>Which numbers can you trust?</a></Note>
           </div>
         )}
       </section>
@@ -155,7 +155,7 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
       <section className="section" aria-labelledby="cmp-h">
         <div className="section-head">
           <h2 id="cmp-h">Against the other teams</h2>
-          <p>Each dot is a team in this folder, placed by its value; the big yellow dot is {d.team}. Left = lowest, right = highest. The letter before a measure is its evidence grade (A to D): how well that type of number tells teams apart and forecasts the next match.</p>
+          <p>Each dot is a team in this folder, placed by its value; the big yellow dot is {d.team}. Left = lowest, right = highest. The letter before each measure says how far you can trust it: A reliable, B useful, C half reliable, D not reliable.</p>
         </div>
         <div className="ranks">
           {/* Hidden rows stay in the page so that printing always shows every measure. */}
@@ -196,7 +196,7 @@ export default function Overview({ d, events, go }: { d: TeamData; events: boole
               );
             })}
             {evRows.length > 0 && (
-              <Note kind="info" tag="Evidence">{`Every type of number was graded on ${ev!.n_teams} teams the report had never seen: ${ev!.grades?.A ?? 0} A, ${ev!.grades?.B ?? 0} B, ${ev!.grades?.C ?? 0} C, ${ev!.grades?.D ?? 0} D.`} <a href={evidenceHref(d.key)}>See every grade and why</a></Note>
+              <Note kind="info" tag="Grades">{`Every number was checked on ${ev!.n_teams} teams the report had never seen: ${ev!.grades?.A ?? 0} reliable, ${ev!.grades?.B ?? 0} useful, ${ev!.grades?.C ?? 0} half reliable, ${ev!.grades?.D ?? 0} not reliable.`} <a href={evidenceHref(d.key)}>See which ones</a></Note>
             )}
             <Note kind={d.matches < 8 ? "caution" : "ok"} tag={`${d.matches} matches`}>
               {d.matches < 8 ? "With fewer than 8 matches, treat style numbers as rough." : "That is enough for passes and long-pass tendencies to be reliable; see the table for the others."}

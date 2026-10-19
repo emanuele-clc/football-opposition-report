@@ -241,15 +241,16 @@ export function ShareStrip({ families, pick, onPick }: { families: Family[]; pic
 /* This team's value among every team in the data folder, placed by value. Hover, or focus and use the arrow keys, to name each dot. */
 /* Evidence grade of a type of number (docs/protocol_evidence_grade.md). Ink only, from solid (A) to dashed (D): grades are not families,
    so they take no ribbon colour, and the letter is always printed. */
+export const GRADE_TITLE: Record<Grade, string> = { A: "Reliable", B: "Useful", C: "Half reliable", D: "Not reliable" };
 export const GRADE_SAYS: Record<Grade, string> = {
-  A: "Tells teams apart and clearly helps forecast their next match.",
-  B: "Tells teams apart and helps a little to forecast their next match.",
-  C: "Tells teams apart or helps forecast the next match, not both.",
-  D: "Neither tells teams apart nor helps forecast the next match.",
+  A: "Really differs between teams and clearly helps to guess the next match.",
+  B: "Really differs between teams and helps a little to guess the next match.",
+  C: "Passes only one of the two checks: it differs between teams or it helps to guess the next match, not both.",
+  D: "Passes neither check: do not rely on it to prepare a match.",
 };
 export function GradeMark({ g, href }: { g?: Grade | null; href?: string }) {
   if (!g) return null;
-  const label = `Evidence grade ${g}. ${GRADE_SAYS[g]}`;
+  const label = `Grade ${g}: ${GRADE_TITLE[g]}. ${GRADE_SAYS[g]}`;
   return href
     ? <a className={`grade g-${g}`} href={href} title={label} aria-label={label}>{g}</a>
     : <span className={`grade g-${g}`} title={label} role="img" aria-label={label}>{g}</span>;
