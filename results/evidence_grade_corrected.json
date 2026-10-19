@@ -1,0 +1,1485 @@
+{
+ "protocol": "docs/protocol_evidence_grade.md",
+ "set": "confirm-corrected",
+ "teams": [
+  "AC Milan",
+  "AFC Bournemouth",
+  "AS Monaco",
+  "AS Roma",
+  "Angers",
+  "Aston Villa",
+  "Atalanta",
+  "Athletic Club",
+  "Bastia",
+  "Bologna",
+  "Carpi",
+  "Celta Vigo",
+  "Chelsea",
+  "Chievo",
+  "Crystal Palace",
+  "Eibar",
+  "Empoli",
+  "Espanyol",
+  "Everton",
+  "Fiorentina",
+  "Frosinone",
+  "Genoa",
+  "Getafe",
+  "Granada",
+  "Guingamp",
+  "Hellas Verona",
+  "Inter Milan",
+  "Las Palmas",
+  "Lazio",
+  "Levante UD",
+  "Lille",
+  "Liverpool",
+  "Lorient",
+  "Lyon",
+  "Manchester City",
+  "Manchester United",
+  "Montpellier",
+  "Málaga",
+  "Nantes",
+  "Newcastle United",
+  "Norwich City",
+  "OGC Nice",
+  "Olympique de Marseille",
+  "Palermo",
+  "Paris Saint-Germain",
+  "RC Deportivo La Coruña",
+  "Rayo Vallecano",
+  "Real Betis",
+  "Real Sociedad",
+  "Rennes",
+  "Saint-Étienne",
+  "Sampdoria",
+  "Sevilla",
+  "Southampton",
+  "Sporting Gijón",
+  "Stade Malherbe Caen",
+  "Stade de Reims",
+  "Stoke City",
+  "Sunderland",
+  "Swansea City",
+  "Torino",
+  "Tottenham Hotspur",
+  "Toulouse",
+  "Troyes",
+  "Udinese",
+  "Valencia",
+  "Villarreal",
+  "Watford",
+  "West Bromwich Albion",
+  "West Ham United"
+ ],
+ "n_teams": 70,
+ "grades": {
+  "B": 13,
+  "A": 4,
+  "C": 15,
+  "D": 2
+ },
+ "sanity_checks": {
+  "SC1 counter-press share has low discrimination": false,
+  "SC2 passes per sequence: high discrimination and strong forecast": true
+ },
+ "statements": {
+  "S01": {
+   "statement": "open-play sequences per match",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.0926100745211691,
+   "skill_ci": [
+    0.0347448716232609,
+    0.1462677946156722
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.794838145231846,
+   "coverage_ci": [
+    0.7781169050053991,
+    0.8107552857001387
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.10799614577349748,
+   "last5_ci": [
+    -0.129266691461708,
+    -0.08540879946782343
+   ],
+   "last5_verdict": "season better",
+   "D": 0.8862104676278947,
+   "D_ci": [
+    0.8379797439500639,
+    0.9151217074642343
+   ],
+   "mean_between_teams": 46.0177770329313,
+   "sd_between_teams": 3.8509093521720787,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 1.876749702866855,
+    "5": 1.445454899200379,
+    "8": 1.093384946445066,
+    "10": 0.9252770109291368,
+    "15": 0.684504534180714,
+    "20": 0.5196311957980178
+   },
+   "grade": "B"
+  },
+  "S02": {
+   "statement": "passes per sequence",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.3573759950408939,
+   "skill_ci": [
+    0.2127491701906753,
+    0.505975077384279
+   ],
+   "forecast": "strong",
+   "coverage_80": 0.8097112860892388,
+   "coverage_ci": [
+    0.7902861111591422,
+    0.8284467094624861
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.07077547839919807,
+   "last5_ci": [
+    -0.10428706469223892,
+    -0.03497361318469294
+   ],
+   "last5_verdict": "season better",
+   "D": 0.9600954108629619,
+   "D_ci": [
+    0.9276180030682487,
+    0.9748780139092282
+   ],
+   "mean_between_teams": 6.686965001927161,
+   "sd_between_teams": 0.8466099118205289,
+   "discrimination": "high",
+   "matches_needed": "15",
+   "error_p90_over_sd": {
+    "3": 1.0734597353518451,
+    "5": 0.8030348423393662,
+    "8": 0.5989764303606636,
+    "10": 0.5196604968934103,
+    "15": 0.3890723053509708,
+    "20": 0.28859893407751736
+   },
+   "grade": "A"
+  },
+  "S03": {
+   "statement": "long-pass share of a sequence",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.24315454155446425,
+   "skill_ci": [
+    0.15785670403761864,
+    0.32319097292687193
+   ],
+   "forecast": "strong",
+   "coverage_80": 0.7847769028871391,
+   "coverage_ci": [
+    0.7678949101332507,
+    0.8007886401784278
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.08142853843406117,
+   "last5_ci": [
+    -0.11153342929236931,
+    -0.049918595612758354
+   ],
+   "last5_verdict": "season better",
+   "D": 0.9410098908533142,
+   "D_ci": [
+    0.9093762350625353,
+    0.9568512536238388
+   ],
+   "mean_between_teams": 0.19319381980444258,
+   "sd_between_teams": 0.021688045965093796,
+   "discrimination": "high",
+   "matches_needed": "20",
+   "error_p90_over_sd": {
+    "3": 1.3835621148388635,
+    "5": 1.028051613083746,
+    "8": 0.7832924739311529,
+    "10": 0.6695474244302,
+    "15": 0.5000404020704241,
+    "20": 0.38886842096298424
+   },
+   "grade": "A"
+  },
+  "S04": {
+   "statement": "share of sequences starting in the build-up zone",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.007118820080766031,
+   "skill_ci": [
+    -0.02464575314379225,
+    0.04168240320685279
+   ],
+   "forecast": "none",
+   "coverage_80": 0.7939632545931758,
+   "coverage_ci": [
+    0.7765655103504816,
+    0.8114289429686048
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.09134567117026116,
+   "last5_ci": [
+    -0.1164818168354822,
+    -0.06544256836007278
+   ],
+   "last5_verdict": "season better",
+   "D": 0.8001260995991324,
+   "D_ci": [
+    0.6989177581663578,
+    0.8533944493803545
+   ],
+   "mean_between_teams": 0.5691738284796134,
+   "sd_between_teams": 0.03265499278367832,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.487352281927889,
+    "5": 1.8925220386911863,
+    "8": 1.427887290314539,
+    "10": 1.2480934541631705,
+    "15": 0.9115828560287569,
+    "20": 0.6974860614849129
+   },
+   "grade": "C"
+  },
+  "S05": {
+   "statement": "shot rate per sequence",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": -0.005008684788975426,
+   "skill_ci": [
+    -0.03780969350147867,
+    0.03010394492940216
+   ],
+   "forecast": "none",
+   "coverage_80": 0.8088363954505686,
+   "coverage_ci": [
+    0.7936107581195646,
+    0.8237923012962772
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.11491653441038596,
+   "last5_ci": [
+    -0.1404775324318126,
+    -0.08839343196474125
+   ],
+   "last5_verdict": "season better",
+   "D": 0.7434545607022773,
+   "D_ci": [
+    0.5873123437856468,
+    0.8131274775195013
+   ],
+   "mean_between_teams": 0.11519149289186341,
+   "sd_between_teams": 0.01716662102629554,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.767026954471946,
+    "5": 2.094842023894761,
+    "8": 1.554839072485815,
+    "10": 1.3780228333086741,
+    "15": 0.9868102484168919,
+    "20": 0.760286860947948
+   },
+   "grade": "C"
+  },
+  "S06": {
+   "statement": "sequence duration (s)",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.23546283291729142,
+   "skill_ci": [
+    0.13121953957560084,
+    0.3497414199439346
+   ],
+   "forecast": "strong",
+   "coverage_80": 0.8057742782152231,
+   "coverage_ci": [
+    0.7886489800086915,
+    0.8210081744907495
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.08387981855234394,
+   "last5_ci": [
+    -0.11307993417628781,
+    -0.0528499659216799
+   ],
+   "last5_verdict": "season better",
+   "D": 0.9402398707990591,
+   "D_ci": [
+    0.9061329225838659,
+    0.9575560079140566
+   ],
+   "mean_between_teams": 20.801242304641516,
+   "sd_between_teams": 2.395298299109792,
+   "discrimination": "high",
+   "matches_needed": "15",
+   "error_p90_over_sd": {
+    "3": 1.3597159758285693,
+    "5": 1.0078599666052168,
+    "8": 0.759493685963307,
+    "10": 0.6484043774126117,
+    "15": 0.4840374063594119,
+    "20": 0.3729678721371012
+   },
+   "grade": "A"
+  },
+  "F07": {
+   "statement": "share of each build-up family",
+   "forecasts": 6605,
+   "teams": 70,
+   "skill": 0.05852610515654433,
+   "skill_ci": [
+    0.017289332162153337,
+    0.10383871515397047
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.8060560181680545,
+   "coverage_ci": [
+    0.7950180162872054,
+    0.8171500041928047
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.1285723195890769,
+   "last5_ci": [
+    -0.15094244729569017,
+    -0.1070913647241667
+   ],
+   "last5_verdict": "season better",
+   "discrimination": "n/a",
+   "matches_needed": "n/a",
+   "items": 350,
+   "grade": "C"
+  },
+  "F08": {
+   "statement": "share of each advanced family",
+   "forecasts": 3963,
+   "teams": 70,
+   "skill": 0.06948240567140695,
+   "skill_ci": [
+    0.03051063422747624,
+    0.11131925515374441
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.8102447640676256,
+   "coverage_ci": [
+    0.7973696882817647,
+    0.8233976936017281
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.14527321354911993,
+   "last5_ci": [
+    -0.17149822824835592,
+    -0.12200086226645657
+   ],
+   "last5_verdict": "season better",
+   "discrimination": "n/a",
+   "matches_needed": "n/a",
+   "items": 210,
+   "grade": "C"
+  },
+  "R09": {
+   "statement": "goal kicks: first pass short",
+   "forecasts": 2284,
+   "teams": 70,
+   "skill": 0.22443588492175492,
+   "skill_ci": [
+    0.14953084891499646,
+    0.30085217162734545
+   ],
+   "forecast": "strong",
+   "coverage_80": 0.852014010507881,
+   "coverage_ci": [
+    0.8328991333223105,
+    0.8697604977803653
+   ],
+   "calibration": "too wide",
+   "last5_vs_season": -0.09101677151781917,
+   "last5_ci": [
+    -0.12497150226560527,
+    -0.05496882753365506
+   ],
+   "last5_verdict": "season better",
+   "D": 0.9365386405958487,
+   "D_ci": [
+    0.9053954661139141,
+    0.9524674047436253
+   ],
+   "mean_between_teams": 0.15711987959399135,
+   "sd_between_teams": 0.10599968381564702,
+   "discrimination": "high",
+   "matches_needed": "15",
+   "error_p90_over_sd": {
+    "3": 1.2519504612322483,
+    "5": 1.0066685409181984,
+    "8": 0.7549182738931479,
+    "10": 0.6762561607768831,
+    "15": 0.4927717910268135,
+    "20": 0.3836785172982419
+   },
+   "grade": "A"
+  },
+  "R10": {
+   "statement": "goal kicks: reached the opponent half",
+   "forecasts": 2284,
+   "teams": 70,
+   "skill": 0.10556593278418802,
+   "skill_ci": [
+    0.053210842982143736,
+    0.15540886253713415
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.8555166374781086,
+   "coverage_ci": [
+    0.8416863677884922,
+    0.8684696446858506
+   ],
+   "calibration": "too wide",
+   "last5_vs_season": -0.10227736671562249,
+   "last5_ci": [
+    -0.13746715309420754,
+    -0.07102003328192641
+   ],
+   "last5_verdict": "season better",
+   "D": 0.890949488182137,
+   "D_ci": [
+    0.8407592986172439,
+    0.9169749291654103
+   ],
+   "mean_between_teams": 0.9064947287012941,
+   "sd_between_teams": 0.05509229402896051,
+   "discrimination": "high",
+   "matches_needed": "20",
+   "error_p90_over_sd": {
+    "3": 1.5285513779443913,
+    "5": 1.2821077624803496,
+    "8": 0.9681781286827977,
+    "10": 0.8253414326872341,
+    "15": 0.6164270311063265,
+    "20": 0.473363583465163
+   },
+   "grade": "B"
+  },
+  "R11": {
+   "statement": "goal kicks: ended in own half",
+   "forecasts": 2284,
+   "teams": 70,
+   "skill": 0.05748459717446952,
+   "skill_ci": [
+    0.01824658535213608,
+    0.09567607494886465
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.8331873905429071,
+   "coverage_ci": [
+    0.818619017821703,
+    0.8482220294882914
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.10169029353219505,
+   "last5_ci": [
+    -0.12739186881605669,
+    -0.0737308055383823
+   ],
+   "last5_verdict": "season better",
+   "D": 0.8517716977801186,
+   "D_ci": [
+    0.785609112006103,
+    0.8846948609664717
+   ],
+   "mean_between_teams": 0.15097434061141124,
+   "sd_between_teams": 0.05552881875698572,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.120485897705639,
+    "5": 1.6206820925210959,
+    "8": 1.210743852924674,
+    "10": 1.0303726953370467,
+    "15": 0.7469182415126357,
+    "20": 0.5747566344083384
+   },
+   "grade": "B"
+  },
+  "R12": {
+   "statement": "keeper: first pass short",
+   "forecasts": 2144,
+   "teams": 70,
+   "skill": 0.05584655665843452,
+   "skill_ci": [
+    0.011921215203502089,
+    0.09913764975185102
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.804570895522388,
+   "coverage_ci": [
+    0.7878562196990303,
+    0.8222658752702167
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.1532158562749213,
+   "last5_ci": [
+    -0.18926345667128341,
+    -0.11684915883529601
+   ],
+   "last5_verdict": "season better",
+   "D": 0.823527480115069,
+   "D_ci": [
+    0.74948492444914,
+    0.8655637499334039
+   ],
+   "mean_between_teams": 0.36718784579521846,
+   "sd_between_teams": 0.10955459020887617,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.5538125262342217,
+    "5": 1.8238008179823086,
+    "8": 1.3611527342059742,
+    "10": 1.161343866375342,
+    "15": 0.8653209641104982,
+    "20": 0.6489451945367238
+   },
+   "grade": "B"
+  },
+  "R13": {
+   "statement": "throw-ins in own half: ended in own half",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": -0.027353599474067014,
+   "skill_ci": [
+    -0.04866412452604796,
+    -0.005698688384559336
+   ],
+   "forecast": "none",
+   "coverage_80": 0.7874015748031497,
+   "coverage_ci": [
+    0.7704696643580059,
+    0.802673624945864
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.13435248221824136,
+   "last5_ci": [
+    -0.1558059190408012,
+    -0.11330542060095339
+   ],
+   "last5_verdict": "season better",
+   "D": 0.4880285761553199,
+   "D_ci": [
+    0.27169029007266093,
+    0.6076653821871669
+   ],
+   "mean_between_teams": 0.3330470524597521,
+   "sd_between_teams": 0.03650597250573594,
+   "discrimination": "low",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 4.04313966498501,
+    "5": 3.0081329435138207,
+    "8": 2.24516482106808,
+    "10": 1.9272369229595,
+    "15": 1.401498328376882,
+    "20": 1.0893819943786485
+   },
+   "grade": "D"
+  },
+  "P14": {
+   "statement": "corners per match",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": -0.002724193941815445,
+   "skill_ci": [
+    -0.030514758466905212,
+    0.022973159270011867
+   ],
+   "forecast": "none",
+   "coverage_80": 0.8153980752405949,
+   "coverage_ci": [
+    0.7987738252601058,
+    0.832604990118577
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.1399586669883588,
+   "last5_ci": [
+    -0.15655382597922185,
+    -0.12242899419841913
+   ],
+   "last5_verdict": "season better",
+   "D": 0.7051316311323073,
+   "D_ci": [
+    0.5885903056820021,
+    0.7675750902880961
+   ],
+   "mean_between_teams": 5.057513710236033,
+   "sd_between_teams": 0.8109409857728184,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 3.038488781487717,
+    "5": 2.261829847664939,
+    "8": 1.7171437786875479,
+    "10": 1.4616951506915303,
+    "15": 1.0762891910218153,
+    "20": 0.8292835259265072
+   },
+   "grade": "C"
+  },
+  "P15": {
+   "statement": "corners played short / outside the box",
+   "forecasts": 2237,
+   "teams": 70,
+   "skill": 0.07038816900141587,
+   "skill_ci": [
+    0.019898170003008198,
+    0.11958063444883404
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.8471166741171211,
+   "coverage_ci": [
+    0.8343897398371876,
+    0.8596921605370104
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.11319613117343996,
+   "last5_ci": [
+    -0.14968343307279275,
+    -0.07417865029772841
+   ],
+   "last5_verdict": "season better",
+   "D": 0.8517434599721557,
+   "D_ci": [
+    0.773115285141689,
+    0.8909205198364011
+   ],
+   "mean_between_teams": 0.16241725707992438,
+   "sd_between_teams": 0.07534622026511154,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.0451217596310793,
+    "5": 1.5431888678485326,
+    "8": 1.220596652710099,
+    "10": 1.0476518476128582,
+    "15": 0.7593035106189595,
+    "20": 0.5863393676183666
+   },
+   "grade": "B"
+  },
+  "P16": {
+   "statement": "corners to the far post",
+   "forecasts": 2237,
+   "teams": 70,
+   "skill": -0.020717156491234956,
+   "skill_ci": [
+    -0.05364210391137991,
+    0.021187483527475792
+   ],
+   "forecast": "none",
+   "coverage_80": 0.8770675011175681,
+   "coverage_ci": [
+    0.8642851579884291,
+    0.8892414377907849
+   ],
+   "calibration": "too wide",
+   "last5_vs_season": -0.15386742367281325,
+   "last5_ci": [
+    -0.17674365814088144,
+    -0.13200846908677133
+   ],
+   "last5_verdict": "season better",
+   "D": 0.5942306612475453,
+   "D_ci": [
+    0.12560506026202206,
+    0.7812049933434622
+   ],
+   "mean_between_teams": 0.04713303725090324,
+   "sd_between_teams": 0.024903576203083658,
+   "discrimination": "medium",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 3.0943782737577137,
+    "5": 2.3437806840969775,
+    "8": 1.8462529702125225,
+    "10": 1.6139897852381544,
+    "15": 1.2748641471117383,
+    "20": 0.9938755887876557
+   },
+   "grade": "C"
+  },
+  "P17": {
+   "statement": "corners ending in a shot",
+   "forecasts": 2237,
+   "teams": 70,
+   "skill": -0.05399066097680927,
+   "skill_ci": [
+    -0.07665907880665768,
+    -0.030616849879192776
+   ],
+   "forecast": "none",
+   "coverage_80": 0.7988377291014752,
+   "coverage_ci": [
+    0.7803895851818988,
+    0.8185484324846408
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.12629136975914657,
+   "last5_ci": [
+    -0.14986016610790576,
+    -0.10222991169917672
+   ],
+   "last5_verdict": "season better",
+   "D": 0.3385148433298517,
+   "D_ci": [
+    0.03497134416829015,
+    0.4999722227357773
+   ],
+   "mean_between_teams": 0.3454664852755787,
+   "sd_between_teams": 0.044165138619450484,
+   "discrimination": "low",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 4.734530995289482,
+    "5": 3.4316190388812595,
+    "8": 2.5893112220879058,
+    "10": 2.217241219461783,
+    "15": 1.6090703534425084,
+    "20": 1.2381822843364485
+   },
+   "grade": "D"
+  },
+  "T18": {
+   "statement": "open-play losses per match",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.016836795573276664,
+   "skill_ci": [
+    -0.029451542473319936,
+    0.06369003494647252
+   ],
+   "forecast": "none",
+   "coverage_80": 0.7904636920384952,
+   "coverage_ci": [
+    0.7735132125192942,
+    0.8080468023488547
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.07816325813653235,
+   "last5_ci": [
+    -0.10725898629882535,
+    -0.048214283889412624
+   ],
+   "last5_verdict": "season better",
+   "D": 0.8063272062059157,
+   "D_ci": [
+    0.6854426773727265,
+    0.8676874181040045
+   ],
+   "mean_between_teams": 71.06819144786479,
+   "sd_between_teams": 3.644216947140637,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.3907140623420635,
+    "5": 1.7703608322305076,
+    "8": 1.3687873052263555,
+    "10": 1.189700387950631,
+    "15": 0.8834473169158112,
+    "20": 0.6695539907179499
+   },
+   "grade": "C"
+  },
+  "T19": {
+   "statement": "losses in own third",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.028374259501534604,
+   "skill_ci": [
+    -0.006697386491782087,
+    0.0659492641317232
+   ],
+   "forecast": "none",
+   "coverage_80": 0.8048993875765529,
+   "coverage_ci": [
+    0.7905954021890114,
+    0.8201319183965232
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.12204982134744036,
+   "last5_ci": [
+    -0.1479701193933769,
+    -0.0965789213608177
+   ],
+   "last5_verdict": "season better",
+   "D": 0.813210106704969,
+   "D_ci": [
+    0.7135852844971884,
+    0.86411057781378
+   ],
+   "mean_between_teams": 0.2638077013006399,
+   "sd_between_teams": 0.03029616662620919,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.402627537062056,
+    "5": 1.7619879753312333,
+    "8": 1.353374100437442,
+    "10": 1.1682742515265934,
+    "15": 0.8834953619587719,
+    "20": 0.6638629108270683
+   },
+   "grade": "C"
+  },
+  "T20": {
+   "statement": "counter-press regains within 5 s",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.003035916284764073,
+   "skill_ci": [
+    -0.023482165605796634,
+    0.028485141713111672
+   ],
+   "forecast": "none",
+   "coverage_80": 0.8044619422572179,
+   "coverage_ci": [
+    0.787758383461146,
+    0.81894313808652
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.1326251305209467,
+   "last5_ci": [
+    -0.15357712906375465,
+    -0.11100086388519115
+   ],
+   "last5_verdict": "season better",
+   "D": 0.714884013676137,
+   "D_ci": [
+    0.6136963409722249,
+    0.7736392149962095
+   ],
+   "mean_between_teams": 0.17039155861082994,
+   "sd_between_teams": 0.015407770591103516,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.8807854006656037,
+    "5": 2.2377118180013786,
+    "8": 1.6612889093752852,
+    "10": 1.4498459759818045,
+    "15": 1.0853623453669523,
+    "20": 0.8169583795085946
+   },
+   "grade": "C"
+  },
+  "T21": {
+   "statement": "recoveries in the final third",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": -0.0002784755166689301,
+   "skill_ci": [
+    -0.02235888400062014,
+    0.023358537815170943
+   ],
+   "forecast": "none",
+   "coverage_80": 0.7939632545931758,
+   "coverage_ci": [
+    0.7784065559700971,
+    0.8102718630077557
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.12606055620300505,
+   "last5_ci": [
+    -0.14793045572829366,
+    -0.10552258429262817
+   ],
+   "last5_verdict": "season better",
+   "D": 0.6621631916350043,
+   "D_ci": [
+    0.5389832993599507,
+    0.7345447495757363
+   ],
+   "mean_between_teams": 0.06453395414645031,
+   "sd_between_teams": 0.009173179273985076,
+   "discrimination": "medium",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 3.128544740108009,
+    "5": 2.363862079817364,
+    "8": 1.7918858668734736,
+    "10": 1.568943731393266,
+    "15": 1.1456499635134354,
+    "20": 0.8833286922460466
+   },
+   "grade": "C"
+  },
+  "T22": {
+   "statement": "recoveries followed by a shot within 10 s",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": -0.017485672355620707,
+   "skill_ci": [
+    -0.0446041333291185,
+    0.008970679187477182
+   ],
+   "forecast": "none",
+   "coverage_80": 0.8066491688538933,
+   "coverage_ci": [
+    0.7906225093279744,
+    0.8238135206235877
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.12021931469700786,
+   "last5_ci": [
+    -0.14299915021609966,
+    -0.09672064191875673
+   ],
+   "last5_verdict": "season better",
+   "D": 0.6141218962297565,
+   "D_ci": [
+    0.4082684465637591,
+    0.7237493121690364
+   ],
+   "mean_between_teams": 0.03216251522477057,
+   "sd_between_teams": 0.005770555664496414,
+   "discrimination": "medium",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 3.438848712642137,
+    "5": 2.604884410354566,
+    "8": 1.9569333172002332,
+    "10": 1.668756440403707,
+    "15": 1.2710633579274946,
+    "20": 0.9336976861873854
+   },
+   "grade": "C"
+  },
+  "D23": {
+   "statement": "PPDA",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.016447014176513952,
+   "skill_ci": [
+    -0.017187227495888635,
+    0.04889200329396859
+   ],
+   "forecast": "none",
+   "coverage_80": 0.8245844269466317,
+   "coverage_ci": [
+    0.8052242359084626,
+    0.8419677996937696
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.06138042953575451,
+   "last5_ci": [
+    -0.0899973442441071,
+    -0.03217673197234272
+   ],
+   "last5_verdict": "season better",
+   "D": 0.8052166206599611,
+   "D_ci": [
+    0.7164637199259122,
+    0.8515750851876092
+   ],
+   "mean_between_teams": 8.693130024032238,
+   "sd_between_teams": 1.0233399454248546,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.3214700966565163,
+    "5": 1.7736487838627735,
+    "8": 1.3650019491459817,
+    "10": 1.1623081555601507,
+    "15": 0.8535921444210601,
+    "20": 0.6673984188399642
+   },
+   "grade": "C"
+  },
+  "D24": {
+   "statement": "pressures per match",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": -0.0015175469059542923,
+   "skill_ci": [
+    -0.03513738556318846,
+    0.033042626398810615
+   ],
+   "forecast": "none",
+   "coverage_80": 0.7974628171478565,
+   "coverage_ci": [
+    0.7804878048780488,
+    0.8157589515088135
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.07650936073026204,
+   "last5_ci": [
+    -0.10440791063688004,
+    -0.04607992696512819
+   ],
+   "last5_verdict": "season better",
+   "D": 0.8403235384227444,
+   "D_ci": [
+    0.7842154877489899,
+    0.8756173815252014
+   ],
+   "mean_between_teams": 162.78197827072603,
+   "sd_between_teams": 14.981335474271706,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.210411237207249,
+    "5": 1.6701208084397667,
+    "8": 1.2454691283623909,
+    "10": 1.0819251887365064,
+    "15": 0.7771541487431952,
+    "20": 0.6010197797674072
+   },
+   "grade": "C"
+  },
+  "D25": {
+   "statement": "pressures in the final third",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.043071441420464485,
+   "skill_ci": [
+    0.007005623041796194,
+    0.08614315465099054
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.8088363954505686,
+   "coverage_ci": [
+    0.791736258539869,
+    0.8249853702841441
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.11488978890613155,
+   "last5_ci": [
+    -0.14227695772344306,
+    -0.0873522803331983
+   ],
+   "last5_verdict": "season better",
+   "D": 0.7995683491307213,
+   "D_ci": [
+    0.718352714614088,
+    0.8476131463655249
+   ],
+   "mean_between_teams": 0.1944194189920103,
+   "sd_between_teams": 0.02083689449585911,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.48952353305085,
+    "5": 1.8588206431867713,
+    "8": 1.4175811569542225,
+    "10": 1.242981928333605,
+    "15": 0.9236521570286488,
+    "20": 0.694025314664341
+   },
+   "grade": "B"
+  },
+  "D26": {
+   "statement": "height of defensive actions",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.03570186587137725,
+   "skill_ci": [
+    0.004952933497779477,
+    0.06997937766273077
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.794838145231846,
+   "coverage_ci": [
+    0.7783098617752823,
+    0.8094051910804372
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.0981904284699402,
+   "last5_ci": [
+    -0.12321367923256976,
+    -0.07353985014897013
+   ],
+   "last5_verdict": "season better",
+   "D": 0.7822782106121169,
+   "D_ci": [
+    0.6989330633886565,
+    0.8322734234957138
+   ],
+   "mean_between_teams": 46.98355805225215,
+   "sd_between_teams": 1.9074549418007511,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.6010141805070304,
+    "5": 1.9492551386808639,
+    "8": 1.4596128431473514,
+    "10": 1.2766376441654017,
+    "15": 0.9150964779758551,
+    "20": 0.7023629899793585
+   },
+   "grade": "B"
+  },
+  "D27": {
+   "statement": "shots conceded per match",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.058256529730356776,
+   "skill_ci": [
+    -0.004697689829631813,
+    0.12431234439985384
+   ],
+   "forecast": "none",
+   "coverage_80": 0.8075240594925635,
+   "coverage_ci": [
+    0.7901865914122386,
+    0.8238181904222543
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.1070210436770429,
+   "last5_ci": [
+    -0.1286827888815083,
+    -0.08470799112512761
+   ],
+   "last5_verdict": "season better",
+   "D": 0.8532713961754235,
+   "D_ci": [
+    0.7677640510756694,
+    0.9009602444118162
+   ],
+   "mean_between_teams": 12.695135879981615,
+   "sd_between_teams": 1.9697573519367293,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.124226378544412,
+    "5": 1.631245539750143,
+    "8": 1.2119112287025793,
+    "10": 1.036595752901013,
+    "15": 0.7673044130465457,
+    "20": 0.5998601534380137
+   },
+   "grade": "C"
+  },
+  "D28": {
+   "statement": "xG conceded per match",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.015756123525940913,
+   "skill_ci": [
+    -0.02130980838713592,
+    0.05850823683156603
+   ],
+   "forecast": "none",
+   "coverage_80": 0.8070866141732284,
+   "coverage_ci": [
+    0.786428502022903,
+    0.8271505217891832
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.12390477594579008,
+   "last5_ci": [
+    -0.15031990337287393,
+    -0.09777234461460149
+   ],
+   "last5_verdict": "season better",
+   "D": 0.7324491150179024,
+   "D_ci": [
+    0.6058024804209589,
+    0.7987271068768017
+   ],
+   "mean_between_teams": 1.2726761174558472,
+   "sd_between_teams": 0.22933238950762785,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.8030470333213806,
+    "5": 2.160853090364862,
+    "8": 1.6055995201523923,
+    "10": 1.4112405726087323,
+    "15": 1.0429720497494916,
+    "20": 0.7995780479127315
+   },
+   "grade": "C"
+  },
+  "A29": {
+   "statement": "shots per match",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.04827613944936837,
+   "skill_ci": [
+    0.00901443764214771,
+    0.08932589485479359
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.8136482939632546,
+   "coverage_ci": [
+    0.7997326083970338,
+    0.8292113493363373
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.12103188089422634,
+   "last5_ci": [
+    -0.14441445240581285,
+    -0.09742336735688029
+   ],
+   "last5_verdict": "season better",
+   "D": 0.8082848022967704,
+   "D_ci": [
+    0.7032138721513419,
+    0.8552809585376614
+   ],
+   "mean_between_teams": 12.195705077647,
+   "sd_between_teams": 1.7040490419108303,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.4425826953237357,
+    "5": 1.7929432092334188,
+    "8": 1.3467317043771163,
+    "10": 1.1844853070474022,
+    "15": 0.8545178660142051,
+    "20": 0.6674338258922087
+   },
+   "grade": "B"
+  },
+  "A30": {
+   "statement": "xG per match",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.04870601551949849,
+   "skill_ci": [
+    0.0014441818748633928,
+    0.10334207020346553
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.8197725284339458,
+   "coverage_ci": [
+    0.8025025250282394,
+    0.8366731334871044
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.11572067697212618,
+   "last5_ci": [
+    -0.14239591408502772,
+    -0.09138941104104936
+   ],
+   "last5_verdict": "season better",
+   "D": 0.7855664817152574,
+   "D_ci": [
+    0.6691718419078325,
+    0.8451362137299806
+   ],
+   "mean_between_teams": 1.1862218279140455,
+   "sd_between_teams": 0.24049785662008386,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.459151132320709,
+    "5": 1.8924095526805857,
+    "8": 1.4319442429935108,
+    "10": 1.2427761286301555,
+    "15": 0.9061727556250968,
+    "20": 0.6986727264119831
+   },
+   "grade": "B"
+  },
+  "A31": {
+   "statement": "xT added per match",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.08326852421778008,
+   "skill_ci": [
+    0.033021951645218595,
+    0.1373970592153394
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.8149606299212598,
+   "coverage_ci": [
+    0.7995565437863356,
+    0.8297992418783706
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.11960132493899356,
+   "last5_ci": [
+    -0.14467698918185223,
+    -0.0945468960005389
+   ],
+   "last5_verdict": "season better",
+   "D": 0.8397396995247447,
+   "D_ci": [
+    0.7674241156196306,
+    0.8765296090900363
+   ],
+   "mean_between_teams": 1.1369694911026922,
+   "sd_between_teams": 0.17109743995632135,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.184999178742311,
+    "5": 1.6451581690789168,
+    "8": 1.256198628470208,
+    "10": 1.1211882772549988,
+    "15": 0.793884385631489,
+    "20": 0.6145228262635762
+   },
+   "grade": "B"
+  },
+  "A32": {
+   "statement": "pass completion under pressure in own half",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.07582062986414062,
+   "skill_ci": [
+    0.027349538756796687,
+    0.13409826002906955
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.7909011373578303,
+   "coverage_ci": [
+    0.775604980610651,
+    0.8070569091052124
+   ],
+   "calibration": "about right",
+   "last5_vs_season": -0.11203141105654146,
+   "last5_ci": [
+    -0.1351282151545945,
+    -0.08912260357325397
+   ],
+   "last5_verdict": "season better",
+   "D": 0.8513207093586749,
+   "D_ci": [
+    0.7771012103472734,
+    0.8899430095166827
+   ],
+   "mean_between_teams": 0.6799918225341246,
+   "sd_between_teams": 0.03805143086444787,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.172343052725225,
+    "5": 1.6595524633469416,
+    "8": 1.2456970831568344,
+    "10": 1.0790983367520244,
+    "15": 0.7939624716655368,
+    "20": 0.5915284502658195
+   },
+   "grade": "B"
+  },
+  "K33": {
+   "statement": "share of build-up receptions of the main receiver",
+   "forecasts": 2286,
+   "teams": 70,
+   "skill": 0.06939092873333763,
+   "skill_ci": [
+    0.028214639500645067,
+    0.11347865736852669
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.7454068241469817,
+   "coverage_ci": [
+    0.7218460587565502,
+    0.7693672062206324
+   ],
+   "calibration": "too narrow",
+   "last5_vs_season": 0.008273773674182472,
+   "last5_ci": [
+    -0.040864184118000635,
+    0.05647009244845547
+   ],
+   "last5_verdict": "no difference",
+   "D": 0.7290290144246401,
+   "D_ci": [
+    0.5889936945902844,
+    0.8003108262494978
+   ],
+   "mean_between_teams": 0.12589343650412407,
+   "sd_between_teams": 0.019993105539369206,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.914144390833946,
+    "5": 2.243751138966858,
+    "8": 1.7102937135254668,
+    "10": 1.4691728095362317,
+    "15": 1.0835572978755634,
+    "20": 0.8333637991956553
+   },
+   "grade": "B"
+  },
+  "K34": {
+   "statement": "share of corners taken by the main taker",
+   "forecasts": 2237,
+   "teams": 70,
+   "skill": 0.08275678255033203,
+   "skill_ci": [
+    0.02911716579507906,
+    0.136688728280716
+   ],
+   "forecast": "weak",
+   "coverage_80": 0.8046490835940993,
+   "coverage_ci": [
+    0.7851092861153837,
+    0.8240025697828977
+   ],
+   "calibration": "about right",
+   "last5_vs_season": 0.08210994083904621,
+   "last5_ci": [
+    0.02244342401427979,
+    0.1410855986808056
+   ],
+   "last5_verdict": "last 5 better",
+   "D": 0.7389152221908463,
+   "D_ci": [
+    0.5966306438760643,
+    0.8198299862960083
+   ],
+   "mean_between_teams": 0.4404301050914148,
+   "sd_between_teams": 0.12035756967325174,
+   "discrimination": "high",
+   "matches_needed": ">20",
+   "error_p90_over_sd": {
+    "3": 2.8204324358603547,
+    "5": 2.168437063819231,
+    "8": 1.602663400909312,
+    "10": 1.4180943479801693,
+    "15": 1.0376562266872906,
+    "20": 0.7836004053687776
+   },
+   "grade": "B"
+  }
+ },
+ "note": "Grades of statement types, not of single teams. Forecast = season so far vs the league average of the other teams; descriptive, see the protocol for limits.",
+ "correction": {
+  "note": "protocol note 1 (19 Oct 2026)",
+  "dropped_team_matches": {
+   "Olympique de Marseille": [
+    3829430,
+    3829443,
+    3829477,
+    3829500,
+    3829518,
+    3900637,
+    3901173,
+    3901178,
+    3901201,
+    3901223,
+    3901242
+   ],
+   "Stade Malherbe Caen": [
+    3829438,
+    3829455,
+    3829479,
+    3829508,
+    3901179,
+    3901200,
+    3901216,
+    3901229,
+    3901246
+   ]
+  }
+ }
+}
