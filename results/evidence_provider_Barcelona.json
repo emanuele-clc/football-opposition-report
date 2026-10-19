@@ -1,0 +1,307 @@
+{
+ "protocol": "docs/protocol_evidence_grade.md (Second provider)",
+ "team": "Barcelona",
+ "season": "2017/2018",
+ "matches": 36,
+ "statements": {
+  "S01": {
+   "statement": "open-play sequences per match",
+   "seen_before": true,
+   "statsbomb": 51.0,
+   "wyscout": 53.583333333333336,
+   "per_match_r": 0.8567875176193326,
+   "difference_over_sd": 0.6229956689953355,
+   "label": "differs"
+  },
+  "S02": {
+   "statement": "passes per sequence",
+   "seen_before": true,
+   "statsbomb": 9.001633986928105,
+   "wyscout": 8.594090202177293,
+   "per_match_r": 0.954835585461264,
+   "difference_over_sd": 0.481383195566941,
+   "label": "same in Wyscout"
+  },
+  "S03": {
+   "statement": "long-pass share of a sequence",
+   "seen_before": true,
+   "statsbomb": 0.1465098075054768,
+   "wyscout": 0.20754692049596057,
+   "per_match_r": 0.6259987792267104,
+   "difference_over_sd": 2.814320528862814,
+   "label": "differs"
+  },
+  "S04": {
+   "statement": "share of sequences starting in the build-up zone",
+   "seen_before": true,
+   "statsbomb": 0.5571895424836601,
+   "wyscout": 0.5821669258683255,
+   "per_match_r": 0.883318355242638,
+   "difference_over_sd": 0.7648871200225658,
+   "label": "differs"
+  },
+  "S05": {
+   "statement": "shot rate per sequence",
+   "seen_before": true,
+   "statsbomb": 0.13725490196078433,
+   "wyscout": 0.12804561949196475,
+   "per_match_r": 0.9394560159261753,
+   "difference_over_sd": 0.5364644827140389,
+   "label": "differs"
+  },
+  "S06": {
+   "statement": "sequence duration (s)",
+   "seen_before": true,
+   "statsbomb": 26.917755991285404,
+   "wyscout": 24.485743908761016,
+   "per_match_r": 0.9201992314015106,
+   "difference_over_sd": 1.0153274368491976,
+   "label": "differs"
+  },
+  "F07": {
+   "statement": "share of each build-up family",
+   "seen_before": true,
+   "shares": {
+    "B1": {
+     "statsbomb": 0.1739980449657869,
+     "wyscout": 0.1549421193232413
+    },
+    "B2": {
+     "statsbomb": 0.2316715542521994,
+     "wyscout": 0.2404274265360641
+    },
+    "B3": {
+     "statsbomb": 0.10654936461388075,
+     "wyscout": 0.08281389136242208
+    },
+    "B4": {
+     "statsbomb": 0.260019550342131,
+     "wyscout": 0.2778272484416741
+    },
+    "B5": {
+     "statsbomb": 0.22776148582600195,
+     "wyscout": 0.2439893143365984
+    }
+   },
+   "largest_difference": 0.023735473251458666,
+   "label": "same in Wyscout"
+  },
+  "F08": {
+   "statement": "share of each advanced family",
+   "seen_before": true,
+   "shares": {
+    "A1": {
+     "statsbomb": 0.4108241082410824,
+     "wyscout": 0.39950372208436724
+    },
+    "A2": {
+     "statsbomb": 0.2201722017220172,
+     "wyscout": 0.18734491315136476
+    },
+    "A3": {
+     "statsbomb": 0.36900369003690037,
+     "wyscout": 0.413151364764268
+    }
+   },
+   "largest_difference": 0.044147674727367636,
+   "label": "same in Wyscout"
+  },
+  "R09": {
+   "statement": "goal kicks: first pass short",
+   "seen_before": true,
+   "statsbomb": 0.38697318007662834,
+   "wyscout": 0.23220973782771537,
+   "per_match_r": 0.42210819838967234,
+   "difference_over_sd": 1.460036829148237,
+   "label": "differs"
+  },
+  "R10": {
+   "statement": "goal kicks: reached the opponent half",
+   "seen_before": false,
+   "statsbomb": 0.7854406130268199,
+   "wyscout": 0.7602996254681648,
+   "per_match_r": 0.8733794337158727,
+   "difference_over_sd": 0.4563430875729952,
+   "label": "same in Wyscout"
+  },
+  "R11": {
+   "statement": "goal kicks: ended in own half",
+   "seen_before": false,
+   "statsbomb": 0.25287356321839083,
+   "wyscout": 0.29213483146067415,
+   "per_match_r": 0.8470520207038663,
+   "difference_over_sd": 0.7070431016028793,
+   "label": "differs"
+  },
+  "R12": {
+   "statement": "keeper: first pass short",
+   "seen_before": true,
+   "statsbomb": 0.6608695652173913,
+   "wyscout": 0.5714285714285714,
+   "per_match_r": 0.4573180438885378,
+   "difference_over_sd": 0.8164057171707015,
+   "label": "differs"
+  },
+  "R13": {
+   "statement": "throw-ins in own half: ended in own half",
+   "seen_before": false,
+   "statsbomb": 0.36857142857142855,
+   "wyscout": 0.4027777777777778,
+   "per_match_r": 0.8837609068012572,
+   "difference_over_sd": 0.9370069295092639,
+   "label": "differs"
+  },
+  "P14": {
+   "statement": "corners per match",
+   "seen_before": true,
+   "statsbomb": 5.583333333333333,
+   "wyscout": 5.611111111111111,
+   "per_match_r": 0.9984280341589035,
+   "difference_over_sd": 0.034637823462573145,
+   "label": "same in Wyscout"
+  },
+  "P15": {
+   "statement": "corners played short / outside the box",
+   "seen_before": false,
+   "statsbomb": 0.3283582089552239,
+   "wyscout": 0.400990099009901,
+   "per_match_r": 0.9169466755672728,
+   "difference_over_sd": 0.9639752305970515,
+   "label": "differs"
+  },
+  "P16": {
+   "statement": "corners to the far post",
+   "seen_before": false,
+   "statsbomb": 0.04477611940298507,
+   "wyscout": 0.07920792079207921,
+   "per_match_r": 0.3822087106829067,
+   "difference_over_sd": 1.3826046953381201,
+   "label": "differs"
+  },
+  "P17": {
+   "statement": "corners ending in a shot",
+   "seen_before": false,
+   "statsbomb": 0.39303482587064675,
+   "wyscout": 0.33663366336633666,
+   "per_match_r": 0.7537768790390623,
+   "difference_over_sd": 1.2770516354605266,
+   "label": "differs"
+  },
+  "T18": {
+   "statement": "open-play losses per match",
+   "seen_before": true,
+   "statsbomb": 62.22222222222222,
+   "wyscout": 46.388888888888886,
+   "per_match_r": 0.6100161262240208,
+   "difference_over_sd": 3.3547328253112054,
+   "label": "differs"
+  },
+  "T19": {
+   "statement": "losses in own third",
+   "seen_before": false,
+   "statsbomb": 0.21205357142857142,
+   "wyscout": 0.3017964071856287,
+   "per_match_r": 0.902524060625259,
+   "difference_over_sd": 2.962184518731186,
+   "label": "differs"
+  },
+  "T20": {
+   "statement": "counter-press regains within 5 s",
+   "seen_before": false,
+   "statsbomb": 0.19017857142857142,
+   "wyscout": 0.10538922155688622,
+   "per_match_r": 0.6407961486914857,
+   "difference_over_sd": 5.503025202143311,
+   "label": "differs"
+  },
+  "T21": {
+   "statement": "recoveries in the final third",
+   "seen_before": false,
+   "statsbomb": 0.10498220640569395,
+   "wyscout": 0.11712707182320442,
+   "per_match_r": 0.5314679377052853,
+   "difference_over_sd": 1.3239537846985103,
+   "label": "differs"
+  },
+  "T22": {
+   "statement": "recoveries followed by a shot within 10 s",
+   "seen_before": false,
+   "statsbomb": 0.0449288256227758,
+   "wyscout": 0.061878453038674036,
+   "per_match_r": 0.8122509997214363,
+   "difference_over_sd": 2.9372608811628886,
+   "label": "differs"
+  },
+  "A29": {
+   "statement": "shots per match",
+   "seen_before": false,
+   "statsbomb": 15.194444444444445,
+   "wyscout": 14.694444444444445,
+   "per_match_r": 0.9617473250251813,
+   "difference_over_sd": 0.28743748837385474,
+   "label": "same in Wyscout"
+  },
+  "K34": {
+   "statement": "share of corners taken by the main taker",
+   "seen_before": false,
+   "leader_statsbomb": "Ivan Rakitić",
+   "leader_wyscout": "I. Rakitić",
+   "statsbomb": 0.23383084577114427,
+   "wyscout": 0.0,
+   "per_match_r": NaN,
+   "difference_over_sd": 1.9428013244696716,
+   "label": "differs"
+  },
+  "D23": {
+   "statement": "PPDA",
+   "label": "not testable",
+   "why": "needs Pressure/Duel events, xG or pass outcomes (not in the generic CSV)"
+  },
+  "D24": {
+   "statement": "pressures per match",
+   "label": "not testable",
+   "why": "needs Pressure/Duel events, xG or pass outcomes (not in the generic CSV)"
+  },
+  "D25": {
+   "statement": "pressures in the final third",
+   "label": "not testable",
+   "why": "needs Pressure/Duel events, xG or pass outcomes (not in the generic CSV)"
+  },
+  "D26": {
+   "statement": "height of defensive actions",
+   "label": "not testable",
+   "why": "needs Pressure/Duel events, xG or pass outcomes (not in the generic CSV)"
+  },
+  "D27": {
+   "statement": "shots conceded per match",
+   "label": "not testable",
+   "why": "needs Pressure/Duel events, xG or pass outcomes (not in the generic CSV)"
+  },
+  "D28": {
+   "statement": "xG conceded per match",
+   "label": "not testable",
+   "why": "needs Pressure/Duel events, xG or pass outcomes (not in the generic CSV)"
+  },
+  "A30": {
+   "statement": "xG per match",
+   "label": "not testable",
+   "why": "needs Pressure/Duel events, xG or pass outcomes (not in the generic CSV)"
+  },
+  "A31": {
+   "statement": "xT added per match",
+   "label": "not testable",
+   "why": "needs Pressure/Duel events, xG or pass outcomes (not in the generic CSV)"
+  },
+  "A32": {
+   "statement": "pass completion under pressure in own half",
+   "label": "not testable",
+   "why": "needs Pressure/Duel events, xG or pass outcomes (not in the generic CSV)"
+  },
+  "K33": {
+   "statement": "share of build-up receptions of the main receiver",
+   "label": "not testable",
+   "why": "needs Pressure/Duel events, xG or pass outcomes (not in the generic CSV)"
+  }
+ },
+ "sources": "StatsBomb Open Data; Wyscout public data, Pappalardo et al. 2019 (CC BY 4.0)"
+}
