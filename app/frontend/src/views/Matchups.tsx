@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { api, type MatchupMetric, type TeamData, type WithoutData } from "../api";
-import { Note } from "../charts";
+import { Explain, Note } from "../charts";
 import { fmt } from "../format";
 
 /* What happened in past matches against different opponents. Descriptive: never a recommendation. */
@@ -207,9 +207,9 @@ export default function Matchups({ d }: { d: TeamData }) {
       <>
         <div className="section-head">
           <h2>Matchups</h2>
-          <p>
+          <Explain>
             How {d.team}'s numbers changed without one of its players. What happened in the past, to check on video.
-          </p>
+          </Explain>
         </div>
         {pills}
         <WithoutPlayer d={d} />
@@ -238,10 +238,10 @@ export default function Matchups({ d }: { d: TeamData }) {
     <>
       <div className="section-head">
         <h2>Matchups</h2>
-        <p>
+        <Explain>
           How {d.team}'s numbers differed in its {M.matches} matches depending on the opponent. What happened in the
           past, to check on video: not a recommendation of formation or style.
-        </p>
+        </Explain>
       </div>
       <div className="pills" role="group" aria-label="Split the matches by">
         {SPLITS.map(([k, l]) => (
@@ -330,10 +330,10 @@ export default function Matchups({ d }: { d: TeamData }) {
       <section className="section" aria-labelledby="mm-h">
         <div className="section-head">
           <h2 id="mm-h">Match by match</h2>
-          <p>
+          <Explain>
             Opponent PPDA = passes {d.team} could make in its own 60% per opponent defensive action (lower = the
             opponent pressed more). Median {M.median_opp_ppda.toFixed(1)}.
-          </p>
+          </Explain>
         </div>
         <div className="table-wrap">
           <table>

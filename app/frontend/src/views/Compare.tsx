@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type Rank, type TeamData, type TeamSummary } from "../api";
-import { FamilyLanes, Note, Replay, ShareStrip } from "../charts";
+import { Explain, FamilyLanes, Note, Replay, ShareStrip } from "../charts";
 import { fmt, ordinal } from "../format";
 import { famLine, familyClips } from "./Overview";
 import StyleMap from "./StyleMap";
@@ -176,10 +176,10 @@ export default function Compare({ d, teams, events }: { d: TeamData; teams: Team
           <section className="section">
             <div className="section-head">
               <h2>Build-up, side by side</h2>
-              <p>
+              <Explain>
                 Families are fitted separately for each team: {d.team}'s B1 and {o.team}'s B1 are different groups that
                 only share a label. Compare what they look like, not the codes.
-              </p>
+              </Explain>
             </div>
             <div className="layout-2">
               <Side d={d} events={events} tone="var(--yellow)" />

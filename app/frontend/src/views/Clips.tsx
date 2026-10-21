@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { api, type ClipRef, type ClipRow, type TeamData } from "../api";
-import { Icon, Note, PlayIcon, Replay, rib } from "../charts";
+import { Explain, Icon, Note, PlayIcon, Replay, rib } from "../charts";
 import { clock } from "../format";
 import { clipId, toRef, useClips, useGoals } from "../useClips";
 import VideoSync from "./VideoSync";
@@ -92,10 +92,10 @@ export default function Clips({
     <>
       <div className="section-head">
         <h2>Clips</h2>
-        <p>
+        <Explain>
           Every possession with its label, match and time. Pick one to watch it replayed; filter, then export for the
           video tool.
-        </p>
+        </Explain>
       </div>
       <div className="pills" role="group" aria-label="Clip list">
         {KINDS.filter(([k]) => d.clips.includes(k)).map(([k, label]) => (

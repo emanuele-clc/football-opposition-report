@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSummary } from "../api";
-import { Icon } from "../charts";
+import { Explain, Icon } from "../charts";
 import { Note, Pitch, Replay, plain } from "../charts";
 import { fmt, ordinal } from "../format";
 
@@ -225,11 +225,11 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
     <>
       <div className="section-head">
         <h2>Game plan</h2>
-        <p>
+        <Explain>
           Preparing to play {d.team}: their shape, how they play and where to look. Hints come from fixed rules on how
           they rank among the {P?.teams_in_folder ?? "…"} teams in this folder. They say where to look on video, not
           what will work.
-        </p>
+        </Explain>
       </div>
       <div className="filters" style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
         <a
@@ -392,7 +392,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
           <section className="section" aria-labelledby="ai-h">
             <div className="section-head">
               <h2 id="ai-h">Coach brief</h2>
-              <p>{P.brief.intro}</p>
+              <Explain>{P.brief.intro}</Explain>
             </div>
             <div className="sticker pad">
               <div className="pills" role="group" aria-label="Choose a question">
@@ -430,10 +430,10 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
           <section className="section" aria-labelledby="gp-h">
             <div className="section-head">
               <h2 id="gp-h">Where to look</h2>
-              <p>
+              <Explain>
                 {P.hints.length} hints fired. Each one shows the numbers that triggered it. "Highest" or "lowest" is
                 among the teams in this folder, which can be from other leagues and seasons.
-              </p>
+              </Explain>
             </div>
             {P.hints.length === 0 ? (
               <p>No rule fired: {d.team} is not at the extremes of any measure here.</p>
@@ -477,11 +477,11 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             <section className="section" aria-labelledby="pz-h">
               <div className="section-head">
                 <h2 id="pz-h">Where pressing hurts them</h2>
-                <p>
+                <Explain>
                   Their own half, own goal on the left. Each zone: share of their open-play passes completed when under
                   pressure, against the other {P.pressure_zones.teams_in_reference} teams in the same zone. Red = below
                   the others, green = above; dashed outline = at least 5 points below with 40+ passes.
-                </p>
+                </Explain>
               </div>
               <div className="layout-split">
                 <div className="sticker" style={plain}>
@@ -535,12 +535,12 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             <section className="section" aria-labelledby="br-h">
               <div className="section-head">
                 <h2 id="br-h">Where they hurt you on the break</h2>
-                <p>
+                <Explain>
                   Where {d.team} win the ball back (they attack left to right). Zone colour = share of their recoveries
                   there followed by a shot within 10 s; dots = each of the {P.breaks.shots.length} recoveries that led
                   to a shot, click one to replay it. Overall {Math.round(1000 * P.breaks.rate) / 10}% of {P.breaks.n}{" "}
                   recoveries.
-                </p>
+                </Explain>
               </div>
               <div className="layout-split">
                 <div className="sticker" style={plain}>
@@ -636,12 +636,12 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             <section className="section" aria-labelledby="fz-h">
               <div className="section-head">
                 <h2 id="fz-h">Where they foul</h2>
-                <p>
+                <Explain>
                   Fouls committed per match in each zone of their own half (own goal on the left), against the other{" "}
                   {P.foul_zones.teams_in_reference} teams; handballs excluded. Overall{" "}
                   {P.foul_zones.total_per_match.toFixed(1)} per match in their half, others{" "}
                   {P.foul_zones.ref_total_per_match?.toFixed(1) ?? "–"}.
-                </p>
+                </Explain>
               </div>
               <div className="layout-split">
                 <div className="sticker" style={plain}>
@@ -722,10 +722,10 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             <section className="section" aria-labelledby="kp-h">
               <div className="section-head">
                 <h2 id="kp-h">Key players</h2>
-                <p>
+                <Explain>
                   From all {evs.matches} matches: top 3 per role. Per match = matches in which the player appears. Names
                   and shirt numbers as in the StatsBomb data.
-                </p>
+                </Explain>
               </div>
               <div className="fam-row" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
                 {evs.players.map((r, n) => (

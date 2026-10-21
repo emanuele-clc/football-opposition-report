@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ClipRef, RestartKind, TeamData } from "../api";
-import { Bars, Interval, Note, Replay, plain } from "../charts";
+import { Bars, Explain, Interval, Note, plain, Replay } from "../charts";
 import { pc } from "../format";
 import { clipId, pickRecent, toRef, useClips, useGoals } from "../useClips";
 import GoalToggle from "./GoalToggle";
@@ -65,10 +65,10 @@ export default function Restarts({
     <>
       <div className="section-head">
         <h2>Restarts</h2>
-        <p>
+        <Explain>
           How the team plays out from goal kicks, keeper distributions and throw-ins. {d.restarts.matches} matches;
           intervals are 95% bootstrap over matches.
-        </p>
+        </Explain>
       </div>
       <div className="pills" role="group" aria-label="Restart type">
         {kinds.map((n) => (
@@ -201,10 +201,10 @@ export default function Restarts({
         <section className="section" aria-label="Pressing map">
           <div className="section-head">
             <h2>Where the first pass goes</h2>
-            <p>
+            <Explain>
               Every first pass from {kind.toLowerCase()}, coloured by how the possession ended. Use it to prepare the
               press, then check on video.
-            </p>
+            </Explain>
           </div>
           <PressingMap
             teamKey={d.key}

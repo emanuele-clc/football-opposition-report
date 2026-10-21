@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { api, type Evidence as EvData, type EvStatement, type Grade, type TeamData } from "../api";
-import { GRADE_SAYS, GRADE_TITLE, GradeMark, Note, plain } from "../charts";
+import { Explain, GRADE_SAYS, GRADE_TITLE, GradeMark, Note, plain } from "../charts";
 import { pc } from "../format";
 
 /* Which numbers of the report can be trusted: grades of the evidence study (docs/protocol_evidence_grade.md),
@@ -202,7 +202,7 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
       <section aria-labelledby="ev-h">
         <div className="section-head">
           <h2 id="ev-h">Which numbers can you trust?</h2>
-          <p>{`We checked every number in this report on ${ev.n_teams} teams it had never seen. A number gets a good grade if it really differs between teams and helps you guess what a team will do in its next match.`}</p>
+          <Explain>{`We checked every number in this report on ${ev.n_teams} teams it had never seen. A number gets a good grade if it really differs between teams and helps you guess what a team will do in its next match.`}</Explain>
         </div>
         <div className="ev-buckets">
           {GRADES.map((g) => (

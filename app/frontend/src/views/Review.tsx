@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { api, type ClipRef, type ReviewData, type TeamData } from "../api";
-import { Note, PlayIcon, Replay, rib } from "../charts";
+import { Explain, Note, PlayIcon, Replay, rib } from "../charts";
 import { clock, pc } from "../format";
 
 const VERDICTS = ["yes", "partly", "no"] as const;
@@ -94,11 +94,11 @@ export default function Review({ d, events }: { d: TeamData; events: boolean }) 
     <>
       <div className="section-head">
         <h2>Analyst review</h2>
-        <p>
+        <Explain>
           Part 1: watch each sequence and mark whether it fits the family it was assigned to (yes / partly / no). Part
           2: answer the five questions. The same questions are used for every reviewer. Nothing here is evidence that
           the report is useful until someone with football experience has answered.
-        </p>
+        </Explain>
       </div>
       <div className="filters">
         <label className="field">

@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import type { TeamData } from "../api";
-import { Note, Pitch, RankRow, plain } from "../charts";
+import { Explain, Note, Pitch, plain, RankRow } from "../charts";
 import { pc } from "../format";
 
 const THIRDS = ["own third", "middle third", "final third"] as const;
@@ -81,10 +81,10 @@ export default function Defending({ d }: { d: TeamData }) {
     <>
       <div className="section-head">
         <h2>Defending</h2>
-        <p>
+        <Explain>
           How {d.team} defends without the ball: pressing intensity, where it presses, how high it defends, what it
           concedes. {D.matches} matches; intervals are 95% bootstrap over matches.
-        </p>
+        </Explain>
       </div>
 
       <div className="layout-split">
@@ -186,7 +186,7 @@ export default function Defending({ d }: { d: TeamData }) {
       <section className="section">
         <div className="section-head">
           <h2>Against the other teams</h2>
-          <p>Each dot is a team in this folder; the big yellow dot is {d.team}. Left = lowest, right = highest.</p>
+          <Explain>Each dot is a team in this folder; the big yellow dot is {d.team}. Left = lowest, right = highest.</Explain>
         </div>
         <div className="ranks" style={{ gridTemplateColumns: "minmax(0, 1fr)" }}>
           {ranks.map((r) => (

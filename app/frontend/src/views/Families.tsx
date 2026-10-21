@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import type { ClipRef, TeamData } from "../api";
-import { AllPaths, FamilyLanes, PassNetwork, Interval, Note, PlayIcon, Replay, RIBS, rib, ShareStrip } from "../charts";
+import { AllPaths, Explain, FamilyLanes, Interval, Note, PassNetwork, PlayIcon, Replay, rib, RIBS, ShareStrip } from "../charts";
 import { clock, pc } from "../format";
 import { famLine, familyClips } from "./Overview";
 
@@ -59,10 +59,10 @@ export default function Families({
       </div>
       <div className="section-head">
         <h2>{phase === "build-up" ? "Build-up" : "Advanced"} families</h2>
-        <p>
+        <Explain>
           k = {P.k} · {P.n} open-play sequences with at least 3 passes,{" "}
           {phase === "build-up" ? "starting at x < 45" : "starting at x ≥ 45"}. Click a family to replay it.
-        </p>
+        </Explain>
       </div>
       <ShareStrip families={P.families} pick={fam.fam} onPick={choose} />
 
@@ -175,7 +175,7 @@ export default function Families({
       <section className="section" aria-labelledby="st-h">
         <div className="section-head">
           <h2 id="st-h">How sequences start decides the family</h2>
-          <p>Row shares; this is the strongest regularity found in the validation.</p>
+          <Explain>Row shares; this is the strongest regularity found in the validation.</Explain>
         </div>
         <div className="table-wrap">
           <table className="heat">
@@ -216,10 +216,10 @@ export default function Families({
       <section className="section" aria-labelledby="tb-h">
         <div className="section-head">
           <h2 id="tb-h">Every number per family</h2>
-          <p>
+          <Explain>
             Share interval: yellow mark = season share, bar = per-match share from the 10th to the 90th percentile (axis
             0 to 60%).
-          </p>
+          </Explain>
         </div>
         <div className="table-wrap">
           <table>
@@ -286,7 +286,7 @@ export default function Families({
       <section className="section" aria-labelledby="ex-h">
         <div className="section-head">
           <h2 id="ex-h">Typical sequences to find on video</h2>
-          <p>The three closest to the centre of each family.</p>
+          <Explain>The three closest to the centre of each family.</Explain>
         </div>
         <div className="table-wrap">
           <table>

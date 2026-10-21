@@ -357,6 +357,42 @@ main {
   font-size: 14.5px;
   max-width: 75ch;
 }
+/* Section explanations stay closed: heading and data first, the how-to-read text one click away. */
+.explain {
+  flex-basis: 100%;
+  margin-top: -14px;
+}
+.explain summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--on-board-3);
+  padding: 4px 0;
+  transition: color 160ms var(--out);
+}
+.explain summary::-webkit-details-marker {
+  display: none;
+}
+.explain summary:hover,
+.explain[open] summary {
+  color: var(--on-board);
+}
+.explain summary svg {
+  width: 15px;
+  height: 15px;
+}
+.explain p {
+  margin-top: 4px;
+}
+@media print {
+  .explain {
+    display: none;
+  }
+}
 
 /* Stickers */
 .sticker {
@@ -1327,6 +1363,55 @@ ol.near li {
 }
 .note.info {
   --tag: var(--sky);
+}
+/* Overview trust list: one line per check, a coloured marker plus the words (never colour alone). */
+.trust {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+  max-width: 900px;
+}
+.trust li {
+  display: grid;
+  grid-template-columns: 10px 190px 1fr;
+  gap: 4px 14px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--board-line);
+  font-size: 15px;
+}
+.trust li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--tag, var(--on-board-3));
+  transform: translateY(1px);
+}
+.trust li.ok {
+  --tag: var(--lime);
+}
+.trust li.caution {
+  --tag: var(--caution);
+}
+.trust li.info {
+  --tag: var(--sky);
+}
+.trust b {
+  font-weight: 750;
+}
+.trust span {
+  color: var(--on-board-2);
+}
+@media (max-width: 560px) {
+  .trust li {
+    grid-template-columns: 10px 1fr;
+  }
+  .trust span {
+    grid-column: 2;
+  }
 }
 .sticker .note {
   background: var(--sticker-wash);

@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import type { ClipRow, TeamData } from "../api";
-import { Note, Pitch, RankRow, Replay, plain } from "../charts";
+import { Explain, Note, Pitch, plain, RankRow, Replay } from "../charts";
 import { pc } from "../format";
 import { clipId, toRef, useClips, useGoals } from "../useClips";
 import GoalToggle from "./GoalToggle";
@@ -101,11 +101,11 @@ export default function Threat({
     <>
       <div className="section-head">
         <h2>Threat</h2>
-        <p>
+        <Explain>
           How much {d.team} moves the ball into dangerous zones with completed passes and carries (Expected Threat, xT):
           a move counts the value of the zone where it ends minus the zone where it starts. {X.matches} matches;
           intervals are 95% bootstrap over matches.
-        </p>
+        </Explain>
       </div>
 
       <div className="layout-split">
@@ -193,7 +193,7 @@ export default function Threat({
       <section className="section" aria-labelledby="xo-h">
         <div className="section-head">
           <h2 id="xo-h">By third and channel</h2>
-          <p>xT added per match, by where the move starts.</p>
+          <Explain>xT added per match, by where the move starts.</Explain>
         </div>
         <table>
           <thead>
@@ -222,7 +222,7 @@ export default function Threat({
       <section className="section" aria-labelledby="xw-h">
         <div className="section-head">
           <h2 id="xw-h">Watch the biggest moves</h2>
-          <p>The season's passes and carries with the largest xT added, replayed with the possession around them.</p>
+          <Explain>The season's passes and carries with the largest xT added, replayed with the possession around them.</Explain>
           <GoalToggle count={goals && goalRows.length} on={onlyGoals} set={setOnlyGoals} />
         </div>
         <div className="layout-split">
@@ -280,7 +280,7 @@ export default function Threat({
         <section className="section">
           <div className="section-head">
             <h2>Against the other teams</h2>
-            <p>Each dot is a team in this folder; the big yellow dot is {d.team}. Left = lowest, right = highest.</p>
+            <Explain>Each dot is a team in this folder; the big yellow dot is {d.team}. Left = lowest, right = highest.</Explain>
           </div>
           <div className="ranks" style={{ gridTemplateColumns: "minmax(0, 1fr)" }}>
             {ranks.map((r) => (

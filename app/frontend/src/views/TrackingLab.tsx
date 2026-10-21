@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { api, type TrackClip, type TrackMatch, type TrackResults } from "../api";
-import { Note, Pitch, plain } from "../charts";
+import { Explain, Note, Pitch, plain } from "../charts";
 
 const reduced = () => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 const lerp = (a: [number, number] | null, b: [number, number] | null, u: number): [number, number] | null =>
@@ -23,10 +23,10 @@ function Findings({ R }: { R: TrackResults }) {
     <section className="section" aria-labelledby="tf-h">
       <div className="section-head">
         <h2 id="tf-h">What the checks found</h2>
-        <p>
+        <Explain>
           Exploratory: definitions fixed in the scripts before one run each; no protocol committed in advance. 95%
           intervals by bootstrap.
-        </p>
+        </Explain>
       </div>
       <div className="layout-2">
         <div className="sticker pad">
@@ -253,12 +253,12 @@ export default function TrackingLab() {
     <>
       <div className="section-head">
         <h2>Tracking lab</h2>
-        <p>
+        <Explain>
           What tracking data add to event data: every player's position 25 times a second, so space can be measured.
           Seven open matches from the DFL (Bundesliga and 2. Bundesliga 2022/23), not the teams of the report. Each goal
           is replayed from 10 s before, with pitch control: for every patch of grass, which team would most likely reach
           a ball played there first.
-        </p>
+        </Explain>
       </div>
 
       <div className="pills no-print" role="group" aria-label="Match">

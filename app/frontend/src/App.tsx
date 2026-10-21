@@ -38,13 +38,14 @@ const TABS: [string, string][] = [
   ["tracking", "Tracking lab"],
   ["review", "Review"],
 ];
-/* Fifteen sections in five groups: the top bar names the group, the row under the team name the section. */
+/* The top bar names the group, the row under the team name the section. The everyday path is Summary -> a phase -> Clips;
+   the rest sits under More. */
 const GROUPS: [string, string[]][] = [
   ["Summary", ["overview", "gameplan", "evidence"]],
   ["With the ball", ["build-up", "threat", "restarts", "setpieces", "goals"]],
   ["Without the ball", ["transitions", "defending"]],
-  ["Context", ["matchups", "compare", "tracking"]],
-  ["Video & review", ["clips", "review"]],
+  ["Clips", ["clips"]],
+  ["More", ["compare", "matchups", "review", "tracking"]],
 ];
 const groupOf = (tab: string) =>
   GROUPS.find(([, t]) => t.includes(tab === "advanced" ? "build-up" : tab === "coach" ? "gameplan" : tab)) ?? GROUPS[0];
@@ -341,13 +342,6 @@ export default function App() {
                 <b>{current.matches} matches</b>
                 {current.period.replace(" to ", " – ")}
               </span>
-              <span>
-                <b>{current.sequences.toLocaleString("en")} sequences</b>
-                {current.report.phases["build-up"].n} build-up · {current.report.phases.advanced.n} advanced
-              </span>
-              <span>
-                <b>{current.references.length} other teams</b>to compare with
-              </span>
             </div>
             {groupOf(route.tab)[1].length > 1 && (
               <nav className="subnav no-print" aria-label={groupOf(route.tab)[0]}>
@@ -412,10 +406,7 @@ export default function App() {
         </button>
       )}
       <footer>
-        <span>
-          Automated Football Opposition Report · master's thesis prototype. Descriptive only: no number here was tested
-          as a hypothesis unless the thesis protocol says so.
-        </span>
+        <span>Master's thesis prototype · descriptive only</span>
         <span>Data: StatsBomb Open Data (non-commercial licence){info ? ` · ${info.data_dir}` : ""}</span>
       </footer>
     </>

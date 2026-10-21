@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { SetPieceKind, TeamData } from "../api";
-import { Bars, Interval, Note, Pitch, Replay, plain } from "../charts";
+import { Bars, Explain, Interval, Note, Pitch, plain, Replay } from "../charts";
 import { pc } from "../format";
 import { clipId, pickRecent, toRef, useClips, useGoals } from "../useClips";
 import GoalToggle from "./GoalToggle";
@@ -137,7 +137,7 @@ export default function SetPieces({
     <>
       <div className="section-head">
         <h2>Set pieces</h2>
-        <p>Corners and attacking free kicks, {d.setpieces.matches} matches. Descriptive.</p>
+        <Explain>Corners and attacking free kicks, {d.setpieces.matches} matches. Descriptive.</Explain>
       </div>
       <div className="pills" role="group" aria-label="Set piece">
         {kinds.map((n) => (

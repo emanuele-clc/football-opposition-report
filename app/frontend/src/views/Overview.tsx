@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type ClipRef, type Evidence, type Family, type Rank, type TeamData } from "../api";
-import { evidenceHref, FamilyLanes, Note, RankRow, Replay, rib, ShareStrip, third } from "../charts";
+import { evidenceHref, FamilyLanes, Replay, rib, ShareStrip, third } from "../charts";
 import { fmt, n1, ordinal, pc } from "../format";
 
 const TAB_OF: Record<string, string> = {
@@ -88,15 +88,10 @@ export default function Overview({
   const fi = P.families.indexOf(fam);
   const clips = events ? familyClips(fam) : [];
   const kps = keyPoints(d.ranks);
-  const groups = [...new Set(d.ranks.map((r) => r.group))];
   const choose = (f: string) => {
     setPick(f);
     setIdx(0);
   };
-  const [allRanks, setAllRanks] = useState(false);
-  // Collapsed: only the measures where the team is in the top or bottom two of the folder.
-  const edge = (r: Rank) => r.rank <= 2 || r.rank >= r.of - 1;
-  const shownRanks = allRanks ? d.ranks : d.ranks.filter(edge);
   const [ev, setEv] = useState<Evidence | null>(null);
   useEffect(() => {
     api
@@ -161,7 +156,7 @@ export default function Overview({
                   </p>
                   <p className="sub">
                     {where(r, d.key)}
-                    {r.caution ? " · rough: see the caution below" : ""}
+                    {r.caution ? ` · rough: ${r.caution}` : ""}
                   </p>
                 </span>
                 <span className="badge">
@@ -172,8 +167,7 @@ export default function Overview({
             ))}
           </div>
           <p className="small" style={{ marginTop: 12, marginBottom: 4 }}>
-            Where {d.team} is furthest from the other {d.references.length} teams in this folder: the most extreme fact
-            of each section first. 1st = highest value. Click a fact for its section, a family to replay it.
+            Where {d.team} differs most from the other {d.references.length} teams. 1st = highest value.
           </p>
           <div className="fam-head">
             <h3 style={{ color: "var(--accent-text)" }}>Families</h3>
@@ -195,193 +189,110 @@ export default function Overview({
           </div>
           <ShareStrip families={P.families} pick={fam.fam} onPick={choose} />
           <p className="small" style={{ marginTop: 10 }}>
-            {phase === "build-up"
-              ? "Build-up: sequences starting at x < 45."
-              : "Advanced: sequences starting at x ≥ 45."}{" "}
-            Click a family to replay it. B1, A2… are labels, not tactical categories.{" "}
+            B1, A2… are labels, not tactical categories.{" "}
             <a href={`#/${encodeURIComponent(d.key)}/${phase}`}>Every number per family →</a>
           </p>
         </section>
       </div>
 
-      <section className="section" aria-labelledby="chg-h">
-        <div className="section-head">
-          <h2 id="chg-h">What changed in restarts, last 5 matches</h2>
-          <p>
-            Restart figures where the last 5 matches fall outside the season's 95% interval. A hint to check on video,
-            not proof of a change: with 5 matches the interval is wide.
-          </p>
-        </div>
-        {(() => {
-          const LAB: Record<string, string> = {
-            short: "first pass short",
-            left: "first pass to the left",
-            centre: "first pass to the centre",
-            right: "first pass to the right",
-            opp_half: "reached the opponent half",
-            final_third: "reached the final third",
-            lost_own_half: "ended in own half",
-            shot: "ended in a shot",
-          };
-          const ch = Object.entries(d.restarts?.kinds ?? {}).flatMap(([k, v]) =>
-            Object.entries(v.metrics)
-              .filter(([, m]) => m.last5 != null && !(m.ci[0] <= m.last5 && m.last5 <= m.ci[1]))
-              .map(([m, x]) => ({ k, m, x })),
-          );
-          if (!d.restarts) return <p className="small">No restart sheet for this team.</p>;
-          if (!ch.length)
-            return (
-              <Note kind="ok" tag="No change">
-                No restart figure of the last 5 matches falls outside its season interval.
-              </Note>
-            );
-          return (
-            <ul className="chg-list">
-              {ch.map(({ k, m, x }) => (
-                <li key={k + m}>
-                  <a href={`#/${encodeURIComponent(d.key)}/restarts`}>
-                    {k}: {LAB[m] ?? m}
-                    <span className="dir">
-                      {x.last5! > x.season ? "more often" : "less often"} than in the season · season {pc(x.season)} (
-                      {pc(x.ci[0])}–{pc(x.ci[1])})
-                    </span>
-                  </a>
-                  <span className="v">
-                    {pc(x.last5!)}
-                    <small>last 5</small>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          );
-        })()}
-        {evRows.length > 0 && (
-          <div style={{ marginTop: 16 }}>
-            <Note kind="caution" tag="Careful">
-              {`Checked on ${ev!.n_teams} teams: the last 5 matches guessed the next match worse than the whole season for ${evRows.filter((r) => r.last5_verdict === "season better").length} of ${evRows.length} numbers. Treat these changes as a reason to check the video.`}{" "}
-              <a href={evidenceHref(d.key)}>Which numbers can you trust?</a>
-            </Note>
-          </div>
-        )}
-      </section>
-
-      <section className="section" aria-labelledby="cmp-h">
-        <div className="section-head">
-          <h2 id="cmp-h">Against the other teams</h2>
-          <p>
-            Each dot is a team in this folder, placed by its value; the big yellow dot is {d.team}. Left = lowest, right
-            = highest. The letter before each measure says how far you can trust it: A reliable, B useful, C half
-            reliable, D not reliable.
-          </p>
-        </div>
-        <div className="ranks">
-          {/* Hidden rows stay in the page so that printing always shows every measure. */}
-          {groups.map((g) => (
-            <div key={g} className={shownRanks.some((r) => r.group === g) ? undefined : "rank-extra"}>
-              <div className="group-h">{g}</div>
-              {d.ranks
-                .filter((r) => r.group === g)
-                .map((r) => (
-                  <div key={r.id} className={shownRanks.includes(r) ? undefined : "rank-extra"}>
-                    <RankRow r={r} current={d.key} />
-                  </div>
-                ))}
-            </div>
-          ))}
-        </div>
-        {shownRanks.length < d.ranks.length || allRanks ? (
-          <p className="small no-print" style={{ marginTop: 14 }}>
-            {allRanks
-              ? `All ${d.ranks.length} measures. `
-              : `Showing the ${shownRanks.length} measures where ${d.team} is in the top or bottom two of ${d.ranks[0]?.of ?? ""}. `}
-            <button type="button" className="link-btn" onClick={() => setAllRanks(!allRanks)} aria-expanded={allRanks}>
-              {allRanks ? "Show only the extremes" : `Show all ${d.ranks.length}`}
-            </button>
-          </p>
-        ) : null}
-        <div className="stack" style={{ marginTop: 18 }}>
-          {d.ranks.some((r) => r.caution) && (
-            <Note kind="caution" tag="* Caution">
-              <ul className="cautions">
-                {[...new Set(d.ranks.filter((r) => r.caution).map((r) => r.caution!))].map((c) => (
-                  <li key={c}>{c}</li>
-                ))}
-              </ul>
-            </Note>
-          )}
-          <p className="small">
-            Reference teams ({d.references.length}): {d.references.join(", ") || "none"}. They may come from other
-            leagues and seasons, so ranks are a rough guide.
-          </p>
-        </div>
-      </section>
-
       <section className="section" aria-labelledby="trust-h">
         <div className="section-head">
           <h2 id="trust-h">How much can you trust this?</h2>
         </div>
-        <div className="layout-2">
-          <div className="stack">
-            {(["build-up", "advanced"] as const).map((p) => {
-              const Q = d.report.phases[p];
-              return (
-                <Note key={p} kind={Q.margin >= 0.1 ? "ok" : "caution"} tag={`${p}: ${Q.verdict}`}>
-                  Stability {Q.jaccard_mean.toFixed(2)} against {Q.null_shuffle.toFixed(2)} (shuffled features) and{" "}
-                  {Q.null_gauss.toFixed(2)} (single Gaussian blob).
-                  {Q.verdict !== "clear structure" &&
-                    " Treat the families as a convenient partition, not as separate behaviours."}
-                </Note>
-              );
-            })}
-            {evRows.length > 0 && (
-              <Note kind="info" tag="Grades">
-                {`Every number was checked on ${ev!.n_teams} teams the report had never seen: ${ev!.grades?.A ?? 0} reliable, ${ev!.grades?.B ?? 0} useful, ${ev!.grades?.C ?? 0} half reliable, ${ev!.grades?.D ?? 0} not reliable.`}{" "}
-                <a href={evidenceHref(d.key)}>See which ones</a>
-              </Note>
-            )}
-            <Note kind={d.matches < 8 ? "caution" : "ok"} tag={`${d.matches} matches`}>
+        <ul className="trust">
+          {(["build-up", "advanced"] as const).map((p) => {
+            const Q = d.report.phases[p];
+            return (
+              <li key={p} className={Q.margin >= 0.1 ? "ok" : "caution"}>
+                <b>{p === "build-up" ? "Build-up families" : "Advanced families"}</b>
+                <span>
+                  {Q.verdict}
+                  {Q.verdict !== "clear structure" && ": a convenient partition, not separate behaviours"}
+                </span>
+              </li>
+            );
+          })}
+          <li className={d.matches < 8 ? "caution" : "ok"}>
+            <b>{d.matches} matches</b>
+            <span>
               {d.matches < 8
                 ? "With fewer than 8 matches, treat style numbers as rough."
-                : "That is enough for passes and long-pass tendencies to be reliable; see the table for the others."}
-            </Note>
-          </div>
-          <div>
-            <p className="measure">
-              If you only had <i>n</i> matches of this team, the numbers would typically (90% of the time) differ from
-              the ones above by at most:
-            </p>
-            <div className="table-wrap" style={{ marginTop: 8 }}>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Matches</th>
-                    <th>Passes per sequence</th>
-                    <th>Long-pass share (points)</th>
-                    <th>Shot rate (points)</th>
-                    <th>Family share, build-up (points)</th>
-                    <th>Family share, advanced (points)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.entries(d.report.reliability).map(([n, v]) => (
-                    <tr key={n}>
-                      <td>
-                        <b>{n}</b>
-                      </td>
-                      <td>±{v.passes.toFixed(1)}</td>
-                      <td>±{(100 * v.long).toFixed(1)}</td>
-                      <td>±{(100 * v.shot).toFixed(1)}</td>
-                      <td>±{Math.round(100 * v.build_up)}</td>
-                      <td>±{Math.round(100 * v.advanced)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+                : "Enough for passes and long-pass tendencies to be reliable."}
+            </span>
+          </li>
+          {evRows.length > 0 && (
+            <li className="info">
+              <b>Grades</b>
+              <span>
+                {`Checked on ${ev!.n_teams} unseen teams: ${ev!.grades?.A ?? 0} A, ${ev!.grades?.B ?? 0} B, ${ev!.grades?.C ?? 0} C, ${ev!.grades?.D ?? 0} D.`}{" "}
+                <a href={evidenceHref(d.key)}>Which numbers can you trust?</a>
+              </span>
+            </li>
+          )}
+        </ul>
+        <p className="small no-print" style={{ marginTop: 14 }}>
+          <a href={`#/${encodeURIComponent(d.key)}/compare`}>All {d.ranks.length} measures against the other teams →</a>
+        </p>
         <details className="more">
           <summary>How to read this report</summary>
+          <div className="layout-2">
+            <div className="stack">
+              {(["build-up", "advanced"] as const).map((p) => {
+                const Q = d.report.phases[p];
+                return (
+                  <p key={p} className="small">
+                    {p}: stability {Q.jaccard_mean.toFixed(2)} against {Q.null_shuffle.toFixed(2)} (shuffled features)
+                    and {Q.null_gauss.toFixed(2)} (single Gaussian blob).
+                  </p>
+                );
+              })}
+              {d.ranks.some((r) => r.caution) && (
+                <ul className="cautions small">
+                  {[...new Set(d.ranks.filter((r) => r.caution).map((r) => r.caution!))].map((c) => (
+                    <li key={c}>{c}</li>
+                  ))}
+                </ul>
+              )}
+              <p className="small">
+                Reference teams ({d.references.length}): {d.references.join(", ") || "none"}. They may come from other
+                leagues and seasons, so ranks are a rough guide.
+              </p>
+            </div>
+            <div>
+              <p className="measure small">
+                If you only had <i>n</i> matches of this team, the numbers would typically (90% of the time) differ from
+                the ones above by at most:
+              </p>
+              <div className="table-wrap" style={{ marginTop: 8 }}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Matches</th>
+                      <th>Passes per sequence</th>
+                      <th>Long-pass share (points)</th>
+                      <th>Shot rate (points)</th>
+                      <th>Family share, build-up (points)</th>
+                      <th>Family share, advanced (points)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.entries(d.report.reliability).map(([n, v]) => (
+                      <tr key={n}>
+                        <td>
+                          <b>{n}</b>
+                        </td>
+                        <td>±{v.passes.toFixed(1)}</td>
+                        <td>±{(100 * v.long).toFixed(1)}</td>
+                        <td>±{(100 * v.shot).toFixed(1)}</td>
+                        <td>±{Math.round(100 * v.build_up)}</td>
+                        <td>±{Math.round(100 * v.advanced)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
           <div className="layout-2">
             <ul className="read measure">
               <li>

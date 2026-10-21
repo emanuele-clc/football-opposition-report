@@ -787,6 +787,22 @@ export function Note({ kind, tag, children }: { kind: "caution" | "ok" | "info";
   );
 }
 
+/* How-to-read text of a section: closed by default so the page shows the data first; kept in the DOM for translation. */
+export function Explain({ children }: { children: ReactNode }) {
+  return (
+    <details className="explain">
+      <summary>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.5" />
+          <path d="M8 7.2v4M8 4.8v.01" strokeLinecap="round" />
+        </svg>
+        How to read
+      </summary>
+      <p>{children}</p>
+    </details>
+  );
+}
+
 export function Bars({ items, total, i = 0 }: { items: [string, number][]; total?: number; i?: number }) {
   const max = Math.max(...items.map((x) => x[1]), 1);
   return (

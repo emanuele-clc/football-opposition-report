@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { api, type ClipRef, type GPEvents, type TeamData } from "../api";
-import { Note, Pitch, Replay, plain } from "../charts";
+import { Explain, Note, Pitch, plain, Replay } from "../charts";
 
 /* Every goal scored and conceded, on one pitch and replayable. Origin = StatsBomb play pattern (how the possession started). */
 const COLOR: Record<string, string> = {
@@ -119,10 +119,10 @@ export default function Goals({ d, events }: { d: TeamData; events: boolean }) {
     <>
       <div className="section-head">
         <h2>Goals</h2>
-        <p>
+        <Explain>
           Every goal {d.team} scored and conceded in {kp.matches} matches, where it was shot from and how the move
           started. Click a goal to watch the move that led to it.
-        </p>
+        </Explain>
       </div>
 
       <div className="layout-split">
@@ -196,11 +196,11 @@ export default function Goals({ d, events }: { d: TeamData; events: boolean }) {
       <section className="section" aria-labelledby="gl-h">
         <div className="section-head">
           <h2 id="gl-h">Watch them</h2>
-          <p>
+          <Explain>
             {goals.length} goals selected. The replay shows the whole move from the first action of the possession;{" "}
             {side === "for" ? d.team : "the opponent"} attacks{" "}
             {side === "for" ? "left to right" : "right to left (red)"}.
-          </p>
+          </Explain>
         </div>
         <div className="pills" role="group" aria-label="Goals">
           {(["for", "against"] as Side[]).map((s) => (

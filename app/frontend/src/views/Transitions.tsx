@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { TeamData, Third } from "../api";
-import { Note, Pitch, Replay, plain } from "../charts";
+import { Explain, Note, Pitch, plain, Replay } from "../charts";
 import { pc } from "../format";
 import { clipId, pickRecent, toRef, useClips, useGoals } from "../useClips";
 import GoalToggle from "./GoalToggle";
@@ -126,10 +126,10 @@ export default function Transitions({
     <>
       <div className="section-head">
         <h2>Transitions</h2>
-        <p>
+        <Explain>
           Where {d.team} loses and wins the ball in open play. Built from the order of actions, so it does not depend on
           the provider's possession definition. {T.matches} matches.
-        </p>
+        </Explain>
       </div>
 
       <div className="layout-2">
