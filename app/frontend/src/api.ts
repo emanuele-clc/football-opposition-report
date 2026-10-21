@@ -676,6 +676,8 @@ export const api = {
   team: (key: string) => get<TeamData>(`/api/teams/${encodeURIComponent(key)}`),
   clips: (key: string, kind: string) =>
     get<{ columns: string[]; rows: ClipRow[] }>(`/api/teams/${encodeURIComponent(key)}/clips/${kind}`),
+  sequenceGoals: (key: string) =>
+    get<{ goals: [number, number, number, number][] }>(`/api/teams/${encodeURIComponent(key)}/clips/sequences/goals`),
   replay: (key: string, c: ClipRef) =>
     get<Replay>(
       `/api/teams/${encodeURIComponent(key)}/replay?match=${c.match}&half=${c.half}&minute=${c.minute}&second=${c.second}${c.window ? "&window=true" : ""}${c.possession ? `&possession=${c.possession}` : ""}`,
@@ -728,12 +730,13 @@ export const api = {
     key: string,
     kind: string,
     ext: "csv" | "zip",
-    f: { family?: string; opponent?: string; shot?: boolean; half?: number },
+    f: { family?: string; opponent?: string; shot?: boolean; goal?: boolean; half?: number },
   ) => {
     const q = new URLSearchParams();
     if (f.family) q.set("family", f.family);
     if (f.opponent) q.set("opponent", f.opponent);
     if (f.shot) q.set("shot", "true");
+    if (f.goal) q.set("goal", "true");
     if (f.half) q.set("half", String(f.half));
     return `/api/teams/${encodeURIComponent(key)}/export/${kind}.${ext}?${q}`;
   },

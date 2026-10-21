@@ -924,6 +924,8 @@ export const DICT: [string, string, string][] = [
   ["Reached the final third", "Arrivata nell'ultimo terzo", "Letztes Drittel erreicht"],
   ["Ended in own half", "Finita nella propria metà", "In der eigenen Hälfte beendet"],
   ["Ended in a shot", "Finita con un tiro", "Mit Abschluss beendet"],
+  ["Ended in a goal", "Finita in gol", "Mit Tor beendet"],
+  ["goal", "gol", "Tor"],
   ["Ending in a shot", "Che finiscono con un tiro", "Mit Abschluss"],
   ["{0}: season #%, last # #%", "{0}: stagione #%, ultime # #%", "{0}: Saison #%, letzte # #%"],
   [

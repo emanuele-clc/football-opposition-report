@@ -611,9 +611,58 @@ def read_clips(key, kind):
         return r.fieldnames, list(r)
 
 
-def filtered(key, kind, family, opponent, shot, half):
+SEQ_ACTIONS = ("Pass", "Carry", "Shot", "Dribble")
+
+
+@functools.lru_cache(maxsize=16)
+def _goal_clips(key, mtime):
+    team_name = need(key)["team"]
+    _, rows = read_clips(key, "sequences")
+    by_match = {}
+    for r in rows:
+        if r["ended_in_shot"] == "1":
+            by_match.setdefault(int(r["match"]), []).append(r)
+    out = set()
+    for match, rs in by_match.items():
+        ev = events(match)
+        goals = {
+            (e["period"], e["possession"])
+            for e in ev
+            if e["type"]["name"] == "Shot"
+            and e["team"]["name"] == team_name
+            and e["shot"]["outcome"]["name"] == "Goal"
+        }
+        for r in rs if goals else ():
+            half, minute, second = int(r["half"]), int(r["minute"]), int(r["second"])
+            first = next(
+                (
+                    e
+                    for e in ev
+                    if e.get("period") == half
+                    and e.get("minute") == minute
+                    and e.get("second") == second
+                    and e["team"]["name"] == team_name
+                    and e.get("possession_team", {}).get("name") == team_name
+                    and e["type"]["name"] in SEQ_ACTIONS
+                ),
+                None,
+            )
+            if first and (half, first["possession"]) in goals:
+                out.add((match, half, minute, second))
+    return frozenset(out)
+
+
+def goal_clips(key):
+    """(match, half, minute, second) of the sequences whose possession contains a goal scored by the team with a shot
+    (own goals by the opponent are not shots). Read from the raw events, the same possession the replay shows; the clip
+    CSV written by the pipeline has no goal column and is left unchanged."""
+    return _goal_clips(key, os.path.getmtime(os.path.join(DATA, f"{CLIPS['sequences']}_{key}.csv")))
+
+
+def filtered(key, kind, family, opponent, shot, half, goal=False):
     cols, rows = read_clips(key, kind)
     fam = set(family.split("|")) if family else None
+    goals = goal_clips(key) if goal and kind == "sequences" else None
     rows = [
         r
         for r in rows
@@ -621,8 +670,15 @@ def filtered(key, kind, family, opponent, shot, half):
         and (not opponent or r["opponent"] == opponent)
         and (not shot or r["ended_in_shot"] == "1")
         and (not half or r["half"] == str(half))
+        and (goals is None or (int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"])) in goals)
     ]
     return cols, rows
+
+
+@app.get("/api/teams/{key}/clips/sequences/goals")
+def sequence_goals(key: str):
+    need(key)
+    return {"goals": sorted(goal_clips(key))}
 
 
 @app.get("/api/teams/{key}/clips/{kind}")
@@ -639,9 +695,9 @@ def clips(key: str, kind: str):
 
 
 @app.get("/api/teams/{key}/export/{kind}.csv")
-def export_csv(key: str, kind: str, family: str = "", opponent: str = "", shot: bool = False, half: int = 0):
+def export_csv(key: str, kind: str, family: str = "", opponent: str = "", shot: bool = False, half: int = 0, goal: bool = False):
     need(key)
-    cols, rows = filtered(key, kind, family, opponent, shot, half)
+    cols, rows = filtered(key, kind, family, opponent, shot, half, goal)
     buf = io.StringIO()
     w = csv.DictWriter(buf, fieldnames=cols, lineterminator="\n")
     w.writeheader()
@@ -655,10 +711,10 @@ def export_csv(key: str, kind: str, family: str = "", opponent: str = "", shot: 
 
 
 @app.get("/api/teams/{key}/export/{kind}.zip")
-def export_xml(key: str, kind: str, family: str = "", opponent: str = "", shot: bool = False, half: int = 0):
+def export_xml(key: str, kind: str, family: str = "", opponent: str = "", shot: bool = False, half: int = 0, goal: bool = False):
     """Video-tool XML (one file per match) through src/report/clips_to_xml.py, zipped."""
     need(key)
-    cols, rows = filtered(key, kind, family, opponent, shot, half)
+    cols, rows = filtered(key, kind, family, opponent, shot, half, goal)
     if not rows:
         raise HTTPException(400, "No clips match these filters: nothing to export.")
     with tempfile.TemporaryDirectory() as tmp:

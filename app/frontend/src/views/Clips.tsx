@@ -16,6 +16,7 @@ const KINDS: [string, string][] = [
 type SortKey = "date" | "minute" | "passes" | "duration_s" | "family";
 const PAGE = 40;
 const time = (r: ClipRow) => r.half * 1e4 + r.minute * 60 + r.second;
+const clipId = (m: number, h: number, mi: number, s: number) => `${m}-${h}-${mi}-${s}`;
 
 export default function Clips({
   d,
@@ -36,6 +37,22 @@ export default function Clips({
   );
   const [half, setHalf] = useState(0);
   const [shot, setShot] = useState(false);
+  const [goal, setGoal] = useState(false);
+  const [goals, setGoals] = useState<Set<string> | null>(null);
+  useEffect(() => {
+    setGoals(null);
+    if (kind !== "sequences" || !events) return;
+    let live = true;
+    api
+      .sequenceGoals(d.key)
+      .then((g) => live && setGoals(new Set(g.goals.map((x) => clipId(...x)))))
+      .catch(() => live && setGoals(null));
+    return () => {
+      live = false;
+    };
+  }, [d.key, kind, events]);
+  const isGoal = (r: ClipRow) => !!goals?.has(clipId(r.match, r.half, r.minute, r.second));
+  const goalOn = goal && !!goals;
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "date", dir: 1 });
   const [page, setPage] = useState(0);
   const [sel, setSel] = useState(0);
@@ -44,7 +61,7 @@ export default function Clips({
     setPage(0);
     setSel(0);
     setLike(null);
-  }, [family, opponent, half, shot, kind, d.key]);
+  }, [family, opponent, half, shot, goalOn, kind, d.key]);
 
   const families = useMemo(() => [...new Set((rows ?? []).map((r) => r.family))].sort(), [rows]);
   const opponents = useMemo(() => [...new Set((rows ?? []).map((r) => r.opponent))].sort(), [rows]);
@@ -54,7 +71,8 @@ export default function Clips({
         (!family || r.family === family) &&
         (!opponent || r.opponent === opponent) &&
         (!half || r.half === half) &&
-        (!shot || r.ended_in_shot === 1),
+        (!shot || r.ended_in_shot === 1) &&
+        (!goalOn || isGoal(r)),
     );
     const k = sort.key;
     return out.sort((a, b) => {
@@ -62,9 +80,9 @@ export default function Clips({
         vb = k === "minute" ? time(b) : b[k];
       return (va < vb ? -1 : va > vb ? 1 : time(a) - time(b)) * sort.dir;
     });
-  }, [rows, family, opponent, half, shot, sort]);
+  }, [rows, family, opponent, half, shot, goalOn, goals, sort]);
   const pages = Math.max(1, Math.ceil(shown.length / PAGE));
-  const filters = { family, opponent, shot, half };
+  const filters = { family, opponent, shot, half, goal: goalOn };
   const refs = useMemo(() => shown.map((r) => toRef(r, kind === "transitions")), [shown, kind]);
   const hasVideo = (rows ?? []).some((r) => r.video_time);
   const famIndex = (f: string) => {
@@ -133,6 +151,11 @@ export default function Clips({
         <label className="check">
           <input type="checkbox" checked={shot} onChange={(e) => setShot(e.target.checked)} /> Ended in a shot
         </label>
+        {goals && (
+          <label className="check">
+            <input type="checkbox" checked={goal} onChange={(e) => setGoal(e.target.checked)} /> Ended in a goal
+          </label>
+        )}
         <span style={{ marginLeft: "auto", display: "flex", gap: 10, flexWrap: "wrap" }}>
           <a
             className="btn"
@@ -184,6 +207,7 @@ export default function Clips({
                 setOpponent("");
                 setHalf(0);
                 setShot(false);
+                setGoal(false);
               }}
             >
               Clear filters
@@ -246,7 +270,7 @@ export default function Clips({
                         </td>
                         <td>{r.passes}</td>
                         <td>{r.duration_s} s</td>
-                        <td>{r.ended_in_shot ? "yes" : ""}</td>
+                        <td>{isGoal(r) ? <strong>goal</strong> : r.ended_in_shot ? "yes" : ""}</td>
                         {hasVideo && <td>{r.video_time}</td>}
                       </tr>
                     );
