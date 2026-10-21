@@ -139,6 +139,7 @@ if a.xml:
             py
             + [os.path.join(here, "report", "clips_to_xml.py"), os.path.join(out, c), os.path.join(out, "xml", c[:-4])]
             + (["--video-offsets", os.path.abspath(a.video_offsets)] if a.video_offsets else [])
+            + (["--events-dir", os.path.join(base, "ev")] if os.path.isdir(os.path.join(base, "ev")) else [])
         )
 print(
     f"Fatto. Apri {os.path.join(out, f'prep_{fn}.html')}. Altri file: report_{fn}.html, restarts_{fn}.html, setpieces_{fn}.html, transitions_{fn}.html, defending_{fn}.html, xthreat_{fn}.html, matchups_{fn}.json (sezione Matchups dell'app), clips_{fn}.csv, restart_clips_{fn}.csv, review_{fn}.csv/.html"

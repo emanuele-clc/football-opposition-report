@@ -725,7 +725,8 @@ def export_xml(key: str, kind: str, family: str = "", opponent: str = "", shot: 
             w.writerows(rows)
         outd = os.path.join(tmp, "xml")
         r = subprocess.run(
-            [sys.executable, "-X", "utf8", os.path.join(ROOT, "src", "report", "clips_to_xml.py"), src, outd],
+            [sys.executable, "-X", "utf8", os.path.join(ROOT, "src", "report", "clips_to_xml.py"), src, outd]
+            + (["--events-dir", os.path.join(DATA, "ev")] if os.path.isdir(os.path.join(DATA, "ev")) else []),
             capture_output=True,
             text=True,
             encoding="utf-8",
