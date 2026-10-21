@@ -1,71 +1,151 @@
-# Automated Football Opposition Report
+<div align="center">
 
-Master's thesis prototype · Emanuele Colecchia · UNICAL / FH OÖ Hagenberg · Supervisor: Prof. Pichler  
-Data: [StatsBomb Open Data](https://github.com/statsbomb/open-data) (non-commercial licence).
+# ⚽ Automated Football Opposition Report
 
-From a team's event data, the tool describes how the team builds up, restarts, takes set pieces and handles transitions, and links every number to the clips behind it. Each number comes with an interval and a warning when the sample is small. The method's own tests, including the negative ones, are reported.
+**Know how the next opponent plays, before the match, from data anyone can download.**
 
-## What it does
-- **Build-up patterns:** open-play possessions are grouped into numbered families (B1-B5 in the build-up, A1-A3 further up the pitch), each with its share, shot rate and stability.
-- **Sheets:** restarts (goal kicks, keeper, throw-ins), set pieces, transitions, defending, key players, expected threat (xT). Every value is ranked against the other teams.
-- **Clips:** every possession with match and time, as CSV or as XML for video tools (Sportscode / Nacsport style).
-- **Local app:** replays on the pitch, filters, comparison between teams, clip export, analyst review sheet.
+<img src="docs/img/replay.gif" alt="Replay of a 19-pass Leverkusen build-up that ended in a goal" width="640">
 
-## Main results (10 teams)
-| Question | Answer |
+<sub>Leverkusen vs Wolfsburg, 2023/24: a 19-pass build-up that ended in a goal, rebuilt from event data.</sub>
+
+<br><br>
+
+![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
+![React](https://img.shields.io/badge/React-app-61DAFB?logo=react&logoColor=black)
+![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?logo=fastapi&logoColor=white)
+![Data](https://img.shields.io/badge/data-StatsBomb%20Open%20Data-E8463A)
+![Runs locally](https://img.shields.io/badge/runs-locally-1F3A5F)
+
+Master's thesis · Emanuele Colecchia · UNICAL / FH OÖ Hagenberg
+
+</div>
+
+---
+
+## 💡 The idea
+
+Before every match, club analysts spend hours watching the next opponent: how they build from the back, how they take corners, where they lose the ball. This project does the first pass **automatically** from event data (every pass, carry and shot with its position on the pitch), and shows each finding with the clips behind it.
+
+It also says **how much each number can be trusted**. Every figure comes with a range, a warning when there are too few matches, and a grade from A to D.
+
+## 🔄 How it works
+
+```mermaid
+flowchart LR
+    A["📥 Match events<br/>StatsBomb or any provider"] --> B["⚙️ Analysis<br/>possessions, restarts,<br/>set pieces, transitions"]
+    B --> C["📊 Report<br/>numbers with ranges<br/>and ranks vs other teams"]
+    C --> D["🎬 Clips<br/>replays, CSV,<br/>XML for video tools"]
+```
+
+## 👀 What you get
+
+<table>
+<tr>
+<td width="50%"><img src="docs/img/overview.png" alt="Overview of a team"></td>
+<td width="50%"><img src="docs/img/clips.png" alt="Clip list with filters and replay"></td>
+</tr>
+<tr>
+<td><b>Overview.</b> The team's typical build-up replayed pass by pass, and the five facts where it differs most from the other teams.</td>
+<td><b>Clips.</b> Every possession with match and minute. Filter (for example "ended in a goal"), watch, and export for the video tool.</td>
+</tr>
+</table>
+
+| | |
 |---|---|
-| Do the build-up families reappear in unseen matches? | Yes in **8 of 10** teams (pre-registered, held-out matches) |
-| What makes them predictable? | Almost only how the possession starts; minute, score and venue add nothing |
-| Are they distinct clusters? | Weakly: close to structure-free data, better seen as slices of a continuum |
-| Do they explain shots better than a simple rule? | **No**, in 0 of 10 teams (pre-registered) |
-| Corners (L3): is a set-up exploitable? | Not shown (p = 0.17 and 0.41), but the test could only detect very large effects |
-| How far can each report statement be trusted? | Graded A-D on 70 new teams: 4 A, 13 B, 15 C, 2 D (`results/evidence_grade_corrected.json`) |
+| 🧱 **Build-up** | Possessions grouped into families (B1-B5 near the own goal, A1-A3 further up), with share, shot rate and stability |
+| 🥅 **Restarts** | Goal kicks, keeper distributions, throw-ins: short or long, which side, what happens next |
+| 🚩 **Set pieces** | Corners and free kicks: delivery zones, takers, receivers, shots and goals |
+| 🔁 **Transitions** | Where the ball is lost and won back, counter-press, shots in the next 10 seconds |
+| 🛡️ **Defending** | Pressing (PPDA), pressures by zone, shots conceded |
+| ⭐ **Key players** | Who receives in the build-up, who creates danger, who takes set pieces |
+| 📈 **Threat (xT)** | Which passes and carries move the ball into dangerous zones |
 
-Ten teams: Leverkusen 2023/24, plus nine teams from the 2015/16 Premier League, La Liga, Serie A and Ligue 1. Not tested on club data, and not yet reviewed by an analyst. Details and all tables: [`docs/results.md`](docs/results.md).
+## 🔬 What the research found
 
-## Quick start (Windows, PowerShell)
-First time: install Python 3.13 and Node.js, then
+The method was tested on 10 teams (Leverkusen 2023/24 and nine teams from the 2015/16 Premier League, La Liga, Serie A and Ligue 1). The main tests were written down and published **before** they were run, and negative results are reported too.
+
+| | Question | Answer |
+|:-:|---|---|
+| ✅ | Do the build-up patterns hold up in matches the method has not seen? | **Yes**, in 8 of 10 teams |
+| ➖ | What makes them predictable? | Almost only how the possession starts (goal kick, throw-in, regain) |
+| ➖ | Are they clearly separate styles? | **Weakly.** They are better seen as slices of one continuum |
+| ❌ | Do they explain shots better than a simple rule? | **No**, in 0 of 10 teams |
+| ❔ | Can corner set-ups be exploited? | Not shown. The test could only have found very large effects |
+| 🏷️ | How far can each report statement be trusted? | Graded on 70 new teams: **4 A, 13 B, 15 C, 2 D** |
+
+All tables and details: [docs/results.md](docs/results.md).
+
+## 🚀 Try it
+
+You need **Python 3.13** and **Node.js**. On Windows, in PowerShell:
+
 ```powershell
+git clone https://github.com/emanuele-clc/football-opposition-report
+cd football-opposition-report
 pip install -r requirements.txt
+powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1
 ```
-**Start the app** (it builds, tests and opens http://127.0.0.1:8765; Ctrl+C stops it):
-```powershell
-powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1                          # data in $env:OPPREPORT_DATA, else the 4 example teams
-powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -DataDir <data_folder>   # your own teams (replays need the raw events in <data_folder>\ev)
-```
-**Make the report for one team:**
+
+The app opens at **http://127.0.0.1:8765** with four example teams. Everything runs on your computer and nothing is uploaded.
+
+<details>
+<summary><b>Make a report for another team</b></summary>
+
+<br>
+
 ```powershell
 cd <data_folder>                                                              # downloads go into the current folder
 python -X utf8 <repo>\src\week1\download_data.py 9 281 "Bayer Leverkusen"     # StatsBomb events -> matches\ and ev\
 python -X utf8 <repo>\src\oppreport.py --statsbomb matches\9_281.json --data-dir . --team "Bayer Leverkusen" --out reports
-python -X utf8 <repo>\src\oppreport.py --csv events.csv --team "Team name" --out reports   # any other provider
+python -X utf8 <repo>\src\oppreport.py --csv events.csv --team "Team name" --out reports   # data from any other provider
 ```
-Always use `python -X utf8` on Windows (team names have accents). Output: one HTML page per sheet (`prep_<Team>.html` is the one-page summary) and the clip lists. Data format for other providers: [`docs/data_format.md`](docs/data_format.md).
 
-## Reproducibility
-Every confirmatory test was written down in `docs/protocol_*.md` and committed before it was run once; result files in `results/` are committed unedited.
+Then start the app on that folder: `.\avvia_app.ps1 -DataDir <data_folder>`. Always use `python -X utf8` on Windows (team names have accents). Format for other providers: [docs/data_format.md](docs/data_format.md). How to read the report: [docs/analyst_guide.md](docs/analyst_guide.md).
+
+</details>
+
+<details>
+<summary><b>Check the results yourself</b></summary>
+
+<br>
+
+Each confirmatory test has a protocol in `docs/protocol_*.md`, committed before the run. Result files in `results/` are committed unedited.
+
 ```powershell
-python -X utf8 tests\reproduce_results.py <data_dir> <new_work_dir>   # reruns the tests, compares with results\ (41/41 identical)
-python -X utf8 tests\reproduce_sheets.py <data_dir>                    # reruns the report sheets (50/50 identical)
+python -X utf8 tests\reproduce_results.py <data_dir> <new_work_dir>   # reruns the tests: 41/41 files identical
+python -X utf8 tests\reproduce_sheets.py <data_dir>                    # reruns the report sheets: 50/50 identical
 python -X utf8 tests\test_app_api.py                                   # app checks
 ```
-All analysis commands, step by step: [`docs/pipeline.md`](docs/pipeline.md).
 
-## Repository
+Every analysis step: [docs/pipeline.md](docs/pipeline.md).
+
+</details>
+
+<details>
+<summary><b>What is in this repository</b></summary>
+
+<br>
+
 ```
 src/         analysis (week1-4), report sheets (report/), provider adapters, tracking (exploratory), oppreport.py
 app/         local web app (FastAPI + React), see app/README.md
 tests/       reproducibility and app tests
-docs/        protocols, results, data format, analyst guide
+docs/        protocols, detailed results, data format, analyst guide
 results/     result files of every run (JSON)
-examples/    example outputs for 4 teams (also the app's default data)
+examples/    example outputs for 4 teams (the app's default data)
 data_info/   competition and match lists (raw events are not included)
 ```
 
-## Limits
-- Descriptive: the report shows where to look, not what will work. Family names are numbers until an analyst names them from video.
-- Ten teams, nine of them from one season (2015/16), one provider for the main results.
-- Never tried on real club data. The XML export has not been tested in a real video tool.
+</details>
 
-## Citation
-StatsBomb (2024). StatsBomb Open Data. https://github.com/statsbomb/open-data
+## ⚠️ Limits
+
+- It **describes** how a team plays. It does not say what will work against them.
+- Families are numbered (B1, A2), not named: an analyst names them after watching the clips.
+- Ten teams, nine of them from one season (2015/16). Not yet tried on real club data or reviewed by an analyst. The XML export has not yet been tested in a real video tool.
+
+---
+
+<div align="center">
+<sub>Data: <a href="https://github.com/statsbomb/open-data">StatsBomb Open Data</a> (StatsBomb, 2024), non-commercial licence.</sub>
+</div>
