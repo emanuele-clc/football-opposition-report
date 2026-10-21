@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import type { ClipRef, RestartKind, TeamData } from "../api";
 import { Bars, Interval, Note, Replay, plain } from "../charts";
 import { pc } from "../format";
-import { pickRecent, toRef, useClips } from "../useClips";
+import { clipId, pickRecent, toRef, useClips, useGoals } from "../useClips";
+import GoalToggle from "./GoalToggle";
 import PressingMap from "./PressingMap";
 
 const LABELS: [string, string][] = [
@@ -37,6 +38,8 @@ export default function Restarts({
     setCustom(null);
   }, [d.key]);
   const { rows } = useClips(d.key, "restarts");
+  const goals = useGoals(d.key, "restarts", events);
+  const [onlyGoals, setOnlyGoals] = useState(false);
   if (!d.restarts || !kind)
     return (
       <div className="state">
@@ -46,12 +49,13 @@ export default function Restarts({
     );
   const k = d.restarts.kinds[kind],
     ki = kinds.indexOf(kind);
+  const ofKind = (rows ?? []).filter((r) => r.family.startsWith(kind + " "));
+  const goalRows = goals ? ofKind.filter((r) => goals.has(clipId(r))) : [];
   const recent =
     events && rows
-      ? pickRecent(
-          rows.filter((r) => r.family.startsWith(kind + " ")),
-          10,
-        ).map((r) => toRef(r))
+      ? (onlyGoals && goalRows.length ? pickRecent(goalRows, goalRows.length) : pickRecent(ofKind, 10)).map((r) =>
+          toRef(r),
+        )
       : [];
   const clips = custom?.clips ?? recent;
   const flagged = LABELS.filter(([m]) => k.metrics[m] && outside(k.metrics[m])).length;
@@ -111,13 +115,29 @@ export default function Restarts({
               </p>
               {clips[idx] && (
                 <p>
-                  {custom ? "Replaying" : "Replaying the most recent:"} {clips[idx].detail}.
+                  {custom
+                    ? "Replaying"
+                    : onlyGoals && goalRows.length
+                      ? "Replaying the goals:"
+                      : "Replaying the most recent:"}{" "}
+                  {clips[idx].detail}.
                 </p>
               )}
             </div>
-            <button type="button" className="ctl no-print" onClick={() => go("clips:restarts")}>
-              All restart clips
-            </button>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 10 }}>
+              <GoalToggle
+                count={goals && goalRows.length}
+                on={onlyGoals}
+                set={(v) => {
+                  setOnlyGoals(v);
+                  setIdx(0);
+                  setCustom(null);
+                }}
+              />
+              <button type="button" className="ctl no-print" onClick={() => go("clips:restarts")}>
+                All restart clips
+              </button>
+            </div>
           </div>
         </section>
 

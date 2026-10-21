@@ -32,6 +32,42 @@ export function useClips(key: string, kind: string) {
   return { rows, error };
 }
 
+const goalCache = new Map<string, Promise<Set<string>>>();
+export const clipId = (r: { match: number; half: number; minute: number; second: number }) =>
+  `${r.match}-${r.half}-${r.minute}-${r.second}`;
+
+/* Clips of one list that ended in a goal (read by the backend from the raw events), fetched once per session.
+   null while loading or without event files: the goal filter is then hidden. */
+export function useGoals(key: string, kind: string, events: boolean) {
+  const [goals, setGoals] = useState<Set<string> | null>(null);
+  useEffect(() => {
+    setGoals(null);
+    if (!events) return;
+    let live = true;
+    const k = `${key}/${kind}`;
+    if (!goalCache.has(k))
+      goalCache.set(
+        k,
+        api
+          .clipGoals(key, kind)
+          .then(
+            (g) => new Set(g.goals.map(([match, half, minute, second]) => clipId({ match, half, minute, second }))),
+          ),
+      );
+    goalCache
+      .get(k)!
+      .then((g) => live && setGoals(g))
+      .catch(() => {
+        goalCache.delete(k);
+        if (live) setGoals(null);
+      });
+    return () => {
+      live = false;
+    };
+  }, [key, kind, events]);
+  return goals;
+}
+
 export const toRef = (r: ClipRow, window = false): ClipRef => ({
   match: r.match,
   half: r.half,

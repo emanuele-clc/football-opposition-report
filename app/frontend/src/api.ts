@@ -676,8 +676,8 @@ export const api = {
   team: (key: string) => get<TeamData>(`/api/teams/${encodeURIComponent(key)}`),
   clips: (key: string, kind: string) =>
     get<{ columns: string[]; rows: ClipRow[] }>(`/api/teams/${encodeURIComponent(key)}/clips/${kind}`),
-  sequenceGoals: (key: string) =>
-    get<{ goals: [number, number, number, number][] }>(`/api/teams/${encodeURIComponent(key)}/clips/sequences/goals`),
+  clipGoals: (key: string, kind: string) =>
+    get<{ goals: [number, number, number, number][] }>(`/api/teams/${encodeURIComponent(key)}/clips/${kind}/goals`),
   replay: (key: string, c: ClipRef) =>
     get<Replay>(
       `/api/teams/${encodeURIComponent(key)}/replay?match=${c.match}&half=${c.half}&minute=${c.minute}&second=${c.second}${c.window ? "&window=true" : ""}${c.possession ? `&possession=${c.possession}` : ""}`,

@@ -2,7 +2,8 @@ import { useEffect, useState, type CSSProperties } from "react";
 import type { ClipRow, TeamData } from "../api";
 import { Note, Pitch, RankRow, Replay, plain } from "../charts";
 import { pc } from "../format";
-import { toRef, useClips } from "../useClips";
+import { clipId, toRef, useClips, useGoals } from "../useClips";
+import GoalToggle from "./GoalToggle";
 
 const THIRDS = ["own third", "middle third", "final third"] as const;
 const CHAN = ["left", "centre", "right"] as const;
@@ -65,8 +66,10 @@ export default function Threat({
   go: (tab: string, family?: string) => void;
 }) {
   const [idx, setIdx] = useState(0);
-  useEffect(() => setIdx(0), [d.key]);
+  const [onlyGoals, setOnlyGoals] = useState(false);
+  useEffect(() => setIdx(0), [d.key, onlyGoals]);
   const { rows } = useClips(d.key, "threat");
+  const goals = useGoals(d.key, "threat", events);
   const X = d.xthreat;
   if (!X)
     return (
@@ -80,7 +83,9 @@ export default function Threat({
     );
   const ranks = d.ranks.filter((r) => r.group === "Threat");
   const xtOf = (r: ClipRow) => Number((r as ClipRow & { xt?: string }).xt ?? 0);
-  const best = events && rows ? [...rows].sort((a, b) => xtOf(b) - xtOf(a)).slice(0, 12) : [];
+  const goalRows = goals && rows ? rows.filter((r) => goals.has(clipId(r))) : [];
+  const pool = onlyGoals && goalRows.length ? goalRows : (rows ?? []);
+  const best = events && rows ? [...pool].sort((a, b) => xtOf(b) - xtOf(a)).slice(0, 12) : [];
   const clips = best.map((r) => {
     const ref = toRef(r);
     const who = (r as ClipRow & { player?: string }).player;
@@ -218,6 +223,7 @@ export default function Threat({
         <div className="section-head">
           <h2 id="xw-h">Watch the biggest moves</h2>
           <p>The season's passes and carries with the largest xT added, replayed with the possession around them.</p>
+          <GoalToggle count={goals && goalRows.length} on={onlyGoals} set={setOnlyGoals} />
         </div>
         <div className="layout-split">
           <div className="sticker" style={plain}>

@@ -612,57 +612,104 @@ def read_clips(key, kind):
 
 
 SEQ_ACTIONS = ("Pass", "Carry", "Shot", "Dribble")
+OPEN_PLAY = ("Regular Play", "From Counter")
+is_goal = lambda e: e["type"]["name"] == "Shot" and e["shot"]["outcome"]["name"] == "Goal"
 
 
-@functools.lru_cache(maxsize=16)
-def _goal_clips(key, mtime):
+def _possession_goals(ev, rows, team_name):
+    """Clips that start a possession of the team (sequences, restarts, set pieces) or lie inside one (xT moves): goal if the
+    team scores with a shot in that StatsBomb possession, the same possession the replay shows and the one whose shots
+    set ended_in_shot."""
+    goals = {(e["period"], e["possession"]) for e in ev if is_goal(e) and e["team"]["name"] == team_name}
+    out = set()
+    for r in rows if goals else ():
+        half, minute, second = int(r["half"]), int(r["minute"]), int(r["second"])
+        first = next(
+            (
+                e
+                for e in ev
+                if e.get("period") == half
+                and e.get("minute") == minute
+                and e.get("second") == second
+                and e["team"]["name"] == team_name
+                and e.get("possession_team", {}).get("name") == team_name
+                and e["type"]["name"] in SEQ_ACTIONS
+            ),
+            None,
+        )
+        if first and (half, first["possession"]) in goals:
+            out.add((half, minute, second))
+    return out
+
+
+def _transition_goals(ev, rows, team_name):
+    """Losses and recoveries, rebuilt with the rules of src/report/transitions.py: goal if one of the shots that set
+    ended_in_shot is a goal (after a loss the opponent scores within 10 s, before the team regains; after a recovery the
+    team scores within 10 s, before the opponent touches the ball)."""
+    seen, A = set(), []
+    for e in ev:
+        first = e["possession"] not in seen
+        seen.add(e["possession"])
+        if e["type"]["name"] in SEQ_ACTIONS and e.get("location"):
+            A.append(
+                dict(
+                    e=e,
+                    team=e["team"]["name"] == team_name,
+                    per=e["period"],
+                    t=e["minute"] * 60 + e["second"],
+                    restart=first and e["play_pattern"]["name"] not in OPEN_PLAY,
+                    shot=e["type"]["name"] == "Shot",
+                )
+            )
+    out = set()
+    for i in range(1, len(A)):
+        a, b = A[i - 1], A[i]
+        if a["team"] == b["team"] or a["per"] != b["per"] or b["restart"] or a["shot"]:
+            continue
+        spell = [b]
+        for c in A[i + 1 :]:
+            if c["per"] != b["per"] or c["restart"] or c["team"] != b["team"]:
+                break
+            spell.append(c)
+        if len(spell) < 2 and not b["shot"]:
+            continue
+        if any(c["shot"] and is_goal(c["e"]) and c["t"] - b["t"] <= 10 for c in spell):
+            e0 = a["e"] if a["team"] else b["e"]
+            out.add(("loss" if a["team"] else "recovery", e0["period"], e0["minute"], e0["second"]))
+    return {
+        (int(r["half"]), int(r["minute"]), int(r["second"]))
+        for r in rows
+        if (r["start_type"], int(r["half"]), int(r["minute"]), int(r["second"])) in out
+    }
+
+
+@functools.lru_cache(maxsize=64)
+def _goal_clips(key, kind, mtime):
     team_name = need(key)["team"]
-    _, rows = read_clips(key, "sequences")
+    _, rows = read_clips(key, kind)
     by_match = {}
     for r in rows:
         if r["ended_in_shot"] == "1":
             by_match.setdefault(int(r["match"]), []).append(r)
-    out = set()
-    for match, rs in by_match.items():
-        ev = events(match)
-        goals = {
-            (e["period"], e["possession"])
-            for e in ev
-            if e["type"]["name"] == "Shot"
-            and e["team"]["name"] == team_name
-            and e["shot"]["outcome"]["name"] == "Goal"
-        }
-        for r in rs if goals else ():
-            half, minute, second = int(r["half"]), int(r["minute"]), int(r["second"])
-            first = next(
-                (
-                    e
-                    for e in ev
-                    if e.get("period") == half
-                    and e.get("minute") == minute
-                    and e.get("second") == second
-                    and e["team"]["name"] == team_name
-                    and e.get("possession_team", {}).get("name") == team_name
-                    and e["type"]["name"] in SEQ_ACTIONS
-                ),
-                None,
-            )
-            if first and (half, first["possession"]) in goals:
-                out.add((match, half, minute, second))
-    return frozenset(out)
+    find = _transition_goals if kind == "transitions" else _possession_goals
+    return frozenset(
+        (match, *hms) for match, rs in by_match.items() for hms in find(events(match), rs, team_name)
+    )
 
 
-def goal_clips(key):
-    """(match, half, minute, second) of the sequences whose possession contains a goal scored by the team with a shot
-    (own goals by the opponent are not shots). Read from the raw events, the same possession the replay shows; the clip
-    CSV written by the pipeline has no goal column and is left unchanged."""
-    return _goal_clips(key, os.path.getmtime(os.path.join(DATA, f"{CLIPS['sequences']}_{key}.csv")))
+def goal_clips(key, kind):
+    """(match, half, minute, second) of the clips of a list that ended in a goal, read from the raw events with the same
+    rule that set ended_in_shot in that list (own goals are not shots, so they never count). The clip CSVs written by the
+    pipeline have no goal column and are left unchanged."""
+    if kind not in CLIPS:
+        raise HTTPException(404, f"Unknown clip list '{kind}'. Use one of: {', '.join(CLIPS)}.")
+    return _goal_clips(key, kind, os.path.getmtime(os.path.join(DATA, f"{CLIPS[kind]}_{key}.csv")))
 
 
 def filtered(key, kind, family, opponent, shot, half, goal=False):
     cols, rows = read_clips(key, kind)
     fam = set(family.split("|")) if family else None
-    goals = goal_clips(key) if goal and kind == "sequences" else None
+    goals = goal_clips(key, kind) if goal else None
     rows = [
         r
         for r in rows
@@ -675,10 +722,10 @@ def filtered(key, kind, family, opponent, shot, half, goal=False):
     return cols, rows
 
 
-@app.get("/api/teams/{key}/clips/sequences/goals")
-def sequence_goals(key: str):
+@app.get("/api/teams/{key}/clips/{kind}/goals")
+def clip_goals(key: str, kind: str):
     need(key)
-    return {"goals": sorted(goal_clips(key))}
+    return {"goals": sorted(goal_clips(key, kind))}
 
 
 @app.get("/api/teams/{key}/clips/{kind}")

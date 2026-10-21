@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import type { TeamData, Third } from "../api";
 import { Note, Pitch, Replay, plain } from "../charts";
 import { pc } from "../format";
-import { pickRecent, toRef, useClips } from "../useClips";
+import { clipId, pickRecent, toRef, useClips, useGoals } from "../useClips";
+import GoalToggle from "./GoalToggle";
 
 const THIRDS: [string, number][] = [
   ["own third", 0],
@@ -98,8 +99,10 @@ export default function Transitions({
 }) {
   const [which, setWhich] = useState(REPLAYS[0][0]);
   const [idx, setIdx] = useState(0);
-  useEffect(() => setIdx(0), [d.key, which]);
+  const [onlyGoals, setOnlyGoals] = useState(false);
+  useEffect(() => setIdx(0), [d.key, which, onlyGoals]);
   const { rows } = useClips(d.key, "transitions");
+  const goals = useGoals(d.key, "transitions", events);
   const T = d.transitions;
   if (!T)
     return (
@@ -110,12 +113,13 @@ export default function Transitions({
     );
   const l = T.losses,
     r = T.recoveries;
+  const ofKind = (rows ?? []).filter((x) => x.family === which);
+  const goalRows = goals ? ofKind.filter((x) => goals.has(clipId(x))) : [];
   const clips =
     events && rows
-      ? pickRecent(
-          rows.filter((x) => x.family === which),
-          10,
-        ).map((x) => toRef(x, true))
+      ? (onlyGoals && goalRows.length ? pickRecent(goalRows, goalRows.length) : pickRecent(ofKind, 10)).map((x) =>
+          toRef(x, true),
+        )
       : [];
 
   return (
@@ -195,6 +199,7 @@ export default function Transitions({
               </button>
             ))}
           </div>
+          <GoalToggle count={goals && goalRows.length} on={onlyGoals} set={setOnlyGoals} />
         </div>
         <div className="layout-split">
           <div className="sticker" style={plain}>
@@ -216,7 +221,14 @@ export default function Transitions({
             />
             {clips[idx] && (
               <div className="replay-cap">
-                <p>From 6 s before to 10 s after: {clips[idx].detail}. Opponent actions in red.</p>
+                <p>
+                  From 6 s before to 10 s after: {clips[idx].detail}. Opponent actions in red.
+                  {onlyGoals && goalRows.length
+                    ? which.startsWith("Loss")
+                      ? " Only losses after which the opponent scored within 10 s."
+                      : " Only recoveries followed by a goal within 10 s."
+                    : ""}
+                </p>
               </div>
             )}
           </div>

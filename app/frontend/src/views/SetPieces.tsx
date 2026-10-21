@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import type { SetPieceKind, TeamData } from "../api";
 import { Bars, Interval, Note, Pitch, Replay, plain } from "../charts";
 import { pc } from "../format";
-import { pickRecent, toRef, useClips } from "../useClips";
+import { clipId, pickRecent, toRef, useClips, useGoals } from "../useClips";
+import GoalToggle from "./GoalToggle";
 
 const ci = (c: [number, number]) => `${pc(c[0])}–${pc(c[1])}`;
 const xg = (v: number | null | undefined) => (v == null ? "–" : v.toFixed(3));
@@ -112,6 +113,8 @@ export default function SetPieces({
     setIdx(0);
   }, [d.key]);
   const { rows } = useClips(d.key, "setpieces");
+  const goals = useGoals(d.key, "setpieces", events);
+  const [onlyGoals, setOnlyGoals] = useState(false);
   if (!d.setpieces || !kind)
     return (
       <div className="state">
@@ -120,13 +123,13 @@ export default function SetPieces({
       </div>
     );
   const k = d.setpieces.kinds[kind];
+  const ofKind = (rows ?? []).filter((r) => r.family.startsWith(kind + " "));
+  const goalRows = goals ? ofKind.filter((r) => goals.has(clipId(r))) : [];
   const clips =
     events && rows
-      ? pickRecent(
-          rows.filter((r) => r.family.startsWith(kind + " ")),
-          10,
-          true,
-        ).map((r) => toRef(r))
+      ? (onlyGoals && goalRows.length ? pickRecent(goalRows, goalRows.length) : pickRecent(ofKind, 10, true)).map((r) =>
+          toRef(r),
+        )
       : [];
   const plural = kind === "Corner" ? "corners" : "attacking free kicks";
 
@@ -181,11 +184,28 @@ export default function SetPieces({
                   {k.per_match.toFixed(1)} per match · shot after {pc(k.shot)} ({ci(k.shot_ci)}) · goals {k.goals}
                   {k.xg != null ? ` · mean xG ${k.xg.toFixed(3)}` : ""}
                 </p>
-                {clips[idx] && <p>Replaying {clips[idx].detail}. Ones that ended in a shot come first.</p>}
+                {clips[idx] && (
+                  <p>
+                    Replaying {clips[idx].detail}.{" "}
+                    {onlyGoals && goalRows.length
+                      ? "Only the ones that ended in a goal."
+                      : "Ones that ended in a shot come first."}
+                  </p>
+                )}
               </div>
-              <button type="button" className="ctl no-print" onClick={() => go("clips:setpieces")}>
-                All set-piece clips
-              </button>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 10 }}>
+                <GoalToggle
+                  count={goals && goalRows.length}
+                  on={onlyGoals}
+                  set={(v) => {
+                    setOnlyGoals(v);
+                    setIdx(0);
+                  }}
+                />
+                <button type="button" className="ctl no-print" onClick={() => go("clips:setpieces")}>
+                  All set-piece clips
+                </button>
+              </div>
             </div>
           </section>
           <div className="layout-2" style={{ gap: 16 }}>

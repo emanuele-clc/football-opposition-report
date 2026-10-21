@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { api, type ClipRef, type ClipRow, type TeamData } from "../api";
 import { Icon, Note, PlayIcon, Replay, rib } from "../charts";
 import { clock } from "../format";
-import { toRef, useClips } from "../useClips";
+import { clipId, toRef, useClips, useGoals } from "../useClips";
 import VideoSync from "./VideoSync";
 import MoreLikeThis from "./MoreLikeThis";
 
@@ -16,7 +16,6 @@ const KINDS: [string, string][] = [
 type SortKey = "date" | "minute" | "passes" | "duration_s" | "family";
 const PAGE = 40;
 const time = (r: ClipRow) => r.half * 1e4 + r.minute * 60 + r.second;
-const clipId = (m: number, h: number, mi: number, s: number) => `${m}-${h}-${mi}-${s}`;
 
 export default function Clips({
   d,
@@ -38,20 +37,8 @@ export default function Clips({
   const [half, setHalf] = useState(0);
   const [shot, setShot] = useState(false);
   const [goal, setGoal] = useState(false);
-  const [goals, setGoals] = useState<Set<string> | null>(null);
-  useEffect(() => {
-    setGoals(null);
-    if (kind !== "sequences" || !events) return;
-    let live = true;
-    api
-      .sequenceGoals(d.key)
-      .then((g) => live && setGoals(new Set(g.goals.map((x) => clipId(...x)))))
-      .catch(() => live && setGoals(null));
-    return () => {
-      live = false;
-    };
-  }, [d.key, kind, events]);
-  const isGoal = (r: ClipRow) => !!goals?.has(clipId(r.match, r.half, r.minute, r.second));
+  const goals = useGoals(d.key, kind, events);
+  const isGoal = (r: ClipRow) => !!goals?.has(clipId(r));
   const goalOn = goal && !!goals;
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "date", dir: 1 });
   const [page, setPage] = useState(0);
@@ -175,6 +162,12 @@ export default function Clips({
           </a>
         </span>
       </div>
+      {kind === "transitions" && (
+        <p className="small measure" style={{ marginBottom: 14 }}>
+          For losses, shot and goal are the opponent's within 10 s, before the team wins the ball back; for recoveries,
+          the team's within 10 s.
+        </p>
+      )}
       {!hasVideo && rows && rows.length > 0 && (
         <p className="small measure" style={{ marginBottom: 14 }}>
           Times are the match clock (no video offsets in this list). XML clips start 3 s before the possession and end 3
@@ -270,7 +263,15 @@ export default function Clips({
                         </td>
                         <td>{r.passes}</td>
                         <td>{r.duration_s} s</td>
-                        <td>{isGoal(r) ? <strong>goal</strong> : r.ended_in_shot ? "yes" : ""}</td>
+                        <td>
+                          {isGoal(r) ? (
+                            <strong>{r.start_type === "loss" ? "goal against" : "goal"}</strong>
+                          ) : r.ended_in_shot ? (
+                            "yes"
+                          ) : (
+                            ""
+                          )}
+                        </td>
                         {hasVideo && <td>{r.video_time}</td>}
                       </tr>
                     );

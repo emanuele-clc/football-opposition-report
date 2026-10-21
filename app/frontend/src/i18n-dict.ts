@@ -926,6 +926,25 @@ export const DICT: [string, string, string][] = [
   ["Ended in a shot", "Finita con un tiro", "Mit Abschluss beendet"],
   ["Ended in a goal", "Finita in gol", "Mit Tor beendet"],
   ["goal", "gol", "Tor"],
+  ["goal against", "gol subito", "Gegentor"],
+  ["Only goals · #", "Solo gol · #", "Nur Tore · #"],
+  ["Replaying the goals: {0}.", "Replay dei gol: {0}.", "Wiedergabe der Tore: {0}."],
+  ["Only the ones that ended in a goal.", "Solo quelle finite in gol.", "Nur die mit Tor beendeten."],
+  [
+    "Only losses after which the opponent scored within 10 s.",
+    "Solo le perdite dopo cui l'avversario ha segnato entro 10 s.",
+    "Nur Ballverluste, nach denen der Gegner innerhalb von 10 s getroffen hat.",
+  ],
+  [
+    "Only recoveries followed by a goal within 10 s.",
+    "Solo i recuperi seguiti da un gol entro 10 s.",
+    "Nur Ballgewinne mit Tor innerhalb von 10 s.",
+  ],
+  [
+    "For losses, shot and goal are the opponent's within 10 s, before the team wins the ball back; for recoveries, the team's within 10 s.",
+    "Per le perdite, tiro e gol sono dell'avversario entro 10 s, prima che la squadra recuperi palla; per i recuperi, della squadra entro 10 s.",
+    "Bei Ballverlusten sind Abschluss und Tor die des Gegners innerhalb von 10 s, bevor das Team den Ball zurückgewinnt; bei Ballgewinnen die des Teams innerhalb von 10 s.",
+  ],
   ["Ending in a shot", "Che finiscono con un tiro", "Mit Abschluss"],
   ["{0}: season #%, last # #%", "{0}: stagione #%, ultime # #%", "{0}: Saison #%, letzte # #%"],
   [
