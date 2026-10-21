@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚽ Automated Football Opposition Report
+# Automated Football Opposition Report
 
 **Know how the next opponent plays, before the match, from data anyone can download.**
 
@@ -22,22 +22,22 @@ Master's thesis · Emanuele Colecchia · UNICAL / FH OÖ Hagenberg
 
 ---
 
-## 💡 The idea
+## The idea
 
 Before every match, club analysts spend hours watching the next opponent: how they build from the back, how they take corners, where they lose the ball. This project does the first pass **automatically** from event data (every pass, carry and shot with its position on the pitch), and shows each finding with the clips behind it.
 
 It also says **how much each number can be trusted**. Every figure comes with a range, a warning when there are too few matches, and a grade from A to D.
 
-## 🔄 How it works
+## How it works
 
 ```mermaid
 flowchart LR
-    A["📥 Match events<br/>StatsBomb or any provider"] --> B["⚙️ Analysis<br/>possessions, restarts,<br/>set pieces, transitions"]
-    B --> C["📊 Report<br/>numbers with ranges<br/>and ranks vs other teams"]
-    C --> D["🎬 Clips<br/>replays, CSV,<br/>XML for video tools"]
+    A["Match events<br/>StatsBomb or any provider"] --> B["Analysis<br/>possessions, restarts,<br/>set pieces, transitions"]
+    B --> C["Report<br/>numbers with ranges<br/>and ranks vs other teams"]
+    C --> D["Clips<br/>replays, CSV,<br/>XML for video tools"]
 ```
 
-## 👀 What you get
+## What you get
 
 <table>
 <tr>
@@ -50,32 +50,32 @@ flowchart LR
 </tr>
 </table>
 
-| | |
+| Section | What it shows |
 |---|---|
-| 🧱 **Build-up** | Possessions grouped into families (B1-B5 near the own goal, A1-A3 further up), with share, shot rate and stability |
-| 🥅 **Restarts** | Goal kicks, keeper distributions, throw-ins: short or long, which side, what happens next |
-| 🚩 **Set pieces** | Corners and free kicks: delivery zones, takers, receivers, shots and goals |
-| 🔁 **Transitions** | Where the ball is lost and won back, counter-press, shots in the next 10 seconds |
-| 🛡️ **Defending** | Pressing (PPDA), pressures by zone, shots conceded |
-| ⭐ **Key players** | Who receives in the build-up, who creates danger, who takes set pieces |
-| 📈 **Threat (xT)** | Which passes and carries move the ball into dangerous zones |
+| **Build-up** | Possessions grouped into families (B1-B5 near the own goal, A1-A3 further up), with share, shot rate and stability |
+| **Restarts** | Goal kicks, keeper distributions, throw-ins: short or long, which side, what happens next |
+| **Set pieces** | Corners and free kicks: delivery zones, takers, receivers, shots and goals |
+| **Transitions** | Where the ball is lost and won back, counter-press, shots in the next 10 seconds |
+| **Defending** | Pressing (PPDA), pressures by zone, shots conceded |
+| **Key players** | Who receives in the build-up, who creates danger, who takes set pieces |
+| **Threat (xT)** | Which passes and carries move the ball into dangerous zones |
 
-## 🔬 What the research found
+## What the research found
 
 The method was tested on 10 teams (Leverkusen 2023/24 and nine teams from the 2015/16 Premier League, La Liga, Serie A and Ligue 1). The main tests were written down and published **before** they were run, and negative results are reported too.
 
-| | Question | Answer |
-|:-:|---|---|
-| ✅ | Do the build-up patterns hold up in matches the method has not seen? | **Yes**, in 8 of 10 teams |
-| ➖ | What makes them predictable? | Almost only how the possession starts (goal kick, throw-in, regain) |
-| ➖ | Are they clearly separate styles? | **Weakly.** They are better seen as slices of one continuum |
-| ❌ | Do they explain shots better than a simple rule? | **No**, in 0 of 10 teams |
-| ❔ | Can corner set-ups be exploited? | Not shown. The test could only have found very large effects |
-| 🏷️ | How far can each report statement be trusted? | Graded on 70 new teams: **4 A, 13 B, 15 C, 2 D** |
+| Question | Answer |
+|---|---|
+| Do the build-up patterns hold up in matches the method has not seen? | **Yes**, in 8 of 10 teams |
+| What makes them predictable? | Almost only how the possession starts (goal kick, throw-in, regain) |
+| Are they clearly separate styles? | **Weakly.** They are better seen as slices of one continuum |
+| Do they explain shots better than a simple rule? | **No**, in 0 of 10 teams |
+| Can corner set-ups be exploited? | Not shown. The test could only have found very large effects |
+| How far can each report statement be trusted? | Graded on 70 new teams: **4 A, 13 B, 15 C, 2 D** |
 
 All tables and details: [docs/results.md](docs/results.md).
 
-## 🚀 Try it
+## Try it
 
 You need **Python 3.13** and **Node.js**. On Windows, in PowerShell:
 
@@ -138,7 +138,7 @@ data_info/   competition and match lists (raw events are not included)
 
 </details>
 
-## ⚠️ Limits
+## Limits
 
 - It **describes** how a team plays. It does not say what will work against them.
 - Families are numbered (B1, A2), not named: an analyst names them after watching the clips.
