@@ -3023,4 +3023,51 @@ export const DICT: [string, string, string][] = [
     "Un gruppo ha meno di # partite: da questi dati non si può dire nulla.",
     "Eine Gruppe hat weniger als # Spiele: Aus diesen Daten lässt sich nichts sagen.",
   ],
+  // ---- review page intro
+  [
+    "This page is for a person with football experience (video analyst, coach), not for match preparation. The families were made by the computer and no football expert has checked them yet: here one person checks them, in about 30 minutes, with you running the app.",
+    "Questa pagina è per una persona con esperienza di calcio (analista video, allenatore), non per preparare la partita. Le famiglie le ha create il computer e nessun esperto le ha ancora controllate: qui una persona le controlla, in circa 30 minuti, mentre tu usi l'app.",
+    "Diese Seite ist für eine Person mit Fußballerfahrung (Videoanalyst, Trainer), nicht für die Spielvorbereitung. Die Familien hat der Computer gebildet und noch kein Fußballexperte hat sie geprüft: Hier prüft sie eine Person in etwa 30 Minuten, während du die App bedienst.",
+  ],
+  ["Write who is reviewing", "Scrivi chi fa la revisione", "Trage ein, wer prüft"],
+  [
+    "(role and years of experience are enough) in the two fields below.",
+    "(bastano ruolo e anni di esperienza) nei due campi qui sotto.",
+    "(Rolle und Jahre Erfahrung genügen) in die zwei Felder unten.",
+  ],
+  ["First the examples, then the judgement.", "Prima gli esempi, poi il giudizio.", "Erst die Beispiele, dann das Urteil."],
+  [
+    "Click a row: on the right, the box says what its family is and the replay shows # other sequences of that family.",
+    "Clicca una riga: a destra il riquadro dice cos'è la sua famiglia e il replay mostra altre # sequenze di quella famiglia.",
+    "Klicke eine Zeile an: Rechts sagt der Kasten, was ihre Familie ist, und die Wiederholung zeigt # andere Sequenzen dieser Familie.",
+  ],
+  [
+    "Then switch to the sequence to judge and ask: does it fit its family? Click yes, partly or no; for partly and no, write what does not fit.",
+    "Poi passa alla sequenza da giudicare e chiedi: appartiene alla sua famiglia? Clicca sì, in parte o no; per in parte e no, scrivi cosa non torna.",
+    "Dann wechsle zur zu beurteilenden Sequenz und frage: Passt sie zu ihrer Familie? Klicke ja, teilweise oder nein; bei teilweise und nein schreibe, was nicht passt.",
+  ],
+  ["What {0} is", "Cos'è {0}", "Was {0} ist"],
+  ["{0} of build-up sequences (#).", "{0} delle sequenze di costruzione (#).", "{0} der Aufbausequenzen (#)."],
+  ["{0} of advanced sequences (#).", "{0} delle sequenze avanzate (#).", "{0} der Sequenzen vorne (#)."],
+  [
+    "Average of all # sequences of {0}, computed by the program; the bars show where each family starts and ends.",
+    "Media di tutte le # sequenze di {0}, calcolata dal programma; le barre mostrano dove inizia e finisce ogni famiglia.",
+    "Durchschnitt aller # Sequenzen von {0}, vom Programm berechnet; die Balken zeigen, wo jede Familie beginnt und endet.",
+  ],
+  ["# · Examples of {0}", "# · Esempi di {0}", "# · Beispiele für {0}"],
+  ["# · Sequence to judge", "# · Sequenza da giudicare", "# · Zu beurteilende Sequenz"],
+  ["What to replay", "Cosa rivedere", "Was abspielen"],
+  ["Now judge the sequence", "Ora giudica la sequenza", "Jetzt die Sequenz beurteilen"],
+  ["{0} example # of #", "{0} esempio # di #", "{0} Beispiel # von #"],
+  [
+    "Other sequences of {0}, not the ones you judge: watch a few to see what the family looks like.",
+    "Altre sequenze di {0}, non quelle da giudicare: guardane alcune per capire com'è la famiglia.",
+    "Andere Sequenzen von {0}, nicht die zu beurteilenden: Sieh dir einige an, um zu sehen, wie die Familie aussieht.",
+  ],
+  ["Answer the five questions", "Rispondi alle cinque domande", "Beantworte die fünf Fragen"],
+  [
+    "at the bottom of the page in the reviewer's own words, then click Save review. The answers are saved in the data folder; the report does not change.",
+    "in fondo alla pagina con le parole di chi fa la revisione, poi clicca Salva la revisione. Le risposte vengono salvate nella cartella dati; il report non cambia.",
+    "unten auf der Seite in den eigenen Worten der prüfenden Person, dann klicke Review speichern. Die Antworten werden im Datenordner gespeichert; der Bericht ändert sich nicht.",
+  ],
 ];

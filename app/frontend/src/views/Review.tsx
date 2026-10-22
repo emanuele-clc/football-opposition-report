@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import { api, type ClipRef, type ReviewData, type TeamData } from "../api";
-import { Explain, Note, PlayIcon, Replay, rib } from "../charts";
+import { api, type ClipRef, type ClipRow, type ReviewData, type TeamData } from "../api";
+import { FamilyLanes, Note, PlayIcon, Replay, rib } from "../charts";
 import { clock, pc } from "../format";
+import { clipId, useClips } from "../useClips";
+import { famLine } from "./Overview";
 
 const VERDICTS = ["yes", "partly", "no"] as const;
 const famIdx = (f: string) => {
@@ -9,6 +11,23 @@ const famIdx = (f: string) => {
   return m ? Number(m[1]) - 1 : 0;
 };
 const setAt = <T,>(arr: T[], i: number, v: T) => arr.map((x, j) => (j === i ? v : x));
+const N_LEARN = 5;
+/* Examples shown before judging: other sequences of the same family (never the ones to judge, which are its most
+   typical ones), spread evenly over the season so the reviewer sees the family's range, not only its centre. */
+function learnSet(all: ClipRow[] | null, fam: string, judged: Set<string>): ClipRef[] {
+  const pool = (all ?? [])
+    .filter((r) => r.family === fam && !judged.has(clipId(r)))
+    .sort((a, b) => a.date.localeCompare(b.date) || a.half - b.half || a.minute - b.minute);
+  const n = Math.min(N_LEARN, pool.length);
+  return Array.from({ length: n }, (_, k) => pool[Math.floor(((k + 0.5) * pool.length) / n)]).map((r, k) => ({
+    match: r.match,
+    half: r.half,
+    minute: r.minute,
+    second: r.second,
+    title: `${fam} example ${k + 1}`,
+    detail: `${fam} example ${k + 1} of ${n} · vs ${r.opponent}, ${r.date}, half ${r.half} ${clock(r.minute, r.second)} · ${r.start_type}`,
+  }));
+}
 
 export default function Review({ d, events }: { d: TeamData; events: boolean }) {
   const [data, setData] = useState<ReviewData | null>(null);
@@ -21,6 +40,10 @@ export default function Review({ d, events }: { d: TeamData; events: boolean }) 
   const [sel, setSel] = useState(0);
   const [saved, setSaved] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [learning, setLearning] = useState(true);
+  const [learnIdx, setLearnIdx] = useState(0);
+  const [seen, setSeen] = useState<Set<string>>(() => new Set());
+  const { rows: all } = useClips(d.key, "sequences");
 
   useEffect(() => {
     api
@@ -61,6 +84,19 @@ export default function Review({ d, events }: { d: TeamData; events: boolean }) 
     return by;
   }, [data, verdicts]);
   const done = verdicts.filter(Boolean).length;
+  const fam = data?.rows[sel]?.family ?? "";
+  const judged = useMemo(() => new Set(refs.map(clipId)), [refs]);
+  const learn = useMemo(() => learnSet(all, fam, judged), [all, fam, judged]);
+  const phase = fam.startsWith("A") ? "advanced" : "build-up";
+  const famData = d.report.phases[phase].families.find((f) => f.fam === fam);
+  /* Choosing a sequence of a family not seen yet shows that family's examples first; afterwards the sequence itself. */
+  const pick = (i: number, judge = false) => {
+    const f = data?.rows[i]?.family ?? "";
+    setSel(i);
+    setLearnIdx(0);
+    setLearning(!judge && !seen.has(f));
+  };
+  const showing = learning && learn.length > 0;
 
   if (err)
     return (
@@ -94,12 +130,41 @@ export default function Review({ d, events }: { d: TeamData; events: boolean }) 
     <>
       <div className="section-head">
         <h2>Analyst review</h2>
-        <Explain>
-          Part 1: watch each sequence and mark whether it fits the family it was assigned to (yes / partly / no). Part
-          2: answer the five questions. The same questions are used for every reviewer. Nothing here is evidence that
-          the report is useful until someone with football experience has answered.
-        </Explain>
       </div>
+      <p className="measure" style={{ marginBottom: 18 }}>
+        This page is for a person with football experience (video analyst, coach), not for match preparation. The
+        families were made by the computer and no football expert has checked them yet: here one person checks them, in
+        about 30 minutes, with you running the app.
+      </p>
+      <ol className="ev-steps review-steps">
+        <li>
+          <span className="dot" aria-hidden="true">
+            1
+          </span>
+          <p>
+            <b>Write who is reviewing</b> (role and years of experience are enough) in the two fields below.
+          </p>
+        </li>
+        <li>
+          <span className="dot" aria-hidden="true">
+            2
+          </span>
+          <p>
+            <b>First the examples, then the judgement.</b> Click a row: on the right, the box says what its family is
+            and the replay shows {N_LEARN} other sequences of that family. Then switch to the sequence to judge and ask:
+            does it fit its family? Click yes, partly or no; for partly and no, write what does not fit.
+          </p>
+        </li>
+        <li>
+          <span className="dot" aria-hidden="true">
+            3
+          </span>
+          <p>
+            <b>Answer the five questions</b> at the bottom of the page in the reviewer's own words, then click Save
+            review. The answers are saved in the data folder; the report does not change.
+          </p>
+        </li>
+      </ol>
       <div className="filters">
         <label className="field">
           Reviewer
@@ -152,7 +217,7 @@ export default function Review({ d, events }: { d: TeamData; events: boolean }) 
             </thead>
             <tbody>
               {data.rows.map((r, i) => (
-                <tr key={i} className={`clickable${i === sel ? " sel" : ""}`} onClick={() => setSel(i)}>
+                <tr key={i} className={`clickable${i === sel ? " sel" : ""}`} onClick={() => pick(i)}>
                   <td>
                     <button
                       type="button"
@@ -160,7 +225,7 @@ export default function Review({ d, events }: { d: TeamData; events: boolean }) 
                       aria-label={`Replay sequence ${i + 1}`}
                       onClick={(e) => {
                         e.stopPropagation();
-                        setSel(i);
+                        pick(i);
                       }}
                     >
                       {PlayIcon}
@@ -212,17 +277,79 @@ export default function Review({ d, events }: { d: TeamData; events: boolean }) 
           </table>
         </div>
         <aside style={{ position: "sticky", top: 84 }}>
-          <div className="sticker" style={rib(famIdx(data.rows[sel]?.family ?? ""), data.rows[sel]?.family)}>
-            <span className="no">{data.rows[sel]?.family}</span>
-            {events && refs[sel]?.match ? (
-              <Replay teamKey={d.key} clips={refs} index={sel} onIndex={setSel} />
+          {famData && (
+            <div className="sticker pad fam-guide" style={{ marginBottom: 22 }}>
+              <h3>What {fam} is</h3>
+              <p>
+                {famLine(famData)}. {pc(famData.share)} of {phase} sequences ({famData.n}).
+              </p>
+              <div className="pitch-wrap">
+                <FamilyLanes families={d.report.phases[phase].families} pick={fam} />
+              </div>
+              <p className="s-muted" style={{ fontSize: 12.5 }}>
+                Average of all {famData.n} sequences of {fam}, computed by the program; the bars show where each family
+                starts and ends.
+              </p>
+            </div>
+          )}
+          <div className="sticker" style={rib(famIdx(fam), fam)}>
+            <span className="no">{fam}</span>
+            <div className="sticker-top no-print">
+              <div className="seg-toggle" role="group" aria-label="What to replay">
+                <button
+                  type="button"
+                  aria-pressed={showing}
+                  disabled={!learn.length}
+                  onClick={() => {
+                    setLearning(true);
+                    setLearnIdx(0);
+                  }}
+                >
+                  1 · Examples of {fam}
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={!showing}
+                  onClick={() => {
+                    setLearning(false);
+                    setSeen(new Set(seen).add(fam));
+                  }}
+                >
+                  2 · Sequence to judge
+                </button>
+              </div>
+            </div>
+            {showing && events ? (
+              <>
+                <Replay teamKey={d.key} clips={learn} index={learnIdx} onIndex={setLearnIdx} />
+                <div className="replay-cap">
+                  <div>
+                    <p>
+                      {learn[learnIdx]?.detail}. Other sequences of {fam}, not the ones you judge: watch a few to see
+                      what the family looks like.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    className="ctl primary"
+                    onClick={() => {
+                      setLearning(false);
+                      setSeen(new Set(seen).add(fam));
+                    }}
+                  >
+                    Now judge the sequence
+                  </button>
+                </div>
+              </>
+            ) : events && refs[sel]?.match ? (
+              <Replay teamKey={d.key} clips={refs} index={sel} onIndex={(i) => pick(i, true)} />
             ) : (
               <div className="note info" style={{ margin: 14 }}>
                 <span className="tag">Replays</span>Replays need the raw event files; use the video with the times in
                 the table.
               </div>
             )}
-            {refs[sel] && (
+            {!showing && refs[sel] && (
               <div className="replay-cap">
                 <p>
                   {refs[sel].detail}. Check it on video too: the replay shows the events, not the players off the ball.

@@ -2964,6 +2964,26 @@ a.grade:focus-visible {
   line-height: 1.5;
   max-width: 60ch;
 }
+.review-steps {
+  margin-bottom: 24px;
+}
+/* Review: what the selected family is, in words on the left and its lane on a small pitch on the right. */
+.fam-guide {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 190px;
+  gap: 6px 16px;
+  align-items: start;
+}
+.fam-guide > :not(.pitch-wrap) {
+  grid-column: 1;
+}
+.fam-guide > .pitch-wrap {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+}
+.fam-guide p {
+  font-size: 13.5px;
+}
 .ev-expert > summary {
   font-size: 15px;
 }

@@ -570,6 +570,10 @@ def replay(key: str, match: int, half: int, minute: int, second: int, window: bo
     elif window:
         chosen = [e for e in ev if e.get("period") == half and t0 - 6 <= secs(e["timestamp"]) <= t0 + 10]
     else:
+        # The possession that starts here is ours, but an action of ours in that second can still belong to the opponent's
+        # possession (a save or a block just before we win the ball): take one whose possession team is us.
+        first = next((e for e in at if e.get("possession_team", {}).get("name") == team_name), first)
+        t0 = secs(first["timestamp"])
         chosen = [e for e in ev if e.get("period") == half and e.get("possession") == first.get("possession")]
     out = []
     for e in chosen:

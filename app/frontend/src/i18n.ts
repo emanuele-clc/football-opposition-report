@@ -168,7 +168,11 @@ function translateRun(run: Text[]) {
 }
 
 function translateElement(el: Element) {
-  if (skip(el)) return;
+  if (skip(el)) {
+    // the text typed in a field stays as it is, but its placeholder and label are interface text
+    if ((el.tagName === "INPUT" || el.tagName === "TEXTAREA") && !el.closest("[translate='no']")) translateAttrs(el);
+    return;
+  }
   let run: Text[] = [];
   for (const n of Array.from(el.childNodes)) {
     if (n.nodeType === 3) {
