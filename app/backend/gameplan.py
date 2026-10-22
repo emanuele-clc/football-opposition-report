@@ -190,7 +190,8 @@ RULES = [
 
 def build(opp_key, my_key, teams, ranks, load):
     ts = teams()
-    n = len(ts)
+    ref = [t for t, v in ts.items() if not v.get("provisional") or t == opp_key]  # few-match teams are not a reference
+    n = len([t for t in ref if not ts[t].get("provisional")])
     k = max(1, n // 5)
 
     def rk(key):
@@ -198,7 +199,7 @@ def build(opp_key, my_key, teams, ranks, load):
 
         def at(mid, where):
             r = R.get(mid)
-            if not r or n < 4:
+            if not r or n < 4 or r.get("provisional"):
                 return False
             return r["rank"] <= k if where == "top" else r["rank"] > r["of"] - k
 
@@ -262,7 +263,7 @@ def build(opp_key, my_key, teams, ranks, load):
                 }
             )
 
-    pz = pressure_zones(opp_key, list(ts), load)
+    pz = pressure_zones(opp_key, ref, load)
     ph = pressure_hint(pz)
     if ph:
         hints.insert(0, ph)
@@ -320,6 +321,7 @@ def build(opp_key, my_key, teams, ranks, load):
                 "unit": r["unit"],
                 "rank": r["rank"],
                 "of": r["of"],
+                "provisional": r.get("provisional", False),
             }
             for r in extreme
         ],
@@ -327,7 +329,7 @@ def build(opp_key, my_key, teams, ranks, load):
         "opp_past": past(opp_key),
         "my_vs_press": my_press,
         "pressure_zones": pz,
-        "foul_zones": foul_zones(opp_key, list(ts), load),
+        "foul_zones": foul_zones(opp_key, ref, load),
         "breaks": breaks(opp_key, load),
         "watch_first": (
             watch_first(

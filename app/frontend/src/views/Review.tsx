@@ -167,7 +167,7 @@ export default function Review({ d, events }: { d: TeamData; events: boolean }) 
                     </button>
                   </td>
                   <td className="l">
-                    <span className="chip" style={rib(famIdx(r.family))}>
+                    <span className="chip" style={rib(famIdx(r.family), r.family)}>
                       {r.family}
                     </span>
                   </td>
@@ -212,7 +212,7 @@ export default function Review({ d, events }: { d: TeamData; events: boolean }) 
           </table>
         </div>
         <aside style={{ position: "sticky", top: 84 }}>
-          <div className="sticker" style={rib(famIdx(data.rows[sel]?.family ?? ""))}>
+          <div className="sticker" style={rib(famIdx(data.rows[sel]?.family ?? ""), data.rows[sel]?.family)}>
             <span className="no">{data.rows[sel]?.family}</span>
             {events && refs[sel]?.match ? (
               <Replay teamKey={d.key} clips={refs} index={sel} onIndex={setSel} />
@@ -251,7 +251,7 @@ export default function Review({ d, events }: { d: TeamData; events: boolean }) 
                       return (
                         <tr key={f}>
                           <td>
-                            <span className="chip" style={rib(famIdx(f))}>
+                            <span className="chip" style={rib(famIdx(f), f)}>
                               {f}
                             </span>
                           </td>

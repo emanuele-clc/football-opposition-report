@@ -14,9 +14,12 @@ import { clock, fmt, n1, ordinal, pc } from "./format";
 
 /* Each family wears one ribbon colour; its code is always printed on it, so colour is never the only cue. */
 export const RIBS = ["var(--yellow)", "var(--sky)", "var(--lime)", "var(--coral)", "var(--lilac)"];
-export const rib = (i: number) => ({ "--rib": RIBS[i % RIBS.length] }) as CSSProperties;
+/* Advanced families (A1..) reuse the build-up colours, so their ribbons are also hatched: colour alone never tells the phase, and print in black and white keeps it. */
+const HATCH = "repeating-linear-gradient(135deg, rgba(18, 26, 51, 0.26) 0 2px, transparent 2px 7px)";
+export const rib = (i: number, fam = "") =>
+  ({ "--rib": RIBS[i % RIBS.length], "--hatch": fam.startsWith("A") ? HATCH : "none" }) as CSSProperties;
 /* Everything that is not a family wears the plain ribbon: colour stays a signal, not decoration. */
-export const plain = { "--rib": "var(--plain)" } as CSSProperties;
+export const plain = { "--rib": "var(--plain)", "--hatch": "none" } as CSSProperties;
 export const third = (x: number) => (x < 40 ? "own third" : x < 80 ? "middle third" : "final third");
 const reduced = () => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -509,7 +512,7 @@ export function FamilySticker({
     <button
       type="button"
       className="flip enter"
-      style={{ ...rib(i), "--i": i } as CSSProperties}
+      style={{ ...rib(i, f.fam), "--i": i } as CSSProperties}
       aria-pressed={selected}
       onClick={onPick}
       aria-label={`${f.fam}: ${pc(f.share)} of ${total} sequences. Show its replay.`}
@@ -600,7 +603,7 @@ export function ShareStrip({
         <button
           key={f.fam}
           type="button"
-          style={{ ...rib(i), flexGrow: f.share, flexBasis: 0 }}
+          style={{ ...rib(i, f.fam), flexGrow: f.share, flexBasis: 0 }}
           aria-pressed={pick === f.fam}
           onClick={() => onPick(f.fam)}
           title={`${f.fam}: ${pc(f.share)}`}
@@ -675,7 +678,7 @@ export function RankRow({ r, current }: { r: Rank; current: string }) {
           onBlur={() => setHot(null)}
           onMouseLeave={() => setHot(null)}
           aria-describedby={id}
-          aria-label={`${r.label}: ${ordinal(r.rank)} of ${r.of}. Arrow keys name each team.`}
+          aria-label={`${r.label}: ${r.provisional ? "not ranked (few matches)" : `${ordinal(r.rank)} of ${r.of}`}. Arrow keys name each team.`}
         >
           {r.teams.map((tm, i) => (
             <span
@@ -696,7 +699,13 @@ export function RankRow({ r, current }: { r: Rank; current: string }) {
         </div>
       </div>
       <span className="ord">
-        <b>{ordinal(r.rank)}</b> / {r.of}
+        {r.provisional ? (
+          <span className="not-ranked">not ranked</span>
+        ) : (
+          <>
+            <b>{ordinal(r.rank)}</b> / {r.of}
+          </>
+        )}
         {r.caution && (
           <span className="flagged" title={r.caution}>
             {" "}

@@ -67,7 +67,7 @@ export default function MoreLikeThis({
               <circle cx={s.pts[0][0]} cy={s.pts[0][1]} r="2.6" fill="#fff" />
             </svg>
             <span className="like-meta">
-              <span className="chip" style={rib(famIdx(s.family))}>
+              <span className="chip" style={rib(famIdx(s.family), s.family)}>
                 {s.family}
               </span>{" "}
               <span>{s.opponent}</span>

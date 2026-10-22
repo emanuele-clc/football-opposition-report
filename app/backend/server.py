@@ -58,6 +58,11 @@ def load(kind, key):
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else None
 
 
+# Teams with fewer matches than this stay out of the ranks, the reference averages, the style map and the game-plan rules
+# (Add team already warns below 8). Such a team is still placed among the others, marked provisional, and the app shows a caution, not a rank.
+MIN_MATCHES = 8
+
+
 def teams():
     out = {}
     for p in sorted(glob.glob(os.path.join(DATA, "report_*.json"))):
@@ -69,6 +74,7 @@ def teams():
             "matches": d["matches"],
             "period": d["period"],
             "sequences": d["sequences"],
+            "provisional": d["matches"] < MIN_MATCHES,
             "sheets": [s for s in SHEETS if os.path.exists(os.path.join(DATA, f"{s}_{k}.json"))],
             "clips": [c for c, f in CLIPS.items() if os.path.exists(os.path.join(DATA, f"{f}_{k}.csv"))],
         }
@@ -387,7 +393,9 @@ def get_evidence():
 
 def ranks(key):
     ev = (evidence() or {}).get("statements", {})
-    cache = {s: {k: load(s, k) for k in teams()} for s in SHEETS}
+    ts = teams()
+    keys = [k for k, v in ts.items() if not v["provisional"] or k == key]
+    cache = {s: {k: load(s, k) for k in keys} for s in SHEETS}
     out = []
     for mid, group, label, sheet, get, getci, unit, caution in METRICS:
         vals = []
@@ -421,6 +429,7 @@ def ranks(key):
                 "rank": [v["key"] for v in vals].index(key) + 1,
                 "of": len(vals),
                 "teams": vals,
+                "provisional": ts[key]["provisional"],
                 "statement": RANK_STATEMENT.get(mid),
                 "grade": ev.get(RANK_STATEMENT.get(mid), {}).get("grade"),
             }
@@ -491,7 +500,8 @@ def team(key: str):
         **{s: load(s, key) for s in SHEETS},
         "report": link_examples(key, load("report", key)),
         "ranks": ranks(key),
-        "references": [v["team"] for k, v in teams().items() if k != key],
+        "references": [v["team"] for k, v in teams().items() if k != key and not v["provisional"]],
+        "min_matches": MIN_MATCHES,
     }
 
 
@@ -1214,7 +1224,7 @@ def stylemap():
     import numpy as np
 
     ts = teams()
-    keys = list(ts)
+    keys = [k for k, v in ts.items() if not v["provisional"]]
     per = {k: {r["id"]: r for r in ranks(k)} for k in keys}
     ids = [m[0] for m in METRICS if all(m[0] in per[k] for k in keys)]
     if len(keys) < 3 or len(ids) < 3:
@@ -1254,7 +1264,13 @@ def stylemap():
         }
         for n, k in enumerate(keys)
     ]
-    return {"metrics": [lab[i] for i in ids], "axes": axes, "teams": pts}
+    return {
+        "metrics": [lab[i] for i in ids],
+        "axes": axes,
+        "teams": pts,
+        "left_out": [{"team": v["team"], "matches": v["matches"]} for v in ts.values() if v["provisional"]],
+        "min_matches": MIN_MATCHES,
+    }
 
 
 # Game plan: formations, style in a few lines and rule-based hints (app/backend/gameplan.py). Hints, not advice.

@@ -105,6 +105,12 @@ export default function StyleMap({ current, other }: { current: string; other?: 
             </ol>
           </div>
         )}
+        {!!d.left_out?.length && (
+          <Note kind="caution" tag="Left out">
+            {d.left_out.map((t) => `${t.team} (${t.matches} matches)`).join(", ")}: fewer than {d.min_matches ?? 8}{" "}
+            matches, too few to place on the map.
+          </Note>
+        )}
         <Note kind="info" tag="How to read">
           Each dot is a team placed by its numbers on build-up, restarts, set pieces and transitions (principal
           components of the standardised facts). Close dots = similar numbers, not the same tactics. Teams come from

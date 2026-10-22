@@ -27,6 +27,7 @@ def check(ok, msg):
 
 
 teams = c.get("/api/teams").json()
+full = [x for x in teams if x["matches"] >= 8]  # the reference set for ranks and the style map
 check(len(teams) > 0, f"{len(teams)} teams in {src}")
 for t in teams:
     k = t["key"]
@@ -37,8 +38,11 @@ for t in teams:
         abs(r["passes"]["value"] - rep["style"]["team"]["passes"]) < 1e-12,
         f"{t['team']}: passes per sequence equals report JSON",
     )
+    # ranks are among the teams with at least 8 matches (plus the team itself when it has fewer: then marked provisional)
+    n_ref = len(full) + (t["matches"] < 8)
     check(
-        all(1 <= x["rank"] <= x["of"] == len(teams) for x in d["ranks"]), f"{t['team']}: ranks within 1..{len(teams)}"
+        all(1 <= x["rank"] <= x["of"] == n_ref and x.get("provisional") == (t["matches"] < 8) for x in d["ranks"]),
+        f"{t['team']}: ranks within 1..{n_ref}, provisional only below 8 matches",
     )
     for kind, f in server.CLIPS.items():
         p = os.path.join(data, f"{f}_{k}.csv")
@@ -155,8 +159,8 @@ check(
 )
 sm = c.get("/api/stylemap").json()
 check(
-    len(sm["teams"]) == len(teams) and all(len(t["nearest"]) == min(3, len(teams) - 1) for t in sm["teams"]),
-    f"style map places {len(teams)} teams with their nearest teams",
+    len(sm["teams"]) == len(full) and all(len(t["nearest"]) == min(3, len(full) - 1) for t in sm["teams"]),
+    f"style map places {len(full)} teams with 8+ matches with their nearest teams",
 )
 check(c.get("/api/teams/Nobody").status_code == 404, "unknown team gives 404")
 check(

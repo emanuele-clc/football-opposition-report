@@ -232,19 +232,18 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
         </Explain>
       </div>
       <div className="filters" style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
-        <a
-          className="icon-btn"
-          href={`#/${d.key}/coach`}
-          style={{ order: 2, marginLeft: "auto", textDecoration: "none" }}
-        >
+        <a className="btn" href={`#/${d.key}/coach`} style={{ order: 2, marginLeft: "auto" }}>
           {Icon.print}
-          <span>Coach sheet (1 page)</span>
+          <span>Coach sheet · one A4 page</span>
         </a>
         <button
           type="button"
           className="icon-btn"
-          onClick={() => window.print()}
-          aria-label="Print the match plan"
+          onClick={() => {
+            document.querySelectorAll<HTMLDetailsElement>("details.gp-more").forEach((x) => (x.open = true));
+            setTimeout(() => window.print(), 50);
+          }}
+          aria-label="Print the whole game plan, details included"
           style={{ order: 3 }}
         >
           {Icon.print}
@@ -278,30 +277,6 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
         </div>
       ) : (
         <>
-          <nav className="on-page no-print" aria-label="On this page">
-            {(
-              [
-                ["gp-shape", "Shape"],
-                ["ai-h", "Coach brief"],
-                ["gp-h", "Where to look"],
-                ["pz-h", P.pressure_zones && "Pressing"],
-                ["br-h", P.breaks && "Breaks"],
-                ["fz-h", P.foul_zones && "Fouls"],
-                ["kp-h", evs && evs !== "none" && "Key players"],
-                ["past-h", "Past matches"],
-              ] as [string, string | false | null | undefined][]
-            )
-              .filter(([, l]) => l)
-              .map(([id, l]) => (
-                <button
-                  key={id}
-                  type="button"
-                  onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" })}
-                >
-                  {l}
-                </button>
-              ))}
-          </nav>
           <div className="layout-split" style={{ marginTop: 24 }}>
             <section className="sticker" style={plain} aria-labelledby="gp-shape">
               <div className="pitch-wrap">
@@ -323,12 +298,23 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                     Most used starting formation
                     {fm ? (
                       <>
-                        s: <b style={{ color: "var(--sky)" }}>{P.mine}</b> left,{" "}
-                        <b style={{ color: "var(--coral)" }}>{d.team}</b> right
+                        s:{" "}
+                        <b className="team-key" style={{ "--dot": "var(--sky)" } as CSSProperties}>
+                          {P.mine}
+                        </b>{" "}
+                        left,{" "}
+                        <b className="team-key" style={{ "--dot": "var(--coral)" } as CSSProperties}>
+                          {d.team}
+                        </b>{" "}
+                        right
                       </>
                     ) : (
                       <>
-                        , <b style={{ color: "var(--coral)" }}>{d.team}</b> attacking right to left
+                        ,{" "}
+                        <b className="team-key" style={{ "--dot": "var(--coral)" } as CSSProperties}>
+                          {d.team}
+                        </b>{" "}
+                        attacking right to left
                       </>
                     )}
                     . Schematic: the formation on the team sheet, not positions in play.
@@ -381,7 +367,9 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                   {P.profile.map((r) => (
                     <li key={r.id}>
                       <b>{r.label}</b>: {fmt(r.value, unit(r.unit))}{" "}
-                      <span className="s-muted">({place(r.rank, r.of)})</span>
+                      <span className="s-muted">
+                        ({r.provisional ? "not ranked: few matches" : place(r.rank, r.of)})
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -403,7 +391,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                 ))}
               </div>
               <div className="brief enter" key={topic} aria-live="polite">
-                <h3>{topic === "priorities" ? "Three priorities" : P.brief.phases[topic].title}</h3>
+                <h3>{topic === "priorities" ? "Priorities" : P.brief.phases[topic].title}</h3>
                 <ol>
                   {(topic === "priorities"
                     ? P.brief.priorities.length
@@ -473,251 +461,6 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             )}
           </section>
 
-          {P.pressure_zones && (
-            <section className="section" aria-labelledby="pz-h">
-              <div className="section-head">
-                <h2 id="pz-h">Where pressing hurts them</h2>
-                <Explain>
-                  Their own half, own goal on the left. Each zone: share of their open-play passes completed when under
-                  pressure, against the other {P.pressure_zones.teams_in_reference} teams in the same zone. Red = below
-                  the others, green = above; dashed outline = at least 5 points below with 40+ passes.
-                </Explain>
-              </div>
-              <div className="layout-split">
-                <div className="sticker" style={plain}>
-                  <div className="pitch-wrap">
-                    <PressureZones pz={P.pressure_zones} team={d.team} />
-                  </div>
-                </div>
-                <div className="stack">
-                  <div className="sticker pad">
-                    <h3>Overall</h3>
-                    <p style={{ marginTop: 6 }}>
-                      In their own half {d.team} complete <b>{Math.round(100 * P.pressure_zones.total.completion)}%</b>{" "}
-                      of passes under pressure and <b>{Math.round(100 * P.pressure_zones.total.free_completion)}%</b>{" "}
-                      when free ({P.pressure_zones.total.passes} passes under pressure in {P.pressure_zones.matches}{" "}
-                      matches).
-                    </p>
-                    <p style={{ marginTop: 8 }}>
-                      {P.pressure_zones.zones.some((z) => z.weaker) ? (
-                        P.pressure_zones.zones.filter((z) => z.weaker).length >= 5 ? (
-                          <>
-                            Below the other teams in <b>{P.pressure_zones.zones.filter((z) => z.weaker).length} of 9</b>{" "}
-                            zones: they are less secure under pressure in general (often a more direct style), not weak
-                            in one place. The darkest red zone is where the gap is largest.
-                          </>
-                        ) : (
-                          <>
-                            Zones clearly below the other teams:{" "}
-                            <b>{P.pressure_zones.zones.filter((z) => z.weaker).length}</b>. Start the pressing plan from
-                            the darkest red one and check it on video.
-                          </>
-                        )
-                      ) : (
-                        <>
-                          No zone is clearly below the other teams: under pressure they play out about as well as the
-                          others or better. Pressing them is not suggested by these numbers.
-                        </>
-                      )}
-                    </p>
-                  </div>
-                  <Note kind="caution" tag="Read with care">
-                    Pressure is StatsBomb's flag on the pass (a player pressing within a short time). Zones near their
-                    own goal are hard for every team, which is why each zone is compared with the others in the same
-                    place. Completion does not say whether the ball was then won.
-                  </Note>
-                </div>
-              </div>
-            </section>
-          )}
-
-          {P.breaks && (
-            <section className="section" aria-labelledby="br-h">
-              <div className="section-head">
-                <h2 id="br-h">Where they hurt you on the break</h2>
-                <Explain>
-                  Where {d.team} win the ball back (they attack left to right). Zone colour = share of their recoveries
-                  there followed by a shot within 10 s; dots = each of the {P.breaks.shots.length} recoveries that led
-                  to a shot, click one to replay it. Overall {Math.round(1000 * P.breaks.rate) / 10}% of {P.breaks.n}{" "}
-                  recoveries.
-                </Explain>
-              </div>
-              <div className="layout-split">
-                <div className="sticker" style={plain}>
-                  <div className="pitch-wrap">
-                    <Pitch label={`${d.team}: recoveries followed by a shot within 10 seconds`}>
-                      {P.breaks.zones.map((z, i) => {
-                        const r = z.n ? z.shot10 / z.n : 0;
-                        const few = z.n < 30;
-                        return (
-                          <g key={i}>
-                            <rect
-                              x={z.x0 + 0.5}
-                              y={z.y0 + 0.5}
-                              width={z.x1 - z.x0 - 1}
-                              height={z.y1 - z.y0 - 1}
-                              rx="1.5"
-                              fill="var(--yellow)"
-                              fillOpacity={few ? 0.05 : Math.min(0.75, r * 8)}
-                            />
-                          </g>
-                        );
-                      })}
-                      {P.breaks.shots.map((s, i) => (
-                        <circle
-                          key={i}
-                          cx={s.x}
-                          cy={s.y}
-                          r={i === brk ? 1.6 : 1}
-                          fill={i === brk ? "var(--yellow)" : "var(--coral)"}
-                          stroke="var(--sticker-ink)"
-                          strokeWidth="0.3"
-                          style={{ cursor: "pointer" }}
-                          onClick={() => setBrk(i)}
-                        >
-                          <title>{`${s.date} vs ${s.opponent}, ${s.minute}'`}</title>
-                        </circle>
-                      ))}
-                      {P.breaks.zones.map((z, i) => {
-                        const r = z.n ? z.shot10 / z.n : 0;
-                        const t = z.n < 30 ? `n ${z.n}` : `${Math.round(100 * r)}% · n ${z.n}`;
-                        return (
-                          <g key={`l${i}`} pointerEvents="none">
-                            <rect
-                              x={z.x0 + 1.2}
-                              y={z.y0 + 1.2}
-                              width={t.length * 1.45 + 2}
-                              height="4.2"
-                              rx="1"
-                              fill="var(--sticker-ink)"
-                              fillOpacity="0.8"
-                            />
-                            <text x={z.x0 + 2.2} y={z.y0 + 4.3} fontSize="2.6" fontWeight="800" fill="var(--sticker)">
-                              {t}
-                            </text>
-                          </g>
-                        );
-                      })}
-                    </Pitch>
-                  </div>
-                </div>
-                <div className="stack">
-                  {events && P.breaks.shots.length > 0 ? (
-                    <Replay
-                      teamKey={d.key}
-                      index={Math.min(brk, P.breaks.shots.length - 1)}
-                      onIndex={setBrk}
-                      clips={P.breaks.shots.map((s) => ({
-                        match: s.match,
-                        half: s.half,
-                        minute: s.minute,
-                        second: s.second,
-                        window: true,
-                        title: `Recovery vs ${s.opponent} ${s.minute}'`,
-                        detail: s.date,
-                      }))}
-                    />
-                  ) : (
-                    <Note kind="info" tag="Replays">
-                      Replays need the raw events (ev/ in the data folder); the map works without them.
-                    </Note>
-                  )}
-                  <Note kind="caution" tag="Read with care">
-                    Same definitions as the Transitions sheet: a recovery is a change of control in open play; shot
-                    within 10 s before the opponent touches the ball again. Darker zones are where losing the ball to
-                    them cost most often.
-                  </Note>
-                </div>
-              </div>
-            </section>
-          )}
-
-          {P.foul_zones && (
-            <section className="section" aria-labelledby="fz-h">
-              <div className="section-head">
-                <h2 id="fz-h">Where they foul</h2>
-                <Explain>
-                  Fouls committed per match in each zone of their own half (own goal on the left), against the other{" "}
-                  {P.foul_zones.teams_in_reference} teams; handballs excluded. Overall{" "}
-                  {P.foul_zones.total_per_match.toFixed(1)} per match in their half, others{" "}
-                  {P.foul_zones.ref_total_per_match?.toFixed(1) ?? "–"}.
-                </Explain>
-              </div>
-              <div className="layout-split">
-                <div className="sticker" style={plain}>
-                  <div className="pitch-wrap">
-                    <Pitch label={`${d.team}: fouls per match by zone of their own half`}>
-                      {P.foul_zones.zones.map((z, i) => {
-                        const diff = z.per_match - (z.ref_per_match ?? z.per_match);
-                        const cx = (z.x0 + z.x1) / 2,
-                          cy = (z.y0 + z.y1) / 2;
-                        return (
-                          <g key={i}>
-                            <rect
-                              x={z.x0 + 0.6}
-                              y={z.y0 + 0.6}
-                              width={z.x1 - z.x0 - 1.2}
-                              height={z.y1 - z.y0 - 1.2}
-                              rx="1.5"
-                              fill="var(--sticker)"
-                            />
-                            <rect
-                              x={z.x0 + 0.6}
-                              y={z.y0 + 0.6}
-                              width={z.x1 - z.x0 - 1.2}
-                              height={z.y1 - z.y0 - 1.2}
-                              rx="1.5"
-                              fill={diff > 0 ? "var(--coral)" : "var(--lime)"}
-                              fillOpacity={Math.min(0.85, 0.15 + Math.abs(diff) * 2)}
-                            />
-                            <text
-                              x={cx}
-                              y={cy - 1}
-                              textAnchor="middle"
-                              fontSize="4.2"
-                              fontWeight="900"
-                              fontStyle="italic"
-                              fill="var(--sticker-ink)"
-                            >
-                              {z.per_match.toFixed(2)}
-                            </text>
-                            <text
-                              x={cx}
-                              y={cy + 3.4}
-                              textAnchor="middle"
-                              fontSize="2.2"
-                              fontWeight="700"
-                              fill="var(--sticker-ink)"
-                            >
-                              others {z.ref_per_match?.toFixed(2) ?? "–"}
-                            </text>
-                            <text
-                              x={cx}
-                              y={cy + 6.6}
-                              textAnchor="middle"
-                              fontSize="2"
-                              fill="var(--sticker-ink)"
-                              fillOpacity="0.75"
-                            >
-                              {z.fouls} fouls · {z.cards} cards
-                            </text>
-                          </g>
-                        );
-                      })}
-                      <text x="90" y="41" textAnchor="middle" fontSize="3.2" fontWeight="800" fill="var(--pitch-line)">
-                        ← their own half · they attack →
-                      </text>
-                    </Pitch>
-                  </div>
-                </div>
-                <Note kind="caution" tag="Read with care">
-                  More fouls in a zone can mean they are often late there, or simply that the ball is there more often
-                  against them. It is a place to check on video, not proof of a weakness.
-                </Note>
-              </div>
-            </section>
-          )}
-
           {evs && evs !== "none" && (
             <section className="section" aria-labelledby="kp-h">
               <div className="section-head">
@@ -766,30 +509,12 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             </section>
           )}
 
-          <div
-            className="layout-2"
-            style={{
-              marginTop: 28,
-              display: "grid",
-              gap: 24,
-              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            }}
-          >
-            {evs && evs !== "none" && (
-              <div className="sticker pad">
-                <h3>When they score and concede</h3>
-                <Timeline t={evs.timeline} />
-                <p className="s-muted" style={{ fontSize: 12.5 }}>
-                  Bars: xG per match in each 15 minutes, <b style={{ color: "var(--sticker-ink)" }}>created</b> above
-                  (green), <b style={{ color: "var(--sticker-ink)" }}>conceded</b> below (red). Numbers: goals in the
-                  season. Stoppage time counts in the last slot of each half. Goals per slot are few: a single slot can
-                  move a lot by chance.
-                </p>
+          {P.watch_first && (
+            <section className="section" aria-labelledby="wf-h">
+              <div className="section-head">
+                <h2 id="wf-h">Watch first</h2>
               </div>
-            )}
-            {P.watch_first && (
-              <div className="sticker pad">
-                <h3>Watch first</h3>
+              <div className="sticker pad watch-card">
                 <p className="s-muted" style={{ fontSize: 12.5, margin: "4px 0 8px" }}>
                   {P.mine ? (
                     <>
@@ -813,81 +538,364 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                         </small>
                       </span>
                       <span className="score">{m.score}</span>
-                      <a href={`#/${d.key}/clips/sequences?opponent=${encodeURIComponent(m.opponent)}`}>Clips →</a>
+                      <a
+                        href={`#/${d.key}/clips/sequences?opponent=${encodeURIComponent(m.opponent)}`}
+                        aria-label={`Clips against ${m.opponent}, ${m.date}`}
+                      >
+                        Clips →
+                      </a>
                     </li>
                   ))}
                 </ol>
               </div>
-            )}
-          </div>
+            </section>
+          )}
 
-          <div
-            className="layout-2"
-            style={{
-              marginTop: 28,
-              display: "grid",
-              gap: 24,
-              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            }}
-          >
-            <div className="sticker pad">
-              <h3 id="past-h">What happened in their past matches</h3>
-              {P.opp_past.length ? (
-                <ul className="read" style={{ marginTop: 6 }}>
-                  {P.opp_past.map((p, i) => (
-                    <li key={i}>
-                      <b>{p.label}</b> {p.ga} ({p.n_a} matches): {fmt(p.a, unit(p.unit))} vs {fmt(p.b, unit(p.unit))}{" "}
-                      {p.gb} ({p.n_b}).
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p style={{ marginTop: 8 }}>
-                  No clear difference between groups of their matches (pressing, back line, home/away).
-                </p>
+          <details className="more gp-more">
+            <summary>More detail: where pressing hurts them, breaks, fouls, when they score, past matches</summary>
+            <div>
+              {P.pressure_zones && (
+                <section className="section" aria-labelledby="pz-h">
+                  <div className="section-head">
+                    <h2 id="pz-h">Where pressing hurts them</h2>
+                    <Explain>
+                      Their own half, own goal on the left. Each zone: share of their open-play passes completed when
+                      under pressure, against the other {P.pressure_zones.teams_in_reference} teams in the same zone.
+                      Red = below the others, green = above; dashed outline = at least 5 points below with 40+ passes.
+                    </Explain>
+                  </div>
+                  <div className="layout-split">
+                    <div className="sticker" style={plain}>
+                      <div className="pitch-wrap">
+                        <PressureZones pz={P.pressure_zones} team={d.team} />
+                      </div>
+                    </div>
+                    <div className="stack">
+                      <div className="sticker pad">
+                        <h3>Overall</h3>
+                        <p style={{ marginTop: 6 }}>
+                          In their own half {d.team} complete{" "}
+                          <b>{Math.round(100 * P.pressure_zones.total.completion)}%</b> of passes under pressure and{" "}
+                          <b>{Math.round(100 * P.pressure_zones.total.free_completion)}%</b> when free (
+                          {P.pressure_zones.total.passes} passes under pressure in {P.pressure_zones.matches} matches).
+                        </p>
+                        <p style={{ marginTop: 8 }}>
+                          {P.pressure_zones.zones.some((z) => z.weaker) ? (
+                            P.pressure_zones.zones.filter((z) => z.weaker).length >= 5 ? (
+                              <>
+                                Below the other teams in{" "}
+                                <b>{P.pressure_zones.zones.filter((z) => z.weaker).length} of 9</b> zones: they are less
+                                secure under pressure in general (often a more direct style), not weak in one place. The
+                                darkest red zone is where the gap is largest.
+                              </>
+                            ) : (
+                              <>
+                                Zones clearly below the other teams:{" "}
+                                <b>{P.pressure_zones.zones.filter((z) => z.weaker).length}</b>. Start the pressing plan
+                                from the darkest red one and check it on video.
+                              </>
+                            )
+                          ) : (
+                            <>
+                              No zone is clearly below the other teams: under pressure they play out about as well as
+                              the others or better. Pressing them is not suggested by these numbers.
+                            </>
+                          )}
+                        </p>
+                      </div>
+                      <Note kind="caution" tag="Read with care">
+                        Pressure is StatsBomb's flag on the pass (a player pressing within a short time). Zones near
+                        their own goal are hard for every team, which is why each zone is compared with the others in
+                        the same place. Completion does not say whether the ball was then won.
+                      </Note>
+                    </div>
+                  </div>
+                </section>
               )}
-              <p className="s-muted" style={{ fontSize: 12.5, marginTop: 10 }}>
-                Only clear differences not linked to how the groups are formed; about one in 20 is expected by chance.
-                Details in <a href={`#/${d.key}/matchups`}>Matchups</a>.
-              </p>
-            </div>
-            {P.my_vs_press && (
-              <div className="sticker pad">
-                <h3>{P.mine} against a high press</h3>
-                <table style={{ marginTop: 6 }}>
-                  <thead>
-                    <tr>
-                      <th>Per match</th>
-                      <th>
-                        {P.my_vs_press.groups[0]} ({P.my_vs_press.n_a})
-                      </th>
-                      <th>
-                        {P.my_vs_press.groups[1]} ({P.my_vs_press.n_b})
-                      </th>
-                      <th>Verdict</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {P.my_vs_press.metrics.map((m) => (
-                      <tr key={m.id}>
-                        <td>{m.label}</td>
-                        <td>{fmt(m.a, unit(m.unit))}</td>
-                        <td>{fmt(m.b, unit(m.unit))}</td>
-                        <td>
-                          {m.verdict}
-                          {m.linked ? "*" : ""}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <p className="s-muted" style={{ fontSize: 12.5, marginTop: 10 }}>
-                  From your own past matches. * partly by construction (shares events with the opponent PPDA that forms
-                  the groups).
-                </p>
+
+              {P.breaks && (
+                <section className="section" aria-labelledby="br-h">
+                  <div className="section-head">
+                    <h2 id="br-h">Where they hurt you on the break</h2>
+                    <Explain>
+                      Where {d.team} win the ball back (they attack left to right). Zone colour = share of their
+                      recoveries there followed by a shot within 10 s; dots = each of the {P.breaks.shots.length}{" "}
+                      recoveries that led to a shot, click one to replay it. Overall{" "}
+                      {Math.round(1000 * P.breaks.rate) / 10}% of {P.breaks.n} recoveries.
+                    </Explain>
+                  </div>
+                  <div className="layout-split">
+                    <div className="sticker" style={plain}>
+                      <div className="pitch-wrap">
+                        <Pitch label={`${d.team}: recoveries followed by a shot within 10 seconds`}>
+                          {P.breaks.zones.map((z, i) => {
+                            const r = z.n ? z.shot10 / z.n : 0;
+                            const few = z.n < 30;
+                            return (
+                              <g key={i}>
+                                <rect
+                                  x={z.x0 + 0.5}
+                                  y={z.y0 + 0.5}
+                                  width={z.x1 - z.x0 - 1}
+                                  height={z.y1 - z.y0 - 1}
+                                  rx="1.5"
+                                  fill="var(--yellow)"
+                                  fillOpacity={few ? 0.05 : Math.min(0.75, r * 8)}
+                                />
+                              </g>
+                            );
+                          })}
+                          {P.breaks.shots.map((s, i) => (
+                            <circle
+                              key={i}
+                              cx={s.x}
+                              cy={s.y}
+                              r={i === brk ? 1.6 : 1}
+                              fill={i === brk ? "var(--yellow)" : "var(--coral)"}
+                              stroke="var(--sticker-ink)"
+                              strokeWidth="0.3"
+                              style={{ cursor: "pointer" }}
+                              onClick={() => setBrk(i)}
+                            >
+                              <title>{`${s.date} vs ${s.opponent}, ${s.minute}'`}</title>
+                            </circle>
+                          ))}
+                          {P.breaks.zones.map((z, i) => {
+                            const r = z.n ? z.shot10 / z.n : 0;
+                            const t = z.n < 30 ? `n ${z.n}` : `${Math.round(100 * r)}% · n ${z.n}`;
+                            return (
+                              <g key={`l${i}`} pointerEvents="none">
+                                <rect
+                                  x={z.x0 + 1.2}
+                                  y={z.y0 + 1.2}
+                                  width={t.length * 1.45 + 2}
+                                  height="4.2"
+                                  rx="1"
+                                  fill="var(--sticker-ink)"
+                                  fillOpacity="0.8"
+                                />
+                                <text
+                                  x={z.x0 + 2.2}
+                                  y={z.y0 + 4.3}
+                                  fontSize="2.6"
+                                  fontWeight="800"
+                                  fill="var(--sticker)"
+                                >
+                                  {t}
+                                </text>
+                              </g>
+                            );
+                          })}
+                        </Pitch>
+                      </div>
+                    </div>
+                    <div className="stack">
+                      {events && P.breaks.shots.length > 0 ? (
+                        <div className="sticker" style={plain}>
+                          <Replay
+                            teamKey={d.key}
+                            index={Math.min(brk, P.breaks.shots.length - 1)}
+                            onIndex={setBrk}
+                            clips={P.breaks.shots.map((s) => ({
+                              match: s.match,
+                              half: s.half,
+                              minute: s.minute,
+                              second: s.second,
+                              window: true,
+                              title: `Recovery vs ${s.opponent} ${s.minute}'`,
+                              detail: s.date,
+                            }))}
+                          />
+                        </div>
+                      ) : (
+                        <Note kind="info" tag="Replays">
+                          Replays need the raw events (ev/ in the data folder); the map works without them.
+                        </Note>
+                      )}
+                      <Note kind="caution" tag="Read with care">
+                        Same definitions as the Transitions sheet: a recovery is a change of control in open play; shot
+                        within 10 s before the opponent touches the ball again. Darker zones are where losing the ball
+                        to them cost most often.
+                      </Note>
+                    </div>
+                  </div>
+                </section>
+              )}
+
+              {P.foul_zones && (
+                <section className="section" aria-labelledby="fz-h">
+                  <div className="section-head">
+                    <h2 id="fz-h">Where they foul</h2>
+                    <Explain>
+                      Fouls committed per match in each zone of their own half (own goal on the left), against the other{" "}
+                      {P.foul_zones.teams_in_reference} teams; handballs excluded. Overall{" "}
+                      {P.foul_zones.total_per_match.toFixed(1)} per match in their half, others{" "}
+                      {P.foul_zones.ref_total_per_match?.toFixed(1) ?? "–"}.
+                    </Explain>
+                  </div>
+                  <div className="layout-split">
+                    <div className="sticker" style={plain}>
+                      <div className="pitch-wrap">
+                        <Pitch label={`${d.team}: fouls per match by zone of their own half`}>
+                          {P.foul_zones.zones.map((z, i) => {
+                            const diff = z.per_match - (z.ref_per_match ?? z.per_match);
+                            const cx = (z.x0 + z.x1) / 2,
+                              cy = (z.y0 + z.y1) / 2;
+                            return (
+                              <g key={i}>
+                                <rect
+                                  x={z.x0 + 0.6}
+                                  y={z.y0 + 0.6}
+                                  width={z.x1 - z.x0 - 1.2}
+                                  height={z.y1 - z.y0 - 1.2}
+                                  rx="1.5"
+                                  fill="var(--sticker)"
+                                />
+                                <rect
+                                  x={z.x0 + 0.6}
+                                  y={z.y0 + 0.6}
+                                  width={z.x1 - z.x0 - 1.2}
+                                  height={z.y1 - z.y0 - 1.2}
+                                  rx="1.5"
+                                  fill={diff > 0 ? "var(--coral)" : "var(--lime)"}
+                                  fillOpacity={Math.min(0.85, 0.15 + Math.abs(diff) * 2)}
+                                />
+                                <text
+                                  x={cx}
+                                  y={cy - 1}
+                                  textAnchor="middle"
+                                  fontSize="4.2"
+                                  fontWeight="900"
+                                  fontStyle="italic"
+                                  fill="var(--sticker-ink)"
+                                >
+                                  {z.per_match.toFixed(2)}
+                                </text>
+                                <text
+                                  x={cx}
+                                  y={cy + 3.4}
+                                  textAnchor="middle"
+                                  fontSize="2.2"
+                                  fontWeight="700"
+                                  fill="var(--sticker-ink)"
+                                >
+                                  others {z.ref_per_match?.toFixed(2) ?? "–"}
+                                </text>
+                                <text
+                                  x={cx}
+                                  y={cy + 6.6}
+                                  textAnchor="middle"
+                                  fontSize="2"
+                                  fill="var(--sticker-ink)"
+                                  fillOpacity="0.75"
+                                >
+                                  {z.fouls} fouls · {z.cards} cards
+                                </text>
+                              </g>
+                            );
+                          })}
+                          <text
+                            x="90"
+                            y="41"
+                            textAnchor="middle"
+                            fontSize="3.2"
+                            fontWeight="800"
+                            fill="var(--pitch-line)"
+                          >
+                            ← their own half · they attack →
+                          </text>
+                        </Pitch>
+                      </div>
+                    </div>
+                    <Note kind="caution" tag="Read with care">
+                      More fouls in a zone can mean they are often late there, or simply that the ball is there more
+                      often against them. It is a place to check on video, not proof of a weakness.
+                    </Note>
+                  </div>
+                </section>
+              )}
+
+              <div
+                className="layout-2"
+                style={{
+                  marginTop: 28,
+                  display: "grid",
+                  gap: 24,
+                  gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                }}
+              >
+                {evs && evs !== "none" && (
+                  <div className="sticker pad">
+                    <h3>When they score and concede</h3>
+                    <Timeline t={evs.timeline} />
+                    <p className="s-muted" style={{ fontSize: 12.5 }}>
+                      Bars: xG per match in each 15 minutes, <b style={{ color: "var(--sticker-ink)" }}>created</b>{" "}
+                      above (green), <b style={{ color: "var(--sticker-ink)" }}>conceded</b> below (red). Numbers: goals
+                      in the season. Stoppage time counts in the last slot of each half. Goals per slot are few: a
+                      single slot can move a lot by chance.
+                    </p>
+                  </div>
+                )}
+                <div className="sticker pad">
+                  <h3 id="past-h">What happened in their past matches</h3>
+                  {P.opp_past.length ? (
+                    <ul className="read" style={{ marginTop: 6 }}>
+                      {P.opp_past.map((p, i) => (
+                        <li key={i}>
+                          <b>{p.label}</b> {p.ga} ({p.n_a} matches): {fmt(p.a, unit(p.unit))} vs{" "}
+                          {fmt(p.b, unit(p.unit))} {p.gb} ({p.n_b}).
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p style={{ marginTop: 8 }}>
+                      No clear difference between groups of their matches (pressing, back line, home/away).
+                    </p>
+                  )}
+                  <p className="s-muted" style={{ fontSize: 12.5, marginTop: 10 }}>
+                    Only clear differences not linked to how the groups are formed; about one in 20 is expected by
+                    chance. Details in <a href={`#/${d.key}/matchups`}>Matchups</a>.
+                  </p>
+                </div>
+                {P.my_vs_press && (
+                  <div className="sticker pad">
+                    <h3>{P.mine} against a high press</h3>
+                    <table style={{ marginTop: 6 }}>
+                      <thead>
+                        <tr>
+                          <th>Per match</th>
+                          <th>
+                            {P.my_vs_press.groups[0]} ({P.my_vs_press.n_a})
+                          </th>
+                          <th>
+                            {P.my_vs_press.groups[1]} ({P.my_vs_press.n_b})
+                          </th>
+                          <th>Verdict</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {P.my_vs_press.metrics.map((m) => (
+                          <tr key={m.id}>
+                            <td>{m.label}</td>
+                            <td>{fmt(m.a, unit(m.unit))}</td>
+                            <td>{fmt(m.b, unit(m.unit))}</td>
+                            <td>
+                              {m.verdict}
+                              {m.linked ? "*" : ""}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    <p className="s-muted" style={{ fontSize: 12.5, marginTop: 10 }}>
+                      From your own past matches. * partly by construction (shares events with the opponent PPDA that
+                      forms the groups).
+                    </p>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            </div>
+          </details>
         </>
       )}
     </>

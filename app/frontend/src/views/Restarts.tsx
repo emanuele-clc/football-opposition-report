@@ -224,30 +224,32 @@ export default function Restarts({
             <div className="section-head">
               <h2 id="len-h">Short or long first pass</h2>
             </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>First pass</th>
-                  <th>n</th>
-                  <th>Reached opponent half</th>
-                  <th>Ended in own half</th>
-                  <th>Shot</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.entries(k.by_length).map(([l, v]) => (
-                  <tr key={l}>
-                    <td>
-                      <b>{l}</b>
-                    </td>
-                    <td>{v.n}</td>
-                    <td>{pc(v.opp_half)}</td>
-                    <td>{pc(v.lost_own_half)}</td>
-                    <td>{pc(v.shot)}</td>
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>First pass</th>
+                    <th>n</th>
+                    <th>Reached opponent half</th>
+                    <th>Ended in own half</th>
+                    <th>Shot</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {Object.entries(k.by_length).map(([l, v]) => (
+                    <tr key={l}>
+                      <td>
+                        <b>{l}</b>
+                      </td>
+                      <td>{v.n}</td>
+                      <td>{pc(v.opp_half)}</td>
+                      <td>{pc(v.lost_own_half)}</td>
+                      <td>{pc(v.shot)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <p className="small" style={{ marginTop: 10 }}>
               Short = under 30 m. Side = end of the first pass, y in thirds. Ended in own half = no shot and the last
               team action ends at x &lt; 60 (ball lost, out of play or foul).

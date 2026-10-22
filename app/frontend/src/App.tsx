@@ -24,6 +24,7 @@ import { LANGS, setLanguage, storedLanguage, type Lang } from "./i18n";
 const TABS: [string, string][] = [
   ["overview", "Overview"],
   ["gameplan", "Game plan"],
+  ["coach", "Coach sheet"],
   ["evidence", "Evidence"],
   ["goals", "Goals"],
   ["build-up", "Families"],
@@ -41,7 +42,7 @@ const TABS: [string, string][] = [
 /* The top bar names the group, the row under the team name the section. The everyday path is Summary -> a phase -> Clips;
    the rest sits under More. */
 const GROUPS: [string, string[]][] = [
-  ["Summary", ["overview", "gameplan", "evidence"]],
+  ["Summary", ["overview", "gameplan", "coach", "evidence"]],
   ["With the ball", ["build-up", "threat", "restarts", "setpieces", "goals"]],
   ["Without the ball", ["transitions", "defending"]],
   ["Clips", ["clips"]],
@@ -166,7 +167,7 @@ export default function App() {
 
   const current = route.key === "new" ? null : data && data.key === route.key ? data : null;
   useEffect(() => {
-    const t = TABS.find(([k]) => k === route.tab)?.[1] ?? "";
+    const t = TABS.find(([k]) => k === (route.tab === "advanced" ? "build-up" : route.tab))?.[1] ?? "";
     document.title = current ? `${current.team} · ${t} · Opposition report` : "Opposition report";
   }, [current, route.tab]);
 
@@ -211,7 +212,7 @@ export default function App() {
         <select
           id="team"
           className="pill-select"
-          value={route.key === "new" ? "" : route.key}
+          value={route.key === "new" || !teams?.some((t) => t.key === route.key) ? "" : route.key}
           onChange={(e) => {
             location.hash = href({
               key: e.target.value,
@@ -219,10 +220,13 @@ export default function App() {
             });
           }}
         >
-          {route.key === "new" && <option value="">Choose a team</option>}
+          {(route.key === "new" || (teams && !teams.some((t) => t.key === route.key))) && (
+            <option value="">Choose a team</option>
+          )}
           {teams?.map((t) => (
             <option key={t.key} value={t.key}>
               {t.team} · {t.period.slice(0, 4)}/{t.period.slice(16, 18)}
+              {t.provisional ? ` · ${t.matches} matches only` : ""}
             </option>
           ))}
         </select>
@@ -312,6 +316,13 @@ export default function App() {
             The app reads the files written by <code>src/oppreport.py</code>. Check that the API is running (
             <code>python -X utf8 app\run.py</code>) and that the data folder holds report_&lt;Team&gt;.json.
           </p>
+          {!!teams?.length && (
+            <p>
+              <a className="btn" href={href({ key: teams[0].key })}>
+                Open {teams[0].team}
+              </a>
+            </p>
+          )}
         </div>
       ) : teams && teams.length === 0 ? (
         <div className="state">
@@ -342,6 +353,11 @@ export default function App() {
                 <b>{current.matches} matches</b>
                 {current.period.replace(" to ", " – ")}
               </span>
+              {current.provisional && (
+                <span className="prov-flag">
+                  Fewer than {current.min_matches ?? 8} matches: rough numbers, no ranks
+                </span>
+              )}
             </div>
             {groupOf(route.tab)[1].length > 1 && (
               <nav className="subnav no-print" aria-label={groupOf(route.tab)[0]}>

@@ -248,7 +248,7 @@ export default function Clips({
                           </button>
                         </td>
                         <td className="l">
-                          <span className="chip" style={rib(famIndex(r.family))}>
+                          <span className="chip" style={rib(famIndex(r.family), r.family)}>
                             {r.family}
                           </span>
                         </td>
@@ -297,7 +297,7 @@ export default function Clips({
             </div>
           </div>
           <aside style={{ position: "sticky", top: 84 }}>
-            <div className="sticker" style={rib(famIndex(shown[sel]?.family ?? ""))}>
+            <div className="sticker" style={rib(famIndex(shown[sel]?.family ?? ""), shown[sel]?.family)}>
               <span className="no">{shown[sel]?.family}</span>
               {events ? (
                 like ? (

@@ -42,6 +42,7 @@ const WORDS: Record<string, [string, string]> = {
 };
 const phrase = (r: Rank) => {
   const w = WORDS[r.id];
+  if (r.provisional) return r.label;
   if (w && r.rank === 1) return w[0];
   if (w && r.rank === r.of) return w[1];
   if (w && r.rank === 2) return `Second-${w[0].split(" ")[0].toLowerCase()} ${w[0].split(" ").slice(1).join(" ")}`;
@@ -67,6 +68,8 @@ export function familyClips(f: Family): ClipRef[] {
       detail: `vs ${e.opponent}, ${e.date}, half ${e.half} · starts ${e.start.toLowerCase()} · ${e.passes} passes${e.shot ? " · ended in a shot" : ""}`,
     }));
 }
+/* The hero opens on the most common family of the phase (codes are ordered by start position, not by share). */
+const mostCommon = (fs: Family[]) => fs.reduce((a, b) => (b.share > a.share ? b : a));
 export const famLine = (f: Family) =>
   `${third(f.x0) === third(f.x1) ? `Stays in the ${third(f.x0)}` : `From the ${third(f.x0)} to the ${third(f.x1)}`} · ${n1(f.passes)} passes · ${Math.round(f.dur)} s · ended in a shot ${pc(f.shot)}`;
 
@@ -81,7 +84,7 @@ export default function Overview({
 }) {
   const [phase, setPhase] = useState<"build-up" | "advanced">("build-up");
   const P = d.report.phases[phase];
-  const top = P.families[0];
+  const top = mostCommon(P.families);
   const [pick, setPick] = useState<string>(top.fam);
   const [idx, setIdx] = useState(0);
   const fam = P.families.find((f) => f.fam === pick) ?? top;
@@ -104,7 +107,7 @@ export default function Overview({
   return (
     <>
       <div className="layout-hero">
-        <section className="sticker enter" style={rib(fi)} aria-labelledby="hero-h">
+        <section className="sticker enter" style={rib(fi, fam.fam)} aria-labelledby="hero-h">
           <span className="no">{fam.fam}</span>
           <Replay
             teamKey={d.key}
@@ -159,15 +162,24 @@ export default function Overview({
                     {r.caution ? ` · rough: ${r.caution}` : ""}
                   </p>
                 </span>
-                <span className="badge">
-                  <b>{ordinal(r.rank)}</b>
-                  <small>of {r.of}</small>
-                </span>
+                {r.provisional ? (
+                  <span className="badge prov">
+                    <b>{d.matches}</b>
+                    <small>matches · not ranked</small>
+                  </span>
+                ) : (
+                  <span className="badge">
+                    <b>{ordinal(r.rank)}</b>
+                    <small>of {r.of}</small>
+                  </span>
+                )}
               </a>
             ))}
           </div>
           <p className="small" style={{ marginTop: 12, marginBottom: 4 }}>
-            Where {d.team} differs most from the other {d.references.length} teams. 1st = highest value.
+            {d.provisional
+              ? `Only ${d.matches} matches: ${d.team} is not ranked. Each line compares it with the average of the ${d.references.length} reference teams (${d.min_matches ?? 8}+ matches each); read the numbers as rough.`
+              : `Where ${d.team} differs most from the other ${d.references.length} teams. 1st = highest value.`}
           </p>
           <div className="fam-head">
             <h3 style={{ color: "var(--accent-text)" }}>Families</h3>
@@ -179,7 +191,7 @@ export default function Overview({
                   aria-pressed={phase === p}
                   onClick={() => {
                     setPhase(p);
-                    choose(d.report.phases[p].families[0].fam);
+                    choose(mostCommon(d.report.phases[p].families).fam);
                   }}
                 >
                   {p === "build-up" ? "Build-up" : "Advanced"}

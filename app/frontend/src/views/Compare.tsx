@@ -15,7 +15,7 @@ function DuoRow({ a, b, ka, kb }: { a: Rank; b: Rank; ka: string; kb: string }) 
     <div className="duo-row">
       <span className="val a">
         {fmt(a.value, a.unit)}
-        <small>{ordinal(a.rank)}</small>
+        <small>{a.provisional ? "not ranked" : ordinal(a.rank)}</small>
       </span>
       <div className="duo-mid">
         <span className="lab">
@@ -39,7 +39,7 @@ function DuoRow({ a, b, ka, kb }: { a: Rank; b: Rank; ka: string; kb: string }) 
       </div>
       <span className="val b">
         {fmt(b.value, b.unit)}
-        <small>{ordinal(b.rank)}</small>
+        <small>{b.provisional ? "not ranked" : ordinal(b.rank)}</small>
       </span>
     </div>
   );

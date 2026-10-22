@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import type { ClipRef, TeamData } from "../api";
 import { AllPaths, Explain, FamilyLanes, Interval, Note, PassNetwork, PlayIcon, Replay, rib, RIBS, ShareStrip } from "../charts";
 import { clock, pc } from "../format";
@@ -67,7 +67,7 @@ export default function Families({
       <ShareStrip families={P.families} pick={fam.fam} onPick={choose} />
 
       <div className="layout-split" style={{ marginTop: 28 }}>
-        <section className="sticker" style={rib(fi)} aria-labelledby="rp-h">
+        <section className="sticker" style={rib(fi, fam.fam)} aria-labelledby="rp-h">
           <span className="no">{fam.fam}</span>
           {events && (
             <div className="sticker-top no-print">
@@ -129,7 +129,7 @@ export default function Families({
           </div>
         </section>
         <div>
-          <section className="sticker pad fam-detail" style={rib(fi)} aria-label={`${fam.fam} in numbers`}>
+          <section className="sticker pad fam-detail" style={rib(fi, fam.fam)} aria-label={`${fam.fam} in numbers`}>
             <span className="no">{fam.fam}</span>
             <div className="line" style={{ marginTop: 8 }}>
               <span className="code">{fam.fam}</span>
@@ -185,7 +185,7 @@ export default function Families({
                 <th>n</th>
                 {fams.map((f, i) => (
                   <th key={f}>
-                    <span className="chip" style={rib(i)}>
+                    <span className="chip" style={rib(i, f)}>
                       {f}
                     </span>
                   </th>
@@ -200,7 +200,7 @@ export default function Families({
                   {fams.map((f, i) => {
                     const v = s.shares[f] ?? 0;
                     return (
-                      <td key={f} className="c" style={rib(i)}>
+                      <td key={f} className="c" style={rib(i, f)}>
                         {pc(v)}
                         <span className="hb" style={{ width: `${Math.max(v * 100, 1)}%`, opacity: v ? 1 : 0.25 }} />
                       </td>
@@ -248,7 +248,7 @@ export default function Families({
                   }}
                 >
                   <td>
-                    <span className="chip" style={rib(i)}>
+                    <span className="chip" style={rib(i, f.fam)}>
                       {f.fam}
                     </span>
                   </td>
@@ -326,7 +326,7 @@ export default function Families({
                         ) : null}
                       </td>
                       <td className="l">
-                        <span className="chip" style={{ ...rib(i) } as CSSProperties}>
+                        <span className="chip" style={rib(i, f.fam)}>
                           {f.fam}
                         </span>
                       </td>

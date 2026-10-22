@@ -84,7 +84,7 @@ export default function CoachSheet({ d }: { d: TeamData }) {
       </header>
 
       <section className="coach-block">
-        <h2>Three things that matter</h2>
+        <h2>What matters</h2>
         <ol>
           {(P.brief.priorities.length
             ? P.brief.priorities
@@ -101,7 +101,8 @@ export default function CoachSheet({ d }: { d: TeamData }) {
           <ul>
             {P.profile.slice(0, 5).map((r) => (
               <li key={r.id}>
-                {r.label}: <b>{fmt(r.value, r.unit as "num")}</b> <small>({place(r.rank, r.of)})</small>
+                {r.label}: <b>{fmt(r.value, r.unit as "num")}</b>{" "}
+                <small>({r.provisional ? "not ranked: few matches" : place(r.rank, r.of)})</small>
               </li>
             ))}
           </ul>
@@ -159,16 +160,19 @@ export default function CoachSheet({ d }: { d: TeamData }) {
             ) : null}
           </p>
           {recentGoals.length > 0 && (
-            <ul>
-              {recentGoals.map((g, i) => (
-                <li key={i}>
-                  <small>
-                    {g.date} vs {g.opponent} {g.minute}'
-                  </small>{" "}
-                  {g.scorer} · {g.origin}
-                </li>
-              ))}
-            </ul>
+            <>
+              <p>Their last {recentGoals.length} goals:</p>
+              <ul>
+                {recentGoals.map((g, i) => (
+                  <li key={i}>
+                    <small>
+                      {g.date} vs {g.opponent} {g.minute}'
+                    </small>{" "}
+                    {g.scorer} · {g.origin}
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
         </section>
       </div>

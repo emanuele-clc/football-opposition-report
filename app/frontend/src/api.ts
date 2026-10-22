@@ -210,6 +210,7 @@ export interface GPEvidence {
   unit: string;
   rank: number;
   of: number;
+  provisional?: boolean;
   team?: "you" | "opponent";
 }
 export interface GPFormations {
@@ -383,6 +384,8 @@ export interface Rank {
   ci: CI | null;
   rank: number;
   of: number;
+  /* Fewer matches than the minimum: placed among the teams but not ranked (server MIN_MATCHES). */
+  provisional?: boolean;
   teams: { key: string; team: string; value: number }[];
   statement?: string | null;
   grade?: Grade | null;
@@ -428,6 +431,7 @@ export interface TeamSummary {
   matches: number;
   period: string;
   sequences: number;
+  provisional?: boolean;
   sheets: string[];
   clips: string[];
 }
@@ -441,6 +445,7 @@ export interface TeamData extends TeamSummary {
   matchups: Matchups | null;
   ranks: Rank[];
   references: string[];
+  min_matches?: number;
 }
 export interface Info {
   data_dir: string;
@@ -627,6 +632,8 @@ export interface NetworkData {
 }
 export interface StyleMapData {
   metrics: string[];
+  left_out?: { team: string; matches: number }[];
+  min_matches?: number;
   axes: { explained: number; loadings: { id: string; label: string; weight: number }[] }[];
   teams: {
     key: string;
