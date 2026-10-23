@@ -456,7 +456,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                         {h.evidence.map((e, i) => (
                           <span key={i}>
                             <GradeMark g={e.grade} />
-                            {e.team === "you" ? `${P.mine}: ` : e.team === "opponent" ? `${d.team}: ` : ""}
+                            {e.team && <b>{e.team === "you" ? P.mine : d.team}: </b>}
                             {e.label} {fmt(e.value, unit(e.unit))} · {place(e.rank, e.of)}
                             {e.id === "ppda" ? " (lower = more intense pressing)" : ""}
                           </span>

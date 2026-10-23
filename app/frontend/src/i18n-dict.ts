@@ -37,6 +37,12 @@ export const DICT: [string, string, string][] = [
     "Ognuno mostra i numeri che l'hanno fatto scattare, con il loro voto di affidabilità (da A affidabile a D non affidabile; lo spunto prende il voto più debole tra i numeri dell'avversario).",
     "Jeder zeigt die Zahlen, die ihn ausgelöst haben, mit ihrer Evidenznote (A verlässlich bis D nicht verlässlich; der Hinweis erhält die schwächste Note seiner Gegnerzahlen).",
   ],
+  [
+    "{0}: above the simple checks (shuffled features, single blob).",
+    "{0}: sopra i controlli semplici (variabili rimescolate, un'unica nuvola).",
+    "{0}: über den einfachen Prüfungen (gemischte Merkmale, eine einzige Wolke).",
+  ],
+  ["you vs them", "voi contro loro", "ihr gegen sie"],
   ["(lower = more intense pressing)", "(più basso = pressing più intenso)", "(niedriger = intensiveres Pressing)"],
   ["Grade D: {0}", "Voto D: {0}", "Note D: {0}"],
   [
