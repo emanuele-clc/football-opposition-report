@@ -21,6 +21,29 @@ export const DICT: [string, string, string][] = [
   ["Checked on # unseen teams: # A, # B, # C, # D.", "Verificato su # squadre mai viste: # A, # B, # C, # D.", "Geprüft an # ungesehenen Teams: # A, # B, # C, # D."],
   ["All # measures against the other teams →", "Tutte le # misure contro le altre squadre →", "Alle # Werte im Vergleich mit den anderen Teams →"],
   ["Where {0} differs most from the other # teams. 1st = highest value.", "Dove {0} si distingue di più dalle altre # squadre. 1° = valore più alto.", "Wo sich {0} am stärksten von den anderen # Teams unterscheidet. 1. = höchster Wert."],
+  ["Letters: evidence grade, A reliable to D not reliable.", "Lettere: voto di affidabilità, da A affidabile a D non affidabile.", "Buchstaben: Evidenznote, von A verlässlich bis D nicht verlässlich."],
+  [
+    ": above the simple checks (shuffled features, single blob). Against a stricter check (synthetic data with the same correlations and no clusters), the families of the # thesis teams were only slightly better: read them as slices of a continuum.",
+    ": sopra i controlli semplici (variabili rimescolate, un'unica nuvola). Con un controllo più severo (dati sintetici con le stesse correlazioni e senza gruppi) le famiglie delle # squadre della tesi erano solo di poco migliori: leggile come fette di un continuo.",
+    ": über den einfachen Prüfungen (gemischte Merkmale, eine einzige Wolke). Bei einer strengeren Prüfung (synthetische Daten mit denselben Korrelationen und ohne Gruppen) waren die Familien der # Teams der Arbeit nur wenig besser: lies sie als Scheiben eines Kontinuums.",
+  ],
+  [
+    "Families do not predict whether a sequence ends in a shot better than a one-variable rule based on where it ends (families better in # of # teams).",
+    "Le famiglie non prevedono se un'azione finisce in tiro meglio di una regola a una sola variabile basata su dove finisce (famiglie migliori in # squadre su #).",
+    "Die Familien sagen nicht besser als eine Ein-Variablen-Regel nach dem Endpunkt voraus, ob eine Sequenz mit einem Abschluss endet (Familien besser bei # von # Teams).",
+  ],
+  [
+    "Each one shows the numbers that triggered it, with their evidence grade (A reliable to D not reliable; the hint takes the weakest grade of its opponent numbers).",
+    "Ognuno mostra i numeri che l'hanno fatto scattare, con il loro voto di affidabilità (da A affidabile a D non affidabile; lo spunto prende il voto più debole tra i numeri dell'avversario).",
+    "Jeder zeigt die Zahlen, die ihn ausgelöst haben, mit ihrer Evidenznote (A verlässlich bis D nicht verlässlich; der Hinweis erhält die schwächste Note seiner Gegnerzahlen).",
+  ],
+  ["(lower = more intense pressing)", "(più basso = pressing più intenso)", "(niedriger = intensiveres Pressing)"],
+  ["Grade D: {0}", "Voto D: {0}", "Note D: {0}"],
+  [
+    "Letters: evidence grade of the number (checked on # unseen teams), A reliable, B useful, C half reliable, D not reliable.",
+    "Lettere: voto di affidabilità del numero (verificato su # squadre mai viste), A affidabile, B utile, C affidabile a metà, D non affidabile.",
+    "Buchstaben: Evidenznote der Zahl (geprüft an # ungesehenen Teams), A verlässlich, B nützlich, C halb verlässlich, D nicht verlässlich.",
+  ],
   ["B1, A2… are labels, not tactical categories.", "B1, A2… sono etichette, non categorie tattiche.", "B1, A2… sind Bezeichnungen, keine taktischen Kategorien."],
   ["rough: {0}", "indicativo: {0}", "grob: {0}"],
   ["{0}: stability # against # (shuffled features) and # (single Gaussian blob).", "{0}: stabilità # contro # (variabili rimescolate) e # (un'unica nuvola gaussiana).", "{0}: Stabilität # gegenüber # (gemischte Merkmale) und # (eine einzige Gauß-Wolke)."],
@@ -1831,9 +1854,9 @@ export const DICT: [string, string, string][] = [
     "Du spielst Abstöße häufiger kurz als die meisten Teams; sie pressen hoch oder hart.",
   ],
   [
-    "The key duel of the match: look at your own past matches against a high press on this page and decide whether to keep building short.",
-    "Il duello chiave della partita: guarda in questa pagina le tue partite passate contro un pressing alto e decidi se continuare a costruire corto.",
-    "Das Schlüsselduell des Spiels: schau dir auf dieser Seite deine eigenen Spiele gegen hohes Pressing an und entscheide, ob du weiter kurz aufbaust.",
+    "The key duel of the match: look at your own past matches against a high press (Matchups) and decide whether to keep building short.",
+    "Il duello chiave della partita: guarda le tue partite passate contro un pressing alto (Avversari) e decidi se continuare a costruire corto.",
+    "Das Schlüsselduell des Spiels: schau dir deine eigenen Spiele gegen hohes Pressing an (Gegnertypen) und entscheide, ob du weiter kurz aufbaust.",
   ],
   [
     "Your high press meets their short build-up",

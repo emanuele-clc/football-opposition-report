@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSummary } from "../api";
-import { Explain, Icon } from "../charts";
+import { evidenceHref, Explain, GRADE_SAYS, GradeMark, Icon } from "../charts";
 import { Note, Pitch, Replay, plain } from "../charts";
 import { fmt, ordinal } from "../format";
 
@@ -366,6 +366,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                 <ul className="read" style={{ marginTop: 6 }}>
                   {P.profile.map((r) => (
                     <li key={r.id}>
+                      <GradeMark g={r.grade} href={evidenceHref(d.key)} />
                       <b>{r.label}</b>: {fmt(r.value, unit(r.unit))}{" "}
                       <span className="s-muted">
                         ({r.provisional ? "not ranked: few matches" : place(r.rank, r.of)})
@@ -401,7 +402,10 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                         ]
                     : P.brief.phases[topic].lines
                   ).map((l, i) => (
-                    <li key={i}>{l}</li>
+                    <li key={i}>
+                      {topic === "priorities" && <GradeMark g={P.brief.priority_grades?.[i]} href={evidenceHref(d.key)} />}
+                      {l}
+                    </li>
                   ))}
                 </ol>
               </div>
@@ -419,8 +423,9 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             <div className="section-head">
               <h2 id="gp-h">Where to look</h2>
               <Explain>
-                {P.hints.length} hints fired. Each one shows the numbers that triggered it. "Highest" or "lowest" is
-                among the teams in this folder, which can be from other leagues and seasons.
+                {P.hints.length} hints fired. Each one shows the numbers that triggered it, with their evidence grade
+                (A reliable to D not reliable; the hint takes the weakest grade of its opponent numbers). "Highest" or
+                "lowest" is among the teams in this folder, which can be from other leagues and seasons.
               </Explain>
             </div>
             {P.hints.length === 0 ? (
@@ -440,14 +445,20 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                           you vs them
                         </span>
                       )}
-                      <h3 style={{ margin: "2px 0 6px" }}>{h.title}</h3>
+                      <h3 style={{ margin: "2px 0 6px" }}>
+                        <GradeMark g={h.grade} href={evidenceHref(d.key)} />
+                        {h.title}
+                      </h3>
                       <p>{h.why}</p>
+                      {h.grade === "D" && <p className="grade-warn">{`Grade D: ${GRADE_SAYS.D}`}</p>}
                       <p style={{ color: "var(--sticker-ink)", fontWeight: 650 }}>{h.look}</p>
-                      <p style={{ fontSize: 12 }}>
+                      <p className="gp-ev">
                         {h.evidence.map((e, i) => (
-                          <span key={i} style={{ display: "block" }}>
+                          <span key={i}>
+                            <GradeMark g={e.grade} />
                             {e.team === "you" ? `${P.mine}: ` : e.team === "opponent" ? `${d.team}: ` : ""}
                             {e.label} {fmt(e.value, unit(e.unit))} · {place(e.rank, e.of)}
+                            {e.id === "ppda" ? " (lower = more intense pressing)" : ""}
                           </span>
                         ))}
                       </p>

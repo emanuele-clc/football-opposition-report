@@ -14,6 +14,8 @@ from keyplayers import events_view  # noqa: E402  (key players and timeline, sha
 FORM = lambda f: "-".join(f) if f and f.isdigit() else (f or "unknown")
 
 # (id, side, condition, evidence, title, why, look). side 'opp' = only the opponent's ranks, 'both' = opponent and your team.
+# Evidence of a 'both' rule = its condition terms {team: [(measure, 'top'|'bottom')]}: only the terms that hold are shown, so a rule with
+# 'or' never lists a number that points the other way (e.g. a high PPDA under "they press").
 RULES = [
     (
         "gk_short_hi",
@@ -159,17 +161,17 @@ RULES = [
         "my_short_vs_press",
         "both",
         lambda O, M: M("gk_short", "top") and (O("ppda", "bottom") or O("press_final", "top")),
-        ["gk_short", "ppda", "press_final"],
+        {"you": [("gk_short", "top")], "opponent": [("ppda", "bottom"), ("press_final", "top")]},
         "Your short build-up meets their press",
         "You play goal kicks short more than most teams; they press high or hard.",
-        "The key duel of the match: look at your own past matches against a high press on this page and decide whether to keep building short.",
+        "The key duel of the match: look at your own past matches against a high press (Matchups) and decide whether to keep building short.",
         "matchups",
     ),
     (
         "my_press_vs_short",
         "both",
         lambda O, M: M("press_final", "top") and O("gk_short", "top"),
-        ["press_final", "gk_short"],
+        {"you": [("press_final", "top")], "opponent": [("gk_short", "top")]},
         "Your high press meets their short build-up",
         "You press often in the final third; they play goal kicks short.",
         "Check on video how they escaped high pressure in past matches (Restarts → where the first pass goes).",
@@ -179,7 +181,7 @@ RULES = [
         "my_long_vs_high",
         "both",
         lambda O, M: M("long", "top") and O("def_height", "top"),
-        ["long", "def_height"],
+        {"you": [("long", "top")], "opponent": [("def_height", "top")]},
         "Your long balls against their high defence",
         "You play long more than most teams; they defend high.",
         "Balls in behind may find space: check their recovery runs on video.",
@@ -235,10 +237,14 @@ def build(opp_key, my_key, teams, ranks, load):
             "unit": R[i]["unit"],
             "rank": R[i]["rank"],
             "of": R[i]["of"],
+            "grade": R[i].get("grade"),
         }
         for i in ids
         if i in R
     ]
+    held = lambda terms, R, at: ev(R, [i for i, w in terms if at(i, w)])
+    # The hint's grade is the weakest grade among the opponent numbers that made it fire (the condition, not the context lines).
+    worst = lambda es: max((e["grade"] for e in es if e.get("grade")), default=None)
     hints = []
     for hid, side, cond, ids, title, why, look, tab in [
         (r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7]) for r in RULES
@@ -246,6 +252,12 @@ def build(opp_key, my_key, teams, ranks, load):
         if side == "both" and not my_key:
             continue
         if cond(O, M):
+            evid = (
+                ev(OR, ids)
+                if side == "opp"
+                else [{**e, "team": "opponent"} for e in held(ids["opponent"], OR, O)]
+                + [{**e, "team": "you"} for e in held(ids["you"], MR, M)]
+            )
             hints.append(
                 {
                     "id": hid,
@@ -254,12 +266,8 @@ def build(opp_key, my_key, teams, ranks, load):
                     "why": why,
                     "look": look,
                     "tab": tab,
-                    "evidence": (
-                        ev(OR, ids)
-                        if side == "opp"
-                        else [{**e, "team": "opponent"} for e in ev(OR, ids)]
-                        + [{**e, "team": "you"} for e in ev(MR, ids)]
-                    ),
+                    "evidence": evid,
+                    "grade": worst(evid[:1] if side == "opp" else [e for e in evid if e["team"] == "opponent"]),
                 }
             )
 
@@ -322,6 +330,7 @@ def build(opp_key, my_key, teams, ranks, load):
                 "rank": r["rank"],
                 "of": r["of"],
                 "provisional": r.get("provisional", False),
+                "grade": r.get("grade"),
             }
             for r in extreme
         ],
@@ -393,6 +402,7 @@ def brief(hints, past, opp, mine):
     top = sorted(hints, key=prio, reverse=True)[:3]
     return {
         "priorities": [f"{h['title']}. {h['look']}" for h in top],
+        "priority_grades": [h.get("grade") for h in top],
         "phases": phases,
         "intro": f"Plan against {opp}"
         + (f" for {mine}" if mine else "")

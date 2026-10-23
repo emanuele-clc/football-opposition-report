@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type ClipRef, type Evidence, type Family, type Rank, type TeamData } from "../api";
-import { evidenceHref, FamilyLanes, Replay, rib, ShareStrip, third } from "../charts";
+import { evidenceHref, FamilyLanes, GradeMark, Replay, rib, ShareStrip, third } from "../charts";
 import { fmt, n1, ordinal, pc } from "../format";
 
 const TAB_OF: Record<string, string> = {
@@ -155,6 +155,7 @@ export default function Overview({
                 </span>
                 <span>
                   <p>
+                    <GradeMark g={r.grade} />
                     {phrase(r)}: <b>{fmt(r.value, r.unit)}</b>
                   </p>
                   <p className="sub">
@@ -179,7 +180,7 @@ export default function Overview({
           <p className="small" style={{ marginTop: 12, marginBottom: 4 }}>
             {d.provisional
               ? `Only ${d.matches} matches: ${d.team} is not ranked. Each line compares it with the average of the ${d.references.length} reference teams (${d.min_matches ?? 8}+ matches each); read the numbers as rough.`
-              : `Where ${d.team} differs most from the other ${d.references.length} teams. 1st = highest value.`}
+              : `Where ${d.team} differs most from the other ${d.references.length} teams. 1st = highest value. Letters: evidence grade, A reliable to D not reliable.`}
           </p>
           <div className="fam-head">
             <h3 style={{ color: "var(--accent-text)" }}>Families</h3>
@@ -215,15 +216,24 @@ export default function Overview({
           {(["build-up", "advanced"] as const).map((p) => {
             const Q = d.report.phases[p];
             return (
-              <li key={p} className={Q.margin >= 0.1 ? "ok" : "caution"}>
+              <li key={p} className="caution">
                 <b>{p === "build-up" ? "Build-up families" : "Advanced families"}</b>
                 <span>
                   {Q.verdict}
-                  {Q.verdict !== "clear structure" && ": a convenient partition, not separate behaviours"}
+                  {Q.verdict !== "clear structure"
+                    ? ": a convenient partition, not separate behaviours"
+                    : ": above the simple checks (shuffled features, single blob). Against a stricter check (synthetic data with the same correlations and no clusters), the families of the 10 thesis teams were only slightly better: read them as slices of a continuum."}
                 </span>
               </li>
             );
           })}
+          <li className="caution">
+            <b>Shots</b>
+            <span>
+              Families do not predict whether a sequence ends in a shot better than a one-variable rule based on where
+              it ends (families better in 0 of 10 teams).
+            </span>
+          </li>
           <li className={d.matches < 8 ? "caution" : "ok"}>
             <b>{d.matches} matches</b>
             <span>

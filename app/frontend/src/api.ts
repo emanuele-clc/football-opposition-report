@@ -212,6 +212,7 @@ export interface GPEvidence {
   of: number;
   provisional?: boolean;
   team?: "you" | "opponent";
+  grade?: Grade | null;
 }
 export interface GPFormations {
   most_used: { formation: string; raw: string; matches: number }[];
@@ -308,6 +309,7 @@ export interface GamePlan {
   brief: {
     intro: string;
     priorities: string[];
+    priority_grades?: (Grade | null)[];
     phases: Record<"with_ball" | "without_ball" | "transitions" | "set_pieces", { title: string; lines: string[] }>;
   };
   formations: { opponent: GPFormations | null; mine: GPFormations | null };
@@ -359,6 +361,7 @@ export interface GamePlan {
     look: string;
     tab: string;
     evidence: GPEvidence[];
+    grade?: Grade | null;
   }[];
   opp_past: {
     split: string;

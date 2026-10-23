@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { api, type GamePlan as Plan, type GPEvents, type TeamData } from "../api";
-import { Icon, Pitch } from "../charts";
+import { GradeMark, Icon, Pitch } from "../charts";
 import { fmt } from "../format";
 import { Shape } from "./GamePlan";
 
@@ -90,7 +90,10 @@ export default function CoachSheet({ d }: { d: TeamData }) {
             ? P.brief.priorities
             : ["Nothing in their numbers is at the extremes: prepare as usual and use the video."]
           ).map((t, i) => (
-            <li key={i}>{t}</li>
+            <li key={i}>
+              <GradeMark g={P.brief.priority_grades?.[i]} />
+              {t}
+            </li>
           ))}
         </ol>
       </section>
@@ -101,6 +104,7 @@ export default function CoachSheet({ d }: { d: TeamData }) {
           <ul>
             {P.profile.slice(0, 5).map((r) => (
               <li key={r.id}>
+                <GradeMark g={r.grade} />
                 {r.label}: <b>{fmt(r.value, r.unit as "num")}</b>{" "}
                 <small>({r.provisional ? "not ranked: few matches" : place(r.rank, r.of)})</small>
               </li>
@@ -193,8 +197,9 @@ export default function CoachSheet({ d }: { d: TeamData }) {
         </section>
       )}
       <p className="coach-foot">
-        Descriptive, from StatsBomb open data. Hints say where to look on video, not what will win. Automated Football
-        Opposition Report.
+        Descriptive, from StatsBomb open data. Hints say where to look on video, not what will win. Letters: evidence
+        grade of the number (checked on 70 unseen teams), A reliable, B useful, C half reliable, D not reliable.
+        Automated Football Opposition Report.
       </p>
     </div>
   );
