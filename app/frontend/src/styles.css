@@ -2708,6 +2708,46 @@ a.grade:focus-visible {
   --g-ink: var(--sticker-ink-2);
   outline-color: var(--sticker-ink-2);
 }
+/* Not graded: a plain dash, no ring, so it cannot be read as a weak letter. */
+.grade.g-none {
+  box-shadow: none;
+  font-style: normal;
+  font-stretch: 100%;
+  font-weight: 700;
+  color: var(--g-none, var(--on-board-3));
+}
+.sticker .grade.g-none,
+.coach .grade.g-none {
+  --g-none: var(--sticker-ink-2);
+}
+/* One-line key next to the first grades of a page. */
+.grade-key {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+  margin: 10px 0 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--on-board-2);
+}
+.grade-key > span {
+  display: inline-flex;
+  align-items: center;
+}
+.sticker .grade-key {
+  color: var(--sticker-ink-2);
+}
+.grade-key .grade {
+  width: 18px;
+  height: 18px;
+  font-size: 12.5px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+.grade-key a {
+  font-weight: 700;
+}
 .kp .sub .grade {
   width: 18px;
   height: 18px;
@@ -2908,6 +2948,12 @@ a.grade:focus-visible {
   .grade.g-D {
     box-shadow: none !important;
     outline: 1.5px dashed #000;
+  }
+  .grade.g-none {
+    box-shadow: none !important;
+  }
+  .grade-key {
+    color: #000;
   }
   .ev-table tr {
     break-inside: avoid;

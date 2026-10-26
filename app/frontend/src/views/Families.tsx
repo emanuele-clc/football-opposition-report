@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ClipRef, TeamData } from "../api";
-import { AllPaths, Explain, FamilyLanes, Interval, Note, PassNetwork, PlayIcon, Replay, rib, RIBS, ShareStrip } from "../charts";
+import { AllPaths, evidenceHref, Explain, FamilyLanes, GradeKey, GradeMark, Interval, Note, PassNetwork, PlayIcon, Replay, rib, RIBS, ShareStrip, useGrades } from "../charts";
 import { clock, pc } from "../format";
 import { famLine, familyClips } from "./Overview";
 
@@ -20,6 +20,8 @@ export default function Families({
   go: (tab: string, family?: string) => void;
 }) {
   const P = d.report.phases[phase];
+  const G = useGrades();
+  const shareId = phase === "build-up" ? "F07" : "F08";
   const fams = P.families.map((f) => f.fam);
   const [pick, setPick] = useState(fams.includes(family) ? family : fams[0]);
   const [idx, setIdx] = useState(0);
@@ -137,7 +139,10 @@ export default function Families({
               <span className="share">{pc(fam.share)}</span>
             </div>
             <dl>
-              <dt>Share (95%)</dt>
+              <dt>
+                {G && <GradeMark g={G.of(shareId)} href={evidenceHref(d.key, shareId)} none />}
+                Share (95%)
+              </dt>
               <dd>{ci(fam.share_ci)}</dd>
               <dt>Per match (p10–p90)</dt>
               <dd>{ci(fam.per_match_p10_p90)}</dd>
@@ -151,7 +156,10 @@ export default function Families({
               <dd>
                 {Math.round(fam.x0)} → {Math.round(fam.x1)}
               </dd>
-              <dt>Shot rate (95%)</dt>
+              <dt>
+                {G && <GradeMark none />}
+                Shot rate (95%)
+              </dt>
               <dd>
                 {pc(fam.shot)} ({ci(fam.shot_ci)})
               </dd>
@@ -162,12 +170,20 @@ export default function Families({
             </dl>
           </section>
           <div style={{ marginTop: 18 }}>
-            <Note kind={P.margin >= 0.1 ? "ok" : "caution"} tag={P.verdict}>
+            {G && <GradeKey n={G.n} href={evidenceHref(d.key)} />}
+            <Note kind={P.margin >= 0.1 ? "info" : "caution"} tag={P.verdict}>
               Stability {P.jaccard_mean.toFixed(2)} against {P.null_shuffle.toFixed(2)} (shuffled features) and{" "}
               {P.null_gauss.toFixed(2)} (single Gaussian blob).
-              {P.verdict !== "clear structure" &&
-                " Treat the families as a convenient partition, not as separate behaviours."}
+              {P.verdict !== "clear structure"
+                ? " Treat the families as a convenient partition, not as separate behaviours."
+                : " Against a stricter check (synthetic data with the same correlations and no clusters), the families of the 10 thesis teams were only slightly better: read them as slices of a continuum."}
             </Note>
+            <div style={{ marginTop: 10 }}>
+              <Note kind="caution" tag="Shots">
+                Families do not predict whether a sequence ends in a shot better than a one-variable rule based on where
+                it ends (families better in 0 of 10 teams). Read the shot rate as a description of the family.
+              </Note>
+            </div>
           </div>
         </div>
       </div>

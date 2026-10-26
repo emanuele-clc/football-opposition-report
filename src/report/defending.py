@@ -10,6 +10,8 @@ Definitions (fixed before looking at any team; locations are on the team's own a
   (pressure within 5 s of losing the ball).
 - defensive height: mean and median x of the team's defensive actions (not pressures); higher = defends further from its own goal.
 - conceded: opponent shots and the sum of their StatsBomb xG per match (penalties included; own goals are not shots).
+- xG per shot conceded (added 26 Oct 2026, fixed before computing it): sum of opponent xG / number of opponent shots over the matches (ratio of sums,
+  same shots as above). Shows whether the team concedes few good chances or many poor ones; descriptive, not graded.
 - last 5: the five most recent matches. Intervals: 95% bootstrap over matches."""
 
 import sys, os, io, json, base64, html as H
@@ -86,6 +88,7 @@ if __name__ == "__main__":
     pm = lambda key: (lambda gs: S(key, gs) / len(gs))
     height = lambda gs: S("def_x_sum", gs) / max(S("def_actions", gs), 1)
     cp = lambda gs: S("counterpress", gs) / max(S("pressures", gs), 1)
+    xps = lambda gs: S("xg", gs) / max(S("shots", gs), 1)
     allx = [x for m in per for x in m["dx"]]
     pt = {t: sum(1 for p in P if third(p["x"]) == t) for t in THIRDS}
     npr = max(len(P), 1)
@@ -124,6 +127,9 @@ if __name__ == "__main__":
             xg_ci=boot(pm("xg"), games),
             last5_shots=pm("shots")(last),
             last5_xg=pm("xg")(last),
+            xg_per_shot=xps(games),
+            xg_per_shot_ci=boot(xps, games),
+            last5_xg_per_shot=xps(last),
         ),
     }
     json.dump(res, open(f"{BASE}/defending_{fn}.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
@@ -172,7 +178,8 @@ if __name__ == "__main__":
         f"<tr><td>Counter-pressures (share of pressures)</td><td>{pc(r['pressures']['counterpress_share'])}</td><td>{pc(r['pressures']['counterpress_ci'][0])}-{pc(r['pressures']['counterpress_ci'][1])}</td><td></td></tr>",
         f"<tr><td>Height of defensive actions (mean x, 0-120)</td><td>{r['height']['mean_x']:.1f}</td><td>{r['height']['ci'][0]:.1f}-{r['height']['ci'][1]:.1f}</td><td>{r['height']['last5']:.1f}</td></tr>",
         f"<tr><td>Shots conceded per match</td><td>{r['conceded']['shots_per_match']:.1f}</td><td>{r['conceded']['shots_ci'][0]:.1f}-{r['conceded']['shots_ci'][1]:.1f}</td><td>{r['conceded']['last5_shots']:.1f}</td></tr>",
-        f"<tr><td>xG conceded per match</td><td>{r['conceded']['xg_per_match']:.2f}</td><td>{r['conceded']['xg_ci'][0]:.2f}-{r['conceded']['xg_ci'][1]:.2f}</td><td>{r['conceded']['last5_xg']:.2f}</td></tr></table>",
+        f"<tr><td>xG conceded per match</td><td>{r['conceded']['xg_per_match']:.2f}</td><td>{r['conceded']['xg_ci'][0]:.2f}-{r['conceded']['xg_ci'][1]:.2f}</td><td>{r['conceded']['last5_xg']:.2f}</td></tr>",
+        f"<tr><td>xG per shot conceded</td><td>{r['conceded']['xg_per_shot']:.3f}</td><td>{r['conceded']['xg_per_shot_ci'][0]:.3f}-{r['conceded']['xg_per_shot_ci'][1]:.3f}</td><td>{r['conceded']['last5_xg_per_shot']:.3f}</td></tr></table>",
         "<h2>Where they press</h2><table><tr><th>Third</th><th>Share of pressures</th><th>Per match</th></tr>"
         + "".join(
             f"<tr><td>{t}</td><td>{pc(v['share'])}</td><td>{v['per_match']:.0f}</td></tr>"

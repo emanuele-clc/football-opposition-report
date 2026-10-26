@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { TeamData, Third } from "../api";
-import { Explain, Note, Pitch, plain, Replay } from "../charts";
+import { evidenceHref, Explain, GradeKey, GradeMark, Note, Pitch, plain, Replay, useGrades } from "../charts";
 import { pc } from "../format";
 import { clipId, pickRecent, toRef, useClips, useGoals } from "../useClips";
 import GoalToggle from "./GoalToggle";
@@ -103,6 +103,7 @@ export default function Transitions({
   useEffect(() => setIdx(0), [d.key, which, onlyGoals]);
   const { rows } = useClips(d.key, "transitions");
   const goals = useGoals(d.key, "transitions", events);
+  const G = useGrades();
   const T = d.transitions;
   if (!T)
     return (
@@ -148,8 +149,12 @@ export default function Transitions({
           </div>
           <div className="replay-cap">
             <div>
-              <h2 id="lo-h">{l.per_match.toFixed(1)} losses per match</h2>
+              <h2 id="lo-h">
+                {G && <GradeMark g={G.of("T18")} href={evidenceHref(d.key, "T18")} />}
+                {l.per_match.toFixed(1)} losses per match
+              </h2>
               <p>
+                {G && <GradeMark g={G.of("T20")} href={evidenceHref(d.key, "T20")} />}
                 Ball regained within 5 s after {pc(l.regain5)} ({ci(l.regain5_ci)}); opponent shoots within 10 s after{" "}
                 {pc(l.conceded10)} ({ci(l.conceded10_ci)}). Last 5 matches: {T.last5.losses_per_match.toFixed(1)} per
                 match, regained {pc(T.last5.regain5)}.
@@ -169,8 +174,12 @@ export default function Transitions({
           </div>
           <div className="replay-cap">
             <div>
-              <h2 id="re-h">{r.per_match.toFixed(1)} recoveries per match</h2>
+              <h2 id="re-h">
+                {G && <GradeMark none />}
+                {r.per_match.toFixed(1)} recoveries per match
+              </h2>
               <p>
+                {G && <GradeMark g={G.of("T22")} href={evidenceHref(d.key, "T22")} />}
                 Shot within 10 s after {pc(r.shot10)} ({ci(r.shot10_ci)}). Final third:{" "}
                 {r.by_third["final third"]?.per_match.toFixed(1) ?? "–"} per match
                 {r.by_third["final third"]?.per_match_ci
@@ -183,6 +192,7 @@ export default function Transitions({
         </section>
       </div>
       <div style={{ marginTop: 18 }}>
+        {G && <GradeKey n={G.n} href={evidenceHref(d.key)} />}
         <Note kind="caution" tag="Caution">
           The counter-press share varied little between the teams we tested (17-19%): it describes, it does not separate
           styles.

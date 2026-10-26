@@ -4,6 +4,7 @@ import {
   type Action,
   type ClipRef,
   type Family,
+  type Evidence,
   type Grade,
   type NetworkData,
   type PathsData,
@@ -619,15 +620,22 @@ export function ShareStrip({
 /* This team's value among every team in the data folder, placed by value. Hover, or focus and use the arrow keys, to name each dot. */
 /* Evidence grade of a type of number (docs/protocol_evidence_grade.md). Ink only, from solid (A) to dashed (D): grades are not families,
    so they take no ribbon colour, and the letter is always printed. */
-export const GRADE_TITLE: Record<Grade, string> = { A: "Reliable", B: "Useful", C: "Half reliable", D: "Not reliable" };
+export const GRADE_TITLE: Record<Grade, string> = { A: "Reliable", B: "Useful", C: "Partly reliable", D: "Not reliable" };
 export const GRADE_SAYS: Record<Grade, string> = {
   A: "Really differs between teams and clearly helps to guess the next match.",
   B: "Really differs between teams and helps a little to guess the next match.",
   C: "Passes only one of the two checks: it differs between teams or it helps to guess the next match, not both.",
   D: "Passes neither check: do not rely on it to prepare a match.",
 };
-export function GradeMark({ g, href }: { g?: Grade | null; href?: string }) {
-  if (!g) return null;
+export const NOT_GRADED = "Not graded: this kind of number was not part of the check on unseen teams.";
+/* g null + none: the number has no graded statement, so it says so instead of sitting unmarked next to graded ones. */
+export function GradeMark({ g, href, none }: { g?: Grade | null; href?: string; none?: boolean }) {
+  if (!g)
+    return none ? (
+      <span className="grade g-none" title={NOT_GRADED} role="img" aria-label={NOT_GRADED}>
+        –
+      </span>
+    ) : null;
   const label = `Grade ${g}: ${GRADE_TITLE[g]}. ${GRADE_SAYS[g]}`;
   return href ? (
     <a className={`grade g-${g}`} href={href} title={label} aria-label={label}>
@@ -637,6 +645,43 @@ export function GradeMark({ g, href }: { g?: Grade | null; href?: string }) {
     <span className={`grade g-${g}`} title={label} role="img" aria-label={label}>
       {g}
     </span>
+  );
+}
+
+/* Graded statements for views that show sheet numbers (not ranks): read once per session from /api/evidence.
+   null while loading or when the results file is missing, so no mark is drawn rather than a wrong "not graded". */
+let evidenceOnce: Promise<Evidence> | null = null;
+export function useGrades() {
+  const [ev, setEv] = useState<Evidence | null>(null);
+  useEffect(() => {
+    let live = true;
+    (evidenceOnce ??= api.evidence().catch(() => ({ available: false }) as Evidence)).then((e) => live && setEv(e));
+    return () => {
+      live = false;
+    };
+  }, []);
+  if (!ev?.available || !ev.statements) return null;
+  const st = ev.statements;
+  return { n: ev.n_teams ?? 0, of: (id: string): Grade | null => st[id]?.grade ?? null };
+}
+
+/* One-line key printed next to the first grades of a page, so the letters never depend on a hover or a footnote. */
+export function GradeKey({ n, href }: { n?: number; href?: string }) {
+  return (
+    <p className="grade-key">
+      <span>{n ? `Evidence grade, checked on ${n} unseen teams:` : "Evidence grade:"}</span>
+      {(["A", "B", "C", "D"] as Grade[]).map((g) => (
+        <span key={g}>
+          <GradeMark g={g} />
+          {GRADE_TITLE[g].toLowerCase()}
+        </span>
+      ))}
+      <span>
+        <GradeMark none />
+        not graded
+      </span>
+      {href && <a href={href}>What the grades mean</a>}
+    </p>
   );
 }
 export const evidenceHref = (key: string, statement?: string | null) =>
@@ -660,7 +705,7 @@ export function RankRow({ r, current }: { r: Rank; current: string }) {
   return (
     <div className="rank-row">
       <span className="lab">
-        <GradeMark g={r.grade} href={evidenceHref(current, r.statement)} />
+        <GradeMark g={r.grade} href={evidenceHref(current, r.statement)} none={!r.statement} />
         {r.label}
         {r.ci && (
           <small>

@@ -136,7 +136,10 @@ export default function Defending({ d }: { d: TeamData }) {
                 v: D.conceded.xg_per_match.toFixed(2),
                 ci: `${D.conceded.xg_ci[0].toFixed(2)}–${D.conceded.xg_ci[1].toFixed(2)}`,
                 l5: D.conceded.last5_xg.toFixed(2),
-                sub: "StatsBomb xG of opponent shots per match",
+                sub:
+                  D.conceded.xg_per_shot != null
+                    ? `StatsBomb xG of opponent shots per match · ${D.conceded.xg_per_shot.toFixed(3)} per shot (last 5: ${D.conceded.last5_xg_per_shot!.toFixed(3)})`
+                    : "StatsBomb xG of opponent shots per match",
                 i: 4,
               },
             ].map((c, n) => (

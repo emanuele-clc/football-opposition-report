@@ -319,6 +319,16 @@ METRICS = [
         "num2",
         None,
     ),
+    (
+        "xga_shot",
+        "Defending",
+        "xG per shot conceded",
+        "defending",
+        lambda d: d["conceded"]["xg_per_shot"],
+        lambda d: d["conceded"]["xg_per_shot_ci"],
+        "num2",
+        None,
+    ),
 ]
 
 

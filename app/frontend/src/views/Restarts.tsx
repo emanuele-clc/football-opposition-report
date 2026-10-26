@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ClipRef, RestartKind, TeamData } from "../api";
-import { Bars, Explain, Interval, Note, plain, Replay } from "../charts";
+import { Bars, evidenceHref, Explain, GradeKey, GradeMark, Interval, Note, plain, Replay, useGrades } from "../charts";
 import { pc } from "../format";
 import { clipId, pickRecent, toRef, useClips, useGoals } from "../useClips";
 import GoalToggle from "./GoalToggle";
@@ -16,6 +16,12 @@ const LABELS: [string, string][] = [
   ["lost_own_half", "Ended in own half"],
   ["shot", "Ended in a shot"],
 ];
+// Graded statements (docs/protocol_evidence_grade.md) with the same definition as a row of this table.
+const STATEMENT: Record<string, Record<string, string>> = {
+  "Goal kick": { short: "R09", opp_half: "R10", lost_own_half: "R11" },
+  Keeper: { short: "R12" },
+  "Throw-in own half": { lost_own_half: "R13" },
+};
 const ci = (c: [number, number] | null) => (c ? `${pc(c[0])}–${pc(c[1])}` : "–");
 const outside = (m: RestartKind["metrics"][string]) => m.last5 != null && !(m.ci[0] <= m.last5 && m.last5 <= m.ci[1]);
 
@@ -40,6 +46,7 @@ export default function Restarts({
   const { rows } = useClips(d.key, "restarts");
   const goals = useGoals(d.key, "restarts", events);
   const [onlyGoals, setOnlyGoals] = useState(false);
+  const G = useGrades();
   if (!d.restarts || !kind)
     return (
       <div className="state">
@@ -146,6 +153,7 @@ export default function Restarts({
           <p className="s-muted" style={{ fontSize: 13, margin: "4px 0 6px" }}>
             Dark mark = season with its interval, coral diamond = last 5 matches.
           </p>
+          {G && <GradeKey n={G.n} href={evidenceHref(d.key)} />}
           <div className="table-wrap">
             <table>
               <thead>
@@ -162,7 +170,16 @@ export default function Restarts({
                     off = outside(v);
                   return (
                     <tr key={m}>
-                      <td>{label}</td>
+                      <td>
+                        {G && (
+                          <GradeMark
+                            g={STATEMENT[kind]?.[m] ? G.of(STATEMENT[kind][m]) : null}
+                            href={evidenceHref(d.key, STATEMENT[kind]?.[m])}
+                            none
+                          />
+                        )}
+                        {label}
+                      </td>
                       <td>
                         <b>{pc(v.season)}</b> <span className="s-muted">({ci(v.ci)})</span>
                       </td>

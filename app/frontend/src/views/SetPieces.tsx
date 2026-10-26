@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { SetPieceKind, TeamData } from "../api";
-import { Bars, Explain, Interval, Note, Pitch, plain, Replay } from "../charts";
+import { Bars, evidenceHref, Explain, GradeKey, GradeMark, Interval, Note, Pitch, plain, Replay, useGrades } from "../charts";
 import { pc } from "../format";
 import { clipId, pickRecent, toRef, useClips, useGoals } from "../useClips";
 import GoalToggle from "./GoalToggle";
@@ -115,6 +115,7 @@ export default function SetPieces({
   const { rows } = useClips(d.key, "setpieces");
   const goals = useGoals(d.key, "setpieces", events);
   const [onlyGoals, setOnlyGoals] = useState(false);
+  const G = useGrades();
   if (!d.setpieces || !kind)
     return (
       <div className="state">
@@ -181,9 +182,13 @@ export default function SetPieces({
                   {k.n} {plural}
                 </h2>
                 <p>
-                  {k.per_match.toFixed(1)} per match · shot after {pc(k.shot)} ({ci(k.shot_ci)}) · goals {k.goals}
+                  {G && <GradeMark g={kind === "Corner" ? G.of("P14") : null} href={evidenceHref(d.key, "P14")} none />}
+                  {k.per_match.toFixed(1)} per match ·{" "}
+                  {G && <GradeMark g={kind === "Corner" ? G.of("P17") : null} href={evidenceHref(d.key, "P17")} none />}
+                  shot after {pc(k.shot)} ({ci(k.shot_ci)}) · goals {k.goals}
                   {k.xg != null ? ` · mean xG ${k.xg.toFixed(3)}` : ""}
                 </p>
+                {G && <GradeKey n={G.n} href={evidenceHref(d.key)} />}
                 {clips[idx] && (
                   <p>
                     Replaying {clips[idx].detail}.{" "}

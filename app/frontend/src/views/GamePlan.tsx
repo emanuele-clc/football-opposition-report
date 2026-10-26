@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSummary } from "../api";
-import { evidenceHref, Explain, GRADE_SAYS, GradeMark, Icon } from "../charts";
+import { evidenceHref, Explain, GRADE_SAYS, GradeKey, GradeMark, Icon } from "../charts";
 import { Note, Pitch, Replay, plain } from "../charts";
 import { fmt, ordinal } from "../format";
 
@@ -39,7 +39,7 @@ const store = {
 };
 
 const place = (r: number, of: number) =>
-  r === 1 ? `highest of ${of}` : r === of ? `lowest of ${of}` : `${ordinal(r)} of ${of}`;
+  r === 1 ? `highest of ${of}` : r === of ? `lowest of ${of}` : `${ordinal(r)} highest of ${of}`;
 const unit = (u: string) => u as "pct" | "num" | "num2";
 
 /* Goals (numbers) and xG per match (bars) by 15-minute slot: scored above the line, conceded below. */
@@ -366,7 +366,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                 <ul className="read" style={{ marginTop: 6 }}>
                   {P.profile.map((r) => (
                     <li key={r.id}>
-                      <GradeMark g={r.grade} href={evidenceHref(d.key)} />
+                      <GradeMark g={r.grade} href={evidenceHref(d.key)} none />
                       <b>{r.label}</b>: {fmt(r.value, unit(r.unit))}{" "}
                       <span className="s-muted">
                         ({r.provisional ? "not ranked: few matches" : place(r.rank, r.of)})
@@ -403,11 +403,14 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                     : P.brief.phases[topic].lines
                   ).map((l, i) => (
                     <li key={i}>
-                      {topic === "priorities" && <GradeMark g={P.brief.priority_grades?.[i]} href={evidenceHref(d.key)} />}
+                      {topic === "priorities" && P.brief.priorities.length > 0 && (
+                        <GradeMark g={P.brief.priority_grades?.[i]} href={evidenceHref(d.key)} none />
+                      )}
                       {l}
                     </li>
                   ))}
                 </ol>
+                {topic === "priorities" && <GradeKey />}
               </div>
             </div>
             <div style={{ marginTop: 16 }}>
@@ -446,7 +449,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                         </span>
                       )}
                       <h3 style={{ margin: "2px 0 6px" }}>
-                        <GradeMark g={h.grade} href={evidenceHref(d.key)} />
+                        <GradeMark g={h.grade} href={evidenceHref(d.key)} none />
                         {h.title}
                       </h3>
                       <p>{h.why}</p>
@@ -455,7 +458,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                       <p className="gp-ev">
                         {h.evidence.map((e, i) => (
                           <span key={i}>
-                            <GradeMark g={e.grade} />
+                            <GradeMark g={e.grade} none />
                             {e.team && <b>{e.team === "you" ? P.mine : d.team}: </b>}
                             {e.label} {fmt(e.value, unit(e.unit))} · {place(e.rank, e.of)}
                             {e.id === "ppda" ? " (lower = more intense pressing)" : ""}

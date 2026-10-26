@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { api, type GamePlan as Plan, type GPEvents, type TeamData } from "../api";
 import { GradeMark, Icon, Pitch } from "../charts";
-import { fmt } from "../format";
+import { fmt, ordinal } from "../format";
 import { Shape } from "./GamePlan";
 
 /* One A4 page for the coach: built from the same numbers as Game plan, nothing new is estimated here. */
 const place = (r: number, of: number) =>
-  r === 1 ? `highest of ${of}` : r === of ? `lowest of ${of}` : `${r} of ${of}`;
+  r === 1 ? `highest of ${of}` : r === of ? `lowest of ${of}` : `${ordinal(r)} highest of ${of}`;
 
 export default function CoachSheet({ d }: { d: TeamData }) {
   const mine = (() => {
@@ -91,7 +91,7 @@ export default function CoachSheet({ d }: { d: TeamData }) {
             : ["Nothing in their numbers is at the extremes: prepare as usual and use the video."]
           ).map((t, i) => (
             <li key={i}>
-              <GradeMark g={P.brief.priority_grades?.[i]} />
+              {P.brief.priorities.length > 0 && <GradeMark g={P.brief.priority_grades?.[i]} none />}
               {t}
             </li>
           ))}
@@ -104,7 +104,7 @@ export default function CoachSheet({ d }: { d: TeamData }) {
           <ul>
             {P.profile.slice(0, 5).map((r) => (
               <li key={r.id}>
-                <GradeMark g={r.grade} />
+                <GradeMark g={r.grade} none />
                 {r.label}: <b>{fmt(r.value, r.unit as "num")}</b>{" "}
                 <small>({r.provisional ? "not ranked: few matches" : place(r.rank, r.of)})</small>
               </li>
@@ -139,13 +139,14 @@ export default function CoachSheet({ d }: { d: TeamData }) {
           <p>
             {weak ? (
               <>
+                <GradeMark none />
                 Weakest zone under pressure:{" "}
                 <b>
                   {weak.y0 === 0 ? "left" : weak.y0 < 30 ? "centre" : "right"},{" "}
                   {weak.x0 === 0 ? "around their box" : weak.x0 === 20 ? "their own third" : "just inside their half"}
                 </b>
                 : {Math.round(100 * weak.up_completion)}% completed vs {Math.round(100 * (weak.ref_completion ?? 0))}%
-                for other teams.
+                for other teams ({weak.under_pressure} passes under pressure there).
               </>
             ) : (
               <>No own-half zone where they are clearly worse than other teams under pressure.</>
@@ -198,8 +199,9 @@ export default function CoachSheet({ d }: { d: TeamData }) {
       )}
       <p className="coach-foot">
         Descriptive, from StatsBomb open data. Hints say where to look on video, not what will win. Letters: evidence
-        grade of the number (checked on 70 unseen teams), A reliable, B useful, C half reliable, D not reliable.
-        Automated Football Opposition Report.
+        grade of the number (checked on 70 unseen teams), A reliable, B useful, C partly reliable, D not reliable, – not
+        graded. Families (B1, A2…) are slices of a continuum and do not explain shots better than where a sequence
+        ends. Automated Football Opposition Report.
       </p>
     </div>
   );

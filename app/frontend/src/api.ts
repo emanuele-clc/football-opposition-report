@@ -143,6 +143,9 @@ export interface Defending {
     xg_ci: CI;
     last5_shots: number;
     last5_xg: number;
+    xg_per_shot?: number;
+    xg_per_shot_ci?: CI;
+    last5_xg_per_shot?: number;
   };
 }
 export interface PerMatch {

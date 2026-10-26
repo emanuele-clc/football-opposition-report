@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type ClipRef, type Evidence, type Family, type Rank, type TeamData } from "../api";
-import { evidenceHref, FamilyLanes, GradeMark, Replay, rib, ShareStrip, third } from "../charts";
+import { evidenceHref, FamilyLanes, GradeKey, GradeMark, Replay, rib, ShareStrip, third } from "../charts";
 import { fmt, n1, ordinal, pc } from "../format";
 
 const TAB_OF: Record<string, string> = {
@@ -39,6 +39,7 @@ const WORDS: Record<string, [string, string]> = {
   press_final: ["Most pressures in the final third", "Fewest pressures in the final third"],
   def_height: ["Highest defensive actions", "Deepest defensive actions"],
   xga_pm: ["Most xG conceded per match", "Least xG conceded per match"],
+  xga_shot: ["Highest xG per shot conceded", "Lowest xG per shot conceded"],
 };
 const phrase = (r: Rank) => {
   const w = WORDS[r.id];
@@ -155,7 +156,7 @@ export default function Overview({
                 </span>
                 <span>
                   <p>
-                    <GradeMark g={r.grade} />
+                    <GradeMark g={r.grade} none={!r.statement} />
                     {phrase(r)}: <b>{fmt(r.value, r.unit)}</b>
                   </p>
                   <p className="sub">
@@ -180,8 +181,9 @@ export default function Overview({
           <p className="small" style={{ marginTop: 12, marginBottom: 4 }}>
             {d.provisional
               ? `Only ${d.matches} matches: ${d.team} is not ranked. Each line compares it with the average of the ${d.references.length} reference teams (${d.min_matches ?? 8}+ matches each); read the numbers as rough.`
-              : `Where ${d.team} differs most from the other ${d.references.length} teams. 1st = highest value. Letters: evidence grade, A reliable to D not reliable.`}
+              : `Where ${d.team} differs most from the other ${d.references.length} teams. 1st = highest value.`}
           </p>
+          {evRows.length > 0 && <GradeKey n={ev!.n_teams} href={evidenceHref(d.key)} />}
           <div className="fam-head">
             <h3 style={{ color: "var(--accent-text)" }}>Families</h3>
             <div className="pills" role="group" aria-label="Phase">
@@ -246,7 +248,7 @@ export default function Overview({
             <li className="info">
               <b>Grades</b>
               <span>
-                {`Checked on ${ev!.n_teams} unseen teams: ${ev!.grades?.A ?? 0} A, ${ev!.grades?.B ?? 0} B, ${ev!.grades?.C ?? 0} C, ${ev!.grades?.D ?? 0} D.`}{" "}
+                {`${(ev!.grades?.A ?? 0) + (ev!.grades?.B ?? 0) + (ev!.grades?.C ?? 0) + (ev!.grades?.D ?? 0)} kinds of number, checked on ${ev!.n_teams} unseen teams: ${ev!.grades?.A ?? 0} A, ${ev!.grades?.B ?? 0} B, ${ev!.grades?.C ?? 0} C, ${ev!.grades?.D ?? 0} D.`}{" "}
                 <a href={evidenceHref(d.key)}>Which numbers can you trust?</a>
               </span>
             </li>
