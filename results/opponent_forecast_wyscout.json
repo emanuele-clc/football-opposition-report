@@ -1,0 +1,748 @@
+{
+ "protocol": "docs/protocol_opponent_forecast.md",
+ "provider": "wyscout",
+ "k": 5,
+ "venue": true,
+ "n_teams": 96,
+ "n_statements": 25,
+ "adjusted_better": 18,
+ "adjusted_worse": 1,
+ "answer": "helps",
+ "median_improvement": 0.06297681247483455,
+ "grades_changed": {
+  "S01": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "S04": {
+   "before": "C",
+   "after": "B",
+   "forecast": [
+    "none",
+    "weak"
+   ],
+   "discrimination": "high"
+  },
+  "P14": {
+   "before": "C",
+   "after": "B",
+   "forecast": [
+    "none",
+    "weak"
+   ],
+   "discrimination": "high"
+  },
+  "P15": {
+   "before": "B",
+   "after": "C",
+   "forecast": [
+    "weak",
+    "none"
+   ],
+   "discrimination": "high"
+  },
+  "T18": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "T19": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "D23": {
+   "before": "C",
+   "after": "A",
+   "forecast": [
+    "none",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "D26": {
+   "before": "C",
+   "after": "A",
+   "forecast": [
+    "none",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "D27": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "A29": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "A31": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  }
+ },
+ "grades_after": {
+  "A": 13,
+  "B": 4,
+  "C": 5,
+  "D": 3
+ },
+ "statements": {
+  "S01": {
+   "statement": "open-play sequences per match",
+   "forecasts": 3096,
+   "improvement": 0.1265115117592338,
+   "improvement_ci": [
+    0.10035693358661035,
+    0.1499194068581099
+   ],
+   "skill_season": 0.13614724717874227,
+   "skill_adjusted": 0.2454345648755354,
+   "skill_adjusted_ci": [
+    0.19719639734499483,
+    0.295151359198645
+   ],
+   "verdict": "adjusted better"
+  },
+  "S02": {
+   "statement": "passes per sequence",
+   "forecasts": 3096,
+   "improvement": 0.13202486987743878,
+   "improvement_ci": [
+    0.10752550403503613,
+    0.1564473599628421
+   ],
+   "skill_season": 0.3861600831087665,
+   "skill_adjusted": 0.46720221826190944,
+   "skill_adjusted_ci": [
+    0.383137985107173,
+    0.5384714275818852
+   ],
+   "verdict": "adjusted better"
+  },
+  "S03": {
+   "statement": "long-pass share of a sequence",
+   "forecasts": 3096,
+   "improvement": 0.031668725571199374,
+   "improvement_ci": [
+    0.015796765362112608,
+    0.0476188467815134
+   ],
+   "skill_season": 0.19842115381850856,
+   "skill_adjusted": 0.22380613432190888,
+   "skill_adjusted_ci": [
+    0.14759609680812624,
+    0.294468876195743
+   ],
+   "verdict": "adjusted better"
+  },
+  "S04": {
+   "statement": "share of sequences starting in the build-up zone",
+   "forecasts": 3096,
+   "improvement": 0.06297681247483455,
+   "improvement_ci": [
+    0.03912790069380101,
+    0.08601327988618757
+   ],
+   "skill_season": 0.027773831377996272,
+   "skill_adjusted": 0.08900153648243103,
+   "skill_adjusted_ci": [
+    0.04796136059480083,
+    0.1345590375117991
+   ],
+   "verdict": "adjusted better"
+  },
+  "S05": {
+   "statement": "shot rate per sequence",
+   "forecasts": 3096,
+   "improvement": 0.07170152205501956,
+   "improvement_ci": [
+    0.04895066687569938,
+    0.09353643558037905
+   ],
+   "skill_season": 0.07857086986390904,
+   "skill_adjusted": 0.14463874096049945,
+   "skill_adjusted_ci": [
+    0.09833024256711542,
+    0.19265306524954773
+   ],
+   "verdict": "adjusted better"
+  },
+  "S06": {
+   "statement": "sequence duration (s)",
+   "forecasts": 3096,
+   "improvement": 0.16494246176558836,
+   "improvement_ci": [
+    0.1400231882275017,
+    0.18814606625485042
+   ],
+   "skill_season": 0.2974652760687604,
+   "skill_adjusted": 0.41334308290978705,
+   "skill_adjusted_ci": [
+    0.34120317890186924,
+    0.482671886071669
+   ],
+   "verdict": "adjusted better"
+  },
+  "R09": {
+   "statement": "goal kicks: first pass short",
+   "forecasts": 3091,
+   "improvement": 0.008778397071953381,
+   "improvement_ci": [
+    -0.014382399676259316,
+    0.029159404199239458
+   ],
+   "skill_season": 0.2253433955113121,
+   "skill_adjusted": 0.23214363877992494,
+   "skill_adjusted_ci": [
+    0.17770230014924826,
+    0.2876860597454689
+   ],
+   "verdict": "no difference"
+  },
+  "R10": {
+   "statement": "goal kicks: reached the opponent half",
+   "forecasts": 3091,
+   "improvement": -0.008984512059035055,
+   "improvement_ci": [
+    -0.02882310670135446,
+    0.00950155006064568
+   ],
+   "skill_season": 0.1583491812402742,
+   "skill_adjusted": 0.1507873593096306,
+   "skill_adjusted_ci": [
+    0.10421038218197198,
+    0.19487920153793858
+   ],
+   "verdict": "no difference"
+  },
+  "R11": {
+   "statement": "goal kicks: ended in own half",
+   "forecasts": 3091,
+   "improvement": -0.0070330970042078444,
+   "improvement_ci": [
+    -0.025704606413652353,
+    0.01144813110874432
+   ],
+   "skill_season": 0.10693485573739259,
+   "skill_adjusted": 0.1006538419467169,
+   "skill_adjusted_ci": [
+    0.0581017633949239,
+    0.14191449478130957
+   ],
+   "verdict": "no difference"
+  },
+  "R12": {
+   "statement": "keeper: first pass short",
+   "forecasts": 2345,
+   "improvement": -0.018827481825302694,
+   "improvement_ci": [
+    -0.04115275395972118,
+    0.0020982737505208515
+   ],
+   "skill_season": 0.009103987813243286,
+   "skill_adjusted": -0.009552088846967788,
+   "skill_adjusted_ci": [
+    -0.04903206894275036,
+    0.03154880098247059
+   ],
+   "verdict": "no difference"
+  },
+  "R13": {
+   "statement": "throw-ins in own half: ended in own half",
+   "forecasts": 3095,
+   "improvement": -0.008494909021007802,
+   "improvement_ci": [
+    -0.02409787792221696,
+    0.006843339365249057
+   ],
+   "skill_season": -0.044453104227722307,
+   "skill_adjusted": -0.053325638324845714,
+   "skill_adjusted_ci": [
+    -0.07905544510303875,
+    -0.027412365780115744
+   ],
+   "verdict": "no difference"
+  },
+  "P14": {
+   "statement": "corners per match",
+   "forecasts": 3096,
+   "improvement": 0.0784800094090935,
+   "improvement_ci": [
+    0.055578707119879334,
+    0.09985178571764619
+   ],
+   "skill_season": 0.02820790149266328,
+   "skill_adjusted": 0.10447415452720177,
+   "skill_adjusted_ci": [
+    0.06753889849026296,
+    0.14011281247814877
+   ],
+   "verdict": "adjusted better"
+  },
+  "P15": {
+   "statement": "corners played short / outside the box",
+   "forecasts": 3035,
+   "improvement": -0.0014976414203311528,
+   "improvement_ci": [
+    -0.02619102052703659,
+    0.022262979053840448
+   ],
+   "skill_season": 0.05110469566291065,
+   "skill_adjusted": 0.0496835907515778,
+   "skill_adjusted_ci": [
+    -0.0058810043425856495,
+    0.102487983172172
+   ],
+   "verdict": "no difference"
+  },
+  "P16": {
+   "statement": "corners to the far post",
+   "forecasts": 3035,
+   "improvement": 0.021196409057492205,
+   "improvement_ci": [
+    0.0021466311353394163,
+    0.038823009492328864
+   ],
+   "skill_season": -0.03647986298049499,
+   "skill_adjusted": -0.014510211824906971,
+   "skill_adjusted_ci": [
+    -0.042147825790553206,
+    0.011080243090529018
+   ],
+   "verdict": "adjusted better"
+  },
+  "P17": {
+   "statement": "corners ending in a shot",
+   "forecasts": 3035,
+   "improvement": -0.015305385346096934,
+   "improvement_ci": [
+    -0.030253690969304747,
+    -0.0010011957884250577
+   ],
+   "skill_season": -0.045547597287961095,
+   "skill_adjusted": -0.06155010616213907,
+   "skill_adjusted_ci": [
+    -0.08824755816801932,
+    -0.03442284791992445
+   ],
+   "verdict": "adjusted worse"
+  },
+  "T18": {
+   "statement": "open-play losses per match",
+   "forecasts": 3096,
+   "improvement": 0.10982392047549516,
+   "improvement_ci": [
+    0.08738215194366583,
+    0.13221861408794577
+   ],
+   "skill_season": 0.08475134365993964,
+   "skill_adjusted": 0.1852675393091342,
+   "skill_adjusted_ci": [
+    0.1374996257497052,
+    0.23533011993433905
+   ],
+   "verdict": "adjusted better"
+  },
+  "T19": {
+   "statement": "losses in own third",
+   "forecasts": 3096,
+   "improvement": 0.1236572141929444,
+   "improvement_ci": [
+    0.09965459425965417,
+    0.1471945853923915
+   ],
+   "skill_season": 0.06431269267063111,
+   "skill_adjusted": 0.18001717845067833,
+   "skill_adjusted_ci": [
+    0.12560625728711494,
+    0.23391010200467632
+   ],
+   "verdict": "adjusted better"
+  },
+  "T20": {
+   "statement": "counter-press regains within 5 s",
+   "forecasts": 3096,
+   "improvement": 0.03194992299053667,
+   "improvement_ci": [
+    0.012417894880391578,
+    0.05001711262221287
+   ],
+   "skill_season": -0.027549871788818736,
+   "skill_adjusted": 0.005280267483769974,
+   "skill_adjusted_ci": [
+    -0.022462799826524993,
+    0.0312814614215301
+   ],
+   "verdict": "adjusted better"
+  },
+  "T21": {
+   "statement": "recoveries in the final third",
+   "forecasts": 3096,
+   "improvement": 0.03836315176897209,
+   "improvement_ci": [
+    0.02014074130918253,
+    0.05776428519394561
+   ],
+   "skill_season": -0.01858231938862387,
+   "skill_adjusted": 0.020493708719273585,
+   "skill_adjusted_ci": [
+    -0.006597708655518009,
+    0.04824310782640551
+   ],
+   "verdict": "adjusted better"
+  },
+  "T22": {
+   "statement": "recoveries followed by a shot within 10 s",
+   "forecasts": 3096,
+   "improvement": 0.03491144996931428,
+   "improvement_ci": [
+    0.01621861230609789,
+    0.05440292567762761
+   ],
+   "skill_season": -0.02214427078123915,
+   "skill_adjusted": 0.0135402677895613,
+   "skill_adjusted_ci": [
+    -0.012186128605361946,
+    0.03773668037641531
+   ],
+   "verdict": "adjusted better"
+  },
+  "D23": {
+   "statement": "PPDA",
+   "forecasts": 3096,
+   "improvement": 0.2621845513858555,
+   "improvement_ci": [
+    0.2322561568852083,
+    0.2891996010204
+   ],
+   "skill_season": -0.00418075121218342,
+   "skill_adjusted": 0.2590999285546943,
+   "skill_adjusted_ci": [
+    0.2213531319938814,
+    0.29387214679967166
+   ],
+   "verdict": "adjusted better"
+  },
+  "D26": {
+   "statement": "height of defensive actions",
+   "forecasts": 3096,
+   "improvement": 0.1594694185114589,
+   "improvement_ci": [
+    0.13583823230391623,
+    0.18288427743015834
+   ],
+   "skill_season": 0.032384653452593226,
+   "skill_adjusted": 0.18668971010927204,
+   "skill_adjusted_ci": [
+    0.1482024042040735,
+    0.22570844081366603
+   ],
+   "verdict": "adjusted better"
+  },
+  "D27": {
+   "statement": "shots conceded per match",
+   "forecasts": 3096,
+   "improvement": 0.24398546070791538,
+   "improvement_ci": [
+    0.21704006964099765,
+    0.26981471058475937
+   ],
+   "skill_season": 0.06491407340293609,
+   "skill_adjusted": 0.2930614440052087,
+   "skill_adjusted_ci": [
+    0.24365325322935805,
+    0.34173146224776774
+   ],
+   "verdict": "adjusted better"
+  },
+  "A29": {
+   "statement": "shots per match",
+   "forecasts": 3096,
+   "improvement": 0.1931298376223679,
+   "improvement_ci": [
+    0.16917947556373591,
+    0.2172335864851307
+   ],
+   "skill_season": 0.13270197750747004,
+   "skill_adjusted": 0.30020310376165305,
+   "skill_adjusted_ci": [
+    0.2543089966649027,
+    0.3433593326937311
+   ],
+   "verdict": "adjusted better"
+  },
+  "A31": {
+   "statement": "xT added per match",
+   "forecasts": 3096,
+   "improvement": 0.1677651748283444,
+   "improvement_ci": [
+    0.1453079155809932,
+    0.1893334674990501
+   ],
+   "skill_season": 0.03993565843089042,
+   "skill_adjusted": 0.20100102054069147,
+   "skill_adjusted_ci": [
+    0.16293810111703622,
+    0.23740915583629685
+   ],
+   "verdict": "adjusted better"
+  }
+ },
+ "regrade": {
+  "S01": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "S02": {
+   "before": "A",
+   "after": "A",
+   "forecast": [
+    "strong",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "S03": {
+   "before": "A",
+   "after": "A",
+   "forecast": [
+    "strong",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "S04": {
+   "before": "C",
+   "after": "B",
+   "forecast": [
+    "none",
+    "weak"
+   ],
+   "discrimination": "high"
+  },
+  "S05": {
+   "before": "B",
+   "after": "B",
+   "forecast": [
+    "weak",
+    "weak"
+   ],
+   "discrimination": "high"
+  },
+  "S06": {
+   "before": "A",
+   "after": "A",
+   "forecast": [
+    "strong",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "R09": {
+   "before": "A",
+   "after": "A",
+   "forecast": [
+    "strong",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "R10": {
+   "before": "A",
+   "after": "A",
+   "forecast": [
+    "strong",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "R11": {
+   "before": "B",
+   "after": "B",
+   "forecast": [
+    "weak",
+    "weak"
+   ],
+   "discrimination": "high"
+  },
+  "R12": {
+   "before": "C",
+   "after": "C",
+   "forecast": [
+    "none",
+    "none"
+   ],
+   "discrimination": "high"
+  },
+  "R13": {
+   "before": "D",
+   "after": "D",
+   "forecast": [
+    "none",
+    "none"
+   ],
+   "discrimination": "low"
+  },
+  "P14": {
+   "before": "C",
+   "after": "B",
+   "forecast": [
+    "none",
+    "weak"
+   ],
+   "discrimination": "high"
+  },
+  "P15": {
+   "before": "B",
+   "after": "C",
+   "forecast": [
+    "weak",
+    "none"
+   ],
+   "discrimination": "high"
+  },
+  "P16": {
+   "before": "D",
+   "after": "D",
+   "forecast": [
+    "none",
+    "none"
+   ],
+   "discrimination": "low"
+  },
+  "P17": {
+   "before": "D",
+   "after": "D",
+   "forecast": [
+    "none",
+    "none"
+   ],
+   "discrimination": "low"
+  },
+  "T18": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "T19": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "T20": {
+   "before": "C",
+   "after": "C",
+   "forecast": [
+    "none",
+    "none"
+   ],
+   "discrimination": "medium"
+  },
+  "T21": {
+   "before": "C",
+   "after": "C",
+   "forecast": [
+    "none",
+    "none"
+   ],
+   "discrimination": "medium"
+  },
+  "T22": {
+   "before": "C",
+   "after": "C",
+   "forecast": [
+    "none",
+    "none"
+   ],
+   "discrimination": "medium"
+  },
+  "D23": {
+   "before": "C",
+   "after": "A",
+   "forecast": [
+    "none",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "D26": {
+   "before": "C",
+   "after": "A",
+   "forecast": [
+    "none",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "D27": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "A29": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  },
+  "A31": {
+   "before": "B",
+   "after": "A",
+   "forecast": [
+    "weak",
+    "strong"
+   ],
+   "discrimination": "high"
+  }
+ }
+}
