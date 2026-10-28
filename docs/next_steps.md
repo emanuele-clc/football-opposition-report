@@ -23,6 +23,9 @@ Domande di ricerca (modulo firmato: `C:\Users\ecole\Downloads\Proposal_for_a_cus
 | Mag-Giu | Risultati e discussione; bozza completa al professore a maggio; consegna a giugno (data da confermare) | - |
 | Lug | Discussione con demo | - |
 
+- FATTO 2026-10-28 (RQ1, preparazione): 5 campionati Wyscout convertiti in `C:\Users\ecole\wyscout_generic\` (1.826 partite, 98 squadre, nessuna partita senza eventi di una squadra). Adapter esteso con azioni difensive ed esito dei passaggi: 29 affermazioni su 34 calcolabili (mancano pressioni e xG); le 24 di prima identiche, round trip difesa 38/38. Bozza `docs/protocol_evidence_grade_wyscout.md` e `src/week4/evidence_grade_wyscout.py`, smoke test passato (solo conteggi).
+- Prossimo: rileggere il protocollo (soprattutto la regola 70% / 50%), committarlo e pusharlo; poi `extract` (lungo), `--set dev`, `--set confirm` una volta sola.
+
 Tolto dalla proposta il 28 ott: brief scritto da un modello di IA locale; lo studio con utenti diventa opzionale (RQ3). Le clip tagliate dal video restano un miglioramento del tool, non una domanda di ricerca.
 
 Limiti da dire sempre: niente dati veri di un club (dati pubblici Wyscout); nessuna promessa che un club lo adotti; definizioni diverse tra provider.
