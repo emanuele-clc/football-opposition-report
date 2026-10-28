@@ -1,0 +1,3355 @@
+{
+ "note": "EXPLORATORY development step for RQ2 on the 9 StatsBomb development teams; chooses k and the venue term. Not a test.",
+ "grid": {
+  "k=1, venue=no": {
+   "pooled_improvement": 0.05063405466948495,
+   "statements": {
+    "S01": {
+     "statement": "open-play sequences per match",
+     "forecasts": 293,
+     "improvement": 0.09804316467045449,
+     "improvement_ci": [
+      0.021529613641944945,
+      0.17289857684168386
+     ],
+     "skill_season": 0.349283312166246,
+     "skill_adjusted": 0.4130816355453435
+    },
+    "S02": {
+     "statement": "passes per sequence",
+     "forecasts": 293,
+     "improvement": 0.18091585461030257,
+     "improvement_ci": [
+      0.09005884672996667,
+      0.25002148671311464
+     ],
+     "skill_season": 0.5671614409548541,
+     "skill_adjusted": 0.6454687987727986
+    },
+    "S03": {
+     "statement": "long-pass share of a sequence",
+     "forecasts": 293,
+     "improvement": 0.10276832286789761,
+     "improvement_ci": [
+      0.01329357558750488,
+      0.19110050240450827
+     ],
+     "skill_season": 0.5316218644181543,
+     "skill_adjusted": 0.5797562998798933
+    },
+    "S04": {
+     "statement": "share of sequences starting in the build-up zone",
+     "forecasts": 293,
+     "improvement": -0.010140282795189082,
+     "improvement_ci": [
+      -0.0948557367104248,
+      0.07487272370871689
+     ],
+     "skill_season": -0.007595841577725526,
+     "skill_adjusted": -0.017813148354580033
+    },
+    "S05": {
+     "statement": "shot rate per sequence",
+     "forecasts": 293,
+     "improvement": 0.07768810586817143,
+     "improvement_ci": [
+      -0.06329587478204757,
+      0.19455045139792404
+     ],
+     "skill_season": 0.16506789504029984,
+     "skill_adjusted": 0.22993218880314426
+    },
+    "S06": {
+     "statement": "sequence duration (s)",
+     "forecasts": 293,
+     "improvement": 0.1595857203792852,
+     "improvement_ci": [
+      0.08313389068924415,
+      0.24333651766896158
+     ],
+     "skill_season": 0.45116246470610843,
+     "skill_adjusted": 0.5387490981471754
+    },
+    "R09": {
+     "statement": "goal kicks: first pass short",
+     "forecasts": 292,
+     "improvement": 0.024548828210812612,
+     "improvement_ci": [
+      -0.054795828191144924,
+      0.08245848570131209
+     ],
+     "skill_season": 0.3932301541509905,
+     "skill_adjusted": 0.408125642860239
+    },
+    "R10": {
+     "statement": "goal kicks: reached the opponent half",
+     "forecasts": 292,
+     "improvement": -0.005936768846314777,
+     "improvement_ci": [
+      -0.05410787763869607,
+      0.03768836455821345
+     ],
+     "skill_season": 0.3035179075219324,
+     "skill_adjusted": 0.2993830543332925
+    },
+    "R11": {
+     "statement": "goal kicks: ended in own half",
+     "forecasts": 292,
+     "improvement": -0.01935516113353608,
+     "improvement_ci": [
+      -0.09768482657288757,
+      0.04006276805415121
+     ],
+     "skill_season": 0.18314746697997997,
+     "skill_adjusted": 0.16733715458104037
+    },
+    "R12": {
+     "statement": "keeper: first pass short",
+     "forecasts": 272,
+     "improvement": -0.026207443397664676,
+     "improvement_ci": [
+      -0.08785099280548803,
+      0.03146586194995915
+     ],
+     "skill_season": 0.10827059042747311,
+     "skill_adjusted": 0.08490064240006812
+    },
+    "R13": {
+     "statement": "throw-ins in own half: ended in own half",
+     "forecasts": 293,
+     "improvement": 0.0249482285235052,
+     "improvement_ci": [
+      -0.01756358098016575,
+      0.0688772623212991
+     ],
+     "skill_season": 0.014677191187814631,
+     "skill_adjusted": 0.039259249791482986
+    },
+    "P14": {
+     "statement": "corners per match",
+     "forecasts": 293,
+     "improvement": 0.05440268801047066,
+     "improvement_ci": [
+      -0.01140774694305291,
+      0.11504147067252612
+     ],
+     "skill_season": -0.06365273296447249,
+     "skill_adjusted": -0.005787165181521781
+    },
+    "P15": {
+     "statement": "corners played short / outside the box",
+     "forecasts": 290,
+     "improvement": -0.09931181145878032,
+     "improvement_ci": [
+      -0.20108352262591378,
+      0.0036635527724017125
+     ],
+     "skill_season": 0.11537956351298628,
+     "skill_adjusted": 0.02752630551200408
+    },
+    "P16": {
+     "statement": "corners to the far post",
+     "forecasts": 290,
+     "improvement": -0.06840324497005179,
+     "improvement_ci": [
+      -0.1586914764904206,
+      -0.024739033379846065
+     ],
+     "skill_season": -0.14481614588464597,
+     "skill_adjusted": -0.22312528515726404
+    },
+    "P17": {
+     "statement": "corners ending in a shot",
+     "forecasts": 290,
+     "improvement": -0.016613118320031095,
+     "improvement_ci": [
+      -0.10420293736409625,
+      0.05368477350362022
+     ],
+     "skill_season": 0.023817085511928404,
+     "skill_adjusted": 0.007599643251545163
+    },
+    "T18": {
+     "statement": "open-play losses per match",
+     "forecasts": 293,
+     "improvement": 0.08119037805913654,
+     "improvement_ci": [
+      -0.03397351581084607,
+      0.17832322040573823
+     ],
+     "skill_season": 0.26994767506223605,
+     "skill_adjusted": 0.3292208993268847
+    },
+    "T19": {
+     "statement": "losses in own third",
+     "forecasts": 293,
+     "improvement": 0.07923565602434635,
+     "improvement_ci": [
+      0.039102137006751025,
+      0.12073173729664521
+     ],
+     "skill_season": 0.19556340913073456,
+     "skill_adjusted": 0.2593034701382496
+    },
+    "T20": {
+     "statement": "counter-press regains within 5 s",
+     "forecasts": 293,
+     "improvement": -0.03973159237180224,
+     "improvement_ci": [
+      -0.0999046390583389,
+      0.005612671905648958
+     ],
+     "skill_season": -0.01881812026841989,
+     "skill_adjusted": -0.05929738652393035
+    },
+    "T21": {
+     "statement": "recoveries in the final third",
+     "forecasts": 293,
+     "improvement": -0.01019510706453941,
+     "improvement_ci": [
+      -0.07214775066938328,
+      0.04121045539857493
+     ],
+     "skill_season": 0.03291192899007023,
+     "skill_adjusted": 0.02305236256528509
+    },
+    "T22": {
+     "statement": "recoveries followed by a shot within 10 s",
+     "forecasts": 293,
+     "improvement": -0.023699391777015633,
+     "improvement_ci": [
+      -0.07925224804996067,
+      0.024104233761338967
+     ],
+     "skill_season": -0.02301496417925386,
+     "skill_adjusted": -0.047259796609087745
+    },
+    "D23": {
+     "statement": "PPDA",
+     "forecasts": 293,
+     "improvement": 0.1707689387509972,
+     "improvement_ci": [
+      0.06642156724147574,
+      0.2635718898060819
+     ],
+     "skill_season": 0.05228117018639167,
+     "skill_adjusted": 0.21412210898799855
+    },
+    "D24": {
+     "statement": "pressures per match",
+     "forecasts": 293,
+     "improvement": 0.11514902603716737,
+     "improvement_ci": [
+      0.05596000187165928,
+      0.15749031451557982
+     ],
+     "skill_season": 0.08089321216771828,
+     "skill_adjusted": 0.18672746361075498
+    },
+    "D25": {
+     "statement": "pressures in the final third",
+     "forecasts": 293,
+     "improvement": 0.09963044384411035,
+     "improvement_ci": [
+      0.04248217908663432,
+      0.15946297215065008
+     ],
+     "skill_season": 0.0537710987545178,
+     "skill_adjusted": 0.14804430416373004
+    },
+    "D26": {
+     "statement": "height of defensive actions",
+     "forecasts": 293,
+     "improvement": 0.046865421328499246,
+     "improvement_ci": [
+      -0.012275294033474715,
+      0.10706006379249211
+     ],
+     "skill_season": -0.04215949358304871,
+     "skill_adjusted": 0.006681750175216328
+    },
+    "D27": {
+     "statement": "shots conceded per match",
+     "forecasts": 293,
+     "improvement": 0.09002835004317022,
+     "improvement_ci": [
+      -0.09862479386586465,
+      0.22088590954753873
+     ],
+     "skill_season": 0.11520422589731871,
+     "skill_adjusted": 0.1948609295649527
+    },
+    "D28": {
+     "statement": "xG conceded per match",
+     "forecasts": 293,
+     "improvement": -0.032887212494616014,
+     "improvement_ci": [
+      -0.23539344749280366,
+      0.0790829673227994
+     ],
+     "skill_season": 0.2044081088090065,
+     "skill_adjusted": 0.1782433092244149
+    },
+    "A29": {
+     "statement": "shots per match",
+     "forecasts": 293,
+     "improvement": 0.12675193433776688,
+     "improvement_ci": [
+      0.0007539291356601918,
+      0.2542732945087628
+     ],
+     "skill_season": 0.14975020717695042,
+     "skill_adjusted": 0.2575210130875576
+    },
+    "A30": {
+     "statement": "xG per match",
+     "forecasts": 293,
+     "improvement": 0.08872030871601244,
+     "improvement_ci": [
+      -0.008003529543140875,
+      0.1701493195599334
+     ],
+     "skill_season": 0.29839072256769283,
+     "skill_adjusted": 0.3606377142595055
+    },
+    "A31": {
+     "statement": "xT added per match",
+     "forecasts": 293,
+     "improvement": 0.15674477619524307,
+     "improvement_ci": [
+      0.09196454749290128,
+      0.21306743074527768
+     ],
+     "skill_season": 0.3960195346798513,
+     "skill_adjusted": 0.4906903175427567
+    },
+    "A32": {
+     "statement": "pass completion under pressure in own half",
+     "forecasts": 293,
+     "improvement": -0.09045721867446654,
+     "improvement_ci": [
+      -0.2121959670585194,
+      0.004579456948454186
+     ],
+     "skill_season": 0.408595497998565,
+     "skill_adjusted": 0.3550986916359572
+    }
+   }
+  },
+  "k=3, venue=no": {
+   "pooled_improvement": 0.05637837914679661,
+   "statements": {
+    "S01": {
+     "statement": "open-play sequences per match",
+     "forecasts": 293,
+     "improvement": 0.10578667120614604,
+     "improvement_ci": [
+      0.03639429997187016,
+      0.17012614172863094
+     ],
+     "skill_season": 0.349283312166246,
+     "skill_adjusted": 0.4181204644704677
+    },
+    "S02": {
+     "statement": "passes per sequence",
+     "forecasts": 293,
+     "improvement": 0.18170388228182943,
+     "improvement_ci": [
+      0.1071673706957027,
+      0.24131044329227125
+     ],
+     "skill_season": 0.5671614409548541,
+     "skill_adjusted": 0.64580988753463
+    },
+    "S03": {
+     "statement": "long-pass share of a sequence",
+     "forecasts": 293,
+     "improvement": 0.10378923904611337,
+     "improvement_ci": [
+      0.02114483793180355,
+      0.18509019239430335
+     ],
+     "skill_season": 0.5316218644181543,
+     "skill_adjusted": 0.5802344746960313
+    },
+    "S04": {
+     "statement": "share of sequences starting in the build-up zone",
+     "forecasts": 293,
+     "improvement": -0.001521573895869821,
+     "improvement_ci": [
+      -0.07509723915548405,
+      0.07260432206079959
+     ],
+     "skill_season": -0.007595841577725526,
+     "skill_adjusted": -0.009128973107857208
+    },
+    "S05": {
+     "statement": "shot rate per sequence",
+     "forecasts": 293,
+     "improvement": 0.09060484786093781,
+     "improvement_ci": [
+      -0.03477291595299081,
+      0.19797325107366082
+     ],
+     "skill_season": 0.16506789504029984,
+     "skill_adjusted": 0.24071679138438606
+    },
+    "S06": {
+     "statement": "sequence duration (s)",
+     "forecasts": 293,
+     "improvement": 0.16806141932752539,
+     "improvement_ci": [
+      0.09909469868580179,
+      0.24576288850113026
+     ],
+     "skill_season": 0.45116246470610843,
+     "skill_adjusted": 0.5434008798678207
+    },
+    "R09": {
+     "statement": "goal kicks: first pass short",
+     "forecasts": 292,
+     "improvement": 0.029946804507094416,
+     "improvement_ci": [
+      -0.038284719038517157,
+      0.0837421978513967
+     ],
+     "skill_season": 0.3932301541509905,
+     "skill_adjusted": 0.4114009721054306
+    },
+    "R10": {
+     "statement": "goal kicks: reached the opponent half",
+     "forecasts": 292,
+     "improvement": -0.001030566072947492,
+     "improvement_ci": [
+      -0.042056558890541273,
+      0.035701690226529026
+     ],
+     "skill_season": 0.3035179075219324,
+     "skill_adjusted": 0.3028001367070091
+    },
+    "R11": {
+     "statement": "goal kicks: ended in own half",
+     "forecasts": 292,
+     "improvement": -0.010846152727205904,
+     "improvement_ci": [
+      -0.07757896971830491,
+      0.03989754685206515
+     ],
+     "skill_season": 0.18314746697997997,
+     "skill_adjusted": 0.17428775965123977
+    },
+    "R12": {
+     "statement": "keeper: first pass short",
+     "forecasts": 272,
+     "improvement": -0.017870562095885445,
+     "improvement_ci": [
+      -0.07130551755825598,
+      0.0318197716701899
+     ],
+     "skill_season": 0.10827059042747311,
+     "skill_adjusted": 0.09233488464098005
+    },
+    "R13": {
+     "statement": "throw-ins in own half: ended in own half",
+     "forecasts": 293,
+     "improvement": 0.030476327226601096,
+     "improvement_ci": [
+      -0.007954993362498275,
+      0.06996636770460629
+     ],
+     "skill_season": 0.014677191187814631,
+     "skill_adjusted": 0.044706211533008466
+    },
+    "P14": {
+     "statement": "corners per match",
+     "forecasts": 293,
+     "improvement": 0.06052409081164012,
+     "improvement_ci": [
+      -0.0011232495791266839,
+      0.11637387836568713
+     ],
+     "skill_season": -0.06365273296447249,
+     "skill_adjusted": 0.0007238816375185753
+    },
+    "P15": {
+     "statement": "corners played short / outside the box",
+     "forecasts": 290,
+     "improvement": -0.07881101404785684,
+     "improvement_ci": [
+      -0.1665758174284595,
+      0.008508321361063276
+     ],
+     "skill_season": 0.11537956351298628,
+     "skill_adjusted": 0.045661729865987044
+    },
+    "P16": {
+     "statement": "corners to the far post",
+     "forecasts": 290,
+     "improvement": -0.053114083730875006,
+     "improvement_ci": [
+      -0.12996050673663007,
+      -0.013981852605708056
+     ],
+     "skill_season": -0.14481614588464597,
+     "skill_adjusted": -0.20562200651362073
+    },
+    "P17": {
+     "statement": "corners ending in a shot",
+     "forecasts": 290,
+     "improvement": -0.003086120167082651,
+     "improvement_ci": [
+      -0.0795564688384236,
+      0.05943023336503006
+     ],
+     "skill_season": 0.023817085511928404,
+     "skill_adjusted": 0.02080446773276512
+    },
+    "T18": {
+     "statement": "open-play losses per match",
+     "forecasts": 293,
+     "improvement": 0.08895906417163546,
+     "improvement_ci": [
+      -0.008261353627933676,
+      0.17454407957866325
+     ],
+     "skill_season": 0.26994767506223605,
+     "skill_adjusted": 0.3348924466850264
+    },
+    "T19": {
+     "statement": "losses in own third",
+     "forecasts": 293,
+     "improvement": 0.08229561277955555,
+     "improvement_ci": [
+      0.04349892348436013,
+      0.12158382599407969
+     ],
+     "skill_season": 0.19556340913073456,
+     "skill_adjusted": 0.2617650113186174
+    },
+    "T20": {
+     "statement": "counter-press regains within 5 s",
+     "forecasts": 293,
+     "improvement": -0.019395342349829425,
+     "improvement_ci": [
+      -0.0705150170633142,
+      0.020606907774709415
+     ],
+     "skill_season": -0.01881812026841989,
+     "skill_adjusted": -0.0385784465032355
+    },
+    "T21": {
+     "statement": "recoveries in the final third",
+     "forecasts": 293,
+     "improvement": -0.0020027512728844066,
+     "improvement_ci": [
+      -0.05323821618720048,
+      0.04162370039827923
+     ],
+     "skill_season": 0.03291192899007023,
+     "skill_adjusted": 0.030975092124863712
+    },
+    "T22": {
+     "statement": "recoveries followed by a shot within 10 s",
+     "forecasts": 293,
+     "improvement": -0.011752089812775424,
+     "improvement_ci": [
+      -0.05753676257814688,
+      0.02979972694225841
+     ],
+     "skill_season": -0.02301496417925386,
+     "skill_adjusted": -0.03503752791810166
+    },
+    "D23": {
+     "statement": "PPDA",
+     "forecasts": 293,
+     "improvement": 0.18309111476996043,
+     "improvement_ci": [
+      0.08676060080648829,
+      0.27394631837744976
+     ],
+     "skill_season": 0.05228117018639167,
+     "skill_adjusted": 0.22580006722544765
+    },
+    "D24": {
+     "statement": "pressures per match",
+     "forecasts": 293,
+     "improvement": 0.11873910696430845,
+     "improvement_ci": [
+      0.06848677279055859,
+      0.1538620709976699
+     ],
+     "skill_season": 0.08089321216771828,
+     "skill_adjusted": 0.19002713135975746
+    },
+    "D25": {
+     "statement": "pressures in the final third",
+     "forecasts": 293,
+     "improvement": 0.10003530262354554,
+     "improvement_ci": [
+      0.049245780230126934,
+      0.1543275431974882
+     ],
+     "skill_season": 0.0537710987545178,
+     "skill_adjusted": 0.1484273932417547
+    },
+    "D26": {
+     "statement": "height of defensive actions",
+     "forecasts": 293,
+     "improvement": 0.0522326674819531,
+     "improvement_ci": [
+      0.0005323614908258056,
+      0.10377564476817802
+     ],
+     "skill_season": -0.04215949358304871,
+     "skill_adjusted": 0.012275276708435312
+    },
+    "D27": {
+     "statement": "shots conceded per match",
+     "forecasts": 293,
+     "improvement": 0.09995179451602854,
+     "improvement_ci": [
+      -0.06192322662894645,
+      0.21077854354267966
+     ],
+     "skill_season": 0.11520422589731871,
+     "skill_adjusted": 0.20364115129908023
+    },
+    "D28": {
+     "statement": "xG conceded per match",
+     "forecasts": 293,
+     "improvement": -0.006410242586268433,
+     "improvement_ci": [
+      -0.16777817911496573,
+      0.08450956787124175
+     ],
+     "skill_season": 0.2044081088090065,
+     "skill_adjusted": 0.19930817178680416
+    },
+    "A29": {
+     "statement": "shots per match",
+     "forecasts": 293,
+     "improvement": 0.12996684356262622,
+     "improvement_ci": [
+      0.015228523701601882,
+      0.24718382922352256
+     ],
+     "skill_season": 0.14975020717695042,
+     "skill_adjusted": 0.2602544889899391
+    },
+    "A30": {
+     "statement": "xG per match",
+     "forecasts": 293,
+     "improvement": 0.09060635917205806,
+     "improvement_ci": [
+      0.008617510347602164,
+      0.16292608423769284
+     ],
+     "skill_season": 0.29839072256769283,
+     "skill_adjusted": 0.36196098475717253
+    },
+    "A31": {
+     "statement": "xT added per match",
+     "forecasts": 293,
+     "improvement": 0.15414478320565173,
+     "improvement_ci": [
+      0.0951463961747685,
+      0.20692140840223217
+     ],
+     "skill_season": 0.3960195346798513,
+     "skill_adjusted": 0.4891199725670743
+    },
+    "A32": {
+     "statement": "pass completion under pressure in own half",
+     "forecasts": 293,
+     "improvement": -0.06919255648696243,
+     "improvement_ci": [
+      -0.16949959655698832,
+      0.009325329459757059
+     ],
+     "skill_season": 0.408595497998565,
+     "skill_adjusted": 0.36767470858718687
+    }
+   }
+  },
+  "k=5, venue=no": {
+   "pooled_improvement": 0.058773932573229215,
+   "statements": {
+    "S01": {
+     "statement": "open-play sequences per match",
+     "forecasts": 293,
+     "improvement": 0.10784976801430768,
+     "improvement_ci": [
+      0.04442774852215725,
+      0.16513716451833738
+     ],
+     "skill_season": 0.349283312166246,
+     "skill_adjusted": 0.4194629559921551
+    },
+    "S02": {
+     "statement": "passes per sequence",
+     "forecasts": 293,
+     "improvement": 0.17836025237095177,
+     "improvement_ci": [
+      0.1139907392206283,
+      0.2310188561963592
+     ],
+     "skill_season": 0.5671614409548541,
+     "skill_adjusted": 0.6443626355820254
+    },
+    "S03": {
+     "statement": "long-pass share of a sequence",
+     "forecasts": 293,
+     "improvement": 0.10242747288736975,
+     "improvement_ci": [
+      0.024878925645458905,
+      0.17818857956002188
+     ],
+     "skill_season": 0.5316218644181543,
+     "skill_adjusted": 0.5795966532015006
+    },
+    "S04": {
+     "statement": "share of sequences starting in the build-up zone",
+     "forecasts": 293,
+     "improvement": 0.0035505950396229613,
+     "improvement_ci": [
+      -0.06200466738949961,
+      0.07062850205466342
+     ],
+     "skill_season": -0.007595841577725526,
+     "skill_adjusted": -0.004018276780674901
+    },
+    "S05": {
+     "statement": "shot rate per sequence",
+     "forecasts": 293,
+     "improvement": 0.09594422480962506,
+     "improvement_ci": [
+      -0.01944357092430682,
+      0.19477854916788817
+     ],
+     "skill_season": 0.16506789504029984,
+     "skill_adjusted": 0.24517480861932683
+    },
+    "S06": {
+     "statement": "sequence duration (s)",
+     "forecasts": 293,
+     "improvement": 0.16944776196922906,
+     "improvement_ci": [
+      0.10827364138329454,
+      0.24235768095852883
+     ],
+     "skill_season": 0.45116246470610843,
+     "skill_adjusted": 0.5441617567463661
+    },
+    "R09": {
+     "statement": "goal kicks: first pass short",
+     "forecasts": 292,
+     "improvement": 0.03263461189051786,
+     "improvement_ci": [
+      -0.02824876497664741,
+      0.0820085457424451
+     ],
+     "skill_season": 0.3932301541509905,
+     "skill_adjusted": 0.41303185257714226
+    },
+    "R10": {
+     "statement": "goal kicks: reached the opponent half",
+     "forecasts": 292,
+     "improvement": 0.0022323336283345263,
+     "improvement_ci": [
+      -0.03404567585779694,
+      0.033812553630258924
+     ],
+     "skill_season": 0.3035179075219324,
+     "skill_adjusted": 0.30507268791850395
+    },
+    "R11": {
+     "statement": "goal kicks: ended in own half",
+     "forecasts": 292,
+     "improvement": -0.004969423190313016,
+     "improvement_ci": [
+      -0.06369793746077934,
+      0.039604117370792835
+     ],
+     "skill_season": 0.18314746697997997,
+     "skill_adjusted": 0.17908818105932445
+    },
+    "R12": {
+     "statement": "keeper: first pass short",
+     "forecasts": 272,
+     "improvement": -0.012477100480653425,
+     "improvement_ci": [
+      -0.06006686391004323,
+      0.03201177832708635
+     ],
+     "skill_season": 0.10827059042747311,
+     "skill_adjusted": 0.09714439298268285
+    },
+    "R13": {
+     "statement": "throw-ins in own half: ended in own half",
+     "forecasts": 293,
+     "improvement": 0.03310051873292652,
+     "improvement_ci": [
+      -0.0021777508379068333,
+      0.06998209760726559
+     ],
+     "skill_season": 0.014677191187814631,
+     "skill_adjusted": 0.047291887278882117
+    },
+    "P14": {
+     "statement": "corners per match",
+     "forecasts": 293,
+     "improvement": 0.06323461383057305,
+     "improvement_ci": [
+      0.006124334987469449,
+      0.11531722466359418
+     ],
+     "skill_season": -0.06365273296447249,
+     "skill_adjusted": 0.0036069368543696356
+    },
+    "P15": {
+     "statement": "corners played short / outside the box",
+     "forecasts": 290,
+     "improvement": -0.06509611961438955,
+     "improvement_ci": [
+      -0.14223945559715956,
+      0.0120170235403938
+     ],
+     "skill_season": 0.11537956351298628,
+     "skill_adjusted": 0.057794205766094287
+    },
+    "P16": {
+     "statement": "corners to the far post",
+     "forecasts": 290,
+     "improvement": -0.042262060172115756,
+     "improvement_ci": [
+      -0.10861195667819334,
+      -0.0068731670084607455
+     ],
+     "skill_season": -0.14481614588464597,
+     "skill_adjusted": -0.19319843472803266
+    },
+    "P17": {
+     "statement": "corners ending in a shot",
+     "forecasts": 290,
+     "improvement": 0.004819682647529522,
+     "improvement_ci": [
+      -0.06376700151308135,
+      0.061636938949596765
+     ],
+     "skill_season": 0.023817085511928404,
+     "skill_adjusted": 0.02852197736570139
+    },
+    "T18": {
+     "statement": "open-play losses per match",
+     "forecasts": 293,
+     "improvement": 0.09167838212336898,
+     "improvement_ci": [
+      0.005127578692651902,
+      0.1679270484683426
+     ],
+     "skill_season": 0.26994767506223605,
+     "skill_adjusted": 0.3368776910779344
+    },
+    "T19": {
+     "statement": "losses in own third",
+     "forecasts": 293,
+     "improvement": 0.08285820317293002,
+     "improvement_ci": [
+      0.045793099195988285,
+      0.12093699871511066
+     ],
+     "skill_season": 0.19556340913073456,
+     "skill_adjusted": 0.2622175796167193
+    },
+    "T20": {
+     "statement": "counter-press regains within 5 s",
+     "forecasts": 293,
+     "improvement": -0.007493093086801128,
+     "improvement_ci": [
+      -0.05264262155402122,
+      0.028668696594293386
+     ],
+     "skill_season": -0.01881812026841989,
+     "skill_adjusted": -0.026452219282110834
+    },
+    "T21": {
+     "statement": "recoveries in the final third",
+     "forecasts": 293,
+     "improvement": 0.002818387035467107,
+     "improvement_ci": [
+      -0.041493031230600774,
+      0.0410230507986008
+     ],
+     "skill_season": 0.03291192899007023,
+     "skill_adjusted": 0.03563755747155961
+    },
+    "T22": {
+     "statement": "recoveries followed by a shot within 10 s",
+     "forecasts": 293,
+     "improvement": -0.004675921474513789,
+     "improvement_ci": [
+      -0.04470729439416399,
+      0.03170508115302939
+     ],
+     "skill_season": -0.02301496417925386,
+     "skill_adjusted": -0.02779850181900856
+    },
+    "D23": {
+     "statement": "PPDA",
+     "forecasts": 293,
+     "improvement": 0.18748416004501367,
+     "improvement_ci": [
+      0.09574623544746164,
+      0.2760334286874705
+     ],
+     "skill_season": 0.05228117018639167,
+     "skill_adjusted": 0.22996343895283933
+    },
+    "D24": {
+     "statement": "pressures per match",
+     "forecasts": 293,
+     "improvement": 0.11832685221404615,
+     "improvement_ci": [
+      0.07418844445853501,
+      0.14908539193288606
+     ],
+     "skill_season": 0.08089321216771828,
+     "skill_adjusted": 0.1896482252204753
+    },
+    "D25": {
+     "statement": "pressures in the final third",
+     "forecasts": 293,
+     "improvement": 0.09868985143727249,
+     "improvement_ci": [
+      0.052264153622584075,
+      0.14924104637004743
+     ],
+     "skill_season": 0.0537710987545178,
+     "skill_adjusted": 0.14715428844408796
+    },
+    "D26": {
+     "statement": "height of defensive actions",
+     "forecasts": 293,
+     "improvement": 0.05431325131588538,
+     "improvement_ci": [
+      0.008235707610995235,
+      0.0997761530804705
+     ],
+     "skill_season": -0.04215949358304871,
+     "skill_adjusted": 0.014443576903163335
+    },
+    "D27": {
+     "statement": "shots conceded per match",
+     "forecasts": 293,
+     "improvement": 0.1029730717348496,
+     "improvement_ci": [
+      -0.040846161732100095,
+      0.19943180702937902
+     ],
+     "skill_season": 0.11520422589731871,
+     "skill_adjusted": 0.20631436461468589
+    },
+    "D28": {
+     "statement": "xG conceded per match",
+     "forecasts": 293,
+     "improvement": 0.009049639535546383,
+     "improvement_ci": [
+      -0.12657322790688785,
+      0.08675339917792113
+     ],
+     "skill_season": 0.2044081088090065,
+     "skill_adjusted": 0.21160792864168865
+    },
+    "A29": {
+     "statement": "shots per match",
+     "forecasts": 293,
+     "improvement": 0.1294112054753156,
+     "improvement_ci": [
+      0.023077032637616623,
+      0.238546010963552
+     ],
+     "skill_season": 0.14975020717695042,
+     "skill_adjusted": 0.2597820578213186
+    },
+    "A30": {
+     "statement": "xG per match",
+     "forecasts": 293,
+     "improvement": 0.08967329387884126,
+     "improvement_ci": [
+      0.017894316996150073,
+      0.15434635078219128
+     ],
+     "skill_season": 0.29839072256769283,
+     "skill_adjusted": 0.3613063374910016
+    },
+    "A31": {
+     "statement": "xT added per match",
+     "forecasts": 293,
+     "improvement": 0.14978105982092127,
+     "improvement_ci": [
+      0.0954053122786449,
+      0.20019560969092354
+     ],
+     "skill_season": 0.3960195346798513,
+     "skill_adjusted": 0.4864843688866364
+    },
+    "A32": {
+     "statement": "pass completion under pressure in own half",
+     "forecasts": 293,
+     "improvement": -0.055641412654012345,
+     "improvement_ci": [
+      -0.1419906602542509,
+      0.012052579576736222
+     ],
+     "skill_season": 0.408595497998565,
+     "skill_adjusted": 0.3756889160572625
+    }
+   }
+  },
+  "k=10, venue=no": {
+   "pooled_improvement": 0.059235113382797855,
+   "statements": {
+    "S01": {
+     "statement": "open-play sequences per match",
+     "forecasts": 293,
+     "improvement": 0.10498094407678105,
+     "improvement_ci": [
+      0.052015915002783686,
+      0.1514218193431882
+     ],
+     "skill_season": 0.349283312166246,
+     "skill_adjusted": 0.41759616438154945
+    },
+    "S02": {
+     "statement": "passes per sequence",
+     "forecasts": 293,
+     "improvement": 0.16517458756616965,
+     "improvement_ci": [
+      0.1165307650448193,
+      0.20900845464987128
+     ],
+     "skill_season": 0.5671614409548541,
+     "skill_adjusted": 0.6386553714278713
+    },
+    "S03": {
+     "statement": "long-pass share of a sequence",
+     "forecasts": 293,
+     "improvement": 0.095974989938992,
+     "improvement_ci": [
+      0.030142948071268716,
+      0.16197936412601355
+     ],
+     "skill_season": 0.5316218644181543,
+     "skill_adjusted": 0.5765744512682657
+    },
+    "S04": {
+     "statement": "share of sequences starting in the build-up zone",
+     "forecasts": 293,
+     "improvement": 0.009845357352725626,
+     "improvement_ci": [
+      -0.04233820759034512,
+      0.0642796965825232
+     ],
+     "skill_season": -0.007595841577725526,
+     "skill_adjusted": 0.002324299549727682
+    },
+    "S05": {
+     "statement": "shot rate per sequence",
+     "forecasts": 293,
+     "improvement": 0.09742047061643389,
+     "improvement_ci": [
+      0.0006052425457612198,
+      0.18281107978073696
+     ],
+     "skill_season": 0.16506789504029984,
+     "skill_adjusted": 0.2464073736382436
+    },
+    "S06": {
+     "statement": "sequence duration (s)",
+     "forecasts": 293,
+     "improvement": 0.16251237674042374,
+     "improvement_ci": [
+      0.11119445467491351,
+      0.22578610487087358
+     ],
+     "skill_season": 0.45116246470610843,
+     "skill_adjusted": 0.5403553570110748
+    },
+    "R09": {
+     "statement": "goal kicks: first pass short",
+     "forecasts": 292,
+     "improvement": 0.03517481769119202,
+     "improvement_ci": [
+      -0.011848565376868292,
+      0.07704394865049724
+     ],
+     "skill_season": 0.3932301541509905,
+     "skill_adjusted": 0.414573172859242
+    },
+    "R10": {
+     "statement": "goal kicks: reached the opponent half",
+     "forecasts": 292,
+     "improvement": 0.006390723962367839,
+     "improvement_ci": [
+      -0.02200886677646441,
+      0.0313040127985208
+     ],
+     "skill_season": 0.3035179075219324,
+     "skill_adjusted": 0.30796893231969213
+    },
+    "R11": {
+     "statement": "goal kicks: ended in own half",
+     "forecasts": 292,
+     "improvement": 0.002889171558997705,
+     "improvement_ci": [
+      -0.04356728666144205,
+      0.03771886842677885
+     ],
+     "skill_season": 0.18314746697997997,
+     "skill_adjusted": 0.18550749408627665
+    },
+    "R12": {
+     "statement": "keeper: first pass short",
+     "forecasts": 272,
+     "improvement": -0.004733545628256675,
+     "improvement_ci": [
+      -0.042444534434686876,
+      0.030802601860095757
+     ],
+     "skill_season": 0.10827059042747311,
+     "skill_adjusted": 0.10404954857920312
+    },
+    "R13": {
+     "statement": "throw-ins in own half: ended in own half",
+     "forecasts": 293,
+     "improvement": 0.03489422327497349,
+     "improvement_ci": [
+      0.004520310619228196,
+      0.06623143546352694
+     ],
+     "skill_season": 0.014677191187814631,
+     "skill_adjusted": 0.04905926527643101
+    },
+    "P14": {
+     "statement": "corners per match",
+     "forecasts": 293,
+     "improvement": 0.06412186966208167,
+     "improvement_ci": [
+      0.013256390298153842,
+      0.11032673887462141
+     ],
+     "skill_season": -0.06365273296447249,
+     "skill_adjusted": 0.004550668944392489
+    },
+    "P15": {
+     "statement": "corners played short / outside the box",
+     "forecasts": 290,
+     "improvement": -0.044668407125715515,
+     "improvement_ci": [
+      -0.10511349397067926,
+      0.015525251454699407
+     ],
+     "skill_season": 0.11537956351298628,
+     "skill_adjusted": 0.07586497770425615
+    },
+    "P16": {
+     "statement": "corners to the far post",
+     "forecasts": 290,
+     "improvement": -0.025516761287850187,
+     "improvement_ci": [
+      -0.07429401847256356,
+      0.0030421795862428658
+     ],
+     "skill_season": -0.14481614588464597,
+     "skill_adjusted": -0.17402814619766116
+    },
+    "P17": {
+     "statement": "corners ending in a shot",
+     "forecasts": 290,
+     "improvement": 0.014317232440437477,
+     "improvement_ci": [
+      -0.04141067568021217,
+      0.06180433820689779
+     ],
+     "skill_season": 0.023817085511928404,
+     "skill_adjusted": 0.03779332320303774
+    },
+    "T18": {
+     "statement": "open-play losses per match",
+     "forecasts": 293,
+     "improvement": 0.0905196349207511,
+     "improvement_ci": [
+      0.01928266666130274,
+      0.15492429864065183
+     ],
+     "skill_season": 0.26994767506223605,
+     "skill_adjusted": 0.3360317449886481
+    },
+    "T19": {
+     "statement": "losses in own third",
+     "forecasts": 293,
+     "improvement": 0.08018741467504265,
+     "improvement_ci": [
+      0.045880127179762975,
+      0.11586004762611679
+     ],
+     "skill_season": 0.19556340913073456,
+     "skill_adjusted": 0.260069099622546
+    },
+    "T20": {
+     "statement": "counter-press regains within 5 s",
+     "forecasts": 293,
+     "improvement": 0.007226836393056657,
+     "improvement_ci": [
+      -0.027782251622640253,
+      0.03655735361654333
+     ],
+     "skill_season": -0.01881812026841989,
+     "skill_adjusted": -0.011455288398958485
+    },
+    "T21": {
+     "statement": "recoveries in the final third",
+     "forecasts": 293,
+     "improvement": 0.008844952583841215,
+     "improvement_ci": [
+      -0.024779755458062214,
+      0.039393573121710546
+     ],
+     "skill_season": 0.03291192899007023,
+     "skill_adjusted": 0.041465777122551506
+    },
+    "T22": {
+     "statement": "recoveries followed by a shot within 10 s",
+     "forecasts": 293,
+     "improvement": 0.004265066455259481,
+     "improvement_ci": [
+      -0.027483009482211163,
+      0.03354670740955645
+     ],
+     "skill_season": -0.02301496417925386,
+     "skill_adjusted": -0.018651737372304522
+    },
+    "D23": {
+     "statement": "PPDA",
+     "forecasts": 293,
+     "improvement": 0.18562418851753537,
+     "improvement_ci": [
+      0.10286902307770274,
+      0.26870976310412453
+     ],
+     "skill_season": 0.05228117018639167,
+     "skill_adjusted": 0.228200708913331
+    },
+    "D24": {
+     "statement": "pressures per match",
+     "forecasts": 293,
+     "improvement": 0.11191133359042427,
+     "improvement_ci": [
+      0.07767331584652892,
+      0.13600175862562136
+     ],
+     "skill_season": 0.08089321216771828,
+     "skill_adjusted": 0.18375167850604002
+    },
+    "D25": {
+     "statement": "pressures in the final third",
+     "forecasts": 293,
+     "improvement": 0.09288756360230133,
+     "improvement_ci": [
+      0.051671979320427996,
+      0.1372082101291282
+     ],
+     "skill_season": 0.0537710987545178,
+     "skill_adjusted": 0.1416639960012932
+    },
+    "D26": {
+     "statement": "height of defensive actions",
+     "forecasts": 293,
+     "improvement": 0.054348357103514044,
+     "improvement_ci": [
+      0.01766112924942209,
+      0.09123326693890277
+     ],
+     "skill_season": -0.04215949358304871,
+     "skill_adjusted": 0.014480162733020219
+    },
+    "D27": {
+     "statement": "shots conceded per match",
+     "forecasts": 293,
+     "improvement": 0.10079137520839432,
+     "improvement_ci": [
+      -0.013085707949130887,
+      0.17600910209237364
+     ],
+     "skill_season": 0.11520422589731871,
+     "skill_adjusted": 0.2043840087477038
+    },
+    "D28": {
+     "statement": "xG conceded per match",
+     "forecasts": 293,
+     "improvement": 0.02793561839048464,
+     "improvement_ci": [
+      -0.06776697609345539,
+      0.08634311911876957
+     ],
+     "skill_season": 0.2044081088090065,
+     "skill_adjusted": 0.22663346027588205
+    },
+    "A29": {
+     "statement": "shots per match",
+     "forecasts": 293,
+     "improvement": 0.12261549493098267,
+     "improvement_ci": [
+      0.03281309175517266,
+      0.21689319258190232
+     ],
+     "skill_season": 0.14975020717695042,
+     "skill_adjusted": 0.2540040063389142
+    },
+    "A30": {
+     "statement": "xG per match",
+     "forecasts": 293,
+     "improvement": 0.08379038150626372,
+     "improvement_ci": [
+      0.026892687311320773,
+      0.13616230054514034
+     ],
+     "skill_season": 0.29839072256769283,
+     "skill_adjusted": 0.35717883159207986
+    },
+    "A31": {
+     "statement": "xT added per match",
+     "forecasts": 293,
+     "improvement": 0.1372963419866583,
+     "improvement_ci": [
+      0.09054211357901043,
+      0.18134552478840416
+     ],
+     "skill_season": 0.3960195346798513,
+     "skill_adjusted": 0.4789438431997074
+    },
+    "A32": {
+     "statement": "pass completion under pressure in own half",
+     "forecasts": 293,
+     "improvement": -0.0362719599255692,
+     "improvement_ci": [
+      -0.0994868953325152,
+      0.014793617469001208
+     ],
+     "skill_season": 0.408595497998565,
+     "skill_adjusted": 0.3871440976021677
+    }
+   }
+  },
+  "k=20, venue=no": {
+   "pooled_improvement": 0.053998239964468286,
+   "statements": {
+    "S01": {
+     "statement": "open-play sequences per match",
+     "forecasts": 293,
+     "improvement": 0.09272288597821676,
+     "improvement_ci": [
+      0.05263840199844272,
+      0.12692193858152623
+     ],
+     "skill_season": 0.349283312166246,
+     "skill_adjusted": 0.4096196414163781
+    },
+    "S02": {
+     "statement": "passes per sequence",
+     "forecasts": 293,
+     "improvement": 0.13940343311658487,
+     "improvement_ci": [
+      0.10596904598348411,
+      0.17365502290279278
+     ],
+     "skill_season": 0.5671614409548541,
+     "skill_adjusted": 0.6275006220709831
+    },
+    "S03": {
+     "statement": "long-pass share of a sequence",
+     "forecasts": 293,
+     "improvement": 0.08233006790266151,
+     "improvement_ci": [
+      0.0316548365119228,
+      0.13438128141877648
+     ],
+     "skill_season": 0.5316218644181543,
+     "skill_adjusted": 0.5701834681247295
+    },
+    "S04": {
+     "statement": "share of sequences starting in the build-up zone",
+     "forecasts": 293,
+     "improvement": 0.013388471817985748,
+     "improvement_ci": [
+      -0.02369768243415482,
+      0.053211694238315954
+     ],
+     "skill_season": -0.007595841577725526,
+     "skill_adjusted": 0.005894326951157547
+    },
+    "S05": {
+     "statement": "shot rate per sequence",
+     "forecasts": 293,
+     "improvement": 0.08829437464392387,
+     "improvement_ci": [
+      0.013213745548371958,
+      0.15545299379857425
+     ],
+     "skill_season": 0.16506789504029984,
+     "skill_adjusted": 0.23878770311785158
+    },
+    "S06": {
+     "statement": "sequence duration (s)",
+     "forecasts": 293,
+     "improvement": 0.14111578519496248,
+     "improvement_ci": [
+      0.09920217128323361,
+      0.192215198535455
+     ],
+     "skill_season": 0.45116246470610843,
+     "skill_adjusted": 0.5286121044435739
+    },
+    "R09": {
+     "statement": "goal kicks: first pass short",
+     "forecasts": 292,
+     "improvement": 0.033956113177118,
+     "improvement_ci": [
+      0.0006653682785501269,
+      0.06552552315539895
+     ],
+     "skill_season": 0.3932301541509905,
+     "skill_adjusted": 0.4138336997091019
+    },
+    "R10": {
+     "statement": "goal kicks: reached the opponent half",
+     "forecasts": 292,
+     "improvement": 0.008669929969886248,
+     "improvement_ci": [
+      -0.011469183338861377,
+      0.026722210182100192
+     ],
+     "skill_season": 0.3035179075219324,
+     "skill_adjusted": 0.3095563584889971
+    },
+    "R11": {
+     "statement": "goal kicks: ended in own half",
+     "forecasts": 292,
+     "improvement": 0.008072222281900077,
+     "improvement_ci": [
+      -0.02471670446534513,
+      0.03238823423227832
+     ],
+     "skill_season": 0.18314746697997997,
+     "skill_adjusted": 0.18974128219805075
+    },
+    "R12": {
+     "statement": "keeper: first pass short",
+     "forecasts": 272,
+     "improvement": 0.0015109223178921827,
+     "improvement_ci": [
+      -0.025675292839911767,
+      0.027080236493525534
+     ],
+     "skill_season": 0.10827059042747311,
+     "skill_adjusted": 0.10961792429391704
+    },
+    "R13": {
+     "statement": "throw-ins in own half: ended in own half",
+     "forecasts": 293,
+     "improvement": 0.032876719137628685,
+     "improvement_ci": [
+      0.008444427210095529,
+      0.058811506056598684
+     ],
+     "skill_season": 0.014677191187814631,
+     "skill_adjusted": 0.047071372433032166
+    },
+    "P14": {
+     "statement": "corners per match",
+     "forecasts": 293,
+     "improvement": 0.05890535559503296,
+     "improvement_ci": [
+      0.017722442188492282,
+      0.0958904954525519
+     ],
+     "skill_season": -0.06365273296447249,
+     "skill_adjusted": -0.000997890499571552
+    },
+    "P15": {
+     "statement": "corners played short / outside the box",
+     "forecasts": 290,
+     "improvement": -0.026245086850826604,
+     "improvement_ci": [
+      -0.07009576235873682,
+      0.016899577845919778
+     ],
+     "skill_season": 0.11537956351298628,
+     "skill_adjusted": 0.09216262332736846
+    },
+    "P16": {
+     "statement": "corners to the far post",
+     "forecasts": 290,
+     "improvement": -0.01135976721755716,
+     "improvement_ci": [
+      -0.04376148973826566,
+      0.009364646520180986
+     ],
+     "skill_season": -0.14481614588464597,
+     "skill_adjusted": -0.1578209908087964
+    },
+    "P17": {
+     "statement": "corners ending in a shot",
+     "forecasts": 290,
+     "improvement": 0.019200970605873446,
+     "improvement_ci": [
+      -0.02254390301048992,
+      0.05571988967561925
+     ],
+     "skill_season": 0.023817085511928404,
+     "skill_adjusted": 0.042560744958969776
+    },
+    "T18": {
+     "statement": "open-play losses per match",
+     "forecasts": 293,
+     "improvement": 0.08061042665621865,
+     "improvement_ci": [
+      0.027918915592826332,
+      0.13052764576514075
+     ],
+     "skill_season": 0.26994767506223605,
+     "skill_adjusted": 0.32879750445683364
+    },
+    "T19": {
+     "statement": "losses in own third",
+     "forecasts": 293,
+     "improvement": 0.07108900255871387,
+     "improvement_ci": [
+      0.042578478335366876,
+      0.10242646876876249
+     ],
+     "skill_season": 0.19556340913073456,
+     "skill_adjusted": 0.2527500039973628
+    },
+    "T20": {
+     "statement": "counter-press regains within 5 s",
+     "forecasts": 293,
+     "improvement": 0.016112763962804255,
+     "improvement_ci": [
+      -0.008929252444863423,
+      0.03766164082039658
+     ],
+     "skill_season": -0.01881812026841989,
+     "skill_adjusted": -0.0024021443755068983
+    },
+    "T21": {
+     "statement": "recoveries in the final third",
+     "forecasts": 293,
+     "improvement": 0.012345707568005682,
+     "improvement_ci": [
+      -0.010864679633942886,
+      0.033676877211416656
+     ],
+     "skill_season": 0.03291192899007023,
+     "skill_adjusted": 0.04485131550726562
+    },
+    "T22": {
+     "statement": "recoveries followed by a shot within 10 s",
+     "forecasts": 293,
+     "improvement": 0.00988898274441008,
+     "improvement_ci": [
+      -0.012915535367263198,
+      0.03132751012297741
+     ],
+     "skill_season": -0.02301496417925386,
+     "skill_adjusted": -0.01289838685121203
+    },
+    "D23": {
+     "statement": "PPDA",
+     "forecasts": 293,
+     "improvement": 0.16825452922547213,
+     "improvement_ci": [
+      0.09616101135511945,
+      0.24178025095311917
+     ],
+     "skill_season": 0.05228117018639167,
+     "skill_adjusted": 0.21173915573479574
+    },
+    "D24": {
+     "statement": "pressures per match",
+     "forecasts": 293,
+     "improvement": 0.09635092204170559,
+     "improvement_ci": [
+      0.07121585653131046,
+      0.11386889209893214
+     ],
+     "skill_season": 0.08089321216771828,
+     "skill_adjusted": 0.16944999863014887
+    },
+    "D25": {
+     "statement": "pressures in the final third",
+     "forecasts": 293,
+     "improvement": 0.08040199914379642,
+     "improvement_ci": [
+      0.04629820790516814,
+      0.11696009315921563
+     ],
+     "skill_season": 0.0537710987545178,
+     "skill_adjusted": 0.12984979406229247
+    },
+    "D26": {
+     "statement": "height of defensive actions",
+     "forecasts": 293,
+     "improvement": 0.04909112433390361,
+     "improvement_ci": [
+      0.02269823658072545,
+      0.07672234580415482
+     ],
+     "skill_season": -0.04215949358304871,
+     "skill_adjusted": 0.00900128769219477
+    },
+    "D27": {
+     "statement": "shots conceded per match",
+     "forecasts": 293,
+     "improvement": 0.08852299906938033,
+     "improvement_ci": [
+      0.006409277570303296,
+      0.1426526745752419
+     ],
+     "skill_season": 0.11520422589731871,
+     "skill_adjusted": 0.193529001384802
+    },
+    "D28": {
+     "statement": "xG conceded per match",
+     "forecasts": 293,
+     "improvement": 0.03834986040827315,
+     "improvement_ci": [
+      -0.021071029615909787,
+      0.07817666967953762
+     ],
+     "skill_season": 0.2044081088090065,
+     "skill_adjusted": 0.23491894677813518
+    },
+    "A29": {
+     "statement": "shots per match",
+     "forecasts": 293,
+     "improvement": 0.10591094110126142,
+     "improvement_ci": [
+      0.03572452241738866,
+      0.1807029695541712
+     ],
+     "skill_season": 0.14975020717695042,
+     "skill_adjusted": 0.23980096290599218
+    },
+    "A30": {
+     "statement": "xG per match",
+     "forecasts": 293,
+     "improvement": 0.0710602302298664,
+     "improvement_ci": [
+      0.02917211823245669,
+      0.11221505374123375
+     ],
+     "skill_season": 0.29839072256769283,
+     "skill_adjusted": 0.3482472393534428
+    },
+    "A31": {
+     "statement": "xT added per match",
+     "forecasts": 293,
+     "improvement": 0.11526451790476921,
+     "improvement_ci": [
+      0.07760638936516151,
+      0.1517291410154381
+     ],
+     "skill_season": 0.3960195346798513,
+     "skill_adjusted": 0.4656370518388764
+    },
+    "A32": {
+     "statement": "pass completion under pressure in own half",
+     "forecasts": 293,
+     "improvement": -0.019623600514776074,
+     "improvement_ci": [
+      -0.061823105011552526,
+      0.014658048088375564
+     ],
+     "skill_season": 0.408595497998565,
+     "skill_adjusted": 0.3969900123086487
+    }
+   }
+  },
+  "k=1, venue=yes": {
+   "pooled_improvement": 0.09900433035993278,
+   "statements": {
+    "S01": {
+     "statement": "open-play sequences per match",
+     "forecasts": 293,
+     "improvement": 0.15044368989404144,
+     "improvement_ci": [
+      0.05220970813461645,
+      0.24226126307349016
+     ],
+     "skill_season": 0.349283312166246,
+     "skill_adjusted": 0.447179531759585
+    },
+    "S02": {
+     "statement": "passes per sequence",
+     "forecasts": 293,
+     "improvement": 0.17767377243128313,
+     "improvement_ci": [
+      0.08779388123787046,
+      0.2507151909687503
+     ],
+     "skill_season": 0.5671614409548541,
+     "skill_adjusted": 0.6440655005941258
+    },
+    "S03": {
+     "statement": "long-pass share of a sequence",
+     "forecasts": 293,
+     "improvement": 0.10596998599276908,
+     "improvement_ci": [
+      0.01687250468079271,
+      0.1936720860798543
+     ],
+     "skill_season": 0.5316218644181543,
+     "skill_adjusted": 0.5812558888850817
+    },
+    "S04": {
+     "statement": "share of sequences starting in the build-up zone",
+     "forecasts": 293,
+     "improvement": 0.03249333621020167,
+     "improvement_ci": [
+      -0.0462705993614112,
+      0.10482883372978213
+     ],
+     "skill_season": -0.007595841577725526,
+     "skill_adjusted": 0.025144308866660747
+    },
+    "S05": {
+     "statement": "shot rate per sequence",
+     "forecasts": 293,
+     "improvement": 0.10598250510439555,
+     "improvement_ci": [
+      -0.060544040396121046,
+      0.24702123225540096
+     ],
+     "skill_season": 0.16506789504029984,
+     "skill_adjusted": 0.25355609111601496
+    },
+    "S06": {
+     "statement": "sequence duration (s)",
+     "forecasts": 293,
+     "improvement": 0.1551731182862347,
+     "improvement_ci": [
+      0.08125626486308568,
+      0.24045612571066233
+     ],
+     "skill_season": 0.45116246470610843,
+     "skill_adjusted": 0.536327296490193
+    },
+    "R09": {
+     "statement": "goal kicks: first pass short",
+     "forecasts": 292,
+     "improvement": 0.04195294261904581,
+     "improvement_ci": [
+      -0.03934287646336099,
+      0.10303591300257697
+     ],
+     "skill_season": 0.3932301541509905,
+     "skill_adjusted": 0.4186859346768612
+    },
+    "R10": {
+     "statement": "goal kicks: reached the opponent half",
+     "forecasts": 292,
+     "improvement": 0.0018538519330556502,
+     "improvement_ci": [
+      -0.05330601458457096,
+      0.044118853018260906
+     ],
+     "skill_season": 0.3035179075219324,
+     "skill_adjusted": 0.3048090821954116
+    },
+    "R11": {
+     "statement": "goal kicks: ended in own half",
+     "forecasts": 292,
+     "improvement": -0.011741332874146915,
+     "improvement_ci": [
+      -0.09878175165825653,
+      0.053350974446314536
+     ],
+     "skill_season": 0.18314746697997997,
+     "skill_adjusted": 0.173556529480702
+    },
+    "R12": {
+     "statement": "keeper: first pass short",
+     "forecasts": 272,
+     "improvement": -0.008993481234582434,
+     "improvement_ci": [
+      -0.07154224341725457,
+      0.05230890554945322
+     ],
+     "skill_season": 0.10827059042747311,
+     "skill_adjusted": 0.10025083871615714
+    },
+    "R13": {
+     "statement": "throw-ins in own half: ended in own half",
+     "forecasts": 293,
+     "improvement": 0.041812401514531694,
+     "improvement_ci": [
+      -0.021088497074991608,
+      0.11158517503760645
+     ],
+     "skill_season": 0.014677191187814631,
+     "skill_adjusted": 0.055875904091295836
+    },
+    "P14": {
+     "statement": "corners per match",
+     "forecasts": 293,
+     "improvement": 0.09203867472709648,
+     "improvement_ci": [
+      0.007802849141605783,
+      0.17310174813033574
+     ],
+     "skill_season": -0.06365273296447249,
+     "skill_adjusted": 0.03424445494743189
+    },
+    "P15": {
+     "statement": "corners played short / outside the box",
+     "forecasts": 290,
+     "improvement": -0.09961134793384252,
+     "improvement_ci": [
+      -0.20342270617146263,
+      0.005229845421079626
+     ],
+     "skill_season": 0.11537956351298628,
+     "skill_adjusted": 0.02726132942469084
+    },
+    "P16": {
+     "statement": "corners to the far post",
+     "forecasts": 290,
+     "improvement": -0.07735908299940686,
+     "improvement_ci": [
+      -0.17652419285663212,
+      -0.03606578128377058
+     ],
+     "skill_season": -0.14481614588464597,
+     "skill_adjusted": -0.23337807313319736
+    },
+    "P17": {
+     "statement": "corners ending in a shot",
+     "forecasts": 290,
+     "improvement": -0.017078055695150862,
+     "improvement_ci": [
+      -0.10075796868059839,
+      0.0515338317432662
+     ],
+     "skill_season": 0.023817085511928404,
+     "skill_adjusted": 0.007145779329646551
+    },
+    "T18": {
+     "statement": "open-play losses per match",
+     "forecasts": 293,
+     "improvement": 0.11052415101868374,
+     "improvement_ci": [
+      -0.008169412483336691,
+      0.20586890427564775
+     ],
+     "skill_season": 0.26994767506223605,
+     "skill_adjusted": 0.35063608847519867
+    },
+    "T19": {
+     "statement": "losses in own third",
+     "forecasts": 293,
+     "improvement": 0.15239831191759368,
+     "improvement_ci": [
+      0.08643467556633944,
+      0.21566106023808151
+     ],
+     "skill_season": 0.19556340913073456,
+     "skill_adjusted": 0.31815818762395454
+    },
+    "T20": {
+     "statement": "counter-press regains within 5 s",
+     "forecasts": 293,
+     "improvement": -0.035792707807799085,
+     "improvement_ci": [
+      -0.08357511995563804,
+      0.0020563499652761497
+     ],
+     "skill_season": -0.01881812026841989,
+     "skill_adjusted": -0.05528437955647858
+    },
+    "T21": {
+     "statement": "recoveries in the final third",
+     "forecasts": 293,
+     "improvement": 0.03849332336689837,
+     "improvement_ci": [
+      -0.038748872162053916,
+      0.10345901869217689
+     ],
+     "skill_season": 0.03291192899007023,
+     "skill_adjusted": 0.07013836283172548
+    },
+    "T22": {
+     "statement": "recoveries followed by a shot within 10 s",
+     "forecasts": 293,
+     "improvement": 0.008180731256369422,
+     "improvement_ci": [
+      -0.05108585600361715,
+      0.06004688078952636
+     ],
+     "skill_season": -0.02301496417925386,
+     "skill_adjusted": -0.014645953686059032
+    },
+    "D23": {
+     "statement": "PPDA",
+     "forecasts": 293,
+     "improvement": 0.17016859343688728,
+     "improvement_ci": [
+      0.07758023359553345,
+      0.2537721956461215
+     ],
+     "skill_season": 0.05228117018639167,
+     "skill_adjusted": 0.21355315042942613
+    },
+    "D24": {
+     "statement": "pressures per match",
+     "forecasts": 293,
+     "improvement": 0.12072727823451068,
+     "improvement_ci": [
+      0.06092898497104848,
+      0.16580257319960856
+     ],
+     "skill_season": 0.08089321216771828,
+     "skill_adjusted": 0.1918544730695736
+    },
+    "D25": {
+     "statement": "pressures in the final third",
+     "forecasts": 293,
+     "improvement": 0.1607987880708145,
+     "improvement_ci": [
+      0.08231910158325695,
+      0.22156739981791462
+     ],
+     "skill_season": 0.0537710987545178,
+     "skill_adjusted": 0.20592355931236983
+    },
+    "D26": {
+     "statement": "height of defensive actions",
+     "forecasts": 293,
+     "improvement": 0.16767093737630845,
+     "improvement_ci": [
+      0.08245932284857327,
+      0.25161707042603865
+     ],
+     "skill_season": -0.04215949358304871,
+     "skill_adjusted": 0.13258036560164
+    },
+    "D27": {
+     "statement": "shots conceded per match",
+     "forecasts": 293,
+     "improvement": 0.15588783279649543,
+     "improvement_ci": [
+      -0.026400183195758764,
+      0.30285096140388057
+     ],
+     "skill_season": 0.11520422589731871,
+     "skill_adjusted": 0.25313312158968326
+    },
+    "D28": {
+     "statement": "xG conceded per match",
+     "forecasts": 293,
+     "improvement": -0.0045681375902388854,
+     "improvement_ci": [
+      -0.22166635749317165,
+      0.11872075360113754
+     ],
+     "skill_season": 0.2044081088090065,
+     "skill_adjusted": 0.20077373558436762
+    },
+    "A29": {
+     "statement": "shots per match",
+     "forecasts": 293,
+     "improvement": 0.23092337124194207,
+     "improvement_ci": [
+      0.085907333920619,
+      0.36945045016306655
+     ],
+     "skill_season": 0.14975020717695042,
+     "skill_adjusted": 0.3460927557334119
+    },
+    "A30": {
+     "statement": "xG per match",
+     "forecasts": 293,
+     "improvement": 0.13463417221494123,
+     "improvement_ci": [
+      0.04720527491472715,
+      0.20640483709390645
+     ],
+     "skill_season": 0.29839072256769283,
+     "skill_adjusted": 0.39285130685311453
+    },
+    "A31": {
+     "statement": "xT added per match",
+     "forecasts": 293,
+     "improvement": 0.2330471426032137,
+     "improvement_ci": [
+      0.1485657540778702,
+      0.2955142927746047
+     ],
+     "skill_season": 0.3960195346798513,
+     "skill_adjusted": 0.5367754563108713
+    },
+    "A32": {
+     "statement": "pass completion under pressure in own half",
+     "forecasts": 293,
+     "improvement": -0.08605001138748047,
+     "improvement_ci": [
+      -0.2095600172018366,
+      0.008260545605727088
+     ],
+     "skill_season": 0.408595497998565,
+     "skill_adjusted": 0.3577051338667343
+    }
+   }
+  },
+  "k=3, venue=yes": {
+   "pooled_improvement": 0.10197445933814353,
+   "statements": {
+    "S01": {
+     "statement": "open-play sequences per match",
+     "forecasts": 293,
+     "improvement": 0.15748403168706626,
+     "improvement_ci": [
+      0.06638868896986849,
+      0.24101193230925533
+     ],
+     "skill_season": 0.349283312166246,
+     "skill_adjusted": 0.4517607996523597
+    },
+    "S02": {
+     "statement": "passes per sequence",
+     "forecasts": 293,
+     "improvement": 0.17874467364879698,
+     "improvement_ci": [
+      0.10429017631316084,
+      0.2426809789565525
+     ],
+     "skill_season": 0.5671614409548541,
+     "skill_adjusted": 0.6445290279339944
+    },
+    "S03": {
+     "statement": "long-pass share of a sequence",
+     "forecasts": 293,
+     "improvement": 0.10697371192837957,
+     "improvement_ci": [
+      0.02506496044729911,
+      0.18748430304668595
+     ],
+     "skill_season": 0.5316218644181543,
+     "skill_adjusted": 0.5817260121674381
+    },
+    "S04": {
+     "statement": "share of sequences starting in the build-up zone",
+     "forecasts": 293,
+     "improvement": 0.04148566031619194,
+     "improvement_ci": [
+      -0.024853657412193142,
+      0.1047214323311707
+     ],
+     "skill_season": -0.007595841577725526,
+     "skill_adjusted": 0.03420493724197571
+    },
+    "S05": {
+     "statement": "shot rate per sequence",
+     "forecasts": 293,
+     "improvement": 0.11713704023218441,
+     "improvement_ci": [
+      -0.03245057433248655,
+      0.2471103724128122
+     ],
+     "skill_season": 0.16506789504029984,
+     "skill_adjusted": 0.2628693706101066
+    },
+    "S06": {
+     "statement": "sequence duration (s)",
+     "forecasts": 293,
+     "improvement": 0.1636075575386805,
+     "improvement_ci": [
+      0.09894553925795146,
+      0.243354792411957
+     ],
+     "skill_season": 0.45116246470610843,
+     "skill_adjusted": 0.5409564333410914
+    },
+    "R09": {
+     "statement": "goal kicks: first pass short",
+     "forecasts": 292,
+     "improvement": 0.04758332814892763,
+     "improvement_ci": [
+      -0.0251639207269565,
+      0.10508203609325295
+     ],
+     "skill_season": 0.3932301541509905,
+     "skill_adjusted": 0.4221022828368981
+    },
+    "R10": {
+     "statement": "goal kicks: reached the opponent half",
+     "forecasts": 292,
+     "improvement": 0.006709813760993666,
+     "improvement_ci": [
+      -0.04207722258986779,
+      0.04331215518094722
+     ],
+     "skill_season": 0.3035179075219324,
+     "skill_adjusted": 0.30819117265032747
+    },
+    "R11": {
+     "statement": "goal kicks: ended in own half",
+     "forecasts": 292,
+     "improvement": -0.002814110961661287,
+     "improvement_ci": [
+      -0.0791818362808685,
+      0.05423665356371066
+     ],
+     "skill_season": 0.18314746697997997,
+     "skill_adjusted": 0.18084875331274752
+    },
+    "R12": {
+     "statement": "keeper: first pass short",
+     "forecasts": 272,
+     "improvement": -0.0003462650185557248,
+     "improvement_ci": [
+      -0.056562294169653526,
+      0.053756798557870966
+     ],
+     "skill_season": 0.10827059042747311,
+     "skill_adjusted": 0.10796181572692076
+    },
+    "R13": {
+     "statement": "throw-ins in own half: ended in own half",
+     "forecasts": 293,
+     "improvement": 0.04632682410380917,
+     "improvement_ci": [
+      -0.013802519798106427,
+      0.11091133379496754
+     ],
+     "skill_season": 0.014677191187814631,
+     "skill_adjusted": 0.06032406763712783
+    },
+    "P14": {
+     "statement": "corners per match",
+     "forecasts": 293,
+     "improvement": 0.0969752067479075,
+     "improvement_ci": [
+      0.013978380862501139,
+      0.17369122028430262
+     ],
+     "skill_season": -0.06365273296447249,
+     "skill_adjusted": 0.0394952107227341
+    },
+    "P15": {
+     "statement": "corners played short / outside the box",
+     "forecasts": 290,
+     "improvement": -0.07904855143589407,
+     "improvement_ci": [
+      -0.1680497585481282,
+      0.009486809110467065
+     ],
+     "skill_season": 0.11537956351298628,
+     "skill_adjusted": 0.04545159943809951
+    },
+    "P16": {
+     "statement": "corners to the far post",
+     "forecasts": 290,
+     "improvement": -0.060192325007547565,
+     "improvement_ci": [
+      -0.14195305465827213,
+      -0.024483887558696793
+     ],
+     "skill_season": -0.14481614588464597,
+     "skill_adjusted": -0.21372529141162255
+    },
+    "P17": {
+     "statement": "corners ending in a shot",
+     "forecasts": 290,
+     "improvement": -0.0037465587690990176,
+     "improvement_ci": [
+      -0.07614456440177819,
+      0.05845660155693555
+     ],
+     "skill_season": 0.023817085511928404,
+     "skill_adjusted": 0.020159758853408483
+    },
+    "T18": {
+     "statement": "open-play losses per match",
+     "forecasts": 293,
+     "improvement": 0.1178288478098436,
+     "improvement_ci": [
+      0.0108185127518029,
+      0.20501523840614522
+     ],
+     "skill_season": 0.26994767506223605,
+     "skill_adjusted": 0.3559688993505504
+    },
+    "T19": {
+     "statement": "losses in own third",
+     "forecasts": 293,
+     "improvement": 0.15475103288195624,
+     "improvement_ci": [
+      0.08918806951319602,
+      0.2168453406459082
+     ],
+     "skill_season": 0.19556340913073456,
+     "skill_adjusted": 0.3200508024557931
+    },
+    "T20": {
+     "statement": "counter-press regains within 5 s",
+     "forecasts": 293,
+     "improvement": -0.014339046810626366,
+     "improvement_ci": [
+      -0.05452983026625646,
+      0.01943936798774004
+     ],
+     "skill_season": -0.01881812026841989,
+     "skill_adjusted": -0.03342700098646301
+    },
+    "T21": {
+     "statement": "recoveries in the final third",
+     "forecasts": 293,
+     "improvement": 0.047013708466060566,
+     "improvement_ci": [
+      -0.020637765125054885,
+      0.10640430209352425
+     ],
+     "skill_season": 0.03291192899007023,
+     "skill_adjusted": 0.07837832562153602
+    },
+    "T22": {
+     "statement": "recoveries followed by a shot within 10 s",
+     "forecasts": 293,
+     "improvement": 0.019442531285944087,
+     "improvement_ci": [
+      -0.03215336267055968,
+      0.06770904224409013
+     ],
+     "skill_season": -0.02301496417925386,
+     "skill_adjusted": -0.003124963732209718
+    },
+    "D23": {
+     "statement": "PPDA",
+     "forecasts": 293,
+     "improvement": 0.18233526162777758,
+     "improvement_ci": [
+      0.09775917603587725,
+      0.26258510199562046
+     ],
+     "skill_season": 0.05228117018639167,
+     "skill_adjusted": 0.2250837309700272
+    },
+    "D24": {
+     "statement": "pressures per match",
+     "forecasts": 293,
+     "improvement": 0.12383215006557069,
+     "improvement_ci": [
+      0.0721902887156034,
+      0.16248744014060035
+     ],
+     "skill_season": 0.08089321216771828,
+     "skill_adjusted": 0.19470818184485006
+    },
+    "D25": {
+     "statement": "pressures in the final third",
+     "forecasts": 293,
+     "improvement": 0.16203984719349307,
+     "improvement_ci": [
+      0.08965485450826616,
+      0.21816924442424113
+     ],
+     "skill_season": 0.0537710987545178,
+     "skill_adjusted": 0.2070978853224026
+    },
+    "D26": {
+     "statement": "height of defensive actions",
+     "forecasts": 293,
+     "improvement": 0.17213509906799873,
+     "improvement_ci": [
+      0.09618293307248849,
+      0.24704079372205134
+     ],
+     "skill_season": -0.04215949358304871,
+     "skill_adjusted": 0.13723273408952485
+    },
+    "D27": {
+     "statement": "shots conceded per match",
+     "forecasts": 293,
+     "improvement": 0.16410016428248275,
+     "improvement_ci": [
+      0.008278543529345983,
+      0.29036555438121914
+     ],
+     "skill_season": 0.11520422589731871,
+     "skill_adjusted": 0.26039935778401513
+    },
+    "D28": {
+     "statement": "xG conceded per match",
+     "forecasts": 293,
+     "improvement": 0.0203129662448025,
+     "improvement_ci": [
+      -0.15634995317966172,
+      0.12296359145021452
+     ],
+     "skill_season": 0.2044081088090065,
+     "skill_adjusted": 0.22056894003940775
+    },
+    "A29": {
+     "statement": "shots per match",
+     "forecasts": 293,
+     "improvement": 0.23214866323358585,
+     "improvement_ci": [
+      0.10121260173115498,
+      0.3600304572844989
+     ],
+     "skill_season": 0.14975020717695042,
+     "skill_adjusted": 0.34713455999545473
+    },
+    "A30": {
+     "statement": "xG per match",
+     "forecasts": 293,
+     "improvement": 0.13594692976339529,
+     "improvement_ci": [
+      0.05934772662283472,
+      0.20085213453911865
+     ],
+     "skill_season": 0.29839072256769283,
+     "skill_adjusted": 0.39377234972812925
+    },
+    "A31": {
+     "statement": "xT added per match",
+     "forecasts": 293,
+     "improvement": 0.2301947375804465,
+     "improvement_ci": [
+      0.15328857043729527,
+      0.2870470857304259
+     ],
+     "skill_season": 0.3960195346798513,
+     "skill_adjusted": 0.5350526593979388
+    },
+    "A32": {
+     "statement": "pass completion under pressure in own half",
+     "forecasts": 293,
+     "improvement": -0.06533559762418428,
+     "improvement_ci": [
+      -0.16978364540249746,
+      0.0136350057256317
+     ],
+     "skill_season": 0.408595497998565,
+     "skill_adjusted": 0.36995573142266813
+    }
+   }
+  },
+  "k=5, venue=yes": {
+   "pooled_improvement": 0.10228168720697228,
+   "statements": {
+    "S01": {
+     "statement": "open-play sequences per match",
+     "forecasts": 293,
+     "improvement": 0.15920265371284026,
+     "improvement_ci": [
+      0.07403298163099559,
+      0.23636823815274444
+     ],
+     "skill_season": 0.349283312166246,
+     "skill_adjusted": 0.45287913568460947
+    },
+    "S02": {
+     "statement": "passes per sequence",
+     "forecasts": 293,
+     "improvement": 0.17556900817467624,
+     "improvement_ci": [
+      0.11110674114429842,
+      0.23477670586638721
+     ],
+     "skill_season": 0.5671614409548541,
+     "skill_adjusted": 0.6431544774661664
+    },
+    "S03": {
+     "statement": "long-pass share of a sequence",
+     "forecasts": 293,
+     "improvement": 0.10557515857478561,
+     "improvement_ci": [
+      0.02881591987955634,
+      0.18014250062635562
+     ],
+     "skill_season": 0.5316218644181543,
+     "skill_adjusted": 0.58107096035517
+    },
+    "S04": {
+     "statement": "share of sequences starting in the build-up zone",
+     "forecasts": 293,
+     "improvement": 0.04662727939516609,
+     "improvement_ci": [
+      -0.012813652839302359,
+      0.10319656048049608
+     ],
+     "skill_season": -0.007595841577725526,
+     "skill_adjusted": 0.03938561124492679
+    },
+    "S05": {
+     "statement": "shot rate per sequence",
+     "forecasts": 293,
+     "improvement": 0.12130498197424999,
+     "improvement_ci": [
+      -0.016007934707222615,
+      0.2441605441050234
+     ],
+     "skill_season": 0.16506789504029984,
+     "skill_adjusted": 0.26634931898215886
+    },
+    "S06": {
+     "statement": "sequence duration (s)",
+     "forecasts": 293,
+     "improvement": 0.16498932351134465,
+     "improvement_ci": [
+      0.10527180124918212,
+      0.2410444260057092
+     ],
+     "skill_season": 0.45116246470610843,
+     "skill_adjusted": 0.5417147983718813
+    },
+    "R09": {
+     "statement": "goal kicks: first pass short",
+     "forecasts": 292,
+     "improvement": 0.05051344818488224,
+     "improvement_ci": [
+      -0.015139129162364151,
+      0.10397294306668192
+     ],
+     "skill_season": 0.3932301541509905,
+     "skill_adjusted": 0.42388019131943344
+    },
+    "R10": {
+     "statement": "goal kicks: reached the opponent half",
+     "forecasts": 292,
+     "improvement": 0.00975790315394165,
+     "improvement_ci": [
+      -0.03484723035988191,
+      0.04179185475842906
+     ],
+     "skill_season": 0.3035179075219324,
+     "skill_adjusted": 0.310314112328788
+    },
+    "R11": {
+     "statement": "goal kicks: ended in own half",
+     "forecasts": 292,
+     "improvement": 0.0028973700523106105,
+     "improvement_ci": [
+      -0.06673635134685973,
+      0.05293478559641618
+     ],
+     "skill_season": 0.18314746697997997,
+     "skill_adjusted": 0.1855141910463063
+    },
+    "R12": {
+     "statement": "keeper: first pass short",
+     "forecasts": 272,
+     "improvement": 0.005239303139699003,
+     "improvement_ci": [
+      -0.04562478219144528,
+      0.05398743585383525
+     ],
+     "skill_season": 0.10827059042747311,
+     "skill_adjusted": 0.11294263112280833
+    },
+    "R13": {
+     "statement": "throw-ins in own half: ended in own half",
+     "forecasts": 293,
+     "improvement": 0.04828076546440052,
+     "improvement_ci": [
+      -0.009280115557341873,
+      0.10979005174965906
+     ],
+     "skill_season": 0.014677191187814631,
+     "skill_adjusted": 0.06224933062680016
+    },
+    "P14": {
+     "statement": "corners per match",
+     "forecasts": 293,
+     "improvement": 0.09898821583915896,
+     "improvement_ci": [
+      0.018697648238470865,
+      0.17213797574341372
+     ],
+     "skill_season": -0.06365273296447249,
+     "skill_adjusted": 0.041636353344126076
+    },
+    "P15": {
+     "statement": "corners played short / outside the box",
+     "forecasts": 290,
+     "improvement": -0.06552443581537393,
+     "improvement_ci": [
+      -0.14460637364122597,
+      0.012086279379267428
+     ],
+     "skill_season": 0.11537956351298628,
+     "skill_adjusted": 0.057415308501424955
+    },
+    "P16": {
+     "statement": "corners to the far post",
+     "forecasts": 290,
+     "improvement": -0.04796863088156278,
+     "improvement_ci": [
+      -0.11918841335262664,
+      -0.01661153436824314
+     ],
+     "skill_season": -0.14481614588464597,
+     "skill_adjusted": -0.1997314090138398
+    },
+    "P17": {
+     "statement": "corners ending in a shot",
+     "forecasts": 290,
+     "improvement": 0.004032028492559903,
+     "improvement_ci": [
+      -0.061450669060176155,
+      0.06081028407948985
+     ],
+     "skill_season": 0.023817085511928404,
+     "skill_adjusted": 0.027753082837094545
+    },
+    "T18": {
+     "statement": "open-play losses per match",
+     "forecasts": 293,
+     "improvement": 0.12020575700743252,
+     "improvement_ci": [
+      0.021737310228149287,
+      0.2005516549418216
+     ],
+     "skill_season": 0.26994767506223605,
+     "skill_adjusted": 0.3577041674364162
+    },
+    "T19": {
+     "statement": "losses in own third",
+     "forecasts": 293,
+     "improvement": 0.15467396313738124,
+     "improvement_ci": [
+      0.09027539562999287,
+      0.21693541246231585
+     ],
+     "skill_season": 0.19556340913073456,
+     "skill_adjusted": 0.319988804733208
+    },
+    "T20": {
+     "statement": "counter-press regains within 5 s",
+     "forecasts": 293,
+     "improvement": -0.0015938967815614102,
+     "improvement_ci": [
+      -0.03686113297058391,
+      0.02874626277852077
+     ],
+     "skill_season": -0.01881812026841989,
+     "skill_adjusted": -0.02044201119131217
+    },
+    "T21": {
+     "statement": "recoveries in the final third",
+     "forecasts": 293,
+     "improvement": 0.0519858805838036,
+     "improvement_ci": [
+      -0.008763102327809635,
+      0.1066042300780633
+     ],
+     "skill_season": 0.03291192899007023,
+     "skill_adjusted": 0.08318685396361347
+    },
+    "T22": {
+     "statement": "recoveries followed by a shot within 10 s",
+     "forecasts": 293,
+     "improvement": 0.026094674739646218,
+     "improvement_ci": [
+      -0.020513243452277674,
+      0.07275808417804752
+     ],
+     "skill_season": -0.02301496417925386,
+     "skill_adjusted": 0.0036802785647945813
+    },
+    "D23": {
+     "statement": "PPDA",
+     "forecasts": 293,
+     "improvement": 0.1866959309959838,
+     "improvement_ci": [
+      0.10602161318917724,
+      0.2647417615399139
+     ],
+     "skill_season": 0.05228117018639167,
+     "skill_adjusted": 0.22921641944086757
+    },
+    "D24": {
+     "statement": "pressures per match",
+     "forecasts": 293,
+     "improvement": 0.12311897304140873,
+     "improvement_ci": [
+      0.07640792703738475,
+      0.15748080188888802
+     ],
+     "skill_season": 0.08089321216771828,
+     "skill_adjusted": 0.1940526960010167
+    },
+    "D25": {
+     "statement": "pressures in the final third",
+     "forecasts": 293,
+     "improvement": 0.16131873156048038,
+     "improvement_ci": [
+      0.09297595426688932,
+      0.21504731520591291
+     ],
+     "skill_season": 0.0537710987545178,
+     "skill_adjusted": 0.20641554486930602
+    },
+    "D26": {
+     "statement": "height of defensive actions",
+     "forecasts": 293,
+     "improvement": 0.17356121054931295,
+     "improvement_ci": [
+      0.10398596088854684,
+      0.24251837101402618
+     ],
+     "skill_season": -0.04215949358304871,
+     "skill_adjusted": 0.13871896970868425
+    },
+    "D27": {
+     "statement": "shots conceded per match",
+     "forecasts": 293,
+     "improvement": 0.16614445922887622,
+     "improvement_ci": [
+      0.02413785331412499,
+      0.2793046793291165
+     ],
+     "skill_season": 0.11520422589731871,
+     "skill_adjusted": 0.2622081413136036
+    },
+    "D28": {
+     "statement": "xG conceded per match",
+     "forecasts": 293,
+     "improvement": 0.034773921067763225,
+     "improvement_ci": [
+      -0.1171442942554457,
+      0.12396097806876838
+     ],
+     "skill_season": 0.2044081088090065,
+     "skill_adjusted": 0.23207395843543455
+    },
+    "A29": {
+     "statement": "shots per match",
+     "forecasts": 293,
+     "improvement": 0.23028416562898635,
+     "improvement_ci": [
+      0.10969222823249725,
+      0.34985989225981706
+     ],
+     "skill_season": 0.14975020717695042,
+     "skill_adjusted": 0.34554927129342494
+    },
+    "A30": {
+     "statement": "xG per match",
+     "forecasts": 293,
+     "improvement": 0.134596843337782,
+     "improvement_ci": [
+      0.06573943573885577,
+      0.19427924726209922
+     ],
+     "skill_season": 0.29839072256769283,
+     "skill_adjusted": 0.3928251165665835
+    },
+    "A31": {
+     "statement": "xT added per match",
+     "forecasts": 293,
+     "improvement": 0.22563092317492095,
+     "improvement_ci": [
+      0.15399267870108613,
+      0.27792726662062517
+     ],
+     "skill_season": 0.3960195346798513,
+     "skill_adjusted": 0.5322962046496548
+    },
+    "A32": {
+     "statement": "pass completion under pressure in own half",
+     "forecasts": 293,
+     "improvement": -0.052179298020550435,
+     "improvement_ci": [
+      -0.14225529985890328,
+      0.016851173790557006
+     ],
+     "skill_season": 0.408595497998565,
+     "skill_adjusted": 0.3777364262379369
+    }
+   }
+  },
+  "k=10, venue=yes": {
+   "pooled_improvement": 0.09904913130945764,
+   "statements": {
+    "S01": {
+     "statement": "open-play sequences per match",
+     "forecasts": 293,
+     "improvement": 0.15605600096333916,
+     "improvement_ci": [
+      0.08157006788777876,
+      0.22239200969555117
+     ],
+     "skill_season": 0.349283312166246,
+     "skill_adjusted": 0.4508315562296912
+    },
+    "S02": {
+     "statement": "passes per sequence",
+     "forecasts": 293,
+     "improvement": 0.16260431870940717,
+     "improvement_ci": [
+      0.11225711747871414,
+      0.21392352444270712
+     ],
+     "skill_season": 0.5671614409548541,
+     "skill_adjusted": 0.6375428599595516
+    },
+    "S03": {
+     "statement": "long-pass share of a sequence",
+     "forecasts": 293,
+     "improvement": 0.09902578712372123,
+     "improvement_ci": [
+      0.034774417915213185,
+      0.163531202723177
+     ],
+     "skill_season": 0.5316218644181543,
+     "skill_adjusted": 0.5780033779656875
+    },
+    "S04": {
+     "statement": "share of sequences starting in the build-up zone",
+     "forecasts": 293,
+     "improvement": 0.052654683323689055,
+     "improvement_ci": [
+      0.0056162349909355536,
+      0.09923097398633085
+     ],
+     "skill_season": -0.007595841577725526,
+     "skill_adjusted": 0.045458798378815723
+    },
+    "S05": {
+     "statement": "shot rate per sequence",
+     "forecasts": 293,
+     "improvement": 0.12108435910569681,
+     "improvement_ci": [
+      0.003977628202361472,
+      0.22990312225876675
+     ],
+     "skill_season": 0.16506789504029984,
+     "skill_adjusted": 0.2661651138661155
+    },
+    "S06": {
+     "statement": "sequence duration (s)",
+     "forecasts": 293,
+     "improvement": 0.15811960807165426,
+     "improvement_ci": [
+      0.1059889185914259,
+      0.22667629462674344
+     ],
+     "skill_season": 0.45116246470610843,
+     "skill_adjusted": 0.5379444406817913
+    },
+    "R09": {
+     "statement": "goal kicks: first pass short",
+     "forecasts": 292,
+     "improvement": 0.053012056115390616,
+     "improvement_ci": [
+      -0.0023845787588969714,
+      0.09920834240432974
+     ],
+     "skill_season": 0.3932301541509905,
+     "skill_adjusted": 0.42539627126826507
+    },
+    "R10": {
+     "statement": "goal kicks: reached the opponent half",
+     "forecasts": 292,
+     "improvement": 0.014073396908180213,
+     "improvement_ci": [
+      -0.02214508898783607,
+      0.03952863044059585
+     ],
+     "skill_season": 0.3035179075219324,
+     "skill_adjusted": 0.31331977644881615
+    },
+    "R11": {
+     "statement": "goal kicks: ended in own half",
+     "forecasts": 292,
+     "improvement": 0.010623624660990538,
+     "improvement_ci": [
+      -0.046634996502796344,
+      0.05116562525167623
+     ],
+     "skill_season": 0.18314746697997997,
+     "skill_adjusted": 0.19182540169416407
+    },
+    "R12": {
+     "statement": "keeper: first pass short",
+     "forecasts": 272,
+     "improvement": 0.013224126951893345,
+     "improvement_ci": [
+      -0.03001384391640083,
+      0.054535539381596165
+     ],
+     "skill_season": 0.10827059042747311,
+     "skill_adjusted": 0.12006293334639706
+    },
+    "R13": {
+     "statement": "throw-ins in own half: ended in own half",
+     "forecasts": 293,
+     "improvement": 0.04909477182543398,
+     "improvement_ci": [
+      -0.0050405442304792825,
+      0.10686656577912235
+     ],
+     "skill_season": 0.014677191187814631,
+     "skill_adjusted": 0.06305138966084456
+    },
+    "P14": {
+     "statement": "corners per match",
+     "forecasts": 293,
+     "improvement": 0.09907247549519405,
+     "improvement_ci": [
+      0.023268848714797286,
+      0.16665890313680354
+     ],
+     "skill_season": -0.06365273296447249,
+     "skill_adjusted": 0.04172597635754638
+    },
+    "P15": {
+     "statement": "corners played short / outside the box",
+     "forecasts": 290,
+     "improvement": -0.0452957908356828,
+     "improvement_ci": [
+      -0.10752847303926028,
+      0.016122580098590467
+     ],
+     "skill_season": 0.11537956351298628,
+     "skill_adjusted": 0.07530998125290012
+    },
+    "P16": {
+     "statement": "corners to the far post",
+     "forecasts": 290,
+     "improvement": -0.03043345523225316,
+     "improvement_ci": [
+      -0.08327568729275203,
+      -0.006543669577839362
+     ],
+     "skill_season": -0.14481614588464597,
+     "skill_adjusted": -0.1796568568095871
+    },
+    "P17": {
+     "statement": "corners ending in a shot",
+     "forecasts": 290,
+     "improvement": 0.013355149658311083,
+     "improvement_ci": [
+      -0.040640000476988236,
+      0.06297547541891335
+     ],
+     "skill_season": 0.023817085511928404,
+     "skill_adjusted": 0.03685415442880291
+    },
+    "T18": {
+     "statement": "open-play losses per match",
+     "forecasts": 293,
+     "improvement": 0.11847297218396136,
+     "improvement_ci": [
+      0.03497441609460117,
+      0.18948920198604569
+     ],
+     "skill_season": 0.26994767506223605,
+     "skill_adjusted": 0.35643914384742414
+    },
+    "T19": {
+     "statement": "losses in own third",
+     "forecasts": 293,
+     "improvement": 0.15080542201148994,
+     "improvement_ci": [
+      0.08928075310815353,
+      0.21190637747249996
+     ],
+     "skill_season": 0.19556340913073456,
+     "skill_adjusted": 0.3168768086982584
+    },
+    "T20": {
+     "statement": "counter-press regains within 5 s",
+     "forecasts": 293,
+     "improvement": 0.014567631772722356,
+     "improvement_ci": [
+      -0.014671157485792952,
+      0.03913291123927265
+     ],
+     "skill_season": -0.01881812026841989,
+     "skill_adjusted": -0.003976353048972259
+    },
+    "T21": {
+     "statement": "recoveries in the final third",
+     "forecasts": 293,
+     "improvement": 0.058102921323201495,
+     "improvement_ci": [
+      0.00768841173608803,
+      0.10553817905019425
+     ],
+     "skill_season": 0.03291192899007023,
+     "skill_adjusted": 0.08910257109256692
+    },
+    "T22": {
+     "statement": "recoveries followed by a shot within 10 s",
+     "forecasts": 293,
+     "improvement": 0.03446392752279315,
+     "improvement_ci": [
+      -0.0048816906165585205,
+      0.07667351644124953
+     ],
+     "skill_season": -0.02301496417925386,
+     "skill_adjusted": 0.012242149400952806
+    },
+    "D23": {
+     "statement": "PPDA",
+     "forecasts": 293,
+     "improvement": 0.18490363675729637,
+     "improvement_ci": [
+      0.1106681732039767,
+      0.26088219258111944
+     ],
+     "skill_season": 0.05228117018639167,
+     "skill_adjusted": 0.22751782844229707
+    },
+    "D24": {
+     "statement": "pressures per match",
+     "forecasts": 293,
+     "improvement": 0.11629090093798178,
+     "improvement_ci": [
+      0.07990903240818825,
+      0.14441447604584967
+     ],
+     "skill_season": 0.08089321216771828,
+     "skill_adjusted": 0.1877769685829488
+    },
+    "D25": {
+     "statement": "pressures in the final third",
+     "forecasts": 293,
+     "improvement": 0.15665231331225782,
+     "improvement_ci": [
+      0.09147885517159171,
+      0.20722500873092597
+     ],
+     "skill_season": 0.0537710987545178,
+     "skill_adjusted": 0.20200004505753855
+    },
+    "D26": {
+     "statement": "height of defensive actions",
+     "forecasts": 293,
+     "improvement": 0.17259358689552529,
+     "improvement_ci": [
+      0.11092380095781751,
+      0.23291989406784752
+     ],
+     "skill_season": -0.04215949358304871,
+     "skill_adjusted": 0.13771055153167377
+    },
+    "D27": {
+     "statement": "shots conceded per match",
+     "forecasts": 293,
+     "improvement": 0.1628970250381031,
+     "improvement_ci": [
+      0.04319031982928856,
+      0.2547697962353841
+     ],
+     "skill_season": 0.11520422589731871,
+     "skill_adjusted": 0.259334825264931
+    },
+    "D28": {
+     "statement": "xG conceded per match",
+     "forecasts": 293,
+     "improvement": 0.05233104198646943,
+     "improvement_ci": [
+      -0.06380226128173372,
+      0.12300866159268364
+     ],
+     "skill_season": 0.2044081088090065,
+     "skill_adjusted": 0.24604226147101704
+    },
+    "A29": {
+     "statement": "shots per match",
+     "forecasts": 293,
+     "improvement": 0.2216375972704393,
+     "improvement_ci": [
+      0.11622410815870887,
+      0.3261990503604836
+     ],
+     "skill_season": 0.14975020717695042,
+     "skill_adjusted": 0.33819752833794003
+    },
+    "A30": {
+     "statement": "xG per match",
+     "forecasts": 293,
+     "improvement": 0.12801431345165737,
+     "improvement_ci": [
+      0.07405801234740239,
+      0.18091572337008133
+     ],
+     "skill_season": 0.29839072256769283,
+     "skill_adjusted": 0.388206752529503
+    },
+    "A31": {
+     "statement": "xT added per match",
+     "forecasts": 293,
+     "improvement": 0.21281688286771927,
+     "improvement_ci": [
+      0.1498111031928927,
+      0.25885622605005065
+     ],
+     "skill_season": 0.3960195346798513,
+     "skill_adjusted": 0.5245567746222799
+    },
+    "A32": {
+     "statement": "pass completion under pressure in own half",
+     "forecasts": 293,
+     "improvement": -0.03343316221279702,
+     "improvement_ci": [
+      -0.1027549112784143,
+      0.01904373935027981
+     ],
+     "skill_season": 0.408595497998565,
+     "skill_adjusted": 0.3888229753497726
+    }
+   }
+  },
+  "k=20, venue=yes": {
+   "pooled_improvement": 0.08941069979818717,
+   "statements": {
+    "S01": {
+     "statement": "open-play sequences per match",
+     "forecasts": 293,
+     "improvement": 0.14388945460600644,
+     "improvement_ci": [
+      0.07959432751409345,
+      0.20103950583969288
+     ],
+     "skill_season": 0.349283312166246,
+     "skill_adjusted": 0.44291458148167184
+    },
+    "S02": {
+     "statement": "passes per sequence",
+     "forecasts": 293,
+     "improvement": 0.13700507854843025,
+     "improvement_ci": [
+      0.1001349415398709,
+      0.17974113146485204
+     ],
+     "skill_season": 0.5671614409548541,
+     "skill_adjusted": 0.6264625217356237
+    },
+    "S03": {
+     "statement": "long-pass share of a sequence",
+     "forecasts": 293,
+     "improvement": 0.0852435503751724,
+     "improvement_ci": [
+      0.03494566094329943,
+      0.13640374906893626
+     ],
+     "skill_season": 0.5316218644181543,
+     "skill_adjusted": 0.5715480796132546
+    },
+    "S04": {
+     "statement": "share of sequences starting in the build-up zone",
+     "forecasts": 293,
+     "improvement": 0.05539732994256985,
+     "improvement_ci": [
+      0.017222980058480553,
+      0.09525024208052701
+     ],
+     "skill_season": -0.007595841577725526,
+     "skill_adjusted": 0.04822227770691723
+    },
+    "S05": {
+     "statement": "shot rate per sequence",
+     "forecasts": 293,
+     "improvement": 0.11055162114743444,
+     "improvement_ci": [
+      0.013475842027810714,
+      0.2024357515923283
+     ],
+     "skill_season": 0.16506789504029984,
+     "skill_adjusted": 0.25737099279163467
+    },
+    "S06": {
+     "statement": "sequence duration (s)",
+     "forecasts": 293,
+     "improvement": 0.13692725080523527,
+     "improvement_ci": [
+      0.09282919901196596,
+      0.19611182647508618
+     ],
+     "skill_season": 0.45116246470610843,
+     "skill_adjusted": 0.5263132795526223
+    },
+    "R09": {
+     "statement": "goal kicks: first pass short",
+     "forecasts": 292,
+     "improvement": 0.051942121777080574,
+     "improvement_ci": [
+      0.010375648477844779,
+      0.08904252623677611
+     ],
+     "skill_season": 0.3932301541509905,
+     "skill_adjusted": 0.4247470673747401
+    },
+    "R10": {
+     "statement": "goal kicks: reached the opponent half",
+     "forecasts": 292,
+     "improvement": 0.016788377244888464,
+     "improvement_ci": [
+      -0.01095786663607945,
+      0.035612600288463137
+     ],
+     "skill_season": 0.3035179075219324,
+     "skill_adjusted": 0.31521071163476355
+    },
+    "R11": {
+     "statement": "goal kicks: ended in own half",
+     "forecasts": 292,
+     "improvement": 0.016071197857918107,
+     "improvement_ci": [
+      -0.027310282190846857,
+      0.04606348098159285
+     ],
+     "skill_season": 0.18314746697997997,
+     "skill_adjusted": 0.19627526565888642
+    },
+    "R12": {
+     "statement": "keeper: first pass short",
+     "forecasts": 272,
+     "improvement": 0.01960910922438297,
+     "improvement_ci": [
+      -0.015973148719971686,
+      0.053516241417247645
+     ],
+     "skill_season": 0.10827059042747311,
+     "skill_adjusted": 0.12575660981837533
+    },
+    "R13": {
+     "statement": "throw-ins in own half: ended in own half",
+     "forecasts": 293,
+     "improvement": 0.046226795121439235,
+     "improvement_ci": [
+      -0.0020510805431115386,
+      0.0991470022626798
+     ],
+     "skill_season": 0.014677191187814631,
+     "skill_adjusted": 0.060225506799256534
+    },
+    "P14": {
+     "statement": "corners per match",
+     "forecasts": 293,
+     "improvement": 0.09357784922120194,
+     "improvement_ci": [
+      0.025782056904060213,
+      0.15428816185229943
+     ],
+     "skill_season": -0.06365273296447249,
+     "skill_adjusted": 0.035881602104596344
+    },
+    "P15": {
+     "statement": "corners played short / outside the box",
+     "forecasts": 290,
+     "improvement": -0.027127055472170758,
+     "improvement_ci": [
+      -0.07247459362307285,
+      0.01628671441322349
+     ],
+     "skill_season": 0.11537956351298628,
+     "skill_adjusted": 0.09138241586058715
+    },
+    "P16": {
+     "statement": "corners to the far post",
+     "forecasts": 290,
+     "improvement": -0.015900387724072873,
+     "improvement_ci": [
+      -0.05121880969095827,
+      0.00027138974492968426
+     ],
+     "skill_season": -0.14481614588464597,
+     "skill_adjusted": -0.16301916647699066
+    },
+    "P17": {
+     "statement": "corners ending in a shot",
+     "forecasts": 290,
+     "improvement": 0.018115779042369273,
+     "improvement_ci": [
+      -0.024639987046966905,
+      0.05897946196935244
+     ],
+     "skill_season": 0.023817085511928404,
+     "skill_adjusted": 0.041501399495730396
+    },
+    "T18": {
+     "statement": "open-play losses per match",
+     "forecasts": 293,
+     "improvement": 0.1079452803619092,
+     "improvement_ci": [
+      0.03965169060067586,
+      0.16683595007572638
+     ],
+     "skill_season": 0.26994767506223605,
+     "skill_adjusted": 0.3487533779565066
+    },
+    "T19": {
+     "statement": "losses in own third",
+     "forecasts": 293,
+     "improvement": 0.14040577040434865,
+     "improvement_ci": [
+      0.08258369326228232,
+      0.19797789100275598
+     ],
+     "skill_season": 0.19556340913073456,
+     "skill_adjusted": 0.3085109484131816
+    },
+    "T20": {
+     "statement": "counter-press regains within 5 s",
+     "forecasts": 293,
+     "improvement": 0.02504832051526773,
+     "improvement_ci": [
+      0.0015385233408287124,
+      0.04429174173698036
+     ],
+     "skill_season": -0.01881812026841989,
+     "skill_adjusted": 0.006701562554826124
+    },
+    "T21": {
+     "statement": "recoveries in the final third",
+     "forecasts": 293,
+     "improvement": 0.061501537049092114,
+     "improvement_ci": [
+      0.021298850023912963,
+      0.10006015129483914
+     ],
+     "skill_season": 0.03291192899007023,
+     "skill_adjusted": 0.09238933181902254
+    },
+    "T22": {
+     "statement": "recoveries followed by a shot within 10 s",
+     "forecasts": 293,
+     "improvement": 0.039653523233934784,
+     "improvement_ci": [
+      0.007288577026976273,
+      0.07831427389663026
+     ],
+     "skill_season": -0.02301496417925386,
+     "skill_adjusted": 0.017551183471491205
+    },
+    "D23": {
+     "statement": "PPDA",
+     "forecasts": 293,
+     "improvement": 0.1677285488204181,
+     "improvement_ci": [
+      0.10195185444278454,
+      0.23613780427083575
+     ],
+     "skill_season": 0.05228117018639167,
+     "skill_adjusted": 0.21124067420081305
+    },
+    "D24": {
+     "statement": "pressures per match",
+     "forecasts": 293,
+     "improvement": 0.10039647826509701,
+     "improvement_ci": [
+      0.07154621709848719,
+      0.12219070511300512
+     ],
+     "skill_season": 0.08089321216771828,
+     "skill_adjusted": 0.17316829681562507
+    },
+    "D25": {
+     "statement": "pressures in the final third",
+     "forecasts": 293,
+     "improvement": 0.14565415920064484,
+     "improvement_ci": [
+      0.08262311191754113,
+      0.19633692369962363
+     ],
+     "skill_season": 0.0537710987545178,
+     "skill_adjusted": 0.19159327377677848
+    },
+    "D26": {
+     "statement": "height of defensive actions",
+     "forecasts": 293,
+     "improvement": 0.1665448109381361,
+     "improvement_ci": [
+      0.1114340874283497,
+      0.22124745072289864
+     ],
+     "skill_season": -0.04215949358304871,
+     "skill_adjusted": 0.13140676224312375
+    },
+    "D27": {
+     "statement": "shots conceded per match",
+     "forecasts": 293,
+     "improvement": 0.1503771305601178,
+     "improvement_ci": [
+      0.05715240593702908,
+      0.2207821336937914
+     ],
+     "skill_season": 0.11520422589731871,
+     "skill_adjusted": 0.2482572755385981
+    },
+    "D28": {
+     "statement": "xG conceded per match",
+     "forecasts": 293,
+     "improvement": 0.06182507143736693,
+     "improvement_ci": [
+      -0.023537803594568807,
+      0.11492665933369561
+     ],
+     "skill_season": 0.2044081088090065,
+     "skill_adjusted": 0.2535956343168796
+    },
+    "A29": {
+     "statement": "shots per match",
+     "forecasts": 293,
+     "improvement": 0.2035204128794239,
+     "improvement_ci": [
+      0.11451462648308786,
+      0.28861967151132983
+     ],
+     "skill_season": 0.14975020717695042,
+     "skill_adjusted": 0.3227933960629421
+    },
+    "A30": {
+     "statement": "xG per match",
+     "forecasts": 293,
+     "improvement": 0.11452604981804604,
+     "improvement_ci": [
+      0.07275073785804997,
+      0.15948870972470608
+     ],
+     "skill_season": 0.29839072256769283,
+     "skill_adjusted": 0.37874326162770855
+    },
+    "A31": {
+     "statement": "xT added per match",
+     "forecasts": 293,
+     "improvement": 0.19051302964218675,
+     "improvement_ci": [
+      0.1359254291422558,
+      0.22971629202787802
+     ],
+     "skill_season": 0.3960195346798513,
+     "skill_adjusted": 0.5110856829726905
+    },
+    "A32": {
+     "statement": "pass completion under pressure in own half",
+     "forecasts": 293,
+     "improvement": -0.01737727198632899,
+     "improvement_ci": [
+      -0.06699566318815098,
+      0.019976877529171322
+     ],
+     "skill_season": 0.408595497998565,
+     "skill_adjusted": 0.39831850111334666
+    }
+   }
+  }
+ }
+}
