@@ -164,7 +164,8 @@ export default function Threat({
           </div>
           <div className="sticker pad">
             <h3>Who adds it</h3>
-            <table style={{ marginTop: 6 }}>
+            <div className="table-wrap" style={{ marginTop: 6 }}>
+            <table>
               <thead>
                 <tr>
                   <th>Player</th>
@@ -186,10 +187,73 @@ export default function Threat({
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       </div>
 
+      <section className="section" aria-labelledby="xw-h">
+        <div className="section-head">
+          <h2 id="xw-h">Watch the biggest moves</h2>
+          <Explain>The season's passes and carries with the largest xT added, replayed with the possession around them.</Explain>
+          <GoalToggle count={goals && goalRows.length} on={onlyGoals} set={setOnlyGoals} />
+        </div>
+        <div className="layout-split">
+          <div className="sticker" style={plain}>
+            <Replay
+              teamKey={d.key}
+              clips={clips}
+              index={Math.min(idx, Math.max(clips.length - 1, 0))}
+              onIndex={setIdx}
+              fallback={
+                <div className="note info" style={{ margin: 14 }}>
+                  <span className="tag">Replays</span>
+                  {events ? (rows ? "No clips." : "Loading the clip list…") : "Replays need the raw event files."}
+                </div>
+              }
+            />
+            {clips[idx] && (
+              <div className="replay-cap">
+                <p>{clips[idx].detail}</p>
+              </div>
+            )}
+          </div>
+          <div className="stack">
+            <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Move</th>
+                  <th>xT</th>
+                  <th>Match</th>
+                </tr>
+              </thead>
+              <tbody>
+                {best.map((r, i) => (
+                  <tr key={i} aria-selected={i === idx} onClick={() => setIdx(i)} style={{ cursor: "pointer" }}>
+                    <td>
+                      <b>{(r as ClipRow & { player?: string }).player || r.family}</b>{" "}
+                      <span className="muted">{r.family.replace("xT ", "")}</span>
+                    </td>
+                    <td>+{xtOf(r).toFixed(2)}</td>
+                    <td>
+                      vs {r.opponent}, {r.minute}'
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div>
+            <button type="button" className="btn ghost no-print" onClick={() => go("clips:threat")}>
+              All 40 in the clip list
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <details className="more">
+        <summary>More detail: by third and channel, against the other teams</summary>
+        <div>
       <section className="section" aria-labelledby="xo-h">
         <div className="section-head">
           <h2 id="xo-h">By third and channel</h2>
@@ -219,63 +283,6 @@ export default function Threat({
         </table>
       </section>
 
-      <section className="section" aria-labelledby="xw-h">
-        <div className="section-head">
-          <h2 id="xw-h">Watch the biggest moves</h2>
-          <Explain>The season's passes and carries with the largest xT added, replayed with the possession around them.</Explain>
-          <GoalToggle count={goals && goalRows.length} on={onlyGoals} set={setOnlyGoals} />
-        </div>
-        <div className="layout-split">
-          <div className="sticker" style={plain}>
-            <Replay
-              teamKey={d.key}
-              clips={clips}
-              index={Math.min(idx, Math.max(clips.length - 1, 0))}
-              onIndex={setIdx}
-              fallback={
-                <div className="note info" style={{ margin: 14 }}>
-                  <span className="tag">Replays</span>
-                  {events ? (rows ? "No clips." : "Loading the clip list…") : "Replays need the raw event files."}
-                </div>
-              }
-            />
-            {clips[idx] && (
-              <div className="replay-cap">
-                <p>{clips[idx].detail}</p>
-              </div>
-            )}
-          </div>
-          <div className="stack">
-            <table>
-              <thead>
-                <tr>
-                  <th>Move</th>
-                  <th>xT</th>
-                  <th>Match</th>
-                </tr>
-              </thead>
-              <tbody>
-                {best.map((r, i) => (
-                  <tr key={i} aria-selected={i === idx} onClick={() => setIdx(i)} style={{ cursor: "pointer" }}>
-                    <td>
-                      <b>{(r as ClipRow & { player?: string }).player || r.family}</b>{" "}
-                      <span className="muted">{r.family.replace("xT ", "")}</span>
-                    </td>
-                    <td>+{xtOf(r).toFixed(2)}</td>
-                    <td>
-                      vs {r.opponent}, {r.minute}'
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <button type="button" className="btn ghost no-print" onClick={() => go("clips:threat")}>
-              All 40 in the clip list
-            </button>
-          </div>
-        </div>
-      </section>
-
       {ranks.length > 0 && (
         <section className="section">
           <div className="section-head">
@@ -289,6 +296,8 @@ export default function Threat({
           </div>
         </section>
       )}
+        </div>
+      </details>
       <div className="stack" style={{ marginTop: 18 }}>
         <Note kind="info" tag="What xT sees">
           Only where the ball goes, not how: pressure, defenders' positions and the receiver's situation are not in the

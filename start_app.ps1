@@ -1,7 +1,7 @@
 # Avvia l'app del report sull'avversario, dopo averla ricostruita e testata.
 # Uso (PowerShell, dalla cartella del progetto):
-#   powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1
-#   powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -DataDir D:\altri_dati -Port 8770 -SaltaTest
+#   powershell -ExecutionPolicy Bypass -File .\start_app.ps1
+#   powershell -ExecutionPolicy Bypass -File .\start_app.ps1 -DataDir D:\altri_dati -Port 8770 -SaltaTest
 # Passi: 1) ferma l'app gia' accesa sulla stessa porta  2) installa cio' che manca  3) ricompila il frontend
 #        4) svuota la cache dell'app (mappe e reti vengono ricalcolate)  5) esegue i test  6) avvia l'app e apre il browser
 param(

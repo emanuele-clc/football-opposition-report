@@ -76,7 +76,21 @@ Also found, background only: Murphy-style skill and calibration used for match-o
 ## Conclusion after the second search
 Nothing found that grades the statements of an opposition report by next-match forecast skill against a baseline, interval calibration and discrimination, on unseen teams, with a protocol first. The closest pieces are now: **Franks 2016** (discrimination), **Russomanno et al. 2019** and **Garrido et al. 2020** (team-level stability and identifiability in football), **Heuer 2020** (indicators rated by forecasting quality), **Matteo et al. 2026** (meta-metrics at team level, AFL). The wording "to our knowledge" stays; still avoid "first".
 
+## Scopus search (27 October 2026)
+Scopus, FH OÖ institutional access, field TITLE-ABS-KEY unless stated, no year limit, run on 27 Oct 2026. Titles screened (first author and year in the results list); abstracts only for possible hits. This is a structured search, not yet a full systematic review: abstracts of the kept papers still need to be read.
+
+| # | Query | Hits | Kept / notes |
+|---|---|---|---|
+| S1 | `(football OR soccer) AND ("performance indicator*" OR "match statistic*" OR "key performance indicator*") AND (reliab* OR stabil* OR discriminat* OR repeatab*)` | 99 | Matteo et al. 2026 (already listed). The rest use "discriminate" for winning vs losing teams (e.g. Castellano et al. 2012) or "reliability" for inter-operator data reliability (e.g. Liu et al. 2013, OPTA): different questions |
+| S2 | `(football OR soccer OR sport*) AND ("performance indicator*" OR "match statistic*" OR "team statistic*" OR metric*) AND ("next match*" OR "subsequent match*" OR "future match*" OR "out-of-sample" OR "match-to-match" OR "game-to-game")` | 50 | Liu et al. 2016 (match-to-match variation, already listed). Others: match-outcome prediction, physical load variability |
+| S3 | `("opposition analysis" OR "opposition report*" OR "scouting report*" OR "opponent analysis" OR "opposition scouting" OR "match preparation") AND (football OR soccer OR sport*)` | 113 | Plakias 2025 (opponent and real-time analysis, game-theory practice), Clijmans et al. 2023 (intrinsic playing style beyond the past opponents), Gu et al. 2025 (systematic review of playing-style identification). None evaluates whether report statements hold in the next match |
+| S4 | `("meta-analytics" OR "meta-metric*" OR metametric* OR "stabilization point*" OR "signal and noise" OR "signal-to-noise") AND (sport* OR football OR soccer OR basketball OR hockey OR baseball)` | not shown on the page | Top hits: Franks et al. 2016 and Matteo et al. 2026; the rest are physiology/test reliability |
+| S5 | Forward citations of Franks et al.: `REFTITLE("statistical properties of sports metrics")` | 44 | Davis et al. 2024 (already listed). Others: player valuation, plus-minus, xG/EPV, hot hand. None grades report statements |
+| S6 | `(football OR soccer) AND ("playing style*" OR "style of play" OR "team style*" OR tactical) AND (stabil* OR consisten* OR repeatab* OR "sample size" OR "number of matches") AND (predict* OR forecast* OR reliab*)` | 52 | Zhong et al. 2026 (styles and outcome prediction, UCL). Others: player variability, outcome prediction |
+
+**Result:** the Scopus search confirms the web searches. No paper found grades the statements of an opposition report by next-match forecast skill against a baseline, combined with discrimination, on unseen teams with a protocol fixed first. New papers to read: Clijmans et al. 2023, Plakias 2025, Gu et al. 2025 (review). Wording unchanged: "to our knowledge"; avoid "first".
+
 ## Still to do
 1. Download through the university and read in full: **Matteo et al. 2026** (publisher blocks access from here), **Russomanno et al. 2019**, Chang & Chuang 2026, Liu et al. 2016.
-2. One Scopus search with the terms of the first search's "Next steps", noting hits and kept papers (needed to report the search in the thesis).
+2. ~~One Scopus search~~ done 27 Oct 2026 (section above); still to do: read the abstracts of the kept papers and add SPORTDiscus or Web of Science if the thesis needs a full systematic review.
 3. Check Lames & McGarry 2007, O'Donoghue 2005 in full (unchanged from the first search).

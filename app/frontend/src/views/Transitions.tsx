@@ -243,6 +243,7 @@ export default function Transitions({
             )}
           </div>
           <div className="stack">
+            <div className="table-wrap">
             <table>
               <thead>
                 <tr>
@@ -275,6 +276,7 @@ export default function Transitions({
                 )}
               </tbody>
             </table>
+            </div>
             <button type="button" className="btn ghost no-print" onClick={() => go("clips:transitions")}>
               Every loss and recovery
             </button>

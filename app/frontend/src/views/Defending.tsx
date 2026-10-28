@@ -186,6 +186,9 @@ export default function Defending({ d }: { d: TeamData }) {
         </div>
       </div>
 
+      <details className="more">
+        <summary>More detail: against the other teams</summary>
+        <div>
       <section className="section">
         <div className="section-head">
           <h2>Against the other teams</h2>
@@ -197,6 +200,8 @@ export default function Defending({ d }: { d: TeamData }) {
           ))}
         </div>
       </section>
+        </div>
+      </details>
       <div className="stack" style={{ marginTop: 18 }}>
         <Note kind="caution" tag="PPDA">
           PPDA also depends on how much the opponent has the ball: against a team that dominates possession opponents

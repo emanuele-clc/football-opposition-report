@@ -215,20 +215,17 @@ export default function Overview({
           <h2 id="trust-h">How much can you trust this?</h2>
         </div>
         <ul className="trust">
-          {(["build-up", "advanced"] as const).map((p) => {
-            const Q = d.report.phases[p];
+          {(() => {
+            // one row for both phases: the caveat is the same, only the verdict differs
+            const s = (p: "build-up" | "advanced") =>
+              d.report.phases[p].verdict === "clear structure" ? "clear structure" : "no clear structure";
             return (
-              <li key={p} className="caution">
-                <b>{p === "build-up" ? "Build-up families" : "Advanced families"}</b>
-                <span>
-                  {Q.verdict}
-                  {Q.verdict !== "clear structure"
-                    ? ": a convenient partition, not separate behaviours"
-                    : ": above the simple checks (shuffled features, single blob). Against a stricter check (synthetic data with the same correlations and no clusters), the families of the 10 thesis teams were only slightly better: read them as slices of a continuum."}
-                </span>
+              <li className="caution">
+                <b>Families</b>
+                <span>{`Build-up: ${s("build-up")}; advanced: ${s("advanced")}. Even a clear structure was only slightly better than data with no groups at all: read families as slices of a continuum, not separate behaviours.`}</span>
               </li>
             );
-          })}
+          })()}
           <li className="caution">
             <b>Shots</b>
             <span>

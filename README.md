@@ -83,7 +83,7 @@ You need **Python 3.13** and **Node.js**. On Windows, in PowerShell:
 git clone https://github.com/emanuele-clc/football-opposition-report
 cd football-opposition-report
 pip install -r requirements.txt
-powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1
+powershell -ExecutionPolicy Bypass -File .\start_app.ps1
 ```
 
 The app opens at **http://127.0.0.1:8765** with four example teams. Everything runs on your computer and nothing is uploaded.
@@ -100,7 +100,7 @@ python -X utf8 <repo>\src\oppreport.py --statsbomb matches\9_281.json --data-dir
 python -X utf8 <repo>\src\oppreport.py --csv events.csv --team "Team name" --out reports   # data from any other provider
 ```
 
-Then start the app on that folder: `.\avvia_app.ps1 -DataDir <data_folder>`. Always use `python -X utf8` on Windows (team names have accents). Format for other providers: [docs/data_format.md](docs/data_format.md). How to read the report: [docs/analyst_guide.md](docs/analyst_guide.md).
+Then start the app on that folder: `.\start_app.ps1 -DataDir <data_folder>`. Always use `python -X utf8` on Windows (team names have accents). Format for other providers: [docs/data_format.md](docs/data_format.md). How to read the report: [docs/analyst_guide.md](docs/analyst_guide.md).
 
 </details>
 

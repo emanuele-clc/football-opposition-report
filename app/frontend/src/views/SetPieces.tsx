@@ -252,6 +252,9 @@ export default function SetPieces({
         </div>
       </div>
 
+      <details className="more">
+        <summary>More detail: corners by side</summary>
+        <div>
       {kind === "Corner" && Object.keys(k.by_side).length > 0 && (
         <section className="section">
           <div className="section-head">
@@ -283,6 +286,8 @@ export default function SetPieces({
           </table>
         </section>
       )}
+        </div>
+      </details>
       <div style={{ marginTop: 24 }}>
         <Note kind="info" tag="Zones">
           Hand-defined delivery zones, as in the corner analysis of the thesis. Descriptive: that analysis had little

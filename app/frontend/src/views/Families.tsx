@@ -188,6 +188,9 @@ export default function Families({
         </div>
       </div>
 
+      <details className="more">
+        <summary>More detail: how sequences start, every number per family, typical sequences to find on video</summary>
+        <div>
       <section className="section" aria-labelledby="st-h">
         <div className="section-head">
           <h2 id="st-h">How sequences start decides the family</h2>
@@ -364,6 +367,8 @@ export default function Families({
           </table>
         </div>
       </section>
+        </div>
+      </details>
     </>
   );
 }

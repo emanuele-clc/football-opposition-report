@@ -6,7 +6,7 @@ Purpose: get one structured opinion from a person with football analysis experie
 One or more people with practical experience: a club or academy video analyst, a coach with a UEFA licence, or a performance-analysis student with match-preparation experience. Record their role and years of experience (not their name, unless they agree). LASK Linz only with the professor's consent.
 
 ## Format (30 minutes, in person or screen share)
-The reviewer does not install anything: you run the app on your PC (`powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1`) and share the screen.
+The reviewer does not install anything: you run the app on your PC (`powershell -ExecutionPolicy Bypass -File .\start_app.ps1`) and share the screen.
 1. **5 min — context.** Read the paragraph in "What to say" below. Do not explain what the families "mean": let the reviewer judge.
 2. **5 min — Overview of one team** they know (preferably a team they have watched: Bayer Leverkusen 2023/24 or a 2015/16 team). Let them look; note spontaneous comments word for word.
 3. **15 min — Review tab.** For each of the 24 sequences (3 per family): play the replay, and the video if available, then ask "Does this sequence fit the family it was assigned to?" (yes / partly / no). For partly and no, write what does not fit. Do not suggest answers.

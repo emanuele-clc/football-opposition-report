@@ -214,6 +214,9 @@ export default function Restarts({
         </section>
       </div>
 
+      <details className="more">
+        <summary>More detail: where the first pass goes, short or long first pass</summary>
+        <div>
       {events && (
         <section className="section" aria-label="Pressing map">
           <div className="section-head">
@@ -282,6 +285,8 @@ export default function Restarts({
           </section>
         )}
       </div>
+        </div>
+      </details>
     </>
   );
 }

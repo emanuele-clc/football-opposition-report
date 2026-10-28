@@ -6,8 +6,8 @@ No new estimates: every number comes from `report_/restarts_/setpieces_/transiti
 ## Run
 One script does everything (stops an app already on the port, installs what is missing, rebuilds the frontend, clears the app cache, runs the tests, starts the app):
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1                      # data in $env:OPPREPORT_DATA, else examples\
-powershell -ExecutionPolicy Bypass -File .\avvia_app.ps1 -DataDir <folder> -Port 8770 -SaltaTest
+powershell -ExecutionPolicy Bypass -File .\start_app.ps1                      # data in $env:OPPREPORT_DATA, else examples\
+powershell -ExecutionPolicy Bypass -File .\start_app.ps1 -DataDir <folder> -Port 8770 -SaltaTest
 ```
 Step by step:
 ```powershell
@@ -44,7 +44,7 @@ Opens http://127.0.0.1:8765. Ctrl+C stops it.
 - **Game plan → Where they hurt you on the break**: their recoveries in a 4 x 3 grid, coloured by the share followed by a shot within 10 s, and every such recovery as a dot to replay (same definitions as `src/report/transitions.py`, which now also writes `recovery_zones` and `recovery_shots`).
 - **Game plan → Where they foul**: fouls committed per match in each zone of their own half against the other teams (handballs excluded), with cards. More fouls can also mean more ball in that zone: a place to check, not proof of a weakness.
 - **Coach sheet** (Game plan → Coach sheet, or `#/<Team>/coach`): one A4 page for the coach with formations, three priorities, how they play, key players, pressing, goals and the matches to watch first. Built from the same numbers as Game plan.
-- **Staff tablets**: `avvia_app.ps1 -Lan` (or `app/run.py --lan`) makes the app reachable from devices on the same network and prints the address. There is no login: only on a trusted network.
+- **Staff tablets**: `start_app.ps1 -Lan` (or `app/run.py --lan`) makes the app reachable from devices on the same network and prints the address. There is no login: only on a trusted network.
 - **Matchups → Without a player**: matches a player started vs matches he did not (starting elevens), with the same difference, interval and verdict as the other splits, including build-up family shares. Open directly with `?split=without&player=<name>`.
 - **Goals**: every goal scored and conceded on one pitch (scored at the right end, conceded at the left, dot size = xG), how each move started (StatsBomb play pattern: open play, counter-attack, throw-in, corner, free kick; penalties and own goals apart), and the list of goals with the replay of the whole possession that led to each one (and its GIF). The list adds up to the match scores for all 10 thesis teams; the goal map and list work without raw events, replays need `ev/`.
 - **Defending**: how the team defends without the ball (StatsBomb events only): pressures per match on a pitch grid with the mean height of the defensive actions, PPDA, shots and xG conceded, last 5 matches, ranks against the other teams. From `src/report/defending.py`.

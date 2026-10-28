@@ -327,6 +327,9 @@ export default function Matchups({ d }: { d: TeamData }) {
         </div>
       </div>
 
+      <details className="more">
+        <summary>More detail: match by match</summary>
+        <div>
       <section className="section" aria-labelledby="mm-h">
         <div className="section-head">
           <h2 id="mm-h">Match by match</h2>
@@ -374,6 +377,8 @@ export default function Matchups({ d }: { d: TeamData }) {
           </table>
         </div>
       </section>
+        </div>
+      </details>
     </>
   );
 }

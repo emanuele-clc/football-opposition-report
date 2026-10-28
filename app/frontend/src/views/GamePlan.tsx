@@ -475,6 +475,9 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             )}
           </section>
 
+          <details className="more gp-more">
+            <summary>More detail: key players, matches to watch first, where pressing hurts them, breaks, fouls, when they score, past matches</summary>
+            <div>
           {evs && evs !== "none" && (
             <section className="section" aria-labelledby="kp-h">
               <div className="section-head">
@@ -565,9 +568,6 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
             </section>
           )}
 
-          <details className="more gp-more">
-            <summary>More detail: where pressing hurts them, breaks, fouls, when they score, past matches</summary>
-            <div>
               {P.pressure_zones && (
                 <section className="section" aria-labelledby="pz-h">
                   <div className="section-head">
