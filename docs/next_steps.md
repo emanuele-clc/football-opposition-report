@@ -1,33 +1,31 @@
 # Cosa resta da fare
 
-Aggiornato: 26 ottobre 2026. Ordine = importanza. Quando una voce è fatta, segnala con la data (`FATTO 2026-xx-xx`) e il risultato, non cancellarla.
+Aggiornato: 28 ottobre 2026. Ordine = importanza. Quando una voce è fatta, segnala con la data (`FATTO 2026-xx-xx`) e il risultato, non cancellarla.
 
-Direzione della tesi (26 ott, dopo la mail del Prof. Pichler, che fa da relatore): **uno strumento di report sull'avversario che un analista può usare, e che dice accanto a ogni numero quanto fidarsi (voto A-D)**. Il prototipo attuale è la base; il lavoro va da novembre 2026 alla discussione di luglio 2027. Regola che resta valida (feedback del 21 ott): un messaggio centrale, niente analisi laterali.
+Direzione della tesi (28 ott, dopo l'incontro con il Prof. Pichler, relatore all'FH): **uno strumento di report sull'avversario che dice accanto a ogni numero quanto fidarsi (voto A-D)**. Il professore ha chiesto domande di ricerca a cui si possa rispondere **senza analisti esterni e con dati che ho già**. Regola che resta valida (feedback del 21 ott): un messaggio centrale, niente analisi laterali.
 
-## 0. Questa settimana: incontro con il professore
-- FATTO 2026-10-26: modulo della proposta compilato, `C:\Users\ecole\Downloads\Proposal custom topic - Colecchia.pdf` (titolo: "An opposition report tool for football analysts that states how far each number can be trusted").
-- FATTO 2026-10-26: PPT `slides/Thesis Proposal 2026-10 full.pptx` (38 slide, ★ = da mostrare) e foglio in italiano `slides/Speech_proposal_IT.pdf`. PDF del codice spiegato rifatto (`slides/Il codice della tesi spiegato.pdf`, 39 pagine).
-- Da fare:
-  - inserire la matricola nel modulo;
-  - rispondere alla mail con l'orario (27 ott qualsiasi ora, oppure 28 ott 13:00/16:00) e il modulo allegato;
-  - studiare il foglio "cosa dire" (soprattutto le slide ★ e le risposte "Se chiede");
-  - committare e pushare le modifiche di oggi (app, defending, examples, docs), così il repo che lui può aprire è aggiornato;
-  - all'incontro: fare le 4 domande della slide finale, prendere nota delle risposte, firmare il modulo.
+Domande di ricerca (modulo firmato: `C:\Users\ecole\Downloads\Proposal_for_a_custom_topic_for_a_masters_thesis_v2_signed.pdf`):
+- **RQ1:** quali affermazioni del report sono affidabili per la partita successiva, e i voti restano validi su un secondo provider (Wyscout pubblico, 5 campionati 2017/18)?
+- **RQ2:** una previsione che tiene conto del prossimo avversario e del campo (solo partite già giocate) prevede meglio della media stagionale, e cambia quali affermazioni sono affidabili?
+- **RQ3 (opzionale, se ci sono analisti):** i voti aiutano gli analisti a decidere su cosa basarsi?
+
+## 0. Fatto questa settimana
+- FATTO 2026-10-28: incontro con il Prof. Pichler (slide `slides/Thesis Proposal 2026-10 FINAL v3.pptx`, 28 visibili, dettagli nascosti); modulo rifatto con le nuove RQ, firmato e mandato per mail con i prossimi passi; modifiche dell'app committate e pushate (5031e9f).
+- FATTO 2026-10-28: chiesto al Prof. Ianni (UNICAL, su Teams) se fa da relatore o chi potrebbe farlo. **In attesa di risposta.**
 
 ## 1. Piano fino alla discussione (luglio 2027; da confermare con il professore)
 | Periodo | Lavoro | Domanda |
 |---|---|---|
-| Nov-Dic | Letteratura (Scopus); import degli export Wyscout; clip tagliate dal video della partita + XML provato in un programma; installazione senza Python; protocollo della replica committato | RQ1, RQ2 |
-| Gen | Voto A-D su Wyscout 2017/18, un solo lancio; protocollo dello studio con utenti; inizio reclutamento; (opzionale, se il professore è d'accordo) brief scritto da un modello di IA locale | RQ2, RQ3 |
-| Feb-Mar | Primo giro di valutazione; correzioni; scrittura dei capitoli sul prototipo | RQ3 |
-| Apr | Secondo giro di valutazione | RQ3 |
+| Nov | Estrarre i 5 campionati Wyscout; estendere `src/adapters/wyscout_to_generic_csv.py` e `evidence_provider.py` per calcolare più affermazioni (oggi 24 di 34; recuperare PPDA, tiri concessi); import Wyscout nel tool; letteratura | RQ1 |
+| Dic | Protocollo del grade su Wyscout ("regge" = stesso voto, non stesso valore: sul Barcellona 18 valori su 24 differiscono tra provider) → commit → un solo lancio. Definire la previsione con avversario e campo sulle 9 squadre di sviluppo StatsBomb | RQ1, RQ2 |
+| Gen | Protocollo della previsione con avversario → commit → un solo lancio su Wyscout | RQ2 |
+| Feb-Apr | Integrare voti e previsione nel tool; scrittura dei capitoli; (opzionale) valutazione con analisti | RQ3 |
 | Mag-Giu | Risultati e discussione; bozza completa al professore a maggio; consegna a giugno (data da confermare) | - |
 | Lug | Discussione con demo | - |
 
-Estensioni decise il 26 ott: clip tagliate dal video (dentro RQ1); gli analisti indovinano quali numeri valgono prima di vedere i voti (dentro RQ3); brief scritto da un modello di IA locale (Ollama) solo con voti A-B, misurando affermazioni inventate (opzionale, da decidere con il professore).
+Tolto dalla proposta il 28 ott: brief scritto da un modello di IA locale; lo studio con utenti diventa opzionale (RQ3). Le clip tagliate dal video restano un miglioramento del tool, non una domanda di ricerca.
 
-Rischio principale: trovare gli utenti. Ideale analisti di club (solo con l'ok del professore); realistico allenatori e video analyst di dilettanti e giovanili, studenti di scienze motorie; minimo 8-10 persone, dichiarato come limite.
-Limiti da dire sempre: niente dati veri di un club (dati pubblici Wyscout nel formato export); nessuna promessa che un club lo adotti.
+Limiti da dire sempre: niente dati veri di un club (dati pubblici Wyscout); nessuna promessa che un club lo adotti; definizioni diverse tra provider.
 
 ## 1b. Export per i programmi video: cosa abbiamo scoperto (26 ott)
 - Nacsport Basic (installato) ha la voce "Importare file XML (sul timeline)" nel menu con il tasto destro sulla timeline, ma l'import richiede un account Nacsport Hub, che non si può creare da soli (bisogna contattare Nacsport). Quindi l'XML non è ancora stato provato in un programma vero.
