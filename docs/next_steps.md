@@ -24,7 +24,8 @@ Domande di ricerca (modulo firmato: `C:\Users\ecole\Downloads\Proposal_for_a_cus
 | Lug | Discussione con demo | - |
 
 - FATTO 2026-10-28 (RQ1, preparazione): 5 campionati Wyscout convertiti in `C:\Users\ecole\wyscout_generic\` (1.826 partite, 98 squadre, nessuna partita senza eventi di una squadra). Adapter esteso con azioni difensive ed esito dei passaggi: 29 affermazioni su 34 calcolabili (mancano pressioni e xG); le 24 di prima identiche, round trip difesa 38/38. Bozza `docs/protocol_evidence_grade_wyscout.md` e `src/week4/evidence_grade_wyscout.py`, smoke test passato (solo conteggi).
-- Prossimo: rileggere il protocollo (soprattutto la regola 70% / 50%), committarlo e pusharlo; poi `extract` (lungo), `--set dev`, `--set confirm` una volta sola.
+- FATTO 2026-10-28 (RQ1, confermativo, protocollo commit 4ce5f5a): `results/evidence_grade_wyscout.json`, 96 squadre, un solo lancio. Stessa lettera in 21 di 29 affermazioni (72%, Wilson 95% [0.54, 0.85]), nessuna spostata di due lettere, kappa pesato 0.70: secondo la regola fissata prima, **i voti reggono** (appena sopra la soglia del 70%). Le quattro A di StatsBomb (passaggi per sequenza, quota di lanci lunghi, durata, goal kick corti) sono A anche su Wyscout. 7 delle 8 lettere cambiate passano il confine previsione "weak"/"none" (limite inferiore vicino a 0). SC1 fallisce di nuovo (contropressing D 0.69, appena sotto "high"). Voti Wyscout: 5 A, 11 B, 10 C, 3 D; 5 affermazioni non testabili (pressioni, xG).
+- Prossimo: RQ2 (previsione con avversario e campo), sviluppo sulle 9 squadre StatsBomb di sviluppo, poi protocollo.
 
 Tolto dalla proposta il 28 ott: brief scritto da un modello di IA locale; lo studio con utenti diventa opzionale (RQ3). Le clip tagliate dal video restano un miglioramento del tool, non una domanda di ricerca.
 
