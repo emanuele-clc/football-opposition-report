@@ -2,8 +2,10 @@
 Cosi' qualunque fornitore di dati si collega mappando le sue colonne al CSV generico (vedi docs/data_format.md).
 Uso:  python generic_csv.py eventi.csv cartella_uscita [--coords 100|120x80] [--validate-only]
 Colonne obbligatorie: match_id, match_date, home_team, away_team, period, minute, second, team, event_type, x, y
-Colonne facoltative:  end_x, end_y, possession_id, restart, pass_length, shot_goal, player, recipient, xg
-- event_type: pass, carry, shot, dribble, altro (qualunque altro valore = altro). minute e' cumulativo (secondo tempo parte da 45), period 1 o 2.
+Colonne facoltative:  end_x, end_y, possession_id, restart, pass_length, shot_goal, player, recipient, xg, pass_outcome
+- event_type: pass, carry, shot, dribble; azioni difensive duel, interception, foul, clearance, ball_recovery, block (servono alla scheda difensiva:
+  PPDA, altezza delle azioni difensive); qualunque altro valore = altro. Le azioni difensive non contano per le possessioni ricostruite.
+- pass_outcome: complete / incomplete (vuoto = complete). Senza questa colonna tutti i passaggi contano come riusciti. minute e' cumulativo (secondo tempo parte da 45), period 1 o 2.
 - x da 0 (propria porta) a 100 (porta avversaria), y da 0 a 100; la squadra che compie l'evento attacca sempre da sinistra a destra (--coords 100, default). Con --coords 120x80 si usano le misure 120 x 80.
 - possession_id: se manca, viene ricostruito (nuova possessione quando un'altra squadra compie un pass/carry/shot/dribble, quando c'e' una ripresa, o cambia il tempo).
 - restart: sul primo evento di una ripresa: goal_kick, throw_in, corner, free_kick, kick_off, penalty, keeper (portiere che rimette in gioco dopo una presa; altrimenti vuoto). Senza questa colonna tutte le possessioni sono 'gioco normale' e le riprese da fermo NON si escludono.
@@ -14,6 +16,14 @@ import numpy as np, pandas as pd
 
 REQ = ["match_id", "match_date", "home_team", "away_team", "period", "minute", "second", "team", "event_type", "x", "y"]
 TYPE = {"pass": "Pass", "carry": "Carry", "shot": "Shot", "dribble": "Dribble"}
+DEFT = {
+    "duel": "Duel",
+    "interception": "Interception",
+    "foul": "Foul Committed",
+    "clearance": "Clearance",
+    "ball_recovery": "Ball Recovery",
+    "block": "Block",
+}  # added 28 Oct 2026: defensive actions, same names as StatsBomb
 RESTART = {
     "goal_kick": "From Goal Kick",
     "throw_in": "From Throw In",
@@ -33,7 +43,7 @@ def validate(df):
         return [f"colonne mancanti: {miss}"], None
     d = df.copy()
     d["event_type"] = d.event_type.astype(str).str.lower().str.strip()
-    d.loc[~d.event_type.isin(CTRL), "event_type"] = "altro"
+    d.loc[~d.event_type.isin(CTRL | set(DEFT)), "event_type"] = "altro"
     for c in ("period", "minute", "second"):
         bad = pd.to_numeric(d[c], errors="coerce").isna().sum()
         if bad:
@@ -128,7 +138,7 @@ def convert(csv_path, out_dir, coords="100"):
                 "team": {"name": r.team},
                 "possession": int(r._pid),
                 "possession_team": {"name": owner.get(r._pid, r.team)},
-                "type": {"name": TYPE.get(r.event_type, "Other")},
+                "type": {"name": TYPE.get(r.event_type, DEFT.get(r.event_type, "Other"))},
                 "location": [None, None] if pd.isna(r.x) else [float(r.x) * sx, float(r.y) * sy],
             }
             rest = rs.iloc[i] if first[r._pid] == i else None
@@ -155,6 +165,12 @@ def convert(csv_path, out_dir, coords="100"):
                 e["carry"] = {"end_location": e["location"]}
             if r.event_type == "shot":
                 e["shot"] = {"outcome": {"name": "Goal" if "shot_goal" in g.columns and r.shot_goal == 1 else "Other"}}
+            if (
+                r.event_type == "pass"
+                and "pass_outcome" in g.columns
+                and str(r.pass_outcome).strip().lower() == "incomplete"
+            ):
+                e["pass"]["outcome"] = {"name": "Incomplete"}
             if r.event_type == "shot" and "xg" in g.columns and pd.notna(r.xg):
                 e["shot"]["statsbomb_xg"] = float(r.xg)
             if "player" in g.columns and pd.notna(r.player):

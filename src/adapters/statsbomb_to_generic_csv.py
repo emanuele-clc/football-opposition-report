@@ -6,7 +6,18 @@ Coordinate in uscita: 120 x 80 (come StatsBomb), quindi la conversione va fatta 
 import sys, os, json
 import pandas as pd
 
-TYPE = {"Pass": "pass", "Carry": "carry", "Shot": "shot", "Dribble": "dribble"}
+TYPE = {
+    "Pass": "pass",
+    "Carry": "carry",
+    "Shot": "shot",
+    "Dribble": "dribble",
+    "Duel": "duel",
+    "Interception": "interception",
+    "Foul Committed": "foul",
+    "Clearance": "clearance",
+    "Ball Recovery": "ball_recovery",
+    "Block": "block",
+}
 RESTART = {
     "From Goal Kick": "goal_kick",
     "From Throw In": "throw_in",
@@ -54,6 +65,7 @@ def export(mf, team, base, out, possession=True, restart=True):
                 player=(e.get("player") or {}).get("name"),
                 recipient=(e["pass"].get("recipient") or {}).get("name") if t == "pass" else None,
                 xg=e["shot"].get("statsbomb_xg") if t == "shot" else None,
+                pass_outcome=("incomplete" if "outcome" in e["pass"] else "complete") if t == "pass" else None,
             )
             if possession:
                 r["possession_id"] = e["possession"]

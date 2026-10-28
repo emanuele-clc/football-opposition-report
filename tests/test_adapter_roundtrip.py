@@ -1,7 +1,8 @@
 """Prova dell'adattatore: StatsBomb -> CSV generico -> generic_csv.py -> estrazione delle sequenze, confrontata con l'estrazione diretta.
 Uso:  python -X utf8 tests/test_adapter_roundtrip.py <matches.json> "<Squadra>" <cartella_dati> [cartella_lavoro]
 Due casi: con possession_id e restart (deve riprodurre le sequenze), senza possession_id (possessioni ricostruite: si misura lo scostamento).
-Controlla anche le schede uscite da fermo, palle inattive (con nomi dei giocatori e xG) e transizioni.
+Controlla anche le schede uscite da fermo, palle inattive (con nomi dei giocatori e xG), transizioni e (dal 28 ott 2026) la parte della scheda
+difensiva che non usa le pressioni: PPDA, azioni difensive e loro altezza, tiri concessi.
 Esce con codice 1 se nel primo caso meno del 99% delle sequenze/azioni e' riprodotto o le caratteristiche differiscono."""
 
 import sys, os, tempfile
@@ -17,6 +18,7 @@ WORK = os.path.abspath(a[3]) if len(a) > 3 else tempfile.mkdtemp(prefix="roundtr
 sys.argv = ["x", MF, TEAM, BASE]
 sys.path[:0] = [os.path.join(src, "week2"), os.path.join(src, "adapters"), os.path.join(src, "report")]
 import sequences_clustering as S, generic_csv as G, statsbomb_to_generic_csv as E, restarts as RS, setpieces as SP, transitions as TR
+import defending as DF
 
 KEY = ["match", "tempo", "minuto", "sec"]
 FEAT = ["x0", "y0", "x1", "y1", "net_x", "path_len", "directness", "n_pass", "long_share", "width_std", "dur", "shot"]
@@ -29,7 +31,7 @@ def run(name, possession):
     E.export(MF, TEAM, BASE, csv, possession=possession)
     G.convert(csv, d, "120x80")
     out = {}
-    for M in (S, RS, SP, TR):
+    for M in (S, RS, SP, TR, DF):
         M.MF, M.BASE = os.path.join(d, "matches", "generic.json"), d
         out[M.__name__] = M.extract()[:2] if M is TR else M.extract()[0]
         M.MF, M.BASE = MF, BASE
@@ -41,6 +43,8 @@ ref = ref.drop_duplicates(KEY)
 ok = True
 ref_rs, ref_sp = RS.extract()[0], SP.extract()[0]
 ref_tl, ref_tr = TR.extract()[:2]
+ref_df = DF.extract()[0]
+DCOLS = ["opp_pass", "act_hi", "def_actions", "def_x_sum", "shots"]
 for name, poss in (("with_possession_id", True), ("reconstructed", False)):
     o = run(name, poss)
     df = o["sequences_clustering"].drop_duplicates(KEY)
@@ -76,5 +80,9 @@ for name, poss in (("with_possession_id", True), ("reconstructed", False)):
         print(f"  {lab}: {len(b_)} (diretto {len(a_)}), ritrovate {len(mm)}, identiche in tutte le colonne {eq}")
         if poss and (len(mm) / max(len(a_), 1) < 0.99 or eq / max(len(mm), 1) < 0.99):
             ok = False
+    eqd = sum(all(abs(x[c] - y[c]) < 1e-6 for c in DCOLS) for x, y in zip(ref_df, o["defending"]))
+    print(f"  difesa (PPDA, azioni difensive, altezza, tiri concessi): partite identiche {eqd} di {len(ref_df)}")
+    if eqd < len(ref_df):
+        ok = False
 print("\nOK" if ok else "\nFALLITO: con possession_id le sequenze non sono riprodotte")
 sys.exit(0 if ok else 1)

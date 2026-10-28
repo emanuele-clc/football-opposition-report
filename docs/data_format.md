@@ -11,7 +11,7 @@ The report pipeline reads StatsBomb-style events. To use data from any other pro
 | period | yes | 1 or 2 |
 | minute, second | yes | match clock; **minute is cumulative** (the second half starts at 45) |
 | team | yes | team that performs the event |
-| event_type | yes | `pass`, `carry`, `shot`, `dribble`; anything else counts as `other` |
+| event_type | yes | `pass`, `carry`, `shot`, `dribble`; defensive actions `duel`, `interception`, `foul`, `clearance`, `ball_recovery`, `block` (used by the defending sheet; they do not affect possessions); anything else counts as `other` |
 | x, y | yes for pass/carry/shot/dribble | position; with the default `--coords 100`, x from 0 (own goal) to 100 (opponent goal) and y from 0 to 100 |
 | end_x, end_y | passes and carries | end position, same scale |
 | possession_id | strongly recommended | possession identifier; if missing it is reconstructed (see below) |
@@ -21,6 +21,7 @@ The report pipeline reads StatsBomb-style events. To use data from any other pro
 | player | optional | player performing the event (enables takers and receivers in the sheets) |
 | recipient | optional | for passes: player who received it |
 | xg | optional | for shots: expected goals from the provider |
+| pass_outcome | optional | for passes: `complete` or `incomplete` (empty = complete). Without it every pass counts as completed (threat sheet, receivers, completion) |
 
 Convention: the team performing an event always attacks from left to right. If the provider uses real pitch coordinates (e.g. 105 x 68 m) rescale them to 0-100 first. With 120 x 80 coordinates use `--coords 120x80`.
 
@@ -53,6 +54,11 @@ Same matches from both providers (exploratory; Barcelona, La Liga 2017/18, the 3
 - larger gaps, all in C: long-pass share 0.21 vs 0.15; short first pass from goal kicks 23% vs 39% and from throw-ins 79-85% vs 91-96%; keeper restarts 56 vs 115; losses and recoveries per match 46-50 vs 62. Corners 202 vs 201.
 - goals from shots: 90 in all three versions (the score says 93: three own goals, which are not shots).
 So on these matches the family shares barely move between providers, while pass lengths, keeper restarts and transitions do: those sheets are not comparable across providers.
+
+Defensive actions and pass outcome (added 28 Oct 2026; mapping in the header of `wyscout_to_generic_csv.py`, fixed before comparing). Round trip StatsBomb -> CSV -> pipeline (`tests/test_adapter_roundtrip.py`): the defending numbers that do not use pressures (opponent passes, PPDA actions, defensive actions and their height, shots conceded) are identical in every match. The 24 statements already computed from Wyscout are unchanged by the new mapping (Barcelona 2017/18, 38 matches). Exploratory check on the same 36 Barcelona matches (StatsBomb vs Wyscout, season value, per-match correlation):
+- PPDA 10.2 vs 4.5 (r 0.80): Wyscout records a 'defending duel' for every ground one-against-one, StatsBomb only tackles, so Wyscout has about twice as many actions. The level is not comparable across providers; the match-to-match pattern is.
+- height of defensive actions 50.1 vs 48.4 (r 0.89); shots conceded per match 11.8 vs 10.9 (r 0.98); xT added per match 1.78 vs 2.02 (r 0.73; Wyscout has few carries); main build-up receiver Piqué in both, 11.6% vs 11.7% of receptions.
+- still missing in Wyscout: pressures (and so completion under pressure) and xG.
 
 ## Mapping hints (from memory; check against your provider's documentation)
 - Opta-style feeds: positions on a 0-100 scale in the attacking direction of the team; pass end coordinates are usually event qualifiers; restarts appear as qualifiers or event types (goal kick, throw-in, corner).
