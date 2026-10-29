@@ -1,0 +1,109 @@
+{
+ "team": "Leicester City",
+ "matches": 38,
+ "ppda": {
+  "value": 4.576669414674361,
+  "ci": [
+   4.108523850683377,
+   5.1076930920343
+  ],
+  "last5": 4.545454545454546,
+  "opp_passes": 11103,
+  "actions": 2426
+ },
+ "pressures": {
+  "per_match": 0.0,
+  "ci": [
+   0.0,
+   0.0
+  ],
+  "last5": 0.0,
+  "by_third": {
+   "own third": {
+    "share": 0.0,
+    "per_match": 0.0
+   },
+   "middle third": {
+    "share": 0.0,
+    "per_match": 0.0
+   },
+   "final third": {
+    "share": 0.0,
+    "per_match": 0.0
+   }
+  },
+  "counterpress_share": 0.0,
+  "counterpress_ci": [
+   0.0,
+   0.0
+  ],
+  "grid_per_match": [
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  ]
+ },
+ "height": {
+  "mean_x": 44.973042362002566,
+  "ci": [
+   43.38065110961785,
+   46.53748612726091
+  ],
+  "median_x": 38.4,
+  "last5": 45.771428571428565,
+  "actions_per_match": 164.0
+ },
+ "conceded": {
+  "shots_per_match": 12.5,
+  "shots_ci": [
+   10.868421052631579,
+   14.132236842105263
+  ],
+  "xg_per_match": 0.0,
+  "xg_ci": [
+   0.0,
+   0.0
+  ],
+  "last5_shots": 12.4,
+  "last5_xg": 0.0,
+  "xg_per_shot": 0.0,
+  "xg_per_shot_ci": [
+   0.0,
+   0.0
+  ],
+  "last5_xg_per_shot": 0.0
+ }
+}

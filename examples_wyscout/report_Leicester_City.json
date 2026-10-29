@@ -1,0 +1,721 @@
+{
+ "team": "Leicester City",
+ "matches": 38,
+ "period": "2017-08-11 to 2018-05-13",
+ "sequences": 1692,
+ "phases": {
+  "build-up": {
+   "k": 5,
+   "n": 990,
+   "jaccard_mean": 0.878632598844178,
+   "null_shuffle": 0.40653158782647586,
+   "null_gauss": 0.531996172423739,
+   "margin": 0.346636426420439,
+   "verdict": "clear structure",
+   "families": [
+    {
+     "fam": "B1",
+     "n": 238,
+     "share": 0.2404040404040404,
+     "share_ci": [
+      0.21110578540195088,
+      0.2727340909090909
+     ],
+     "passes": 5.2899159663865545,
+     "dur": 17.794117647058822,
+     "long": 0.4040796854872485,
+     "x0": 10.830252100840339,
+     "x1": 89.53613445378153,
+     "directness": 0.5205006273583119,
+     "shot": 0.12605042016806722,
+     "shot_ci": [
+      0.08927579365079365,
+      0.1680824136883669
+     ],
+     "shot_share": 0.3448275862068966,
+     "per_match_p10_p90": [
+      0.12880434782608696,
+      0.3693913043478262
+     ],
+     "examples": [
+      {
+       "date": "2018-05-13",
+       "opponent": "Tottenham Hotspur",
+       "half": 2,
+       "minute": 67,
+       "second": 55,
+       "video": "",
+       "start": "From Goal Kick",
+       "passes": 4,
+       "dur": 15.0,
+       "shot": false
+      },
+      {
+       "date": "2018-01-31",
+       "opponent": "Everton",
+       "half": 2,
+       "minute": 68,
+       "second": 48,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 5,
+       "dur": 13.0,
+       "shot": false
+      },
+      {
+       "date": "2018-04-19",
+       "opponent": "Southampton",
+       "half": 1,
+       "minute": 42,
+       "second": 6,
+       "video": "",
+       "start": "From Goal Kick",
+       "passes": 5,
+       "dur": 12.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.8713569216037801,
+     "reliability": "stable"
+    },
+    {
+     "fam": "B2",
+     "n": 93,
+     "share": 0.09393939393939393,
+     "share_ci": [
+      0.07302100944570336,
+      0.1173005640853673
+     ],
+     "passes": 16.655913978494624,
+     "dur": 61.38709677419355,
+     "long": 0.25996889837383724,
+     "x0": 25.35483870967742,
+     "x1": 88.51612903225806,
+     "directness": 0.16326463329603183,
+     "shot": 0.13978494623655913,
+     "shot_ci": [
+      0.051539783240814166,
+      0.25
+     ],
+     "shot_share": 0.14942528735632185,
+     "per_match_p10_p90": [
+      0.024137931034482765,
+      0.18962962962962968
+     ],
+     "examples": [
+      {
+       "date": "2018-03-03",
+       "opponent": "AFC Bournemouth",
+       "half": 1,
+       "minute": 2,
+       "second": 55,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 19,
+       "dur": 54.0,
+       "shot": false
+      },
+      {
+       "date": "2017-12-13",
+       "opponent": "Southampton",
+       "half": 1,
+       "minute": 15,
+       "second": 22,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 20,
+       "dur": 57.0,
+       "shot": false
+      },
+      {
+       "date": "2017-10-16",
+       "opponent": "West Bromwich Albion",
+       "half": 2,
+       "minute": 84,
+       "second": 46,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 16,
+       "dur": 63.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.8996516545726982,
+     "reliability": "stable"
+    },
+    {
+     "fam": "B3",
+     "n": 264,
+     "share": 0.26666666666666666,
+     "share_ci": [
+      0.24092464203423306,
+      0.2914980757229041
+     ],
+     "passes": 3.878787878787879,
+     "dur": 9.113636363636363,
+     "long": 0.19789111351611352,
+     "x0": 29.504545454545458,
+     "x1": 78.89545454545456,
+     "directness": 0.589234083925836,
+     "shot": 0.09090909090909091,
+     "shot_ci": [
+      0.05644383135257498,
+      0.13200739299610895
+     ],
+     "shot_share": 0.27586206896551724,
+     "per_match_p10_p90": [
+      0.1609032258064516,
+      0.3746438746438747
+     ],
+     "examples": [
+      {
+       "date": "2017-09-16",
+       "opponent": "Huddersfield Town",
+       "half": 2,
+       "minute": 45,
+       "second": 16,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 14.0,
+       "shot": false
+      },
+      {
+       "date": "2017-10-29",
+       "opponent": "Everton",
+       "half": 1,
+       "minute": 6,
+       "second": 9,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 3,
+       "dur": 8.0,
+       "shot": false
+      },
+      {
+       "date": "2017-09-16",
+       "opponent": "Huddersfield Town",
+       "half": 2,
+       "minute": 47,
+       "second": 12,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 11.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.8797962792985489,
+     "reliability": "stable"
+    },
+    {
+     "fam": "B4",
+     "n": 150,
+     "share": 0.15151515151515152,
+     "share_ci": [
+      0.12765361008089876,
+      0.1800212999062625
+     ],
+     "passes": 5.3533333333333335,
+     "dur": 14.1,
+     "long": 0.2151988936988937,
+     "x0": 29.816,
+     "x1": 38.36,
+     "directness": 0.09831749201935726,
+     "shot": 0.006666666666666667,
+     "shot_ci": [
+      0.0,
+      0.02287626546681663
+     ],
+     "shot_share": 0.011494252873563218,
+     "per_match_p10_p90": [
+      0.06702586206896552,
+      0.2788177339901478
+     ],
+     "examples": [
+      {
+       "date": "2018-02-10",
+       "opponent": "Manchester City",
+       "half": 1,
+       "minute": 17,
+       "second": 21,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 6,
+       "dur": 12.0,
+       "shot": false
+      },
+      {
+       "date": "2017-09-09",
+       "opponent": "Chelsea",
+       "half": 2,
+       "minute": 67,
+       "second": 1,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 5,
+       "dur": 15.0,
+       "shot": false
+      },
+      {
+       "date": "2018-04-07",
+       "opponent": "Newcastle United",
+       "half": 1,
+       "minute": 37,
+       "second": 2,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 6,
+       "dur": 30.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.8975031269413356,
+     "reliability": "stable"
+    },
+    {
+     "fam": "B5",
+     "n": 245,
+     "share": 0.2474747474747475,
+     "share_ci": [
+      0.21827320150619953,
+      0.2743911946655849
+     ],
+     "passes": 6.404081632653061,
+     "dur": 20.57551020408163,
+     "long": 0.35839858554144277,
+     "x0": 32.02285714285714,
+     "x1": 91.94448979591837,
+     "directness": 0.3564916162063608,
+     "shot": 0.07755102040816327,
+     "shot_ci": [
+      0.04048471362229102,
+      0.12227519828892254
+     ],
+     "shot_share": 0.21839080459770116,
+     "per_match_p10_p90": [
+      0.11861538461538461,
+      0.3555299539170507
+     ],
+     "examples": [
+      {
+       "date": "2017-09-30",
+       "opponent": "AFC Bournemouth",
+       "half": 1,
+       "minute": 38,
+       "second": 58,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 8,
+       "dur": 18.0,
+       "shot": false
+      },
+      {
+       "date": "2017-12-02",
+       "opponent": "Burnley",
+       "half": 1,
+       "minute": 19,
+       "second": 55,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 5,
+       "dur": 14.0,
+       "shot": false
+      },
+      {
+       "date": "2017-12-16",
+       "opponent": "Crystal Palace",
+       "half": 1,
+       "minute": 42,
+       "second": 50,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 7,
+       "dur": 34.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.844855011804527,
+     "reliability": "stable"
+    }
+   ],
+   "by_start": [
+    {
+     "start": "From Goal Kick",
+     "n": 122,
+     "shares": {
+      "B1": 0.836,
+      "B2": 0.107,
+      "B3": 0.0,
+      "B4": 0.057,
+      "B5": 0.0
+     }
+    },
+    {
+     "start": "From Keeper",
+     "n": 29,
+     "shares": {
+      "B1": 0.69,
+      "B2": 0.069,
+      "B3": 0.138,
+      "B4": 0.069,
+      "B5": 0.034
+     }
+    },
+    {
+     "start": "From Throw In",
+     "n": 152,
+     "shares": {
+      "B1": 0.02,
+      "B2": 0.039,
+      "B3": 0.276,
+      "B4": 0.158,
+      "B5": 0.507
+     }
+    },
+    {
+     "start": "Regular Play",
+     "n": 687,
+     "shares": {
+      "B1": 0.164,
+      "B2": 0.105,
+      "B3": 0.317,
+      "B4": 0.17,
+      "B5": 0.243
+     }
+    }
+   ]
+  },
+  "advanced": {
+   "k": 3,
+   "n": 702,
+   "jaccard_mean": 0.7802714428777598,
+   "null_shuffle": 0.45887558847204474,
+   "null_gauss": 0.8263302900423127,
+   "margin": -0.046058847164552885,
+   "verdict": "slices of a continuum (stability close to a structure-free baseline)",
+   "families": [
+    {
+     "fam": "A1",
+     "n": 335,
+     "share": 0.4772079772079772,
+     "share_ci": [
+      0.44095203128317645,
+      0.5137748440906557
+     ],
+     "passes": 4.591044776119403,
+     "dur": 11.205970149253732,
+     "long": 0.23147121535181236,
+     "x0": 67.48298507462687,
+     "x1": 97.93074626865672,
+     "directness": 0.32536089149001396,
+     "shot": 0.0955223880597015,
+     "shot_ci": [
+      0.06389267617671598,
+      0.12904440342013213
+     ],
+     "shot_share": 0.48484848484848486,
+     "per_match_p10_p90": [
+      0.3287878787878788,
+      0.6766666666666667
+     ],
+     "examples": [
+      {
+       "date": "2017-12-23",
+       "opponent": "Manchester United",
+       "half": 1,
+       "minute": 0,
+       "second": 12,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 6.0,
+       "shot": false
+      },
+      {
+       "date": "2017-12-16",
+       "opponent": "Crystal Palace",
+       "half": 1,
+       "minute": 32,
+       "second": 34,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 5,
+       "dur": 7.0,
+       "shot": false
+      },
+      {
+       "date": "2018-02-24",
+       "opponent": "Stoke City",
+       "half": 2,
+       "minute": 47,
+       "second": 1,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 14.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.8002857756933335,
+     "reliability": "stable"
+    },
+    {
+     "fam": "A2",
+     "n": 163,
+     "share": 0.23219373219373218,
+     "share_ci": [
+      0.1927666220437305,
+      0.26988684287204023
+     ],
+     "passes": 12.60122699386503,
+     "dur": 42.331288343558285,
+     "long": 0.27000462217501414,
+     "x0": 69.4085889570552,
+     "x1": 96.1325153374233,
+     "directness": 0.09452146437022588,
+     "shot": 0.1411042944785276,
+     "shot_ci": [
+      0.08770752384316495,
+      0.19870860927152315
+     ],
+     "shot_share": 0.3484848484848485,
+     "per_match_p10_p90": [
+      0.058823529411764705,
+      0.3712121212121213
+     ],
+     "examples": [
+      {
+       "date": "2017-11-04",
+       "opponent": "Stoke City",
+       "half": 1,
+       "minute": 47,
+       "second": 45,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 13,
+       "dur": 40.0,
+       "shot": false
+      },
+      {
+       "date": "2018-02-10",
+       "opponent": "Manchester City",
+       "half": 2,
+       "minute": 58,
+       "second": 21,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 14,
+       "dur": 45.0,
+       "shot": false
+      },
+      {
+       "date": "2017-08-19",
+       "opponent": "Brighton & Hove Albion",
+       "half": 1,
+       "minute": 35,
+       "second": 7,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 13,
+       "dur": 36.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.816035167880433,
+     "reliability": "stable"
+    },
+    {
+     "fam": "A3",
+     "n": 204,
+     "share": 0.2905982905982906,
+     "share_ci": [
+      0.2594064613293016,
+      0.32396303305789775
+     ],
+     "passes": 5.705882352941177,
+     "dur": 15.254901960784315,
+     "long": 0.24571561336267217,
+     "x0": 84.13529411764705,
+     "x1": 65.66470588235293,
+     "directness": -0.1304063285210014,
+     "shot": 0.05392156862745098,
+     "shot_ci": [
+      0.02760574466821125,
+      0.08000421940928269
+     ],
+     "shot_share": 0.16666666666666666,
+     "per_match_p10_p90": [
+      0.16466666666666666,
+      0.4
+     ],
+     "examples": [
+      {
+       "date": "2018-02-10",
+       "opponent": "Manchester City",
+       "half": 1,
+       "minute": 8,
+       "second": 47,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 8,
+       "dur": 17.0,
+       "shot": false
+      },
+      {
+       "date": "2017-09-09",
+       "opponent": "Chelsea",
+       "half": 1,
+       "minute": 28,
+       "second": 12,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 7,
+       "dur": 20.0,
+       "shot": false
+      },
+      {
+       "date": "2017-12-02",
+       "opponent": "Burnley",
+       "half": 2,
+       "minute": 81,
+       "second": 47,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 7,
+       "dur": 23.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.7244933850595134,
+     "reliability": "moderate"
+    }
+   ],
+   "by_start": [
+    {
+     "start": "From Throw In",
+     "n": 389,
+     "shares": {
+      "A1": 0.36,
+      "A2": 0.234,
+      "A3": 0.406
+     }
+    },
+    {
+     "start": "Regular Play",
+     "n": 313,
+     "shares": {
+      "A1": 0.623,
+      "A2": 0.23,
+      "A3": 0.147
+     }
+    }
+   ]
+  }
+ },
+ "reliability": {
+  "3": {
+   "passes": 0.95533239500131,
+   "long": 0.03791672095297436,
+   "shot": 0.04804960697079367,
+   "build_up": 0.1021984444298792,
+   "advanced": 0.12228327228327229
+  },
+  "5": {
+   "passes": 0.6966227802230794,
+   "long": 0.030382389939981096,
+   "shot": 0.03279525850576553,
+   "build_up": 0.07875247559458087,
+   "advanced": 0.09692721960579102
+  },
+  "8": {
+   "passes": 0.5179065822460294,
+   "long": 0.020018884150896664,
+   "shot": 0.0254819529482894,
+   "build_up": 0.06136056324079009,
+   "advanced": 0.07480892329194222
+  },
+  "10": {
+   "passes": 0.4515248245733659,
+   "long": 0.018109025535679037,
+   "shot": 0.022293186396915965,
+   "build_up": 0.054413295922729865,
+   "advanced": 0.06556267806267807
+  }
+ },
+ "style": {
+  "team": {
+   "passes": 6.4775413711583925,
+   "long": 0.27444350464470635,
+   "dur": 19.664302600472812,
+   "shot": 0.09042553191489362,
+   "buildup_share": 0.5851063829787234
+  },
+  "team_ci": {
+   "passes": [
+    6.182638509431221,
+    6.773060174443585
+   ],
+   "long": [
+    0.26239190573617116,
+    0.2865985703674506
+   ],
+   "dur": [
+    18.32956426196456,
+    20.948776287281245
+   ],
+   "shot": [
+    0.07408334070864696,
+    0.10717119933599771
+   ],
+   "buildup_share": [
+    0.5664577259475219,
+    0.6041110354593
+   ]
+  },
+  "references": {
+   "Arsenal": {
+    "passes": 8.706314243759177,
+    "long": 0.22014902767599417,
+    "dur": 24.667645619187468,
+    "shot": 0.14977973568281938,
+    "buildup_share": 0.6079295154185022
+   },
+   "Atl\u00e9tico Madrid": {
+    "passes": 7.2631578947368425,
+    "long": 0.22474418592161882,
+    "dur": 20.30091533180778,
+    "shot": 0.09610983981693363,
+    "buildup_share": 0.584096109839817
+   },
+   "Barcelona": {
+    "passes": 8.617042115572968,
+    "long": 0.2064458382622631,
+    "dur": 24.520078354554357,
+    "shot": 0.1307541625857003,
+    "buildup_share": 0.5812928501469148
+   },
+   "Bayer Leverkusen": {
+    "passes": 7.103407755581669,
+    "long": 0.21744709515156185,
+    "dur": 20.41774383078731,
+    "shot": 0.14394829612220916,
+    "buildup_share": 0.5511163337250293
+   },
+   "Juventus": {
+    "passes": 8.850157728706625,
+    "long": 0.2536232942971295,
+    "dur": 25.736593059936908,
+    "shot": 0.1309148264984227,
+    "buildup_share": 0.5899053627760252
+   },
+   "Napoli": {
+    "passes": 9.30037862852335,
+    "long": 0.19474302276845656,
+    "dur": 23.43247791333614,
+    "shot": 0.14556163230963398,
+    "buildup_share": 0.5166175851914178
+   }
+  }
+ }
+}

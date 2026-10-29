@@ -1,0 +1,1247 @@
+{
+ "team": "Bayer Leverkusen",
+ "matches": 34,
+ "losses": {
+  "n": 1641,
+  "per_match": 48.26470588235294,
+  "regain5": 0.10237659963436929,
+  "regain5_ci": [
+   0.08812841361891474,
+   0.11674609005308842
+  ],
+  "conceded10": 0.04814137720901889,
+  "conceded10_ci": [
+   0.038339781628596435,
+   0.059677994383922135
+  ],
+  "by_third": {
+   "own third": {
+    "n": 558,
+    "per_match": 16.41176470588235,
+    "regain5": 0.10931899641577061,
+    "conceded10": 0.06272401433691756
+   },
+   "middle third": {
+    "n": 674,
+    "per_match": 19.823529411764707,
+    "regain5": 0.08902077151335312,
+    "conceded10": 0.05489614243323442
+   },
+   "final third": {
+    "n": 409,
+    "per_match": 12.029411764705882,
+    "regain5": 0.11491442542787286,
+    "conceded10": 0.017114914425427872
+   }
+  }
+ },
+ "recoveries": {
+  "n": 1912,
+  "per_match": 56.23529411764706,
+  "shot10": 0.05543933054393305,
+  "shot10_ci": [
+   0.04404693371158454,
+   0.0677640039781715
+  ],
+  "by_third": {
+   "own third": {
+    "n": 890,
+    "per_match": 26.176470588235293,
+    "per_match_ci": [
+     24.689748743627906,
+     27.81269275047524
+    ],
+    "shot10": 0.010112359550561797,
+    "shot": 0.07640449438202247,
+    "final_third": 0.4764044943820225
+   },
+   "middle third": {
+    "n": 840,
+    "per_match": 24.705882352941178,
+    "per_match_ci": [
+     23.192516001993884,
+     26.22280640448416
+    ],
+    "shot10": 0.05238095238095238,
+    "shot": 0.1488095238095238,
+    "final_third": 0.7345238095238096
+   },
+   "final third": {
+    "n": 182,
+    "per_match": 5.352941176470588,
+    "per_match_ci": [
+     4.702806292241241,
+     5.980999850160226
+    ],
+    "shot10": 0.29120879120879123,
+    "shot": 0.34065934065934067,
+    "final_third": 0.989010989010989
+   }
+  }
+ },
+ "last5": {
+  "losses_per_match": 43.2,
+  "regain5": 0.08796296296296297,
+  "recoveries_final_third_per_match": 7.0
+ },
+ "recovery_zones": [
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 133,
+   "shot10": 1
+  },
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 203,
+   "shot10": 0
+  },
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 128,
+   "shot10": 1
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 318,
+   "shot10": 7
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 275,
+   "shot10": 11
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 317,
+   "shot10": 5
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 155,
+   "shot10": 19
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 143,
+   "shot10": 22
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 183,
+   "shot10": 15
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 13,
+   "shot10": 5
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 24,
+   "shot10": 16
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 20,
+   "shot10": 4
+  }
+ ],
+ "recovery_shots": [
+  {
+   "match": 2516739,
+   "date": "2017-08-18",
+   "opponent": "Bayern München",
+   "half": 1,
+   "minute": 11,
+   "second": 0,
+   "x": 61.199999999999996,
+   "y": 42.400000000000006
+  },
+  {
+   "match": 2516739,
+   "date": "2017-08-18",
+   "opponent": "Bayern München",
+   "half": 1,
+   "minute": 20,
+   "second": 3,
+   "x": 112.8,
+   "y": 52.800000000000004
+  },
+  {
+   "match": 2516739,
+   "date": "2017-08-18",
+   "opponent": "Bayern München",
+   "half": 1,
+   "minute": 36,
+   "second": 49,
+   "x": 96.0,
+   "y": 45.6
+  },
+  {
+   "match": 2516739,
+   "date": "2017-08-18",
+   "opponent": "Bayern München",
+   "half": 1,
+   "minute": 43,
+   "second": 38,
+   "x": 44.4,
+   "y": 55.2
+  },
+  {
+   "match": 2516739,
+   "date": "2017-08-18",
+   "opponent": "Bayern München",
+   "half": 2,
+   "minute": 48,
+   "second": 33,
+   "x": 85.2,
+   "y": 62.400000000000006
+  },
+  {
+   "match": 2516739,
+   "date": "2017-08-18",
+   "opponent": "Bayern München",
+   "half": 2,
+   "minute": 80,
+   "second": 41,
+   "x": 73.2,
+   "y": 44.800000000000004
+  },
+  {
+   "match": 2516753,
+   "date": "2017-08-26",
+   "opponent": "Hoffenheim",
+   "half": 1,
+   "minute": 13,
+   "second": 27,
+   "x": 78.0,
+   "y": 6.4
+  },
+  {
+   "match": 2516753,
+   "date": "2017-08-26",
+   "opponent": "Hoffenheim",
+   "half": 1,
+   "minute": 18,
+   "second": 28,
+   "x": 85.2,
+   "y": 24.8
+  },
+  {
+   "match": 2516753,
+   "date": "2017-08-26",
+   "opponent": "Hoffenheim",
+   "half": 1,
+   "minute": 25,
+   "second": 37,
+   "x": 57.599999999999994,
+   "y": 39.2
+  },
+  {
+   "match": 2516753,
+   "date": "2017-08-26",
+   "opponent": "Hoffenheim",
+   "half": 1,
+   "minute": 37,
+   "second": 43,
+   "x": 79.2,
+   "y": 73.60000000000001
+  },
+  {
+   "match": 2516753,
+   "date": "2017-08-26",
+   "opponent": "Hoffenheim",
+   "half": 1,
+   "minute": 40,
+   "second": 26,
+   "x": 76.8,
+   "y": 14.4
+  },
+  {
+   "match": 2516753,
+   "date": "2017-08-26",
+   "opponent": "Hoffenheim",
+   "half": 2,
+   "minute": 48,
+   "second": 32,
+   "x": 79.2,
+   "y": 31.200000000000003
+  },
+  {
+   "match": 2516753,
+   "date": "2017-08-26",
+   "opponent": "Hoffenheim",
+   "half": 2,
+   "minute": 57,
+   "second": 10,
+   "x": 13.2,
+   "y": 62.400000000000006
+  },
+  {
+   "match": 2516753,
+   "date": "2017-08-26",
+   "opponent": "Hoffenheim",
+   "half": 2,
+   "minute": 81,
+   "second": 17,
+   "x": 60.0,
+   "y": 46.400000000000006
+  },
+  {
+   "match": 2516764,
+   "date": "2017-09-09",
+   "opponent": "Mainz 05",
+   "half": 1,
+   "minute": 26,
+   "second": 56,
+   "x": 85.2,
+   "y": 29.6
+  },
+  {
+   "match": 2516764,
+   "date": "2017-09-09",
+   "opponent": "Mainz 05",
+   "half": 2,
+   "minute": 66,
+   "second": 47,
+   "x": 46.8,
+   "y": 16.0
+  },
+  {
+   "match": 2516772,
+   "date": "2017-09-17",
+   "opponent": "Freiburg",
+   "half": 1,
+   "minute": 28,
+   "second": 21,
+   "x": 67.2,
+   "y": 39.2
+  },
+  {
+   "match": 2516772,
+   "date": "2017-09-17",
+   "opponent": "Freiburg",
+   "half": 1,
+   "minute": 31,
+   "second": 16,
+   "x": 82.8,
+   "y": 8.8
+  },
+  {
+   "match": 2516772,
+   "date": "2017-09-17",
+   "opponent": "Freiburg",
+   "half": 2,
+   "minute": 47,
+   "second": 32,
+   "x": 91.2,
+   "y": 9.600000000000001
+  },
+  {
+   "match": 2516772,
+   "date": "2017-09-17",
+   "opponent": "Freiburg",
+   "half": 2,
+   "minute": 54,
+   "second": 20,
+   "x": 74.39999999999999,
+   "y": 30.400000000000002
+  },
+  {
+   "match": 2516776,
+   "date": "2017-09-20",
+   "opponent": "Hertha BSC",
+   "half": 1,
+   "minute": 10,
+   "second": 59,
+   "x": 88.8,
+   "y": 20.0
+  },
+  {
+   "match": 2516789,
+   "date": "2017-09-24",
+   "opponent": "Hamburger SV",
+   "half": 2,
+   "minute": 49,
+   "second": 59,
+   "x": 96.0,
+   "y": 30.400000000000002
+  },
+  {
+   "match": 2516789,
+   "date": "2017-09-24",
+   "opponent": "Hamburger SV",
+   "half": 2,
+   "minute": 82,
+   "second": 5,
+   "x": 73.2,
+   "y": 69.60000000000001
+  },
+  {
+   "match": 2516789,
+   "date": "2017-09-24",
+   "opponent": "Hamburger SV",
+   "half": 2,
+   "minute": 89,
+   "second": 16,
+   "x": 33.6,
+   "y": 16.8
+  },
+  {
+   "match": 2516797,
+   "date": "2017-09-29",
+   "opponent": "Schalke 04",
+   "half": 1,
+   "minute": 14,
+   "second": 0,
+   "x": 88.8,
+   "y": 30.400000000000002
+  },
+  {
+   "match": 2516807,
+   "date": "2017-10-15",
+   "opponent": "Wolfsburg",
+   "half": 1,
+   "minute": 25,
+   "second": 12,
+   "x": 85.2,
+   "y": 38.400000000000006
+  },
+  {
+   "match": 2516807,
+   "date": "2017-10-15",
+   "opponent": "Wolfsburg",
+   "half": 2,
+   "minute": 51,
+   "second": 29,
+   "x": 79.2,
+   "y": 59.2
+  },
+  {
+   "match": 2516807,
+   "date": "2017-10-15",
+   "opponent": "Wolfsburg",
+   "half": 2,
+   "minute": 62,
+   "second": 56,
+   "x": 91.2,
+   "y": 33.6
+  },
+  {
+   "match": 2516807,
+   "date": "2017-10-15",
+   "opponent": "Wolfsburg",
+   "half": 2,
+   "minute": 63,
+   "second": 35,
+   "x": 68.39999999999999,
+   "y": 22.400000000000002
+  },
+  {
+   "match": 2516814,
+   "date": "2017-10-21",
+   "opponent": "Borussia M'gladbach",
+   "half": 2,
+   "minute": 60,
+   "second": 1,
+   "x": 82.8,
+   "y": 27.200000000000003
+  },
+  {
+   "match": 2516814,
+   "date": "2017-10-21",
+   "opponent": "Borussia M'gladbach",
+   "half": 2,
+   "minute": 68,
+   "second": 43,
+   "x": 51.6,
+   "y": 11.200000000000001
+  },
+  {
+   "match": 2516825,
+   "date": "2017-10-28",
+   "opponent": "Köln",
+   "half": 1,
+   "minute": 5,
+   "second": 39,
+   "x": 98.39999999999999,
+   "y": 46.400000000000006
+  },
+  {
+   "match": 2516835,
+   "date": "2017-11-04",
+   "opponent": "Augsburg",
+   "half": 2,
+   "minute": 46,
+   "second": 0,
+   "x": 40.8,
+   "y": 52.800000000000004
+  },
+  {
+   "match": 2516843,
+   "date": "2017-11-18",
+   "opponent": "RB Leipzig",
+   "half": 2,
+   "minute": 48,
+   "second": 16,
+   "x": 45.6,
+   "y": 28.0
+  },
+  {
+   "match": 2516843,
+   "date": "2017-11-18",
+   "opponent": "RB Leipzig",
+   "half": 2,
+   "minute": 56,
+   "second": 6,
+   "x": 78.0,
+   "y": 22.400000000000002
+  },
+  {
+   "match": 2516852,
+   "date": "2017-11-25",
+   "opponent": "Eintracht Frankfurt",
+   "half": 2,
+   "minute": 66,
+   "second": 14,
+   "x": 44.4,
+   "y": 51.2
+  },
+  {
+   "match": 2516862,
+   "date": "2017-12-02",
+   "opponent": "Borussia Dortmund",
+   "half": 1,
+   "minute": 20,
+   "second": 6,
+   "x": 85.2,
+   "y": 13.600000000000001
+  },
+  {
+   "match": 2516862,
+   "date": "2017-12-02",
+   "opponent": "Borussia Dortmund",
+   "half": 1,
+   "minute": 29,
+   "second": 32,
+   "x": 46.8,
+   "y": 32.0
+  },
+  {
+   "match": 2516862,
+   "date": "2017-12-02",
+   "opponent": "Borussia Dortmund",
+   "half": 1,
+   "minute": 37,
+   "second": 10,
+   "x": 82.8,
+   "y": 76.80000000000001
+  },
+  {
+   "match": 2516862,
+   "date": "2017-12-02",
+   "opponent": "Borussia Dortmund",
+   "half": 2,
+   "minute": 71,
+   "second": 50,
+   "x": 37.199999999999996,
+   "y": 30.400000000000002
+  },
+  {
+   "match": 2516862,
+   "date": "2017-12-02",
+   "opponent": "Borussia Dortmund",
+   "half": 2,
+   "minute": 89,
+   "second": 47,
+   "x": 81.6,
+   "y": 69.60000000000001
+  },
+  {
+   "match": 2516873,
+   "date": "2017-12-08",
+   "opponent": "Stuttgart",
+   "half": 1,
+   "minute": 2,
+   "second": 0,
+   "x": 92.39999999999999,
+   "y": 28.8
+  },
+  {
+   "match": 2516873,
+   "date": "2017-12-08",
+   "opponent": "Stuttgart",
+   "half": 1,
+   "minute": 17,
+   "second": 18,
+   "x": 34.8,
+   "y": 47.2
+  },
+  {
+   "match": 2516873,
+   "date": "2017-12-08",
+   "opponent": "Stuttgart",
+   "half": 1,
+   "minute": 21,
+   "second": 23,
+   "x": 60.0,
+   "y": 12.8
+  },
+  {
+   "match": 2516873,
+   "date": "2017-12-08",
+   "opponent": "Stuttgart",
+   "half": 2,
+   "minute": 65,
+   "second": 3,
+   "x": 92.39999999999999,
+   "y": 52.800000000000004
+  },
+  {
+   "match": 2516873,
+   "date": "2017-12-08",
+   "opponent": "Stuttgart",
+   "half": 2,
+   "minute": 66,
+   "second": 10,
+   "x": 91.2,
+   "y": 35.2
+  },
+  {
+   "match": 2516873,
+   "date": "2017-12-08",
+   "opponent": "Stuttgart",
+   "half": 2,
+   "minute": 72,
+   "second": 27,
+   "x": 80.39999999999999,
+   "y": 64.0
+  },
+  {
+   "match": 2516879,
+   "date": "2017-12-13",
+   "opponent": "Werder Bremen",
+   "half": 1,
+   "minute": 21,
+   "second": 41,
+   "x": 85.2,
+   "y": 60.0
+  },
+  {
+   "match": 2516879,
+   "date": "2017-12-13",
+   "opponent": "Werder Bremen",
+   "half": 1,
+   "minute": 24,
+   "second": 51,
+   "x": 78.0,
+   "y": 40.0
+  },
+  {
+   "match": 2516879,
+   "date": "2017-12-13",
+   "opponent": "Werder Bremen",
+   "half": 1,
+   "minute": 35,
+   "second": 31,
+   "x": 50.4,
+   "y": 25.6
+  },
+  {
+   "match": 2516879,
+   "date": "2017-12-13",
+   "opponent": "Werder Bremen",
+   "half": 2,
+   "minute": 45,
+   "second": 43,
+   "x": 93.6,
+   "y": 36.0
+  },
+  {
+   "match": 2516879,
+   "date": "2017-12-13",
+   "opponent": "Werder Bremen",
+   "half": 2,
+   "minute": 47,
+   "second": 49,
+   "x": 85.2,
+   "y": 51.2
+  },
+  {
+   "match": 2516879,
+   "date": "2017-12-13",
+   "opponent": "Werder Bremen",
+   "half": 2,
+   "minute": 90,
+   "second": 14,
+   "x": 20.4,
+   "y": 16.0
+  },
+  {
+   "match": 2516890,
+   "date": "2017-12-17",
+   "opponent": "Hannover 96",
+   "half": 1,
+   "minute": 2,
+   "second": 49,
+   "x": 33.6,
+   "y": 44.800000000000004
+  },
+  {
+   "match": 2516890,
+   "date": "2017-12-17",
+   "opponent": "Hannover 96",
+   "half": 1,
+   "minute": 24,
+   "second": 42,
+   "x": 92.39999999999999,
+   "y": 50.400000000000006
+  },
+  {
+   "match": 2516890,
+   "date": "2017-12-17",
+   "opponent": "Hannover 96",
+   "half": 1,
+   "minute": 40,
+   "second": 17,
+   "x": 78.0,
+   "y": 8.8
+  },
+  {
+   "match": 2516890,
+   "date": "2017-12-17",
+   "opponent": "Hannover 96",
+   "half": 2,
+   "minute": 57,
+   "second": 4,
+   "x": 86.39999999999999,
+   "y": 33.6
+  },
+  {
+   "match": 2516890,
+   "date": "2017-12-17",
+   "opponent": "Hannover 96",
+   "half": 2,
+   "minute": 66,
+   "second": 29,
+   "x": 31.2,
+   "y": 48.800000000000004
+  },
+  {
+   "match": 2516897,
+   "date": "2018-01-12",
+   "opponent": "Bayern München",
+   "half": 1,
+   "minute": 33,
+   "second": 8,
+   "x": 76.8,
+   "y": 26.400000000000002
+  },
+  {
+   "match": 2516897,
+   "date": "2018-01-12",
+   "opponent": "Bayern München",
+   "half": 2,
+   "minute": 54,
+   "second": 10,
+   "x": 80.39999999999999,
+   "y": 61.6
+  },
+  {
+   "match": 2516897,
+   "date": "2018-01-12",
+   "opponent": "Bayern München",
+   "half": 2,
+   "minute": 75,
+   "second": 19,
+   "x": 94.8,
+   "y": 40.800000000000004
+  },
+  {
+   "match": 2516902,
+   "date": "2018-01-20",
+   "opponent": "Hoffenheim",
+   "half": 1,
+   "minute": 6,
+   "second": 1,
+   "x": 85.2,
+   "y": 18.400000000000002
+  },
+  {
+   "match": 2516902,
+   "date": "2018-01-20",
+   "opponent": "Hoffenheim",
+   "half": 2,
+   "minute": 53,
+   "second": 59,
+   "x": 99.6,
+   "y": 40.0
+  },
+  {
+   "match": 2516902,
+   "date": "2018-01-20",
+   "opponent": "Hoffenheim",
+   "half": 2,
+   "minute": 62,
+   "second": 38,
+   "x": 42.0,
+   "y": 26.400000000000002
+  },
+  {
+   "match": 2516916,
+   "date": "2018-01-28",
+   "opponent": "Mainz 05",
+   "half": 1,
+   "minute": 10,
+   "second": 12,
+   "x": 84.0,
+   "y": 61.6
+  },
+  {
+   "match": 2516916,
+   "date": "2018-01-28",
+   "opponent": "Mainz 05",
+   "half": 2,
+   "minute": 70,
+   "second": 40,
+   "x": 40.8,
+   "y": 68.8
+  },
+  {
+   "match": 2516921,
+   "date": "2018-02-03",
+   "opponent": "Freiburg",
+   "half": 1,
+   "minute": 32,
+   "second": 47,
+   "x": 57.599999999999994,
+   "y": 76.80000000000001
+  },
+  {
+   "match": 2516921,
+   "date": "2018-02-03",
+   "opponent": "Freiburg",
+   "half": 2,
+   "minute": 60,
+   "second": 17,
+   "x": 87.6,
+   "y": 20.0
+  },
+  {
+   "match": 2516921,
+   "date": "2018-02-03",
+   "opponent": "Freiburg",
+   "half": 2,
+   "minute": 79,
+   "second": 31,
+   "x": 84.0,
+   "y": 74.4
+  },
+  {
+   "match": 2516934,
+   "date": "2018-02-10",
+   "opponent": "Hertha BSC",
+   "half": 1,
+   "minute": 11,
+   "second": 21,
+   "x": 96.0,
+   "y": 53.6
+  },
+  {
+   "match": 2516944,
+   "date": "2018-02-17",
+   "opponent": "Hamburger SV",
+   "half": 1,
+   "minute": 21,
+   "second": 49,
+   "x": 88.8,
+   "y": 33.6
+  },
+  {
+   "match": 2516944,
+   "date": "2018-02-17",
+   "opponent": "Hamburger SV",
+   "half": 1,
+   "minute": 24,
+   "second": 42,
+   "x": 45.6,
+   "y": 50.400000000000006
+  },
+  {
+   "match": 2516951,
+   "date": "2018-02-25",
+   "opponent": "Schalke 04",
+   "half": 1,
+   "minute": 4,
+   "second": 45,
+   "x": 70.8,
+   "y": 32.800000000000004
+  },
+  {
+   "match": 2516951,
+   "date": "2018-02-25",
+   "opponent": "Schalke 04",
+   "half": 2,
+   "minute": 51,
+   "second": 53,
+   "x": 73.2,
+   "y": 23.200000000000003
+  },
+  {
+   "match": 2516963,
+   "date": "2018-03-03",
+   "opponent": "Wolfsburg",
+   "half": 1,
+   "minute": 8,
+   "second": 14,
+   "x": 80.39999999999999,
+   "y": 52.800000000000004
+  },
+  {
+   "match": 2516963,
+   "date": "2018-03-03",
+   "opponent": "Wolfsburg",
+   "half": 2,
+   "minute": 55,
+   "second": 27,
+   "x": 70.8,
+   "y": 24.8
+  },
+  {
+   "match": 2516969,
+   "date": "2018-03-10",
+   "opponent": "Borussia M'gladbach",
+   "half": 1,
+   "minute": 10,
+   "second": 22,
+   "x": 75.6,
+   "y": 14.4
+  },
+  {
+   "match": 2516975,
+   "date": "2018-03-18",
+   "opponent": "Köln",
+   "half": 2,
+   "minute": 71,
+   "second": 25,
+   "x": 110.39999999999999,
+   "y": 23.200000000000003
+  },
+  {
+   "match": 2516975,
+   "date": "2018-03-18",
+   "opponent": "Köln",
+   "half": 2,
+   "minute": 86,
+   "second": 29,
+   "x": 90.0,
+   "y": 18.400000000000002
+  },
+  {
+   "match": 2516987,
+   "date": "2018-03-31",
+   "opponent": "Augsburg",
+   "half": 1,
+   "minute": 10,
+   "second": 0,
+   "x": 98.39999999999999,
+   "y": 24.0
+  },
+  {
+   "match": 2516987,
+   "date": "2018-03-31",
+   "opponent": "Augsburg",
+   "half": 1,
+   "minute": 14,
+   "second": 42,
+   "x": 48.0,
+   "y": 16.0
+  },
+  {
+   "match": 2516987,
+   "date": "2018-03-31",
+   "opponent": "Augsburg",
+   "half": 1,
+   "minute": 22,
+   "second": 50,
+   "x": 87.6,
+   "y": 48.0
+  },
+  {
+   "match": 2516987,
+   "date": "2018-03-31",
+   "opponent": "Augsburg",
+   "half": 2,
+   "minute": 54,
+   "second": 45,
+   "x": 85.2,
+   "y": 14.4
+  },
+  {
+   "match": 2516987,
+   "date": "2018-03-31",
+   "opponent": "Augsburg",
+   "half": 2,
+   "minute": 79,
+   "second": 11,
+   "x": 106.8,
+   "y": 61.6
+  },
+  {
+   "match": 2516992,
+   "date": "2018-04-09",
+   "opponent": "RB Leipzig",
+   "half": 1,
+   "minute": 22,
+   "second": 48,
+   "x": 80.39999999999999,
+   "y": 72.0
+  },
+  {
+   "match": 2516992,
+   "date": "2018-04-09",
+   "opponent": "RB Leipzig",
+   "half": 1,
+   "minute": 44,
+   "second": 37,
+   "x": 32.4,
+   "y": 62.400000000000006
+  },
+  {
+   "match": 2516992,
+   "date": "2018-04-09",
+   "opponent": "RB Leipzig",
+   "half": 2,
+   "minute": 50,
+   "second": 33,
+   "x": 105.6,
+   "y": 40.0
+  },
+  {
+   "match": 2516992,
+   "date": "2018-04-09",
+   "opponent": "RB Leipzig",
+   "half": 2,
+   "minute": 68,
+   "second": 9,
+   "x": 109.2,
+   "y": 56.0
+  },
+  {
+   "match": 2517005,
+   "date": "2018-04-14",
+   "opponent": "Eintracht Frankfurt",
+   "half": 1,
+   "minute": 11,
+   "second": 24,
+   "x": 86.39999999999999,
+   "y": 76.80000000000001
+  },
+  {
+   "match": 2517005,
+   "date": "2018-04-14",
+   "opponent": "Eintracht Frankfurt",
+   "half": 1,
+   "minute": 13,
+   "second": 19,
+   "x": 46.8,
+   "y": 57.6
+  },
+  {
+   "match": 2517005,
+   "date": "2018-04-14",
+   "opponent": "Eintracht Frankfurt",
+   "half": 1,
+   "minute": 34,
+   "second": 7,
+   "x": 91.2,
+   "y": 30.400000000000002
+  },
+  {
+   "match": 2517005,
+   "date": "2018-04-14",
+   "opponent": "Eintracht Frankfurt",
+   "half": 2,
+   "minute": 50,
+   "second": 54,
+   "x": 90.0,
+   "y": 20.8
+  },
+  {
+   "match": 2517005,
+   "date": "2018-04-14",
+   "opponent": "Eintracht Frankfurt",
+   "half": 2,
+   "minute": 76,
+   "second": 42,
+   "x": 61.199999999999996,
+   "y": 47.2
+  },
+  {
+   "match": 2517005,
+   "date": "2018-04-14",
+   "opponent": "Eintracht Frankfurt",
+   "half": 2,
+   "minute": 86,
+   "second": 55,
+   "x": 42.0,
+   "y": 7.2
+  },
+  {
+   "match": 2517024,
+   "date": "2018-04-28",
+   "opponent": "Stuttgart",
+   "half": 1,
+   "minute": 34,
+   "second": 15,
+   "x": 74.39999999999999,
+   "y": 28.8
+  },
+  {
+   "match": 2517024,
+   "date": "2018-04-28",
+   "opponent": "Stuttgart",
+   "half": 1,
+   "minute": 35,
+   "second": 7,
+   "x": 87.6,
+   "y": 16.8
+  },
+  {
+   "match": 2517024,
+   "date": "2018-04-28",
+   "opponent": "Stuttgart",
+   "half": 2,
+   "minute": 65,
+   "second": 27,
+   "x": 105.6,
+   "y": 48.800000000000004
+  },
+  {
+   "match": 2517030,
+   "date": "2018-05-05",
+   "opponent": "Werder Bremen",
+   "half": 1,
+   "minute": 14,
+   "second": 20,
+   "x": 68.39999999999999,
+   "y": 13.600000000000001
+  },
+  {
+   "match": 2517030,
+   "date": "2018-05-05",
+   "opponent": "Werder Bremen",
+   "half": 2,
+   "minute": 89,
+   "second": 26,
+   "x": 70.8,
+   "y": 62.400000000000006
+  },
+  {
+   "match": 2517041,
+   "date": "2018-05-12",
+   "opponent": "Hannover 96",
+   "half": 1,
+   "minute": 6,
+   "second": 41,
+   "x": 99.6,
+   "y": 56.0
+  },
+  {
+   "match": 2517041,
+   "date": "2018-05-12",
+   "opponent": "Hannover 96",
+   "half": 1,
+   "minute": 15,
+   "second": 22,
+   "x": 37.199999999999996,
+   "y": 34.4
+  },
+  {
+   "match": 2517041,
+   "date": "2018-05-12",
+   "opponent": "Hannover 96",
+   "half": 1,
+   "minute": 17,
+   "second": 13,
+   "x": 115.19999999999999,
+   "y": 43.2
+  },
+  {
+   "match": 2517041,
+   "date": "2018-05-12",
+   "opponent": "Hannover 96",
+   "half": 1,
+   "minute": 31,
+   "second": 46,
+   "x": 87.6,
+   "y": 44.800000000000004
+  },
+  {
+   "match": 2517041,
+   "date": "2018-05-12",
+   "opponent": "Hannover 96",
+   "half": 1,
+   "minute": 34,
+   "second": 7,
+   "x": 79.2,
+   "y": 74.4
+  },
+  {
+   "match": 2517041,
+   "date": "2018-05-12",
+   "opponent": "Hannover 96",
+   "half": 2,
+   "minute": 46,
+   "second": 18,
+   "x": 63.599999999999994,
+   "y": 48.0
+  },
+  {
+   "match": 2517041,
+   "date": "2018-05-12",
+   "opponent": "Hannover 96",
+   "half": 2,
+   "minute": 54,
+   "second": 52,
+   "x": 76.8,
+   "y": 34.4
+  }
+ ]
+}

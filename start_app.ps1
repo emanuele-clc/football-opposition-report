@@ -2,10 +2,12 @@
 # Uso (PowerShell, dalla cartella del progetto):
 #   powershell -ExecutionPolicy Bypass -File .\start_app.ps1
 #   powershell -ExecutionPolicy Bypass -File .\start_app.ps1 -DataDir D:\altri_dati -Port 8770 -SaltaTest
+#   powershell -ExecutionPolicy Bypass -File .\start_app.ps1 -DataDir C:\Users\<utente>\sbdata -WyscoutDir C:\Users\<utente>\wyscout_app
 # Passi: 1) ferma l'app gia' accesa sulla stessa porta  2) installa cio' che manca  3) ricompila il frontend
 #        4) svuota la cache dell'app (mappe e reti vengono ricalcolate)  5) esegue i test  6) avvia l'app e apre il browser
 param(
     [string]$DataDir = $(if ($env:OPPREPORT_DATA) { $env:OPPREPORT_DATA } else { Join-Path $PSScriptRoot "examples" }),
+    [string]$WyscoutDir = $(if ($env:OPPREPORT_DATA_WYSCOUT) { $env:OPPREPORT_DATA_WYSCOUT } else { Join-Path $PSScriptRoot "examples_wyscout" }),
     [int]$Port = 8765,
     [switch]$SaltaTest,
     [switch]$Lan   # anche dai tablet dello staff sulla stessa rete Wi-Fi (nessun login: solo su reti fidate)
@@ -18,6 +20,8 @@ function Passo($n, $testo) { Write-Host ""; Write-Host "[$n/6] $testo" -Foregrou
 function Errore($testo) { Write-Host ""; Write-Host "ERRORE: $testo" -ForegroundColor Red; exit 1 }
 
 if (-not (Test-Path $DataDir)) { Errore "cartella dati non trovata: $DataDir (usa -DataDir)" }
+$wy = @()
+if (Test-Path $WyscoutDir) { $wy = @("--wyscout-dir", $WyscoutDir) } else { Write-Host "Nessuna cartella Wyscout ($WyscoutDir): l'app mostra solo StatsBomb" }
 
 Passo 1 "Fermo l'app gia' accesa sulla porta $Port"
 $conn = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue
@@ -47,8 +51,10 @@ if ($ok -ne 0) { Errore "build del frontend non riuscita (esegui 'cd app\fronten
 Write-Host "  frontend compilato"
 
 Passo 4 "Svuoto la cache dell'app"
-$cache = Join-Path $DataDir "app_cache"
-if (Test-Path $cache) { Remove-Item -Recurse -Force $cache; Write-Host "  cache svuotata (le mappe si ricalcolano alla prima apertura, qualche secondo)" } else { Write-Host "  nessuna cache" }
+foreach ($d in @($DataDir) + $(if ($wy.Count) { @($WyscoutDir) } else { @() })) {
+    $cache = Join-Path $d "app_cache"
+    if (Test-Path $cache) { Remove-Item -Recurse -Force $cache; Write-Host "  cache svuotata in $d (le mappe si ricalcolano alla prima apertura, qualche secondo)" } else { Write-Host "  nessuna cache in $d" }
+}
 
 if ($SaltaTest) { Passo 5 "Test saltati (-SaltaTest)" } else {
     Passo 5 "Eseguo i test"
@@ -60,4 +66,4 @@ if ($SaltaTest) { Passo 5 "Test saltati (-SaltaTest)" } else {
 }
 
 Passo 6 "Avvio l'app su http://127.0.0.1:$Port (Ctrl+C per fermarla)"
-if ($Lan) { python -X utf8 app\run.py --data-dir $DataDir --port $Port --lan } else { python -X utf8 app\run.py --data-dir $DataDir --port $Port }
+if ($Lan) { python -X utf8 app\run.py --data-dir $DataDir @wy --port $Port --lan } else { python -X utf8 app\run.py --data-dir $DataDir @wy --port $Port }

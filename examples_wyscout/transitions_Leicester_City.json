@@ -1,0 +1,1127 @@
+{
+ "team": "Leicester City",
+ "matches": 38,
+ "losses": {
+  "n": 1971,
+  "per_match": 51.86842105263158,
+  "regain5": 0.08625063419583967,
+  "regain5_ci": [
+   0.07301081153416729,
+   0.10273705475630991
+  ],
+  "conceded10": 0.061390157280568236,
+  "conceded10_ci": [
+   0.05016922117580356,
+   0.07296837765327861
+  ],
+  "by_third": {
+   "own third": {
+    "n": 780,
+    "per_match": 20.526315789473685,
+    "regain5": 0.07435897435897436,
+    "conceded10": 0.10128205128205128
+   },
+   "middle third": {
+    "n": 782,
+    "per_match": 20.57894736842105,
+    "regain5": 0.09335038363171355,
+    "conceded10": 0.04092071611253197
+   },
+   "final third": {
+    "n": 409,
+    "per_match": 10.763157894736842,
+    "regain5": 0.09535452322738386,
+    "conceded10": 0.02444987775061125
+   }
+  }
+ },
+ "recoveries": {
+  "n": 1911,
+  "per_match": 50.28947368421053,
+  "shot10": 0.049188906331763475,
+  "shot10_ci": [
+   0.04034156562321799,
+   0.05980638388537997
+  ],
+  "by_third": {
+   "own third": {
+    "n": 969,
+    "per_match": 25.5,
+    "per_match_ci": [
+     24.247877748143267,
+     26.603492821551843
+    ],
+    "shot10": 0.015479876160990712,
+    "shot": 0.06811145510835913,
+    "final_third": 0.4664602683178535
+   },
+   "middle third": {
+    "n": 768,
+    "per_match": 20.210526315789473,
+    "per_match_ci": [
+     19.14425484510409,
+     21.34675358049201
+    ],
+    "shot10": 0.041666666666666664,
+    "shot": 0.08463541666666667,
+    "final_third": 0.76953125
+   },
+   "final third": {
+    "n": 174,
+    "per_match": 4.578947368421052,
+    "per_match_ci": [
+     3.994090601436942,
+     5.195327874558112
+    ],
+    "shot10": 0.27011494252873564,
+    "shot": 0.28735632183908044,
+    "final_third": 0.9712643678160919
+   }
+  }
+ },
+ "last5": {
+  "losses_per_match": 44.8,
+  "regain5": 0.0625,
+  "recoveries_final_third_per_match": 3.8
+ },
+ "recovery_zones": [
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 139,
+   "shot10": 2
+  },
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 239,
+   "shot10": 5
+  },
+  {
+   "x0": 0,
+   "x1": 30,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 163,
+   "shot10": 2
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 303,
+   "shot10": 6
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 290,
+   "shot10": 9
+  },
+  {
+   "x0": 30,
+   "x1": 60,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 294,
+   "shot10": 10
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 166,
+   "shot10": 8
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 136,
+   "shot10": 20
+  },
+  {
+   "x0": 60,
+   "x1": 90,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 128,
+   "shot10": 10
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 0.0,
+   "y1": 26.67,
+   "n": 22,
+   "shot10": 7
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 26.67,
+   "y1": 53.33,
+   "n": 14,
+   "shot10": 10
+  },
+  {
+   "x0": 90,
+   "x1": 120,
+   "y0": 53.33,
+   "y1": 80.0,
+   "n": 17,
+   "shot10": 5
+  }
+ ],
+ "recovery_shots": [
+  {
+   "match": 2499719,
+   "date": "2017-08-11",
+   "opponent": "Arsenal",
+   "half": 1,
+   "minute": 28,
+   "second": 27,
+   "x": 82.8,
+   "y": 7.2
+  },
+  {
+   "match": 2499719,
+   "date": "2017-08-11",
+   "opponent": "Arsenal",
+   "half": 1,
+   "minute": 32,
+   "second": 43,
+   "x": 80.39999999999999,
+   "y": 2.4000000000000004
+  },
+  {
+   "match": 2499719,
+   "date": "2017-08-11",
+   "opponent": "Arsenal",
+   "half": 2,
+   "minute": 50,
+   "second": 33,
+   "x": 108.0,
+   "y": 7.2
+  },
+  {
+   "match": 2499719,
+   "date": "2017-08-11",
+   "opponent": "Arsenal",
+   "half": 2,
+   "minute": 54,
+   "second": 45,
+   "x": 84.0,
+   "y": 24.8
+  },
+  {
+   "match": 2499732,
+   "date": "2017-08-19",
+   "opponent": "Brighton & Hove Albion",
+   "half": 1,
+   "minute": 15,
+   "second": 58,
+   "x": 111.6,
+   "y": 56.0
+  },
+  {
+   "match": 2499732,
+   "date": "2017-08-19",
+   "opponent": "Brighton & Hove Albion",
+   "half": 1,
+   "minute": 17,
+   "second": 46,
+   "x": 85.2,
+   "y": 44.800000000000004
+  },
+  {
+   "match": 2499732,
+   "date": "2017-08-19",
+   "opponent": "Brighton & Hove Albion",
+   "half": 2,
+   "minute": 73,
+   "second": 41,
+   "x": 85.2,
+   "y": 39.2
+  },
+  {
+   "match": 2499744,
+   "date": "2017-08-26",
+   "opponent": "Manchester United",
+   "half": 1,
+   "minute": 22,
+   "second": 39,
+   "x": 56.4,
+   "y": 71.2
+  },
+  {
+   "match": 2499744,
+   "date": "2017-08-26",
+   "opponent": "Manchester United",
+   "half": 2,
+   "minute": 63,
+   "second": 26,
+   "x": 54.0,
+   "y": 24.8
+  },
+  {
+   "match": 2499744,
+   "date": "2017-08-26",
+   "opponent": "Manchester United",
+   "half": 2,
+   "minute": 71,
+   "second": 58,
+   "x": 55.199999999999996,
+   "y": 9.600000000000001
+  },
+  {
+   "match": 2499753,
+   "date": "2017-09-09",
+   "opponent": "Chelsea",
+   "half": 1,
+   "minute": 39,
+   "second": 22,
+   "x": 25.2,
+   "y": 51.2
+  },
+  {
+   "match": 2499762,
+   "date": "2017-09-16",
+   "opponent": "Huddersfield Town",
+   "half": 2,
+   "minute": 48,
+   "second": 1,
+   "x": 40.8,
+   "y": 32.0
+  },
+  {
+   "match": 2499762,
+   "date": "2017-09-16",
+   "opponent": "Huddersfield Town",
+   "half": 2,
+   "minute": 92,
+   "second": 45,
+   "x": 86.39999999999999,
+   "y": 61.6
+  },
+  {
+   "match": 2499773,
+   "date": "2017-09-23",
+   "opponent": "Liverpool",
+   "half": 1,
+   "minute": 5,
+   "second": 3,
+   "x": 40.8,
+   "y": 12.8
+  },
+  {
+   "match": 2499773,
+   "date": "2017-09-23",
+   "opponent": "Liverpool",
+   "half": 1,
+   "minute": 14,
+   "second": 8,
+   "x": 84.0,
+   "y": 35.2
+  },
+  {
+   "match": 2499773,
+   "date": "2017-09-23",
+   "opponent": "Liverpool",
+   "half": 1,
+   "minute": 17,
+   "second": 6,
+   "x": 87.6,
+   "y": 58.400000000000006
+  },
+  {
+   "match": 2499779,
+   "date": "2017-09-30",
+   "opponent": "AFC Bournemouth",
+   "half": 2,
+   "minute": 59,
+   "second": 6,
+   "x": 79.2,
+   "y": 58.400000000000006
+  },
+  {
+   "match": 2499779,
+   "date": "2017-09-30",
+   "opponent": "AFC Bournemouth",
+   "half": 2,
+   "minute": 77,
+   "second": 10,
+   "x": 15.6,
+   "y": 35.2
+  },
+  {
+   "match": 2499779,
+   "date": "2017-09-30",
+   "opponent": "AFC Bournemouth",
+   "half": 2,
+   "minute": 77,
+   "second": 26,
+   "x": 91.2,
+   "y": 46.400000000000006
+  },
+  {
+   "match": 2499779,
+   "date": "2017-09-30",
+   "opponent": "AFC Bournemouth",
+   "half": 2,
+   "minute": 87,
+   "second": 55,
+   "x": 86.39999999999999,
+   "y": 61.6
+  },
+  {
+   "match": 2499792,
+   "date": "2017-10-16",
+   "opponent": "West Bromwich Albion",
+   "half": 2,
+   "minute": 50,
+   "second": 3,
+   "x": 100.8,
+   "y": 7.2
+  },
+  {
+   "match": 2499806,
+   "date": "2017-10-21",
+   "opponent": "Swansea City",
+   "half": 1,
+   "minute": 32,
+   "second": 40,
+   "x": 54.0,
+   "y": 44.0
+  },
+  {
+   "match": 2499806,
+   "date": "2017-10-21",
+   "opponent": "Swansea City",
+   "half": 2,
+   "minute": 90,
+   "second": 54,
+   "x": 115.19999999999999,
+   "y": 5.6000000000000005
+  },
+  {
+   "match": 2499814,
+   "date": "2017-10-29",
+   "opponent": "Everton",
+   "half": 1,
+   "minute": 2,
+   "second": 50,
+   "x": 64.8,
+   "y": 37.6
+  },
+  {
+   "match": 2499814,
+   "date": "2017-10-29",
+   "opponent": "Everton",
+   "half": 1,
+   "minute": 17,
+   "second": 24,
+   "x": 54.0,
+   "y": 57.6
+  },
+  {
+   "match": 2499814,
+   "date": "2017-10-29",
+   "opponent": "Everton",
+   "half": 1,
+   "minute": 21,
+   "second": 27,
+   "x": 37.199999999999996,
+   "y": 20.0
+  },
+  {
+   "match": 2499814,
+   "date": "2017-10-29",
+   "opponent": "Everton",
+   "half": 2,
+   "minute": 56,
+   "second": 15,
+   "x": 104.39999999999999,
+   "y": 13.600000000000001
+  },
+  {
+   "match": 2499825,
+   "date": "2017-11-04",
+   "opponent": "Stoke City",
+   "half": 2,
+   "minute": 59,
+   "second": 44,
+   "x": 54.0,
+   "y": 32.0
+  },
+  {
+   "match": 2499852,
+   "date": "2017-11-28",
+   "opponent": "Tottenham Hotspur",
+   "half": 1,
+   "minute": 12,
+   "second": 13,
+   "x": 74.39999999999999,
+   "y": 6.4
+  },
+  {
+   "match": 2499852,
+   "date": "2017-11-28",
+   "opponent": "Tottenham Hotspur",
+   "half": 1,
+   "minute": 25,
+   "second": 48,
+   "x": 76.8,
+   "y": 59.2
+  },
+  {
+   "match": 2499864,
+   "date": "2017-12-02",
+   "opponent": "Burnley",
+   "half": 1,
+   "minute": 41,
+   "second": 55,
+   "x": 49.199999999999996,
+   "y": 60.800000000000004
+  },
+  {
+   "match": 2499864,
+   "date": "2017-12-02",
+   "opponent": "Burnley",
+   "half": 2,
+   "minute": 48,
+   "second": 6,
+   "x": 40.8,
+   "y": 56.800000000000004
+  },
+  {
+   "match": 2499864,
+   "date": "2017-12-02",
+   "opponent": "Burnley",
+   "half": 2,
+   "minute": 88,
+   "second": 8,
+   "x": 78.0,
+   "y": 33.6
+  },
+  {
+   "match": 2499874,
+   "date": "2017-12-09",
+   "opponent": "Newcastle United",
+   "half": 1,
+   "minute": 19,
+   "second": 31,
+   "x": 67.2,
+   "y": 39.2
+  },
+  {
+   "match": 2499874,
+   "date": "2017-12-09",
+   "opponent": "Newcastle United",
+   "half": 1,
+   "minute": 30,
+   "second": 36,
+   "x": 39.6,
+   "y": 42.400000000000006
+  },
+  {
+   "match": 2499886,
+   "date": "2017-12-13",
+   "opponent": "Southampton",
+   "half": 1,
+   "minute": 19,
+   "second": 6,
+   "x": 18.0,
+   "y": 47.2
+  },
+  {
+   "match": 2499886,
+   "date": "2017-12-13",
+   "opponent": "Southampton",
+   "half": 2,
+   "minute": 53,
+   "second": 26,
+   "x": 108.0,
+   "y": 53.6
+  },
+  {
+   "match": 2499886,
+   "date": "2017-12-13",
+   "opponent": "Southampton",
+   "half": 2,
+   "minute": 68,
+   "second": 37,
+   "x": 64.8,
+   "y": 48.0
+  },
+  {
+   "match": 2499894,
+   "date": "2017-12-16",
+   "opponent": "Crystal Palace",
+   "half": 1,
+   "minute": 33,
+   "second": 9,
+   "x": 85.2,
+   "y": 20.8
+  },
+  {
+   "match": 2499894,
+   "date": "2017-12-16",
+   "opponent": "Crystal Palace",
+   "half": 2,
+   "minute": 88,
+   "second": 56,
+   "x": 44.4,
+   "y": 72.8
+  },
+  {
+   "match": 2499903,
+   "date": "2017-12-23",
+   "opponent": "Manchester United",
+   "half": 2,
+   "minute": 52,
+   "second": 30,
+   "x": 80.39999999999999,
+   "y": 59.2
+  },
+  {
+   "match": 2499917,
+   "date": "2017-12-26",
+   "opponent": "Watford",
+   "half": 1,
+   "minute": 16,
+   "second": 58,
+   "x": 110.39999999999999,
+   "y": 10.4
+  },
+  {
+   "match": 2499917,
+   "date": "2017-12-26",
+   "opponent": "Watford",
+   "half": 1,
+   "minute": 24,
+   "second": 57,
+   "x": 28.799999999999997,
+   "y": 6.4
+  },
+  {
+   "match": 2499917,
+   "date": "2017-12-26",
+   "opponent": "Watford",
+   "half": 1,
+   "minute": 31,
+   "second": 56,
+   "x": 94.8,
+   "y": 41.6
+  },
+  {
+   "match": 2499917,
+   "date": "2017-12-26",
+   "opponent": "Watford",
+   "half": 2,
+   "minute": 52,
+   "second": 39,
+   "x": 68.39999999999999,
+   "y": 32.0
+  },
+  {
+   "match": 2499923,
+   "date": "2017-12-30",
+   "opponent": "Liverpool",
+   "half": 1,
+   "minute": 0,
+   "second": 45,
+   "x": 94.8,
+   "y": 35.2
+  },
+  {
+   "match": 2499923,
+   "date": "2017-12-30",
+   "opponent": "Liverpool",
+   "half": 1,
+   "minute": 2,
+   "second": 6,
+   "x": 82.8,
+   "y": 35.2
+  },
+  {
+   "match": 2499923,
+   "date": "2017-12-30",
+   "opponent": "Liverpool",
+   "half": 1,
+   "minute": 34,
+   "second": 8,
+   "x": 55.199999999999996,
+   "y": 58.400000000000006
+  },
+  {
+   "match": 2499933,
+   "date": "2018-01-01",
+   "opponent": "Huddersfield Town",
+   "half": 1,
+   "minute": 32,
+   "second": 49,
+   "x": 104.39999999999999,
+   "y": 32.0
+  },
+  {
+   "match": 2499933,
+   "date": "2018-01-01",
+   "opponent": "Huddersfield Town",
+   "half": 2,
+   "minute": 59,
+   "second": 10,
+   "x": 36.0,
+   "y": 44.0
+  },
+  {
+   "match": 2499933,
+   "date": "2018-01-01",
+   "opponent": "Huddersfield Town",
+   "half": 2,
+   "minute": 71,
+   "second": 6,
+   "x": 85.2,
+   "y": 33.6
+  },
+  {
+   "match": 2499940,
+   "date": "2018-01-13",
+   "opponent": "Chelsea",
+   "half": 1,
+   "minute": 10,
+   "second": 34,
+   "x": 106.8,
+   "y": 59.2
+  },
+  {
+   "match": 2499940,
+   "date": "2018-01-13",
+   "opponent": "Chelsea",
+   "half": 1,
+   "minute": 19,
+   "second": 17,
+   "x": 58.8,
+   "y": 53.6
+  },
+  {
+   "match": 2499940,
+   "date": "2018-01-13",
+   "opponent": "Chelsea",
+   "half": 1,
+   "minute": 22,
+   "second": 4,
+   "x": 49.199999999999996,
+   "y": 59.2
+  },
+  {
+   "match": 2499940,
+   "date": "2018-01-13",
+   "opponent": "Chelsea",
+   "half": 1,
+   "minute": 37,
+   "second": 4,
+   "x": 109.2,
+   "y": 56.800000000000004
+  },
+  {
+   "match": 2499953,
+   "date": "2018-01-20",
+   "opponent": "Watford",
+   "half": 1,
+   "minute": 5,
+   "second": 1,
+   "x": 22.8,
+   "y": 47.2
+  },
+  {
+   "match": 2499953,
+   "date": "2018-01-20",
+   "opponent": "Watford",
+   "half": 2,
+   "minute": 86,
+   "second": 39,
+   "x": 81.6,
+   "y": 19.200000000000003
+  },
+  {
+   "match": 2499974,
+   "date": "2018-02-03",
+   "opponent": "Swansea City",
+   "half": 1,
+   "minute": 23,
+   "second": 26,
+   "x": 84.0,
+   "y": 47.2
+  },
+  {
+   "match": 2499974,
+   "date": "2018-02-03",
+   "opponent": "Swansea City",
+   "half": 2,
+   "minute": 62,
+   "second": 43,
+   "x": 8.4,
+   "y": 65.60000000000001
+  },
+  {
+   "match": 2499974,
+   "date": "2018-02-03",
+   "opponent": "Swansea City",
+   "half": 2,
+   "minute": 63,
+   "second": 35,
+   "x": 37.199999999999996,
+   "y": 44.0
+  },
+  {
+   "match": 2499974,
+   "date": "2018-02-03",
+   "opponent": "Swansea City",
+   "half": 2,
+   "minute": 83,
+   "second": 1,
+   "x": 87.6,
+   "y": 36.0
+  },
+  {
+   "match": 2499982,
+   "date": "2018-02-10",
+   "opponent": "Manchester City",
+   "half": 1,
+   "minute": 23,
+   "second": 21,
+   "x": 103.2,
+   "y": 50.400000000000006
+  },
+  {
+   "match": 2499994,
+   "date": "2018-02-24",
+   "opponent": "Stoke City",
+   "half": 1,
+   "minute": 46,
+   "second": 34,
+   "x": 63.599999999999994,
+   "y": 35.2
+  },
+  {
+   "match": 2499994,
+   "date": "2018-02-24",
+   "opponent": "Stoke City",
+   "half": 2,
+   "minute": 46,
+   "second": 16,
+   "x": 82.8,
+   "y": 34.4
+  },
+  {
+   "match": 2499994,
+   "date": "2018-02-24",
+   "opponent": "Stoke City",
+   "half": 2,
+   "minute": 79,
+   "second": 16,
+   "x": 85.2,
+   "y": 50.400000000000006
+  },
+  {
+   "match": 2499994,
+   "date": "2018-02-24",
+   "opponent": "Stoke City",
+   "half": 2,
+   "minute": 87,
+   "second": 52,
+   "x": 108.0,
+   "y": 31.200000000000003
+  },
+  {
+   "match": 2500002,
+   "date": "2018-03-03",
+   "opponent": "AFC Bournemouth",
+   "half": 1,
+   "minute": 13,
+   "second": 43,
+   "x": 84.0,
+   "y": 54.400000000000006
+  },
+  {
+   "match": 2500002,
+   "date": "2018-03-03",
+   "opponent": "AFC Bournemouth",
+   "half": 1,
+   "minute": 36,
+   "second": 7,
+   "x": 85.2,
+   "y": 64.8
+  },
+  {
+   "match": 2500002,
+   "date": "2018-03-03",
+   "opponent": "AFC Bournemouth",
+   "half": 2,
+   "minute": 87,
+   "second": 8,
+   "x": 106.8,
+   "y": 51.2
+  },
+  {
+   "match": 2500017,
+   "date": "2018-03-10",
+   "opponent": "West Bromwich Albion",
+   "half": 1,
+   "minute": 20,
+   "second": 50,
+   "x": 31.2,
+   "y": 54.400000000000006
+  },
+  {
+   "match": 2500017,
+   "date": "2018-03-10",
+   "opponent": "West Bromwich Albion",
+   "half": 2,
+   "minute": 55,
+   "second": 42,
+   "x": 54.0,
+   "y": 37.6
+  },
+  {
+   "match": 2500017,
+   "date": "2018-03-10",
+   "opponent": "West Bromwich Albion",
+   "half": 2,
+   "minute": 75,
+   "second": 22,
+   "x": 87.6,
+   "y": 21.6
+  },
+  {
+   "match": 2500030,
+   "date": "2018-03-31",
+   "opponent": "Brighton & Hove Albion",
+   "half": 1,
+   "minute": 37,
+   "second": 33,
+   "x": 70.8,
+   "y": 70.4
+  },
+  {
+   "match": 2500044,
+   "date": "2018-04-07",
+   "opponent": "Newcastle United",
+   "half": 2,
+   "minute": 59,
+   "second": 22,
+   "x": 82.8,
+   "y": 63.2
+  },
+  {
+   "match": 2500049,
+   "date": "2018-04-14",
+   "opponent": "Burnley",
+   "half": 1,
+   "minute": 13,
+   "second": 40,
+   "x": 28.799999999999997,
+   "y": 19.200000000000003
+  },
+  {
+   "match": 2500049,
+   "date": "2018-04-14",
+   "opponent": "Burnley",
+   "half": 2,
+   "minute": 46,
+   "second": 58,
+   "x": 91.2,
+   "y": 43.2
+  },
+  {
+   "match": 2500049,
+   "date": "2018-04-14",
+   "opponent": "Burnley",
+   "half": 2,
+   "minute": 61,
+   "second": 26,
+   "x": 70.8,
+   "y": 34.4
+  },
+  {
+   "match": 2500049,
+   "date": "2018-04-14",
+   "opponent": "Burnley",
+   "half": 2,
+   "minute": 71,
+   "second": 6,
+   "x": 22.8,
+   "y": 50.400000000000006
+  },
+  {
+   "match": 2500049,
+   "date": "2018-04-14",
+   "opponent": "Burnley",
+   "half": 2,
+   "minute": 76,
+   "second": 43,
+   "x": 54.0,
+   "y": 12.8
+  },
+  {
+   "match": 2500049,
+   "date": "2018-04-14",
+   "opponent": "Burnley",
+   "half": 2,
+   "minute": 82,
+   "second": 35,
+   "x": 81.6,
+   "y": 36.800000000000004
+  },
+  {
+   "match": 2500064,
+   "date": "2018-04-19",
+   "opponent": "Southampton",
+   "half": 2,
+   "minute": 91,
+   "second": 57,
+   "x": 86.39999999999999,
+   "y": 29.6
+  },
+  {
+   "match": 2500070,
+   "date": "2018-04-28",
+   "opponent": "Crystal Palace",
+   "half": 1,
+   "minute": 8,
+   "second": 42,
+   "x": 88.8,
+   "y": 19.200000000000003
+  },
+  {
+   "match": 2500070,
+   "date": "2018-04-28",
+   "opponent": "Crystal Palace",
+   "half": 2,
+   "minute": 85,
+   "second": 52,
+   "x": 112.8,
+   "y": 10.4
+  },
+  {
+   "match": 2500022,
+   "date": "2018-05-09",
+   "opponent": "Arsenal",
+   "half": 1,
+   "minute": 12,
+   "second": 2,
+   "x": 56.4,
+   "y": 30.400000000000002
+  },
+  {
+   "match": 2500022,
+   "date": "2018-05-09",
+   "opponent": "Arsenal",
+   "half": 1,
+   "minute": 12,
+   "second": 55,
+   "x": 105.6,
+   "y": 48.0
+  },
+  {
+   "match": 2500022,
+   "date": "2018-05-09",
+   "opponent": "Arsenal",
+   "half": 1,
+   "minute": 19,
+   "second": 40,
+   "x": 69.6,
+   "y": 52.0
+  },
+  {
+   "match": 2500022,
+   "date": "2018-05-09",
+   "opponent": "Arsenal",
+   "half": 1,
+   "minute": 21,
+   "second": 24,
+   "x": 106.8,
+   "y": 21.6
+  },
+  {
+   "match": 2500022,
+   "date": "2018-05-09",
+   "opponent": "Arsenal",
+   "half": 1,
+   "minute": 47,
+   "second": 55,
+   "x": 28.799999999999997,
+   "y": 55.2
+  },
+  {
+   "match": 2500022,
+   "date": "2018-05-09",
+   "opponent": "Arsenal",
+   "half": 2,
+   "minute": 53,
+   "second": 30,
+   "x": 44.4,
+   "y": 66.4
+  },
+  {
+   "match": 2500097,
+   "date": "2018-05-13",
+   "opponent": "Tottenham Hotspur",
+   "half": 1,
+   "minute": 15,
+   "second": 31,
+   "x": 104.39999999999999,
+   "y": 55.2
+  },
+  {
+   "match": 2500097,
+   "date": "2018-05-13",
+   "opponent": "Tottenham Hotspur",
+   "half": 1,
+   "minute": 35,
+   "second": 37,
+   "x": 64.8,
+   "y": 49.6
+  },
+  {
+   "match": 2500097,
+   "date": "2018-05-13",
+   "opponent": "Tottenham Hotspur",
+   "half": 2,
+   "minute": 46,
+   "second": 48,
+   "x": 90.0,
+   "y": 38.400000000000006
+  },
+  {
+   "match": 2500097,
+   "date": "2018-05-13",
+   "opponent": "Tottenham Hotspur",
+   "half": 2,
+   "minute": 72,
+   "second": 40,
+   "x": 46.8,
+   "y": 19.200000000000003
+  },
+  {
+   "match": 2500097,
+   "date": "2018-05-13",
+   "opponent": "Tottenham Hotspur",
+   "half": 2,
+   "minute": 94,
+   "second": 51,
+   "x": 31.2,
+   "y": 35.2
+  }
+ ]
+}

@@ -1,0 +1,361 @@
+family,match,date,opponent,half,minute,second,start_type,passes,duration_s,ended_in_shot
+Corner centre,2565554,2017-08-20,Real Betis,1,34,31,Corner,1,0,0
+Corner centre,2565554,2017-08-20,Real Betis,2,60,20,Corner,8,23,0
+Corner centre,2565554,2017-08-20,Real Betis,2,81,19,Corner,1,2,1
+Corner centre,2565559,2017-08-26,Deportivo Alavés,1,9,30,Corner,4,21,0
+Corner centre,2565559,2017-08-26,Deportivo Alavés,1,38,59,Corner,7,32,0
+Corner centre,2565559,2017-08-26,Deportivo Alavés,1,43,36,Corner,12,39,0
+Corner centre,2565559,2017-08-26,Deportivo Alavés,2,85,24,Corner,6,15,0
+Corner centre,2565559,2017-08-26,Deportivo Alavés,2,91,0,Corner,5,39,1
+Corner centre,2565577,2017-09-09,Espanyol,1,1,51,Corner,3,13,1
+Corner centre,2565577,2017-09-09,Espanyol,1,5,41,Corner,1,0,0
+Corner centre,2565577,2017-09-09,Espanyol,1,28,11,Corner,3,10,0
+Corner centre,2565577,2017-09-09,Espanyol,1,36,28,Corner,1,3,1
+Corner centre,2565577,2017-09-09,Espanyol,2,52,38,Corner,2,6,0
+Corner centre,2565577,2017-09-09,Espanyol,2,80,6,Corner,1,0,0
+Corner centre,2565577,2017-09-09,Espanyol,2,86,9,Corner,1,3,1
+Corner centre,2565592,2017-09-19,Eibar,1,13,33,Corner,1,0,0
+Corner centre,2565592,2017-09-19,Eibar,1,37,9,Corner,1,2,1
+Corner centre,2565603,2017-09-23,Girona,1,36,24,Corner,1,3,1
+Corner centre,2565615,2017-10-01,Las Palmas,1,30,2,Corner,1,3,1
+Corner centre,2565615,2017-10-01,Las Palmas,2,69,8,Corner,1,2,1
+Corner centre,2565615,2017-10-01,Las Palmas,2,69,30,Corner,5,25,1
+Corner centre,2565626,2017-10-14,Atlético Madrid,1,1,4,Corner,2,10,0
+Corner centre,2565647,2017-10-28,Athletic Club,1,16,6,Corner,4,9,0
+Corner centre,2565647,2017-10-28,Athletic Club,1,39,5,Corner,9,24,1
+Corner centre,2565647,2017-10-28,Athletic Club,2,60,59,Corner,3,7,0
+Corner centre,2565653,2017-11-04,Sevilla,1,42,55,Corner,6,29,0
+Corner centre,2565658,2017-11-18,Leganés,1,23,14,Corner,1,4,1
+Corner centre,2565672,2017-11-26,Valencia,1,3,52,Corner,4,9,0
+Corner centre,2565672,2017-11-26,Valencia,1,23,57,Corner,1,0,0
+Corner centre,2565672,2017-11-26,Valencia,2,51,44,Corner,1,2,1
+Corner centre,2565672,2017-11-26,Valencia,2,89,43,Corner,1,2,1
+Corner centre,2565681,2017-12-02,Celta de Vigo,1,17,14,Corner,21,65,0
+Corner centre,2565692,2017-12-10,Villarreal,1,3,24,Corner,3,6,1
+Corner centre,2565704,2017-12-17,Deportivo La Coruña,1,27,16,Corner,1,7,1
+Corner centre,2565704,2017-12-17,Deportivo La Coruña,2,88,2,Corner,1,0,0
+Corner centre,2565711,2017-12-23,Real Madrid,1,30,4,Corner,1,2,1
+Corner centre,2565711,2017-12-23,Real Madrid,2,86,50,Corner,1,4,1
+Corner centre,2565718,2018-01-07,Levante,2,71,55,Corner,6,16,0
+Corner centre,2565737,2018-01-14,Real Sociedad,2,48,52,Corner,3,9,0
+Corner centre,2565754,2018-01-28,Deportivo Alavés,1,34,57,Corner,1,0,0
+Corner centre,2565754,2018-01-28,Deportivo Alavés,1,46,19,Corner,1,0,0
+Corner centre,2565754,2018-01-28,Deportivo Alavés,2,69,14,Corner,5,27,1
+Corner centre,2565754,2018-01-28,Deportivo Alavés,2,85,28,Corner,1,0,0
+Corner centre,2565759,2018-02-04,Espanyol,1,35,28,Corner,1,0,0
+Corner centre,2565759,2018-02-04,Espanyol,1,44,2,Corner,6,20,1
+Corner centre,2565759,2018-02-04,Espanyol,2,76,26,Corner,2,3,0
+Corner centre,2565759,2018-02-04,Espanyol,2,80,8,Corner,1,0,0
+Corner centre,2565777,2018-02-11,Getafe,2,47,31,Corner,1,0,0
+Corner centre,2565777,2018-02-11,Getafe,2,57,55,Corner,9,32,0
+Corner centre,2565777,2018-02-11,Getafe,2,58,49,Corner,1,0,0
+Corner centre,2565777,2018-02-11,Getafe,2,59,3,Corner,2,9,0
+Corner centre,2565777,2018-02-11,Getafe,2,75,57,Corner,2,5,0
+Corner centre,2565777,2018-02-11,Getafe,2,76,18,Corner,1,3,1
+Corner centre,2565791,2018-02-24,Girona,1,18,59,Corner,1,0,0
+Corner centre,2565791,2018-02-24,Girona,2,70,13,Corner,1,1,1
+Corner centre,2565791,2018-02-24,Girona,2,81,30,Corner,11,43,1
+Corner centre,2565807,2018-03-01,Las Palmas,1,25,21,Corner,1,0,0
+Corner centre,2565807,2018-03-01,Las Palmas,2,61,31,Corner,4,17,1
+Corner centre,2565817,2018-03-04,Atlético Madrid,1,10,26,Corner,2,4,0
+Corner centre,2565817,2018-03-04,Atlético Madrid,1,37,7,Corner,11,30,0
+Corner centre,2565817,2018-03-04,Atlético Madrid,1,42,43,Corner,1,3,1
+Corner centre,2565817,2018-03-04,Atlético Madrid,2,64,47,Corner,1,0,0
+Corner centre,2565817,2018-03-04,Atlético Madrid,2,65,6,Corner,1,2,1
+Corner centre,2565820,2018-03-10,Málaga,1,31,41,Corner,1,0,0
+Corner centre,2565820,2018-03-10,Málaga,2,59,57,Corner,1,4,1
+Corner centre,2565830,2018-03-18,Athletic Club,1,4,29,Corner,3,16,0
+Corner centre,2565830,2018-03-18,Athletic Club,1,17,20,Corner,1,4,1
+Corner centre,2565830,2018-03-18,Athletic Club,2,72,33,Corner,6,15,0
+Corner centre,2565845,2018-03-31,Sevilla,1,19,50,Corner,1,4,1
+Corner centre,2565845,2018-03-31,Sevilla,1,20,15,Corner,1,0,0
+Corner centre,2565845,2018-03-31,Sevilla,1,23,19,Corner,1,0,0
+Corner centre,2565845,2018-03-31,Sevilla,1,39,47,Corner,1,2,1
+Corner centre,2565845,2018-03-31,Sevilla,2,87,17,Corner,1,2,1
+Corner centre,2565856,2018-04-07,Leganés,2,49,42,Corner,2,14,0
+Corner centre,2565858,2018-04-14,Valencia,2,50,37,Corner,1,2,1
+Corner centre,2565858,2018-04-14,Valencia,2,87,31,Corner,1,0,0
+Corner centre,2565874,2018-04-17,Celta de Vigo,1,24,13,Corner,1,3,1
+Corner centre,2565874,2018-04-17,Celta de Vigo,1,39,47,Corner,1,5,1
+Corner centre,2565889,2018-04-29,Deportivo La Coruña,1,10,27,Corner,1,0,0
+Corner centre,2565889,2018-04-29,Deportivo La Coruña,1,25,25,Corner,8,39,0
+Corner centre,2565907,2018-05-06,Real Madrid,1,3,26,Corner,3,10,0
+Corner centre,2565907,2018-05-06,Real Madrid,2,70,12,Corner,1,0,0
+Corner centre,2565907,2018-05-06,Real Madrid,2,70,44,Corner,1,0,0
+Corner centre,2565907,2018-05-06,Real Madrid,2,82,24,Corner,1,3,1
+Corner centre,2565907,2018-05-06,Real Madrid,2,92,55,Corner,2,5,1
+Corner centre,2565884,2018-05-09,Villarreal,1,26,40,Corner,1,3,1
+Corner centre,2565884,2018-05-09,Villarreal,1,28,37,Corner,2,1,0
+Corner centre,2565917,2018-05-13,Levante,1,22,54,Corner,1,0,0
+Corner centre,2565917,2018-05-13,Levante,1,24,29,Corner,1,0,0
+Corner centre,2565917,2018-05-13,Levante,2,68,56,Corner,1,0,0
+Corner centre,2565917,2018-05-13,Levante,2,81,41,Corner,1,2,1
+Corner centre,2565922,2018-05-20,Real Sociedad,1,17,46,Corner,1,2,1
+Corner far post,2565559,2017-08-26,Deportivo Alavés,1,17,31,Corner,3,18,0
+Corner far post,2565559,2017-08-26,Deportivo Alavés,1,42,56,Corner,1,3,1
+Corner far post,2565559,2017-08-26,Deportivo Alavés,2,84,49,Corner,1,3,1
+Corner far post,2565615,2017-10-01,Las Palmas,1,22,24,Corner,6,22,0
+Corner far post,2565615,2017-10-01,Las Palmas,2,87,25,Corner,8,28,1
+Corner far post,2565629,2017-10-21,Málaga,2,88,33,Corner,5,12,0
+Corner far post,2565653,2017-11-04,Sevilla,2,68,47,Corner,1,0,0
+Corner far post,2565672,2017-11-26,Valencia,1,38,7,Corner,18,51,1
+Corner far post,2565672,2017-11-26,Valencia,2,54,17,Corner,17,48,0
+Corner far post,2565754,2018-01-28,Deportivo Alavés,2,67,47,Corner,3,10,0
+Corner far post,2565777,2018-02-11,Getafe,1,31,43,Corner,4,10,0
+Corner far post,2565807,2018-03-01,Las Palmas,1,8,10,Corner,1,3,1
+Corner far post,2565807,2018-03-01,Las Palmas,2,91,11,Corner,23,94,0
+Corner far post,2565817,2018-03-04,Atlético Madrid,2,77,31,Corner,4,15,1
+Corner far post,2565820,2018-03-10,Málaga,2,54,11,Corner,14,75,1
+Corner far post,2565845,2018-03-31,Sevilla,1,23,48,Corner,1,0,0
+Corner far post,2565874,2018-04-17,Celta de Vigo,1,11,56,Corner,2,10,0
+Corner far post,2565917,2018-05-13,Levante,1,42,48,Corner,1,0,0
+Corner near post,2565580,2017-09-16,Getafe,2,59,15,Corner,8,37,0
+Corner near post,2565592,2017-09-19,Eibar,1,14,0,Corner,1,0,0
+Corner near post,2565603,2017-09-23,Girona,1,36,7,Corner,1,0,0
+Corner near post,2565629,2017-10-21,Málaga,1,21,56,Corner,1,0,0
+Corner near post,2565647,2017-10-28,Athletic Club,1,24,57,Corner,5,14,0
+Corner near post,2565672,2017-11-26,Valencia,1,28,16,Corner,2,4,0
+Corner near post,2565681,2017-12-02,Celta de Vigo,2,66,4,Corner,5,20,0
+Corner near post,2565704,2017-12-17,Deportivo La Coruña,1,28,12,Corner,3,11,1
+Corner near post,2565711,2017-12-23,Real Madrid,1,23,9,Corner,21,70,0
+Corner near post,2565737,2018-01-14,Real Sociedad,1,29,32,Corner,3,21,0
+Corner near post,2565754,2018-01-28,Deportivo Alavés,1,33,22,Corner,1,0,0
+Corner near post,2565759,2018-02-04,Espanyol,2,47,11,Corner,3,8,0
+Corner near post,2565759,2018-02-04,Espanyol,2,54,24,Corner,1,0,0
+Corner near post,2565759,2018-02-04,Espanyol,2,80,26,Corner,8,32,0
+Corner near post,2565807,2018-03-01,Las Palmas,1,42,7,Corner,1,0,0
+Corner near post,2565845,2018-03-31,Sevilla,2,86,11,Corner,2,6,1
+Corner near post,2565858,2018-04-14,Valencia,2,73,29,Corner,3,8,0
+Corner near post,2565889,2018-04-29,Deportivo La Coruña,1,20,45,Corner,7,25,1
+Corner near post,2565889,2018-04-29,Deportivo La Coruña,2,79,35,Corner,16,42,1
+Corner near post,2565917,2018-05-13,Levante,1,42,24,Corner,1,3,1
+Corner near post,2565917,2018-05-13,Levante,2,82,0,Corner,1,0,0
+Corner short / outside box,2565554,2017-08-20,Real Betis,1,28,50,Corner,7,20,0
+Corner short / outside box,2565554,2017-08-20,Real Betis,2,48,23,Corner,1,0,0
+Corner short / outside box,2565554,2017-08-20,Real Betis,2,74,47,Corner,14,55,0
+Corner short / outside box,2565554,2017-08-20,Real Betis,2,86,19,Corner,3,9,0
+Corner short / outside box,2565554,2017-08-20,Real Betis,2,90,49,Corner,4,7,0
+Corner short / outside box,2565559,2017-08-26,Deportivo Alavés,1,21,41,Corner,6,12,0
+Corner short / outside box,2565559,2017-08-26,Deportivo Alavés,1,23,17,Corner,4,9,0
+Corner short / outside box,2565559,2017-08-26,Deportivo Alavés,1,34,36,Corner,4,13,1
+Corner short / outside box,2565559,2017-08-26,Deportivo Alavés,2,47,36,Corner,3,6,1
+Corner short / outside box,2565559,2017-08-26,Deportivo Alavés,2,51,3,Corner,2,4,0
+Corner short / outside box,2565559,2017-08-26,Deportivo Alavés,2,92,3,Corner,12,31,0
+Corner short / outside box,2565577,2017-09-09,Espanyol,1,15,6,Corner,3,4,0
+Corner short / outside box,2565580,2017-09-16,Getafe,1,30,50,Corner,4,10,1
+Corner short / outside box,2565580,2017-09-16,Getafe,1,46,28,Corner,1,5,1
+Corner short / outside box,2565580,2017-09-16,Getafe,2,88,17,Corner,9,21,0
+Corner short / outside box,2565592,2017-09-19,Eibar,1,14,15,Corner,3,5,0
+Corner short / outside box,2565592,2017-09-19,Eibar,1,36,14,Corner,7,29,1
+Corner short / outside box,2565592,2017-09-19,Eibar,2,69,7,Corner,1,0,0
+Corner short / outside box,2565592,2017-09-19,Eibar,2,70,11,Corner,4,11,0
+Corner short / outside box,2565603,2017-09-23,Girona,1,16,37,Corner,1,3,1
+Corner short / outside box,2565615,2017-10-01,Las Palmas,1,5,57,Corner,3,7,0
+Corner short / outside box,2565615,2017-10-01,Las Palmas,1,43,40,Corner,1,5,1
+Corner short / outside box,2565615,2017-10-01,Las Palmas,2,48,19,Corner,1,2,1
+Corner short / outside box,2565629,2017-10-21,Málaga,2,53,12,Corner,4,24,0
+Corner short / outside box,2565629,2017-10-21,Málaga,2,87,4,Corner,16,54,1
+Corner short / outside box,2565653,2017-11-04,Sevilla,1,3,22,Corner,7,17,1
+Corner short / outside box,2565658,2017-11-18,Leganés,1,10,49,Corner,17,58,0
+Corner short / outside box,2565658,2017-11-18,Leganés,2,72,56,Corner,4,10,0
+Corner short / outside box,2565672,2017-11-26,Valencia,1,4,23,Corner,9,21,0
+Corner short / outside box,2565672,2017-11-26,Valencia,1,28,33,Corner,9,31,0
+Corner short / outside box,2565681,2017-12-02,Celta de Vigo,1,6,1,Corner,2,3,0
+Corner short / outside box,2565681,2017-12-02,Celta de Vigo,1,29,7,Corner,8,23,1
+Corner short / outside box,2565692,2017-12-10,Villarreal,1,18,54,Corner,24,83,0
+Corner short / outside box,2565692,2017-12-10,Villarreal,1,38,46,Corner,2,12,0
+Corner short / outside box,2565692,2017-12-10,Villarreal,2,90,21,Corner,10,31,0
+Corner short / outside box,2565704,2017-12-17,Deportivo La Coruña,1,9,13,Corner,2,5,0
+Corner short / outside box,2565704,2017-12-17,Deportivo La Coruña,1,9,35,Corner,5,18,1
+Corner short / outside box,2565704,2017-12-17,Deportivo La Coruña,1,27,39,Corner,3,8,0
+Corner short / outside box,2565711,2017-12-23,Real Madrid,1,39,25,Corner,4,17,0
+Corner short / outside box,2565711,2017-12-23,Real Madrid,2,80,13,Corner,16,56,0
+Corner short / outside box,2565711,2017-12-23,Real Madrid,2,84,53,Corner,2,3,0
+Corner short / outside box,2565711,2017-12-23,Real Madrid,2,91,58,Corner,6,16,1
+Corner short / outside box,2565718,2018-01-07,Levante,1,40,16,Corner,5,14,1
+Corner short / outside box,2565718,2018-01-07,Levante,2,68,41,Corner,12,37,0
+Corner short / outside box,2565737,2018-01-14,Real Sociedad,2,81,37,Corner,4,19,0
+Corner short / outside box,2565740,2018-01-21,Real Betis,2,54,35,Corner,4,13,0
+Corner short / outside box,2565740,2018-01-21,Real Betis,2,83,2,Corner,26,104,1
+Corner short / outside box,2565754,2018-01-28,Deportivo Alavés,1,14,52,Corner,2,2,0
+Corner short / outside box,2565754,2018-01-28,Deportivo Alavés,2,54,27,Corner,1,5,1
+Corner short / outside box,2565777,2018-02-11,Getafe,1,34,53,Corner,2,7,0
+Corner short / outside box,2565777,2018-02-11,Getafe,2,90,37,Corner,1,0,0
+Corner short / outside box,2565791,2018-02-24,Girona,1,10,31,Corner,3,6,0
+Corner short / outside box,2565791,2018-02-24,Girona,2,74,36,Corner,6,15,0
+Corner short / outside box,2565807,2018-03-01,Las Palmas,1,10,35,Corner,5,9,0
+Corner short / outside box,2565817,2018-03-04,Atlético Madrid,1,4,31,Corner,17,47,0
+Corner short / outside box,2565817,2018-03-04,Atlético Madrid,1,5,33,Corner,9,43,0
+Corner short / outside box,2565817,2018-03-04,Atlético Madrid,1,7,25,Corner,3,7,0
+Corner short / outside box,2565817,2018-03-04,Atlético Madrid,1,23,53,Corner,4,6,0
+Corner short / outside box,2565817,2018-03-04,Atlético Madrid,2,68,17,Corner,1,0,0
+Corner short / outside box,2565817,2018-03-04,Atlético Madrid,2,75,51,Corner,2,5,0
+Corner short / outside box,2565820,2018-03-10,Málaga,1,43,17,Corner,2,2,0
+Corner short / outside box,2565820,2018-03-10,Málaga,2,90,11,Corner,5,9,0
+Corner short / outside box,2565830,2018-03-18,Athletic Club,1,11,44,Corner,5,17,1
+Corner short / outside box,2565830,2018-03-18,Athletic Club,2,50,1,Corner,6,14,0
+Corner short / outside box,2565830,2018-03-18,Athletic Club,2,80,24,Corner,5,22,1
+Corner short / outside box,2565845,2018-03-31,Sevilla,2,66,31,Corner,3,6,0
+Corner short / outside box,2565845,2018-03-31,Sevilla,2,70,33,Corner,8,18,0
+Corner short / outside box,2565856,2018-04-07,Leganés,1,12,29,Corner,3,7,1
+Corner short / outside box,2565856,2018-04-07,Leganés,1,16,13,Corner,4,6,0
+Corner short / outside box,2565856,2018-04-07,Leganés,2,57,37,Corner,7,12,0
+Corner short / outside box,2565856,2018-04-07,Leganés,2,90,50,Corner,4,6,0
+Corner short / outside box,2565858,2018-04-14,Valencia,1,9,51,Corner,3,4,0
+Corner short / outside box,2565858,2018-04-14,Valencia,1,16,56,Corner,2,3,0
+Corner short / outside box,2565858,2018-04-14,Valencia,2,61,59,Corner,6,18,0
+Corner short / outside box,2565874,2018-04-17,Celta de Vigo,2,49,56,Corner,3,8,0
+Corner short / outside box,2565889,2018-04-29,Deportivo La Coruña,1,17,21,Corner,16,45,0
+Corner short / outside box,2565889,2018-04-29,Deportivo La Coruña,1,29,39,Corner,5,12,0
+Corner short / outside box,2565889,2018-04-29,Deportivo La Coruña,2,61,34,Corner,1,2,1
+Corner short / outside box,2565907,2018-05-06,Real Madrid,1,29,31,Corner,3,4,0
+Corner short / outside box,2565884,2018-05-09,Villarreal,2,58,18,Corner,3,12,1
+Corner short / outside box,2565884,2018-05-09,Villarreal,2,58,48,Corner,3,4,0
+Corner short / outside box,2565917,2018-05-13,Levante,1,3,6,Corner,6,12,1
+Corner short / outside box,2565922,2018-05-20,Real Sociedad,1,4,6,Corner,3,5,0
+Corner short / outside box,2565922,2018-05-20,Real Sociedad,2,54,49,Corner,1,0,0
+Free kick cross into box,2565554,2017-08-20,Real Betis,1,11,38,Free kick,1,0,0
+Free kick cross into box,2565559,2017-08-26,Deportivo Alavés,1,37,24,Free kick,1,0,0
+Free kick cross into box,2565559,2017-08-26,Deportivo Alavés,2,73,4,Free kick,15,48,1
+Free kick cross into box,2565559,2017-08-26,Deportivo Alavés,2,78,30,Free kick,2,3,0
+Free kick cross into box,2565559,2017-08-26,Deportivo Alavés,2,83,9,Free kick,5,15,0
+Free kick cross into box,2565577,2017-09-09,Espanyol,1,40,14,Free kick,1,0,0
+Free kick cross into box,2565577,2017-09-09,Espanyol,2,84,26,Free kick,8,16,0
+Free kick cross into box,2565580,2017-09-16,Getafe,2,72,32,Free kick,1,0,0
+Free kick cross into box,2565615,2017-10-01,Las Palmas,2,57,48,Free kick,1,0,0
+Free kick cross into box,2565626,2017-10-14,Atlético Madrid,1,14,12,Free kick,26,69,0
+Free kick cross into box,2565626,2017-10-14,Atlético Madrid,1,32,10,Free kick,1,0,0
+Free kick cross into box,2565626,2017-10-14,Atlético Madrid,2,76,26,Free kick,4,17,1
+Free kick cross into box,2565672,2017-11-26,Valencia,1,44,31,Free kick,1,0,0
+Free kick cross into box,2565681,2017-12-02,Celta de Vigo,1,15,14,Free kick,3,9,1
+Free kick cross into box,2565681,2017-12-02,Celta de Vigo,2,87,7,Free kick,1,0,0
+Free kick cross into box,2565704,2017-12-17,Deportivo La Coruña,1,38,53,Free kick,13,37,0
+Free kick cross into box,2565718,2018-01-07,Levante,1,8,12,Free kick,1,0,0
+Free kick cross into box,2565737,2018-01-14,Real Sociedad,1,43,35,Free kick,1,0,0
+Free kick cross into box,2565737,2018-01-14,Real Sociedad,2,53,5,Free kick,1,0,0
+Free kick cross into box,2565754,2018-01-28,Deportivo Alavés,1,20,55,Free kick,2,24,1
+Free kick cross into box,2565759,2018-02-04,Espanyol,1,22,47,Free kick,1,0,0
+Free kick cross into box,2565759,2018-02-04,Espanyol,2,62,28,Free kick,1,0,0
+Free kick cross into box,2565759,2018-02-04,Espanyol,2,81,51,Free kick,1,2,1
+Free kick cross into box,2565777,2018-02-11,Getafe,1,43,51,Free kick,1,0,0
+Free kick cross into box,2565777,2018-02-11,Getafe,2,74,29,Free kick,2,24,1
+Free kick cross into box,2565807,2018-03-01,Las Palmas,2,66,56,Free kick,2,2,0
+Free kick cross into box,2565817,2018-03-04,Atlético Madrid,1,12,32,Free kick,1,0,0
+Free kick cross into box,2565820,2018-03-10,Málaga,1,9,27,Free kick,1,0,0
+Free kick cross into box,2565845,2018-03-31,Sevilla,1,10,14,Free kick,1,0,0
+Free kick cross into box,2565845,2018-03-31,Sevilla,1,34,29,Free kick,1,0,0
+Free kick cross into box,2565858,2018-04-14,Valencia,1,11,55,Free kick,1,0,0
+Free kick cross into box,2565858,2018-04-14,Valencia,1,41,46,Free kick,1,0,0
+Free kick cross into box,2565889,2018-04-29,Deportivo La Coruña,2,59,17,Free kick,1,0,0
+Free kick cross into box,2565907,2018-05-06,Real Madrid,1,35,57,Free kick,1,0,0
+Free kick cross into box,2565884,2018-05-09,Villarreal,1,19,37,Free kick,1,3,1
+Free kick cross into box,2565917,2018-05-13,Levante,2,63,38,Free kick,2,8,1
+Free kick cross into box,2565917,2018-05-13,Levante,2,73,11,Free kick,1,1,1
+Free kick cross into box,2565922,2018-05-20,Real Sociedad,1,44,3,Free kick,1,0,0
+Free kick cross into box,2565922,2018-05-20,Real Sociedad,2,61,13,Free kick,1,0,0
+Free kick cross into box,2565922,2018-05-20,Real Sociedad,2,67,17,Free kick,1,1,1
+Free kick direct shot,2565554,2017-08-20,Real Betis,1,13,43,Free kick,0,0,1
+Free kick direct shot,2565554,2017-08-20,Real Betis,1,34,3,Free kick,0,0,1
+Free kick direct shot,2565554,2017-08-20,Real Betis,2,70,31,Free kick,0,0,1
+Free kick direct shot,2565559,2017-08-26,Deportivo Alavés,1,38,37,Free kick,0,0,1
+Free kick direct shot,2565559,2017-08-26,Deportivo Alavés,2,52,13,Free kick,0,0,1
+Free kick direct shot,2565577,2017-09-09,Espanyol,1,18,27,Free kick,0,0,1
+Free kick direct shot,2565577,2017-09-09,Espanyol,1,29,24,Free kick,16,47,1
+Free kick direct shot,2565577,2017-09-09,Espanyol,2,85,33,Free kick,0,0,1
+Free kick direct shot,2565580,2017-09-16,Getafe,1,46,3,Free kick,0,0,1
+Free kick direct shot,2565592,2017-09-19,Eibar,1,20,0,Free kick,0,0,1
+Free kick direct shot,2565592,2017-09-19,Eibar,2,80,37,Free kick,0,0,1
+Free kick direct shot,2565603,2017-09-23,Girona,1,16,7,Free kick,0,0,1
+Free kick direct shot,2565603,2017-09-23,Girona,2,91,18,Free kick,0,0,1
+Free kick direct shot,2565615,2017-10-01,Las Palmas,1,20,49,Free kick,3,12,1
+Free kick direct shot,2565615,2017-10-01,Las Palmas,2,46,39,Free kick,0,0,1
+Free kick direct shot,2565615,2017-10-01,Las Palmas,2,79,41,Free kick,0,0,1
+Free kick direct shot,2565626,2017-10-14,Atlético Madrid,2,56,45,Free kick,0,0,1
+Free kick direct shot,2565626,2017-10-14,Atlético Madrid,2,93,45,Free kick,0,0,1
+Free kick direct shot,2565629,2017-10-21,Málaga,1,26,52,Free kick,0,2,1
+Free kick direct shot,2565647,2017-10-28,Athletic Club,1,41,26,Free kick,3,11,1
+Free kick direct shot,2565647,2017-10-28,Athletic Club,2,89,34,Free kick,0,0,1
+Free kick direct shot,2565653,2017-11-04,Sevilla,1,2,35,Free kick,2,8,1
+Free kick direct shot,2565672,2017-11-26,Valencia,1,32,22,Free kick,14,64,1
+Free kick direct shot,2565681,2017-12-02,Celta de Vigo,2,95,33,Free kick,0,0,1
+Free kick direct shot,2565692,2017-12-10,Villarreal,1,21,15,Free kick,0,0,1
+Free kick direct shot,2565692,2017-12-10,Villarreal,2,88,51,Free kick,0,0,1
+Free kick direct shot,2565704,2017-12-17,Deportivo La Coruña,2,66,27,Free kick,3,13,1
+Free kick direct shot,2565704,2017-12-17,Deportivo La Coruña,2,69,43,Free kick,0,0,1
+Free kick direct shot,2565711,2017-12-23,Real Madrid,1,46,0,Free kick,0,0,1
+Free kick direct shot,2565711,2017-12-23,Real Madrid,2,63,30,Free kick,0,0,1
+Free kick direct shot,2565718,2018-01-07,Levante,1,31,49,Free kick,0,0,1
+Free kick direct shot,2565718,2018-01-07,Levante,1,39,54,Free kick,0,0,1
+Free kick direct shot,2565718,2018-01-07,Levante,2,78,0,Free kick,2,9,1
+Free kick direct shot,2565737,2018-01-14,Real Sociedad,2,63,26,Free kick,2,14,1
+Free kick direct shot,2565737,2018-01-14,Real Sociedad,2,75,33,Free kick,0,0,1
+Free kick direct shot,2565737,2018-01-14,Real Sociedad,2,84,29,Free kick,0,0,1
+Free kick direct shot,2565754,2018-01-28,Deportivo Alavés,1,34,36,Free kick,0,0,1
+Free kick direct shot,2565754,2018-01-28,Deportivo Alavés,1,42,6,Free kick,3,12,1
+Free kick direct shot,2565754,2018-01-28,Deportivo Alavés,2,73,5,Free kick,0,0,1
+Free kick direct shot,2565754,2018-01-28,Deportivo Alavés,2,83,14,Free kick,0,0,1
+Free kick direct shot,2565759,2018-02-04,Espanyol,1,42,47,Free kick,0,0,1
+Free kick direct shot,2565777,2018-02-11,Getafe,1,21,25,Free kick,11,41,1
+Free kick direct shot,2565777,2018-02-11,Getafe,2,67,3,Free kick,0,0,1
+Free kick direct shot,2565791,2018-02-24,Girona,1,10,14,Free kick,0,0,1
+Free kick direct shot,2565791,2018-02-24,Girona,1,35,59,Free kick,0,0,1
+Free kick direct shot,2565791,2018-02-24,Girona,2,69,24,Free kick,0,0,1
+Free kick direct shot,2565807,2018-03-01,Las Palmas,1,10,21,Free kick,0,0,1
+Free kick direct shot,2565807,2018-03-01,Las Palmas,1,20,12,Free kick,0,0,1
+Free kick direct shot,2565807,2018-03-01,Las Palmas,2,68,58,Free kick,1,3,1
+Free kick direct shot,2565817,2018-03-04,Atlético Madrid,1,25,27,Free kick,0,0,1
+Free kick direct shot,2565817,2018-03-04,Atlético Madrid,2,57,16,Free kick,0,0,1
+Free kick direct shot,2565820,2018-03-10,Málaga,2,49,37,Free kick,1,6,1
+Free kick direct shot,2565820,2018-03-10,Málaga,2,75,56,Free kick,0,0,1
+Free kick direct shot,2565830,2018-03-18,Athletic Club,1,4,2,Free kick,0,0,1
+Free kick direct shot,2565830,2018-03-18,Athletic Club,2,54,32,Free kick,0,2,1
+Free kick direct shot,2565845,2018-03-31,Sevilla,1,43,8,Free kick,2,11,1
+Free kick direct shot,2565845,2018-03-31,Sevilla,2,52,53,Free kick,0,0,1
+Free kick direct shot,2565856,2018-04-07,Leganés,1,21,21,Free kick,2,9,1
+Free kick direct shot,2565856,2018-04-07,Leganés,1,26,22,Free kick,0,0,1
+Free kick direct shot,2565889,2018-04-29,Deportivo La Coruña,1,29,23,Free kick,0,0,1
+Free kick direct shot,2565907,2018-05-06,Real Madrid,2,62,37,Free kick,5,29,1
+Free kick direct shot,2565917,2018-05-13,Levante,1,5,51,Free kick,1,3,1
+Free kick direct shot,2565917,2018-05-13,Levante,2,70,11,Free kick,0,0,1
+Free kick direct shot,2565922,2018-05-20,Real Sociedad,1,16,48,Free kick,10,37,1
+Free kick played short / wide,2565577,2017-09-09,Espanyol,2,62,15,Free kick,12,34,0
+Free kick played short / wide,2565580,2017-09-16,Getafe,2,65,15,Free kick,1,0,0
+Free kick played short / wide,2565603,2017-09-23,Girona,1,6,47,Free kick,3,7,0
+Free kick played short / wide,2565603,2017-09-23,Girona,1,38,40,Free kick,1,0,0
+Free kick played short / wide,2565603,2017-09-23,Girona,2,45,48,Free kick,4,8,0
+Free kick played short / wide,2565603,2017-09-23,Girona,2,51,16,Free kick,5,5,0
+Free kick played short / wide,2565626,2017-10-14,Atlético Madrid,2,86,17,Free kick,1,0,0
+Free kick played short / wide,2565629,2017-10-21,Málaga,1,19,43,Free kick,8,21,0
+Free kick played short / wide,2565629,2017-10-21,Málaga,1,20,37,Free kick,17,48,0
+Free kick played short / wide,2565629,2017-10-21,Málaga,2,58,45,Free kick,3,5,0
+Free kick played short / wide,2565629,2017-10-21,Málaga,2,59,13,Free kick,8,24,1
+Free kick played short / wide,2565653,2017-11-04,Sevilla,1,20,29,Free kick,4,11,1
+Free kick played short / wide,2565653,2017-11-04,Sevilla,1,36,53,Free kick,5,16,0
+Free kick played short / wide,2565653,2017-11-04,Sevilla,2,70,44,Free kick,1,0,0
+Free kick played short / wide,2565658,2017-11-18,Leganés,1,31,52,Free kick,7,16,0
+Free kick played short / wide,2565658,2017-11-18,Leganés,2,47,32,Free kick,4,3,0
+Free kick played short / wide,2565658,2017-11-18,Leganés,2,81,33,Free kick,2,0,0
+Free kick played short / wide,2565658,2017-11-18,Leganés,2,84,19,Free kick,6,10,0
+Free kick played short / wide,2565672,2017-11-26,Valencia,1,22,48,Free kick,17,44,0
+Free kick played short / wide,2565672,2017-11-26,Valencia,2,89,9,Free kick,4,8,0
+Free kick played short / wide,2565704,2017-12-17,Deportivo La Coruña,1,32,0,Free kick,4,9,0
+Free kick played short / wide,2565718,2018-01-07,Levante,1,29,2,Free kick,2,3,0
+Free kick played short / wide,2565718,2018-01-07,Levante,2,82,22,Free kick,5,17,0
+Free kick played short / wide,2565718,2018-01-07,Levante,2,82,54,Free kick,5,7,0
+Free kick played short / wide,2565754,2018-01-28,Deportivo Alavés,1,44,35,Free kick,4,9,0
+Free kick played short / wide,2565759,2018-02-04,Espanyol,1,17,55,Free kick,7,21,0
+Free kick played short / wide,2565777,2018-02-11,Getafe,1,35,32,Free kick,1,0,0
+Free kick played short / wide,2565791,2018-02-24,Girona,2,49,29,Free kick,10,24,0
+Free kick played short / wide,2565791,2018-02-24,Girona,2,73,24,Free kick,11,35,0
+Free kick played short / wide,2565817,2018-03-04,Atlético Madrid,1,30,51,Free kick,11,26,1
+Free kick played short / wide,2565817,2018-03-04,Atlético Madrid,2,72,20,Free kick,5,16,0
+Free kick played short / wide,2565817,2018-03-04,Atlético Madrid,2,90,11,Free kick,2,6,0
+Free kick played short / wide,2565820,2018-03-10,Málaga,1,3,20,Free kick,10,29,1
+Free kick played short / wide,2565845,2018-03-31,Sevilla,2,59,32,Free kick,4,8,0
+Free kick played short / wide,2565845,2018-03-31,Sevilla,2,64,49,Free kick,9,22,0
+Free kick played short / wide,2565858,2018-04-14,Valencia,2,74,57,Free kick,2,1,0
+Free kick played short / wide,2565907,2018-05-06,Real Madrid,1,4,4,Free kick,1,0,0
+Free kick played short / wide,2565907,2018-05-06,Real Madrid,2,50,34,Free kick,21,39,0
+Free kick played short / wide,2565917,2018-05-13,Levante,1,28,43,Free kick,1,0,0
+Free kick played short / wide,2565917,2018-05-13,Levante,2,51,15,Free kick,7,15,0
+Free kick played short / wide,2565917,2018-05-13,Levante,2,92,38,Free kick,1,0,0

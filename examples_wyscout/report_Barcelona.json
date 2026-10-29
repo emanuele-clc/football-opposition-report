@@ -1,0 +1,678 @@
+{
+ "team": "Barcelona",
+ "matches": 38,
+ "period": "2017-08-20 to 2018-05-20",
+ "sequences": 2042,
+ "phases": {
+  "build-up": {
+   "k": 5,
+   "n": 1187,
+   "jaccard_mean": 0.7616358862504768,
+   "null_shuffle": 0.47389600084555106,
+   "null_gauss": 0.6614438457050922,
+   "margin": 0.10019204054538466,
+   "verdict": "clear structure",
+   "families": [
+    {
+     "fam": "B1",
+     "n": 195,
+     "share": 0.16427969671440606,
+     "share_ci": [
+      0.14034251951336502,
+      0.18793244179832325
+     ],
+     "passes": 9.605128205128205,
+     "dur": 29.661538461538463,
+     "long": 0.2852876682603999,
+     "x0": 9.673846153846151,
+     "x1": 95.2,
+     "directness": 0.38045593828053886,
+     "shot": 0.14871794871794872,
+     "shot_ci": [
+      0.11339719898852363,
+      0.1868753322700691
+     ],
+     "shot_share": 0.2116788321167883,
+     "per_match_p10_p90": [
+      0.08935064935064935,
+      0.2736677115987461
+     ],
+     "examples": [
+      {
+       "date": "2018-03-31",
+       "opponent": "Sevilla",
+       "half": 1,
+       "minute": 16,
+       "second": 2,
+       "video": "",
+       "start": "From Goal Kick",
+       "passes": 8,
+       "dur": 25.0,
+       "shot": false
+      },
+      {
+       "date": "2018-04-07",
+       "opponent": "Legan\u00e9s",
+       "half": 2,
+       "minute": 52,
+       "second": 49,
+       "video": "",
+       "start": "From Goal Kick",
+       "passes": 9,
+       "dur": 32.0,
+       "shot": false
+      },
+      {
+       "date": "2018-02-11",
+       "opponent": "Getafe",
+       "half": 2,
+       "minute": 49,
+       "second": 23,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 11,
+       "dur": 30.0,
+       "shot": true
+      }
+     ],
+     "jaccard": 0.8289050795249939,
+     "reliability": "stable"
+    },
+    {
+     "fam": "B2",
+     "n": 295,
+     "share": 0.2485256950294861,
+     "share_ci": [
+      0.21968851326861477,
+      0.2799829678059745
+     ],
+     "passes": 4.230508474576271,
+     "dur": 11.284745762711864,
+     "long": 0.2388781275221953,
+     "x0": 21.35593220338983,
+     "x1": 83.78440677966103,
+     "directness": 0.6334481700165997,
+     "shot": 0.12542372881355932,
+     "shot_ci": [
+      0.08678527126721942,
+      0.16666666666666666
+     ],
+     "shot_share": 0.27007299270072993,
+     "per_match_p10_p90": [
+      0.11393188854489164,
+      0.36000000000000004
+     ],
+     "examples": [
+      {
+       "date": "2018-05-13",
+       "opponent": "Levante",
+       "half": 1,
+       "minute": 17,
+       "second": 53,
+       "video": "",
+       "start": "From Keeper",
+       "passes": 4,
+       "dur": 13.0,
+       "shot": false
+      },
+      {
+       "date": "2018-02-17",
+       "opponent": "Eibar",
+       "half": 2,
+       "minute": 55,
+       "second": 28,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 5.0,
+       "shot": false
+      },
+      {
+       "date": "2018-01-21",
+       "opponent": "Real Betis",
+       "half": 2,
+       "minute": 46,
+       "second": 12,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 7.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.8340919117568012,
+     "reliability": "stable"
+    },
+    {
+     "fam": "B3",
+     "n": 137,
+     "share": 0.11541701769165964,
+     "share_ci": [
+      0.09637338993819673,
+      0.13362585668364874
+     ],
+     "passes": 20.656934306569344,
+     "dur": 64.7080291970803,
+     "long": 0.19330120554736843,
+     "x0": 24.963503649635037,
+     "x1": 89.26423357664234,
+     "directness": 0.14187322988873888,
+     "shot": 0.19708029197080293,
+     "shot_ci": [
+      0.1344481416727765,
+      0.2666793893129771
+     ],
+     "shot_share": 0.19708029197080293,
+     "per_match_p10_p90": [
+      0.05492424242424243,
+      0.19646739130434795
+     ],
+     "examples": [
+      {
+       "date": "2018-03-01",
+       "opponent": "Las Palmas",
+       "half": 1,
+       "minute": 17,
+       "second": 30,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 20,
+       "dur": 58.0,
+       "shot": false
+      },
+      {
+       "date": "2018-04-14",
+       "opponent": "Valencia",
+       "half": 2,
+       "minute": 66,
+       "second": 53,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 22,
+       "dur": 67.0,
+       "shot": false
+      },
+      {
+       "date": "2018-05-13",
+       "opponent": "Levante",
+       "half": 2,
+       "minute": 71,
+       "second": 14,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 18,
+       "dur": 61.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.7992545850960119,
+     "reliability": "stable"
+    },
+    {
+     "fam": "B4",
+     "n": 253,
+     "share": 0.21314237573715247,
+     "share_ci": [
+      0.17953754443532952,
+      0.24802224051631366
+     ],
+     "passes": 5.154150197628459,
+     "dur": 12.434782608695652,
+     "long": 0.18432635655955815,
+     "x0": 27.15889328063241,
+     "x1": 39.377075098814224,
+     "directness": 0.14719052366957733,
+     "shot": 0.003952569169960474,
+     "shot_ci": [
+      0.0,
+      0.013275811209439527
+     ],
+     "shot_share": 0.0072992700729927005,
+     "per_match_p10_p90": [
+      0.08809523809523809,
+      0.35294117647058826
+     ],
+     "examples": [
+      {
+       "date": "2018-04-29",
+       "opponent": "Deportivo La Coru\u00f1a",
+       "half": 1,
+       "minute": 21,
+       "second": 35,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 5,
+       "dur": 8.0,
+       "shot": false
+      },
+      {
+       "date": "2018-01-14",
+       "opponent": "Real Sociedad",
+       "half": 2,
+       "minute": 90,
+       "second": 3,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 5,
+       "dur": 5.0,
+       "shot": false
+      },
+      {
+       "date": "2017-12-02",
+       "opponent": "Celta de Vigo",
+       "half": 2,
+       "minute": 52,
+       "second": 6,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 4,
+       "dur": 6.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.6860950326562139,
+     "reliability": "moderate"
+    },
+    {
+     "fam": "B5",
+     "n": 307,
+     "share": 0.2586352148272957,
+     "share_ci": [
+      0.22480045329128895,
+      0.29025733406551213
+     ],
+     "passes": 8.938110749185668,
+     "dur": 25.996742671009773,
+     "long": 0.24713731658498253,
+     "x0": 33.056677524429965,
+     "x1": 95.52312703583061,
+     "directness": 0.3241250355662024,
+     "shot": 0.14006514657980457,
+     "shot_ci": [
+      0.10524696356275304,
+      0.18212896280814844
+     ],
+     "shot_share": 0.31386861313868614,
+     "per_match_p10_p90": [
+      0.13295454545454544,
+      0.39621848739495813
+     ],
+     "examples": [
+      {
+       "date": "2017-09-16",
+       "opponent": "Getafe",
+       "half": 2,
+       "minute": 45,
+       "second": 16,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 8,
+       "dur": 22.0,
+       "shot": false
+      },
+      {
+       "date": "2017-12-10",
+       "opponent": "Villarreal",
+       "half": 1,
+       "minute": 15,
+       "second": 22,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 10,
+       "dur": 31.0,
+       "shot": false
+      },
+      {
+       "date": "2018-03-31",
+       "opponent": "Sevilla",
+       "half": 2,
+       "minute": 86,
+       "second": 31,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 7,
+       "dur": 22.0,
+       "shot": true
+      }
+     ],
+     "jaccard": 0.6598328222183631,
+     "reliability": "moderate"
+    }
+   ],
+   "by_start": [
+    {
+     "start": "From Goal Kick",
+     "n": 175,
+     "shares": {
+      "B1": 0.571,
+      "B2": 0.211,
+      "B3": 0.126,
+      "B4": 0.091,
+      "B5": 0.0
+     }
+    },
+    {
+     "start": "From Keeper",
+     "n": 47,
+     "shares": {
+      "B1": 0.298,
+      "B2": 0.362,
+      "B3": 0.128,
+      "B4": 0.213,
+      "B5": 0.0
+     }
+    },
+    {
+     "start": "From Throw In",
+     "n": 213,
+     "shares": {
+      "B1": 0.0,
+      "B2": 0.07,
+      "B3": 0.146,
+      "B4": 0.291,
+      "B5": 0.493
+     }
+    },
+    {
+     "start": "Regular Play",
+     "n": 752,
+     "shares": {
+      "B1": 0.108,
+      "B2": 0.301,
+      "B3": 0.104,
+      "B4": 0.219,
+      "B5": 0.269
+     }
+    }
+   ]
+  },
+  "advanced": {
+   "k": 3,
+   "n": 855,
+   "jaccard_mean": 0.8823427883049177,
+   "null_shuffle": 0.46169478324556446,
+   "null_gauss": 0.8126021280024097,
+   "margin": 0.06974066030250803,
+   "verdict": "slices of a continuum (stability close to a structure-free baseline)",
+   "families": [
+    {
+     "fam": "A1",
+     "n": 374,
+     "share": 0.43742690058479533,
+     "share_ci": [
+      0.40331060606060604,
+      0.4732337229819706
+     ],
+     "passes": 5.6310160427807485,
+     "dur": 13.93048128342246,
+     "long": 0.13210854059784544,
+     "x0": 65.8139037433155,
+     "x1": 97.49839572192512,
+     "directness": 0.32904530110743413,
+     "shot": 0.20320855614973263,
+     "shot_ci": [
+      0.1632626208378088,
+      0.24319310511089678
+     ],
+     "shot_share": 0.5846153846153846,
+     "per_match_p10_p90": [
+      0.32463768115942027,
+      0.5619658119658121
+     ],
+     "examples": [
+      {
+       "date": "2018-03-18",
+       "opponent": "Athletic Club",
+       "half": 2,
+       "minute": 56,
+       "second": 52,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 6,
+       "dur": 15.0,
+       "shot": true
+      },
+      {
+       "date": "2017-11-04",
+       "opponent": "Sevilla",
+       "half": 1,
+       "minute": 19,
+       "second": 17,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 7,
+       "dur": 18.0,
+       "shot": false
+      },
+      {
+       "date": "2018-04-17",
+       "opponent": "Celta de Vigo",
+       "half": 2,
+       "minute": 65,
+       "second": 58,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 5,
+       "dur": 16.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.8850789503633467,
+     "reliability": "stable"
+    },
+    {
+     "fam": "A2",
+     "n": 195,
+     "share": 0.22807017543859648,
+     "share_ci": [
+      0.2006576849489796,
+      0.25748554853341815
+     ],
+     "passes": 17.317948717948717,
+     "dur": 51.98974358974359,
+     "long": 0.18558452017056618,
+     "x0": 68.67076923076922,
+     "x1": 96.40615384615386,
+     "directness": 0.08175629203675158,
+     "shot": 0.1794871794871795,
+     "shot_ci": [
+      0.13296917244622075,
+      0.23383613845665288
+     ],
+     "shot_share": 0.2692307692307692,
+     "per_match_p10_p90": [
+      0.13145454545454544,
+      0.3752860411899314
+     ],
+     "examples": [
+      {
+       "date": "2017-08-26",
+       "opponent": "Deportivo Alav\u00e9s",
+       "half": 1,
+       "minute": 7,
+       "second": 15,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 18,
+       "dur": 47.0,
+       "shot": true
+      },
+      {
+       "date": "2018-01-28",
+       "opponent": "Deportivo Alav\u00e9s",
+       "half": 2,
+       "minute": 45,
+       "second": 53,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 17,
+       "dur": 49.0,
+       "shot": false
+      },
+      {
+       "date": "2017-10-01",
+       "opponent": "Las Palmas",
+       "half": 1,
+       "minute": 7,
+       "second": 51,
+       "video": "",
+       "start": "Regular Play",
+       "passes": 17,
+       "dur": 46.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.8651336016963347,
+     "reliability": "stable"
+    },
+    {
+     "fam": "A3",
+     "n": 286,
+     "share": 0.3345029239766082,
+     "share_ci": [
+      0.30179587570421285,
+      0.37011004490764277
+     ],
+     "passes": 7.391608391608392,
+     "dur": 19.63986013986014,
+     "long": 0.21285557211088724,
+     "x0": 79.72027972027972,
+     "x1": 72.25594405594404,
+     "directness": -0.06219209929962506,
+     "shot": 0.06643356643356643,
+     "shot_ci": [
+      0.03646691529355303,
+      0.09938551314073515
+     ],
+     "shot_share": 0.14615384615384616,
+     "per_match_p10_p90": [
+      0.19555555555555557,
+      0.4520000000000002
+     ],
+     "examples": [
+      {
+       "date": "2018-03-31",
+       "opponent": "Sevilla",
+       "half": 1,
+       "minute": 41,
+       "second": 12,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 10,
+       "dur": 24.0,
+       "shot": false
+      },
+      {
+       "date": "2018-04-17",
+       "opponent": "Celta de Vigo",
+       "half": 2,
+       "minute": 75,
+       "second": 52,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 10,
+       "dur": 18.0,
+       "shot": false
+      },
+      {
+       "date": "2018-01-07",
+       "opponent": "Levante",
+       "half": 1,
+       "minute": 41,
+       "second": 3,
+       "video": "",
+       "start": "From Throw In",
+       "passes": 10,
+       "dur": 18.0,
+       "shot": false
+      }
+     ],
+     "jaccard": 0.8968158128550718,
+     "reliability": "stable"
+    }
+   ],
+   "by_start": [
+    {
+     "start": "From Throw In",
+     "n": 381,
+     "shares": {
+      "A1": 0.239,
+      "A2": 0.213,
+      "A3": 0.549
+     }
+    },
+    {
+     "start": "Regular Play",
+     "n": 474,
+     "shares": {
+      "A1": 0.597,
+      "A2": 0.241,
+      "A3": 0.162
+     }
+    }
+   ]
+  }
+ },
+ "reliability": {
+  "3": {
+   "passes": 1.2224818227453533,
+   "long": 0.029181825727456027,
+   "shot": 0.05078514825037843,
+   "build_up": 0.11744773665933797,
+   "advanced": 0.1165789473684211
+  },
+  "5": {
+   "passes": 0.8588886383547424,
+   "long": 0.023260425587477727,
+   "shot": 0.03533566394787762,
+   "build_up": 0.08733089306907557,
+   "advanced": 0.09013242472572618
+  },
+  "8": {
+   "passes": 0.6615600349646675,
+   "long": 0.017517375675605802,
+   "shot": 0.029870282516400937,
+   "build_up": 0.06672359303567507,
+   "advanced": 0.06705653021442498
+  },
+  "10": {
+   "passes": 0.6148493108925203,
+   "long": 0.014580698644226547,
+   "shot": 0.024776561960320062,
+   "build_up": 0.06031288155079334,
+   "advanced": 0.057744336895879524
+  }
+ },
+ "style": {
+  "team": {
+   "passes": 8.617042115572968,
+   "long": 0.20644583826226312,
+   "dur": 24.520078354554357,
+   "shot": 0.1307541625857003,
+   "buildup_share": 0.5812928501469148
+  },
+  "team_ci": {
+   "passes": [
+    8.2273917977375,
+    9.00028213261758
+   ],
+   "long": [
+    0.1962692753272612,
+    0.21700724088356932
+   ],
+   "dur": [
+    23.280415925351196,
+    25.84684019550591
+   ],
+   "shot": [
+    0.1135010315528312,
+    0.14681322365506425
+   ],
+   "buildup_share": [
+    0.5473475323029113,
+    0.617443153877041
+   ]
+  },
+  "references": {}
+ }
+}

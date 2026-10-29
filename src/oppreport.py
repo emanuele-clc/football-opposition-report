@@ -123,7 +123,7 @@ for f in (
     f"xthreat_{fn}.json",
     f"xt_clips_{fn}.csv",
 ):
-    if os.path.exists(os.path.join(base, f)):
+    if os.path.exists(os.path.join(base, f)) and os.path.abspath(out) != base:
         shutil.copy(os.path.join(base, f), os.path.join(out, f))
 if a.xml:
     for c in (

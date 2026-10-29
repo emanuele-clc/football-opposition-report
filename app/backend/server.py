@@ -5,7 +5,7 @@ and can run the pipeline for a new team when the folder holds StatsBomb match li
 No new estimates: every number comes from the pipeline files.
 Run:  python -X utf8 app/run.py [--data-dir <data_folder>]"""
 
-import csv, functools, glob, io, json, os, re, subprocess, sys, tempfile, threading, time, uuid, zipfile
+import contextvars, csv, functools, glob, io, json, os, re, subprocess, sys, tempfile, threading, time, uuid, zipfile
 from urllib.parse import quote
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, StreamingResponse
@@ -18,6 +18,40 @@ import tracking as dfl_tracking
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DATA = os.path.abspath(os.environ.get("OPPREPORT_DATA") or os.path.join(ROOT, "examples"))
+# Two data providers, never mixed: each has its own folder (reports, clip lists, events) and its own evidence grades.
+# Values and ranks are only compared within one provider (thesis RQ1: values differ across providers, grades mostly agree).
+WYSCOUT_DATA = os.environ.get("OPPREPORT_DATA_WYSCOUT") or os.path.join(ROOT, "examples_wyscout")
+PROVIDERS = {
+    "statsbomb": {
+        "id": "statsbomb",
+        "name": "StatsBomb",
+        "dir": DATA,
+        "evidence": os.path.join(ROOT, "results", "evidence_grade_corrected.json"),
+        "attribution": "StatsBomb Open Data (non-commercial licence)",
+        "missing": [],
+    },
+}
+if os.path.isdir(WYSCOUT_DATA):
+    PROVIDERS["wyscout"] = {
+        "id": "wyscout",
+        "name": "Wyscout",
+        "dir": os.path.abspath(WYSCOUT_DATA),
+        "evidence": os.path.join(ROOT, "results", "evidence_grade_wyscout.json"),
+        "attribution": "Wyscout public data, Pappalardo et al. 2019 (CC BY 4.0)",
+        "missing": ["pressures", "xG", "formations"],
+    }
+_PROVIDER = contextvars.ContextVar("provider", default="statsbomb")
+
+
+def P():
+    return PROVIDERS[_PROVIDER.get()]
+
+
+def D():
+    """Data folder of the provider chosen for this request."""
+    return P()["dir"]
+
+
 DIST = os.path.join(ROOT, "app", "frontend", "dist")
 SHEETS = ("report", "restarts", "setpieces", "transitions", "defending", "matchups", "keyplayers", "xthreat")
 CLIPS = {
@@ -49,12 +83,29 @@ class SafeJSON(JSONResponse):
 app = FastAPI(title="Opposition report", default_response_class=SafeJSON)
 
 
+@app.middleware("http")
+async def pick_provider(request, call_next):
+    """The provider comes from the X-Provider header (the app's fetches), the ?provider= query, or the cookie the app sets
+    (links, images and downloads). Unknown values fall back to StatsBomb."""
+    want = (
+        request.headers.get("x-provider")
+        or request.query_params.get("provider")
+        or request.cookies.get("provider")
+        or "statsbomb"
+    )
+    token = _PROVIDER.set(want if want in PROVIDERS else "statsbomb")
+    try:
+        return await call_next(request)
+    finally:
+        _PROVIDER.reset(token)
+
+
 def key_of(team):
     return team.replace(" ", "_")
 
 
 def load(kind, key):
-    p = os.path.join(DATA, f"{kind}_{key}.json")
+    p = os.path.join(D(), f"{kind}_{key}.json")
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else None
 
 
@@ -65,7 +116,7 @@ MIN_MATCHES = 8
 
 def teams():
     out = {}
-    for p in sorted(glob.glob(os.path.join(DATA, "report_*.json"))):
+    for p in sorted(glob.glob(os.path.join(D(), "report_*.json"))):
         d = json.load(open(p, encoding="utf-8"))
         k = os.path.basename(p)[len("report_") : -5]
         out[k] = {
@@ -75,8 +126,8 @@ def teams():
             "period": d["period"],
             "sequences": d["sequences"],
             "provisional": d["matches"] < MIN_MATCHES,
-            "sheets": [s for s in SHEETS if os.path.exists(os.path.join(DATA, f"{s}_{k}.json"))],
-            "clips": [c for c, f in CLIPS.items() if os.path.exists(os.path.join(DATA, f"{f}_{k}.csv"))],
+            "sheets": [s for s in SHEETS if os.path.exists(os.path.join(D(), f"{s}_{k}.json"))],
+            "clips": [c for c, f in CLIPS.items() if os.path.exists(os.path.join(D(), f"{f}_{k}.csv"))],
         }
     return out
 
@@ -84,7 +135,7 @@ def teams():
 def need(key):
     t = teams()
     if key not in t:
-        raise HTTPException(404, f"No report for '{key}' in {DATA}. Run the pipeline for this team first.")
+        raise HTTPException(404, f"No report for '{key}' in {D()}. Run the pipeline for this team first.")
     return t[key]
 
 
@@ -334,8 +385,9 @@ METRICS = [
 
 # Evidence grade (docs/protocol_evidence_grade.md): grades of statement types, read from the committed results, never recomputed here.
 # The corrected confirmatory run is used (protocol note 1); the original stays in results/ unedited.
-EVIDENCE = os.path.join(ROOT, "results", "evidence_grade_corrected.json")
+# Each provider uses the grades computed on its own data: StatsBomb 2015/16 (70 teams, corrected run), Wyscout 2017/18 (96 teams, RQ1).
 PROVIDER = os.path.join(ROOT, "results", "evidence_provider_Barcelona.json")
+CROSS = os.path.join(ROOT, "results", "evidence_grade_wyscout.json")
 # Rank measure -> graded statement, only where the definition is the same (recoveries per match in the final third is not T21, a share; no grade).
 RANK_STATEMENT = {
     "passes": "S02",
@@ -360,13 +412,27 @@ RANK_STATEMENT = {
 }
 
 
-@functools.lru_cache(maxsize=1)
-def _evidence(mtime):
-    return json.load(open(EVIDENCE, encoding="utf-8"))
+@functools.lru_cache(maxsize=4)
+def _evidence(path, mtime):
+    return json.load(open(path, encoding="utf-8"))
 
 
 def evidence():
-    return _evidence(os.path.getmtime(EVIDENCE)) if os.path.exists(EVIDENCE) else None
+    f = P()["evidence"]
+    return _evidence(f, os.path.getmtime(f)) if os.path.exists(f) else None
+
+
+def cross_provider():
+    """Letter of each statement on both providers (results/evidence_grade_wyscout.json, comparison with StatsBomb)."""
+    if not os.path.exists(CROSS):
+        return None
+    c = _evidence(CROSS, os.path.getmtime(CROSS))["comparison_with_statsbomb"]
+    return {
+        "same": c["same_letter"],
+        "of": c["n_statements"],
+        "verdict": c["verdict"],
+        "statements": {k: {"statsbomb": v["statsbomb"], "wyscout": v["wyscout"]} for k, v in c["all"].items()},
+    }
 
 
 @app.get("/api/evidence")
@@ -381,7 +447,10 @@ def get_evidence():
             shown.setdefault(RANK_STATEMENT[mid], []).append(label)
     return {
         "available": True,
-        "source": "results/evidence_grade_corrected.json",
+        "source": os.path.relpath(P()["evidence"], ROOT).replace(os.sep, "/"),
+        "provider_id": P()["id"],
+        "not_testable": ev.get("not_testable", {}),
+        "cross": cross_provider(),
         "set": ev["set"],
         "n_teams": ev["n_teams"],
         "grades": ev["grades"],
@@ -468,14 +537,41 @@ def tracking_clip(match: str, half: int, frame: int, before: float = 10.0, after
     return dfl_tracking.clip(match, half, frame, min(max(before, 1.0), 20.0), min(max(after, 0.0), 8.0))
 
 
+@app.get("/api/providers")
+def providers():
+    out = []
+    for p in PROVIDERS.values():
+        tok = _PROVIDER.set(p["id"])
+        try:
+            ts = list(teams().values())
+        finally:
+            _PROVIDER.reset(tok)
+        out.append(
+            {
+                "id": p["id"],
+                "name": p["name"],
+                "teams": len(ts),
+                "seasons": sorted({t["period"][:4] for t in ts}),
+                "attribution": p["attribution"],
+                "missing": p["missing"],
+            }
+        )
+    return out
+
+
 @app.get("/api/info")
 def info():
     return {
-        "data_dir": DATA,
+        "provider": P()["id"],
+        "provider_name": P()["name"],
+        "attribution": P()["attribution"],
+        "missing": P()["missing"],
+        "data_dir": D(),
         "has_tracking": dfl_tracking.available(),
-        "is_examples": os.path.normcase(DATA) == os.path.normcase(os.path.join(ROOT, "examples")),
+        "is_examples": os.path.normcase(D())
+        in (os.path.normcase(os.path.join(ROOT, "examples")), os.path.normcase(os.path.join(ROOT, "examples_wyscout"))),
         "can_generate": bool(sources()),
-        "has_events": os.path.isdir(os.path.join(DATA, "ev")),
+        "has_events": os.path.isdir(os.path.join(D(), "ev")),
     }
 
 
@@ -486,7 +582,7 @@ def list_teams():
 
 def link_examples(key, rep):
     """Give each family example its match id (from the clip list) so the app can replay it from the events."""
-    p = os.path.join(DATA, f"clips_{key}.csv")
+    p = os.path.join(D(), f"clips_{key}.csv")
     if not rep or not os.path.exists(p):
         return rep
     idx = {}
@@ -530,12 +626,16 @@ ACTIONS = {
 }
 
 
-@functools.lru_cache(maxsize=24)
 def events(match):
-    p = os.path.join(DATA, "ev", f"{match}.json")
+    return _events(D(), match)
+
+
+@functools.lru_cache(maxsize=24)
+def _events(data_dir, match):
+    p = os.path.join(data_dir, "ev", f"{match}.json")
     if not os.path.exists(p):
         raise HTTPException(
-            404, f"Events for match {match} are not in {DATA}/ev: replays need the raw StatsBomb files."
+            404, f"Events for match {match} are not in {D()}/ev: replays need the raw StatsBomb files."
         )
     return json.load(open(p, encoding="utf-8"))
 
@@ -543,6 +643,12 @@ def events(match):
 def secs(ts):
     h, m, s = ts.split(":")
     return int(h) * 3600 + int(m) * 60 + float(s)
+
+
+def tsec(e):
+    """Seconds of an event within its period: the StatsBomb timestamp, or minute and second for events converted from the
+    generic CSV (Wyscout), which have no timestamp. Only differences within one period are used."""
+    return secs(e["timestamp"]) if "timestamp" in e else e.get("minute", 0) * 60 + e.get("second", 0)
 
 
 @app.get("/api/teams/{key}/replay")
@@ -572,18 +678,18 @@ def replay(key: str, match: int, half: int, minute: int, second: int, window: bo
     if not at:
         raise HTTPException(404, "No action found at that time in the event file.")
     first = next((e for e in at if e["team"]["name"] == team_name), at[0])
-    t0 = secs(first["timestamp"])
+    t0 = tsec(first)
     if by_pos:
         chosen = by_pos
         first = by_pos[0]
-        t0 = secs(first["timestamp"])
+        t0 = tsec(first)
     elif window:
-        chosen = [e for e in ev if e.get("period") == half and t0 - 6 <= secs(e["timestamp"]) <= t0 + 10]
+        chosen = [e for e in ev if e.get("period") == half and t0 - 6 <= tsec(e) <= t0 + 10]
     else:
         # The possession that starts here is ours, but an action of ours in that second can still belong to the opponent's
         # possession (a save or a block just before we win the ball): take one whose possession team is us.
         first = next((e for e in at if e.get("possession_team", {}).get("name") == team_name), first)
-        t0 = secs(first["timestamp"])
+        t0 = tsec(first)
         chosen = [e for e in ev if e.get("period") == half and e.get("possession") == first.get("possession")]
     out = []
     for e in chosen:
@@ -593,7 +699,7 @@ def replay(key: str, match: int, half: int, minute: int, second: int, window: bo
         us = e["team"]["name"] == team_name
         flip = (lambda p: [p[0], p[1]]) if us else (lambda p: [120 - p[0], 80 - p[1]])
         a = {
-            "t": round(secs(e["timestamp"]) - t0, 2),
+            "t": round(tsec(e) - t0, 2),
             "type": ty,
             "us": us,
             "player": e.get("player", {}).get("name", ""),
@@ -627,9 +733,9 @@ def replay(key: str, match: int, half: int, minute: int, second: int, window: bo
 def read_clips(key, kind):
     if kind not in CLIPS:
         raise HTTPException(404, f"Unknown clip list '{kind}'. Use one of: {', '.join(CLIPS)}.")
-    p = os.path.join(DATA, f"{CLIPS[kind]}_{key}.csv")
+    p = os.path.join(D(), f"{CLIPS[kind]}_{key}.csv")
     if not os.path.exists(p):
-        raise HTTPException(404, f"{os.path.basename(p)} not found in {DATA}.")
+        raise HTTPException(404, f"{os.path.basename(p)} not found in {D()}.")
     with open(p, encoding="utf-8", newline="") as f:
         r = csv.DictReader(f)
         return r.fieldnames, list(r)
@@ -708,7 +814,7 @@ def _transition_goals(ev, rows, team_name):
 
 
 @functools.lru_cache(maxsize=64)
-def _goal_clips(key, kind, mtime):
+def _goal_clips(data_dir, key, kind, mtime):
     team_name = need(key)["team"]
     _, rows = read_clips(key, kind)
     by_match = {}
@@ -727,7 +833,7 @@ def goal_clips(key, kind):
     pipeline have no goal column and are left unchanged."""
     if kind not in CLIPS:
         raise HTTPException(404, f"Unknown clip list '{kind}'. Use one of: {', '.join(CLIPS)}.")
-    return _goal_clips(key, kind, os.path.getmtime(os.path.join(DATA, f"{CLIPS[kind]}_{key}.csv")))
+    return _goal_clips(D(), key, kind, os.path.getmtime(os.path.join(D(), f"{CLIPS[kind]}_{key}.csv")))
 
 
 def filtered(key, kind, family, opponent, shot, half, goal=False):
@@ -797,7 +903,7 @@ def export_xml(key: str, kind: str, family: str = "", opponent: str = "", shot: 
         outd = os.path.join(tmp, "xml")
         r = subprocess.run(
             [sys.executable, "-X", "utf8", os.path.join(ROOT, "src", "report", "clips_to_xml.py"), src, outd]
-            + (["--events-dir", os.path.join(DATA, "ev")] if os.path.isdir(os.path.join(DATA, "ev")) else []),
+            + (["--events-dir", os.path.join(D(), "ev")] if os.path.isdir(os.path.join(D(), "ev")) else []),
             capture_output=True,
             text=True,
             encoding="utf-8",
@@ -820,17 +926,17 @@ def sheet(name: str):
     """The printable HTML sheets written by the pipeline (prep_, report_, restarts_, ...)."""
     if not re.fullmatch(r"(prep|report|restarts|setpieces|transitions|defending|xthreat|review)_[^/\\]+\.html", name):
         raise HTTPException(404, "Not a report sheet.")
-    p = os.path.join(DATA, name)
+    p = os.path.join(D(), name)
     if not os.path.exists(p):
-        raise HTTPException(404, f"{name} not found in {DATA}.")
+        raise HTTPException(404, f"{name} not found in {D()}.")
     return HTMLResponse(open(p, encoding="utf-8").read())
 
 
 # Every sequence of a team as a path on the pitch (start, then the end of each pass and carry), as in src/week2/sequences_clustering.py.
 def clip_index(key):
-    p = os.path.join(DATA, f"clips_{key}.csv")
+    p = os.path.join(D(), f"clips_{key}.csv")
     if not os.path.exists(p):
-        raise HTTPException(404, f"clips_{key}.csv not found in {DATA}.")
+        raise HTTPException(404, f"clips_{key}.csv not found in {D()}.")
     with open(p, encoding="utf-8", newline="") as f:
         return list(csv.DictReader(f))
 
@@ -891,19 +997,19 @@ def _write_cache(path, obj):
 def paths(key: str):
     """Cached in <data>/app_cache. Needs <data>/ev."""
     team_name = need(key)["team"]
-    cache = os.path.join(DATA, "app_cache", f"paths_{key}.json")
-    if os.path.exists(cache) and os.path.getmtime(cache) >= os.path.getmtime(os.path.join(DATA, f"clips_{key}.csv")):
+    cache = os.path.join(D(), "app_cache", f"paths_{key}.json")
+    if os.path.exists(cache) and os.path.getmtime(cache) >= os.path.getmtime(os.path.join(D(), f"clips_{key}.csv")):
         res = _read_cache(cache)
         if res and all("at" in q for q in res["paths"]):
             return res
-    if not os.path.isdir(os.path.join(DATA, "ev")):
+    if not os.path.isdir(os.path.join(D(), "ev")):
         raise HTTPException(404, "Paths need the raw event files in <data>/ev.")
     out, rows = [], clip_index(key)
     by_match = {}
     for r in rows:
         by_match.setdefault(int(r["match"]), []).append(r)
     for m, rs in by_match.items():
-        ev = json.load(open(os.path.join(DATA, "ev", f"{m}.json"), encoding="utf-8"))
+        ev = json.load(open(os.path.join(D(), "ev", f"{m}.json"), encoding="utf-8"))
         for r in rs:
             pts = possession_path(ev, team_name, int(r["half"]), int(r["minute"]), int(r["second"]))
             if pts:
@@ -924,7 +1030,7 @@ def team_matches(key):
     """Match ids of a team, from its restart and sequence clip lists."""
     ids = set()
     for f in ("restart_clips", "clips"):
-        p = os.path.join(DATA, f"{f}_{key}.csv")
+        p = os.path.join(D(), f"{f}_{key}.csv")
         if os.path.exists(p):
             with open(p, encoding="utf-8", newline="") as fh:
                 ids |= {int(r["match"]) for r in csv.DictReader(fh)}
@@ -933,10 +1039,10 @@ def team_matches(key):
 
 def cached(key, name, build):
     """JSON cache in <data>/app_cache, rebuilt when the report is newer."""
-    if not os.path.isdir(os.path.join(DATA, "ev")):
+    if not os.path.isdir(os.path.join(D(), "ev")):
         raise HTTPException(404, "This view needs the raw event files in <data>/ev.")
-    cache = os.path.join(DATA, "app_cache", f"{name}_{key}.json")
-    if os.path.exists(cache) and os.path.getmtime(cache) >= os.path.getmtime(os.path.join(DATA, f"report_{key}.json")):
+    cache = os.path.join(D(), "app_cache", f"{name}_{key}.json")
+    if os.path.exists(cache) and os.path.getmtime(cache) >= os.path.getmtime(os.path.join(D(), f"report_{key}.json")):
         res = _read_cache(cache)
         if res is not None:
             return res
@@ -965,7 +1071,7 @@ def pressing(key: str):
     def build():
         out = []
         for m in team_matches(key):
-            ev = json.load(open(os.path.join(DATA, "ev", f"{m}.json"), encoding="utf-8"))
+            ev = json.load(open(os.path.join(D(), "ev", f"{m}.json"), encoding="utf-8"))
             poss = {}
             for e in ev:
                 if (
@@ -1020,7 +1126,7 @@ def network(key: str):
         for r in clip_index(key):
             by_match.setdefault(int(r["match"]), []).append(r)
         for m, rs in by_match.items():
-            ev = json.load(open(os.path.join(DATA, "ev", f"{m}.json"), encoding="utf-8"))
+            ev = json.load(open(os.path.join(D(), "ev", f"{m}.json"), encoding="utf-8"))
             for e in ev:
                 if e["type"]["name"] in ("Starting XI", "Tactical Shift") and e["team"]["name"] == team_name:
                     for pl in e.get("tactics", {}).get("lineup", []):
@@ -1051,8 +1157,8 @@ def network(key: str):
                         or e["type"]["name"] != "Pass"
                     ):
                         continue
-                    if "outcome" in e["pass"] or not e["pass"].get("recipient"):
-                        continue
+                    if "outcome" in e["pass"] or not e["pass"].get("recipient") or not e.get("player"):
+                        continue  # converted data (Wyscout) can have passes without the passer's name
                     a, b = e["player"]["name"], e["pass"]["recipient"]["name"]
                     for who, loc in ((a, e["location"]), (b, e["pass"]["end_location"])):
                         n = f["nodes"].setdefault(who, [0, 0.0, 0.0])
@@ -1319,7 +1425,7 @@ def gameplan_events(key: str):
     pre = load("keyplayers", key)  # written by src/report/keyplayers.py; works without the raw events
     if pre:
         return pre
-    return cached(key, "gameplan_events", lambda: plan_rules.events_view(name, team_matches(key), os.path.join(DATA, "ev")))
+    return cached(key, "gameplan_events", lambda: plan_rules.events_view(name, team_matches(key), os.path.join(D(), "ev")))
 
 
 # Analyst review inside the app: the same sheet and five questions as review_<Team>.csv/.html (src/report/make_report.py).
@@ -1335,10 +1441,10 @@ QUESTIONS = [
 @app.get("/api/teams/{key}/review")
 def get_review(key: str):
     need(key)
-    base = os.path.join(DATA, f"review_{key}.csv")
-    filled = os.path.join(DATA, f"review_{key}_filled.csv")
+    base = os.path.join(D(), f"review_{key}.csv")
+    filled = os.path.join(D(), f"review_{key}_filled.csv")
     if not os.path.exists(base):
-        raise HTTPException(404, f"review_{key}.csv not found in {DATA}: run src/oppreport.py for this team.")
+        raise HTTPException(404, f"review_{key}.csv not found in {D()}: run src/oppreport.py for this team.")
     with open(filled if os.path.exists(filled) else base, encoding="utf-8", newline="") as f:
         rows = list(csv.DictReader(f))
     idx = {
@@ -1347,7 +1453,7 @@ def get_review(key: str):
     }
     for r in rows:
         r["match"] = idx.get((r["family"], r["date"], r["opponent"], r["half"], r["minute"], r["second"]))
-    ans = os.path.join(DATA, f"review_{key}_answers.json")
+    ans = os.path.join(D(), f"review_{key}_answers.json")
     return {
         "rows": rows,
         "questions": QUESTIONS,
@@ -1369,7 +1475,7 @@ def save_review(key: str, body: ReviewIn):
     """Writes review_<Team>_filled.csv (same columns as review_<Team>.csv, readable by src/report/summarize_review.py) and review_<Team>_answers.json.
     The original sheet is never changed."""
     need(key)
-    base = os.path.join(DATA, f"review_{key}.csv")
+    base = os.path.join(D(), f"review_{key}.csv")
     with open(base, encoding="utf-8", newline="") as f:
         r = csv.DictReader(f)
         cols, rows = r.fieldnames, list(r)
@@ -1379,7 +1485,7 @@ def save_review(key: str, body: ReviewIn):
         raise HTTPException(400, "Verdicts must be yes, partly, no or empty.")
     for row, v, c in zip(rows, body.verdicts, body.comments):
         row["coherent_with_family"], row["comment"] = v, c.strip()
-    with open(os.path.join(DATA, f"review_{key}_filled.csv"), "w", encoding="utf-8", newline="") as f:
+    with open(os.path.join(D(), f"review_{key}_filled.csv"), "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols)
         w.writeheader()
         w.writerows(rows)
@@ -1391,7 +1497,7 @@ def save_review(key: str, body: ReviewIn):
             "saved": time.strftime("%Y-%m-%d %H:%M"),
             "questions": [{"question": q, "answer": a} for q, a in zip(QUESTIONS, body.answers)],
         },
-        open(os.path.join(DATA, f"review_{key}_answers.json"), "w", encoding="utf-8"),
+        open(os.path.join(D(), f"review_{key}_answers.json"), "w", encoding="utf-8"),
         ensure_ascii=False,
         indent=1,
     )
@@ -1401,9 +1507,9 @@ def save_review(key: str, body: ReviewIn):
 # Running the pipeline for a new team (needs StatsBomb match lists in <data>/matches and events in <data>/ev).
 def sources():
     out = []
-    if not os.path.isdir(os.path.join(DATA, "ev")):
+    if P()["id"] != "statsbomb" or not os.path.isdir(os.path.join(D(), "ev")):
         return out
-    for p in sorted(glob.glob(os.path.join(DATA, "matches", "*.json"))):
+    for p in sorted(glob.glob(os.path.join(D(), "matches", "*.json"))):
         try:
             ms = json.load(open(p, encoding="utf-8"))
         except (ValueError, OSError):
@@ -1412,7 +1518,7 @@ def sources():
             continue
         count, have = {}, {}
         for m in ms:
-            f = os.path.join(DATA, "ev", f"{m['match_id']}.json")
+            f = os.path.join(D(), "ev", f"{m['match_id']}.json")
             ok = os.path.exists(f) and os.path.getsize(f) > 100
             for side in ("home_team", "away_team"):
                 n = m[side][f"{side}_name"]
@@ -1463,7 +1569,7 @@ def _run(job):
                 sid,
                 job["team"],
             ],
-            cwd=DATA,
+            cwd=job["dir"],
             capture_output=True,
             text=True,
             encoding="utf-8",
@@ -1478,11 +1584,11 @@ def _run(job):
         "--statsbomb",
         job["source"],
         "--data-dir",
-        DATA,
+        job["dir"],
         "--team",
         job["team"],
         "--out",
-        os.path.join(DATA, "reports_app"),
+        os.path.join(job["dir"], "reports_app"),
     ]
     p = subprocess.Popen(
         cmd,
@@ -1504,7 +1610,7 @@ def _run(job):
 def start_job(j: JobIn):
     src = next((s for s in sources() if s["file"] == j.source), None)
     if not src:
-        raise HTTPException(400, f"Match list {j.source} not found in {DATA}/matches.")
+        raise HTTPException(400, f"Match list {j.source} not found in {D()}/matches.")
     if j.team not in {t["team"] for t in src["teams"]}:
         raise HTTPException(400, f"{j.team} does not play in {j.source}.")
     if any(x["status"] == "running" for x in JOBS.values()):
@@ -1520,6 +1626,7 @@ def start_job(j: JobIn):
         "started": time.time(),
         "ended": None,
         "download": t["matches"] - t["with_events"],
+        "dir": D(),
     }
     JOBS[job["id"]] = job
     threading.Thread(target=_run, args=(job,), daemon=True).start()

@@ -102,7 +102,7 @@ pip install -r requirements.txt
 powershell -ExecutionPolicy Bypass -File .\start_app.ps1
 ```
 
-The app opens at **http://127.0.0.1:8765** with four example teams. Everything runs on your computer and nothing is uploaded.
+The app opens at **http://127.0.0.1:8765** with four example teams, in two versions: **StatsBomb** (2015/16, Leverkusen 2023/24) and **Wyscout** (2017/18), chosen with the switch at the top left. The two are never mixed: values and ranks come from one provider, and each uses the grades computed on its own data. Everything runs on your computer and nothing is uploaded.
 
 <details>
 <summary><b>Make a report for another team</b></summary>

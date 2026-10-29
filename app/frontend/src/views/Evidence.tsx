@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { api, type Evidence as EvData, type EvStatement, type Grade, type TeamData } from "../api";
 import { Explain, GRADE_SAYS, GRADE_TITLE, GradeMark, Note, plain } from "../charts";
 import { pc } from "../format";
+import { PROVIDER } from "../provider";
 
 /* Which numbers of the report can be trusted: grades of the evidence study (docs/protocol_evidence_grade.md),
-   read from results/evidence_grade_corrected.json. Plain words first, the technical map and table on demand. Nothing is recomputed here. */
+   read from the results file of the provider in use (StatsBomb: evidence_grade_corrected.json, Wyscout: evidence_grade_wyscout.json),
+   with the letter the same statement got on the other provider. Plain words first, the technical map and table on demand. Nothing is recomputed here. */
 const NAME: Record<string, string> = {
   S01: "Sequences per match",
   S02: "Passes per sequence",
@@ -42,6 +44,17 @@ const NAME: Record<string, string> = {
   K34: "Main corner taker",
 };
 const GRADES: Grade[] = ["A", "B", "C", "D"];
+const PNAME = { statsbomb: "StatsBomb", wyscout: "Wyscout" } as const;
+const OTHER = PROVIDER === "statsbomb" ? "wyscout" : "statsbomb";
+/* What each provider's grades rest on (results files and protocols). */
+const BASIS = {
+  statsbomb: "StatsBomb Open Data, 2015/16, four leagues",
+  wyscout: "Wyscout public data, 2017/18, five leagues",
+} as const;
+const WHY_MISSING: Record<string, string> = {
+  "needs pressures": "no pressures in this data",
+  "needs xG": "no xG in this data",
+};
 const s2 = (x: number) => `${x >= 0 ? "+" : "−"}${Math.abs(x).toFixed(2)}`;
 
 /* Expert map: x = tells teams apart (discrimination), y = beats the league average for the next match (forecast skill, with its 95% interval). */
@@ -178,8 +191,8 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
       <div className="state">
         <h2>No evidence grades yet</h2>
         <p className="small">
-          Run <code>src/week4/evidence_grade.py</code> as described in docs/protocol_evidence_grade.md; the app reads
-          results/evidence_grade_corrected.json.
+          Run <code>src/week4/evidence_grade.py</code> (StatsBomb) or <code>src/week4/evidence_grade_wyscout.py</code>{" "}
+          (Wyscout) as described in the protocols in docs/.
         </p>
       </div>
     );
@@ -193,6 +206,10 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
   const l5worse = rows.filter(([, r]) => r.last5_verdict === "season better").length;
   const pv = Object.values(ev.provider ?? {}).filter((p) => p.label !== "not testable");
   const prov = ev.provider ? { same: pv.filter((p) => p.label === "same in Wyscout").length, total: pv.length } : null;
+  const cross = ev.cross ?? null;
+  const other = (id: string): Grade | null => cross?.statements[id]?.[OTHER] ?? null;
+  const moved = cross ? Object.values(cross.statements).filter((c) => c.statsbomb !== c.wyscout).length : 0;
+  const untestable = Object.entries(ev.not_testable ?? {});
   const cov = rows.map(([, r]) => r.coverage_80),
     sc = Object.entries(ev.sanity_checks ?? {}),
     dropped = Object.entries(ev.dropped ?? {});
@@ -202,7 +219,7 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
       <section aria-labelledby="ev-h">
         <div className="section-head">
           <h2 id="ev-h">Which numbers can you trust?</h2>
-          <Explain>{`We checked every number in this report on ${ev.n_teams} teams it had never seen. A number gets a good grade if it really differs between teams and helps you guess what a team will do in its next match.`}</Explain>
+          <Explain>{`We checked every number in this report on ${ev.n_teams} teams it had never seen (${BASIS[PROVIDER]}). A number gets a good grade if it really differs between teams and helps you guess what a team will do in its next match.`}</Explain>
         </div>
         <div className="ev-buckets">
           {GRADES.map((g) => (
@@ -226,13 +243,54 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
                   >
                     {NAME[id]}
                     {ev.shown_in_app?.[id] && <span className="ev-inapp">in this app</span>}
+                    {other(id) && other(id) !== g && (
+                      <span className="ev-other" title={`Graded ${other(id)} on ${PNAME[OTHER]} data`}>
+                        {PNAME[OTHER]} <GradeMark g={other(id)!} />
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>
             </section>
           ))}
         </div>
+        {untestable.length > 0 && (
+          <p className="ev-untestable small">
+            <b>{`Not in ${PNAME[PROVIDER]} data, so not graded here:`}</b>{" "}
+            {untestable.map(([id, why]) => `${NAME[id]} (${WHY_MISSING[why] ?? why})`).join(" · ")}
+          </p>
+        )}
       </section>
+
+      {cross && (
+        <section className="section" aria-labelledby="ev-x">
+          <div className="section-head">
+            <h2 id="ev-x">Same grade with the other provider?</h2>
+            <Explain>
+              The same check, with the same rules, was run on a second data provider: StatsBomb 2015/16 (70 teams) and
+              Wyscout 2017/18 (96 teams). A grade says how far a type of number can be trusted, not what its value is.
+            </Explain>
+          </div>
+          <div className="ev-cross">
+            <div className="ev-cross-fig" aria-label={`${cross.same} of ${cross.of} numbers keep their grade`}>
+              <b>{cross.same}</b>
+              <span>{`of ${cross.of}`}</span>
+            </div>
+            <div className="stack">
+              <p>{`${cross.same} of ${cross.of} numbers get the same grade on both providers, and none moves by two letters. The ${moved} that change move by one letter, almost all on the line between a weak forecast and none.`}</p>
+              <Note kind="caution" tag="Values">
+                {ev.provider
+                  ? `The grades travel, the values do not: on the same ${ev.provider_matches} Barcelona matches only ${prov?.same} of ${prov?.total} numbers came out the same in both providers. Compare numbers and ranks only within one provider, which is why this app never mixes them.`
+                  : "The grades travel, the values do not: each provider defines events in its own way. Compare numbers and ranks only within one provider, which is why this app never mixes them."}
+              </Note>
+              <p className="small s-muted">
+                Provider, season, leagues and teams all change between the two checks: a changed letter cannot be
+                pinned on one of them. Protocol written and pushed before the run: docs/protocol_evidence_grade_wyscout.md.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="section" aria-labelledby="ev-m">
         <div className="section-head">
@@ -257,7 +315,7 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
             </span>
             <p>{`The ranges the report shows are honest: a range meant to hold 8 times out of 10 held between ${pc(Math.min(...cov))} and ${pc(Math.max(...cov))} of the time.`}</p>
           </li>
-          {prov && (
+          {prov && !cross && (
             <li>
               <span className="dot" aria-hidden="true">
                 4
@@ -301,8 +359,11 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
         </ol>
         <div style={{ marginTop: 18 }}>
           <Note kind="caution" tag="Limits">
-            One season (2015/16) and one data source. The check does not take the opponent into account, so a good
-            analyst can guess better: the grades are a minimum. The grade is for the type of number, not for one team.
+            {PROVIDER === "wyscout"
+              ? "One season (2017/18) of Wyscout public data, with possessions rebuilt from the order of events. "
+              : "One season (2015/16) of StatsBomb data. "}
+            The check does not take the opponent into account, so a good analyst can guess better: the grades are a
+            minimum. The grade is for the type of number, not for one team.
           </Note>
         </div>
       </section>
@@ -326,10 +387,10 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
               not sampling noise (0.7 or more high, 0.5 medium). Interval held: how often the 80% interval contained the
               next match. Matches needed: to be within half the typical gap between teams.
             </p>
-            {!ev.provider && (
+            {!ev.provider && !cross && (
               <Note kind="caution" tag="Provider">
-                The check with a second provider (Wyscout, Barcelona 2017/18) has not been run yet: the grades rest on
-                StatsBomb definitions only.
+                The check with a second provider has not been run yet: the grades rest on one provider's definitions
+                only.
               </Note>
             )}
             <Note kind="caution" tag="Thresholds">
@@ -341,7 +402,7 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
               .map(([k]) => (
                 <Note key={k} kind="caution" tag="Expectation failed">
                   {k.startsWith("SC1")
-                    ? "Before the run we wrote that the counter-press share would not tell teams apart. It does (0.71): differences between teams are small but real over a season. It still does not forecast the next match. Reported as it came."
+                    ? `Before the run we wrote that the counter-press share would not tell teams apart. It does (${S.T20?.D?.toFixed(2) ?? "–"}): differences between teams are small but real over a season. It still does not forecast the next match. Reported as it came.`
                     : k}
                 </Note>
               ))}
@@ -364,7 +425,8 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
                 <th>80% interval held</th>
                 <th>Matches needed</th>
                 <th>Last 5 vs season</th>
-                {ev.provider && <th>Same in Wyscout</th>}
+                {cross && <th>{`Grade on ${PNAME[OTHER]}`}</th>}
+                {ev.provider && <th>Same value in both (Barcelona)</th>}
               </tr>
             </thead>
             {GRADES.map(
@@ -372,7 +434,7 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
                 byGrade(g).length > 0 && (
                   <tbody key={g}>
                     <tr className="grp">
-                      <th colSpan={ev.provider ? 7 : 6}>
+                      <th colSpan={6 + (ev.provider ? 1 : 0) + (cross ? 1 : 0)}>
                         <GradeMark g={g} /> {GRADE_TITLE[g]}
                       </th>
                     </tr>
@@ -404,6 +466,9 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
                         </td>
                         <td>{String(r.matches_needed) === "n/a" ? "—" : String(r.matches_needed)}</td>
                         <td>{r.last5_verdict}</td>
+                        {cross && (
+                          <td>{other(id) ? <GradeMark g={other(id)!} /> : PROVIDER === "statsbomb" ? "not testable" : "—"}</td>
+                        )}
                         {ev.provider && (
                           <td>
                             {ev.provider[id]?.label ?? "—"}

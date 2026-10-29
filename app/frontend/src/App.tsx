@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { flushSync } from "react-dom";
-import { api, type Info, type TeamData, type TeamSummary } from "./api";
+import { api, type Info, type Provider, type TeamData, type TeamSummary } from "./api";
+import { PROVIDER, switchProvider, type ProviderId } from "./provider";
 import { Icon } from "./charts";
 import Clips from "./views/Clips";
 import Compare from "./views/Compare";
@@ -104,6 +105,7 @@ export default function App() {
   const [theme, setTheme] = useState(stored);
   const [tour, setTour] = useState(false);
   const [lang, setLang] = useState<Lang>(storedLanguage);
+  const [providers, setProviders] = useState<Provider[] | null>(null);
 
   useEffect(() => {
     setLanguage(lang);
@@ -144,6 +146,10 @@ export default function App() {
     api
       .info()
       .then(setInfo)
+      .catch(() => undefined);
+    api
+      .providers()
+      .then(setProviders)
       .catch(() => undefined);
     loadTeams();
     return () => removeEventListener("hashchange", on);
@@ -199,6 +205,8 @@ export default function App() {
     location.hash = href({ key: current.key, tab: t, kind: kind ?? "sequences", family });
   };
   const events = !!info?.has_events;
+  const here = providers?.find((p) => p.id === PROVIDER);
+  const season = (y: string) => `${y}/${String(Number(y) + 1).slice(2)}`;
 
   return (
     <>
@@ -206,6 +214,23 @@ export default function App() {
         <a className="brand" href={current ? href({ key: current.key }) : "#/"}>
           Opposition report
         </a>
+        {providers && providers.length > 1 && (
+          <div className="edition" role="radiogroup" aria-label="Data provider">
+            {providers.map((p) => (
+              <button
+                key={p.id}
+                type="button"
+                role="radio"
+                aria-checked={p.id === PROVIDER}
+                onClick={() => switchProvider(p.id as ProviderId, route.key, route.tab)}
+                title={`${p.name} data: ${p.teams} teams, season ${p.seasons.map(season).join(", ")}. Values and ranks are never mixed between providers.`}
+              >
+                <span className="ed-name">{p.name}</span>
+                <span className="ed-season">{p.seasons.length === 1 ? season(p.seasons[0]) : `${p.teams} teams`}</span>
+              </button>
+            ))}
+          </div>
+        )}
         <label className="sr" htmlFor="team">
           Team
         </label>
@@ -353,6 +378,14 @@ export default function App() {
                 <b>{current.matches} matches</b>
                 {current.period.replace(" to ", " – ")}
               </span>
+              {here && providers && providers.length > 1 && (
+                <a className="source-stamp" href={`#/${encodeURIComponent(current.key)}/evidence`}>
+                  <b>{here.name} data</b>
+                  {here.missing.length
+                    ? `no ${here.missing.join(", ")} · grades from ${here.name}`
+                    : `grades from ${here.name}`}
+                </a>
+              )}
               {current.provisional && (
                 <span className="prov-flag">
                   Fewer than {current.min_matches ?? 8} matches: rough numbers, no ranks
@@ -423,7 +456,7 @@ export default function App() {
       )}
       <footer>
         <span>Master's thesis prototype · descriptive only</span>
-        <span>Data: StatsBomb Open Data (non-commercial licence){info ? ` · ${info.data_dir}` : ""}</span>
+        <span>Data: {info?.attribution ?? "StatsBomb Open Data (non-commercial licence)"}</span>
       </footer>
     </>
   );

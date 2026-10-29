@@ -1,5 +1,6 @@
 """Every API endpoint for every team in a data folder: no server error, and JSON that a browser can read (no NaN/Infinity).
-Usage:  python -X utf8 tests/test_all_teams.py [data_dir] [--fast]
+Usage:  python -X utf8 tests/test_all_teams.py [data_dir] [--fast] [--wyscout]
+--wyscout: the folder holds Wyscout reports; it is served as the app's Wyscout provider and every call asks for that provider.
 Runs on the folder itself (read-only for the data; the app may write its cache in <data>/app_cache). --fast skips the endpoints
 that read raw events (replay, paths, similar, pressing, network), which are slow on a full folder.
 A 404 with a message is accepted (e.g. no events for replays, a sheet the team does not have); a 5xx or an unreadable JSON is a failure.
@@ -11,12 +12,16 @@ here = os.path.dirname(os.path.abspath(__file__))
 root = os.path.dirname(here)
 args = [a for a in sys.argv[1:] if not a.startswith("--")]
 fast = "--fast" in sys.argv
-os.environ["OPPREPORT_DATA"] = os.path.abspath(args[0]) if args else os.path.join(root, "examples")
+wyscout = "--wyscout" in sys.argv
+if wyscout:
+    os.environ["OPPREPORT_DATA_WYSCOUT"] = os.path.abspath(args[0])
+else:
+    os.environ["OPPREPORT_DATA"] = os.path.abspath(args[0]) if args else os.path.join(root, "examples")
 sys.path.insert(0, os.path.join(root, "app", "backend"))
 from fastapi.testclient import TestClient
 import server
 
-c = TestClient(server.app, raise_server_exceptions=False)
+c = TestClient(server.app, raise_server_exceptions=False, headers={"X-Provider": "wyscout"} if wyscout else None)
 fails, calls = [], 0
 
 

@@ -1,0 +1,41 @@
+family,match,date,opponent,half,minute,second,start_type,passes,duration_s,ended_in_shot,player,xt
+xT pass,2516739,2017-08-18,Bayern München,2,71,46,From Free Kick,1,0,1,A. Mehmedi,0.2840
+xT pass,2516753,2017-08-26,Hoffenheim,1,6,46,From Throw In,1,0,0,K. Bellarabi,0.2651
+xT pass,2516753,2017-08-26,Hoffenheim,1,35,6,From Corner,1,0,0,Wendell,0.2683
+xT pass,2516764,2017-09-09,Mainz 05,2,87,52,From Corner,1,0,1,A. Mehmedi,0.2814
+xT pass,2516772,2017-09-17,Freiburg,1,28,52,From Corner,1,0,1,J. Brandt,0.2668
+xT pass,2516772,2017-09-17,Freiburg,1,33,19,Regular Play,1,0,1,L. Bender,0.2700
+xT pass,2516772,2017-09-17,Freiburg,2,63,13,From Corner,1,0,0,Wendell,0.2683
+xT pass,2516776,2017-09-20,Hertha BSC,2,56,9,From Corner,1,0,0,J. Brandt,0.2683
+xT pass,2516789,2017-09-24,Hamburger SV,1,8,43,From Corner,1,0,1,A. Mehmedi,0.2828
+xT pass,2516789,2017-09-24,Hamburger SV,1,22,12,From Free Kick,1,0,1,L. Bailey,0.2881
+xT pass,2516789,2017-09-24,Hamburger SV,2,66,54,From Corner,1,0,0,A. Mehmedi,0.2668
+xT pass,2516807,2017-10-15,Wolfsburg,1,35,0,From Corner,1,0,1,L. Bailey,0.2842
+xT pass,2516807,2017-10-15,Wolfsburg,2,47,20,From Corner,1,0,0,J. Brandt,0.2828
+xT pass,2516807,2017-10-15,Wolfsburg,2,78,54,From Corner,1,0,0,J. Brandt,0.2828
+xT pass,2516825,2017-10-28,Köln,1,18,19,From Corner,1,0,0,L. Bailey,0.2842
+xT pass,2516862,2017-12-02,Borussia Dortmund,1,12,17,From Corner,1,0,0,J. Brandt,0.2828
+xT pass,2516879,2017-12-13,Werder Bremen,2,82,14,From Corner,1,0,0,J. Brandt,0.2828
+xT pass,2516890,2017-12-17,Hannover 96,1,33,22,From Free Kick,1,0,0,J. Brandt,0.2611
+xT pass,2516897,2018-01-12,Bayern München,2,87,35,From Throw In,1,0,0,K. Havertz,0.2651
+xT pass,2516916,2018-01-28,Mainz 05,1,28,22,Regular Play,1,0,0,L. Bender,0.2683
+xT pass,2516916,2018-01-28,Mainz 05,2,86,42,From Corner,1,0,1,L. Bailey,0.2842
+xT pass,2516921,2018-02-03,Freiburg,2,82,5,Regular Play,1,0,0,J. Brandt,0.2767
+xT pass,2516934,2018-02-10,Hertha BSC,1,5,54,Regular Play,1,0,0,K. Bellarabi,0.2700
+xT pass,2516934,2018-02-10,Hertha BSC,2,77,3,From Throw In,1,0,1,K. Bellarabi,0.2745
+xT pass,2516934,2018-02-10,Hertha BSC,2,80,47,From Throw In,1,0,0,K. Bellarabi,0.2829
+xT pass,2516944,2018-02-17,Hamburger SV,2,49,12,Regular Play,1,0,1,B. Henrichs,0.2635
+xT pass,2516951,2018-02-25,Schalke 04,2,68,7,From Corner,1,0,0,J. Brandt,0.2622
+xT pass,2516969,2018-03-10,Borussia M'gladbach,2,90,32,From Free Kick,1,0,1,K. Volland,0.2811
+xT pass,2516975,2018-03-18,Köln,1,25,2,Regular Play,1,0,1,Wendell,0.2745
+xT pass,2516987,2018-03-31,Augsburg,2,52,33,From Keeper,1,0,1,J. Brandt,0.2819
+xT pass,2516987,2018-03-31,Augsburg,2,92,47,From Throw In,1,0,0,J. Tah,0.2942
+xT pass,2517024,2018-04-28,Stuttgart,2,52,30,From Corner,1,0,1,L. Bailey,0.2683
+xT pass,2517024,2018-04-28,Stuttgart,2,72,34,From Throw In,1,0,0,L. Bailey,0.2795
+xT pass,2517024,2018-04-28,Stuttgart,2,81,32,From Throw In,1,0,1,T. Jedvaj,0.2829
+xT pass,2517030,2018-05-05,Werder Bremen,2,66,41,From Corner,1,0,0,L. Bailey,0.2842
+xT pass,2517030,2018-05-05,Werder Bremen,2,72,59,From Free Kick,1,0,0,J. Brandt,0.2622
+xT pass,2517041,2018-05-12,Hannover 96,1,7,6,From Corner,1,0,0,J. Brandt,0.2668
+xT pass,2517041,2018-05-12,Hannover 96,2,49,30,Regular Play,1,0,1,L. Bailey,0.2829
+xT pass,2517041,2018-05-12,Hannover 96,2,51,36,Regular Play,1,0,1,L. Bailey,0.2777
+xT pass,2517041,2018-05-12,Hannover 96,2,61,19,From Corner,1,0,0,J. Brandt,0.2668

@@ -1,0 +1,41 @@
+family,match,date,opponent,half,minute,second,start_type,passes,duration_s,ended_in_shot,player,xt
+xT pass,2499719,2017-08-11,Arsenal,1,28,29,Regular Play,1,0,1,M. Albrighton,0.2611
+xT pass,2499719,2017-08-11,Arsenal,1,45,0,From Throw In,1,0,0,C. Fuchs,0.2819
+xT pass,2499744,2017-08-26,Manchester United,2,83,8,From Corner,1,0,0,D. Gray,0.2668
+xT pass,2499792,2017-10-16,West Bromwich Albion,1,5,42,From Free Kick,1,0,0,R. Mahrez,0.2611
+xT pass,2499792,2017-10-16,West Bromwich Albion,1,41,52,From Throw In,1,0,0,Vicente Iborra,0.2513
+xT pass,2499792,2017-10-16,West Bromwich Albion,2,83,59,From Free Kick,1,0,0,R. Mahrez,0.2828
+xT pass,2499806,2017-10-21,Swansea City,2,51,37,Regular Play,1,0,0,R. Mahrez,0.2540
+xT pass,2499814,2017-10-29,Everton,2,55,23,From Throw In,1,0,0,C. Fuchs,0.2819
+xT pass,2499825,2017-11-04,Stoke City,1,10,6,Regular Play,1,0,0,D. Gray,0.2729
+xT pass,2499825,2017-11-04,Stoke City,1,20,3,Regular Play,1,0,1,D. Gray,0.2406
+xT pass,2499834,2017-11-18,Manchester City,1,34,6,From Corner,1,0,0,D. Gray,0.2828
+xT pass,2499834,2017-11-18,Manchester City,2,47,46,From Free Kick,1,0,1,M. Albrighton,0.2740
+xT pass,2499874,2017-12-09,Newcastle United,2,65,10,From Free Kick,1,0,1,M. Albrighton,0.2815
+xT pass,2499874,2017-12-09,Newcastle United,2,81,45,From Free Kick,1,0,1,R. Mahrez,0.2659
+xT pass,2499886,2017-12-13,Southampton,1,37,31,From Free Kick,1,0,1,H. Maguire,0.2740
+xT pass,2499894,2017-12-16,Crystal Palace,2,77,17,From Corner,1,0,1,D. Gray,0.2668
+xT pass,2499903,2017-12-23,Manchester United,2,93,56,From Free Kick,1,0,1,M. Albrighton,0.2681
+xT pass,2499917,2017-12-26,Watford,1,17,29,From Corner,1,0,0,R. Mahrez,0.2683
+xT pass,2499923,2017-12-30,Liverpool,2,73,37,From Throw In,1,0,0,D. Gray,0.2771
+xT pass,2499933,2018-01-01,Huddersfield Town,2,91,29,Regular Play,1,0,1,D. Gray,0.2619
+xT pass,2499940,2018-01-13,Chelsea,1,7,23,From Free Kick,1,0,1,B. Chilwell,0.2635
+xT pass,2499963,2018-01-31,Everton,1,1,9,From Corner,1,0,1,M. Albrighton,0.2828
+xT pass,2499974,2018-02-03,Swansea City,1,15,36,From Throw In,1,0,0,C. Fuchs,0.2815
+xT pass,2499974,2018-02-03,Swansea City,2,92,38,From Throw In,1,0,1,C. Fuchs,0.2652
+xT pass,2499994,2018-02-24,Stoke City,1,1,48,From Corner,1,0,1,M. Albrighton,0.2668
+xT pass,2499994,2018-02-24,Stoke City,2,79,34,From Corner,1,0,0,M. Albrighton,0.2645
+xT pass,2499994,2018-02-24,Stoke City,2,88,23,From Corner,1,0,1,R. Mahrez,0.2828
+xT pass,2499994,2018-02-24,Stoke City,2,88,38,From Corner,1,0,1,B. Chilwell,0.2649
+xT pass,2500002,2018-03-03,AFC Bournemouth,2,61,26,From Throw In,1,0,0,C. Fuchs,0.2811
+xT pass,2500017,2018-03-10,West Bromwich Albion,1,35,22,From Corner,1,0,1,D. Gray,0.2539
+xT pass,2500017,2018-03-10,West Bromwich Albion,2,92,51,From Corner,1,0,1,M. Albrighton,0.2668
+xT pass,2500044,2018-04-07,Newcastle United,2,62,4,From Throw In,1,0,0,M. Albrighton,0.2680
+xT pass,2500044,2018-04-07,Newcastle United,2,83,2,From Goal Kick,1,0,1,D. Gray,0.2635
+xT pass,2500049,2018-04-14,Burnley,2,55,26,From Corner,1,0,1,B. Chilwell,0.2635
+xT pass,2500049,2018-04-14,Burnley,2,65,30,From Throw In,1,0,0,R. Mahrez,0.2611
+xT pass,2500070,2018-04-28,Crystal Palace,1,5,14,Regular Play,1,0,1,B. Chilwell,0.2635
+xT pass,2500070,2018-04-28,Crystal Palace,2,75,34,From Throw In,1,0,0,Adrien Silva,0.2585
+xT pass,2500022,2018-05-09,Arsenal,1,27,44,Regular Play,1,0,0,F. Diabaté,0.2815
+xT pass,2500022,2018-05-09,Arsenal,2,72,2,From Throw In,1,0,0,C. Fuchs,0.2659
+xT pass,2500097,2018-05-13,Tottenham Hotspur,2,76,59,From Throw In,1,0,1,C. Fuchs,0.2655

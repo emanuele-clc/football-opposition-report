@@ -1,3 +1,4 @@
+import { PROVIDER } from "./provider";
 // Shapes of the pipeline files (src/report/*.py) as served by app/backend/server.py.
 export type CI = [number, number];
 
@@ -418,9 +419,25 @@ export interface EvStatement {
   matches_needed: string | number;
   items?: number;
 }
+export interface Provider {
+  id: "statsbomb" | "wyscout";
+  name: string;
+  teams: number;
+  seasons: string[];
+  attribution: string;
+  missing: string[];
+}
 export interface Evidence {
   available: boolean;
   source?: string;
+  provider_id?: "statsbomb" | "wyscout";
+  not_testable?: Record<string, string>;
+  cross?: {
+    same: number;
+    of: number;
+    verdict: string;
+    statements: Record<string, { statsbomb: Grade; wyscout: Grade }>;
+  } | null;
   set?: string;
   n_teams?: number;
   grades?: Record<Grade, number>;
@@ -454,6 +471,10 @@ export interface TeamData extends TeamSummary {
   min_matches?: number;
 }
 export interface Info {
+  provider: "statsbomb" | "wyscout";
+  provider_name: string;
+  attribution: string;
+  missing: string[];
   data_dir: string;
   is_examples: boolean;
   can_generate: boolean;
@@ -664,8 +685,10 @@ export interface Job {
   log: string[];
 }
 
+const HEAD = { "X-Provider": PROVIDER };
+
 async function get<T>(url: string): Promise<T> {
-  const r = await fetch(url);
+  const r = await fetch(url, { headers: HEAD });
   if (!r.ok) {
     let msg = `${r.status} ${r.statusText}`;
     try {
@@ -680,6 +703,7 @@ async function get<T>(url: string): Promise<T> {
 
 export const api = {
   info: () => get<Info>("/api/info"),
+  providers: () => get<Provider[]>("/api/providers"),
   trackResults: () => get<TrackResults>("/api/tracking/results"),
   trackMatches: () => get<TrackMatch[]>("/api/tracking/matches"),
   trackClip: (match: string, half: number, frame: number) =>
@@ -703,7 +727,7 @@ export const api = {
   ) => {
     const r = await fetch(`/api/teams/${encodeURIComponent(key)}/review`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...HEAD },
       body: JSON.stringify(body),
     });
     const j = await r.json();
@@ -732,7 +756,7 @@ export const api = {
   startJob: async (source: string, team: string): Promise<Job> => {
     const r = await fetch("/api/jobs", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...HEAD },
       body: JSON.stringify({ source, team }),
     });
     const body = await r.json();
