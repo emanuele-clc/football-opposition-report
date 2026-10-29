@@ -139,7 +139,7 @@ export default function Transitions({
           <div className="pitch-wrap">
             <Thirds
               data={l.by_third}
-              color="var(--coral)"
+              color="var(--run)"
               label="Losses per match by third"
               lines={(t) => [
                 `regained in 5 s: ${pc(t.regain5 ?? 0)}`,
@@ -167,7 +167,7 @@ export default function Transitions({
           <div className="pitch-wrap">
             <Thirds
               data={r.by_third}
-              color="var(--lime)"
+              color="var(--run)"
               label="Recoveries per match by third"
               lines={(t) => [`shot in 10 s: ${pc(t.shot10 ?? 0)}`, `reached final third: ${pc(t.final_third ?? 0)}`]}
             />

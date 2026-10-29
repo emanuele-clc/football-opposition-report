@@ -603,6 +603,11 @@ td small {
   padding: 10px 8px 2px;
   flex-wrap: wrap;
 }
+.ctl[aria-pressed="true"] {
+  background: var(--sticker-ink);
+  border-color: var(--sticker-ink);
+  color: var(--sticker);
+}
 .ctl {
   display: inline-flex;
   align-items: center;
@@ -707,6 +712,39 @@ a.ctl {
 .lg.shot {
   border-top-color: var(--coral);
   border-top-width: 4px;
+}
+/* StatsBomb 360 players: ours hollow (as the ball's team colour), theirs filled in the opponent colour; keeper with a thicker ring.
+   The camera's visible area is a faint wash, so empty grass outside it reads as 'not seen', not 'no one there'. */
+.pitch-svg .ff-area {
+  fill: var(--pitch-line);
+  opacity: 0.12;
+  stroke: none;
+}
+.pitch-svg .ff {
+  transition:
+    cx 260ms var(--out),
+    cy 260ms var(--out);
+}
+.pitch-svg .ff.ours {
+  fill: var(--pitch);
+  stroke: var(--run);
+}
+.pitch-svg .ff.theirs {
+  fill: var(--them);
+  stroke: var(--pitch);
+}
+.lg-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  vertical-align: -1px;
+}
+.lg-dot.ours {
+  box-shadow: inset 0 0 0 1.5px var(--sticker-ink-2);
+}
+.lg-dot.theirs {
+  background: var(--legend-them);
 }
 .lg.gap {
   border-top: 2px dotted var(--sticker-ink-2);
@@ -1110,6 +1148,15 @@ a.kp:hover {
   position: relative;
   height: 28px;
   outline: none;
+}
+/* keyboard users move along the rank track with the arrows: the track itself shows focus */
+.track:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+:root[data-theme="light"] .track:focus-visible {
+  outline-color: var(--sticker-ink);
 }
 .track::before {
   content: "";
@@ -1553,6 +1600,20 @@ ol.near li {
 }
 .note.caution {
   --tag: var(--caution);
+}
+/* light theme: ink on the dark amber was 3.5:1; a pale amber tag with an amber ring keeps the meaning at full contrast */
+:root[data-theme="light"] .note.caution .tag,
+:root[data-theme="light"] .trust li.caution .tag {
+  background: var(--flag-soft);
+  box-shadow: inset 0 0 0 1.5px var(--caution);
+}
+/* icon buttons inside the page (not the top bar) follow the board text, so "Print all" is not white on the pale page */
+main .icon-btn {
+  color: var(--on-board);
+  border-color: var(--board-line);
+}
+main .icon-btn:hover {
+  border-color: var(--on-board);
 }
 .note.ok {
   --tag: var(--lime);

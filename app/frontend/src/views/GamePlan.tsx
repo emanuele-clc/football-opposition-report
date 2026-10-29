@@ -631,9 +631,9 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                               {p.keeper && <small> GK</small>}
                             </span>
                             <span className="pval">
-                              <b>{r.id === "xg" ? p.per_match.toFixed(2) : p.per_match.toFixed(1)}</b>
+                              <b>{r.id === "xg" ? p.total.toFixed(1) : p.total}</b>
                               <small>
-                                /match · {r.id === "xg" ? p.total.toFixed(1) : p.total} in {p.matches}
+                                in {p.matches} · {r.id === "xg" ? p.per_match.toFixed(2) : p.per_match.toFixed(1)}/match
                               </small>
                             </span>
                           </li>

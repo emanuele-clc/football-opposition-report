@@ -116,6 +116,14 @@ python -X utf8 <repo>\src\oppreport.py --statsbomb matches\9_281.json --data-dir
 python -X utf8 <repo>\src\oppreport.py --csv events.csv --team "Team name" --out reports   # data from any other provider
 ```
 
+To cut the clips of one match from its video (one MP4 per clip plus a playlist, usable in any video tool):
+
+```powershell
+python -X utf8 <repo>\src\report\clips_to_mp4.py reports\clips_<Team>.csv match.mp4 clips_out --match <match_id> --half1 <s> --half2 <s> --shot
+```
+
+`--half1` / `--half2` = the video second at which each half kicks off. Checked on a test video with a burnt-in match clock: cuts start on the second.
+
 Then start the app on that folder: `.\start_app.ps1 -DataDir <data_folder>`. Always use `python -X utf8` on Windows (team names have accents). Format for other providers: [docs/data_format.md](docs/data_format.md). How to read the report: [docs/analyst_guide.md](docs/analyst_guide.md).
 
 </details>

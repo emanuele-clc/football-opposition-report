@@ -119,6 +119,18 @@ After the 28 Oct meeting the research questions changed (RQ1: do the grades hold
 
 Bibliographic details of Lago 2009, Lago-Peñas & Dellal 2010, Lago-Peñas & Lago-Ballesteros 2011, Liu et al. 2013, Maher 1982 and Dixon & Coles 1997 are from memory and search snippets: check them on Crossref before they go into the thesis.
 
+### RQ3 (optional): evaluation with analysts (search of 29 October 2026)
+| Work | What it says | Use in the thesis |
+|---|---|---|
+| Brooke, "SUS: a 'quick and dirty' usability scale", in *Usability Evaluation in Industry*, Taylor & Francis, 1996 (from memory, to check) | The ten-item System Usability Scale, 0-100 | Standard short usability measure for the tool |
+| Bangor, Kortum & Miller, "Determining what individual SUS scores mean: adding an adjective rating scale", J. Usability Studies 4(3), 114-123, 2009 ([PDF](https://uxpajournal.org/wp-content/uploads/sites/7/pdf/JUS_Bangor_May2009.pdf)) | Adjective scale correlates with SUS (r = 0.82); quartiles of study means from a large benchmark (cut points about 62.6, 70.5, 77.8) | How to read a SUS score; with 3-5 analysts report the scores, not a mean with a test |
+| Stein, Janetzko et al., "Bring it to the pitch: combining video and movement data to enhance team sport analysis", IEEE TVCG 24(1), 2018 ([record](https://kops.uni-konstanz.de/handle/123456789/41137)); Stein et al. 2015 "Visual soccer analytics"; "Where to go" (Konstanz group) | Football visual analytics evaluated through expert studies with analysts and coaches (often 2-3 experts) | Precedent: small expert studies are the norm in this field; gives the format (task, think aloud, feedback) |
+| Wright, Atkins, Jones / Bateman & Jones / Jowett et al. line of work; "Strategies for maintaining the coach-analyst relationship... COMPASS model", 2019 ([PMC6748348](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6748348/)) | Interviews with professional analysts: trust and honesty are the key attributes; analysts rarely lead feedback | Motivation for RQ3: an analyst must be able to defend a number to the coach; the grade is meant to help that |
+| "Danish association football coaches' perception of performance analysis", IJPAS, 2021 ([doi 10.1080/24748668.2021.2012040](https://www.tandfonline.com/doi/full/10.1080/24748668.2021.2012040)) | Coaches with an analyst use video and information more in preparation | Context for who would use the tool (clubs with and without analysts) |
+| "Data-driven scouting in football: a multiple case study" ([ResearchGate](https://www.researchgate.net/publication/415366695_Data-Driven_Scouting_in_Football_A_Multiple_Case_Study)) | Data complement, never replace, human judgement because of uncertainty and context | Supports the framing "where to look", not advice |
+
+**Gap for RQ3:** no study found that measures whether showing the reliability of each number changes what analysts trust or use. SUS studies of sports apps exist but with fans or general users, not analysts. Wording if RQ3 is done: "a pilot with N analysts", never a general claim.
+
 ### Still to read (updated)
 - Matteo et al. 2026 and Russomanno et al. 2019: need the university library (not reachable from here). Unchanged priority.
 - Lago-Peñas & Lago-Ballesteros 2011 (open access, J. Sports Sci. Med.) and Clijmans et al. 2022 full text.

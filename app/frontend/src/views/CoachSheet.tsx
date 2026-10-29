@@ -174,7 +174,8 @@ export default function CoachSheet({ d }: { d: TeamData }) {
                     <small>
                       {g.date} vs {g.opponent} {g.minute}'
                     </small>{" "}
-                    {g.scorer} · {g.origin}
+                    {g.scorer}
+                    {g.origin.toLowerCase() !== g.scorer.toLowerCase() ? ` · ${g.origin}` : ""}
                   </li>
                 ))}
               </ul>

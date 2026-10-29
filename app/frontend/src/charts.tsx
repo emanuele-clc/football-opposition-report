@@ -175,6 +175,13 @@ export function Replay({
   const [playing, setPlaying] = useState(true);
   const [speed, setSpeed] = useState(2);
   const timer = useRef<number>();
+  const [show360, setShow360] = useState(() => {
+    try {
+      return localStorage.getItem("oppreport.players360") !== "off";
+    } catch {
+      return true;
+    }
+  });
 
   useEffect(() => {
     if (!clip) return;
@@ -219,6 +226,9 @@ export function Replay({
   const ballAt = cur ? [cur.ex ?? cur.x, cur.ey ?? cur.y] : acts[0] ? [acts[0].x, acts[0].y] : [60, 40];
   const dur = `${Math.round(Math.min(Math.max((cur && acts[step] ? acts[step].t - cur.t : 0.6) / speed, 0.28), 1.2) * 900)}ms`;
   const atEnd = data && step >= acts.length;
+  const has360 = acts.some((a) => a.ff);
+  // the frame of the action on screen; between frames (actions without 360) keep the last one seen
+  const frame = show360 ? [...shown].reverse().find((a) => a.ff) : undefined;
   const view = zoomOn(acts),
     k = view ? view[2] / 124 : 1;
   const sw = (w: number, dash?: [number, number]) => ({
@@ -263,6 +273,21 @@ export function Replay({
             </defs>
             {/* Ball moved between two events without an event of its own (a run not recorded as a carry, very common in Wyscout data):
                 a faint dotted link, so the path has no holes but is never drawn as a pass or a run. */}
+            {frame?.va && frame.va.length > 2 && (
+              <polygon className="ff-area" points={frame.va.map((p) => p.join(",")).join(" ")} />
+            )}
+            {frame?.ff?.map(([x, y, ours, keeper, actor], i) =>
+              actor ? null : (
+                <circle
+                  key={`ff${i}`}
+                  className={`ff${ours ? " ours" : " theirs"}${keeper ? " keeper" : ""}`}
+                  cx={x}
+                  cy={y}
+                  r={1.15 * k}
+                  style={{ strokeWidth: (keeper ? 0.55 : 0.35) * k }}
+                />
+              ),
+            )}
             {shown.map((a, i) => {
               if (i === 0) return null;
               const p = shown[i - 1],
@@ -443,6 +468,24 @@ export function Replay({
             {index + 1} / {clips.length}
           </span>
         )}
+        {has360 && (
+          <button
+            type="button"
+            className="ctl"
+            aria-pressed={show360}
+            onClick={() => {
+              setShow360(!show360);
+              try {
+                localStorage.setItem("oppreport.players360", show360 ? "off" : "on");
+              } catch {
+                /* private mode */
+              }
+            }}
+            title="StatsBomb 360: the players the broadcast camera saw at each event (no names). Players off camera are not shown."
+          >
+            360
+          </button>
+        )}
         <button
           type="button"
           className="ctl"
@@ -491,6 +534,11 @@ export function Replay({
           <span>
             <i className="lg gap" /> ball moved, not recorded
           </span>
+          {has360 && show360 && (
+            <span>
+              <i className="lg-dot ours" /> <i className="lg-dot theirs" /> players seen by the camera (360)
+            </span>
+          )}
         </div>
       </div>
     </div>

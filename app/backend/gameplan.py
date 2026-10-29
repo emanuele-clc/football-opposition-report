@@ -502,7 +502,7 @@ def pressure_hint(pz):
     return {
         "id": "press_zone",
         "side": "opp",
-        "title": "Where pressing hurts them",
+        "title": f"Where pressing hurts them · {zone_name(z)}",
         "why": f"Under pressure {zone_name(z)} they complete {z['up_completion']:.0%} of passes, against {z['ref_completion']:.0%} for the other teams there ({z['under_pressure']} passes)."
         + (f" {len(weak) - 1} more zone(s) below the others." if len(weak) > 1 else ""),
         "look": "A pressing trigger worth checking on video: what happens when the ball reaches that zone, and who has it.",

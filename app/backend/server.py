@@ -640,6 +640,17 @@ def _events(data_dir, match):
     return json.load(open(p, encoding="utf-8"))
 
 
+@functools.lru_cache(maxsize=8)
+def _frames360(path, mtime):
+    return {f["event_uuid"]: f for f in json.load(open(path, encoding="utf-8"))}
+
+
+def frames360(match):
+    """StatsBomb 360 freeze frames of a match by event id, from <data>/t360/<match>.json (only StatsBomb, only some matches)."""
+    p = os.path.join(D(), "t360", f"{match}.json")
+    return _frames360(p, os.path.getmtime(p)) if os.path.exists(p) else {}
+
+
 def secs(ts):
     h, m, s = ts.split(":")
     return int(h) * 3600 + int(m) * 60 + float(s)
@@ -652,7 +663,9 @@ def tsec(e):
 
 
 @app.get("/api/teams/{key}/replay")
-def replay(key: str, match: int, half: int, minute: int, second: int, window: bool = False, possession: int = 0):
+def replay(
+    key: str, match: int, half: int, minute: int, second: int, window: bool = False, possession: int = 0, players: bool = False
+):
     """Possession that starts at this clip time (sequences, restarts, set pieces) or, with window=true, every action from 6 s before to 16 s after
     (losses and recoveries; 16 s because the ball can be lost a few seconds after the clip time and the list counts shots within 10 s
     of the loss itself). Coordinates are turned so that the team always attacks left to right (0-120 x 0-80)."""
@@ -706,6 +719,7 @@ def replay(key: str, match: int, half: int, minute: int, second: int, window: bo
         first = next((e for e in at if e.get("possession_team", {}).get("name") == team_name), first)
         t0 = tsec(first)
         chosen = [e for e in ev if e.get("period") == half and e.get("possession") == first.get("possession")]
+    frames = frames360(match) if players else {}
     out = []
     for e in chosen:
         ty = e["type"]["name"]
@@ -739,6 +753,16 @@ def replay(key: str, match: int, half: int, minute: int, second: int, window: bo
         if ty == "Shot":
             a["outcome"] = e["shot"]["outcome"]["name"]
             a["xg"] = e["shot"].get("statsbomb_xg")
+        f = frames.get(e.get("id"))
+        if f:
+            # StatsBomb 360: the players the broadcast camera saw at this event (no names), on the same pitch as the event.
+            # 'mine' = the replayed team; teammate in the file is relative to the team of the event.
+            a["ff"] = [
+                [*flip(p["location"])[:2], p["teammate"] == us, p.get("keeper", False), p.get("actor", False)]
+                for p in f.get("freeze_frame", [])
+            ]
+            va = f.get("visible_area") or []
+            a["va"] = [flip([va[j], va[j + 1]])[:2] for j in range(0, len(va) - 1, 2)]
         out.append(a)
     if not out:
         raise HTTPException(404, "No actions with a location in this clip.")

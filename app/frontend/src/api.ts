@@ -613,6 +613,9 @@ export interface Action {
   kind?: string;
   outcome?: string;
   xg?: number | null;
+  /* StatsBomb 360 at this event: [x, y, ours, keeper, actor] of each player the camera saw, and the visible area */
+  ff?: [number, number, boolean, boolean, boolean][];
+  va?: [number, number][];
 }
 export interface Replay {
   match: number;
@@ -748,7 +751,7 @@ export const api = {
     get<{ goals: [number, number, number, number][] }>(`/api/teams/${encodeURIComponent(key)}/clips/${kind}/goals`),
   replay: (key: string, c: ClipRef) =>
     get<Replay>(
-      `/api/teams/${encodeURIComponent(key)}/replay?match=${c.match}&half=${c.half}&minute=${c.minute}&second=${c.second}${c.window ? "&window=true" : ""}${c.possession ? `&possession=${c.possession}` : ""}`,
+      `/api/teams/${encodeURIComponent(key)}/replay?match=${c.match}&half=${c.half}&minute=${c.minute}&second=${c.second}${c.window ? "&window=true" : ""}${c.possession ? `&possession=${c.possession}` : ""}&players=true`,
     ),
   paths: (key: string) => get<PathsData>(`/api/teams/${encodeURIComponent(key)}/paths`),
   review: (key: string) => get<ReviewData>(`/api/teams/${encodeURIComponent(key)}/review`),
