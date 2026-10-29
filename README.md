@@ -2,7 +2,7 @@
 
 # Automated Football Opposition Report
 
-**Know how the next opponent plays, before the match, from data anyone can download.**
+**Know how the next opponent plays, and how far each number can be trusted, from data anyone can download.**
 
 <img src="docs/img/replay.gif" alt="Replay of a 19-pass Leverkusen build-up that ended in a goal" width="640">
 
@@ -22,13 +22,30 @@ Master's thesis · Emanuele Colecchia · UNICAL / FH OÖ Hagenberg
 
 ---
 
-## The idea
+## The thesis in short
 
-Before every match, club analysts spend hours watching the next opponent: how they build from the back, how they take corners, where they lose the ball. This project does the first pass **automatically** from event data (every pass, carry and shot with its position on the pitch), and shows each finding with the clips behind it.
+Before every match, club analysts prepare an **opposition report**: a list of statements about the next opponent, such as "their goal kicks go short 40% of the time" or "PPDA 12.6". Analysts act on these statements, but nobody measures whether they actually hold in the next match. A number computed from five matches can look as solid as one computed from thirty.
 
-It also says **how much each number can be trusted**. Every figure comes with a range, a warning when there are too few matches, and a grade from A to D.
+This thesis builds an opposition report from event data (every pass, carry and shot with its position on the pitch) that states, **next to every number, how far it can be trusted**, with a grade from A to D. The grade is not an opinion. It comes from two measured properties of each type of statement:
 
-## How it works
+- **Forecast skill:** does the value from past matches predict the value in the next match better than the league average?
+- **Discrimination:** over a season, does the number really separate teams, or is most of the difference sampling noise? (after Franks et al., 2016)
+
+**A** = strong forecast and high discrimination; **D** = neither. Every grade is shown in the report, D included.
+
+### Research questions
+
+| | Question | Answer |
+|---|---|---|
+| **RQ1** | Which statements of the report are reliable for the next match, and do the grades hold on a second data provider? | Graded on 70 unseen StatsBomb teams: **4 A, 13 B, 15 C, 2 D**. On Wyscout 2017/18 (96 teams): same letter in **21 of 29** statements (72%; the rule fixed beforehand was 70%), none two letters apart. **The grades hold, just.** |
+| **RQ2** | Does a forecast that accounts for the next opponent and the venue (using only matches already played) beat the season average, and does it change which statements are reliable? | **Yes.** Better in 21 of 30 statements on StatsBomb (70 teams) and 18 of 25 on Wyscout (96 teams), worse in 2 and 1. Largest gains for pressing (PPDA) and shots; PPDA moves from C to A on both providers. |
+| RQ3 (optional) | Do the grades help analysts decide what to rely on? | Not done yet: needs analysts. |
+
+Every confirmatory test follows the same rule: the protocol (hypotheses, thresholds, decision rule) is committed **before** the single run, and result files are committed unedited. Negative results are reported. Protocols: `docs/protocol_*.md`; results: `results/`.
+
+## The report tool
+
+The grades live inside a working prototype: a local web app that builds the report for any team, shows each finding with the clips behind it, and puts the grade next to every headline number.
 
 ```mermaid
 flowchart LR
@@ -37,7 +54,7 @@ flowchart LR
     C --> D["Clips<br/>replays, CSV,<br/>XML for video tools"]
 ```
 
-## What you get
+### What you get
 
 <table>
 <tr>
@@ -60,9 +77,9 @@ flowchart LR
 | **Key players** | Who receives in the build-up, who creates danger, who takes set pieces |
 | **Threat (xT)** | Which passes and carries move the ball into dangerous zones |
 
-## What the research found
+## Earlier results: the build-up families
 
-The method was tested on 10 teams (Leverkusen 2023/24 and nine teams from the 2015/16 Premier League, La Liga, Serie A and Ligue 1). The main tests were written down and published **before** they were run, and negative results are reported too.
+Before the evidence grade, the thesis tested the report's main analysis (build-up possessions grouped into families) on 10 teams: Leverkusen 2023/24 and nine teams from the 2015/16 Premier League, La Liga, Serie A and Ligue 1. These results are why the thesis moved from "find the opponent's patterns" to "say how much each number can be trusted".
 
 | Question | Answer |
 |---|---|
@@ -71,9 +88,6 @@ The method was tested on 10 teams (Leverkusen 2023/24 and nine teams from the 20
 | Are they clearly separate styles? | **Weakly.** They are better seen as slices of one continuum |
 | Do they explain shots better than a simple rule? | **No**, in 0 of 10 teams |
 | Can corner set-ups be exploited? | Not shown. The test could only have found very large effects |
-| How far can each report statement be trusted? | Graded on 70 new teams: **4 A, 13 B, 15 C, 2 D** |
-| Do the grades hold on a second data provider? (RQ1) | **Yes, just.** Wyscout 2017/18, 96 teams: same letter in 21 of 29 statements (72%, rule was 70%), none two letters apart |
-| Does knowing the next opponent and the venue improve the forecast? (RQ2) | **Yes.** Better in 21 of 30 statements on StatsBomb (70 teams) and 18 of 25 on Wyscout (96 teams); largest for pressing (PPDA) and shots |
 
 All tables and details: [docs/results.md](docs/results.md).
 
