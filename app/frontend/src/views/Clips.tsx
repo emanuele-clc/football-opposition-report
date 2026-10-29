@@ -312,8 +312,8 @@ export default function Clips({
                 )
               ) : (
                 <div className="note info" style={{ margin: 14 }}>
-                  <span className="tag">Replays</span>Replays need the raw event files: start the app with --data-dir on
-                  the StatsBomb folder.
+                  <span className="tag">Replays</span>Replays need the raw event files: start the app on the data folder
+                  that holds them (ev/).
                 </div>
               )}
               {like && (

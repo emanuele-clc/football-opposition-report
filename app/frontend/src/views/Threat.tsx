@@ -76,8 +76,8 @@ export default function Threat({
       <div className="state">
         <h2>No threat sheet</h2>
         <p>
-          xthreat_{d.key}.json is not in the data folder. It needs StatsBomb-style pass outcomes; run src/oppreport.py
-          on StatsBomb data.
+          xthreat_{d.key}.json is not in the data folder. It needs pass outcomes (completed or not) in the events; run
+          src/oppreport.py for this team.
         </p>
       </div>
     );

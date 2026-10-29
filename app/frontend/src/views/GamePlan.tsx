@@ -2,6 +2,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { api, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSummary } from "../api";
 import { evidenceHref, Explain, GRADE_SAYS, GradeKey, GradeMark, Icon } from "../charts";
 import { Note, Pitch, Replay, plain } from "../charts";
+import { PROVIDER_NAME } from "../provider";
 import { fmt, ordinal } from "../format";
 
 const TAB_LABEL: Record<string, string> = {
@@ -484,7 +485,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                 <h2 id="kp-h">Key players</h2>
                 <Explain>
                   From all {evs.matches} matches: top 3 per role. Per match = matches in which the player appears. Names
-                  and shirt numbers as in the StatsBomb data.
+                  and shirt numbers as in the {PROVIDER_NAME} data.
                 </Explain>
               </div>
               <div className="fam-row" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
@@ -843,10 +844,19 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                     <h3>When they score and concede</h3>
                     <Timeline t={evs.timeline} />
                     <p className="s-muted" style={{ fontSize: 12.5 }}>
+                      {evs.timeline.every((x) => !x.xg_for && !x.xg_against) ? (
+                        <>
+                          Numbers: goals in the season. No xG in this data, so no bars. Stoppage time counts in the
+                          last slot of each half. Goals per slot are few: a single slot can move a lot by chance.
+                        </>
+                      ) : (
+                        <>
                       Bars: xG per match in each 15 minutes, <b style={{ color: "var(--sticker-ink)" }}>created</b>{" "}
                       above (green), <b style={{ color: "var(--sticker-ink)" }}>conceded</b> below (red). Numbers: goals
                       in the season. Stoppage time counts in the last slot of each half. Goals per slot are few: a
                       single slot can move a lot by chance.
+                        </>
+                      )}
                     </p>
                   </div>
                 )}

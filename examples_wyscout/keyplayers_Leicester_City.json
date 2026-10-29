@@ -73,41 +73,6 @@
    ]
   },
   {
-   "id": "xg",
-   "role": "Main threat",
-   "unit": "xG from shots",
-   "note": "Who the chances fall to (penalties included).",
-   "top": [
-    {
-     "player": "R. Mahrez",
-     "full": "R. Mahrez",
-     "shirt": null,
-     "keeper": false,
-     "total": 0,
-     "matches": 36,
-     "per_match": 0.0
-    },
-    {
-     "player": "S. Okazaki",
-     "full": "S. Okazaki",
-     "shirt": null,
-     "keeper": false,
-     "total": 0,
-     "matches": 27,
-     "per_match": 0.0
-    },
-    {
-     "player": "J. Vardy",
-     "full": "J. Vardy",
-     "shirt": null,
-     "keeper": false,
-     "total": 0,
-     "matches": 37,
-     "per_match": 0.0
-    }
-   ]
-  },
-  {
    "id": "corners",
    "role": "Takes corners",
    "unit": "corners taken",
@@ -2241,164 +2206,10 @@
    "per_match": 1.053
   }
  ],
- "under_pressure": [
-  {
-   "x0": 0,
-   "x1": 20,
-   "y0": 0,
-   "y1": 26.666666666666668,
-   "passes": 270,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 192,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.711,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 0,
-   "x1": 20,
-   "y0": 26.666666666666668,
-   "y1": 53.333333333333336,
-   "passes": 996,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 836,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.839,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 0,
-   "x1": 20,
-   "y0": 53.333333333333336,
-   "y1": 80,
-   "passes": 285,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 209,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.733,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 20,
-   "x1": 40,
-   "y0": 0,
-   "y1": 26.666666666666668,
-   "passes": 1146,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 910,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.794,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 20,
-   "x1": 40,
-   "y0": 26.666666666666668,
-   "y1": 53.333333333333336,
-   "passes": 1082,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 901,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.833,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 20,
-   "x1": 40,
-   "y0": 53.333333333333336,
-   "y1": 80,
-   "passes": 1163,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 909,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.782,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 40,
-   "x1": 60,
-   "y0": 0,
-   "y1": 26.666666666666668,
-   "passes": 1356,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1137,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.838,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 40,
-   "x1": 60,
-   "y0": 26.666666666666668,
-   "y1": 53.333333333333336,
-   "passes": 1009,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 876,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.868,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 40,
-   "x1": 60,
-   "y0": 53.333333333333336,
-   "y1": 80,
-   "passes": 1334,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1089,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.816,
-   "up_long_share": 0.0,
-   "few": true
-  }
- ],
+ "under_pressure": [],
  "under_pressure_total": {
   "passes": 0,
-  "completion": 0.0,
+  "completion": null,
   "free_completion": 0.817
  },
  "goals_by_origin": {
@@ -2461,5 +2272,9 @@
    "xg_for": 0.0,
    "xg_against": 0.0
   }
+ ],
+ "unavailable": [
+  "xG",
+  "passes under pressure"
  ]
 }

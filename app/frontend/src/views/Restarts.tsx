@@ -107,7 +107,7 @@ export default function Restarts({
                 <span className="tag">Replays</span>
                 {events
                   ? "Loading the clip list…"
-                  : "Replays need the raw event files (start the app on the StatsBomb folder)."}
+                  : "Replays need the raw event files (start the app on the data folder that holds ev/)."}
               </div>
             }
           />

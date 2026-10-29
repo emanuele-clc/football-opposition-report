@@ -12,6 +12,9 @@ Definitions (fixed before looking at any team; locations on each team's own atta
 - comparison: difference of the group means; 95% bootstrap interval resampling matches within each group (2,000 draws, seed 0).
   'clear' = interval excludes 0 and both groups have at least 6 matches; 'small group' = a group has fewer than 6 matches; otherwise 'uncertain'.
   With about 10 comparisons per split, one 'clear' result in 20 is expected by chance even with no real difference.
+- other providers (added 29 Oct 2026, definitions unchanged): with events converted from the generic CSV (e.g. Wyscout) there are no
+  pressures, no under-pressure flag, no xG and no starting formations. The measures that need them are left out (listed in 'unavailable'),
+  never filled with zeros, and so is the back-line split. Points need the score in the match list; without it they are left out too.
 - linked: for the opponent-pressing split, balls lost in the own half, own-half pass completion and passes under pressure share events with the
   opponent PPDA used to form the groups (our own-half passes, their duels and interceptions), so part of those differences holds by construction."""
 
@@ -22,6 +25,15 @@ MF, TEAM = sys.argv[1], sys.argv[2]
 BASE = sys.argv[3] if len(sys.argv) > 3 else "."
 PPDA_ACT = ("Duel", "Interception", "Foul Committed")
 MIN_N = 6
+HAS = {"xg": False, "pressure": False, "formation": False, "score": False}
+NEEDS = {
+    "xg_for": "xg",
+    "xg_against": "xg",
+    "under_pressure_share": "pressure",
+    "pressures": "pressure",
+    "points": "score",
+}
+WHY = {"xg": "no xG in this data", "pressure": "no pressures in this data", "score": "no score in the match list"}
 METRICS = [
     ("xg_for", "xG created", "num2", "more is better"),
     ("xg_against", "xG conceded", "num2", "less is better"),
@@ -67,7 +79,12 @@ def per_match():
         )
         xi = {e["team"]["name"]: e["tactics"]["formation"] for e in ev if e["type"]["name"] == "Starting XI"}
         f_opp = str(xi.get(opp, ""))
-        gf, ga = (g["home_score"], g["away_score"]) if home else (g["away_score"], g["home_score"])
+        scored = "home_score" in g and "away_score" in g
+        gf, ga = ((g["home_score"], g["away_score"]) if home else (g["away_score"], g["home_score"])) if scored else (None, None)
+        HAS["xg"] |= any("statsbomb_xg" in e.get("shot", {}) for e in ev if e["type"]["name"] == "Shot")
+        HAS["pressure"] |= any(e["type"]["name"] == "Pressure" for e in ev)
+        HAS["formation"] |= bool(xi)
+        HAS["score"] |= scored
         sh = lambda es: [e for e in es if e["type"]["name"] == "Shot"]
         out.append(
             dict(
@@ -75,7 +92,7 @@ def per_match():
                 date=g["match_date"],
                 opponent=opp,
                 venue="home" if home else "away",
-                score=f"{gf}-{ga}",
+                score=f"{gf}-{ga}" if scored else "",
                 formation=str(xi.get(TEAM, "")),
                 opp_formation=f_opp,
                 opp_back_line=(
@@ -90,7 +107,7 @@ def per_match():
                 under_pressure_share=sum(1 for e in own_half if e.get("under_pressure")) / max(len(own_half), 1),
                 own_half_completion=sum(1 for e in own_half if "outcome" not in e["pass"]) / max(len(own_half), 1),
                 pressures=sum(1 for e in us if e["type"]["name"] == "Pressure"),
-                points=3 if gf > ga else 1 if gf == ga else 0,
+                points=(3 if gf > ga else 1 if gf == ga else 0) if scored else None,
             )
         )
     return out
@@ -102,6 +119,8 @@ def compare(rows, key_a, key_b, label, linked=()):
     rng = np.random.default_rng(0)
     res = []
     for m, lab, unit, direction in METRICS:
+        if not HAS.get(NEEDS.get(m, ""), True):
+            continue
         a = np.array([r[m] for r in A], float)
         b = np.array([r[m] for r in B], float)
         if len(a) == 0 or len(b) == 0:
@@ -128,10 +147,14 @@ def compare(rows, key_a, key_b, label, linked=()):
 
 if __name__ == "__main__":
     rows = per_match()
-    if not any(r["pressures"] for r in rows):
-        sys.exit(
-            f"No StatsBomb-style defensive events for {TEAM}: the matchup sheet needs Pressure/Duel events and formations."
-        )
+    if not any(r["opp_ppda"] != r["opp_ppda"] or r["opp_ppda"] > 0 for r in rows) or not any(
+        r["shots_for"] for r in rows
+    ):
+        sys.exit(f"No usable events for {TEAM}: the matchup sheet needs passes, shots and defensive actions.")
+    for r in rows:  # measures this data cannot give are removed, not left at zero
+        for m, need in NEEDS.items():
+            if not HAS[need]:
+                r[m] = None
     med = float(np.median([r["opp_ppda"] for r in rows]))
     for r in rows:
         r["opp_press"] = "high press" if r["opp_ppda"] <= med else "lower press"
@@ -147,7 +170,7 @@ if __name__ == "__main__":
             groups=["against a high press", "against a lower press"],
             rule=f"opponent PPDA in that match at or below the median ({med:.1f}) = high press",
         ),
-        "back_line": dict(
+        **({"back_line": dict(
             compare(
                 rows,
                 lambda r: r["opp_back_line"] == "back three/five",
@@ -156,7 +179,7 @@ if __name__ == "__main__":
             ),
             groups=["against a back three/five", "against a back four"],
             rule="first digit of the opponent's starting formation",
-        ),
+        )} if HAS["formation"] else {}),
         "venue": dict(
             compare(rows, lambda r: r["venue"] == "home", lambda r: r["venue"] == "away", "Venue"),
             groups=["at home", "away"],
@@ -169,10 +192,15 @@ if __name__ == "__main__":
         "note": "DESCRIPTIVE: differences in past matches, not recommendations; groups differ in many ways at once.",
         "min_group": MIN_N,
         "median_opp_ppda": med,
-        "formations_used": sorted({r["formation"] for r in rows}),
+        "formations_used": sorted({r["formation"] for r in rows}) if HAS["formation"] else [],
         "splits": splits,
         "per_match": rows,
     }
+    unavailable = [
+        {"id": m, "label": lab, "why": WHY[NEEDS[m]]} for m, lab, *_ in METRICS if not HAS.get(NEEDS.get(m, ""), True)
+    ] + ([] if HAS["formation"] else [{"id": "back_line", "label": "Opponent back line", "why": "no formations in this data"}])
+    if unavailable:  # only for data without xG, pressures or formations (StatsBomb output unchanged)
+        res["unavailable"] = unavailable
     json.dump(
         res, open(f"{BASE}/matchups_{TEAM.replace(' ', '_')}.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False
     )

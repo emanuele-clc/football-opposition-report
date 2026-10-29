@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api, type GamePlan as Plan, type GPEvents, type TeamData } from "../api";
 import { GradeMark, Icon, Pitch } from "../charts";
 import { fmt, ordinal } from "../format";
+import { PROVIDER, PROVIDER_NAME } from "../provider";
 import { Shape } from "./GamePlan";
 
 /* One A4 page for the coach: built from the same numbers as Game plan, nothing new is estimated here. */
@@ -198,8 +199,7 @@ export default function CoachSheet({ d }: { d: TeamData }) {
         </section>
       )}
       <p className="coach-foot">
-        Descriptive, from StatsBomb open data. Hints say where to look on video, not what will win. Letters: evidence
-        grade of the number (checked on 70 unseen teams), A reliable, B useful, C partly reliable, D not reliable, – not
+        {`Descriptive, from ${PROVIDER_NAME} open data. Hints say where to look on video, not what will win. Letters: evidence grade of the number (checked on ${PROVIDER === "wyscout" ? 96 : 70} unseen ${PROVIDER_NAME} teams), A reliable,`} B useful, C partly reliable, D not reliable, – not
         graded. Families (B1, A2…) are slices of a continuum and do not explain shots better than where a sequence
         ends. Automated Football Opposition Report.
       </p>

@@ -73,41 +73,6 @@
    ]
   },
   {
-   "id": "xg",
-   "role": "Main threat",
-   "unit": "xG from shots",
-   "note": "Who the chances fall to (penalties included).",
-   "top": [
-    {
-     "player": "A. Mehmedi",
-     "full": "A. Mehmedi",
-     "shirt": null,
-     "keeper": false,
-     "total": 0,
-     "matches": 12,
-     "per_match": 0.0
-    },
-    {
-     "player": "K. Bellarabi",
-     "full": "K. Bellarabi",
-     "shirt": null,
-     "keeper": false,
-     "total": 0,
-     "matches": 24,
-     "per_match": 0.0
-    },
-    {
-     "player": "K. Volland",
-     "full": "K. Volland",
-     "shirt": null,
-     "keeper": false,
-     "total": 0,
-     "matches": 31,
-     "per_match": 0.0
-    }
-   ]
-  },
-  {
    "id": "corners",
    "role": "Takes corners",
    "unit": "corners taken",
@@ -2079,164 +2044,10 @@
    "per_match": 1.324
   }
  ],
- "under_pressure": [
-  {
-   "x0": 0,
-   "x1": 20,
-   "y0": 0,
-   "y1": 26.666666666666668,
-   "passes": 334,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 272,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.814,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 0,
-   "x1": 20,
-   "y0": 26.666666666666668,
-   "y1": 53.333333333333336,
-   "passes": 1010,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 929,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.92,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 0,
-   "x1": 20,
-   "y0": 53.333333333333336,
-   "y1": 80,
-   "passes": 309,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 249,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.806,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 20,
-   "x1": 40,
-   "y0": 0,
-   "y1": 26.666666666666668,
-   "passes": 1252,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1088,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.869,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 20,
-   "x1": 40,
-   "y0": 26.666666666666668,
-   "y1": 53.333333333333336,
-   "passes": 1081,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 977,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.904,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 20,
-   "x1": 40,
-   "y0": 53.333333333333336,
-   "y1": 80,
-   "passes": 1292,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1114,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.862,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 40,
-   "x1": 60,
-   "y0": 0,
-   "y1": 26.666666666666668,
-   "passes": 1452,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1282,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.883,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 40,
-   "x1": 60,
-   "y0": 26.666666666666668,
-   "y1": 53.333333333333336,
-   "passes": 1159,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1053,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.909,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 40,
-   "x1": 60,
-   "y0": 53.333333333333336,
-   "y1": 80,
-   "passes": 1552,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1306,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.841,
-   "up_long_share": 0.0,
-   "few": true
-  }
- ],
+ "under_pressure": [],
  "under_pressure_total": {
   "passes": 0,
-  "completion": 0.0,
+  "completion": null,
   "free_completion": 0.876
  },
  "goals_by_origin": {
@@ -2299,5 +2110,9 @@
    "xg_for": 0.0,
    "xg_against": 0.0
   }
+ ],
+ "unavailable": [
+  "xG",
+  "passes under pressure"
  ]
 }

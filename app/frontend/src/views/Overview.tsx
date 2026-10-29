@@ -128,7 +128,7 @@ export default function Overview({
               {clips[idx] && <p>Replaying {clips[idx].detail}.</p>}
               {!events && (
                 <p>
-                  Replays need the raw event files: start the app with --data-dir pointing at the StatsBomb folder.
+                  Replays need the raw event files: start the app on the data folder that holds them (ev/).
                   Shown: average start to end of each family.
                 </p>
               )}

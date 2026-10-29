@@ -12,6 +12,7 @@ const read = (): ProviderId => {
 };
 
 export const PROVIDER: ProviderId = read();
+export const PROVIDER_NAME = PROVIDER === "wyscout" ? "Wyscout" : "StatsBomb";
 
 const remember = (id: ProviderId) => {
   document.cookie = `provider=${id}; path=/; max-age=31536000; samesite=lax`;

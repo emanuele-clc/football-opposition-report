@@ -1,6 +1,7 @@
 """Adattatore: eventi in CSV generico -> formato che la pipeline L2 gia' legge (matches.json + ev/<id>.json in stile StatsBomb).
 Cosi' qualunque fornitore di dati si collega mappando le sue colonne al CSV generico (vedi docs/data_format.md).
-Uso:  python generic_csv.py eventi.csv cartella_uscita [--coords 100|120x80] [--validate-only]
+Uso:  python generic_csv.py eventi.csv cartella_uscita [--coords 100|120x80] [--validate-only] [--provider="Nome del fornitore"]
+--provider: nome dei dati scritto nella lista partite (data_provider), cosi' le schede citano il fornitore giusto e non StatsBomb.
 Colonne obbligatorie: match_id, match_date, home_team, away_team, period, minute, second, team, event_type, x, y
 Colonne facoltative:  end_x, end_y, possession_id, restart, pass_length, shot_goal, player, recipient, xg, pass_outcome
 - event_type: pass, carry, shot, dribble; azioni difensive duel, interception, foul, clearance, ball_recovery, block (servono alla scheda difensiva:
@@ -101,7 +102,7 @@ def derive_possession(g, min_ctrl=2):
     return out
 
 
-def convert(csv_path, out_dir, coords="100"):
+def convert(csv_path, out_dir, coords="100", provider=None):
     df = pd.read_csv(csv_path)
     problems, d = validate(df)
     for p in problems:
@@ -186,6 +187,7 @@ def convert(csv_path, out_dir, coords="100"):
                 "match_date": str(r0.match_date),
                 "home_team": {"home_team_name": r0.home_team},
                 "away_team": {"away_team_name": r0.away_team},
+                **({"data_provider": provider} if provider else {}),
             }
         )
     json.dump(matches, open(f"{out_dir}/matches/generic.json", "w", encoding="utf-8"))
@@ -204,4 +206,5 @@ if __name__ == "__main__":
         sys.exit(0)
     if len(a) < 2:
         sys.exit(__doc__)
-    convert(a[0], a[1], "120x80" if "--coords" in fl or any("120x80" in x for x in sys.argv) else "100")
+    prov = next((x.split("=", 1)[1] for x in fl if x.startswith("--provider=")), None)
+    convert(a[0], a[1], "120x80" if "--coords" in fl or any("120x80" in x for x in sys.argv) else "100", prov)

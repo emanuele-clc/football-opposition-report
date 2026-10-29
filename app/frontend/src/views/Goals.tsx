@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { api, type ClipRef, type GPEvents, type TeamData } from "../api";
+import { PROVIDER } from "../provider";
 import { Explain, Note, Pitch, plain, Replay } from "../charts";
 
 /* Every goal scored and conceded, on one pitch and replayable. Origin = StatsBomb play pattern (how the possession started). */
@@ -95,8 +96,8 @@ export default function Goals({ d, events }: { d: TeamData; events: boolean }) {
       <div className="state">
         <h2>No goal list</h2>
         <p>
-          keyplayers_{d.key}.json is missing or old: run src/oppreport.py (or src/report/keyplayers.py) on StatsBomb
-          data.
+          keyplayers_{d.key}.json is missing or old: run src/oppreport.py (or src/report/keyplayers.py) for this
+          team.
         </p>
       </div>
     );
@@ -186,7 +187,10 @@ export default function Goals({ d, events }: { d: TeamData; events: boolean }) {
             <OriginBar counts={kp.goals_by_origin.for} label="Scored" />
             <OriginBar counts={kp.goals_by_origin.against} label="Conceded" />
             <p className="s-muted" style={{ fontSize: 12.5, marginTop: 8 }}>
-              StatsBomb's label for how the possession started: "Throw-in" means the move began with a throw-in, maybe
+              {PROVIDER === "wyscout"
+                ? "How the possession started, rebuilt from the Wyscout events by the adapter (Wyscout has no possession label)."
+                : "StatsBomb's label for how the possession started."}{" "}
+              "Throw-in" means the move began with a throw-in, maybe
               many passes before the goal. Penalties and own goals are counted apart.
             </p>
           </div>
@@ -239,7 +243,7 @@ export default function Goals({ d, events }: { d: TeamData; events: boolean }) {
               <Note kind="info" tag="Replays">
                 {events
                   ? "No goal in this selection."
-                  : "Replays need the raw StatsBomb events (ev/ in the data folder). The goal map and the list work without them."}
+                  : "Replays need the raw event files (ev/ in the data folder). The goal map and the list work without them."}
               </Note>
             )}
           </div>

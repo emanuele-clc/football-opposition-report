@@ -293,6 +293,19 @@ if __name__ == "__main__":
         for g in ms
     }
     res = {"team": TEAM, **events_view(TEAM, [g["match_id"] for g in ms], os.path.join(BASE, "ev"), meta)}
+    # Data without xG or the under-pressure flag (e.g. Wyscout via the generic CSV): drop what it cannot give instead of
+    # writing zeros that the app would rank as real values.
+    unavailable = []
+    xg_role = next((p for p in res["players"] if p["id"] == "xg"), None)
+    if xg_role and xg_role["top"] and not any(t["total"] for t in xg_role["top"]):
+        res["players"] = [p for p in res["players"] if p["id"] != "xg"]
+        unavailable.append("xG")
+    if res["under_pressure_total"]["passes"] == 0:
+        res["under_pressure_total"]["completion"] = None
+        res["under_pressure"] = []
+        unavailable.append("passes under pressure")
+    if unavailable:
+        res["unavailable"] = unavailable
     json.dump(
         res,
         open(os.path.join(BASE, f"keyplayers_{TEAM.replace(' ', '_')}.json"), "w", encoding="utf-8"),

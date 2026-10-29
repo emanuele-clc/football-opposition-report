@@ -27,6 +27,16 @@ df["w0"] = (df.y0 - 40).abs()
 df["w1"] = (df.y1 - 40).abs()
 TEAM = S.TEAM
 BASE = S.BASE
+
+
+def data_provider(mf):
+    """Who the events come from: data_provider in the match list (generic CSV --provider=...), else StatsBomb when the list has
+    StatsBomb's competition fields, else unnamed."""
+    g = (json.load(open(mf, encoding="utf-8")) or [{}])[0]
+    return g.get("data_provider") or ("StatsBomb Open Data" if "competition" in g else "events from the data provider")
+
+
+PROVIDER = data_provider(S.MF)
 df.drop(columns=["zones", "path"], errors="ignore").to_csv(f"{BASE}/seq_{TEAM.replace(' ', '_')}.csv", index=False)
 seasons = f"{df.data.min()} to {df.data.max()}"
 OFFS = None
@@ -347,7 +357,7 @@ css = "body{font-family:Arial,sans-serif;max-width:980px;margin:24px auto;color:
 h = [
     f"<html><head><meta charset='utf-8'><title>Opposition report: {H.escape(TEAM)}</title><style>{css}</style></head><body>",
     f"<h1>Opposition report: {H.escape(TEAM)}</h1>",
-    f"<div class='small'>Open-play possession sequences, StatsBomb Open Data, {nm} matches ({seasons}), {len(df)} sequences with at least 3 passes. Automatically generated; intervals are 95% bootstrap over matches. Reference teams are the other teams processed so far (leagues and seasons may differ).</div>",
+    f"<div class='small'>Open-play possession sequences, {H.escape(PROVIDER)}, {nm} matches ({seasons}), {len(df)} sequences with at least 3 passes. Automatically generated; intervals are 95% bootstrap over matches. Reference teams are the other teams processed so far (leagues and seasons may differ).</div>",
 ]
 h.append(
     "<h2>1. Style at a glance</h2><table><tr><th></th><th>This team</th><th>95% interval</th>"

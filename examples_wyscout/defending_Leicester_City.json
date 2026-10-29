@@ -11,71 +11,7 @@
   "opp_passes": 11103,
   "actions": 2426
  },
- "pressures": {
-  "per_match": 0.0,
-  "ci": [
-   0.0,
-   0.0
-  ],
-  "last5": 0.0,
-  "by_third": {
-   "own third": {
-    "share": 0.0,
-    "per_match": 0.0
-   },
-   "middle third": {
-    "share": 0.0,
-    "per_match": 0.0
-   },
-   "final third": {
-    "share": 0.0,
-    "per_match": 0.0
-   }
-  },
-  "counterpress_share": 0.0,
-  "counterpress_ci": [
-   0.0,
-   0.0
-  ],
-  "grid_per_match": [
-   [
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
-   [
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
-   [
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
-   [
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
-   [
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ],
-   [
-    0.0,
-    0.0,
-    0.0,
-    0.0
-   ]
-  ]
- },
+ "pressures": null,
  "height": {
   "mean_x": 44.973042362002566,
   "ci": [
@@ -92,18 +28,12 @@
    10.868421052631579,
    14.132236842105263
   ],
-  "xg_per_match": 0.0,
-  "xg_ci": [
-   0.0,
-   0.0
-  ],
+  "xg_per_match": null,
+  "xg_ci": null,
   "last5_shots": 12.4,
-  "last5_xg": 0.0,
-  "xg_per_shot": 0.0,
-  "xg_per_shot_ci": [
-   0.0,
-   0.0
-  ],
-  "last5_xg_per_shot": 0.0
+  "last5_xg": null,
+  "xg_per_shot": null,
+  "xg_per_shot_ci": null,
+  "last5_xg_per_shot": null
  }
 }

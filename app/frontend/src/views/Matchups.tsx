@@ -182,20 +182,32 @@ function WithoutPlayer({ d }: { d: TeamData }) {
 
 export default function Matchups({ d }: { d: TeamData }) {
   const M = d.matchups;
-  const [split, setSplit] = useState(() => new URLSearchParams(location.search).get("split") ?? "opp_press");
+  const [want, setSplit] = useState(() => new URLSearchParams(location.search).get("split") ?? "opp_press");
   if (!M)
     return (
       <div className="state">
         <h2>No matchup sheet</h2>
         <p>
-          matchups_{d.key}.json is not in the data folder. It needs StatsBomb-style events with formations; run
-          src/oppreport.py on StatsBomb data.
+          matchups_{d.key}.json is not in the data folder: run src/oppreport.py (or src/report/matchups.py) for this
+          team.
         </p>
       </div>
     );
+  // Splits the data allow (no back-line split without starting formations, e.g. Wyscout); "without" reads the starting elevens.
+  const hasStarters = Object.keys(d.keyplayers?.starters ?? {}).length > 0;
+  const shown = SPLITS.filter(([k]) => (k === "without" ? hasStarters : M.splits[k]));
+  const split = (want === "without" && hasStarters) || M.splits[want] ? want : "opp_press";
+  const missing = M.unavailable ?? [];
+  const hasXg = M.per_match.some((r) => r.xg_for != null);
+  const hasForm = M.per_match.some((r) => r.opp_formation);
+  const unavailableNote = missing.length > 0 && (
+    <p className="small s-muted" style={{ marginTop: 10 }}>
+      {`Not in this data, so not compared: ${missing.map((m) => `${m.label} (${m.why})`).join(" · ")}.`}
+    </p>
+  );
   const pills = (
     <div className="pills" role="group" aria-label="Split the matches by">
-      {SPLITS.map(([k, l]) => (
+      {shown.map(([k, l]) => (
         <button key={k} type="button" aria-pressed={split === k} onClick={() => setSplit(k)}>
           {l}
         </button>
@@ -243,13 +255,8 @@ export default function Matchups({ d }: { d: TeamData }) {
           past, to check on video: not a recommendation of formation or style.
         </Explain>
       </div>
-      <div className="pills" role="group" aria-label="Split the matches by">
-        {SPLITS.map(([k, l]) => (
-          <button key={k} type="button" aria-pressed={split === k} onClick={() => setSplit(k)}>
-            {l}
-          </button>
-        ))}
-      </div>
+      {pills}
+      {unavailableNote}
 
       <div className="layout-split layout-matchup" style={{ marginTop: 24 }}>
         <section className="sticker pad" aria-labelledby="mu-h">
@@ -346,11 +353,20 @@ export default function Matchups({ d }: { d: TeamData }) {
                 <th className="l">Opponent</th>
                 <th className="l">Venue</th>
                 <th>Score</th>
-                <th>Opp. formation</th>
+                {hasForm && <th>Opp. formation</th>}
                 <th>Opp. PPDA</th>
                 <th className="l">Group</th>
-                <th>xG for</th>
-                <th>xG against</th>
+                {hasXg ? (
+                  <>
+                    <th>xG for</th>
+                    <th>xG against</th>
+                  </>
+                ) : (
+                  <>
+                    <th>Shots</th>
+                    <th>Shots conceded</th>
+                  </>
+                )}
                 <th>Lost in own half</th>
               </tr>
             </thead>
@@ -361,15 +377,24 @@ export default function Matchups({ d }: { d: TeamData }) {
                   <td className="l">{r.opponent}</td>
                   <td className="l">{r.venue}</td>
                   <td>
-                    <b>{r.score}</b>
+                    <b>{r.score || "–"}</b>
                   </td>
-                  <td>{r.opp_formation || "–"}</td>
+                  {hasForm && <td>{r.opp_formation || "–"}</td>}
                   <td>{r.opp_ppda.toFixed(1)}</td>
                   <td className="l">
                     <span className={groupOf(r) === ga ? "chip strong" : "chip quiet"}>{groupOf(r)}</span>
                   </td>
-                  <td>{r.xg_for.toFixed(2)}</td>
-                  <td>{r.xg_against.toFixed(2)}</td>
+                  {hasXg ? (
+                    <>
+                      <td>{r.xg_for?.toFixed(2) ?? "–"}</td>
+                      <td>{r.xg_against?.toFixed(2) ?? "–"}</td>
+                    </>
+                  ) : (
+                    <>
+                      <td>{r.shots_for ?? "–"}</td>
+                      <td>{r.shots_against ?? "–"}</td>
+                    </>
+                  )}
                   <td>{r.lost_own_half}</td>
                 </tr>
               ))}

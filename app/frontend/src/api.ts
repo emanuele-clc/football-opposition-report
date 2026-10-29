@@ -135,18 +135,18 @@ export interface Defending {
     counterpress_share: number;
     counterpress_ci: CI;
     grid_per_match: number[][];
-  };
+  } | null; // null when the data has no pressures (e.g. Wyscout)
   height: { mean_x: number; ci: CI; median_x: number | null; last5: number; actions_per_match: number };
   conceded: {
     shots_per_match: number;
     shots_ci: CI;
-    xg_per_match: number;
-    xg_ci: CI;
+    xg_per_match: number | null; // null when the data has no xG (e.g. Wyscout)
+    xg_ci: CI | null;
     last5_shots: number;
-    last5_xg: number;
-    xg_per_shot?: number;
-    xg_per_shot_ci?: CI;
-    last5_xg_per_shot?: number;
+    last5_xg: number | null;
+    xg_per_shot?: number | null;
+    xg_per_shot_ci?: CI | null;
+    last5_xg_per_shot?: number | null;
   };
 }
 export interface PerMatch {
@@ -187,6 +187,7 @@ export interface Matchups {
   min_group: number;
   median_opp_ppda: number;
   formations_used: string[];
+  unavailable?: { id: string; label: string; why: string }[];
   splits: Record<
     string,
     { label: string; n_a: number; n_b: number; groups: [string, string]; rule: string; metrics: MatchupMetric[] }
@@ -202,8 +203,10 @@ export interface Matchups {
     opp_back_line: string;
     opp_press: string;
     opp_ppda: number;
-    xg_for: number;
-    xg_against: number;
+    xg_for: number | null;
+    xg_against: number | null;
+    shots_for?: number;
+    shots_against?: number;
     lost_own_half: number;
   }[];
 }
@@ -466,6 +469,7 @@ export interface TeamData extends TeamSummary {
   defending: Defending | null;
   xthreat: Threat | null;
   matchups: Matchups | null;
+  keyplayers?: { starters?: Record<string, string[]> } | null;
   ranks: Rank[];
   references: string[];
   min_matches?: number;

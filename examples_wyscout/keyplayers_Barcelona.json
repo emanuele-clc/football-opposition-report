@@ -73,41 +73,6 @@
    ]
   },
   {
-   "id": "xg",
-   "role": "Main threat",
-   "unit": "xG from shots",
-   "note": "Who the chances fall to (penalties included).",
-   "top": [
-    {
-     "player": "Deulofeu",
-     "full": "Deulofeu",
-     "shirt": null,
-     "keeper": false,
-     "total": 0,
-     "matches": 10,
-     "per_match": 0.0
-    },
-    {
-     "player": "L. Messi",
-     "full": "L. Messi",
-     "shirt": null,
-     "keeper": false,
-     "total": 0,
-     "matches": 36,
-     "per_match": 0.0
-    },
-    {
-     "player": "Sergi Roberto",
-     "full": "Sergi Roberto",
-     "shirt": null,
-     "keeper": false,
-     "total": 0,
-     "matches": 30,
-     "per_match": 0.0
-    }
-   ]
-  },
-  {
    "id": "corners",
    "role": "Takes corners",
    "unit": "corners taken",
@@ -2493,164 +2458,10 @@
    "per_match": 0.605
   }
  ],
- "under_pressure": [
-  {
-   "x0": 0,
-   "x1": 20,
-   "y0": 0,
-   "y1": 26.666666666666668,
-   "passes": 465,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 398,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.856,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 0,
-   "x1": 20,
-   "y0": 26.666666666666668,
-   "y1": 53.333333333333336,
-   "passes": 1225,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1106,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.903,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 0,
-   "x1": 20,
-   "y0": 53.333333333333336,
-   "y1": 80,
-   "passes": 450,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 364,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.809,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 20,
-   "x1": 40,
-   "y0": 0,
-   "y1": 26.666666666666668,
-   "passes": 1536,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1394,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.908,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 20,
-   "x1": 40,
-   "y0": 26.666666666666668,
-   "y1": 53.333333333333336,
-   "passes": 1332,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1222,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.917,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 20,
-   "x1": 40,
-   "y0": 53.333333333333336,
-   "y1": 80,
-   "passes": 1304,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1177,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.903,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 40,
-   "x1": 60,
-   "y0": 0,
-   "y1": 26.666666666666668,
-   "passes": 1835,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1683,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.917,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 40,
-   "x1": 60,
-   "y0": 26.666666666666668,
-   "y1": 53.333333333333336,
-   "passes": 1656,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1548,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.935,
-   "up_long_share": 0.0,
-   "few": true
-  },
-  {
-   "x0": 40,
-   "x1": 60,
-   "y0": 53.333333333333336,
-   "y1": 80,
-   "passes": 1770,
-   "under_pressure": 0,
-   "up_ok": 0,
-   "free_ok": 1640,
-   "up_long": 0,
-   "up_lost": 0,
-   "up_share": 0.0,
-   "up_completion": 0.0,
-   "free_completion": 0.927,
-   "up_long_share": 0.0,
-   "few": true
-  }
- ],
+ "under_pressure": [],
  "under_pressure_total": {
   "passes": 0,
-  "completion": 0.0,
+  "completion": null,
   "free_completion": 0.91
  },
  "goals_by_origin": {
@@ -2713,5 +2524,9 @@
    "xg_for": 0.0,
    "xg_against": 0.0
   }
+ ],
+ "unavailable": [
+  "xG",
+  "passes under pressure"
  ]
 }

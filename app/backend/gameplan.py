@@ -215,6 +215,8 @@ def build(opp_key, my_key, teams, ranks, load):
         if not mu:
             return None
         fs = [r["formation"] for r in mu["per_match"]]
+        if not any(fs):  # data without starting formations (e.g. Wyscout)
+            return None
         cnt = {}
         for f in fs:
             cnt[f] = cnt.get(f, 0) + 1
@@ -424,6 +426,12 @@ def watch_first(opp_mu, my_def, my_mu, n=5):
     f = max(fs, key=fs.get)
     line = "back four" if f[:1] == "4" else "back three/five" if f[:1] in ("3", "5") else "unknown"
     ppda = my_def["ppda"]["value"]
+    if line == "unknown" or all(r["opp_back_line"] == "unknown" for r in rows):  # no formations in this data: PPDA only
+        sc = sorted(rows, key=lambda r: abs(math.log(max(r["opp_ppda"], 0.1) / ppda)))
+        return {
+            "rule": f"opponents whose PPDA in that match was closest to yours ({ppda:.1f}); no formations in this data",
+            "matches": [dict(r, distance=round(abs(math.log(max(r["opp_ppda"], 0.1) / ppda)), 2)) for r in sc[:n]],
+        }
 
     def dist(r):
         return round(abs(math.log(max(r["opp_ppda"], 0.1) / ppda)) + 0.5 * (r["opp_back_line"] != line), 2)
@@ -439,10 +447,10 @@ def watch_first(opp_mu, my_def, my_mu, n=5):
 # 'weaker' = completion under pressure at least 5 points below the other teams in that zone, with 40+ passes under pressure (fixed rule).
 def pressure_zones(key, keys, load):
     me = load("keyplayers", key)
-    if not me or "under_pressure" not in me:
+    if not me or not me.get("under_pressure"):  # empty when the data has no under-pressure flag (e.g. Wyscout)
         return None
     others = [load("keyplayers", k) for k in keys if k != key]
-    others = [o for o in others if o and "under_pressure" in o]
+    others = [o for o in others if o and len(o.get("under_pressure") or []) == len(me["under_pressure"])]
     zones = []
     for i, z in enumerate(me["under_pressure"]):
         up = sum(o["under_pressure"][i]["under_pressure"] for o in others)

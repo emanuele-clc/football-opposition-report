@@ -23,6 +23,10 @@ import matplotlib.pyplot as plt
 
 MF, TEAM = sys.argv[1], sys.argv[2]
 BASE = sys.argv[3] if len(sys.argv) > 3 else "."
+_g = (json.load(open(MF, encoding="utf-8")) or [{}])[0]
+# StatsBomb match lists carry competition fields; lists converted from the generic CSV can name their provider (--provider=...).
+IS_SB = "competition" in _g
+PROVIDER = _g.get("data_provider") or ("StatsBomb" if IS_SB else "the data provider")
 DEF = ("Duel", "Interception", "Foul Committed", "Ball Recovery", "Block", "Clearance")
 PPDA_ACT = ("Duel", "Interception", "Foul Committed")
 THIRDS = ["own third", "middle third", "final third"]
@@ -61,6 +65,7 @@ def extract():
                 counterpress=sum(1 for e in pr if e.get("counterpress")),
                 shots=len(shots),
                 xg=float(sum(e["shot"].get("statsbomb_xg", 0) or 0 for e in shots)),
+                has_xg=any("statsbomb_xg" in e["shot"] for e in shots),
             )
         )
         P += [dict(gi=gi, x=e["location"][0], y=e["location"][1]) for e in pr]
@@ -132,7 +137,16 @@ if __name__ == "__main__":
             last5_xg_per_shot=xps(last),
         ),
     }
-    json.dump(res, open(f"{BASE}/defending_{fn}.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    # Data without pressures or xG (e.g. Wyscout via the generic CSV): those parts are null, never zeros that would rank as real values.
+    NO_PRESS = sum(m["pressures"] for m in per) == 0
+    NO_XG = not any(m["has_xg"] for m in per)
+    out = json.loads(json.dumps(res))
+    if NO_PRESS:
+        out["pressures"] = None
+    if NO_XG:
+        for k in ("xg_per_match", "xg_ci", "last5_xg", "xg_per_shot", "xg_per_shot_ci", "last5_xg_per_shot"):
+            out["conceded"][k] = None
+    json.dump(out, open(f"{BASE}/defending_{fn}.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
 
     fig, ax = plt.subplots(figsize=(6.2, 4.0))
     g = np.array(res["pressures"]["grid_per_match"])
@@ -171,22 +185,30 @@ if __name__ == "__main__":
     h = [
         f"<html><head><meta charset='utf-8'><title>Defending: {H.escape(TEAM)}</title><style>{css}</style></head><body><h1>{H.escape(TEAM)}: how they defend</h1>",
         f"<div class='small'>{nm} matches ({per[0]['date']} to {per[-1]['date']}). Intervals: 95% bootstrap over matches. Locations are on the team's own attacking direction.</div>",
-        f"<img src='data:image/png;base64,{img}'>",
+        (f"<img src='data:image/png;base64,{img}'>" if not NO_PRESS else ""),
         "<table><tr><th></th><th>Season</th><th>95% interval</th><th>Last 5</th></tr>",
         f"<tr><td>PPDA (opponent passes per defensive action; lower = more intense)</td><td>{r['ppda']['value']:.1f}</td><td>{r['ppda']['ci'][0]:.1f}-{r['ppda']['ci'][1]:.1f}</td><td>{r['ppda']['last5']:.1f}</td></tr>",
-        f"<tr><td>Pressures per match</td><td>{r['pressures']['per_match']:.0f}</td><td>{r['pressures']['ci'][0]:.0f}-{r['pressures']['ci'][1]:.0f}</td><td>{r['pressures']['last5']:.0f}</td></tr>",
-        f"<tr><td>Counter-pressures (share of pressures)</td><td>{pc(r['pressures']['counterpress_share'])}</td><td>{pc(r['pressures']['counterpress_ci'][0])}-{pc(r['pressures']['counterpress_ci'][1])}</td><td></td></tr>",
+        (f"<tr><td>Pressures per match</td><td>{r['pressures']['per_match']:.0f}</td><td>{r['pressures']['ci'][0]:.0f}-{r['pressures']['ci'][1]:.0f}</td><td>{r['pressures']['last5']:.0f}</td></tr>" if not NO_PRESS else ""),
+        (f"<tr><td>Counter-pressures (share of pressures)</td><td>{pc(r['pressures']['counterpress_share'])}</td><td>{pc(r['pressures']['counterpress_ci'][0])}-{pc(r['pressures']['counterpress_ci'][1])}</td><td></td></tr>" if not NO_PRESS else ""),
         f"<tr><td>Height of defensive actions (mean x, 0-120)</td><td>{r['height']['mean_x']:.1f}</td><td>{r['height']['ci'][0]:.1f}-{r['height']['ci'][1]:.1f}</td><td>{r['height']['last5']:.1f}</td></tr>",
         f"<tr><td>Shots conceded per match</td><td>{r['conceded']['shots_per_match']:.1f}</td><td>{r['conceded']['shots_ci'][0]:.1f}-{r['conceded']['shots_ci'][1]:.1f}</td><td>{r['conceded']['last5_shots']:.1f}</td></tr>",
-        f"<tr><td>xG conceded per match</td><td>{r['conceded']['xg_per_match']:.2f}</td><td>{r['conceded']['xg_ci'][0]:.2f}-{r['conceded']['xg_ci'][1]:.2f}</td><td>{r['conceded']['last5_xg']:.2f}</td></tr>",
-        f"<tr><td>xG per shot conceded</td><td>{r['conceded']['xg_per_shot']:.3f}</td><td>{r['conceded']['xg_per_shot_ci'][0]:.3f}-{r['conceded']['xg_per_shot_ci'][1]:.3f}</td><td>{r['conceded']['last5_xg_per_shot']:.3f}</td></tr></table>",
-        "<h2>Where they press</h2><table><tr><th>Third</th><th>Share of pressures</th><th>Per match</th></tr>"
+        (f"<tr><td>xG conceded per match</td><td>{r['conceded']['xg_per_match']:.2f}</td><td>{r['conceded']['xg_ci'][0]:.2f}-{r['conceded']['xg_ci'][1]:.2f}</td><td>{r['conceded']['last5_xg']:.2f}</td></tr>" if not NO_XG else ""),
+        (f"<tr><td>xG per shot conceded</td><td>{r['conceded']['xg_per_shot']:.3f}</td><td>{r['conceded']['xg_per_shot_ci'][0]:.3f}-{r['conceded']['xg_per_shot_ci'][1]:.3f}</td><td>{r['conceded']['last5_xg_per_shot']:.3f}</td></tr>" if not NO_XG else "") + "</table>",
+        (
+            "<h2>Where they press</h2><table><tr><th>Third</th><th>Share of pressures</th><th>Per match</th></tr>"
         + "".join(
             f"<tr><td>{t}</td><td>{pc(v['share'])}</td><td>{v['per_match']:.0f}</td></tr>"
             for t, v in r["pressures"]["by_third"].items()
         )
-        + "</table>",
-        "<p class='small'>Descriptive. PPDA as commonly defined (opponent passes in their own 60% / tackles, interceptions and fouls in the same area); StatsBomb counts all duels, so values are not comparable with other providers. Pressures and the counterpress flag are StatsBomb definitions. PPDA also depends on how much the opponent has the ball: against a team that dominates possession opponents make few passes, so its PPDA can be high even when it presses high (read it with the pressures in the final third and the height). Seasons and StatsBomb data versions differ between teams (2015/16 vs 2023/24), so compare ranks loosely. Event data do not show positions off the ball, so the defensive line itself is not observed: the height of defensive actions is a proxy.</p></body></html>",
+        + "</table>"
+            if not NO_PRESS
+            else ""
+        ),
+        (
+            "<p class='small'>Descriptive. PPDA as commonly defined (opponent passes in their own 60% / tackles, interceptions and fouls in the same area); StatsBomb counts all duels, so values are not comparable with other providers. Pressures and the counterpress flag are StatsBomb definitions. PPDA also depends on how much the opponent has the ball: against a team that dominates possession opponents make few passes, so its PPDA can be high even when it presses high (read it with the pressures in the final third and the height). Seasons and StatsBomb data versions differ between teams (2015/16 vs 2023/24), so compare ranks loosely. Event data do not show positions off the ball, so the defensive line itself is not observed: the height of defensive actions is a proxy.</p></body></html>"
+            if IS_SB
+            else f"<p class='small'>Descriptive. PPDA as commonly defined (opponent passes in their own 60% / tackles, interceptions and fouls in the same area); {H.escape(PROVIDER)} defines duels and other defensive actions in its own way, so values are not comparable with other providers. Pressures are not in this data, so that part of the sheet is empty. PPDA also depends on how much the opponent has the ball: against a team that dominates possession opponents make few passes, so its PPDA can be high even when it presses high (read it with the height). Event data do not show positions off the ball, so the defensive line itself is not observed: the height of defensive actions is a proxy.</p></body></html>"
+        ),
     ]
     open(f"{BASE}/defending_{fn}.html", "w", encoding="utf-8").write("".join(h))
     print("saved", f"{BASE}/defending_{fn}.html")

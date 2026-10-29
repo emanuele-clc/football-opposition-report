@@ -2,14 +2,22 @@ import type { CSSProperties } from "react";
 import type { TeamData } from "../api";
 import { Explain, Note, Pitch, plain, RankRow } from "../charts";
 import { pc } from "../format";
+import { PROVIDER_NAME } from "../provider";
 
 const THIRDS = ["own third", "middle third", "final third"] as const;
 
-/* Pressures per match in a 6 x 4 grid on the same pitch, with the mean height of the defensive actions as a line. */
+/* Pressures per match in a 6 x 4 grid on the same pitch, with the mean height of the defensive actions as a line.
+   Without pressures in the data (grid empty) only the height line is drawn. */
 function PressureMap({ grid, height }: { grid: number[][]; height: number }) {
   const max = Math.max(...grid.flat(), 0.1);
   return (
-    <Pitch label={`Pressures per match by zone; defensive actions at mean x ${height.toFixed(0)}`}>
+    <Pitch
+      label={
+        grid.length
+          ? `Pressures per match by zone; defensive actions at mean x ${height.toFixed(0)}`
+          : `Defensive actions at mean x ${height.toFixed(0)}`
+      }
+    >
       {grid.map((col, i) =>
         col.map((v, j) => {
           const a = 0.08 + 0.85 * (v / max);
@@ -71,12 +79,15 @@ export default function Defending({ d }: { d: TeamData }) {
       <div className="state">
         <h2>No defending sheet</h2>
         <p>
-          defending_{d.key}.json is not in the data folder. It needs StatsBomb-style defensive events (Pressure, Duel,
-          Interception); run src/oppreport.py on StatsBomb data.
+          defending_{d.key}.json is not in the data folder. It needs defensive events (duels, interceptions, fouls) in
+          the events; run src/oppreport.py for this team.
         </p>
       </div>
     );
   const ranks = d.ranks.filter((r) => r.group === "Defending");
+  const P = D.pressures,
+    C = D.conceded;
+  const f = (x: number | null | undefined, n: number) => (x == null ? "–" : x.toFixed(n));
   return (
     <>
       <div className="section-head">
@@ -89,18 +100,30 @@ export default function Defending({ d }: { d: TeamData }) {
 
       <div className="layout-split">
         <section className="sticker" style={plain} aria-labelledby="pm-h">
-          <span className="no">Pressing</span>
+          <span className="no">{P ? "Pressing" : "Height"}</span>
           <div className="pitch-wrap">
-            <PressureMap grid={D.pressures.grid_per_match} height={D.height.mean_x} />
+            <PressureMap grid={P?.grid_per_match ?? []} height={D.height.mean_x} />
           </div>
           <div className="replay-cap">
             <div>
-              <h2 id="pm-h">{D.pressures.per_match.toFixed(0)} pressures per match</h2>
-              <p>
-                Attacking left to right: the right of the pitch is the opponent's half.{" "}
-                {pc(D.pressures.by_third["final third"].share)} of pressures in the final third;{" "}
-                {pc(D.pressures.counterpress_share)} are counter-pressures (within 5 s of losing the ball).
-              </p>
+              {P ? (
+                <>
+                  <h2 id="pm-h">{P.per_match.toFixed(0)} pressures per match</h2>
+                  <p>
+                    Attacking left to right: the right of the pitch is the opponent's half.{" "}
+                    {pc(P.by_third["final third"].share)} of pressures in the final third;{" "}
+                    {pc(P.counterpress_share)} are counter-pressures (within 5 s of losing the ball).
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h2 id="pm-h">{`Defensive actions at x ${D.height.mean_x.toFixed(0)}`}</h2>
+                  <p>
+                    Attacking left to right. {PROVIDER_NAME} data has no pressures, so where they press cannot be shown:
+                    the line is the mean height of their duels, interceptions and fouls.
+                  </p>
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -131,17 +154,21 @@ export default function Defending({ d }: { d: TeamData }) {
                 sub: "opponent shots per match",
                 i: 0,
               },
-              {
-                k: "xG against",
-                v: D.conceded.xg_per_match.toFixed(2),
-                ci: `${D.conceded.xg_ci[0].toFixed(2)}–${D.conceded.xg_ci[1].toFixed(2)}`,
-                l5: D.conceded.last5_xg.toFixed(2),
-                sub:
-                  D.conceded.xg_per_shot != null
-                    ? `StatsBomb xG of opponent shots per match · ${D.conceded.xg_per_shot.toFixed(3)} per shot (last 5: ${D.conceded.last5_xg_per_shot!.toFixed(3)})`
-                    : "StatsBomb xG of opponent shots per match",
-                i: 4,
-              },
+              ...(C.xg_per_match == null
+                ? []
+                : [
+                    {
+                      k: "xG against",
+                      v: f(C.xg_per_match, 2),
+                      ci: `${f(C.xg_ci?.[0], 2)}–${f(C.xg_ci?.[1], 2)}`,
+                      l5: f(C.last5_xg, 2),
+                      sub:
+                        C.xg_per_shot != null
+                          ? `${PROVIDER_NAME} xG of opponent shots per match · ${C.xg_per_shot.toFixed(3)} per shot (last 5: ${f(C.last5_xg_per_shot, 3)})`
+                          : `${PROVIDER_NAME} xG of opponent shots per match`,
+                      i: 4,
+                    },
+                  ]),
             ].map((c, n) => (
               <div key={c.k} className="sticker fam-front enter" style={{ ...plain, "--i": n } as CSSProperties}>
                 <div className="ribbon" />
@@ -160,6 +187,7 @@ export default function Defending({ d }: { d: TeamData }) {
               </div>
             ))}
           </div>
+          {P && (
           <div className="sticker pad">
             <h3>Where they press</h3>
             <table style={{ marginTop: 6 }}>
@@ -176,13 +204,14 @@ export default function Defending({ d }: { d: TeamData }) {
                     <td>
                       <b>{t}</b>
                     </td>
-                    <td>{pc(D.pressures.by_third[t].share)}</td>
-                    <td>{D.pressures.by_third[t].per_match.toFixed(0)}</td>
+                    <td>{pc(P.by_third[t].share)}</td>
+                    <td>{P.by_third[t].per_match.toFixed(0)}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+          )}
         </div>
       </div>
 
@@ -204,14 +233,16 @@ export default function Defending({ d }: { d: TeamData }) {
       </details>
       <div className="stack" style={{ marginTop: 18 }}>
         <Note kind="caution" tag="PPDA">
-          PPDA also depends on how much the opponent has the ball: against a team that dominates possession opponents
-          make few passes, so its PPDA can be high even when it presses high. Read it with the pressures in the final
-          third and the height.
+          {P
+            ? "PPDA also depends on how much the opponent has the ball: against a team that dominates possession opponents make few passes, so its PPDA can be high even when it presses high. Read it with the pressures in the final third and the height."
+            : "PPDA also depends on how much the opponent has the ball: against a team that dominates possession opponents make few passes, so its PPDA can be high even when it presses high. Read it with the height."}
         </Note>
         <Note kind="info" tag="Limits">
-          Pressures and the counterpress flag are StatsBomb definitions; seasons and data versions differ between teams
-          (2015/16 vs 2023/24), so compare ranks loosely. Event data do not show positions off the ball: the defensive
-          line itself is not observed, the height of defensive actions is a proxy.
+          {P
+            ? "Pressures and the counterpress flag are StatsBomb definitions; seasons and data versions differ between teams (2015/16 vs 2023/24), so compare ranks loosely."
+            : `${PROVIDER_NAME} defines duels and other defensive actions in its own way, so PPDA and height are not comparable with StatsBomb values; compare only with the other ${PROVIDER_NAME} teams.`}{" "}
+          Event data do not show positions off the ball: the defensive line itself is not observed, the height of
+          defensive actions is a proxy.
         </Note>
       </div>
     </>
