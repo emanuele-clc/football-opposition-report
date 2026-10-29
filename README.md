@@ -138,6 +138,31 @@ Every analysis step: [docs/pipeline.md](docs/pipeline.md).
 </details>
 
 <details>
+<summary><b>Use the Wyscout data (RQ1 and RQ2)</b></summary>
+
+<br>
+
+The second provider is the Wyscout public data set (Pappalardo et al., 2019, CC BY 4.0): the 2017/18 season of the Premier League, La Liga, Serie A, Bundesliga and Ligue 1. The raw files are not in this repository.
+
+1. From the [figshare collection](https://figshare.com/collections/Soccer_match_event_dataset/4415000) download `events.zip`, `matches.zip`, `teams.json` and `players.json` into one folder (`<wy_raw>`) and unzip the two archives there.
+2. Convert each league to the generic format, one folder per country (`England`, `France`, `Germany`, `Italy`, `Spain`). Example for Italy:
+
+```powershell
+python -X utf8 src\adapters\wyscout_to_generic_csv.py <wy_raw>\events_Italy.json <wy_raw>\matches_Italy.json <wy_raw>\teams.json <wy_raw>\players.json "ALL" italy.csv
+python -X utf8 src\adapters\generic_csv.py italy.csv <wy_dir>\Italy
+```
+
+3. Extract the per-match values of all 98 teams (long; teams already done are skipped):
+
+```powershell
+python -X utf8 src\week4\evidence_grade_wyscout.py extract <wy_dir> <wy_work_dir>
+```
+
+The confirmatory steps (`evidence_grade_wyscout.py analyse --set confirm`, `forecast_opponent.py confirm wyscout ...`) refuse to run when the result file already exists: each test is run once, on purpose. To check a number, read the committed file in `results/`. Wyscout has no pressures and no xG, so 5 statements cannot be tested, and possessions are rebuilt from the event order. Details: [docs/protocol_evidence_grade_wyscout.md](docs/protocol_evidence_grade_wyscout.md).
+
+</details>
+
+<details>
 <summary><b>What is in this repository</b></summary>
 
 <br>
