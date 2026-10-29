@@ -716,7 +716,22 @@ def replay(
     else:
         # The possession that starts here is ours, but an action of ours in that second can still belong to the opponent's
         # possession (a save or a block just before we win the ball): take one whose possession team is us.
-        first = next((e for e in at if e.get("possession_team", {}).get("name") == team_name), first)
+        ours = [e for e in at if e.get("possession_team", {}).get("name") == team_name]
+        # two possessions can meet in the same second (one ends, the next starts): the clip is the one that STARTS here
+        starts = {}
+        for e in ev:
+            if e.get("period") == half and "possession" in e:
+                starts.setdefault(e["possession"], tsec(e))
+        opening = [e for e in ours if starts.get(e.get("possession"), -1) >= tsec(e) - 0.01]  # actions that open their possession
+        if len(opening) > 1:
+            # two possessions open in the same second: the clip lists only sequences with 3+ passes, so prefer such a possession
+            npass = lambda p: sum(1 for x in ev if x.get("possession") == p and x["type"]["name"] == "Pass" and x["team"]["name"] == team_name)
+            opening.sort(key=lambda e: npass(e.get("possession")) < 3)
+        first = (
+            opening[0]
+            if opening
+            else next((e for e in ours if starts.get(e.get("possession"), -1) >= tsec(e) - 1), ours[0] if ours else first)
+        )
         t0 = tsec(first)
         chosen = [e for e in ev if e.get("period") == half and e.get("possession") == first.get("possession")]
     frames = frames360(match) if players else {}
