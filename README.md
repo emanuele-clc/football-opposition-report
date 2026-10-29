@@ -72,6 +72,8 @@ The method was tested on 10 teams (Leverkusen 2023/24 and nine teams from the 20
 | Do they explain shots better than a simple rule? | **No**, in 0 of 10 teams |
 | Can corner set-ups be exploited? | Not shown. The test could only have found very large effects |
 | How far can each report statement be trusted? | Graded on 70 new teams: **4 A, 13 B, 15 C, 2 D** |
+| Do the grades hold on a second data provider? (RQ1) | **Yes, just.** Wyscout 2017/18, 96 teams: same letter in 21 of 29 statements (72%, rule was 70%), none two letters apart |
+| Does knowing the next opponent and the venue improve the forecast? (RQ2) | **Yes.** Better in 21 of 30 statements on StatsBomb (70 teams) and 18 of 25 on Wyscout (96 teams); largest for pressing (PPDA) and shots |
 
 All tables and details: [docs/results.md](docs/results.md).
 
@@ -142,10 +144,10 @@ data_info/   competition and match lists (raw events are not included)
 
 - It **describes** how a team plays. It does not say what will work against them.
 - Families are numbered (B1, A2), not named: an analyst names them after watching the clips.
-- Ten teams, nine of them from one season (2015/16). Not yet tried on real club data or reviewed by an analyst. The XML export has not yet been tested in a real video tool.
+- The families were tested on ten teams, nine of them from one season (2015/16); the grades on public StatsBomb and Wyscout data only. Not yet tried on real club data or reviewed by an analyst. The XML export has not yet been tested in a real video tool.
 
 ---
 
 <div align="center">
-<sub>Data: <a href="https://github.com/statsbomb/open-data">StatsBomb Open Data</a> (StatsBomb, 2024), non-commercial licence.</sub>
+<sub>Data: <a href="https://github.com/statsbomb/open-data">StatsBomb Open Data</a> (StatsBomb, 2024), non-commercial licence · <a href="https://figshare.com/collections/Soccer_match_event_dataset/4415000">Wyscout public data</a> (Pappalardo et al., 2019), CC BY 4.0.</sub>
 </div>

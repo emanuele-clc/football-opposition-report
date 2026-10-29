@@ -9,10 +9,6 @@ app/frontend/dist/
 app_cache/
 .impeccable/
 
-.codex/
-.cursor/
-.gemini/
-
 # local only (kept on disk, not in the repo)
 matches/
 t360/
@@ -20,3 +16,5 @@ brag-output/
 figures/
 DESIGN.md
 PRODUCT.md
+docs/next_steps.md
+docs/codice_rq1_rq2_spiegato.md
