@@ -1240,6 +1240,24 @@
    "y": 36.8
   },
   {
+   "side": "for",
+   "match": 2499928,
+   "date": "2017-12-31",
+   "opponent": "West Bromwich Albion",
+   "half": 2,
+   "minute": 82,
+   "second": 55,
+   "start_minute": 82,
+   "start_second": 54,
+   "possession": 169,
+   "scorer": "own goal",
+   "xg": null,
+   "origin": "Own goal",
+   "body": null,
+   "x": 14.399999999999999,
+   "y": 33.6
+  },
+  {
    "side": "against",
    "match": 2499928,
    "date": "2017-12-31",
@@ -2453,6 +2471,7 @@
    "Goal kick": 3,
    "Keeper": 1,
    "Open play": 27,
+   "Own goal": 1,
    "Throw-in": 10
   },
   "against": {
@@ -2500,7 +2519,7 @@
   },
   {
    "slot": "75-90",
-   "goals_for": 15,
+   "goals_for": 16,
    "goals_against": 11,
    "xg_for": 0.0,
    "xg_against": 0.0

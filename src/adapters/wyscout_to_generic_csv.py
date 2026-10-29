@@ -9,7 +9,10 @@ Mapping (from the public data paper; checked on Serie A 2017/18):
 - Free Kick sub-events -> restart on the event: Goal kick -> goal_kick, Throw in -> throw_in, Corner -> corner, Free Kick / Free kick cross -> free_kick (pass),
   Free kick shot -> free_kick (shot), Penalty -> penalty (shot). Kick-off = first event of each half and first event after a goal.
   keeper = a pass by the goalkeeper right after a 'Save attempt' or 'Goalkeeper leaving line' by the same player.
-- goal = tag 101 (own goals, tag 102, are not shots of the team). recipient = player of the next event of the same team after an accurate pass (tag 1801).
+- goal = tag 101 (own goals, tag 102, are not shots of the team). Own goal (tag 102, on the event of the player who put the ball into his own net)
+  -> event_type own_goal for that player's team (added 29 Oct 2026, so goal lists match the score; no effect on passes, shots or possessions).
+  Known gap: a goal scored directly from a corner is a corner pass in this data, not a shot, so it is not in the goal lists (1 case in the
+  10 teams checked); it is left as it is because turning it into a shot would change the shot and corner counts used in RQ1. recipient = player of the next event of the same team after an accurate pass (tag 1801).
 - Goal kicks: the start position is a placeholder in this data ((0,0) or (100,100)); it is set to the six-yard box (x 5, y 50), so the first-pass
   length is approximate (side of the box unknown). Found by comparing with StatsBomb (short goal kicks 6% before the fix).
 - Defensive actions and pass outcome (added 28 Oct 2026, mapping fixed before comparing any value with StatsBomb):
@@ -86,6 +89,10 @@ def main(ev_path, m_path, t_path, p_path, team, out):
                 etype = "foul"
             elif sub == "Clearance":
                 etype = "clearance"
+        also = None
+        if 102 in tags and etype not in ("pass", "carry", "shot"):
+            also = etype if etype != "other" else None  # keep the defensive action the touch also was (interception, clearance...)
+            etype = "own_goal"
         restart = RS.get(sub, "") if en == "Free Kick" else ""
         if not restart and etype in ("pass", "carry", "shot") and (new_half or last_goal):
             restart = "kick_off"
@@ -142,6 +149,12 @@ def main(ev_path, m_path, t_path, p_path, team, out):
                 else "",
             )
         )
+        if also:
+            rows.append(dict(rows[-1], event_type=also))
+        if 102 in tags and etype in ("pass", "carry", "shot"):  # own goal on a pass or a touch-like action: keep the action, add the own goal
+            rows.append(
+                dict(rows[-1], event_type="own_goal", end_x="", end_y="", restart="", shot_goal="", recipient="", pass_outcome="")
+            )
         if etype in ("pass", "carry", "shot") and 1401 in tags:
             rows.append(
                 dict(rows[-1], event_type="interception", end_x="", end_y="", restart="", shot_goal="", recipient="", pass_outcome="")

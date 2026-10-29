@@ -639,3 +639,93 @@ def breaks(key, load):
         "n": tr["recoveries"]["n"],
         "matches": tr["matches"],
     }
+
+
+# Next match against your team (thesis RQ2, docs/protocol_opponent_forecast.md): F_adj = F + w_Y (A_Y - L) + V, with k = 5 and the venue term.
+# In the app it is an APPROXIMATION of the tested forecast, shown as such: L is what the opponents of the folder's teams did (the test used the
+# whole league), A_Y and L are means of per-match values (the test used ratios of sums), and F is the whole season. Only the three statements whose
+# parts are in the matchup sheets and where the test found a clear gain on both providers: PPDA (D23), shots (A29), shots conceded (D27).
+VERSUS = [
+    # id, statement, label, unit, per-match column of X, column of Y's rows that X's opponent did (A_Y), opponent's venue column
+    ("ppda", "D23", "PPDA (pressing intensity)", "num", "own_ppda", "opp_ppda"),
+    ("shots", "A29", "Shots per match", "num", "shots_for", "shots_against"),
+    ("shots_conceded", "D27", "Shots conceded per match", "num", "shots_against", "shots_for"),
+]
+K_SHRINK = 5
+
+
+def versus(opp_key, my_key, my_venue, keys, load, rq2):
+    """my_venue: where YOUR team plays ('home', 'away' or '' = not set). Returns None without matchup sheets for both teams."""
+    mx, my = load("matchups", opp_key), load("matchups", my_key)
+    if not mx or not my:
+        return None
+    sheets = {k: load("matchups", k) for k in keys}
+    sheets = {k: s for k, s in sheets.items() if s}
+    dfx = load("defending", opp_key)
+
+    def rows(s):
+        return s["per_match"]
+
+    def mean(v):
+        v = [x for x in v if x is not None]
+        return sum(v) / len(v) if v else None
+
+    # X's own PPDA per match is the opponent PPDA seen from the other side: in the folder only through the defending sheet (season value)
+    out = []
+    for vid, st, label, unit, col_x, col_y in VERSUS:
+        if vid == "ppda":
+            F = dfx["ppda"]["value"] if dfx and dfx.get("ppda") else None
+            A_Y = mean(r["opp_ppda"] for r in rows(my))  # what teams facing Y did: their PPDA against Y
+            allr = [r for s in sheets.values() for r in rows(s)]
+            L = mean(r["opp_ppda"] for r in allr)
+            # opponent at home when the row's team is away
+            H = mean(r["opp_ppda"] for r in allr if r["venue"] == "away")
+            A = mean(r["opp_ppda"] for r in allr if r["venue"] == "home")
+        else:
+            F = mean(r.get(col_x) for r in rows(mx))
+            A_Y = mean(r.get(col_y) for r in rows(my))
+            allr = [r for s in sheets.values() for r in rows(s)]
+            # like with like: what the opponents of the folder's teams did (the folder holds mostly strong teams, so its own
+            # shots would make any opponent look generous)
+            L = mean(r.get(col_y) for r in allr)
+            H = mean(r.get(col_x) for r in allr if r["venue"] == "home")
+            A = mean(r.get(col_x) for r in allr if r["venue"] == "away")
+        if None in (F, A_Y, L):
+            continue
+        n_y = len(rows(my))
+        w = n_y / (n_y + K_SHRINK)
+        V = (H - A) / 2 if None not in (H, A) else 0.0
+        x_home = {"home": False, "away": True}.get(my_venue)  # the opponent plays at home when you play away
+        v_term = 0.0 if x_home is None else (V if x_home else -V)
+        adj = max(F + w * (A_Y - L) + v_term, 0.0)
+        res = (rq2 or {}).get("statements", {}).get(st, {})
+        reg = (rq2 or {}).get("regrade", {}).get(st, {})
+        out.append(
+            {
+                "id": vid,
+                "statement": st,
+                "label": label,
+                "unit": unit,
+                "season": F,
+                "adjusted": adj,
+                "opponent_effect": w * (A_Y - L),
+                "venue_effect": v_term,
+                # the parts, so the app can explain the number with the values behind it
+                "against_mine": A_Y,
+                "reference": L,
+                "weight": w,
+                "my_matches": n_y,
+                "home": H,
+                "away": A,
+                "grade_season": reg.get("before"),
+                "grade_adjusted": reg.get("after"),
+                "improvement": res.get("improvement"),
+            }
+        )
+    return {
+        "venue": my_venue or "",
+        "teams_used": len(sheets),
+        "k": K_SHRINK,
+        "rows": out,
+        "rule": "season value + how your team changes its opponents compared with the other teams in this folder (shrunk by your matches / (matches + 5)) + home or away",
+    }

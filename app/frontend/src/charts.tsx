@@ -92,6 +92,9 @@ function describe(a: Action) {
     return (
       <>
         <b>{a.player || "Pass"}</b> {a.ok ? "passes to" : "pass not completed"} {a.ok && <b>{a.to}</b>}
+        {!a.ok && a.ex !== undefined && a.ey !== undefined && (a.ex <= 0 || a.ex >= 120 || a.ey <= 0 || a.ey >= 80)
+          ? " (ball out of play)"
+          : ""}
         {a.long ? " (long)" : ""}
         {a.kind ? ` · ${a.kind}` : ""}
       </>
@@ -107,6 +110,7 @@ function describe(a: Action) {
       <>
         <b>{a.player}</b> shoots: {a.outcome}
         {a.xg != null ? ` (xG ${a.xg.toFixed(2)})` : ""}
+        {a.ex === undefined ? " · where the shot ended is not in this data" : ""}
       </>
     );
   return (
@@ -257,6 +261,16 @@ export function Replay({
                 <path d="M0 0 6 3 0 6z" fill="var(--them)" />
               </marker>
             </defs>
+            {/* Ball moved between two events without an event of its own (a run not recorded as a carry, very common in Wyscout data):
+                a faint dotted link, so the path has no holes but is never drawn as a pass or a run. */}
+            {shown.map((a, i) => {
+              if (i === 0) return null;
+              const p = shown[i - 1],
+                px = p.ex ?? p.x,
+                py = p.ey ?? p.y;
+              if (Math.hypot(a.x - px, a.y - py) < 2.5) return null;
+              return <line key={`g${i}`} className="gap-link" x1={px} y1={py} x2={a.x} y2={a.y} style={sw(0.45)} />;
+            })}
             {shown.map((a, i) => {
               const last = i === shown.length - 1,
                 dr = last ? " draw" : "";
@@ -275,20 +289,55 @@ export function Replay({
                     <circle cx={a.ex} cy={a.ey} r={1.6 * k} fill="none" stroke="var(--coral)" strokeWidth={0.5 * k} />
                   </g>
                 );
-              if (a.type === "Pass" && end)
+              if (a.type === "Shot")
+                // No end point in the data (Wyscout public data: placeholders only): a dashed line towards the goal it was aimed at,
+                // so the shot is visible, and the caption says the end is unknown.
                 return (
-                  <line
-                    key={i}
-                    className={`pass${dr}${a.ok ? "" : " fail"}${a.us ? "" : " them"}`}
-                    pathLength={1}
-                    style={d}
-                    x1={a.x}
-                    y1={a.y}
-                    x2={a.ex}
-                    y2={a.ey}
-                    markerEnd={a.ok ? (a.us ? "url(#arrow)" : "url(#arrow-t)") : undefined}
-                  />
+                  <g key={i}>
+                    <line
+                      className={`shot unknown${dr}`}
+                      pathLength={1}
+                      style={d}
+                      x1={a.x}
+                      y1={a.y}
+                      x2={a.us ? 120 : 0}
+                      y2={40}
+                    />
+                    <circle cx={a.x} cy={a.y} r={1.3 * k} fill="var(--coral)" />
+                  </g>
                 );
+              if (a.type === "Pass" && end) {
+                const head = a.ok ? (a.us ? "url(#arrow)" : "url(#arrow-t)") : undefined;
+                return (
+                  <g key={i}>
+                    <line
+                      className={`pass${dr}${a.ok ? "" : " fail"}${a.us ? "" : " them"}`}
+                      // pathLength only for the solid line's draw-in; on a dashed (failed) pass it would rescale the dashes
+                      // and cut the line short of where the ball ended
+                      pathLength={a.ok ? 1 : undefined}
+                      style={d}
+                      x1={a.x}
+                      y1={a.y}
+                      x2={a.ex}
+                      y2={a.ey}
+                      markerEnd={last ? undefined : head}
+                    />
+                    {/* while a pass is being drawn its arrowhead waits for the line, so no lone arrow sits at the far end */}
+                    {last && head && (
+                      <line
+                        className="arrow-late"
+                        style={d}
+                        x1={a.x}
+                        y1={a.y}
+                        x2={a.ex}
+                        y2={a.ey}
+                        stroke="transparent"
+                        markerEnd={head}
+                      />
+                    )}
+                  </g>
+                );
+              }
               if (a.type === "Carry" && end)
                 return (
                   <line
@@ -330,7 +379,9 @@ export function Replay({
                     stroke="var(--pitch)"
                     strokeWidth={0.8 * k}
                   >
-                    {lastName(cur.type === "Pass" && cur.ok && cur.to ? cur.to : cur.player)}
+                    {/* after a pass the ball carries the receiver's name; after a failed pass nobody has it, so no name
+                        (the passer's name at the end point read as if he had run there, e.g. onto the touchline) */}
+                    {cur.type === "Pass" ? (cur.ok && cur.to ? lastName(cur.to) : "") : lastName(cur.player)}
                   </text>
                 )}
               </g>
@@ -436,6 +487,9 @@ export function Replay({
           </span>
           <span>
             <i className="lg shot" /> shot
+          </span>
+          <span>
+            <i className="lg gap" /> ball moved, not recorded
           </span>
         </div>
       </div>

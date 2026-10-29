@@ -4,7 +4,7 @@ Uso:  python generic_csv.py eventi.csv cartella_uscita [--coords 100|120x80] [--
 --provider: nome dei dati scritto nella lista partite (data_provider), cosi' le schede citano il fornitore giusto e non StatsBomb.
 Colonne obbligatorie: match_id, match_date, home_team, away_team, period, minute, second, team, event_type, x, y
 Colonne facoltative:  end_x, end_y, possession_id, restart, pass_length, shot_goal, player, recipient, xg, pass_outcome
-- event_type: pass, carry, shot, dribble; azioni difensive duel, interception, foul, clearance, ball_recovery, block (servono alla scheda difensiva:
+- event_type: pass, carry, shot, dribble; own_goal (autogol: team = squadra che segna nella propria porta); azioni difensive duel, interception, foul, clearance, ball_recovery, block (servono alla scheda difensiva:
   PPDA, altezza delle azioni difensive); qualunque altro valore = altro. Le azioni difensive non contano per le possessioni ricostruite.
 - pass_outcome: complete / incomplete (vuoto = complete). Senza questa colonna tutti i passaggi contano come riusciti. minute e' cumulativo (secondo tempo parte da 45), period 1 o 2.
 - x da 0 (propria porta) a 100 (porta avversaria), y da 0 a 100; la squadra che compie l'evento attacca sempre da sinistra a destra (--coords 100, default). Con --coords 120x80 si usano le misure 120 x 80.
@@ -24,7 +24,8 @@ DEFT = {
     "clearance": "Clearance",
     "ball_recovery": "Ball Recovery",
     "block": "Block",
-}  # added 28 Oct 2026: defensive actions, same names as StatsBomb
+    "own_goal": "Own Goal Against",
+}  # added 28 Oct 2026: defensive actions, same names as StatsBomb; own_goal added 29 Oct 2026 (row team = team that scored into its own net)
 RESTART = {
     "goal_kick": "From Goal Kick",
     "throw_in": "From Throw In",
@@ -179,6 +180,15 @@ def convert(csv_path, out_dir, coords="100", provider=None):
             if r.event_type == "pass" and "recipient" in g.columns and pd.notna(r.recipient):
                 e["pass"]["recipient"] = {"name": str(r.recipient)}
             evs.append(e)
+            if r.event_type == "own_goal":  # as in StatsBomb: the other team gets an 'Own Goal For' at the same time
+                other = r.away_team if r.team == r.home_team else r.home_team
+                evs.append(
+                    {
+                        k: v
+                        for k, v in dict(e, index=i + 0.5, team={"name": other}, type={"name": "Own Goal For"}).items()
+                        if k != "player"
+                    }
+                )
         json.dump(evs, open(f"{out_dir}/ev/{mid}.json", "w", encoding="utf-8"))
         r0 = g.iloc[0]
         matches.append(

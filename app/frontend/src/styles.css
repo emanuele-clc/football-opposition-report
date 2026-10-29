@@ -708,6 +708,18 @@ a.ctl {
   border-top-color: var(--coral);
   border-top-width: 4px;
 }
+.lg.gap {
+  border-top: 2px dotted var(--sticker-ink-2);
+  opacity: 0.7;
+}
+/* Ball moved between two events with no event of its own: faint dots, never confused with a pass (solid) or a run (dashes). */
+.pitch-svg .gap-link {
+  stroke: var(--run);
+  stroke-linecap: round;
+  stroke-dasharray: 0.01 1.4;
+  stroke-width: 0.45;
+  opacity: 0.5;
+}
 
 .pitch-svg {
   display: block;
@@ -745,10 +757,35 @@ a.ctl {
   stroke-dashoffset: 0;
   animation: draw var(--d, 500ms) var(--out) both;
 }
+/* Shot whose end point is not in the data (Wyscout): thin dashed line towards the goal, never drawn as if the end were known. */
+.pitch-svg .shot.unknown {
+  stroke-width: 0.6;
+  stroke-dasharray: 0.04 0.03;
+  opacity: 0.85;
+}
 .pitch-svg .carry.draw,
 .pitch-svg .pass.fail.draw {
   stroke-dasharray: 0.7 0.9;
   animation: fade var(--d, 500ms) var(--out) both;
+}
+.pitch-svg .shot.unknown.draw {
+  stroke-dasharray: 0.04 0.03;
+  animation: fade var(--d, 500ms) var(--out) both;
+}
+.pitch-svg .arrow-late {
+  opacity: 0;
+  animation: appear 1ms linear var(--d, 500ms) forwards;
+}
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pitch-svg .arrow-late {
+    opacity: 1;
+    animation: none;
+  }
 }
 @keyframes draw {
   from {
@@ -3260,4 +3297,71 @@ a.grade:focus-visible {
   .ev-expert:not([open]) {
     display: none;
   }
+}
+
+/* Game plan: next match against your team (thesis RQ2 forecast). Season value small, the forecast for this match large. */
+.vs-sub {
+  font-size: 12.5px;
+  margin: 4px 0 4px;
+}
+.vs-rows {
+  list-style: none;
+  margin: 6px 0 14px;
+  padding: 0;
+}
+.vs-rows li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: 2px 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--sticker-line);
+}
+.vs-label {
+  font-weight: 750;
+}
+.vs-season {
+  display: inline-flex;
+  align-items: center;
+  color: var(--sticker-ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.vs-arrow {
+  color: var(--sticker-ink-2);
+}
+.vs-adj {
+  display: inline-flex;
+  align-items: center;
+}
+.vs-adj b {
+  font-style: italic;
+  font-stretch: 62%;
+  font-weight: 900;
+  font-size: 25px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.vs-why {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  color: var(--sticker-ink-2);
+}
+.vs-how {
+  margin: 0 0 14px;
+}
+.vs-steps {
+  margin: 10px 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.vs-steps li span {
+  display: block;
+  color: var(--sticker-ink-2);
+}
+.vs-steps li b {
+  display: block;
+  margin-bottom: 2px;
 }

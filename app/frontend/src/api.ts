@@ -308,9 +308,36 @@ export interface WithoutData {
   }[];
   without_matches?: { date: string; opponent: string; score: string }[];
 }
+/* Next match against your team: the thesis RQ2 forecast, approximated with the teams in the folder (app/backend/gameplan.py, versus). */
+export interface Versus {
+  venue: "" | "home" | "away";
+  teams_used: number;
+  k: number;
+  rule: string;
+  rows: {
+    id: string;
+    statement: string;
+    label: string;
+    unit: string;
+    season: number;
+    adjusted: number;
+    opponent_effect: number;
+    venue_effect: number;
+    against_mine: number;
+    reference: number;
+    weight: number;
+    my_matches: number;
+    home: number | null;
+    away: number | null;
+    grade_season: Grade | null;
+    grade_adjusted: Grade | null;
+    improvement: number | null;
+  }[];
+}
 export interface GamePlan {
   opponent: string;
   mine: string | null;
+  versus?: Versus | null;
   teams_in_folder: number;
   k: number;
   brief: {
@@ -749,8 +776,10 @@ export const api = {
       `/api/teams/${encodeURIComponent(key)}/without${player ? `?player=${encodeURIComponent(player)}` : ""}`,
     ),
   gameplanEvents: (key: string) => get<GPEvents>(`/api/teams/${encodeURIComponent(key)}/gameplan/events`),
-  gameplan: (key: string, mine: string) =>
-    get<GamePlan>(`/api/teams/${encodeURIComponent(key)}/gameplan${mine ? `?mine=${encodeURIComponent(mine)}` : ""}`),
+  gameplan: (key: string, mine: string, venue = "") =>
+    get<GamePlan>(
+      `/api/teams/${encodeURIComponent(key)}/gameplan${mine ? `?mine=${encodeURIComponent(mine)}${venue ? `&venue=${venue}` : ""}` : ""}`,
+    ),
   similar: (key: string, r: { match: number; half: number; minute: number; second: number }) =>
     get<SimilarData>(
       `/api/teams/${encodeURIComponent(key)}/similar?match=${r.match}&half=${r.half}&minute=${r.minute}&second=${r.second}`,

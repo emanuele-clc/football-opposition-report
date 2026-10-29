@@ -542,6 +542,24 @@
    "match": 2499806,
    "date": "2017-10-21",
    "opponent": "Swansea City",
+   "half": 1,
+   "minute": 24,
+   "second": 0,
+   "start_minute": 23,
+   "start_second": 39,
+   "possession": 60,
+   "scorer": "own goal",
+   "xg": null,
+   "origin": "Own goal",
+   "body": null,
+   "x": 7.199999999999999,
+   "y": 48.800000000000004
+  },
+  {
+   "side": "for",
+   "match": 2499806,
+   "date": "2017-10-21",
+   "opponent": "Swansea City",
    "half": 2,
    "minute": 48,
    "second": 20,
@@ -899,6 +917,24 @@
   },
   {
    "side": "for",
+   "match": 2499874,
+   "date": "2017-12-09",
+   "opponent": "Newcastle United",
+   "half": 2,
+   "minute": 85,
+   "second": 47,
+   "start_minute": 85,
+   "start_second": 24,
+   "possession": 167,
+   "scorer": "own goal",
+   "xg": null,
+   "origin": "Own goal",
+   "body": null,
+   "x": 8.4,
+   "y": 41.6
+  },
+  {
+   "side": "for",
    "match": 2499886,
    "date": "2017-12-13",
    "opponent": "Southampton",
@@ -1148,6 +1184,24 @@
    "body": null,
    "x": 2.4000000000000057,
    "y": 36.0
+  },
+  {
+   "side": "against",
+   "match": 2499917,
+   "date": "2017-12-26",
+   "opponent": "Watford",
+   "half": 2,
+   "minute": 64,
+   "second": 6,
+   "start_minute": 64,
+   "start_second": 3,
+   "possession": 176,
+   "scorer": "own goal",
+   "xg": null,
+   "origin": "Own goal",
+   "body": null,
+   "x": 120.0,
+   "y": 36.8
   },
   {
    "side": "for",
@@ -1508,6 +1562,24 @@
    "body": null,
    "x": 22.799999999999997,
    "y": 39.199999999999996
+  },
+  {
+   "side": "for",
+   "match": 2499994,
+   "date": "2018-02-24",
+   "opponent": "Stoke City",
+   "half": 2,
+   "minute": 69,
+   "second": 57,
+   "start_minute": 69,
+   "start_second": 9,
+   "possession": 157,
+   "scorer": "own goal",
+   "xg": null,
+   "origin": "Own goal",
+   "body": null,
+   "x": 1.2,
+   "y": 40.0
   },
   {
    "side": "against",
@@ -2073,6 +2145,24 @@
    "date": "2018-05-13",
    "opponent": "Tottenham Hotspur",
    "half": 2,
+   "minute": 52,
+   "second": 39,
+   "start_minute": 52,
+   "start_second": 11,
+   "possession": 116,
+   "scorer": "own goal",
+   "xg": null,
+   "origin": "Own goal",
+   "body": null,
+   "x": 115.2,
+   "y": 40.8
+  },
+  {
+   "side": "against",
+   "match": 2500097,
+   "date": "2018-05-13",
+   "opponent": "Tottenham Hotspur",
+   "half": 2,
    "minute": 59,
    "second": 45,
    "start_minute": 59,
@@ -2218,6 +2308,7 @@
    "Free kick": 11,
    "Goal kick": 1,
    "Open play": 28,
+   "Own goal": 3,
    "Throw-in": 5
   },
   "against": {
@@ -2226,6 +2317,7 @@
    "Goal kick": 1,
    "Kick-off": 2,
    "Open play": 20,
+   "Own goal": 2,
    "Throw-in": 10
   }
  },
@@ -2239,7 +2331,7 @@
   },
   {
    "slot": "15-30",
-   "goals_for": 9,
+   "goals_for": 10,
    "goals_against": 5,
    "xg_for": 0.0,
    "xg_against": 0.0
@@ -2254,20 +2346,20 @@
   {
    "slot": "45-60",
    "goals_for": 9,
-   "goals_against": 12,
+   "goals_against": 13,
    "xg_for": 0.0,
    "xg_against": 0.0
   },
   {
    "slot": "60-75",
-   "goals_for": 7,
-   "goals_against": 8,
+   "goals_for": 8,
+   "goals_against": 9,
    "xg_for": 0.0,
    "xg_against": 0.0
   },
   {
    "slot": "75-90",
-   "goals_for": 12,
+   "goals_for": 13,
    "goals_against": 12,
    "xg_for": 0.0,
    "xg_against": 0.0

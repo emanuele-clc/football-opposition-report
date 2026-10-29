@@ -653,8 +653,9 @@ def tsec(e):
 
 @app.get("/api/teams/{key}/replay")
 def replay(key: str, match: int, half: int, minute: int, second: int, window: bool = False, possession: int = 0):
-    """Possession that starts at this clip time (sequences, restarts, set pieces) or, with window=true, every action from 6 s before to 10 s after
-    (losses and recoveries). Coordinates are turned so that the team always attacks left to right (0-120 x 0-80)."""
+    """Possession that starts at this clip time (sequences, restarts, set pieces) or, with window=true, every action from 6 s before to 16 s after
+    (losses and recoveries; 16 s because the ball can be lost a few seconds after the clip time and the list counts shots within 10 s
+    of the loss itself). Coordinates are turned so that the team always attacks left to right (0-120 x 0-80)."""
     team_name = need(key)["team"]
     ev = events(match)
     by_pos = [e for e in ev if e.get("period") == half and e.get("possession") == possession] if possession else []
@@ -684,7 +685,21 @@ def replay(key: str, match: int, half: int, minute: int, second: int, window: bo
         first = by_pos[0]
         t0 = tsec(first)
     elif window:
-        chosen = [e for e in ev if e.get("period") == half and t0 - 6 <= tsec(e) <= t0 + 10]
+        # the list counts a shot within 10 s of the first opponent action after the loss (src/report/transitions.py), which can come a few
+        # seconds after the clip time: show at least until 10 s after it
+        opp = next(
+            (
+                tsec(e)
+                for e in ev
+                if e.get("period") == half
+                and tsec(e) > t0
+                and e["team"]["name"] != team_name
+                and e["type"]["name"] in ("Pass", "Carry", "Shot", "Dribble")
+            ),
+            t0,
+        )
+        end = max(t0 + 16, opp + 10.5)
+        chosen = [e for e in ev if e.get("period") == half and t0 - 6 <= tsec(e) <= end]
     else:
         # The possession that starts here is ours, but an action of ours in that second can still belong to the opponent's
         # possession (a save or a block just before we win the ball): take one whose possession team is us.
@@ -707,6 +722,13 @@ def replay(key: str, match: int, half: int, minute: int, second: int, window: bo
             "y": flip(e["location"])[1],
         }
         end = (e.get("pass") or e.get("carry") or e.get("shot") or {}).get("end_location")
+        # Placeholders, not places: an end exactly on a pitch corner (Wyscout writes (0,0) or (100,100) when it has no end) or a pass
+        # that ends where it starts (converted data without an end). Left out, so the replay never draws a ball flying to the corner flag.
+        if end and (
+            (round(end[0], 1), round(end[1], 1)) in ((0, 0), (120, 0), (0, 80), (120, 80))
+            or (ty == "Pass" and abs(end[0] - e["location"][0]) + abs(end[1] - e["location"][1]) < 0.1)
+        ):
+            end = None
         if end:
             a["ex"], a["ey"] = flip(end)[:2]
         if ty == "Pass":
@@ -1395,11 +1417,17 @@ def stylemap():
 
 # Game plan: formations, style in a few lines and rule-based hints (app/backend/gameplan.py). Hints, not advice.
 @app.get("/api/teams/{key}/gameplan")
-def gameplan(key: str, mine: str | None = None):
+def gameplan(key: str, mine: str | None = None, venue: str = ""):
     need(key)
     if mine:
         need(mine)
-    return plan_rules.build(key, mine if mine != key else None, teams, ranks, load)
+    res = plan_rules.build(key, mine if mine != key else None, teams, ranks, load)
+    if mine and mine != key:
+        keys = [k for k, v in teams().items() if not v["provisional"]]
+        f = os.path.join(ROOT, "results", f"opponent_forecast_{P()['id']}.json")
+        rq2 = json.load(open(f, encoding="utf-8")) if os.path.exists(f) else None
+        res["versus"] = plan_rules.versus(key, mine, venue if venue in ("home", "away") else "", keys, load, rq2)
+    return res
 
 
 @app.get("/api/teams/{key}/without")

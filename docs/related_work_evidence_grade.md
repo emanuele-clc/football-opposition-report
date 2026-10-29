@@ -90,6 +90,40 @@ Scopus, FH OÖ institutional access, field TITLE-ABS-KEY unless stated, no year 
 
 **Result:** the Scopus search confirms the web searches. No paper found grades the statements of an opposition report by next-match forecast skill against a baseline, combined with discrimination, on unseen teams with a protocol fixed first. New papers to read: Clijmans et al. 2023, Plakias 2025, Gu et al. 2025 (review). Wording unchanged: "to our knowledge"; avoid "first".
 
+## Third search (29 October 2026): literature for the new RQ1 and RQ2
+After the 28 Oct meeting the research questions changed (RQ1: do the grades hold on a second provider; RQ2: does a forecast that knows the opponent and the venue beat the season average). General web search only; full texts were not available from here for Matteo et al. 2026 (publisher returns 403) and Russomanno et al. 2019 (Springer, abstract only).
+
+### RQ1: same statements on two providers
+| Work | What it says | Use in the thesis |
+|---|---|---|
+| Bischofberger, Baca & Schikuta, "Event detection in football: Improving the reliability of match analysis", PLOS ONE 19(4), e0298107, 2024 ([doi 10.1371/journal.pone.0298107](https://doi.org/10.1371/journal.pone.0298107), read) | Providers define events differently and rarely publish the definitions: Wyscout counts crosses as passes, Stats Perform does not and requires a pass to be intentional; "recovery" means different sets of actions; "studies which seemingly use the same categories of events are not necessarily comparable". Wyscout timestamps found misaligned | **Main citation for why values differ across providers** (our Barcelona check: 18 of 24 values differ). Does not measure agreement on the same matches |
+| Liu, Hopkins, Gómez & Molinuevo, "Inter-operator reliability of live football match statistics from OPTA Sportsdata", IJPAS 13(3), 2013 | High agreement between Opta operators (ICC 0.88-1.00) | Reliability *within* one provider is high; our question is *between* providers. Cite to separate the two |
+| Pappalardo et al., "A public data set of spatio-temporal match events in soccer competitions", Sci. Data 6, 236, 2019 | The Wyscout data used for RQ1 | Data source. The paper describes the tags but no inter-annotator check was found |
+| MartinOnData, "Which xG data should you trust?", Python Football Review #017, 20 Nov 2025 ([link](https://www.pythonfootball.com/p/which-xg-data-should-you-trust), blog, read) | xG of Opta, StatsBomb, Wyscout, Understat on big-5 leagues 2017/18-2021/22: match-level correlations lower for Wyscout pairs (0.86-0.88); cumulative season signals converge (all pairs above 0.97 by the end of the season) | **Same pattern as our RQ1 at a different level**: single values disagree, season-level signals agree. Grey literature: cite as supporting observation only, and only for xG (which we could not test on Wyscout) |
+| "OpenSTARLab: Open Approach for Spatio-Temporal Agent Data Analysis in Soccer", arXiv 2502.02785, 2025 (authors to check) | Maps event types across providers (e.g. StatsBomb "Ground Pass" = Wyscout "Simple Pass") | Shows that a common format is needed; our generic CSV plays this role |
+
+**Gap for RQ1:** nothing found that computes a reliability measure (forecast skill, discrimination) for the same statement types on two providers and compares the results. Published work compares *values* (or operators within a provider), not whether the *trust* in a statement carries over. Wording: "to our knowledge".
+
+### RQ2: opponent and venue in the forecast
+| Work | What it says | Use in the thesis |
+|---|---|---|
+| Lago-Peñas & Dellal 2010; Lago 2009 ("The influence of match location, quality of opposition and match status on possession strategies", J. Sports Sci. 27(13)) | Possession depends on venue, opponent quality and score | Background for why a team's numbers move with the opponent and the venue (our largest gains: PPDA, shots) |
+| Lago-Peñas & Lago-Ballesteros, "Game location and team quality effects on performance profiles in professional soccer", J. Sports Sci. Med. 10(3), 2011 | Home/away and team quality change the profile of performance indicators | Same: supports adding a venue term |
+| Fernandez-Navarro et al. 2018 (already listed) | Opponent and venue change style scores | Same |
+| Maher, "Modelling association football scores", Statistica Neerlandica 36, 1982; Dixon & Coles 1997 | Team attack and defence parameters plus a home effect, for goals | The additive structure "team + opponent + venue" of our F_adj comes from this tradition; we apply it to report statements, not goals |
+| "Forecasting football matches by predicting match statistics", arXiv 2001.09097 (already listed) | Predicts match statistics with team ratings | Closest for forecasting statistics with the opponent in the model; goal is the result, not checking report statements |
+| Clijmans, Van Roy & Davis, "Looking beyond the past: analyzing the intrinsic playing style of soccer teams", ECML PKDD 2022, LNCS ([doi 10.1007/978-3-031-26422-1_23](https://doi.org/10.1007/978-3-031-26422-1_23)) | Markov-chain model of a team's offensive style, to generalise past behaviour (EPL 2019/20) | Listed in the Scopus search as 2023: the publication year is 2022. From the abstract it does **not** adjust for the opponents faced; full text to check before writing that |
+| He, Araújo, Davids, Kee & Komar, Adaptive Behavior, 2023 | Style flexibility, reactivity to the opponent, imposition | Conceptual support: some behaviours depend on the opponent, others are imposed (our result: goal kicks, keeper, throw-ins do not improve with the opponent term) |
+
+**Gap for RQ2:** opponent and venue effects on indicators are well known, and opponent-adjusted ratings exist for results. Nothing found that tests, out of sample and statement by statement, whether an opponent- and venue-adjusted forecast changes which statements of an opposition report can be trusted.
+
+Bibliographic details of Lago 2009, Lago-Peñas & Dellal 2010, Lago-Peñas & Lago-Ballesteros 2011, Liu et al. 2013, Maher 1982 and Dixon & Coles 1997 are from memory and search snippets: check them on Crossref before they go into the thesis.
+
+### Still to read (updated)
+- Matteo et al. 2026 and Russomanno et al. 2019: need the university library (not reachable from here). Unchanged priority.
+- Lago-Peñas & Lago-Ballesteros 2011 (open access, J. Sports Sci. Med.) and Clijmans et al. 2022 full text.
+- For RQ3 (optional): usability literature (SUS, studies with sports analysts), not searched yet.
+
 ## Still to do
 1. Download through the university and read in full: **Matteo et al. 2026** (publisher blocks access from here), **Russomanno et al. 2019**, Chang & Chuang 2026, Liu et al. 2016.
 2. ~~One Scopus search~~ done 27 Oct 2026 (section above); still to do: read the abstracts of the kept papers and add SPORTDiscus or Web of Science if the thesis needs a full systematic review.

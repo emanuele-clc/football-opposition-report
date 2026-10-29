@@ -1,5 +1,5 @@
 import { useEffect, useState, type CSSProperties } from "react";
-import { api, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSummary } from "../api";
+import { api, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSummary, type Versus } from "../api";
 import { evidenceHref, Explain, GRADE_SAYS, GradeKey, GradeMark, Icon } from "../charts";
 import { Note, Pitch, Replay, plain } from "../charts";
 import { PROVIDER_NAME } from "../provider";
@@ -187,6 +187,92 @@ export function Shape({ raw, side }: { raw: string; side: "left" | "right" }) {
   );
 }
 
+const VENUE_KEY = "oppreport.venue";
+const sign = (x: number, n = 1) => `${x >= 0 ? "+" : "−"}${Math.abs(x).toFixed(n)}`;
+
+/* Next match against your team (thesis RQ2): season value, then the forecast that knows the opponent and the venue, with the
+   grade each one got in the confirmatory test. An approximation in the app, said so on the card. */
+function VersusCard({ v, opp, mine }: { v: Versus; opp: string; mine: string }) {
+  if (!v.rows.length) return null;
+  return (
+    <div className="sticker pad vs-card">
+      <h3>{`${opp} against ${mine}`}</h3>
+      <p className="s-muted vs-sub">
+        {v.venue === "home"
+          ? `You at home. Season value, then the forecast for this match.`
+          : v.venue === "away"
+            ? `You away. Season value, then the forecast for this match.`
+            : `Home or away not set. Season value, then the forecast for this match.`}
+      </p>
+      <ul className="vs-rows">
+        {v.rows.map((r) => (
+          <li key={r.id}>
+            <span className="vs-label">{r.label}</span>
+            <span className="vs-season">
+              <GradeMark g={r.grade_season} none />
+              {fmt(r.season, unit(r.unit))}
+            </span>
+            <span className="vs-arrow" aria-hidden="true">
+              →
+            </span>
+            <span className="vs-adj">
+              <GradeMark g={r.grade_adjusted} none />
+              <b>{fmt(r.adjusted, unit(r.unit))}</b>
+            </span>
+            <span className="vs-why">
+              {`${mine} ${sign(r.opponent_effect)}`}
+              {v.venue ? ` · venue ${sign(r.venue_effect)}` : ""}
+              {r.improvement != null ? ` · in the test the squared error fell by ${Math.round(r.improvement * 100)}%` : ""}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <details className="more vs-how">
+        <summary>How it is computed</summary>
+        <p className="small">
+          Each forecast is the season value of {opp}, plus how {mine} changes what its opponents do, plus the home or
+          away effect. It is the forecast tested in the thesis (RQ2): on 70 StatsBomb and 96 Wyscout teams it guessed the
+          next match better than the season value for these three numbers.
+        </p>
+        <ol className="vs-steps">
+          {v.rows.map((r) => {
+            const u = unit(r.unit);
+            const against: Record<string, string> = {
+              ppda: `teams playing ${mine} had a PPDA of`,
+              shots: `teams playing ${mine} took`,
+              shots_conceded: `${mine} itself took`,
+            };
+            return (
+              <li key={r.id}>
+                <b>{r.label}</b>
+                <span>{`Season: ${opp} ${fmt(r.season, u)}.`}</span>
+                <span>
+                  {`Your team: ${against[r.id]} ${fmt(r.against_mine, u)} per match, against ${fmt(r.reference, u)} on average for the ${v.teams_used} teams in this folder (same measure). Difference ${sign(r.against_mine - r.reference)}, weighted by ${r.my_matches} / (${r.my_matches} + ${v.k}) = ${r.weight.toFixed(2)} because a team with few matches says little: ${sign(r.opponent_effect)}.`}
+                </span>
+                <span>
+                  {r.home != null && r.away != null
+                    ? `Home or away: in all matches of this folder ${fmt(r.home, u)} at home and ${fmt(r.away, u)} away; half the difference (${sign((r.home - r.away) / 2)}) is added for the team at home and taken away for the team away${v.venue ? `: ${sign(r.venue_effect)}` : ". Not used until you set where you play"}.`
+                    : "Home or away: not available in this data."}
+                </span>
+                <span>{`Forecast: ${fmt(r.season, u)} ${sign(r.opponent_effect)}${v.venue ? ` ${sign(r.venue_effect)}` : ""} = ${fmt(r.adjusted, u)}.`}</span>
+              </li>
+            );
+          })}
+        </ol>
+        <p className="small s-muted">
+          Grades: the letter each number got in the thesis test, with the season value and with this forecast. The
+          share of error removed is from the same test. Differences with the test: the reference is the teams in this
+          folder, not the whole league; averages of matches instead of totals; the whole season of {opp}, not only the
+          matches before the date.
+        </p>
+      </details>
+      <Note kind="caution" tag="Estimate">
+        {`The forecast tested in the thesis (season value, plus how ${mine} changes its opponents, plus home or away), estimated here from the ${v.teams_used} teams in this folder instead of the whole league. Grades: as the test gave them, season value vs this forecast. To be confirmed with the supervisor before it is used for real.`}
+      </Note>
+    </div>
+  );
+}
+
 export default function GamePlan({ d, teams, events }: { d: TeamData; teams: TeamSummary[]; events: boolean }) {
   const [mine, setMine] = useState(() => new URLSearchParams(location.search).get("mine") ?? store.get());
   const [plan, setPlan] = useState<Plan | null>(null);
@@ -194,6 +280,14 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
   const [topic, setTopic] = useState<Topic>("priorities");
   const [evs, setEvs] = useState<GPEvents | null | "none">(null);
   const [brk, setBrk] = useState(0);
+  const [venue, setVenue] = useState<"" | "home" | "away">(() => {
+    try {
+      const v = localStorage.getItem(VENUE_KEY);
+      return v === "home" || v === "away" ? v : "";
+    } catch {
+      return "";
+    }
+  });
   useEffect(() => {
     setEvs(null);
     api
@@ -207,10 +301,10 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
     setPlan(null);
     setErr("");
     api
-      .gameplan(d.key, my)
+      .gameplan(d.key, my, venue)
       .then(setPlan)
       .catch((e) => setErr(String(e.message ?? e)));
-  }, [d.key, my]);
+  }, [d.key, my, venue]);
 
   if (err)
     return (
@@ -271,6 +365,33 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
               </option>
             ))}
         </select>
+        {my && (
+          <div className="pills" role="group" aria-label="Where your team plays">
+            {(
+              [
+                ["", "Venue not set"],
+                ["home", "You at home"],
+                ["away", "You away"],
+              ] as const
+            ).map(([k, l]) => (
+              <button
+                key={k}
+                type="button"
+                aria-pressed={venue === k}
+                onClick={() => {
+                  setVenue(k);
+                  try {
+                    localStorage.setItem(VENUE_KEY, k);
+                  } catch {
+                    /* private mode */
+                  }
+                }}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
       {!P ? (
         <div className="state" style={{ marginTop: 24 }}>
@@ -362,6 +483,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
                   </p>
                 </div>
               )}
+              {P.versus && P.mine && <VersusCard v={P.versus} opp={d.team} mine={P.mine} />}
               <div className="sticker pad">
                 <h3>How they play</h3>
                 <ul className="read" style={{ marginTop: 6 }}>
