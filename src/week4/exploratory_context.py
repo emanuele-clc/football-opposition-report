@@ -1,7 +1,7 @@
-"""ESPLORATIVO (non pre-registrato). Il contesto di partita aggiunge informazione sulla famiglia, A PARITA' DI PLAY PATTERN?
-Baseline = modello con solo play pattern. Si aggiungono: famiglia precedente, minuto+tempo, stato del punteggio (sotto/pari/sopra a inizio minuto), casa/trasferta.
-CV per partite su tutte le partite (clustering rifatto in ogni fold). Guadagno = log-loss(baseline) - log-loss(modello esteso); positivo = il contesto aiuta.
-Uso: python exploratory_context.py <matches.json> "<Squadra>" [cartella_dati=.]"""
+"""EXPLORATORY (not pre-registered). Does match context add information on the family, FOR THE SAME PLAY PATTERN?
+Baseline = model with play pattern only. Added: previous family, minute+half, score state (behind/level/ahead at the start of the minute), home/away.
+CV by match on all matches (clustering refitted in each fold). Gain = log-loss(baseline) - log-loss(extended model); positive = context helps.
+Usage: python exploratory_context.py <matches.json> "<Team>" [data_folder=.]"""
 
 import sys, os, json, warnings
 import numpy as np, pandas as pd
@@ -20,7 +20,7 @@ K = {"costruzione": 5, "avanzata": 3}
 df, nm = S.extract()
 df["w0"] = (df.y0 - 40).abs()
 df["w1"] = (df.y1 - 40).abs()
-# contesto: punteggio a inizio minuto e casa/trasferta
+# context: score at the start of the minute and home/away
 ms = {g["match_id"]: g for g in json.load(open(S.MF))}
 diff = {}
 home = {}

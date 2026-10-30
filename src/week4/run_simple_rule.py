@@ -1,6 +1,6 @@
-"""Lancia compare_simple_rules.py sulle 10 squadre (4 iniziali + 6 della selezione) e stampa il riassunto con la regola di decisione del protocollo.
-Da eseguire nella cartella dei dati. Una squadra gia' valutata (simplerule_<Squadra>.json) viene saltata: si esegue una volta sola.
-Uso: python run_simple_rule.py <repo>/docs/replication10_selection.json --confirm [--print-only] [--summary-only]"""
+"""Runs compare_simple_rules.py on the 10 teams (4 initial + 6 from the selection) and prints the summary with the protocol's decision rule.
+Run from the data folder. A team already evaluated (simplerule_<Team>.json) is skipped: it runs once only.
+Usage: python run_simple_rule.py <repo>/docs/replication10_selection.json --confirm [--print-only] [--summary-only]"""
 
 import sys, os, json, subprocess
 
@@ -10,7 +10,7 @@ po = "--print-only" in a
 so = "--summary-only" in a
 if not (po or so or "--confirm" in a):
     sys.exit(
-        "Serve --confirm (dopo aver committato docs/protocol_simple_rule.md), oppure --print-only / --summary-only."
+        "Needs --confirm (after committing docs/protocol_simple_rule.md), or --print-only / --summary-only."
     )
 here = os.path.dirname(os.path.abspath(__file__))
 script = os.path.join(here, "compare_simple_rules.py")

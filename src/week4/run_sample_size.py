@@ -1,5 +1,5 @@
-"""Lancia sample_size.py sulle 10 squadre (4 iniziali + 6 della selezione) e stampa il riassunto. Da eseguire nella cartella dei dati.
-Salta le squadre gia' fatte. Uso: python run_sample_size.py <repo>/docs/replication10_selection.json"""
+"""Runs sample_size.py on the 10 teams (4 initial + 6 from the selection) and prints the summary. Run from the data folder.
+Skips teams already done. Usage: python run_sample_size.py <repo>/docs/replication10_selection.json"""
 
 import sys, os, json, subprocess, glob
 import numpy as np

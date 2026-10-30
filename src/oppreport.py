@@ -1,10 +1,10 @@
-"""Un comando per generare il report sull'avversario.
-Da eventi in CSV generico (qualunque fornitore, vedi docs/data_format.md):
-    python src/oppreport.py --csv eventi.csv --team "LASK" --out reports [--video-offsets offsets.csv] [--coords 120x80]
-Da dati aperti StatsBomb gia' scaricati:
-    python src/oppreport.py --statsbomb matches/9_281.json --data-dir <cartella dati> --team "Bayer Leverkusen" --out reports
-Produce in --out: prep_<Squadra>.html (una pagina di preparazione partita con i fatti principali e i link alle schede), report_<Squadra>.html (e .json), clips_<Squadra>.csv (tutte le sequenze con la famiglia e il tempo video), review_<Squadra>.csv/.html (scheda per l'analista),
-restarts_<Squadra>.html (uscite da rinvio, portiere e rimesse) con restart_clips_<Squadra>.csv, setpieces_<Squadra>.html (corner e punizioni) con setpiece_clips_<Squadra>.csv, transitions_<Squadra>.html (perdite, recuperi, transizioni) con transition_clips_<Squadra>.csv, xthreat_<Squadra>.html (minaccia xT di passaggi e conduzioni) con xt_clips_<Squadra>.csv; con --xml anche xml/ (un file per partita da importare nel programma video)."""
+"""One command to build the opposition report.
+From events in a generic CSV (any provider, see docs/data_format.md):
+    python src/oppreport.py --csv events.csv --team "LASK" --out reports [--video-offsets offsets.csv] [--coords 120x80]
+From StatsBomb open data already downloaded:
+    python src/oppreport.py --statsbomb matches/9_281.json --data-dir <data folder> --team "Bayer Leverkusen" --out reports
+Writes to --out: prep_<Team>.html (one match-preparation page with the main facts and links to the sheets), report_<Team>.html (and .json), clips_<Team>.csv (every sequence with its family and video time), review_<Team>.csv/.html (analyst check sheet),
+restarts_<Team>.html (goal kicks, keeper restarts, throw-ins) with restart_clips_<Team>.csv, setpieces_<Team>.html (corners and free kicks) with setpiece_clips_<Team>.csv, transitions_<Team>.html (losses, recoveries, transitions) with transition_clips_<Team>.csv, xthreat_<Team>.html (xT threat of passes and carries) with xt_clips_<Team>.csv; with --xml also xml/ (one file per match to import into the video tool)."""
 
 import argparse, json, os, sys, subprocess, shutil
 
@@ -15,11 +15,11 @@ ap.add_argument("--csv")
 ap.add_argument("--statsbomb")
 ap.add_argument("--data-dir", default=".")
 ap.add_argument("--video-offsets")
-ap.add_argument("--xml", action="store_true", help="scrive anche i file XML per il programma video")
+ap.add_argument("--xml", action="store_true", help="also writes the XML files for the video tool")
 ap.add_argument("--coords", default="100", choices=["100", "120x80"])
 a = ap.parse_args()
 if bool(a.csv) == bool(a.statsbomb):
-    sys.exit("Serve esattamente una tra --csv e --statsbomb.")
+    sys.exit("Exactly one of --csv and --statsbomb is required.")
 here = os.path.dirname(os.path.abspath(__file__))
 out = os.path.abspath(a.out)
 os.makedirs(out, exist_ok=True)
@@ -66,13 +66,13 @@ if a.video_offsets and not os.path.exists(a.video_offsets):
 env = dict(os.environ, MPLBACKEND="Agg")
 if a.video_offsets:
     env["OPPREPORT_OFFSETS"] = os.path.abspath(a.video_offsets)
-print("Genero il report (qualche minuto: ricampionamenti per le stime di affidabilita')...")
+print("Building the report (a few minutes: resampling for the reliability estimates)...")
 r = subprocess.run(py + [os.path.join(here, "report", "make_report.py"), mf, a.team, base], env=env)
 if r.returncode:
     sys.exit("Generazione del report fallita.")
 r = subprocess.run(py + [os.path.join(here, "report", "restarts.py"), mf, a.team, base], env=env)
 if r.returncode:
-    sys.exit("Scheda delle uscite da fermo fallita.")
+    sys.exit("Restart sheet failed.")
 r = subprocess.run(py + [os.path.join(here, "report", "setpieces.py"), mf, a.team, base], env=env)
 if r.returncode:
     sys.exit("Scheda delle palle inattive fallita.")
@@ -82,18 +82,18 @@ if r.returncode:
 r = subprocess.run(py + [os.path.join(here, "report", "defending.py"), mf, a.team, base], env=env)
 if r.returncode:
     print(
-        "Scheda della fase difensiva saltata: servono eventi difensivi in stile StatsBomb (Pressure, Duel, ...), assenti nel CSV generico."
+        "Defending sheet skipped: it needs StatsBomb-style defensive events (Pressure, Duel, ...), not present in the generic CSV."
     )
 r = subprocess.run(py + [os.path.join(here, "report", "matchups.py"), mf, a.team, base], env=env)
 if r.returncode:
-    print("Scheda dei confronti per avversario saltata: servono eventi difensivi e moduli in stile StatsBomb.")
+    print("Matchups sheet skipped: it needs StatsBomb-style defensive events and formations.")
 r = subprocess.run(py + [os.path.join(here, "report", "keyplayers.py"), mf, a.team, base], env=env)
 if r.returncode:
-    print("Giocatori chiave saltati: servono gli eventi in stile StatsBomb.")
+    print("Key players skipped: they need StatsBomb-style events.")
 r = subprocess.run(py + [os.path.join(here, "report", "xthreat.py"), mf, a.team, base], env=env)
 if r.returncode:
     print(
-        "Scheda della minaccia (xT) saltata: servono gli esiti dei passaggi in stile StatsBomb, assenti nel CSV generico."
+        "Threat (xT) sheet skipped: it needs StatsBomb-style pass outcomes, not present in the generic CSV."
     )
 r = subprocess.run(py + [os.path.join(here, "report", "summary.py"), a.team, base], env=env)
 if r.returncode:

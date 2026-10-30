@@ -1,7 +1,7 @@
-"""ESPLORATIVO (non pre-registrato). Prevedibilita' fuori campione su TUTTE le partite con validazione incrociata per partite (6 gruppi),
-rifittando il clustering dentro ogni fold (nessuna fuga di informazione). Serve a stimare il guadagno con piu' dati (34-38 partite invece di 10-11).
-Uso: python exploratory_cv_all_matches.py <matches.json> "<Squadra>" [cartella_dati=.]
-Impostazioni identiche al protocollo (x=45, k=5/3, logistica C=0.5, stessi input). Attenzione: GroupKFold non rispetta l'ordine temporale."""
+"""EXPLORATORY (not pre-registered). Out-of-sample predictability on ALL matches with cross-validation by match (6 groups),
+refitting the clustering inside each fold (no information leak). Used to estimate the gain with more data (34-38 matches instead of 10-11).
+Usage: python exploratory_cv_all_matches.py <matches.json> "<Team>" [data_folder=.]
+Settings identical to the protocol (x=45, k=5/3, logistic C=0.5, same inputs). Caution: GroupKFold does not respect time order."""
 
 import sys, os, json, warnings
 import numpy as np, pandas as pd

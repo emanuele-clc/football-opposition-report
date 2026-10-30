@@ -28,9 +28,3 @@ Click **Save review**: the app writes `review_<Team>_filled.csv` and `review_<Te
 python -X utf8 src\report\summarize_review.py <data_folder>\review_<Team>_filled.csv --out results\analyst_review_<Team>_<n>.json
 ```
 Report per family the share of yes or partly, all "no" comments, and the five answers verbatim. With 3 sequences per family this is descriptive, not an estimate. Do not change the families, the report or the questions between reviewers.
-
-## Message to ask someone (Italian)
-"Ciao, sto finendo una tesi magistrale su un report automatico dell'avversario costruito su dati evento. Mi servirebbero 30 minuti di una persona che fa analisi video o allena, per guardare insieme alcune azioni e dirmi se il raggruppamento ha senso e se uno strumento così sarebbe utile. Nessuna preparazione richiesta, lo facciamo anche in videochiamata. Ti andrebbe?"
-
-## Message to ask someone (English)
-"Hi, I am finishing a master's thesis on an automated opposition report built from event data. I would need 30 minutes of someone who does video analysis or coaching, to look at a few possessions together and tell me whether the grouping makes sense and whether such a tool would be useful. No preparation needed; a video call is fine. Would you be up for it?"

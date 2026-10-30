@@ -1,6 +1,6 @@
-"""Settimana 1 - fattibilita': calci d'angolo del Bayer Leverkusen 2023/24 (StatsBomb Open Data, con 360).
-Dati: StatsBomb Open Data (licenza non commerciale, citare StatsBomb). Eseguire dopo aver scaricato eventi e frame 360
-nelle cartelle ev/ e t360/ (vedi download_data.py)."""
+"""Week 1 - feasibility: Bayer Leverkusen 2023/24 corners (StatsBomb Open Data, with 360).
+Data: StatsBomb Open Data (non-commercial licence, cite StatsBomb). Run after downloading events and 360 frames
+into ev/ and t360/ (see download_data.py)."""
 
 import json, math, collections, sys
 import numpy as np, pandas as pd
@@ -18,7 +18,7 @@ matches = sorted(json.load(open(f"{BASE}/matches/9_281.json", encoding="utf-8"))
 
 def zone(end, y0):
     ex, ey = end[0], end[1]
-    d = ey if y0 < 40 else 80 - ey  # distanza laterale dell'arrivo dal lato del battitore
+    d = ey if y0 < 40 else 80 - ey  # lateral distance of the delivery end from the taker's side
     if ex < 102 or d < 18:
         return "corto/fuori area"
     if d < 30:
@@ -98,7 +98,7 @@ res = {"n_corner": len(df), "n_corner_360": int(df.has360.sum())}
 Z = ["corto/fuori area", "primo palo", "centro", "secondo palo"]
 
 
-# 1) distribuzione e entropia con bootstrap
+# 1) distribution and entropy with bootstrap
 def entropy(counts):
     p = np.array(counts, float)
     p = p[p > 0] / p.sum()
@@ -121,7 +121,7 @@ for s, lab in [(1, "lato_y_basso"), (0, "lato_y_alto")]:
     res[f"entropy_{lab}"] = entropy(c2)
 
 
-# 2) xG per zona con bootstrap
+# 2) xG per zone with bootstrap
 def boot_mean(x, n=2000):
     x = np.asarray(x)
     return list(np.percentile([rng.choice(x, len(x)).mean() for _ in range(n)], [2.5, 97.5]))
@@ -135,7 +135,7 @@ res["xg_by_zone"] = {
     if (df.zone == z).sum() > 1
 }
 
-# 3) prevedibilita' fuori campione (prime 24 partite -> ultime 10)
+# 3) out-of-sample predictability (first 24 matches -> last 10)
 X = df[["side", "minute", "diff", "period"]].astype(float).to_numpy().copy()
 X[:, 1] /= 90
 tr, te = df.g < 24, df.g >= 24
@@ -154,7 +154,7 @@ res["pred"] = dict(
     ll_baseline=float(log_loss(df.zone[te], np.tile(prior, (te.sum(), 1)), labels=cl)),
 )
 
-# 4) assetto difensivo da 360 e matrice zona x assetto
+# 4) defensive set-up from 360 and zone x set-up matrix
 d3 = df[df.has360 == 1].copy()
 d3["setup"] = np.where(
     d3.n_opp_near - d3.n_opp_far >= 2,
@@ -182,7 +182,7 @@ def matrix(dd, minn=3):
 def gain(dd):
     A = matrix(dd)
     p = dd.zone.value_counts(normalize=True).reindex(Z).fillna(0).values
-    return dd.xg.mean() - (p @ A).min()  # xG osservato meno xG con la migliore risposta difensiva
+    return dd.xg.mean() - (p @ A).min()  # observed xG minus xG with the best defensive answer
 
 
 obs = gain(d3)
@@ -198,7 +198,7 @@ for _ in range(1000):
 res["exploit_null_mean"] = float(np.mean(perm))
 res["exploit_null_p95"] = float(np.percentile(perm, 95))
 res["exploit_pvalue"] = float((np.array(perm) >= obs).mean())
-# fuori campione
+# out of sample
 tr3, te3 = d3.g < 24, d3.g >= 24
 A = matrix(d3[tr3])
 p = d3[tr3].zone.value_counts(normalize=True).reindex(Z).fillna(0).values
@@ -226,7 +226,7 @@ hi = [res["xg_by_zone"][z]["ci"][1] for z in zz]
 ax[1].bar(range(len(zz)), m, yerr=[np.array(m) - lo, np.array(hi) - m], color="#E07B00", capsize=3)
 ax[1].set_xticks(range(len(zz)))
 ax[1].set_xticklabels([z.replace(" ", "\n") for z in zz], fontsize=8)
-ax[1].set_title("xG medio per corner, con intervallo 95%", fontsize=9)
+ax[1].set_title("Mean xG per corner, with 95% interval", fontsize=9)
 ax[2].hist(perm, bins=30, color="#C9D3E0")
 ax[2].axvline(obs, color="#B3262D")
 ax[2].set_title("Exploitability osservata (rossa) contro il caso", fontsize=9)

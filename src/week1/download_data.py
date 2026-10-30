@@ -1,6 +1,6 @@
-"""Scarica da GitHub i dati aperti StatsBomb per una competizione-stagione.
-Uso: python download_data.py <competition_id> <season_id> [Squadra]   (es. 9 281 "Bayer Leverkusen")
-Crea le cartelle matches/, ev/ (eventi), t360/ (frame 360, se disponibili). Licenza StatsBomb non commerciale: citare StatsBomb."""
+"""Downloads StatsBomb open data from GitHub for one competition-season.
+Usage: python download_data.py <competition_id> <season_id> [Team]   (e.g. 9 281 "Bayer Leverkusen")
+Creates the folders matches/, ev/ (events), t360/ (360 frames, if available). StatsBomb non-commercial licence: cite StatsBomb."""
 
 import json, os, subprocess, sys
 from concurrent.futures import ThreadPoolExecutor

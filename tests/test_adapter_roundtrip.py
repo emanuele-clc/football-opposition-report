@@ -1,9 +1,9 @@
-"""Prova dell'adattatore: StatsBomb -> CSV generico -> generic_csv.py -> estrazione delle sequenze, confrontata con l'estrazione diretta.
-Uso:  python -X utf8 tests/test_adapter_roundtrip.py <matches.json> "<Squadra>" <cartella_dati> [cartella_lavoro]
-Due casi: con possession_id e restart (deve riprodurre le sequenze), senza possession_id (possessioni ricostruite: si misura lo scostamento).
-Controlla anche le schede uscite da fermo, palle inattive (con nomi dei giocatori e xG), transizioni e (dal 28 ott 2026) la parte della scheda
-difensiva che non usa le pressioni: PPDA, azioni difensive e loro altezza, tiri concessi.
-Esce con codice 1 se nel primo caso meno del 99% delle sequenze/azioni e' riprodotto o le caratteristiche differiscono."""
+"""Adapter test: StatsBomb -> generic CSV -> generic_csv.py -> sequence extraction, compared with the direct extraction.
+Usage:  python -X utf8 tests/test_adapter_roundtrip.py <matches.json> "<Team>" <data_folder> [work_folder]
+Two cases: with possession_id and restart (must reproduce the sequences), without possession_id (reconstructed possessions: the difference is measured).
+Also checks the restart, set-piece (with player names and xG) and transition sheets and (since 28 Oct 2026) the part of the defending
+sheet that does not use pressures: PPDA, defensive actions and their height, shots conceded.
+Exits with code 1 if in the first case less than 99% of sequences/actions are reproduced or the features differ."""
 
 import sys, os, tempfile
 import numpy as np
@@ -84,5 +84,5 @@ for name, poss in (("with_possession_id", True), ("reconstructed", False)):
     print(f"  difesa (PPDA, azioni difensive, altezza, tiri concessi): partite identiche {eqd} di {len(ref_df)}")
     if eqd < len(ref_df):
         ok = False
-print("\nOK" if ok else "\nFALLITO: con possession_id le sequenze non sono riprodotte")
+print("\nOK" if ok else "\nFAILED: with possession_id the sequences are not reproduced")
 sys.exit(0 if ok else 1)

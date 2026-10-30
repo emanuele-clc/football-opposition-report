@@ -1,8 +1,8 @@
-"""Baseline nulla per la stabilita' L2: stesso match-bootstrap, ma su dati senza struttura di gruppo.
-Uso: python stability_null_baseline.py <matches.json> "<Squadra>" [cartella_dati=.]
-Null 1 (shuffle): ogni feature viene permutata indipendentemente (stesse distribuzioni marginali, correlazioni distrutte).
-Null 2 (gauss): dati gaussiani con la stessa media e covarianza (stessa correlazione, ma un solo blob, nessun cluster reale).
-Se il Jaccard osservato e' ben sopra i due null, la stabilita' non e' un artefatto di K-Means."""
+"""Null baseline for L2 stability: same match bootstrap, but on data without group structure.
+Usage: python stability_null_baseline.py <matches.json> "<Team>" [data_folder=.]
+Null 1 (shuffle): each feature is permuted independently (same marginal distributions, correlations destroyed).
+Null 2 (gauss): Gaussian data with the same mean and covariance (same correlation, but a single blob, no real clusters).
+If the observed Jaccard is well above both nulls, the stability is not a K-Means artefact."""
 
 import sys, os, json, warnings
 import numpy as np

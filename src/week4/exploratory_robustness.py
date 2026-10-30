@@ -1,10 +1,10 @@
-"""ESPLORATIVO (non pre-registrato). Quanto dipendono le famiglie dalle scelte di metodo? Nessuna partita riservata viene usata; il metodo della tesi
-(K-Means, k = 5 e 3, taglio x = 45) NON cambia: qui si misura solo quanto i risultati si muovono se le scelte fossero state altre.
-1) Metodi: K-Means vs modello a misture gaussiane (GMM, covarianza piena) vs clustering gerarchico (Ward), stesso k.
-   Accordo con K-Means (indice di Rand aggiustato, ARI), silhouette, stabilita' Jaccard con bootstrap sulle partite.
-2) Sensibilita': costruzione con k = 4, 5, 6 (taglio 45) e taglio x = 40, 50 (k = 5); avanzata con k = 2, 3, 4.
-   Stabilita' Jaccard, silhouette e margine sul nullo gaussiano (stessa media e covarianza, nessun gruppo), come in E1.
-Uso: python exploratory_robustness.py <matches.json> "<Squadra>" [cartella_dati=.]   ->  exploratory_robustness_<Squadra>.json"""
+"""EXPLORATORY (not pre-registered). How much do the families depend on method choices? No reserved match is used; the thesis method
+(K-Means, k = 5 and 3, cut x = 45) does NOT change: this only measures how much the results move if the choices had been different.
+1) Methods: K-Means vs Gaussian mixture model (GMM, full covariance) vs hierarchical clustering (Ward), same k.
+   Agreement with K-Means (adjusted Rand index, ARI), silhouette, Jaccard stability with bootstrap over matches.
+2) Sensitivity: build-up with k = 4, 5, 6 (cut 45) and cut x = 40, 50 (k = 5); advanced with k = 2, 3, 4.
+   Jaccard stability, silhouette and margin over the Gaussian null (same mean and covariance, no groups), as in E1.
+Usage: python exploratory_robustness.py <matches.json> "<Team>" [data_folder=.]   ->  exploratory_robustness_<Team>.json"""
 
 import sys, os, json, warnings
 import numpy as np

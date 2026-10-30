@@ -1,6 +1,6 @@
-"""Lancia exploratory_cluster_test.py sulle 10 squadre (4 iniziali + 6 della selezione). Da eseguire nella cartella dei dati.
-Salta le squadre per cui esiste gia' exploratory_cluster_test_<Squadra>.json.
-Uso: python run_cluster_tests.py <repo>/docs/replication10_selection.json [--print-only]"""
+"""Runs exploratory_cluster_test.py on the 10 teams (4 initial + 6 from the selection). Run from the data folder.
+Skips teams for which exploratory_cluster_test_<Team>.json already exists.
+Usage: python run_cluster_tests.py <repo>/docs/replication10_selection.json [--print-only]"""
 
 import sys, os, json, subprocess
 

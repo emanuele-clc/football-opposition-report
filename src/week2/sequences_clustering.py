@@ -1,8 +1,8 @@
-"""Settimana 2 - modulo L2: sequenze di possesso, zone, clustering e stabilita' (bootstrap).
-Uso: python sequences_clustering.py <matches.json> "<Squadra>" [cartella_dati=.]
-Dati: StatsBomb Open Data (licenza non commerciale, citare StatsBomb). Orientamento: StatsBomb normalizza gia' la direzione di attacco
-(sinistra verso destra per la squadra che compie l'evento); y piccolo = fascia sinistra (verificato con le posizioni dei terzini).
-Regola di metodo: il clustering e la scelta di k usano solo le prime 70% partite (esplorazione). Le ultime partite NON vengono toccate."""
+"""Week 2 - L2 module: possession sequences, zones, clustering and stability (bootstrap).
+Usage: python sequences_clustering.py <matches.json> "<Team>" [data_folder=.]
+Data: StatsBomb Open Data (non-commercial licence, cite StatsBomb). Orientation: StatsBomb already normalises the attacking direction
+(left to right for the team performing the event); small y = left flank (checked with the full-backs' positions).
+Method rule: clustering and the choice of k use only the first 70% of matches (exploration). The last matches are NOT touched."""
 
 import json, sys, math, collections
 import numpy as np, pandas as pd
@@ -19,7 +19,7 @@ OPEN_PLAY = {
     "From Goal Kick",
     "From Keeper",
     "From Throw In",
-}  # niente corner, punizioni, calcio d'inizio
+}  # no corners, free kicks, kick-offs
 XB = [0, 30, 60, 90, 120]
 YB = [0, 80 / 3, 160 / 3, 80.01]
 
@@ -155,7 +155,7 @@ if __name__ == "__main__":
         f"{TEAM}: {nm} partite, {len(df)} sequenze di gioco aperto (>=3 passaggi, >=4 punti); esplorazione = prime {k0} partite"
     )
     ex = df[df.gi < k0].reset_index(drop=True)
-    print("sequenze di esplorazione:", len(ex), "| riservate alla validazione:", int((df.gi >= k0).sum()))
+    print("exploration sequences:", len(ex), "| riservate alla validazione:", int((df.gi >= k0).sum()))
     X = StandardScaler().fit_transform(features(ex))
     pca = PCA(0.90, random_state=0).fit(X)
     Xp = pca.transform(X)

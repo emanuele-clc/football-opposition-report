@@ -1,7 +1,7 @@
-"""Esporta eventi StatsBomb nel CSV generico (docs/data_format.md). Serve a provare l'adattatore (tests/test_adapter_roundtrip.py)
-e come esempio di mappatura di un fornitore.
-Uso:  python statsbomb_to_generic_csv.py <matches.json> "<Squadra>" <cartella_dati> <uscita.csv> [--no-possession] [--no-restart]
-Coordinate in uscita: 120 x 80 (come StatsBomb), quindi la conversione va fatta con --coords 120x80."""
+"""Exports StatsBomb events to the generic CSV (docs/data_format.md). Used to test the adapter (tests/test_adapter_roundtrip.py)
+and as an example of mapping a provider.
+Usage:  python statsbomb_to_generic_csv.py <matches.json> "<Team>" <data_folder> <out.csv> [--no-possession] [--no-restart]
+Output coordinates: 120 x 80 (as StatsBomb), so the conversion must use --coords 120x80."""
 
 import sys, os, json
 import pandas as pd

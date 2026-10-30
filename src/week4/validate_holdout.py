@@ -1,8 +1,8 @@
-"""Settimana 4 - validazione sulle partite RISERVATE (ultimo 30%), protocollo in docs/protocol_holdout.md.
-Uso:   python validate_holdout.py <matches.json> "<Squadra>" [cartella_dati=.] --confirm
-       python validate_holdout.py <matches.json> "<Squadra>" [cartella_dati=.] --dry-run   (prova del codice: usa SOLO i dati di esplorazione)
-Il modello (scaler, centri K-Means, ordine dei gruppi) viene congelato sulle partite di esplorazione e MAI riaddestrato sulle riservate.
-Senza --confirm lo script non apre le partite riservate. Va lanciato UNA volta sola, dopo aver committato il protocollo."""
+"""Week 4 - validation on the RESERVED matches (last 30%), protocol in docs/protocol_holdout.md.
+Usage: python validate_holdout.py <matches.json> "<Team>" [data_folder=.] --confirm
+       python validate_holdout.py <matches.json> "<Team>" [data_folder=.] --dry-run   (code check: uses ONLY the exploration data)
+The model (scaler, K-Means centres, group order) is frozen on the exploration matches and NEVER retrained on the reserved ones.
+Without --confirm the script does not open the reserved matches. Run it ONCE only, after committing the protocol."""
 
 import sys, os, json, warnings
 import numpy as np, pandas as pd
@@ -15,7 +15,7 @@ if len(pos) < 2:
 DRY = "--dry-run" in flags
 if not DRY and "--confirm" not in flags:
     sys.exit(
-        "Rifiuto di aprire le partite riservate senza --confirm. Prima committa docs/protocol_holdout.md, poi rilancia con --confirm."
+        "Refusing to open the reserved matches without --confirm. First commit docs/protocol_holdout.md, then rerun with --confirm."
     )
 sys.argv = [sys.argv[0]] + pos
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "week2"))
@@ -28,7 +28,7 @@ from sklearn.linear_model import LogisticRegression
 COLS = ["x0", "w0", "x1", "w1", "net_x", "path_len", "directness", "n_pass", "long_share", "width_std", "dur"]
 CUT = 45
 K = {"costruzione": 5, "avanzata": 3}
-# soglie fissate nel protocollo
+# thresholds fixed in the protocol
 SHARE_MAX_DRIFT = 0.10
 SIL_MIN = 0.10
 ALPHA_CI = (2.5, 97.5)
@@ -100,7 +100,7 @@ for fase, k in K.items():
     b = te[mask(te, fase)].reset_index(drop=True)
     sc, km, rank = models[fase]
     r = {"n_train": int(len(a)), "n_test": int(len(b))}
-    # H2: riproducibilita' dei gruppi (quote e silhouette dell'assegnazione congelata)
+    # H2: reproducibility of the groups (shares and silhouette of the frozen assignment)
     fam = sorted(a.cl.unique())
     sa = a.cl.value_counts(normalize=True).reindex(fam).fillna(0)
     sb = b.cl.value_counts(normalize=True).reindex(fam).fillna(0)
@@ -116,7 +116,7 @@ for fase, k in K.items():
         and r["silhouette_congelata_test"] is not None
         and r["silhouette_congelata_test"] >= SIL_MIN
     )
-    # H1: prevedibilita' fuori campione (modello addestrato su esplorazione, valutato su riservate)
+    # H1: out-of-sample predictability (model trained on exploration, evaluated on reserved matches)
     Xa = feats(a)
     Xt = feats(b, Xa.columns)
     ya = a.cl.values

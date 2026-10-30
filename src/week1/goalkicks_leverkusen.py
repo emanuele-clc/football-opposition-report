@@ -1,4 +1,4 @@
-"""Settimana 1 - rinvii dal fondo del Leverkusen 2023/24: quota di rinvii corti, entropia, bootstrap e confronto con la baseline."""
+"""Week 1 - Leverkusen 2023/24 goal kicks: share of short goal kicks, entropy, bootstrap and comparison with the baseline."""
 
 import json, math, sys
 import numpy as np
@@ -45,7 +45,7 @@ print(
     sum(r["has360"] for r in rows),
     "| corti %.2f, IC95 %.2f-%.2f | entropia %.2f bit" % (p, *np.percentile(bs, [2.5, 97.5]), H),
 )
-print("avversari visibili (rinvii con 360): mediana", np.median([r["opp"] for r in rows if r["opp"] is not None]))
+print("visible opponents (goal kicks with 360): median", np.median([r["opp"] for r in rows if r["opp"] is not None]))
 for lab, f in [
     ("in vantaggio", lambda r: r["diff"] > 0),
     ("pari", lambda r: r["diff"] == 0),

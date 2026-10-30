@@ -1,5 +1,5 @@
-"""Riassunto della replica su 10 squadre: legge holdout_<Squadra>.json (e null_baseline_<Squadra>.json se presente) e applica la regola di decisione del protocollo.
-Uso: python summarize_replication10.py <repo>/docs/replication10_selection.json [cartella_risultati=results] [uscita=results/replication10_summary.json]"""
+"""Summary of the 10-team replication: reads holdout_<Team>.json (and null_baseline_<Team>.json if present) and applies the protocol's decision rule.
+Usage: python summarize_replication10.py <repo>/docs/replication10_selection.json [results_folder=results] [out=results/replication10_summary.json]"""
 
 import sys, os, json, math
 

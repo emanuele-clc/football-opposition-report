@@ -1,6 +1,6 @@
-"""Esegue la replica sulle squadre selezionate: per ogni squadra scarica i dati, controllo E1 (stabilita' vs dati nulli), validazione sulle partite riservate (--confirm).
-Una squadra gia' validata (esiste holdout_<Squadra>.json) viene saltata: la validazione si esegue una volta sola.
-Uso (dalla cartella dei dati): python run_new_teams.py <repo>/docs/replication10_selection.json --confirm [--print-only] [--only "Nome squadra"] [--reserves]"""
+"""Runs the replication on the selected teams: for each team downloads the data, E1 check (stability vs null data), validation on the reserved matches (--confirm).
+A team already validated (holdout_<Team>.json exists) is skipped: the validation runs once only.
+Usage (from the data folder): python run_new_teams.py <repo>/docs/replication10_selection.json --confirm [--print-only] [--only "Team name"] [--reserves]"""
 
 import sys, os, json, subprocess, argparse
 
@@ -12,7 +12,7 @@ ap.add_argument("--only", default=None)
 ap.add_argument("--reserves", action="store_true")
 a = ap.parse_args()
 if not a.confirm and not a.print_only:
-    sys.exit("Serve --confirm (dopo aver committato docs/protocol_replication10.md) oppure --print-only.")
+    sys.exit("Needs --confirm (after committing docs/protocol_replication10.md) or --print-only.")
 here = os.path.dirname(os.path.abspath(__file__))
 dl = os.path.join(here, "..", "week1", "download_data.py")
 e1 = os.path.join(here, "..", "week3", "stability_null_baseline.py")

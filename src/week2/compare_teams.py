@@ -1,5 +1,5 @@
-"""Settimana 2 - confronto descrittivo tra due squadre sulle sole partite di esplorazione (prime 70%).
-Uso: python compare_teams.py <matchesA.json> "<SquadraA>" <matchesB.json> "<SquadraB>" [cartella_dati=.]"""
+"""Week 2 - descriptive comparison of two teams on the exploration matches only (first 70%).
+Usage: python compare_teams.py <matchesA.json> "<TeamA>" <matchesB.json> "<TeamB>" [data_folder=.]"""
 
 import sys, json, numpy as np
 

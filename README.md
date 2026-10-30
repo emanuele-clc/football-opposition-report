@@ -43,6 +43,19 @@ This thesis builds an opposition report from event data (every pass, carry and s
 
 Every confirmatory test follows the same rule: the protocol (hypotheses, thresholds, decision rule) is committed **before** the single run, and result files are committed unedited. Negative results are reported. Protocols: `docs/protocol_*.md`; results: `results/`.
 
+### Where to start reading
+
+| To see | Open |
+|---|---|
+| The plan of the thesis, chapter by chapter, with every number and its source file | [docs/thesis_outline.md](docs/thesis_outline.md) |
+| RQ1: how the grade is computed, then the check on Wyscout | [docs/protocol_evidence_grade.md](docs/protocol_evidence_grade.md), [docs/protocol_evidence_grade_wyscout.md](docs/protocol_evidence_grade_wyscout.md) |
+| RQ2: the forecast with opponent and venue | [docs/protocol_opponent_forecast.md](docs/protocol_opponent_forecast.md) |
+| The result files of RQ1 and RQ2 | `results/evidence_grade_corrected.json`, `results/evidence_grade_wyscout.json`, `results/opponent_forecast_statsbomb.json`, `results/opponent_forecast_wyscout.json` |
+| Related work and the gap | [docs/related_work_evidence_grade.md](docs/related_work_evidence_grade.md) |
+| Earlier results (build-up families) and the declared researcher degrees of freedom | [docs/results.md](docs/results.md) |
+| What is planned next, and what is not done | [docs/future_work.md](docs/future_work.md) |
+| A finished report, without installing anything | [examples/prep_Bayer_Leverkusen.html](examples/prep_Bayer_Leverkusen.html) (download and open in a browser) |
+
 ## The report tool
 
 The grades live inside a working prototype: a local web app that builds the report for any team, shows each finding with the clips behind it, and puts the grade next to every headline number.
@@ -176,14 +189,25 @@ The confirmatory steps (`evidence_grade_wyscout.py analyse --set confirm`, `fore
 <br>
 
 ```
-src/         analysis (week1-4), report sheets (report/), provider adapters, tracking (exploratory), oppreport.py
-app/         local web app (FastAPI + React), see app/README.md
-tests/       reproducibility and app tests
-docs/        protocols, detailed results, data format, analyst guide
-results/     result files of every run (JSON)
-examples/    example outputs for 4 teams (the app's default data)
-data_info/   competition and match lists (raw events are not included)
+src/week1/        feasibility: data download, corners (L3), goal kicks
+src/week2/        build-up families: sequences, clustering
+src/week3/        robustness and null baselines of the families
+src/week4/        held-out validation, replication on 10 teams, simple-rule test,
+                  evidence grade (RQ1, StatsBomb and Wyscout), opponent-adjusted forecast (RQ2)
+src/report/       report sheets, clip lists, XML and MP4 clip export
+src/adapters/     provider adapters (generic CSV, StatsBomb, Wyscout)
+src/tracking/     tracking data (exploratory)
+src/oppreport.py  one command for the whole report
+app/              local web app (FastAPI + React), see app/README.md
+tests/            reproducibility and app tests
+docs/             thesis outline, protocols, detailed results, data format, analyst guide
+results/          result files of every run (JSON, committed unedited)
+examples/         example outputs for 4 teams, StatsBomb (the app's default data)
+examples_wyscout/ the same 4 teams on Wyscout data
+data_info/        competition and match lists (raw events are not included)
 ```
+
+The `week1`-`week4` folder names follow the order of the work and are kept because the protocols, written before each run, cite these paths. Some keys inside older result files are in Italian (for example `nota`, `verdetto`): the files are kept exactly as each run wrote them.
 
 </details>
 

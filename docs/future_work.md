@@ -1,13 +1,13 @@
 # Future work: ideas not done in the thesis
 
-Written 22 October 2026 for discussion with the supervisor. Nothing here has been run: these are proposals, with what each would show and what it would cost. Rough cost: S = one or two days, M = about a week, L = several weeks or depends on other people. Any idea that tests a hypothesis needs a protocol committed before the run, as for the rest of the thesis.
+Written 22 October 2026 for discussion with the supervisors; updated 30 October 2026. Two ideas of the first list have since been done and are now the thesis research questions: 1.1 is RQ2 and 1.2 is the second part of RQ1 (marked **Done** below, with their results). Everything else has not been run: these are proposals, with what each would show and what it would cost. Rough cost: S = one or two days, M = about a week, L = several weeks or depends on other people. Any idea that tests a hypothesis needs a protocol committed before the run, as for the rest of the thesis.
 
 ## 1. Research on the evidence grade (main contribution)
 
 | # | Idea | What it would show | Cost | Notes |
 |---|---|---|---|---|
-| 1.1 | **Opponent- and venue-adjusted forecasts.** Forecast the next match from the season so far, adjusted for the opponent's strength or style and for home/away. Compare with the current forecast on the same 70 teams. | Whether the C grades for defensive and transition statements (for example PPDA, skill 0.016) come from missing context or from the statements themselves. Today's forecast is a floor (protocol, "Known weaknesses"). | M | New protocol. The current grades stay as published; this would be a second, separate result. |
-| 1.2 | **Grade on other seasons and providers.** Repeat the grade on another open season, or on Wyscout data where the statements can be computed. | Whether the grades are stable or depend on 2015/16 StatsBomb data. | M | Today: one season, one provider. The Wyscout check on Barcelona was a label only (6 same, 18 differ, 10 not testable). |
+| 1.1 | **Done (RQ2).** Opponent- and venue-adjusted forecasts, compared with the season forecast. | Better in 21 of 30 statements on StatsBomb (70 teams) and 18 of 25 on Wyscout (96 teams), worse in 2 and 1; PPDA moves from C to A on both providers. | – | `docs/protocol_opponent_forecast.md`, `results/opponent_forecast_*.json`. Still open: an interaction between the two teams' styles. |
+| 1.2 | **Done (RQ1, second part).** The grade repeated on Wyscout 2017/18, five leagues. | Same letter in 21 of 29 statements (72%; rule fixed beforehand 70%), none two letters apart: the grades hold, just. | – | `docs/protocol_evidence_grade_wyscout.md`, `results/evidence_grade_wyscout.json`. Still open: another season with the same provider, to separate provider and season effects. |
 | 1.3 | **Why last 5 matches mislead.** The season so far beats the last 5 for 32 of 34 statements. Test weighted forecasts (more weight to recent matches, but not only the last 5). | Whether any recency weighting helps, or whether "use the season" is the rule for analysts. | S-M | Directly useful for practice. |
 | 1.4 | **Grade for individual families.** F07/F08 (family shares) got C, with discrimination not applicable. Find a common measure across teams (for example the share of sequences close to a shared reference set) so discrimination can be computed. | Whether family shares can ever be more than C. | M | Methodological; needs care to avoid fitting on test teams. |
 | 1.5 | **Literature, systematic.** Database search (Scholar, Scopus, SPORTDiscus), forward citations of Franks et al. 2016, full reading of Matteo et al. 2026 and Deb et al. 2023. | Whether "to our knowledge, first" holds. | S | Must be done before submission anyway (`docs/related_work_evidence_grade.md`). |
@@ -51,4 +51,4 @@ Written 22 October 2026 for discussion with the supervisor. Nothing here has bee
 ## Suggested order
 1. Before submission: 1.5 (literature), 2.2 then 2.1 (review), 5.1.
 2. If there is time: 3.1 (time machine), because it shows the main contribution.
-3. After the thesis or as a follow-up paper: 1.1 and 1.3 (better forecasts), 1.2 (other seasons/providers), 2.3-2.4 (studies with analysts).
+3. After the thesis or as a follow-up paper: 1.3 (recency-weighted forecasts), the open points of 1.1 and 1.2, 2.3-2.4 (studies with analysts).

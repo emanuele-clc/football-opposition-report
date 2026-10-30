@@ -1,7 +1,7 @@
-"""Settimana 2 - L2 finale: clustering in due fasi (costruzione x0<45 e fase avanzata x0>=45), stabilita' per gruppo, profili e figura.
-Uso: python final_L2.py <matches.json> "<Squadra>" [cartella_dati=.]   (richiede sequences_clustering.py nella stessa cartella)
-Scelte fatte SOLO sulle prime 70% partite (esplorazione) guardando stabilita' e silhouette: va dichiarato nella tesi (gradi di liberta' del ricercatore).
-Le ultime partite restano riservate alla validazione e non vengono usate qui."""
+"""Week 2 - final L2: clustering in two phases (build-up x0<45 and advanced x0>=45), stability per group, profiles and figure.
+Usage: python final_L2.py <matches.json> "<Team>" [data_folder=.]   (needs sequences_clustering.py in the same folder)
+Choices made ONLY on the first 70% of matches (exploration), looking at stability and silhouette: to be declared in the thesis (researcher degrees of freedom).
+The last matches stay reserved for validation and are not used here."""
 
 import sys, json, collections
 import numpy as np, pandas as pd
@@ -49,13 +49,13 @@ for fase, k in K.items():
     ex.loc[sub.index, "cl"] = [f"{'C' if fase == 'costruzione' else 'A'}{rank[l]}" for l in lab]
     ex.loc[sub.index, "dist"] = np.linalg.norm(
         Xs - km.cluster_centers_[lab], axis=1
-    )  # distanza dal centro del gruppo (tipicita')
+    )  # distance from the group centre (typicality)
     for c in order:
         m = sub[lab == c]
         name = f"{'C' if fase == 'costruzione' else 'A'}{rank[c]}"
         tri = collections.Counter()
         for zs in m.zones:
-            zc = [z for i, z in enumerate(zs) if i == 0 or z != zs[i - 1]]  # zone consecutive uguali collassate
+            zc = [z for i, z in enumerate(zs) if i == 0 or z != zs[i - 1]]  # consecutive equal zones collapsed
             seen = set(tuple(zc[i : i + 3]) for i in range(len(zc) - 2))
             tri.update(seen)
         top = [(" > ".join(S.ZN[z] for z in t), round(n / len(m), 2)) for t, n in tri.most_common(3)]
@@ -107,7 +107,7 @@ for fase in K:
     )
 for p in prof:
     print(p)
-# figura: 8 mini-campi con 25 percorsi per gruppo e freccia media
+# figure: 8 mini-pitches with 25 paths per group and the mean arrow
 names = [p["cl"] for p in prof]
 fig, axs = plt.subplots(2, 5, figsize=(16, 6.4))
 rng = np.random.default_rng(0)

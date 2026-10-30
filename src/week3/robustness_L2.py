@@ -1,7 +1,7 @@
-"""Settimana 3 - prove di robustezza del modulo L2 (solo partite di esplorazione, prime 70%).
-Uso: python robustness_L2.py <matches.json> "<Squadra>" [cartella_dati=.]   (importa sequences_clustering.py da ../week2)
-1) stabilita' con bootstrap sulle PARTITE (non sulle sequenze); 2) sensibilita' al taglio x e a k; 3) K-Means contro mistura gaussiana e Ward;
-4) prevedibilita' della famiglia con validazione incrociata per partita (le partite riservate restano intatte)."""
+"""Week 3 - robustness checks of the L2 module (exploration matches only, first 70%).
+Usage: python robustness_L2.py <matches.json> "<Team>" [data_folder=.]   (imports sequences_clustering.py from ../week2)
+1) stability with bootstrap over MATCHES (not sequences); 2) sensitivity to the x cut and to k; 3) K-Means vs Gaussian mixture and Ward;
+4) predictability of the family with cross-validation by match (reserved matches stay untouched)."""
 
 import sys, json, warnings
 import numpy as np, pandas as pd
@@ -33,7 +33,7 @@ def fit_labels(X, k, seed=0):
 
 
 def match_bootstrap(sub, k, B=100):
-    """Jaccard per gruppo ricampionando le PARTITE (con reinserimento)."""
+    """Jaccard per group, resampling MATCHES (with replacement)."""
     X = StandardScaler().fit_transform(sub[COLS].values)
     km0 = fit_labels(X, k)
     lab = km0.labels_
@@ -71,7 +71,7 @@ def phase_stats(cut, kb, ka, B=100):
     return res
 
 
-# 1) stabilita' con bootstrap sulle partite, configurazione scelta (x=45, k=5 e 3), e confronto con il bootstrap sulle sequenze
+# 1) stability with bootstrap over matches, chosen configuration (x=45, k=5 and 3), and comparison with the bootstrap over sequences
 base = phase_stats(45, 5, 3, B=200)
 out["match_bootstrap_x45"] = base
 for f, v in base.items():
@@ -127,7 +127,7 @@ for fase, k, sub in [("costruzione", 5, ex[ex.x0 < 45]), ("avanzata", 3, ex[ex.x
     print(
         f"[metodi {fase}] silhouette K-Means {silhouette_score(X, lk):.2f}, GMM {silhouette_score(X, lg):.2f}, Ward {silhouette_score(X, lw):.2f} | accordo (ARI) K-Means-GMM {adjusted_rand_score(lk, lg):.2f}, K-Means-Ward {adjusted_rand_score(lk, lw):.2f}"
     )
-# 5) prevedibilita' della famiglia: validazione incrociata per partita (6 gruppi), contro la baseline
+# 5) predictability of the family: cross-validation by match (6 groups), against the baseline
 ex["cl"] = ""
 for fase, k, sub in [("costruzione", 5, ex[ex.x0 < 45]), ("avanzata", 3, ex[ex.x0 >= 45])]:
     X = StandardScaler().fit_transform(sub[COLS].values)

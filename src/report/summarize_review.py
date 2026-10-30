@@ -1,6 +1,6 @@
-"""Riassume una o piu' schede di revisione compilate da un analista (review_<Squadra>.csv, colonna coherent_with_family = yes / partly / no).
-Uso:  python summarize_review.py review_Barcelona.csv [altre schede ...] [--out riepilogo.json]
-Stampa per famiglia e in totale quante sequenze l'analista giudica coerenti. Descrittivo: con 3 sequenze per famiglia non e' una stima precisa."""
+"""Summarises one or more review sheets filled in by an analyst (review_<Team>.csv, column coherent_with_family = yes / partly / no).
+Usage:  python summarize_review.py review_Barcelona.csv [more sheets ...] [--out summary.json]
+Prints, per family and in total, how many sequences the analyst judges coherent. Descriptive: with 3 sequences per family it is not a precise estimate."""
 
 import sys, json
 import pandas as pd
@@ -31,7 +31,7 @@ if len(bad):
 filled = d[d.answer.notna()]
 print(f"{len(files)} schede, {len(d)} sequenze, compilate {len(filled)}, vuote {d.coherent_with_family.isna().sum()}\n")
 if not len(filled):
-    sys.exit("Nessuna risposta: compila la colonna coherent_with_family.")
+    sys.exit("No answers: fill in the column coherent_with_family.")
 t = pd.crosstab(filled.family, filled.answer).reindex(columns=["yes", "partly", "no"], fill_value=0)
 t["n"] = t.sum(1)
 t["yes_or_partly"] = (t.yes + t.partly) / t.n

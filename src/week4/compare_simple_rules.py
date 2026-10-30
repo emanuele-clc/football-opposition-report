@@ -1,8 +1,8 @@
-"""Le famiglie spiegano i tiri meglio di una regola semplice? (protocollo: docs/protocol_simple_rule.md)
-Per ogni fase: famiglie K-Means (congelate sull'esplorazione) contro una partizione banale con lo stesso numero di celle: fasce di uguale frequenza della posizione finale x1
-(confronto principale), piu' fasce di net_x e di n_pass (descrittivi). Stesso modello per tutti (logistica sulle celle, C = 0.5), valutato sulle partite riservate.
-Uso: python compare_simple_rules.py <matches.json> "<Squadra>" [cartella_dati=.] --confirm      (partite riservate; una volta sola)
-     python compare_simple_rules.py <matches.json> "<Squadra>" [cartella_dati=.] --dry-run      (prova del codice: solo dati di esplorazione)"""
+"""Do the families explain shots better than a simple rule? (protocol: docs/protocol_simple_rule.md)
+For each phase: K-Means families (frozen on exploration) against a trivial partition with the same number of cells: equal-frequency bins of the end position x1
+(main comparison), plus bins of net_x and n_pass (descriptive). Same model for all (logistic on the cells, C = 0.5), evaluated on the reserved matches.
+Usage: python compare_simple_rules.py <matches.json> "<Team>" [data_folder=.] --confirm      (reserved matches; once only)
+     python compare_simple_rules.py <matches.json> "<Team>" [data_folder=.] --dry-run      (code check: exploration data only)"""
 
 import sys, os, json, warnings
 import numpy as np, pandas as pd
@@ -14,7 +14,7 @@ if len(pos) < 2:
     sys.exit(__doc__)
 DRY = "--dry-run" in flags
 if not DRY and "--confirm" not in flags:
-    sys.exit("Serve --confirm (dopo aver committato docs/protocol_simple_rule.md) oppure --dry-run.")
+    sys.exit("Needs --confirm (after committing docs/protocol_simple_rule.md) or --dry-run.")
 sys.argv = [sys.argv[0]] + pos
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "week2"))
 import sequences_clustering as S

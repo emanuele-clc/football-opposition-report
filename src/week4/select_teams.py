@@ -1,7 +1,7 @@
-"""Selezione delle squadre per la replica su 10 squadre (protocollo: docs/protocol_replication10.md).
-Regola fissata prima: stagioni complete 2015/2016 di La Liga, Serie A e Ligue 1 (competizioni con almeno 300 partite disponibili), squadre con almeno 30 partite,
-escluse le 4 squadre gia' usate. Sorteggio stratificato per campionato con seed fisso: 2 squadre primarie + 1 di riserva per campionato (la riserva si usa solo
-per un guasto tecnico, mai per un risultato). Uso: python select_teams.py [data_info=data_info] [uscita=docs/replication10_selection.json]"""
+"""Team selection for the 10-team replication (protocol: docs/protocol_replication10.md).
+Rule fixed beforehand: complete 2015/2016 seasons of La Liga, Serie A and Ligue 1 (competitions with at least 300 matches available), teams with at least 30 matches,
+excluding the 4 teams already used. Draw stratified by league with a fixed seed: 2 primary teams + 1 reserve per league (the reserve is used only
+for a technical failure, never because of a result). Usage: python select_teams.py [data_info=data_info] [out=docs/replication10_selection.json]"""
 
 import sys, json, glob, os, collections
 import numpy as np

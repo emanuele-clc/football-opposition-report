@@ -1,4 +1,4 @@
-"""Settimana 1 - opzione Premier League: una squadra con soli eventi (niente 360). Uso: python team_events_only.py <comp_season_matches.json> "<Squadra>" """
+"""Week 1 - Premier League option: one team with events only (no 360). Usage: python team_events_only.py <comp_season_matches.json> "<Team>" """
 
 import json, sys, math, collections
 import numpy as np, pandas as pd

@@ -31,7 +31,7 @@ offs = (
 )
 if offs is None:
     print(
-        "AVVISO: senza --video-offsets i tempi sono l'orologio di gara (secondo tempo da 45:00): vanno spostati nel programma video."
+        "WARNING: without --video-offsets the times are the match clock (second half from 45:00): shift them in the video tool."
     )
 codes = sorted(clips.family.astype(str).unique())
 col = {c: colorsys.hsv_to_rgb(i / max(len(codes), 1), 0.55, 0.9) for i, c in enumerate(codes)}

@@ -1,8 +1,8 @@
-"""Quante partite servono perche' un report sull'avversario sia affidabile? (descrittivo)
-Per n = 3, 5, 8, 10, 15 partite estratte a caso (500 estrazioni) dalla stagione della squadra, si misura di quanto le tendenze calcolate su quelle partite
-si discostano da quelle della stagione intera: stile (passaggi per sequenza, quota di lanci lunghi, quota di sequenze dalla propria meta' campo, quota con tiro,
-quota di lanci lunghi dai rinvii) e quote delle famiglie (partizione K-Means congelata sulla stagione intera: errore massimo tra le quote delle famiglie).
-Uso: python sample_size.py <matches.json> "<Squadra>" [cartella_dati=.]"""
+"""How many matches does an opposition report need to be reliable? (descriptive)
+For n = 3, 5, 8, 10, 15 matches drawn at random (500 draws) from the team's season, measures how far the tendencies computed on those matches
+are from those of the whole season: style (passes per sequence, long-pass share, share of sequences from the own half, share with a shot,
+long-pass share from goal kicks) and family shares (K-Means partition frozen on the whole season: largest error among the family shares).
+Usage: python sample_size.py <matches.json> "<Team>" [data_folder=.]"""
 
 import sys, os, json, warnings
 import numpy as np

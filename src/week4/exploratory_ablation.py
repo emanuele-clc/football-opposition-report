@@ -1,6 +1,6 @@
-"""ESPLORATIVO (non pre-registrato). Da dove viene il guadagno di prevedibilita'? Ablazione degli input del modello, CV per partite su tutte le partite
-(clustering rifatto in ogni fold). Blocchi: play pattern (come parte la sequenza), minuto+tempo, famiglia della sequenza precedente.
-Uso: python exploratory_ablation.py <matches.json> "<Squadra>" [cartella_dati=.]"""
+"""EXPLORATORY (not pre-registered). Where does the predictability gain come from? Ablation of the model inputs, CV by match on all matches
+(clustering refitted in each fold). Blocks: play pattern (how the sequence starts), minute+half, family of the previous sequence.
+Usage: python exploratory_ablation.py <matches.json> "<Team>" [data_folder=.]"""
 
 import sys, os, json, warnings
 import numpy as np, pandas as pd

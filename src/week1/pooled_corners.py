@@ -1,6 +1,6 @@
-"""Settimana 1 (verifica) - corner con frame 360 aggregati da Mondiale 2022, Europei 2020 e 2024 (StatsBomb Open Data).
-Conta i corner con 360, stima distribuzione per zona, xG e il test di permutazione sull'exploitability a livello di popolazione.
-Limiti: squadre diverse messe insieme (eterogeneita' ignorata), zone e assetti definiti dall'autore."""
+"""Week 1 (check) - corners with 360 frames pooled from World Cup 2022, Euro 2020 and Euro 2024 (StatsBomb Open Data).
+Counts corners with 360, estimates the distribution by zone, xG and the permutation test of exploitability at population level.
+Limits: different teams pooled (heterogeneity ignored), zones and set-ups defined by the author."""
 
 import json, sys, numpy as np, pandas as pd
 
@@ -61,10 +61,10 @@ print("Corner totali per torneo:", tot_corner)
 print("Corner totali:", len(df), "| con 360:", len(d3))
 print(d3.groupby("torneo").size().to_dict())
 d3["setup"] = np.where(d3.near - d3.far >= 2, S[0], np.where(d3.far - d3.near >= 2, S[2], S[1]))
-print("xG medio per corner (con 360): %.3f" % d3.xg.mean())
+print("Mean xG per corner (with 360): %.3f" % d3.xg.mean())
 print("Zone:", d3.zone.value_counts().reindex(Z).fillna(0).astype(int).to_dict())
 print("Assetti:", d3.setup.value_counts().reindex(S).fillna(0).astype(int).to_dict())
-print("Celle zona x assetto:")
+print("Zone x set-up cells:")
 print(pd.crosstab(d3.zone, d3.setup).reindex(index=Z, columns=S).fillna(0).astype(int))
 
 
@@ -96,16 +96,16 @@ print(
     "Exploitability aggregata: %.4f xG/corner | IC95 bootstrap %.4f-%.4f | caso: media %.4f, 95-esimo %.4f | p = %.3f"
     % (obs, *np.percentile(boot, [2.5, 97.5]), np.mean(perm), np.percentile(perm, 95), (np.array(perm) >= obs).mean())
 )
-# fuori campione per torneo: stima su Europei 2020 + Mondiale 2022, test su Europei 2024
+# out of sample by tournament: estimated on Euro 2020 + World Cup 2022, tested on Euro 2024
 trn, tst = d3[d3.torneo != "Europei 2024"], d3[d3.torneo == "Europei 2024"]
 A = matrix(trn)
 p = trn.zone.value_counts(normalize=True).reindex(Z).fillna(0).values
 best = S[int((p @ A).argmin())]
-print("Fuori campione (test: Europei 2024, %d corner con 360): assetto migliore stimato = %s" % (len(tst), best))
+print("Out of sample (test: Euro 2024, %d corners with 360): best estimated set-up = %s" % (len(tst), best))
 a = tst[tst.setup == best].xg
 b = tst[tst.setup != best].xg
 print(
-    "  xG con assetto migliore: %.3f (n=%d) | altri: %.3f (n=%d) | differenza %.3f"
+    "  xG with best set-up: %.3f (n=%d) | others: %.3f (n=%d) | difference %.3f"
     % (a.mean(), len(a), b.mean(), len(b), a.mean() - b.mean())
 )
 bd = [rng.choice(a.values, len(a)).mean() - rng.choice(b.values, len(b)).mean() for _ in range(2000)]

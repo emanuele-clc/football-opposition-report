@@ -47,7 +47,7 @@ if os.environ.get("OPPREPORT_OFFSETS"):
 
 
 def video_time(match, half, minute, sec):
-    """Tempo nel video = secondi del video a cui parte il tempo + orologio di gara (minuto cumulativo) - 2700 s nel secondo tempo. Vuoto se mancano i dati."""
+    """Video time = video second at which the half kicks off + match clock (cumulative minute) - 2700 s in the second half. Empty if data are missing."""
     if OFFS is None or str(match) not in OFFS.index or half not in (1, 2):
         return ""
     v = (

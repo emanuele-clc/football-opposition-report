@@ -1,16 +1,16 @@
-"""Adattatore: eventi in CSV generico -> formato che la pipeline L2 gia' legge (matches.json + ev/<id>.json in stile StatsBomb).
-Cosi' qualunque fornitore di dati si collega mappando le sue colonne al CSV generico (vedi docs/data_format.md).
-Uso:  python generic_csv.py eventi.csv cartella_uscita [--coords 100|120x80] [--validate-only] [--provider="Nome del fornitore"]
---provider: nome dei dati scritto nella lista partite (data_provider), cosi' le schede citano il fornitore giusto e non StatsBomb.
-Colonne obbligatorie: match_id, match_date, home_team, away_team, period, minute, second, team, event_type, x, y
-Colonne facoltative:  end_x, end_y, possession_id, restart, pass_length, shot_goal, player, recipient, xg, pass_outcome
-- event_type: pass, carry, shot, dribble; own_goal (autogol: team = squadra che segna nella propria porta); azioni difensive duel, interception, foul, clearance, ball_recovery, block (servono alla scheda difensiva:
-  PPDA, altezza delle azioni difensive); qualunque altro valore = altro. Le azioni difensive non contano per le possessioni ricostruite.
-- pass_outcome: complete / incomplete (vuoto = complete). Senza questa colonna tutti i passaggi contano come riusciti. minute e' cumulativo (secondo tempo parte da 45), period 1 o 2.
-- x da 0 (propria porta) a 100 (porta avversaria), y da 0 a 100; la squadra che compie l'evento attacca sempre da sinistra a destra (--coords 100, default). Con --coords 120x80 si usano le misure 120 x 80.
-- possession_id: se manca, viene ricostruito (nuova possessione quando un'altra squadra compie un pass/carry/shot/dribble, quando c'e' una ripresa, o cambia il tempo).
-- restart: sul primo evento di una ripresa: goal_kick, throw_in, corner, free_kick, kick_off, penalty, keeper (portiere che rimette in gioco dopo una presa; altrimenti vuoto). Senza questa colonna tutte le possessioni sono 'gioco normale' e le riprese da fermo NON si escludono.
-- pass_length: in metri nella griglia 120x80; se manca si calcola dalle coordinate."""
+"""Adapter: events in a generic CSV -> the format the L2 pipeline already reads (matches.json + ev/<id>.json in StatsBomb style).
+This way any data provider plugs in by mapping its columns to the generic CSV (see docs/data_format.md).
+Usage:  python generic_csv.py events.csv out_folder [--coords 100|120x80] [--validate-only] [--provider="Provider name"]
+--provider: data name written in the match list (data_provider), so the sheets cite the right provider and not StatsBomb.
+Required columns: match_id, match_date, home_team, away_team, period, minute, second, team, event_type, x, y
+Optional columns:  end_x, end_y, possession_id, restart, pass_length, shot_goal, player, recipient, xg, pass_outcome
+- event_type: pass, carry, shot, dribble; own_goal (team = the team that scores into its own goal); defensive actions duel, interception, foul, clearance, ball_recovery, block (needed by the defending sheet:
+  PPDA, height of defensive actions); any other value = other. Defensive actions do not count for reconstructed possessions.
+- pass_outcome: complete / incomplete (empty = complete). Without this column every pass counts as completed. minute is cumulative (second half starts at 45), period 1 or 2.
+- x from 0 (own goal) to 100 (opponent goal), y from 0 to 100; the team performing the event always attacks left to right (--coords 100, default). With --coords 120x80 the 120 x 80 grid is used.
+- possession_id: if missing, it is reconstructed (new possession when another team makes a pass/carry/shot/dribble, at a restart, or when the half changes).
+- restart: on the first event of a restart: goal_kick, throw_in, corner, free_kick, kick_off, penalty, keeper (goalkeeper putting the ball back in play after a catch; otherwise empty). Without this column all possessions are 'regular play' and set-piece restarts are NOT excluded.
+- pass_length: in metres on the 120x80 grid; if missing it is computed from the coordinates."""
 
 import sys, os, json
 import numpy as np, pandas as pd
@@ -59,22 +59,22 @@ def validate(df):
         problems.append(f"valori di period inattesi: {sorted(d.period.unique())}")
     p = d[d.event_type == "pass"]
     if len(p) and ("end_x" not in d.columns or p.end_x.isna().mean() > 0.05):
-        problems.append("molti passaggi senza end_x/end_y: servono per lunghezza e traiettoria")
+        problems.append("many passes without end_x/end_y: they are needed for length and path")
     if "restart" not in d.columns:
         problems.append(
-            "AVVISO: manca la colonna 'restart': le riprese da fermo (rinvii, rimesse, corner) non si possono escludere"
+            "WARNING: column 'restart' is missing: set-piece restarts (goal kicks, throw-ins, corners) cannot be excluded"
         )
     if "possession_id" not in d.columns:
-        problems.append("AVVISO: manca 'possession_id': le possessioni saranno ricostruite con un'euristica")
+        problems.append("WARNING: 'possession_id' is missing: possessions will be reconstructed with a heuristic")
     mx = pd.to_numeric(d.x, errors="coerce").max()
     if mx > 105 and mx <= 120:
-        problems.append("AVVISO: x arriva oltre 105: forse le coordinate sono 120x80, usare --coords 120x80")
+        problems.append("WARNING: x goes above 105: coordinates may be 120x80, use --coords 120x80")
     return problems, d
 
 
 def derive_possession(g, min_ctrl=2):
-    """Nuova possessione quando: cambia il tempo, c'e' una ripresa, oppure un'altra squadra compie almeno min_ctrl azioni di controllo consecutive (o un tiro).
-    Un tocco isolato dell'avversario (rinvio, deviazione) non interrompe la possessione. Euristica: la qualita' va verificata (tests/test_adapter_roundtrip.py).
+    """New possession when: the half changes, there is a restart, or another team makes at least min_ctrl consecutive control actions (or a shot).
+    A single opponent touch (clearance, deflection) does not end the possession. Heuristic: quality must be checked (tests/test_adapter_roundtrip.py).
     """
     team = g.team.values
     typ = g.event_type.values

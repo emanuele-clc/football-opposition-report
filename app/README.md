@@ -7,7 +7,7 @@ No new estimates: every number comes from `report_/restarts_/setpieces_/transiti
 One script does everything (stops an app already on the port, installs what is missing, rebuilds the frontend, clears the app cache, runs the tests, starts the app):
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\start_app.ps1                      # data in $env:OPPREPORT_DATA, else examples\
-powershell -ExecutionPolicy Bypass -File .\start_app.ps1 -DataDir <folder> -Port 8770 -SaltaTest
+powershell -ExecutionPolicy Bypass -File .\start_app.ps1 -DataDir <folder> -Port 8770 -SkipTests
 ```
 Step by step:
 ```powershell

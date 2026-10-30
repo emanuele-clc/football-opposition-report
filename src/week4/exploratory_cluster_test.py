@@ -1,8 +1,8 @@
-"""ESPLORATIVO (non pre-registrato). Le famiglie sono gruppi reali o fette di un continuo? Test Monte Carlo piu' severo del confronto con la gaussiana:
-il dato nullo mantiene le distribuzioni di ogni variabile (asimmetrie, code, valori limitati) e la correlazione tra variabili (copula gaussiana), ma non ha gruppi.
-Statistiche: silhouette del K-Means e stabilita' Jaccard (bootstrap sulle partite), osservate sulle partite di esplorazione e confrontate con B dati nulli.
-p = (1 + numero di nulli con silhouette >= osservata) / (B + 1). Nessuna partita riservata viene usata.
-Uso: python exploratory_cluster_test.py <matches.json> "<Squadra>" [cartella_dati=.]"""
+"""EXPLORATORY (not pre-registered). Are the families real groups or slices of a continuum? Monte Carlo test stricter than the Gaussian comparison:
+the null data keep the distribution of each variable (skew, tails, bounded values) and the correlation between variables (Gaussian copula), but have no groups.
+Statistics: K-Means silhouette and Jaccard stability (bootstrap over matches), observed on the exploration matches and compared with B null data sets.
+p = (1 + number of nulls with silhouette >= observed) / (B + 1). No reserved match is used.
+Usage: python exploratory_cluster_test.py <matches.json> "<Team>" [data_folder=.]"""
 
 import sys, os, json, warnings
 import numpy as np
