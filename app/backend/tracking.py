@@ -50,31 +50,29 @@ def matches():
     for p in sorted(glob.glob(os.path.join(TRACK, "npz", "*_events.json"))):
         m = meta(os.path.basename(p)[:-12])
         P = m["players"]
-        name = lambda t: m["home_name"] if t == m["home"] else m["guest_name"]
-        goals = [
-            dict(
-                half=e["half"],
-                frame=e["frame"],
-                team=name(e["team"]),
-                side="home" if e["team"] == m["home"] else "guest",
-                player=P.get(e["player"], {}).get("name", ""),
-                clock=clock(m, e["half"], e["frame"]),
-                xg=e.get("xg"),
-            )
-            for e in m["events"]
-            if e["kind"] == "shot" and e["sub"] == "SuccessfulShot"
-        ]
-        out.append(
-            dict(
-                match=m["match"],
-                date=m["date"],
-                competition=m["competition"],
-                home=m["home_name"],
-                guest=m["guest_name"],
-                result=m["result"],
-                goals=goals,
-            )
-        )
+        goals = []
+        for e in m["events"]:
+            if e["kind"] != "shot" or e["sub"] != "SuccessfulShot":
+                continue
+            is_home = e["team"] == m["home"]
+            goals.append({
+                "half": e["half"],
+                "frame": e["frame"],
+                "team": m["home_name"] if is_home else m["guest_name"],
+                "side": "home" if is_home else "guest",
+                "player": P.get(e["player"], {}).get("name", ""),
+                "clock": clock(m, e["half"], e["frame"]),
+                "xg": e.get("xg"),
+            })
+        out.append({
+            "match": m["match"],
+            "date": m["date"],
+            "competition": m["competition"],
+            "home": m["home_name"],
+            "guest": m["guest_name"],
+            "result": m["result"],
+            "goals": goals,
+        })
     return sorted(out, key=lambda r: r["date"])
 
 
@@ -103,8 +101,11 @@ def clip(mid, half, frame, before=10.0, after=3.0):
         indexing="ij",
     )
     G = np.c_[gx.ravel(), gy.ravel()]
-    X = lambda v: round(float((v + 52.5) / 105 * 120), 2)
-    Y = lambda v: round(float((34 - v) / 68 * 80), 2)
+    def X(v):  # DFL metres from the centre -> app pitch 0-120
+        return round(float((v + 52.5) / 105 * 120), 2)
+
+    def Y(v):  # DFL metres, y up -> app pitch 0-80, y down
+        return round(float((34 - v) / 68 * 80), 2)
     frames = []
     for k in range(lo, hi + 1, 5):
         pos = xy[:, k]

@@ -87,12 +87,7 @@ app = FastAPI(title="Opposition report", default_response_class=SafeJSON)
 async def pick_provider(request, call_next):
     """The provider comes from the X-Provider header (the app's fetches), the ?provider= query, or the cookie the app sets
     (links, images and downloads). Unknown values fall back to StatsBomb."""
-    want = (
-        request.headers.get("x-provider")
-        or request.query_params.get("provider")
-        or request.cookies.get("provider")
-        or "statsbomb"
-    )
+    want = request.headers.get("x-provider") or request.query_params.get("provider") or request.cookies.get("provider") or "statsbomb"
     token = _PROVIDER.set(want if want in PROVIDERS else "statsbomb")
     try:
         return await call_next(request)
@@ -148,238 +143,47 @@ def season_ci(kind, metric):
     return lambda d: d["kinds"][kind]["metrics"][metric]["ci"]
 
 
+def style(name):
+    return lambda d: d["style"]["team"][name]
+
+
+def style_ci(name):
+    return lambda d: d["style"]["team_ci"][name]
+
+
+CAUTION_SHOT = "Shot rate could not be told apart between teams reliably even with 15 matches."
+CAUTION_OWN_HALF = "The share of sequences starting in the own half could not be told apart between teams reliably even with 15 matches."
+CAUTION_REGAIN = "The counter-press share varies little between teams (17-19% in the teams first tested). Over 70 teams the small differences are real over a season, but a team's season value does not forecast its next match better than the league average (evidence grade C)."
+CAUTION_XT = "Expected Threat: how far completed passes and carries move the ball into zones that lead to goals. Only where the ball goes, not pressure or defenders."
+CAUTION_UP = "How well the team plays out when pressed in its own half (open-play passes flagged under pressure by StatsBomb)."
+CAUTION_PPDA = "PPDA: lower means more intense pressing; it also depends on how much the opponent has the ball, so read it with the pressures in the final third."
+
+# id, group, label, sheet, getter, ci getter, unit, caution
 METRICS = [
-    # id, group, label, sheet, getter, ci getter, unit, caution
-    (
-        "passes",
-        "Build-up",
-        "Passes per sequence",
-        "report",
-        lambda d: d["style"]["team"]["passes"],
-        lambda d: d["style"]["team_ci"]["passes"],
-        "num",
-        None,
-    ),
-    (
-        "long",
-        "Build-up",
-        "Share of long passes (30+)",
-        "report",
-        lambda d: d["style"]["team"]["long"],
-        lambda d: d["style"]["team_ci"]["long"],
-        "pct",
-        None,
-    ),
-    (
-        "dur",
-        "Build-up",
-        "Duration (seconds)",
-        "report",
-        lambda d: d["style"]["team"]["dur"],
-        lambda d: d["style"]["team_ci"]["dur"],
-        "num",
-        None,
-    ),
-    (
-        "shot",
-        "Build-up",
-        "Sequences ending in a shot",
-        "report",
-        lambda d: d["style"]["team"]["shot"],
-        lambda d: d["style"]["team_ci"]["shot"],
-        "pct",
-        "Shot rate could not be told apart between teams reliably even with 15 matches.",
-    ),
-    (
-        "buildup_share",
-        "Build-up",
-        "Sequences starting in own half (x < 45)",
-        "report",
-        lambda d: d["style"]["team"]["buildup_share"],
-        lambda d: d["style"]["team_ci"]["buildup_share"],
-        "pct",
-        "The share of sequences starting in the own half could not be told apart between teams reliably even with 15 matches.",
-    ),
-    (
-        "gk_short",
-        "Restarts",
-        "Goal kicks: first pass short",
-        "restarts",
-        season_value("Goal kick", "short"),
-        season_ci("Goal kick", "short"),
-        "pct",
-        None,
-    ),
-    (
-        "gk_opp_half",
-        "Restarts",
-        "Goal kicks: reached opponent half",
-        "restarts",
-        season_value("Goal kick", "opp_half"),
-        season_ci("Goal kick", "opp_half"),
-        "pct",
-        None,
-    ),
-    (
-        "kp_short",
-        "Restarts",
-        "Keeper: first pass short",
-        "restarts",
-        season_value("Keeper", "short"),
-        season_ci("Keeper", "short"),
-        "pct",
-        None,
-    ),
-    (
-        "corner_pm",
-        "Set pieces",
-        "Corners per match",
-        "setpieces",
-        lambda d: d["kinds"]["Corner"]["per_match"],
-        None,
-        "num",
-        None,
-    ),
-    (
-        "corner_shot",
-        "Set pieces",
-        "Corners: shot after",
-        "setpieces",
-        lambda d: d["kinds"]["Corner"]["shot"],
-        lambda d: d["kinds"]["Corner"]["shot_ci"],
-        "pct",
-        None,
-    ),
-    (
-        "losses_pm",
-        "Transitions",
-        "Losses per match",
-        "transitions",
-        lambda d: d["losses"]["per_match"],
-        None,
-        "num",
-        None,
-    ),
-    (
-        "regain5",
-        "Transitions",
-        "Ball regained within 5 s of a loss",
-        "transitions",
-        lambda d: d["losses"]["regain5"],
-        lambda d: d["losses"]["regain5_ci"],
-        "pct",
-        "The counter-press share varies little between teams (17-19% in the teams first tested). Over 70 teams the small differences are real over a season, but a team's season value does not forecast its next match better than the league average (evidence grade C).",
-    ),
-    (
-        "high_rec_pm",
-        "Transitions",
-        "Recoveries per match in the final third",
-        "transitions",
-        lambda d: d["recoveries"]["by_third"]["final third"]["per_match"],
-        lambda d: d["recoveries"]["by_third"]["final third"]["per_match_ci"],
-        "num",
-        None,
-    ),
-    (
-        "xt_pm",
-        "Threat",
-        "xT added per match by passes and carries",
-        "xthreat",
-        lambda d: d["xt"]["per_match"],
-        lambda d: d["xt"]["ci"],
-        "num2",
-        "Expected Threat: how far completed passes and carries move the ball into zones that lead to goals. Only where the ball goes, not pressure or defenders.",
-    ),
-    (
-        "xt_carry_share",
-        "Threat",
-        "Share of xT added by carries",
-        "xthreat",
-        lambda d: d["xt_carry"]["per_match"] / d["xt"]["per_match"],
-        None,
-        "pct",
-        None,
-    ),
-    (
-        "xt_conc_pm",
-        "Threat",
-        "xT conceded per match",
-        "xthreat",
-        lambda d: d["conceded"]["per_match"],
-        lambda d: d["conceded"]["ci"],
-        "num2",
-        None,
-    ),
-    (
-        "up_compl",
-        "Defending",
-        "Own-half pass completion under pressure",
-        "keyplayers",
-        lambda d: d["under_pressure_total"]["completion"],
-        None,
-        "pct",
-        "How well the team plays out when pressed in its own half (open-play passes flagged under pressure by StatsBomb).",
-    ),
-    (
-        "ppda",
-        "Defending",
-        "PPDA: opponent passes per defensive action",
-        "defending",
-        lambda d: d["ppda"]["value"],
-        lambda d: d["ppda"]["ci"],
-        "num",
-        "PPDA: lower means more intense pressing; it also depends on how much the opponent has the ball, so read it with the pressures in the final third.",
-    ),
-    (
-        "press_pm",
-        "Defending",
-        "Pressures per match",
-        "defending",
-        lambda d: d["pressures"]["per_match"],
-        lambda d: d["pressures"]["ci"],
-        "num",
-        None,
-    ),
-    (
-        "press_final",
-        "Defending",
-        "Share of pressures in the final third",
-        "defending",
-        lambda d: d["pressures"]["by_third"]["final third"]["share"],
-        None,
-        "pct",
-        None,
-    ),
-    (
-        "def_height",
-        "Defending",
-        "Height of defensive actions (mean x, 0-120)",
-        "defending",
-        lambda d: d["height"]["mean_x"],
-        lambda d: d["height"]["ci"],
-        "num",
-        None,
-    ),
-    (
-        "xga_pm",
-        "Defending",
-        "xG conceded per match",
-        "defending",
-        lambda d: d["conceded"]["xg_per_match"],
-        lambda d: d["conceded"]["xg_ci"],
-        "num2",
-        None,
-    ),
-    (
-        "xga_shot",
-        "Defending",
-        "xG per shot conceded",
-        "defending",
-        lambda d: d["conceded"]["xg_per_shot"],
-        lambda d: d["conceded"]["xg_per_shot_ci"],
-        "num2",
-        None,
-    ),
+    ("passes", "Build-up", "Passes per sequence", "report", style("passes"), style_ci("passes"), "num", None),
+    ("long", "Build-up", "Share of long passes (30+)", "report", style("long"), style_ci("long"), "pct", None),
+    ("dur", "Build-up", "Duration (seconds)", "report", style("dur"), style_ci("dur"), "num", None),
+    ("shot", "Build-up", "Sequences ending in a shot", "report", style("shot"), style_ci("shot"), "pct", CAUTION_SHOT),
+    ("buildup_share", "Build-up", "Sequences starting in own half (x < 45)", "report", style("buildup_share"), style_ci("buildup_share"), "pct", CAUTION_OWN_HALF),
+    ("gk_short", "Restarts", "Goal kicks: first pass short", "restarts", season_value("Goal kick", "short"), season_ci("Goal kick", "short"), "pct", None),
+    ("gk_opp_half", "Restarts", "Goal kicks: reached opponent half", "restarts", season_value("Goal kick", "opp_half"), season_ci("Goal kick", "opp_half"), "pct", None),
+    ("kp_short", "Restarts", "Keeper: first pass short", "restarts", season_value("Keeper", "short"), season_ci("Keeper", "short"), "pct", None),
+    ("corner_pm", "Set pieces", "Corners per match", "setpieces", lambda d: d["kinds"]["Corner"]["per_match"], None, "num", None),
+    ("corner_shot", "Set pieces", "Corners: shot after", "setpieces", lambda d: d["kinds"]["Corner"]["shot"], lambda d: d["kinds"]["Corner"]["shot_ci"], "pct", None),
+    ("losses_pm", "Transitions", "Losses per match", "transitions", lambda d: d["losses"]["per_match"], None, "num", None),
+    ("regain5", "Transitions", "Ball regained within 5 s of a loss", "transitions", lambda d: d["losses"]["regain5"], lambda d: d["losses"]["regain5_ci"], "pct", CAUTION_REGAIN),
+    ("high_rec_pm", "Transitions", "Recoveries per match in the final third", "transitions",
+     lambda d: d["recoveries"]["by_third"]["final third"]["per_match"], lambda d: d["recoveries"]["by_third"]["final third"]["per_match_ci"], "num", None),
+    ("xt_pm", "Threat", "xT added per match by passes and carries", "xthreat", lambda d: d["xt"]["per_match"], lambda d: d["xt"]["ci"], "num2", CAUTION_XT),
+    ("xt_carry_share", "Threat", "Share of xT added by carries", "xthreat", lambda d: d["xt_carry"]["per_match"] / d["xt"]["per_match"], None, "pct", None),
+    ("xt_conc_pm", "Threat", "xT conceded per match", "xthreat", lambda d: d["conceded"]["per_match"], lambda d: d["conceded"]["ci"], "num2", None),
+    ("up_compl", "Defending", "Own-half pass completion under pressure", "keyplayers", lambda d: d["under_pressure_total"]["completion"], None, "pct", CAUTION_UP),
+    ("ppda", "Defending", "PPDA: opponent passes per defensive action", "defending", lambda d: d["ppda"]["value"], lambda d: d["ppda"]["ci"], "num", CAUTION_PPDA),
+    ("press_pm", "Defending", "Pressures per match", "defending", lambda d: d["pressures"]["per_match"], lambda d: d["pressures"]["ci"], "num", None),
+    ("press_final", "Defending", "Share of pressures in the final third", "defending", lambda d: d["pressures"]["by_third"]["final third"]["share"], None, "pct", None),
+    ("def_height", "Defending", "Height of defensive actions (mean x, 0-120)", "defending", lambda d: d["height"]["mean_x"], lambda d: d["height"]["ci"], "num", None),
+    ("xga_pm", "Defending", "xG conceded per match", "defending", lambda d: d["conceded"]["xg_per_match"], lambda d: d["conceded"]["xg_ci"], "num2", None),
+    ("xga_shot", "Defending", "xG per shot conceded", "defending", lambda d: d["conceded"]["xg_per_shot"], lambda d: d["conceded"]["xg_per_shot_ci"], "num2", None),
 ]
 
 
@@ -445,6 +249,10 @@ def get_evidence():
     for mid, _, label, *_ in METRICS:
         if mid in RANK_STATEMENT:
             shown.setdefault(RANK_STATEMENT[mid], []).append(label)
+    provider_statements = None
+    if prov:
+        keep = ("label", "seen_before", "why")
+        provider_statements = {c: {k: v for k, v in r.items() if k in keep} for c, r in prov["statements"].items()}
     return {
         "available": True,
         "source": os.path.relpath(P()["evidence"], ROOT).replace(os.sep, "/"),
@@ -457,14 +265,7 @@ def get_evidence():
         "sanity_checks": ev["sanity_checks"],
         "statements": ev["statements"],
         "dropped": ev.get("correction", {}).get("dropped_team_matches", {}),
-        "provider": (
-            {
-                c: {k: v for k, v in r.items() if k in ("label", "seen_before", "why")}
-                for c, r in prov["statements"].items()
-            }
-            if prov
-            else None
-        ),
+        "provider": provider_statements,
         "provider_matches": prov["matches"] if prov else None,
         "shown_in_app": shown,
     }
@@ -495,33 +296,30 @@ def ranks(key):
                 ci = getci(cache[sheet][key])
             except (KeyError, TypeError):
                 ci = None
-        out.append(
-            {
-                "id": mid,
-                "group": group,
-                "label": label,
-                "sheet": sheet,
-                "unit": unit,
-                "caution": caution,
-                "value": mine["value"],
-                "ci": ci,
-                "rank": [v["key"] for v in vals].index(key) + 1,
-                "of": len(vals),
-                "teams": vals,
-                "provisional": ts[key]["provisional"],
-                "statement": RANK_STATEMENT.get(mid),
-                "grade": ev.get(RANK_STATEMENT.get(mid), {}).get("grade"),
-            }
-        )
+        statement = RANK_STATEMENT.get(mid)
+        out.append({
+            "id": mid,
+            "group": group,
+            "label": label,
+            "sheet": sheet,
+            "unit": unit,
+            "caution": caution,
+            "value": mine["value"],
+            "ci": ci,
+            "rank": [v["key"] for v in vals].index(key) + 1,
+            "of": len(vals),
+            "teams": vals,
+            "provisional": ts[key]["provisional"],
+            "statement": statement,
+            "grade": ev.get(statement, {}).get("grade"),
+        })
     return out
 
 
 @app.get("/api/tracking/matches")
 def tracking_matches():
     if not dfl_tracking.available():
-        raise HTTPException(
-            404, f"No tracking data in {dfl_tracking.TRACK}: download the DFL open data and run src/tracking/dfl_load.py."
-        )
+        raise HTTPException(404, f"No tracking data in {dfl_tracking.TRACK}: download the DFL open data and run src/tracking/dfl_load.py.")
     return dfl_tracking.matches()
 
 
@@ -663,32 +461,19 @@ def tsec(e):
 
 
 @app.get("/api/teams/{key}/replay")
-def replay(
-    key: str, match: int, half: int, minute: int, second: int, window: bool = False, possession: int = 0, players: bool = False
-):
+def replay(key: str, match: int, half: int, minute: int, second: int, window: bool = False, possession: int = 0, players: bool = False):
     """Possession that starts at this clip time (sequences, restarts, set pieces) or, with window=true, every action from 6 s before to 16 s after
     (losses and recoveries; 16 s because the ball can be lost a few seconds after the clip time and the list counts shots within 10 s
     of the loss itself). Coordinates are turned so that the team always attacks left to right (0-120 x 0-80)."""
     team_name = need(key)["team"]
     ev = events(match)
     by_pos = [e for e in ev if e.get("period") == half and e.get("possession") == possession] if possession else []
-    at = by_pos[:1] or [
-        e
-        for e in ev
-        if e.get("period") == half
-        and e.get("minute") == minute
-        and e.get("second") == second
-        and e["type"]["name"] in ACTIONS
-    ]
-    if not at:
-        at = [
-            e
-            for e in ev
-            if e.get("period") == half
-            and e.get("minute") == minute
-            and abs(e.get("second", -9) - second) <= 1
-            and e["type"]["name"] in ACTIONS
-        ]
+
+    def actions_at(tolerance):
+        return [e for e in ev if e.get("period") == half and e.get("minute") == minute
+                and abs(e.get("second", -9) - second) <= tolerance and e["type"]["name"] in ACTIONS]
+
+    at = by_pos[:1] or actions_at(0) or actions_at(1)
     if not at:
         raise HTTPException(404, "No action found at that time in the event file.")
     first = next((e for e in at if e["team"]["name"] == team_name), at[0])
@@ -700,17 +485,9 @@ def replay(
     elif window:
         # the list counts a shot within 10 s of the first opponent action after the loss (src/report/transitions.py), which can come a few
         # seconds after the clip time: show at least until 10 s after it
-        opp = next(
-            (
-                tsec(e)
-                for e in ev
-                if e.get("period") == half
-                and tsec(e) > t0
-                and e["team"]["name"] != team_name
-                and e["type"]["name"] in ("Pass", "Carry", "Shot", "Dribble")
-            ),
-            t0,
-        )
+        opp_actions = (tsec(e) for e in ev if e.get("period") == half and tsec(e) > t0
+                       and e["team"]["name"] != team_name and e["type"]["name"] in ("Pass", "Carry", "Shot", "Dribble"))
+        opp = next(opp_actions, t0)
         end = max(t0 + 16, opp + 10.5)
         chosen = [e for e in ev if e.get("period") == half and t0 - 6 <= tsec(e) <= end]
     else:
@@ -725,13 +502,14 @@ def replay(
         opening = [e for e in ours if starts.get(e.get("possession"), -1) >= tsec(e) - 0.01]  # actions that open their possession
         if len(opening) > 1:
             # two possessions open in the same second: the clip lists only sequences with 3+ passes, so prefer such a possession
-            npass = lambda p: sum(1 for x in ev if x.get("possession") == p and x["type"]["name"] == "Pass" and x["team"]["name"] == team_name)
-            opening.sort(key=lambda e: npass(e.get("possession")) < 3)
-        first = (
-            opening[0]
-            if opening
-            else next((e for e in ours if starts.get(e.get("possession"), -1) >= tsec(e) - 1), ours[0] if ours else first)
-        )
+            def n_passes(pos):
+                return sum(1 for x in ev if x.get("possession") == pos and x["type"]["name"] == "Pass" and x["team"]["name"] == team_name)
+
+            opening.sort(key=lambda e: n_passes(e.get("possession")) < 3)
+        if opening:
+            first = opening[0]
+        else:
+            first = next((e for e in ours if starts.get(e.get("possession"), -1) >= tsec(e) - 1), ours[0] if ours else first)
         t0 = tsec(first)
         chosen = [e for e in ev if e.get("period") == half and e.get("possession") == first.get("possession")]
     frames = frames360(match) if players else {}
@@ -741,23 +519,20 @@ def replay(
         if ty not in ACTIONS or "location" not in e:
             continue
         us = e["team"]["name"] == team_name
-        flip = (lambda p: [p[0], p[1]]) if us else (lambda p: [120 - p[0], 80 - p[1]])
-        a = {
-            "t": round(tsec(e) - t0, 2),
-            "type": ty,
-            "us": us,
-            "player": e.get("player", {}).get("name", ""),
-            "x": flip(e["location"])[0],
-            "y": flip(e["location"])[1],
-        }
+
+        def flip(p, us=us):
+            return [p[0], p[1]] if us else [120 - p[0], 80 - p[1]]
+
+        x, y = flip(e["location"])
+        a = {"t": round(tsec(e) - t0, 2), "type": ty, "us": us, "player": e.get("player", {}).get("name", ""), "x": x, "y": y}
         end = (e.get("pass") or e.get("carry") or e.get("shot") or {}).get("end_location")
         # Placeholders, not places: an end exactly on a pitch corner (Wyscout writes (0,0) or (100,100) when it has no end) or a pass
         # that ends where it starts (converted data without an end). Left out, so the replay never draws a ball flying to the corner flag.
-        if end and (
-            (round(end[0], 1), round(end[1], 1)) in ((0, 0), (120, 0), (0, 80), (120, 80))
-            or (ty == "Pass" and abs(end[0] - e["location"][0]) + abs(end[1] - e["location"][1]) < 0.1)
-        ):
-            end = None
+        if end:
+            on_corner = (round(end[0], 1), round(end[1], 1)) in ((0, 0), (120, 0), (0, 80), (120, 80))
+            no_move = ty == "Pass" and abs(end[0] - e["location"][0]) + abs(end[1] - e["location"][1]) < 0.1
+            if on_corner or no_move:
+                end = None
         if end:
             a["ex"], a["ey"] = flip(end)[:2]
         if ty == "Pass":
@@ -772,10 +547,8 @@ def replay(
         if f:
             # StatsBomb 360: the players the broadcast camera saw at this event (no names), on the same pitch as the event.
             # 'mine' = the replayed team; teammate in the file is relative to the team of the event.
-            a["ff"] = [
-                [*flip(p["location"])[:2], p["teammate"] == us, p.get("keeper", False), p.get("actor", False)]
-                for p in f.get("freeze_frame", [])
-            ]
+            a["ff"] = [[*flip(p["location"])[:2], p["teammate"] == us, p.get("keeper", False), p.get("actor", False)]
+                       for p in f.get("freeze_frame", [])]
             va = f.get("visible_area") or []
             a["va"] = [flip([va[j], va[j + 1]])[:2] for j in range(0, len(va) - 1, 2)]
         out.append(a)
@@ -804,7 +577,8 @@ def read_clips(key, kind):
 
 SEQ_ACTIONS = ("Pass", "Carry", "Shot", "Dribble")
 OPEN_PLAY = ("Regular Play", "From Counter")
-is_goal = lambda e: e["type"]["name"] == "Shot" and e["shot"]["outcome"]["name"] == "Goal"
+def is_goal(e):
+    return e["type"]["name"] == "Shot" and e["shot"]["outcome"]["name"] == "Goal"
 
 
 def _possession_goals(ev, rows, team_name):
@@ -815,19 +589,10 @@ def _possession_goals(ev, rows, team_name):
     out = set()
     for r in rows if goals else ():
         half, minute, second = int(r["half"]), int(r["minute"]), int(r["second"])
-        first = next(
-            (
-                e
-                for e in ev
-                if e.get("period") == half
-                and e.get("minute") == minute
-                and e.get("second") == second
-                and e["team"]["name"] == team_name
-                and e.get("possession_team", {}).get("name") == team_name
-                and e["type"]["name"] in SEQ_ACTIONS
-            ),
-            None,
-        )
+        candidates = (e for e in ev if e.get("period") == half and e.get("minute") == minute and e.get("second") == second
+                      and e["team"]["name"] == team_name and e.get("possession_team", {}).get("name") == team_name
+                      and e["type"]["name"] in SEQ_ACTIONS)
+        first = next(candidates, None)
         if first and (half, first["possession"]) in goals:
             out.add((half, minute, second))
     return out
@@ -842,16 +607,14 @@ def _transition_goals(ev, rows, team_name):
         first = e["possession"] not in seen
         seen.add(e["possession"])
         if e["type"]["name"] in SEQ_ACTIONS and e.get("location"):
-            A.append(
-                dict(
-                    e=e,
-                    team=e["team"]["name"] == team_name,
-                    per=e["period"],
-                    t=e["minute"] * 60 + e["second"],
-                    restart=first and e["play_pattern"]["name"] not in OPEN_PLAY,
-                    shot=e["type"]["name"] == "Shot",
-                )
-            )
+            A.append({
+                "e": e,
+                "team": e["team"]["name"] == team_name,
+                "per": e["period"],
+                "t": e["minute"] * 60 + e["second"],
+                "restart": first and e["play_pattern"]["name"] not in OPEN_PLAY,
+                "shot": e["type"]["name"] == "Shot",
+            })
     out = set()
     for i in range(1, len(A)):
         a, b = A[i - 1], A[i]
@@ -867,11 +630,12 @@ def _transition_goals(ev, rows, team_name):
         if any(c["shot"] and is_goal(c["e"]) and c["t"] - b["t"] <= 10 for c in spell):
             e0 = a["e"] if a["team"] else b["e"]
             out.add(("loss" if a["team"] else "recovery", e0["period"], e0["minute"], e0["second"]))
-    return {
-        (int(r["half"]), int(r["minute"]), int(r["second"]))
-        for r in rows
-        if (r["start_type"], int(r["half"]), int(r["minute"]), int(r["second"])) in out
-    }
+    found = set()
+    for r in rows:
+        hms = (int(r["half"]), int(r["minute"]), int(r["second"]))
+        if (r["start_type"], *hms) in out:
+            found.add(hms)
+    return found
 
 
 @functools.lru_cache(maxsize=64)
@@ -883,9 +647,7 @@ def _goal_clips(data_dir, key, kind, mtime):
         if r["ended_in_shot"] == "1":
             by_match.setdefault(int(r["match"]), []).append(r)
     find = _transition_goals if kind == "transitions" else _possession_goals
-    return frozenset(
-        (match, *hms) for match, rs in by_match.items() for hms in find(events(match), rs, team_name)
-    )
+    return frozenset((match, *hms) for match, rs in by_match.items() for hms in find(events(match), rs, team_name))
 
 
 def goal_clips(key, kind):
@@ -901,16 +663,19 @@ def filtered(key, kind, family, opponent, shot, half, goal=False):
     cols, rows = read_clips(key, kind)
     fam = set(family.split("|")) if family else None
     goals = goal_clips(key, kind) if goal else None
-    rows = [
-        r
-        for r in rows
-        if (not fam or r["family"] in fam)
-        and (not opponent or r["opponent"] == opponent)
-        and (not shot or r["ended_in_shot"] == "1")
-        and (not half or r["half"] == str(half))
-        and (goals is None or (int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"])) in goals)
-    ]
-    return cols, rows
+
+    def keep(r):
+        if fam and r["family"] not in fam:
+            return False
+        if opponent and r["opponent"] != opponent:
+            return False
+        if shot and r["ended_in_shot"] != "1":
+            return False
+        if half and r["half"] != str(half):
+            return False
+        return goals is None or (int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"])) in goals
+
+    return cols, [r for r in rows if keep(r)]
 
 
 @app.get("/api/teams/{key}/clips/{kind}/goals")
@@ -962,13 +727,10 @@ def export_xml(key: str, kind: str, family: str = "", opponent: str = "", shot: 
             w.writeheader()
             w.writerows(rows)
         outd = os.path.join(tmp, "xml")
-        r = subprocess.run(
-            [sys.executable, "-X", "utf8", os.path.join(ROOT, "src", "report", "clips_to_xml.py"), src, outd]
-            + (["--events-dir", os.path.join(D(), "ev")] if os.path.isdir(os.path.join(D(), "ev")) else []),
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-        )
+        cmd = [sys.executable, "-X", "utf8", os.path.join(ROOT, "src", "report", "clips_to_xml.py"), src, outd]
+        if os.path.isdir(os.path.join(D(), "ev")):
+            cmd += ["--events-dir", os.path.join(D(), "ev")]
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
         if r.returncode:
             raise HTTPException(500, "XML export failed: " + (r.stderr or r.stdout)[-500:])
         buf = io.BytesIO()
@@ -1002,36 +764,26 @@ def clip_index(key):
         return list(csv.DictReader(f))
 
 
+def first_action(ev, team_name, half, minute, second):
+    """The team's first pass, carry, shot or dribble at this clock time, or None."""
+    for e in ev:
+        if (e.get("period") == half and e.get("minute") == minute and e.get("second") == second
+                and e["team"]["name"] == team_name and e["type"]["name"] in SEQ_ACTIONS):
+            return e
+    return None
+
+
 def possession_path(ev, team_name, half, minute, second):
-    first = next(
-        (
-            e
-            for e in ev
-            if e.get("period") == half
-            and e.get("minute") == minute
-            and e.get("second") == second
-            and e["team"]["name"] == team_name
-            and e["type"]["name"] in ("Pass", "Carry", "Shot", "Dribble")
-        ),
-        None,
-    )
+    first = first_action(ev, team_name, half, minute, second)
     if first is None:
         return None
-    es = [
-        e
-        for e in ev
-        if e.get("period") == half
-        and e.get("possession") == first.get("possession")
-        and e["team"]["name"] == team_name
-        and e["type"]["name"] in ("Pass", "Carry", "Shot", "Dribble")
-    ]
+    es = [e for e in ev if e.get("period") == half and e.get("possession") == first.get("possession")
+          and e["team"]["name"] == team_name and e["type"]["name"] in SEQ_ACTIONS]
     pts = [es[0]["location"][:2]]
     for e in es:
-        end = (
-            (e.get("pass") or e.get("carry") or {}).get("end_location")
-            if e["type"]["name"] in ("Pass", "Carry")
-            else None
-        )
+        if e["type"]["name"] not in ("Pass", "Carry"):
+            continue
+        end = (e.get("pass") or e.get("carry") or {}).get("end_location")
         if end and end[:2] != pts[-1]:
             pts.append(end[:2])
     return [[round(x, 1), round(y, 1)] for x, y in pts]
@@ -1074,14 +826,8 @@ def paths(key: str):
         for r in rs:
             pts = possession_path(ev, team_name, int(r["half"]), int(r["minute"]), int(r["second"]))
             if pts:
-                out.append(
-                    {
-                        "family": r["family"],
-                        "shot": int(r["ended_in_shot"]),
-                        "pts": pts,
-                        "at": [int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"])],
-                    }
-                )
+                at = [int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"])]
+                out.append({"family": r["family"], "shot": int(r["ended_in_shot"]), "pts": pts, "at": at})
     res = {"team": team_name, "n": len(out), "of": len(rows), "paths": out}
     _write_cache(cache, res)
     return res
@@ -1135,12 +881,8 @@ def pressing(key: str):
             ev = json.load(open(os.path.join(D(), "ev", f"{m}.json"), encoding="utf-8"))
             poss = {}
             for e in ev:
-                if (
-                    e.get("possession_team", {}).get("name") == team_name
-                    and e["team"]["name"] == team_name
-                    and e["play_pattern"]["name"] in RESTART_PP
-                    and e["type"]["name"] in ("Pass", "Carry", "Shot", "Dribble")
-                ):
+                if (e.get("possession_team", {}).get("name") == team_name and e["team"]["name"] == team_name
+                        and e["play_pattern"]["name"] in RESTART_PP and e["type"]["name"] in SEQ_ACTIONS):
                     poss.setdefault(e["possession"], []).append(e)
             for es in poss.values():
                 passes = [e for e in es if e["type"]["name"] == "Pass"]
@@ -1150,28 +892,25 @@ def pressing(key: str):
                 kind = RESTART_PP[es[0]["play_pattern"]["name"]]
                 if kind == "Throw-in":
                     kind += " own half" if es[0]["location"][0] < 60 else " opp. half"
-                ends = [_end_of(e) for e in es if _end_of(e) is not None]
-                xs = [q[0] for q in ends]
+                xs = [_end_of(e)[0] for e in es if _end_of(e) is not None]
                 shot = any(e["type"]["name"] == "Shot" for e in es)
-                out.append(
-                    {
-                        "kind": kind,
-                        "match": m,
-                        "half": es[0]["period"],
-                        "minute": es[0]["minute"],
-                        "second": es[0]["second"],
-                        "x": p0["location"][0],
-                        "y": p0["location"][1],
-                        "ex": p0["pass"]["end_location"][0],
-                        "ey": p0["pass"]["end_location"][1],
-                        "short": int(p0["pass"].get("length", 0) < 30),
-                        "receiver": (p0["pass"].get("recipient") or {}).get("name") or "",
-                        "complete": int("outcome" not in p0["pass"]),
-                        "opp_half": int(max(xs) >= 60),
-                        "shot": int(shot),
-                        "lost_own_half": int(not shot and xs[-1] < 60),
-                    }
-                )
+                out.append({
+                    "kind": kind,
+                    "match": m,
+                    "half": es[0]["period"],
+                    "minute": es[0]["minute"],
+                    "second": es[0]["second"],
+                    "x": p0["location"][0],
+                    "y": p0["location"][1],
+                    "ex": p0["pass"]["end_location"][0],
+                    "ey": p0["pass"]["end_location"][1],
+                    "short": int(p0["pass"].get("length", 0) < 30),
+                    "receiver": (p0["pass"].get("recipient") or {}).get("name") or "",
+                    "complete": int("outcome" not in p0["pass"]),
+                    "opp_half": int(max(xs) >= 60),
+                    "shot": int(shot),
+                    "lost_own_half": int(not shot and xs[-1] < 60),
+                })
         return {"team": team_name, "restarts": out}
 
     return cached(key, "pressing", build)
@@ -1194,29 +933,14 @@ def network(key: str):
                         shirt[pl["player"]["name"]] = pl.get("jersey_number")
             for r in rs:
                 half, minute, second = int(r["half"]), int(r["minute"]), int(r["second"])
-                first = next(
-                    (
-                        e
-                        for e in ev
-                        if e.get("period") == half
-                        and e.get("minute") == minute
-                        and e.get("second") == second
-                        and e["team"]["name"] == team_name
-                        and e["type"]["name"] in ("Pass", "Carry", "Shot", "Dribble")
-                    ),
-                    None,
-                )
+                first = first_action(ev, team_name, half, minute, second)
                 if first is None:
                     continue
                 f = fams.setdefault(r["family"], {"sequences": 0, "nodes": {}, "edges": {}})
                 f["sequences"] += 1
                 for e in ev:
-                    if (
-                        e.get("period") != half
-                        or e.get("possession") != first.get("possession")
-                        or e["team"]["name"] != team_name
-                        or e["type"]["name"] != "Pass"
-                    ):
+                    same_possession = e.get("period") == half and e.get("possession") == first.get("possession")
+                    if not same_possession or e["team"]["name"] != team_name or e["type"]["name"] != "Pass":
                         continue
                     if "outcome" in e["pass"] or not e["pass"].get("recipient") or not e.get("player"):
                         continue  # converted data (Wyscout) can have passes without the passer's name
@@ -1230,20 +954,10 @@ def network(key: str):
                     f["edges"][k] = f["edges"].get(k, 0) + 1
         res = {}
         for fam, f in fams.items():
-            res[fam] = {
-                "sequences": f["sequences"],
-                "nodes": [
-                    {
-                        "player": p,
-                        "shirt": shirt.get(p),
-                        "touches": n[0],
-                        "x": round(n[1] / n[0], 1),
-                        "y": round(n[2] / n[0], 1),
-                    }
-                    for p, n in f["nodes"].items()
-                ],
-                "edges": [{"a": k.split(" | ")[0], "b": k.split(" | ")[1], "passes": v} for k, v in f["edges"].items()],
-            }
+            nodes = [{"player": p, "shirt": shirt.get(p), "touches": n[0], "x": round(n[1] / n[0], 1), "y": round(n[2] / n[0], 1)}
+                     for p, n in f["nodes"].items()]
+            edges = [{"a": k.split(" | ")[0], "b": k.split(" | ")[1], "passes": v} for k, v in f["edges"].items()]
+            res[fam] = {"sequences": f["sequences"], "nodes": nodes, "edges": edges}
         return {"team": team_name, "families": res}
 
     return cached(key, "network", build)
@@ -1251,16 +965,7 @@ def network(key: str):
 
 # A replay as an animated GIF, to send to the players (same actions as /replay).
 @app.get("/api/teams/{key}/replay.gif")
-def replay_gif(
-    key: str,
-    match: int,
-    half: int,
-    minute: int,
-    second: int,
-    window: bool = False,
-    title: str = "",
-    possession: int = 0,
-):
+def replay_gif(key: str, match: int, half: int, minute: int, second: int, window: bool = False, title: str = "", possession: int = 0):
     import matplotlib
 
     matplotlib.use("Agg")
@@ -1292,9 +997,7 @@ def replay_gif(
     ):
         ax.plot(xs, ys, **L)
     ax.add_patch(plt.Circle((60, 40), 9.15, fill=False, **L))
-    fig.text(
-        0.03, 0.93, (title or f"{team_name}").upper(), color="#ffd23f", fontsize=15, fontweight="bold", style="italic"
-    )
+    fig.text(0.03, 0.93, (title or f"{team_name}").upper(), color="#ffd23f", fontsize=15, fontweight="bold", style="italic")
     fig.text(0.97, 0.93, f"half {half}, {minute}:{second:02d}", color="#c9d1ea", fontsize=11, ha="right")
     cap = fig.text(0.03, 0.04, "", color="white", fontsize=11)
     (ball,) = ax.plot([], [], "o", ms=9, color="white", mec="#121a33", zorder=5)
@@ -1307,12 +1010,7 @@ def replay_gif(
         ex, ey = a.get("ex", a["x"]), a.get("ey", a["y"])
         col = "#ffd23f" if a["us"] else "#ff8a80"
         if a["type"] == "Pass":
-            ax.annotate(
-                "",
-                (ex, ey),
-                (a["x"], a["y"]),
-                arrowprops=dict(arrowstyle="-|>", color=col, lw=2, ls="-" if a.get("ok") else ":"),
-            )
+            ax.annotate("", (ex, ey), (a["x"], a["y"]), arrowprops=dict(arrowstyle="-|>", color=col, lw=2, ls="-" if a.get("ok") else ":"))
         elif a["type"] == "Carry":
             ax.plot([a["x"], ex], [a["y"], ey], color="white" if a["us"] else col, lw=1.4, ls="--", alpha=0.85)
         elif a["type"] == "Shot":
@@ -1335,11 +1033,8 @@ def replay_gif(
         plt.close(fig)
         data = open(p, "rb").read()
     name = f"replay_{key}_{match}_{half}_{minute}-{second:02d}.gif"
-    return StreamingResponse(
-        iter([data]),
-        media_type="image/gif",
-        headers={"Content-Disposition": f"attachment; filename*=UTF-8''{quote(name)}"},
-    )
+    headers = {"Content-Disposition": f"attachment; filename*=UTF-8''{quote(name)}"}
+    return StreamingResponse(iter([data]), media_type="image/gif", headers=headers)
 
 
 # "More like this": the sequences of the season closest to a chosen one (same numbers the families are built on, standardised).
@@ -1348,50 +1043,30 @@ def _seq_features(pts, passes, dur):
 
     P = np.array(pts, dtype=float)
     L = float(np.sum(np.linalg.norm(np.diff(P, axis=0), axis=1))) if len(P) > 1 else 0.0
-    return [
-        P[0, 0],
-        abs(P[0, 1] - 40),
-        P[-1, 0],
-        abs(P[-1, 1] - 40),
-        P[-1, 0] - P[0, 0],
-        L,
-        (P[-1, 0] - P[0, 0]) / max(L, 1),
-        float(passes),
-        float(P[:, 1].std()),
-        float(dur),
-    ]
+    x0, y0, x1, y1 = P[0, 0], P[0, 1], P[-1, 0], P[-1, 1]
+    return [x0, abs(y0 - 40), x1, abs(y1 - 40), x1 - x0, L, (x1 - x0) / max(L, 1), float(passes), float(P[:, 1].std()), float(dur)]
 
 
 @app.get("/api/teams/{key}/similar")
 def similar(key: str, match: int, half: int, minute: int, second: int, n: int = 8):
     import numpy as np
 
+    def at(r):
+        return (int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"]))
+
     by_at = {tuple(q["at"]): q for q in paths(key)["paths"]}
-    rows = [
-        r for r in clip_index(key) if (int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"])) in by_at
-    ]
-    pth = [by_at[(int(r["match"]), int(r["half"]), int(r["minute"]), int(r["second"]))] for r in rows]
+    rows = [r for r in clip_index(key) if at(r) in by_at]
+    pth = [by_at[at(r)] for r in rows]
     X = np.array([_seq_features(q["pts"], int(r["passes"]), int(r["duration_s"])) for q, r in zip(pth, rows)])
     Z = (X - X.mean(0)) / np.where(X.std(0) > 0, X.std(0), 1)
-    i = next(
-        (
-            j
-            for j, r in enumerate(rows)
-            if int(r["match"]) == match
-            and int(r["half"]) == half
-            and int(r["minute"]) == minute
-            and int(r["second"]) == second
-        ),
-        None,
-    )
+    i = next((j for j, r in enumerate(rows) if at(r) == (match, half, minute, second)), None)
     if i is None:
         raise HTTPException(404, "This clip is not in the sequence list.")
     d = np.sqrt(((Z - Z[i]) ** 2).sum(1))
     d[i] = np.inf
     order = np.argsort(d)[: max(1, min(n, 20))]
-    typical = float(
-        np.median(np.sort(np.sqrt(((Z[:, None, :] - Z[None, :200, :]) ** 2).sum(-1)), axis=0)[1])
-    )  # median nearest-neighbour distance, for scale
+    # median nearest-neighbour distance, for scale
+    typical = float(np.median(np.sort(np.sqrt(((Z[:, None, :] - Z[None, :200, :]) ** 2).sum(-1)), axis=0)[1]))
     return {
         "of": rows[i],
         "similar": [{**rows[j], "distance": round(float(d[j]), 2), "pts": pth[j]["pts"]} for j in order],
@@ -1421,30 +1096,23 @@ def stylemap():
             Vt[a] *= -1
             pc[:, a] *= -1
     lab = {m[0]: m[2] for m in METRICS}
-    axes = [
-        {
-            "explained": round(float(var[a]), 3),
-            "loadings": sorted(
-                ({"id": i, "label": lab[i], "weight": round(float(Vt[a, n]), 3)} for n, i in enumerate(ids)),
-                key=lambda x: -abs(x["weight"]),
-            )[:4],
-        }
-        for a in range(2)
-    ]
-    D = np.sqrt(((Z[:, None, :] - Z[None]) ** 2).sum(-1))
-    pts = [
-        {
+    axes = []
+    for a in range(2):
+        loadings = [{"id": i, "label": lab[i], "weight": round(float(Vt[a, n]), 3)} for n, i in enumerate(ids)]
+        loadings.sort(key=lambda x: -abs(x["weight"]))
+        axes.append({"explained": round(float(var[a]), 3), "loadings": loadings[:4]})
+    dist = np.sqrt(((Z[:, None, :] - Z[None]) ** 2).sum(-1))
+    pts = []
+    for n, k in enumerate(keys):
+        nearest = [{"team": ts[keys[m]]["team"], "distance": round(float(dist[n, m]), 2)} for m in np.argsort(dist[n])[1:4]]
+        pts.append({
             "key": k,
             "team": ts[k]["team"],
             "period": ts[k]["period"],
             "x": round(float(pc[n, 0]), 3),
             "y": round(float(pc[n, 1]), 3),
-            "nearest": [
-                {"team": ts[keys[m]]["team"], "distance": round(float(D[n, m]), 2)} for m in np.argsort(D[n])[1:4]
-            ],
-        }
-        for n, k in enumerate(keys)
-    ]
+            "nearest": nearest,
+        })
     return {
         "metrics": [lab[i] for i in ids],
         "axes": axes,
@@ -1478,9 +1146,7 @@ def without_player(key: str, player: str = ""):
         rows = []
     res = plan_rules.without(key, player, load, rows)
     if res is None:
-        raise HTTPException(
-            404, "Needs matchups_ and keyplayers_ files with starting elevens (rerun src/oppreport.py)."
-        )
+        raise HTTPException(404, "Needs matchups_ and keyplayers_ files with starting elevens (rerun src/oppreport.py).")
     if player and player not in {p["player"] for p in res["players"]}:
         raise HTTPException(404, f"{player} never started for this team.")
     return res
@@ -1514,12 +1180,12 @@ def get_review(key: str):
         raise HTTPException(404, f"review_{key}.csv not found in {D()}: run src/oppreport.py for this team.")
     with open(filled if os.path.exists(filled) else base, encoding="utf-8", newline="") as f:
         rows = list(csv.DictReader(f))
-    idx = {
-        (r["family"], r["date"], r["opponent"], r["half"], r["minute"], r["second"]): r["match"]
-        for r in clip_index(key)
-    }
+    def clip_key(r):
+        return (r["family"], r["date"], r["opponent"], r["half"], r["minute"], r["second"])
+
+    idx = {clip_key(r): r["match"] for r in clip_index(key)}
     for r in rows:
-        r["match"] = idx.get((r["family"], r["date"], r["opponent"], r["half"], r["minute"], r["second"]))
+        r["match"] = idx.get(clip_key(r))
     ans = os.path.join(D(), f"review_{key}_answers.json")
     return {
         "rows": rows,
@@ -1556,18 +1222,14 @@ def save_review(key: str, body: ReviewIn):
         w = csv.DictWriter(f, fieldnames=cols)
         w.writeheader()
         w.writerows(rows)
-    json.dump(
-        {
-            "team": need(key)["team"],
-            "reviewer": body.reviewer,
-            "role": body.role,
-            "saved": time.strftime("%Y-%m-%d %H:%M"),
-            "questions": [{"question": q, "answer": a} for q, a in zip(QUESTIONS, body.answers)],
-        },
-        open(os.path.join(D(), f"review_{key}_answers.json"), "w", encoding="utf-8"),
-        ensure_ascii=False,
-        indent=1,
-    )
+    answers = {
+        "team": need(key)["team"],
+        "reviewer": body.reviewer,
+        "role": body.role,
+        "saved": time.strftime("%Y-%m-%d %H:%M"),
+        "questions": [{"question": q, "answer": a} for q, a in zip(QUESTIONS, body.answers)],
+    }
+    json.dump(answers, open(os.path.join(D(), f"review_{key}_answers.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     return {"saved": f"review_{key}_filled.csv", "answered": sum(1 for v in body.verdicts if v)}
 
 
@@ -1591,17 +1253,13 @@ def sources():
                 n = m[side][f"{side}_name"]
                 count[n] = count.get(n, 0) + 1
                 have[n] = have.get(n, 0) + ok
-        out.append(
-            {
-                "file": f"matches/{os.path.basename(p)}",
-                "competition": ms[0]["competition"]["competition_name"],
-                "season": ms[0]["season"]["season_name"],
-                "teams": sorted(
-                    ({"team": t, "matches": n, "with_events": have[t]} for t, n in count.items()),
-                    key=lambda x: x["team"],
-                ),
-            }
-        )
+        team_list = sorted(({"team": t, "matches": n, "with_events": have[t]} for t, n in count.items()), key=lambda x: x["team"])
+        out.append({
+            "file": f"matches/{os.path.basename(p)}",
+            "competition": ms[0]["competition"]["competition_name"],
+            "season": ms[0]["season"]["season_name"],
+            "teams": team_list,
+        })
     return out
 
 
@@ -1619,53 +1277,18 @@ class JobIn(BaseModel):
 
 
 def _run(job):
-    if job.get(
-        "download"
-    ):  # events of some matches not on disk yet: fetch them first (StatsBomb open data on GitHub; files already there are skipped)
+    py = [sys.executable, "-X", "utf8"]
+    if job.get("download"):
+        # events of some matches not on disk yet: fetch them first (StatsBomb open data on GitHub; files already there are skipped)
         cid, sid = os.path.basename(job["source"])[:-5].split("_")
-        job["log"].append(
-            f"Downloading the missing event files ({job['download']} matches) from the StatsBomb open data…"
-        )
-        d = subprocess.run(
-            [
-                sys.executable,
-                "-X",
-                "utf8",
-                os.path.join(ROOT, "src", "week1", "download_data.py"),
-                cid,
-                sid,
-                job["team"],
-            ],
-            cwd=job["dir"],
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-        )
+        job["log"].append(f"Downloading the missing event files ({job['download']} matches) from the StatsBomb open data…")
+        d = subprocess.run(py + [os.path.join(ROOT, "src", "week1", "download_data.py"), cid, sid, job["team"]],
+                           cwd=job["dir"], capture_output=True, text=True, encoding="utf-8", errors="replace")
         job["log"] += [x for x in (d.stdout + d.stderr).splitlines() if x.strip()][-20:]
-    cmd = [
-        sys.executable,
-        "-X",
-        "utf8",
-        os.path.join(ROOT, "src", "oppreport.py"),
-        "--statsbomb",
-        job["source"],
-        "--data-dir",
-        job["dir"],
-        "--team",
-        job["team"],
-        "--out",
-        os.path.join(job["dir"], "reports_app"),
-    ]
-    p = subprocess.Popen(
-        cmd,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
-        env=dict(os.environ, MPLBACKEND="Agg"),
-    )
+    cmd = py + [os.path.join(ROOT, "src", "oppreport.py"), "--statsbomb", job["source"], "--data-dir", job["dir"],
+                "--team", job["team"], "--out", os.path.join(job["dir"], "reports_app")]
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding="utf-8", errors="replace",
+                         env=dict(os.environ, MPLBACKEND="Agg"))
     for line in p.stdout:
         job["log"].append(line.rstrip())
         job["log"] = job["log"][-200:]

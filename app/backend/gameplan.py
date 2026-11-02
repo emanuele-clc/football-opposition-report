@@ -11,7 +11,11 @@ import json, os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "src", "report"))
 from keyplayers import events_view  # noqa: E402  (key players and timeline, shared with the pipeline)
 
-FORM = lambda f: "-".join(f) if f and f.isdigit() else (f or "unknown")
+def FORM(f):
+    """'4231' -> '4-2-3-1'."""
+    if f and f.isdigit():
+        return "-".join(f)
+    return f or "unknown"
 
 # (id, side, condition, evidence, title, why, look). side 'opp' = only the opponent's ranks, 'both' = opponent and your team.
 # Evidence of a 'both' rule = its condition terms {team: [(measure, 'top'|'bottom')]}: only the terms that hold are shown, so a rule with
@@ -220,58 +224,40 @@ def build(opp_key, my_key, teams, ranks, load):
         cnt = {}
         for f in fs:
             cnt[f] = cnt.get(f, 0) + 1
-        return {
-            "most_used": [
-                {"formation": FORM(f), "raw": f, "matches": c} for f, c in sorted(cnt.items(), key=lambda x: -x[1])
-            ][:4],
-            "last5": [
-                {"formation": FORM(r["formation"]), "raw": r["formation"], "opponent": r["opponent"], "date": r["date"]}
-                for r in mu["per_match"][-5:]
-            ],
-            "matches": len(fs),
-        }
+        most_used = [{"formation": FORM(f), "raw": f, "matches": c} for f, c in sorted(cnt.items(), key=lambda x: -x[1])]
+        last5 = [{"formation": FORM(r["formation"]), "raw": r["formation"], "opponent": r["opponent"], "date": r["date"]}
+                 for r in mu["per_match"][-5:]]
+        return {"most_used": most_used[:4], "last5": last5, "matches": len(fs)}
 
-    ev = lambda R, ids: [
-        {
-            "id": i,
-            "label": R[i]["label"],
-            "value": R[i]["value"],
-            "unit": R[i]["unit"],
-            "rank": R[i]["rank"],
-            "of": R[i]["of"],
-            "grade": R[i].get("grade"),
-        }
-        for i in ids
-        if i in R
-    ]
-    held = lambda terms, R, at: ev(R, [i for i, w in terms if at(i, w)])
-    # The hint's grade is the weakest grade among the opponent numbers that made it fire (the condition, not the context lines).
-    worst = lambda es: max((e["grade"] for e in es if e.get("grade")), default=None)
+    def ev(R, ids):
+        """The numbers behind a hint, as shown in the app."""
+        out = []
+        for i in ids:
+            if i in R:
+                r = R[i]
+                out.append({"id": i, "label": r["label"], "value": r["value"], "unit": r["unit"], "rank": r["rank"], "of": r["of"], "grade": r.get("grade")})
+        return out
+
+    def held(terms, R, at):
+        return ev(R, [i for i, w in terms if at(i, w)])
+
+    def worst(es):
+        # The hint's grade is the weakest grade among the opponent numbers that made it fire (the condition, not the context lines).
+        return max((e["grade"] for e in es if e.get("grade")), default=None)
+
     hints = []
-    for hid, side, cond, ids, title, why, look, tab in [
-        (r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7]) for r in RULES
-    ]:
+    for hid, side, cond, ids, title, why, look, tab in RULES:
         if side == "both" and not my_key:
             continue
-        if cond(O, M):
-            evid = (
-                ev(OR, ids)
-                if side == "opp"
-                else [{**e, "team": "opponent"} for e in held(ids["opponent"], OR, O)]
-                + [{**e, "team": "you"} for e in held(ids["you"], MR, M)]
-            )
-            hints.append(
-                {
-                    "id": hid,
-                    "side": side,
-                    "title": title,
-                    "why": why,
-                    "look": look,
-                    "tab": tab,
-                    "evidence": evid,
-                    "grade": worst(evid[:1] if side == "opp" else [e for e in evid if e["team"] == "opponent"]),
-                }
-            )
+        if not cond(O, M):
+            continue
+        if side == "opp":
+            evid = ev(OR, ids)
+            grade = worst(evid[:1])
+        else:
+            evid = [{**e, "team": "opponent"} for e in held(ids["opponent"], OR, O)] + [{**e, "team": "you"} for e in held(ids["you"], MR, M)]
+            grade = worst([e for e in evid if e["team"] == "opponent"])
+        hints.append({"id": hid, "side": side, "title": title, "why": why, "look": look, "tab": tab, "evidence": evid, "grade": grade})
 
     pz = pressure_zones(opp_key, ref, load)
     ph = pressure_hint(pz)
@@ -287,95 +273,62 @@ def build(opp_key, my_key, teams, ranks, load):
             ga, gb = s["groups"]
             for m in s["metrics"]:
                 if m["verdict"] == "clear" and not m.get("linked"):
-                    out.append(
-                        {
-                            "split": s["label"],
-                            "label": m["label"],
-                            "unit": m["unit"],
-                            "a": m["a"],
-                            "b": m["b"],
-                            "ga": ga,
-                            "gb": gb,
-                            "n_a": s["n_a"],
-                            "n_b": s["n_b"],
-                        }
-                    )
+                    out.append({"split": s["label"], "label": m["label"], "unit": m["unit"], "a": m["a"], "b": m["b"],
+                                "ga": ga, "gb": gb, "n_a": s["n_a"], "n_b": s["n_b"]})
         return out
 
     my_press = None
     if my_key and (mu := load("matchups", my_key)):
         s = mu["splits"]["opp_press"]
-        my_press = {
-            "groups": s["groups"],
-            "n_a": s["n_a"],
-            "n_b": s["n_b"],
-            "metrics": [
-                m
-                for m in s["metrics"]
-                if m["id"] in ("lost_own_half", "own_half_completion", "xg_against", "xg_for", "points")
-            ],
-        }
+        wanted = ("lost_own_half", "own_half_completion", "xg_against", "xg_for", "points")
+        my_press = {"groups": s["groups"], "n_a": s["n_a"], "n_b": s["n_b"], "metrics": [m for m in s["metrics"] if m["id"] in wanted]}
 
-    extreme = sorted(OR.values(), key=lambda r: -abs((r["rank"] - 1) / max(r["of"] - 1, 1) - 0.5))[:6] if n >= 4 else []
+    # profile: the six numbers where the opponent is furthest from the middle of the folder
+    extreme = []
+    if n >= 4:
+        extreme = sorted(OR.values(), key=lambda r: -abs((r["rank"] - 1) / max(r["of"] - 1, 1) - 0.5))[:6]
+    profile = [{"id": r["id"], "label": r["label"], "value": r["value"], "unit": r["unit"], "rank": r["rank"], "of": r["of"],
+                "provisional": r.get("provisional", False), "grade": r.get("grade")} for r in extreme]
+
+    watch = None
+    if load("matchups", opp_key):
+        my_def = load("defending", my_key) if my_key else None
+        my_mu = load("matchups", my_key) if my_key else None
+        watch = watch_first(load("matchups", opp_key), my_def, my_mu)
+
     return {
         "opponent": ts[opp_key]["team"],
         "mine": ts[my_key]["team"] if my_key else None,
         "teams_in_folder": n,
         "k": k,
         "formations": {"opponent": formations(opp_key), "mine": formations(my_key) if my_key else None},
-        "profile": [
-            {
-                "id": r["id"],
-                "label": r["label"],
-                "value": r["value"],
-                "unit": r["unit"],
-                "rank": r["rank"],
-                "of": r["of"],
-                "provisional": r.get("provisional", False),
-                "grade": r.get("grade"),
-            }
-            for r in extreme
-        ],
+        "profile": profile,
         "hints": hints,
         "opp_past": past(opp_key),
         "my_vs_press": my_press,
         "pressure_zones": pz,
         "foul_zones": foul_zones(opp_key, ref, load),
         "breaks": breaks(opp_key, load),
-        "watch_first": (
-            watch_first(
-                load("matchups", opp_key),
-                load("defending", my_key) if my_key else None,
-                load("matchups", my_key) if my_key else None,
-            )
-            if load("matchups", opp_key)
-            else None
-        ),
+        "watch_first": watch,
         "brief": brief(hints, past(opp_key), ts[opp_key]["team"], ts[my_key]["team"] if my_key else None),
     }
 
 
 PHASE = {
-    "with_ball": (
-        "press_hard",
-        "press_high",
-        "def_high",
-        "def_deep",
-        "solid",
-        "leaky",
-        "my_short_vs_press",
-        "my_long_vs_high",
-    ),
+    "with_ball": ("press_hard", "press_high", "def_high", "def_deep", "solid", "leaky", "my_short_vs_press", "my_long_vs_high"),
     "without_ball": ("press_zone", "gk_short_hi", "gk_short_lo", "direct", "patient", "my_press_vs_short"),
     "transitions": ("lose_ball", "win_high"),
     "set_pieces": ("corners",),
 }
-PHASE_TITLE = {
-    "with_ball": "With the ball",
-    "without_ball": "Without the ball",
-    "transitions": "Transitions",
-    "set_pieces": "Set pieces",
-}
+PHASE_TITLE = {"with_ball": "With the ball", "without_ball": "Without the ball", "transitions": "Transitions", "set_pieces": "Set pieces"}
+
+
+def fmt(v, unit):
+    if unit == "pct":
+        return f"{100 * v:.0f}%"
+    if unit == "num2":
+        return f"{v:.2f}"
+    return f"{v:.1f}"
 
 
 def brief(hints, past, opp, mine):
@@ -390,25 +343,19 @@ def brief(hints, past, opp, mine):
         hs = sorted([h for h in hints if h["id"] in ids], key=prio, reverse=True)
         lines = [f"{h['title']}. {h['look']}" for h in hs]
         if ph == "without_ball":
-            f = lambda v, u: f"{100 * v:.0f}%" if u == "pct" else f"{v:.2f}" if u == "num2" else f"{v:.1f}"
-            lines += [
-                f"Their past matches: {p['label']} {f(p['a'], p['unit'])} per match {p['ga']} and {f(p['b'], p['unit'])} {p['gb']} ({p['n_a']} and {p['n_b']} matches)."
-                for p in past
-                if p["split"] == "Opponent pressing"
-            ]
-        phases[ph] = {
-            "title": PHASE_TITLE[ph],
-            "lines": lines
-            or [f"Nothing stands out in {opp}'s numbers for this phase: prepare as usual and check on video."],
-        }
+            for p in past:
+                if p["split"] == "Opponent pressing":
+                    lines.append(f"Their past matches: {p['label']} {fmt(p['a'], p['unit'])} per match {p['ga']} and {fmt(p['b'], p['unit'])} {p['gb']} ({p['n_a']} and {p['n_b']} matches).")
+        if not lines:
+            lines = [f"Nothing stands out in {opp}'s numbers for this phase: prepare as usual and check on video."]
+        phases[ph] = {"title": PHASE_TITLE[ph], "lines": lines}
     top = sorted(hints, key=prio, reverse=True)[:3]
+    for_mine = f" for {mine}" if mine else ""
     return {
         "priorities": [f"{h['title']}. {h['look']}" for h in top],
         "priority_grades": [h.get("grade") for h in top],
         "phases": phases,
-        "intro": f"Plan against {opp}"
-        + (f" for {mine}" if mine else "")
-        + f", from {len(hints)} hints. Written by fixed rules from the numbers on this page, offline; hints to check on video, not tested advice.",
+        "intro": f"Plan against {opp}{for_mine}, from {len(hints)} hints. Written by fixed rules from the numbers on this page, offline; hints to check on video, not tested advice.",
     }
 
 
@@ -424,7 +371,12 @@ def watch_first(opp_mu, my_def, my_mu, n=5):
     for r in my_mu["per_match"]:
         fs[r["formation"]] = fs.get(r["formation"], 0) + 1
     f = max(fs, key=fs.get)
-    line = "back four" if f[:1] == "4" else "back three/five" if f[:1] in ("3", "5") else "unknown"
+    if f[:1] == "4":
+        line = "back four"
+    elif f[:1] in ("3", "5"):
+        line = "back three/five"
+    else:
+        line = "unknown"
     ppda = my_def["ppda"]["value"]
     if line == "unknown" or all(r["opp_back_line"] == "unknown" for r in rows):  # no formations in this data: PPDA only
         sc = sorted(rows, key=lambda r: abs(math.log(max(r["opp_ppda"], 0.1) / ppda)))
@@ -459,26 +411,19 @@ def pressure_zones(key, keys, load):
         ref = ok / up if up else None
         ref_long = lg / up if up else None
         diff = None if ref is None else z["up_completion"] - ref
-        zones.append(
-            {
-                **z,
-                "ref_completion": ref,
-                "ref_long_share": ref_long,
-                "diff": diff,
-                "weaker": bool(diff is not None and diff <= -0.05 and not z["few"]),
-            }
-        )
-    return {
-        "zones": zones,
-        "total": me["under_pressure_total"],
-        "teams_in_reference": len(others),
-        "matches": me["matches"],
-    }
+        weaker = bool(diff is not None and diff <= -0.05 and not z["few"])
+        zones.append({**z, "ref_completion": ref, "ref_long_share": ref_long, "diff": diff, "weaker": weaker})
+    return {"zones": zones, "total": me["under_pressure_total"], "teams_in_reference": len(others), "matches": me["matches"]}
 
 
 def zone_name(z):
     depth = {0: "around their own box", 20: "in their own third", 40: "just inside their half"}[z["x0"]]
-    side = "left" if z["y0"] == 0 else "centre" if z["y0"] < 30 else "right"
+    if z["y0"] == 0:
+        side = "left"
+    elif z["y0"] < 30:
+        side = "centre"
+    else:
+        side = "right"
     return f"{side}, {depth}"
 
 
@@ -487,9 +432,7 @@ def pressure_hint(pz):
     if not weak:
         return None
     z = weak[0]
-    if (
-        len(weak) >= 5
-    ):  # below the others almost everywhere: a general trait (often a more direct style), not one weak spot
+    if len(weak) >= 5:  # below the others almost everywhere: a general trait (often a more direct style), not one weak spot
         return {
             "id": "press_zone",
             "side": "opp",
@@ -499,12 +442,12 @@ def pressure_hint(pz):
             "tab": "gameplan",
             "evidence": [],
         }
+    more = f" {len(weak) - 1} more zone(s) below the others." if len(weak) > 1 else ""
     return {
         "id": "press_zone",
         "side": "opp",
         "title": f"Where pressing hurts them · {zone_name(z)}",
-        "why": f"Under pressure {zone_name(z)} they complete {z['up_completion']:.0%} of passes, against {z['ref_completion']:.0%} for the other teams there ({z['under_pressure']} passes)."
-        + (f" {len(weak) - 1} more zone(s) below the others." if len(weak) > 1 else ""),
+        "why": f"Under pressure {zone_name(z)} they complete {z['up_completion']:.0%} of passes, against {z['ref_completion']:.0%} for the other teams there ({z['under_pressure']} passes).{more}",
         "look": "A pressing trigger worth checking on video: what happens when the ball reaches that zone, and who has it.",
         "tab": "gameplan",
         "evidence": [],
@@ -534,10 +477,8 @@ def without(key, player, load, clip_rows):
         for n in names:
             starts[n] = starts.get(n, 0) + 1
     n_all = len(mu["per_match"])
-    players = [
-        {"player": p, "starts": s, "not_started": n_all - s, "usable": min(s, n_all - s) >= 6}
-        for p, s in sorted(starts.items(), key=lambda x: -x[1])
-    ]
+    players = [{"player": p, "starts": s, "not_started": n_all - s, "usable": min(s, n_all - s) >= 6}
+               for p, s in sorted(starts.items(), key=lambda x: -x[1])]
     if not player:
         return {"players": players}
     rows = {str(r["match"]): r for r in mu["per_match"]}
@@ -547,10 +488,10 @@ def without(key, player, load, clip_rows):
     for r in clip_rows:
         seq.setdefault(str(r["match"]), []).append(r)
     fams = sorted({r["family"] for r in clip_rows if r["family"].startswith("B")})
-    stats = [
-        (m, l, u, (lambda ms, m=m: float(np.mean([rows[x][m] for x in ms])) if ms else np.nan))
-        for m, l, u in WITHOUT_METRICS
-    ]
+    def column_mean(col):
+        return lambda ms: float(np.mean([rows[x][col] for x in ms])) if ms else np.nan
+
+    stats = [(m, label, unit, column_mean(m)) for m, label, unit in WITHOUT_METRICS]
 
     def ratio(ms, f):
         tot = sum(1 for x in ms for r in seq.get(x, []) if r["family"].startswith("B"))
@@ -561,49 +502,32 @@ def without(key, player, load, clip_rows):
         return float(np.mean(rs)) if rs else np.nan
 
     stats.append(("passes", "Passes per sequence", "num", passes))
-    stats += [(f"fam_{f}", f"Share of build-up family {f}", "pct", (lambda ms, f=f: ratio(ms, f))) for f in fams]
+    for f in fams:
+        stats.append((f"fam_{f}", f"Share of build-up family {f}", "pct", lambda ms, f=f: ratio(ms, f)))
     rng = np.random.default_rng(0)
     out = []
     for mid, lab, unit, st in stats:
         a, b = st(A), st(Bm)
         if not A or not Bm:
-            out.append(
-                {
-                    "id": mid,
-                    "label": lab,
-                    "unit": unit,
-                    "a": a if A else None,
-                    "b": b if Bm else None,
-                    "diff": None,
-                    "ci": None,
-                    "verdict": "small group",
-                }
-            )
+            out.append({"id": mid, "label": lab, "unit": unit, "a": a if A else None, "b": b if Bm else None,
+                        "diff": None, "ci": None, "verdict": "small group"})
             continue
         d = [st(list(rng.choice(A, len(A)))) - st(list(rng.choice(Bm, len(Bm)))) for _ in range(1000)]
         lo, hi = (float(v) for v in np.nanpercentile(d, [2.5, 97.5]))
-        verdict = "small group" if min(len(A), len(Bm)) < 6 else ("clear" if lo > 0 or hi < 0 else "uncertain")
-        out.append(
-            {
-                "id": mid,
-                "label": lab,
-                "unit": unit,
-                "a": float(a),
-                "b": float(b),
-                "diff": float(a - b),
-                "ci": [lo, hi],
-                "verdict": verdict,
-            }
-        )
+        if min(len(A), len(Bm)) < 6:
+            verdict = "small group"
+        elif lo > 0 or hi < 0:
+            verdict = "clear"
+        else:
+            verdict = "uncertain"
+        out.append({"id": mid, "label": lab, "unit": unit, "a": float(a), "b": float(b), "diff": float(a - b), "ci": [lo, hi], "verdict": verdict})
     return {
         "players": players,
         "player": player,
         "n_with": len(A),
         "n_without": len(Bm),
         "metrics": out,
-        "without_matches": [
-            {"date": rows[m]["date"], "opponent": rows[m]["opponent"], "score": rows[m]["score"]} for m in Bm
-        ],
+        "without_matches": [{"date": rows[m]["date"], "opponent": rows[m]["opponent"], "score": rows[m]["score"]} for m in Bm],
     }
 
 
@@ -614,10 +538,10 @@ def foul_zones(key, keys, load):
         return None
     others = [o for o in (load("keyplayers", k) for k in keys if k != key) if o and "fouls" in o]
     n_o = sum(o["matches"] for o in others)
-    zones = [
-        {**z, "ref_per_match": (sum(o["fouls"][i]["fouls"] for o in others) / n_o) if n_o else None}
-        for i, z in enumerate(me["fouls"])
-    ]
+    zones = []
+    for i, z in enumerate(me["fouls"]):
+        ref = sum(o["fouls"][i]["fouls"] for o in others) / n_o if n_o else None
+        zones.append({**z, "ref_per_match": ref})
     return {
         "zones": zones,
         "matches": me["matches"],
