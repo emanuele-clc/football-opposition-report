@@ -100,10 +100,13 @@ def event_labels(ev, r):
     es = [e for e in ev if e.get("period") == r.half and e.get("possession") == anchor["possession"] and us(e)]
     players = [e["player"]["name"] for e in es if "player" in e]
     shots = [e for e in es if e["type"]["name"] == "Shot"]
-    with_loc = [e for e in es if "location" in e]
+    # converted data (generic CSV) can have events without a position: [None, None]
+    with_loc = [e for e in es if e.get("location") and e["location"][0] is not None]
     if with_loc:
         last = with_loc[-1]
-        end = (last.get("pass") or last.get("carry") or last.get("shot") or {}).get("end_location") or last["location"]
+        end = (last.get("pass") or last.get("carry") or last.get("shot") or {}).get("end_location")
+        if not end or end[0] is None:
+            end = last["location"]
         lab += [("Start third", third(with_loc[0]["location"][0])), ("End third", third(end[0]))]
     if players:
         lab += [("First player", players[0]), ("Last player", players[-1]), ("Players involved", len(set(players)))]

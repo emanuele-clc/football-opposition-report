@@ -149,6 +149,8 @@ def events_view(team_name, match_ids, ev_dir, meta=None):
             t = e["type"]["name"]
             us = e["team"]["name"] == team_name
             loc = e.get("location")
+            if loc and loc[0] is None:
+                loc = None  # converted data (generic CSV) writes [None, None] for events without a position
 
             if t == "Starting XI" and us:
                 starters[str(m)] = [pl["player"]["name"] for pl in e["tactics"]["lineup"]]
