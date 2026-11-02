@@ -36,6 +36,10 @@ function Thirds({
         const t = data[name];
         if (!t) return null;
         const a = 0.14 + 0.62 * (t.per_match / max);
+        /* figures switch to ink as soon as the fill is pale enough; pale figures get a pitch halo so they stay legible on mid fills */
+        const ink = a > 0.42;
+        const fig = ink ? "var(--sticker-ink)" : "var(--run)";
+        const halo = ink ? undefined : { stroke: "rgba(11,17,36,0.6)", strokeWidth: 0.6, paintOrder: "stroke" as const };
         return (
           <g key={name}>
             <rect
@@ -53,7 +57,8 @@ function Thirds({
               fontSize="13"
               fontWeight="900"
               fontStyle="italic"
-              fill={a > 0.55 ? "var(--sticker-ink)" : "var(--run)"}
+              fill={fig}
+              style={halo}
             >
               {t.per_match.toFixed(1)}
             </text>
@@ -63,7 +68,8 @@ function Thirds({
               textAnchor="middle"
               fontSize="3"
               fontWeight="750"
-              fill={a > 0.55 ? "var(--sticker-ink)" : "var(--run)"}
+              fill={fig}
+              style={halo}
             >
               per match · {name}
             </text>

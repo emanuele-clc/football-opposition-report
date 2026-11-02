@@ -21,7 +21,11 @@ export const rib = (i: number, fam = "") =>
   ({ "--rib": RIBS[i % RIBS.length], "--hatch": fam.startsWith("A") ? HATCH : "none" }) as CSSProperties;
 /* Everything that is not a family wears the plain ribbon: colour stays a signal, not decoration. */
 export const plain = { "--rib": "var(--plain)", "--hatch": "none" } as CSSProperties;
-export const third = (x: number) => (x < 40 ? "own third" : x < 80 ? "middle third" : "final third");
+export const third = (x: number) => {
+  if (x < 40) return "own third";
+  if (x < 80) return "middle third";
+  return "final third";
+};
 const reduced = () => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* The one pitch of the app: 120 x 80, attacking left to right, mown bands. Every view draws on it at the same scale. */
@@ -223,7 +227,9 @@ export function Replay({
   const acts = data?.actions ?? [];
   const shown = acts.slice(0, step);
   const cur = shown[shown.length - 1];
-  const ballAt = cur ? [cur.ex ?? cur.x, cur.ey ?? cur.y] : acts[0] ? [acts[0].x, acts[0].y] : [60, 40];
+  let ballAt = [60, 40];
+  if (cur) ballAt = [cur.ex ?? cur.x, cur.ey ?? cur.y];
+  else if (acts[0]) ballAt = [acts[0].x, acts[0].y];
   const dur = `${Math.round(Math.min(Math.max((cur && acts[step] ? acts[step].t - cur.t : 0.6) / speed, 0.28), 1.2) * 900)}ms`;
   const atEnd = data && step >= acts.length;
   const has360 = acts.some((a) => a.ff);
@@ -711,8 +717,10 @@ export function ShareStrip({
           onClick={() => onPick(f.fam)}
           title={`${f.fam}: ${pc(f.share)}`}
         >
-          <b>{f.fam}</b>
-          <span>{pc(f.share)}</span>
+          <i className="ss">
+            <b>{f.fam}</b>
+            <span>{pc(f.share)}</span>
+          </i>
         </button>
       ))}
     </div>

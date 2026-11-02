@@ -8,7 +8,11 @@ import { clock, pc } from "../format";
 const cache = new Map<string, Promise<{ restarts: RestartPass[] }>>();
 const lastName = (n: string) => n.split(" ").slice(-1)[0] ?? "";
 const OUT = { lost: "var(--coral)", opp: "var(--lime)", other: "var(--on-board-3)" };
-const outcome = (r: RestartPass) => (r.lost_own_half ? "lost" : r.opp_half ? "opp" : "other") as keyof typeof OUT;
+function outcome(r: RestartPass): keyof typeof OUT {
+  if (r.lost_own_half) return "lost";
+  if (r.opp_half) return "opp";
+  return "other";
+}
 
 export default function PressingMap({
   teamKey,

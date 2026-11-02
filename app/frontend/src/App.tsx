@@ -40,17 +40,38 @@ const TABS: [string, string][] = [
   ["tracking", "Tracking lab"],
   ["review", "Review"],
 ];
-/* The top bar names the group, the row under the team name the section. The everyday path is Summary -> a phase -> Clips;
-   the rest sits under More. */
-const GROUPS: [string, string[]][] = [
+/* The top bar names the group, the row under the team name the section.
+   Two views of the same report. Analyst (default): only what an analyst opens to prepare the next match (summary,
+   game plan, set pieces and restarts, without the ball, clips). Full: every section, including the thesis pages
+   (evidence, families, threat, compare, matchups, review, tracking lab). Pages outside the analyst view still open
+   from links (grades, key points, "every number per family"); they just have no menu entry there. */
+const GROUPS_FULL: [string, string[]][] = [
   ["Summary", ["overview", "gameplan", "coach", "evidence"]],
   ["With the ball", ["build-up", "threat", "restarts", "setpieces", "goals"]],
   ["Without the ball", ["transitions", "defending"]],
   ["Clips", ["clips"]],
   ["More", ["compare", "matchups", "review", "tracking"]],
 ];
-const groupOf = (tab: string) =>
-  GROUPS.find(([, t]) => t.includes(tab === "advanced" ? "build-up" : tab === "coach" ? "gameplan" : tab)) ?? GROUPS[0];
+const GROUPS_ANALYST: [string, string[]][] = [
+  ["Summary", ["overview"]],
+  ["Game plan", ["gameplan"]],
+  ["Set pieces", ["setpieces", "restarts"]],
+  ["Without the ball", ["defending", "transitions"]],
+  ["Clips", ["clips"]],
+];
+type View = "analyst" | "full";
+/* "advanced" lives under the families tab and the coach sheet under the game plan. */
+const MENU_TAB: Record<string, string> = { advanced: "build-up", coach: "gameplan" };
+const groupOf = (tab: string, groups: [string, string[]][]) => groups.find(([, t]) => t.includes(MENU_TAB[tab] ?? tab));
+const storedView = (): View => {
+  const q = new URLSearchParams(location.search).get("view");
+  if (q === "full" || q === "analyst") return q;
+  try {
+    return localStorage.getItem("view") === "full" ? "full" : "analyst";
+  } catch {
+    return "analyst";
+  }
+};
 const TOUR = [
   "overview",
   "gameplan",
@@ -106,6 +127,19 @@ export default function App() {
   const [tour, setTour] = useState(false);
   const [lang, setLang] = useState<Lang>(storedLanguage);
   const [providers, setProviders] = useState<Provider[] | null>(null);
+  const [view, setView] = useState<View>(storedView);
+  const full = view === "full";
+  const GROUPS = full ? GROUPS_FULL : GROUPS_ANALYST;
+  const group = groupOf(route.tab, GROUPS);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("view", view);
+    } catch {
+      /* private window */
+    }
+    if (view === "analyst") setTour(false);
+  }, [view]);
 
   useEffect(() => {
     setLanguage(lang);
@@ -171,7 +205,7 @@ export default function App() {
       });
   }, [route.key]);
 
-  const current = route.key === "new" ? null : data && data.key === route.key ? data : null;
+  const current = route.key !== "new" && data && data.key === route.key ? data : null;
   useEffect(() => {
     const t = TABS.find(([k]) => k === (route.tab === "advanced" ? "build-up" : route.tab))?.[1] ?? "";
     document.title = current ? `${current.team} · ${t} · Opposition report` : "Opposition report";
@@ -260,14 +294,26 @@ export default function App() {
             <a
               key={label}
               href={route.key && route.key !== "new" ? href({ key: route.key, tab: tabs[0] }) : "#/"}
-              aria-current={groupOf(route.tab)[0] === label && route.key !== "new" ? "true" : undefined}
+              aria-current={group?.[0] === label && route.key !== "new" ? "true" : undefined}
             >
               {label}
             </a>
           ))}
         </nav>
         <div className="bar-actions">
-          {info?.can_generate && (
+          <div className="edition viewmode" role="radiogroup" aria-label="Report view">
+            {(
+              [
+                ["analyst", "Analyst", "Only what you need to prepare the next match"],
+                ["full", "Full report", "Every section, including the thesis pages (evidence, families, compare, review)"],
+              ] as const
+            ).map(([k, l, t]) => (
+              <button key={k} type="button" role="radio" aria-checked={view === k} onClick={() => setView(k)} title={t}>
+                <span className="ed-name">{l}</span>
+              </button>
+            ))}
+          </div>
+          {full && info?.can_generate && (
             <a
               className="icon-btn"
               href="#/new"
@@ -278,6 +324,7 @@ export default function App() {
               <span>Add team</span>
             </a>
           )}
+          {full && (
           <button
             className="icon-btn"
             type="button"
@@ -292,6 +339,7 @@ export default function App() {
             {Icon.tour}
             <span>Tour</span>
           </button>
+          )}
           <label className="icon-btn lang" translate="no" title="Language · Lingua · Sprache">
             {Icon.globe}
             <span className="lang-code">{lang.toUpperCase()}</span>
@@ -392,9 +440,17 @@ export default function App() {
                 </span>
               )}
             </div>
-            {groupOf(route.tab)[1].length > 1 && (
-              <nav className="subnav no-print" aria-label={groupOf(route.tab)[0]}>
-                {groupOf(route.tab)[1].map((k) => (
+            {!group && !full && route.tab !== "coach" && (
+              <p className="view-note no-print">
+                This page is part of the full report.{" "}
+                <button type="button" className="linkish" onClick={() => setView("full")}>
+                  Show every section
+                </button>
+              </p>
+            )}
+            {group && group[1].length > 1 && (
+              <nav className="subnav no-print" aria-label={group[0]}>
+                {group[1].map((k) => (
                   <a
                     key={k}
                     href={href({ key: current.key, tab: k })}
@@ -409,7 +465,7 @@ export default function App() {
             )}
           </div>
           <main key={current.key}>
-            {route.tab === "overview" && <Overview d={current} events={events} go={go} />}
+            {route.tab === "overview" && <Overview d={current} events={events} go={go} full={full} />}
             {(route.tab === "build-up" || route.tab === "advanced") && (
               <Families key={route.tab} d={current} phase={route.tab} events={events} family={route.family} go={go} />
             )}
@@ -419,7 +475,7 @@ export default function App() {
             {route.tab === "transitions" && <Transitions d={current} events={events} go={go} />}
             {route.tab === "defending" && <Defending d={current} />}
             {route.tab === "evidence" && <Evidence d={current} focus={route.family} />}
-            {route.tab === "gameplan" && teams && <GamePlan d={current} teams={teams} events={events} />}
+            {route.tab === "gameplan" && teams && <GamePlan d={current} teams={teams} events={events} full={full} />}
             {route.tab === "coach" && <CoachSheet d={current} />}
             {route.tab === "goals" && <Goals d={current} events={events} />}
             {route.tab === "matchups" && <Matchups d={current} />}

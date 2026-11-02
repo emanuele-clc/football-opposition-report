@@ -3,7 +3,7 @@ import { api, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSumm
 import { evidenceHref, Explain, GRADE_SAYS, GradeKey, GradeMark, Icon } from "../charts";
 import { Note, Pitch, Replay, plain } from "../charts";
 import { PROVIDER_NAME } from "../provider";
-import { fmt, ordinal } from "../format";
+import { fmt, place } from "../format";
 
 const TAB_LABEL: Record<string, string> = {
   restarts: "Restarts",
@@ -39,8 +39,6 @@ const store = {
   },
 };
 
-const place = (r: number, of: number) =>
-  r === 1 ? `highest of ${of}` : r === of ? `lowest of ${of}` : `${ordinal(r)} highest of ${of}`;
 const unit = (u: string) => u as "pct" | "num" | "num2";
 
 /* Goals (numbers) and xG per match (bars) by 15-minute slot: scored above the line, conceded below. */
@@ -177,7 +175,16 @@ export function Shape({ raw, side }: { raw: string; side: "left" | "right" }) {
         <g key={i} className="enter" style={{ "--i": i } as CSSProperties}>
           <circle cx={X(x)} cy={y} r="2.6" fill={col} stroke="var(--sticker-ink)" strokeWidth="0.5" />
           {i === 0 && (
-            <text x={X(x)} y={y + 1} textAnchor="middle" fontSize="2.6" fontWeight="850" fill="var(--sticker-ink)">
+            <text
+              x={X(x)}
+              y={y + 0.9}
+              textAnchor="middle"
+              fontSize="2.5"
+              fontWeight="900"
+              fontStyle="italic"
+              style={{ fontStretch: "62%" }}
+              fill="var(--sticker-ink)"
+            >
               GK
             </text>
           )}
@@ -273,7 +280,17 @@ function VersusCard({ v, opp, mine }: { v: Versus; opp: string; mine: string }) 
   );
 }
 
-export default function GamePlan({ d, teams, events }: { d: TeamData; teams: TeamSummary[]; events: boolean }) {
+export default function GamePlan({
+  d,
+  teams,
+  events,
+  full = false,
+}: {
+  d: TeamData;
+  teams: TeamSummary[];
+  events: boolean;
+  full?: boolean;
+}) {
   const [mine, setMine] = useState(() => new URLSearchParams(location.search).get("mine") ?? store.get());
   const [plan, setPlan] = useState<Plan | null>(null);
   const [err, setErr] = useState("");
@@ -331,6 +348,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
           {Icon.print}
           <span>Coach sheet · one A4 page</span>
         </a>
+        {full && (
         <button
           type="button"
           className="icon-btn"
@@ -344,6 +362,7 @@ export default function GamePlan({ d, teams, events }: { d: TeamData; teams: Tea
           {Icon.print}
           <span>Print all</span>
         </button>
+        )}
         <label htmlFor="mine" style={{ fontWeight: 750 }}>
           Your team
         </label>

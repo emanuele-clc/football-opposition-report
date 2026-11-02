@@ -57,6 +57,27 @@ const where = (r: Rank, key: string) => {
   return `${r.group} · the other ${o.length} teams: ${fmt(m, r.unit)} on average`;
 };
 
+/* Where this team sits among all teams of the folder, read in one glance: every team a small ink dot, this team the
+   yellow one (The Yellow Means Live Rule), the other teams' average a thin tick (the "on average" of the line below).
+   Left = lowest, right = highest, as the ordinal ("1st = highest value"). Decorative copy of the rank track: the
+   numbers it draws are all in the text, so it is hidden from screen readers. */
+function KpTrack({ r, current }: { r: Rank; current: string }) {
+  const vals = r.teams.map((t) => t.value),
+    lo = Math.min(...vals),
+    hi = Math.max(...vals);
+  const pos = (v: number) => (hi === lo ? 50 : 3 + ((v - lo) / (hi - lo)) * 94);
+  const others = r.teams.filter((t) => t.key !== current);
+  const avg = others.reduce((s, t) => s + t.value, 0) / Math.max(others.length, 1);
+  return (
+    <span className="kp-track" aria-hidden="true">
+      {others.length > 0 && <i className="avg" style={{ left: `${pos(avg)}%` }} />}
+      {r.teams.map((t) => (
+        <i key={t.key} className={t.key === current ? "us" : undefined} style={{ left: `${pos(t.value)}%` }} />
+      ))}
+    </span>
+  );
+}
+
 export function familyClips(f: Family): ClipRef[] {
   return f.examples
     .filter((e) => e.match)
@@ -78,10 +99,12 @@ export default function Overview({
   d,
   events,
   go,
+  full = false,
 }: {
   d: TeamData;
   events: boolean;
   go: (tab: string, family?: string) => void;
+  full?: boolean;
 }) {
   const [phase, setPhase] = useState<"build-up" | "advanced">("build-up");
   const P = d.report.phases[phase];
@@ -154,11 +177,15 @@ export default function Overview({
                 <span className="dot" aria-hidden="true">
                   {i + 1}
                 </span>
-                <span>
-                  <p>
+                <span className="kp-body">
+                  <p className="kp-say">
                     <GradeMark g={r.grade} none={!r.statement} />
-                    {phrase(r)}: <b>{fmt(r.value, r.unit)}</b>
+                    {phrase(r)}
                   </p>
+                  <span className="kp-fig-row">
+                    <b className="kp-fig">{fmt(r.value, r.unit)}</b>
+                    <KpTrack r={r} current={d.key} />
+                  </span>
                   <p className="sub">
                     {where(r, d.key)}
                     {r.caution ? ` · rough: ${r.caution}` : ""}
@@ -247,13 +274,25 @@ export default function Overview({
               <span>
                 {`${(ev!.grades?.A ?? 0) + (ev!.grades?.B ?? 0) + (ev!.grades?.C ?? 0) + (ev!.grades?.D ?? 0)} kinds of number, checked on ${ev!.n_teams} unseen teams: ${ev!.grades?.A ?? 0} A, ${ev!.grades?.B ?? 0} B, ${ev!.grades?.C ?? 0} C, ${ev!.grades?.D ?? 0} D.`}{" "}
                 <a href={evidenceHref(d.key)}>Which numbers can you trust?</a>
+                <span className="grade-bar" aria-hidden="true">
+                  {(["A", "B", "C", "D"] as const).map((g) =>
+                    ev!.grades?.[g] ? (
+                      <span key={g} className={`gb-${g}`} style={{ flexGrow: ev!.grades[g] }}>
+                        <b>{ev!.grades[g]}</b> {g}
+                      </span>
+                    ) : null,
+                  )}
+                </span>
               </span>
             </li>
           )}
         </ul>
-        <p className="small no-print" style={{ marginTop: 14 }}>
-          <a href={`#/${encodeURIComponent(d.key)}/compare`}>All {d.ranks.length} measures against the other teams →</a>
-        </p>
+        {full && (
+          <p className="small no-print" style={{ marginTop: 14 }}>
+            <a href={`#/${encodeURIComponent(d.key)}/compare`}>All {d.ranks.length} measures against the other teams →</a>
+          </p>
+        )}
+        {full && (
         <details className="more">
           <summary>How to read this report</summary>
           <div className="layout-2">
@@ -350,6 +389,8 @@ export default function Overview({
             </ul>
           </div>
         </details>
+        )}
+        {full && (
         <p className="small no-print" style={{ marginTop: 18 }}>
           Printable sheets from the pipeline:{" "}
           {[
@@ -369,6 +410,7 @@ export default function Overview({
             </span>
           ))}
         </p>
+        )}
       </section>
     </>
   );

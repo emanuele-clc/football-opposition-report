@@ -185,7 +185,9 @@ h3 {
   font-weight: 750;
   padding: 8px 36px 8px 16px;
   cursor: pointer;
-  max-width: 280px;
+  /* as wide as the chosen team ("Bayer Leverkusen · 2023/24" no longer loses its season) */
+  field-sizing: content;
+  max-width: 340px;
   background-image: linear-gradient(45deg, transparent 50%, var(--sticker-ink) 50%),
     linear-gradient(135deg, var(--sticker-ink) 50%, transparent 50%);
   background-position:
@@ -248,6 +250,40 @@ h3 {
   line-height: 1.1;
   font-variant-numeric: tabular-nums;
   opacity: 0.85;
+}
+/* Report view switch: same plates as the data edition, one line each. Analyst = the everyday menu, Full = every
+   section. Sits first among the bar actions so it reads as a mode, not as one more icon. */
+.viewmode {
+  align-self: center;
+  margin-right: 6px;
+}
+.viewmode button {
+  padding: 7px 14px 6px;
+}
+.viewmode .ed-name {
+  font-size: 15px;
+}
+/* Shown under the team name when a full-report page is opened from a link while in the analyst view. */
+.view-note {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  color: var(--on-board-2);
+}
+.linkish {
+  border: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  font-weight: 750;
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.linkish:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 /* Under the team name: whose data these numbers are, and what that data lacks. Links to the grades of this provider. */
 .source-stamp {
@@ -926,6 +962,67 @@ a.kp:hover {
   color: var(--sticker-ink-2);
   margin-top: 3px;
 }
+/* The finding in the figure voice, with where it sits among all teams right next to it. */
+.kp-say {
+  text-wrap: balance;
+}
+.kp-fig-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 2px;
+}
+.kp-fig {
+  font-style: italic;
+  font-stretch: 62%;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.kp-track {
+  position: relative;
+  flex: 1;
+  min-width: 90px;
+  max-width: 260px;
+  height: 18px;
+}
+.kp-track::before {
+  content: "";
+  position: absolute;
+  inset: 8px 0 auto;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--sticker-line);
+}
+.kp-track i {
+  position: absolute;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sticker-ink-2);
+  opacity: 0.4;
+  transform: translate(-50%, -50%);
+  transition: left 900ms var(--out);
+}
+.kp-track i.avg {
+  width: 2px;
+  height: 16px;
+  border-radius: 1px;
+  background: var(--sticker-ink);
+  opacity: 0.55;
+}
+.kp-track i.us {
+  width: 16px;
+  height: 16px;
+  background: var(--yellow);
+  opacity: 1;
+  box-shadow: 0 0 0 2.5px var(--sticker-ink);
+  z-index: 1;
+}
 .badge {
   text-align: center;
   background: var(--sticker-ink);
@@ -1544,12 +1641,38 @@ ol.near li {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 6px;
-  min-width: 0;
+  /* a small family keeps room for its code and share (B3 at 9% was cut to "B3 9") */
+  min-width: 58px;
   overflow: hidden;
+  container-type: inline-size;
   transition:
     flex-grow 700ms var(--out),
     filter 200ms;
+}
+.share-strip .ss {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  font-style: normal;
+}
+/* narrow segment: code over share, both smaller, instead of clipping the share */
+@container (max-width: 70px) {
+  .share-strip .ss {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+  }
+  .share-strip .ss b {
+    font-size: 14px;
+    line-height: 1;
+  }
+  .share-strip .ss span {
+    font-size: 21px;
+    line-height: 1;
+    margin-left: 0;
+  }
 }
 .share-strip button:hover {
   filter: brightness(1.06);
@@ -1662,6 +1785,50 @@ main .icon-btn:hover {
 .trust span {
   color: var(--on-board-2);
 }
+/* How the kinds of number split over the four grades, as lengths. Grades are not families, so no ribbon colours:
+   on-board ink from solid (A) to dashed outline (D), the same steps as the grade marks, letter always printed. */
+.trust .grade-bar {
+  display: flex;
+  gap: 4px;
+  height: 34px;
+  margin-top: 10px;
+  max-width: 560px;
+}
+.trust .grade-bar > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 10px;
+  min-width: 52px;
+  border-radius: 8px;
+  font-style: italic;
+  font-stretch: 62%;
+  font-weight: 900;
+  font-size: 15px;
+  white-space: nowrap;
+  color: var(--board);
+}
+.trust .grade-bar b {
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+.trust .grade-bar .gb-A {
+  background: var(--on-board);
+}
+.trust .grade-bar .gb-B {
+  background: var(--on-board-2);
+}
+.trust .grade-bar .gb-C {
+  background: transparent;
+  color: var(--on-board);
+  box-shadow: inset 0 0 0 1.5px var(--on-board-3);
+}
+.trust .grade-bar .gb-D {
+  background: transparent;
+  color: var(--on-board-2);
+  outline: 1.5px dashed var(--on-board-3);
+  outline-offset: -1.5px;
+}
 @media (max-width: 560px) {
   .trust li {
     grid-template-columns: 10px 1fr;
@@ -1710,6 +1877,7 @@ th {
   color: var(--on-board-3);
   vertical-align: bottom;
   white-space: normal;
+  text-wrap: balance; /* "TIRO ENTRO 10 / S" became "TIRO ENTRO / 10 S" */
 }
 th button {
   background: none;
@@ -2169,7 +2337,7 @@ footer {
     font-size: 23px;
   }
   .pill-select {
-    max-width: 250px;
+    max-width: 300px;
   }
 }
 .brief {
@@ -2499,6 +2667,21 @@ footer {
 }
 .layout-matchup {
   grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+}
+/* The five group links need about 1320px next to brand, edition, team and icons; below that they move to their own row
+   instead of scrolling out of sight behind a hidden scrollbar (Senza palla / Clip / Altro vanished at 1180px). */
+@media (max-width: 1320px) {
+  .bar {
+    flex-wrap: wrap;
+  }
+  .sections {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+  }
+  .bar-actions {
+    margin-left: auto;
+  }
 }
 @media (max-width: 1120px) {
   .layout-matchup {

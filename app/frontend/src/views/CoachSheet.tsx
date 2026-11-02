@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { api, type GamePlan as Plan, type GPEvents, type TeamData } from "../api";
 import { GradeMark, Icon, Pitch } from "../charts";
-import { fmt, ordinal } from "../format";
+import { fmt, place } from "../format";
 import { PROVIDER, PROVIDER_NAME } from "../provider";
 import { Shape } from "./GamePlan";
 
 /* One A4 page for the coach: built from the same numbers as Game plan, nothing new is estimated here. */
-const place = (r: number, of: number) =>
-  r === 1 ? `highest of ${of}` : r === of ? `lowest of ${of}` : `${ordinal(r)} highest of ${of}`;
 
 export default function CoachSheet({ d }: { d: TeamData }) {
   const mine = (() => {

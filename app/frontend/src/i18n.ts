@@ -76,13 +76,25 @@ function apply(list: Template[], core: string, strict: boolean): string | null {
   return null;
 }
 
-function lookup(core: string): string | null {
+function lookupExact(core: string): string | null {
   const k = lang === "it" ? 0 : 1;
   const hit = exact.get(core);
   if (hit) return hit[k];
   if (/\d/.test(core)) {
     const n = exact.get(norm(core));
     if (n) return fill(n[k], core.match(/\d+(?:[.,]\d+)*/g) ?? []);
+  }
+  return null;
+}
+
+function lookup(core: string): string | null {
+  const hit = lookupExact(core);
+  if (hit !== null) return hit;
+  // a known phrase with a trailing colon ("Most recoveries in the final third:") beats a generic template ("Most {0}")
+  const colon = /^([\s\S]+?)(\s*:)$/.exec(core);
+  if (colon) {
+    const c = lookupExact(colon[1]);
+    if (c !== null) return c + colon[2];
   }
   return apply(templates, core, false);
 }

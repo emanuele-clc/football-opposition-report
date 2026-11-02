@@ -10,4 +10,10 @@ export const ordinal = (n: number) => {
     v = n % 100;
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 };
+/* Rank in words: "highest of 10", "3rd highest of 10", "lowest of 10". */
+export const place = (r: number, of: number) => {
+  if (r === 1) return `highest of ${of}`;
+  if (r === of) return `lowest of ${of}`;
+  return `${ordinal(r)} highest of ${of}`;
+};
 export const clock = (m: number, s: number) => `${m}:${String(s).padStart(2, "0")}`;

@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { api, type Info, type Job, type Source } from "../api";
 import { Note } from "../charts";
 
+const JOB_KIND: Record<string, "caution" | "ok" | "info"> = { failed: "caution", done: "ok" };
+const JOB_TAG: Record<string, string> = { running: "Running", done: "Done" };
+
 export default function NewTeam({
   info,
   known,
@@ -147,8 +150,8 @@ export default function NewTeam({
         {job && (
           <>
             <Note
-              kind={job.status === "failed" ? "caution" : job.status === "done" ? "ok" : "info"}
-              tag={job.status === "running" ? "Running" : job.status === "done" ? "Done" : "Failed"}
+              kind={JOB_KIND[job.status] ?? "info"}
+              tag={JOB_TAG[job.status] ?? "Failed"}
             >
               {job.status === "running" && (
                 <>
