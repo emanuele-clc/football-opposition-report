@@ -14,7 +14,13 @@ import os, re, shutil, subprocess, sys
 import pandas as pd
 
 a = sys.argv[1:]
-opt = lambda k, d=None: a[a.index(k) + 1] if k in a else d
+
+
+def opt(key, default=None):
+    return a[a.index(key) + 1] if key in a else default
+
+
+# positional arguments: not an option, and not the value of an option (--shot and --one-file take no value)
 pos = [x for i, x in enumerate(a) if not x.startswith("--") and (i == 0 or not a[i - 1].startswith("--") or a[i - 1] in ("--shot", "--one-file"))]
 if len(pos) < 3 or not opt("--match"):
     sys.exit(__doc__)

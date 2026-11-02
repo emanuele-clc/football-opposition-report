@@ -4,7 +4,7 @@ Data: StatsBomb Open Data (non-commercial licence, cite StatsBomb). Orientation:
 (left to right for the team performing the event); small y = left flank (checked with the full-backs' positions).
 Method rule: clustering and the choice of k use only the first 70% of matches (exploration). The last matches are NOT touched."""
 
-import json, sys, math, collections
+import json, sys
 import numpy as np, pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
@@ -25,96 +25,93 @@ YB = [0, 80 / 3, 160 / 3, 80.01]
 
 
 def zone(x, y):
-    return min(int(np.searchsorted(XB, x, side="right") - 1), 3) * 3 + min(
-        int(np.searchsorted(YB, y, side="right") - 1), 2
+    col = min(int(np.searchsorted(XB, x, side="right") - 1), 3)
+    row = min(int(np.searchsorted(YB, y, side="right") - 1), 2)
+    return col * 3 + row
+
+
+# A..D = lunghezza (A: propria area, D: ultimo terzo), s/C/d = sinistra/centro/destra
+ZN = [f"{c}{r}" for c in "ABCD" for r in "sCd"]
+
+
+def path_points(es):
+    """Start of the sequence, then the end of every pass and carry; repeated points removed."""
+    pts = [es[0]["location"]]
+    for e in es:
+        t = e["type"]["name"]
+        if t == "Pass":
+            pts.append(e["pass"]["end_location"])
+        elif t == "Carry":
+            pts.append(e["carry"]["end_location"])
+    return [p for k, p in enumerate(pts) if k == 0 or p != pts[k - 1]]
+
+
+def sequence_row(es, pid, g, gi, opp):
+    """Features of one possession, or None if it is not an open-play sequence with 3+ passes and 4+ points."""
+    pp = es[0]["play_pattern"]["name"]
+    if pp not in OPEN_PLAY:
+        return None
+    passes = [e for e in es if e["type"]["name"] == "Pass"]
+    if len(passes) < 3:
+        return None
+    pts = path_points(es)
+    if len(pts) < 4:
+        return None
+    P = np.array(pts)[:, :2]
+    L = float(np.sum(np.linalg.norm(np.diff(P, axis=0), axis=1)))
+    t0 = es[0]["minute"] * 60 + es[0]["second"]
+    t1 = es[-1]["minute"] * 60 + es[-1]["second"]
+    long_share = np.mean([p["pass"].get("length", 0) >= 30 for p in passes])
+    return dict(
+        match=g["match_id"],
+        gi=gi,
+        data=g["match_date"],
+        avv=opp,
+        minuto=es[0]["minute"],
+        sec=es[0]["second"],
+        tempo=es[0]["period"],
+        pid=pid,
+        play_pattern=pp,
+        n_pass=len(passes),
+        n_pts=len(P),
+        x0=P[0, 0],
+        y0=P[0, 1],
+        x1=P[-1, 0],
+        y1=P[-1, 1],
+        net_x=P[-1, 0] - P[0, 0],
+        path_len=L,
+        directness=float(np.clip((P[-1, 0] - P[0, 0]) / max(L, 1), -1, 1)),
+        long_share=float(long_share),
+        width_std=float(P[:, 1].std()),
+        mean_x=float(P[:, 0].mean()),
+        dur=max(t1 - t0, 0),
+        shot=int(any(e["type"]["name"] == "Shot" for e in es)),
+        zone0=zone(*P[0]),
+        zone1=zone(*P[-1]),
+        zones=[zone(*p) for p in P],
+        path=P.tolist(),
     )
-
-
-ZN = [
-    f"{c}{r}" for c in "ABCD" for r in "sCd"
-]  # A..D = lunghezza (A: propria area, D: ultimo terzo), s/C/d = sinistra/centro/destra
 
 
 def extract():
-    ms = sorted(
-        [
-            g
-            for g in json.load(open(MF, encoding="utf-8"))
-            if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])
-        ],
-        key=lambda g: g["match_date"],
-    )
+    matches = [g for g in json.load(open(MF, encoding="utf-8"))
+               if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])]
+    matches.sort(key=lambda g: g["match_date"])
     rows = []
-    for gi, g in enumerate(ms):
-        ev = json.load(open(f"{BASE}/ev/{g['match_id']}.json"))
-        poss = collections.OrderedDict()
-        for e in ev:
-            if (
-                e.get("possession_team", {}).get("name") == TEAM
-                and e["team"]["name"] == TEAM
-                and e["type"]["name"] in ("Pass", "Carry", "Shot", "Dribble")
-            ):
+    for gi, g in enumerate(matches):
+        home = g["home_team"]["home_team_name"] == TEAM
+        opp = g["away_team"]["away_team_name"] if home else g["home_team"]["home_team_name"]
+        poss = {}
+        for e in json.load(open(f"{BASE}/ev/{g['match_id']}.json")):
+            if (e.get("possession_team", {}).get("name") == TEAM
+                    and e["team"]["name"] == TEAM
+                    and e["type"]["name"] in ("Pass", "Carry", "Shot", "Dribble")):
                 poss.setdefault(e["possession"], []).append(e)
         for pid, es in poss.items():
-            pp = es[0]["play_pattern"]["name"]
-            if pp not in OPEN_PLAY:
-                continue
-            passes = [e for e in es if e["type"]["name"] == "Pass"]
-            if len(passes) < 3:
-                continue
-            pts = [es[0]["location"]]
-            for e in es:
-                t = e["type"]["name"]
-                if t == "Pass":
-                    pts.append(e["pass"]["end_location"])
-                elif t == "Carry":
-                    pts.append(e["carry"]["end_location"])
-            pts = [p for k, p in enumerate(pts) if k == 0 or p != pts[k - 1]]
-            if len(pts) < 4:
-                continue
-            P = np.array(pts)[:, :2]
-            L = float(np.sum(np.linalg.norm(np.diff(P, axis=0), axis=1)))
-            shot = any(e["type"]["name"] == "Shot" for e in es)
-            t0 = es[0]["minute"] * 60 + es[0]["second"]
-            t1 = es[-1]["minute"] * 60 + es[-1]["second"]
-            lp = np.mean([p["pass"].get("length", 0) >= 30 for p in passes])
-            opp = (
-                g["away_team"]["away_team_name"]
-                if g["home_team"]["home_team_name"] == TEAM
-                else g["home_team"]["home_team_name"]
-            )
-            rows.append(
-                dict(
-                    match=g["match_id"],
-                    gi=gi,
-                    data=g["match_date"],
-                    avv=opp,
-                    minuto=es[0]["minute"],
-                    sec=es[0]["second"],
-                    tempo=es[0]["period"],
-                    pid=pid,
-                    play_pattern=pp,
-                    n_pass=len(passes),
-                    n_pts=len(P),
-                    x0=P[0, 0],
-                    y0=P[0, 1],
-                    x1=P[-1, 0],
-                    y1=P[-1, 1],
-                    net_x=P[-1, 0] - P[0, 0],
-                    path_len=L,
-                    directness=float(np.clip((P[-1, 0] - P[0, 0]) / max(L, 1), -1, 1)),
-                    long_share=float(lp),
-                    width_std=float(P[:, 1].std()),
-                    mean_x=float(P[:, 0].mean()),
-                    dur=max(t1 - t0, 0),
-                    shot=int(shot),
-                    zone0=zone(*P[0]),
-                    zone1=zone(*P[-1]),
-                    zones=[zone(*p) for p in P],
-                    path=P.tolist(),
-                )
-            )
-    return pd.DataFrame(rows), len(ms)
+            row = sequence_row(es, pid, g, gi, opp)
+            if row:
+                rows.append(row)
+    return pd.DataFrame(rows), len(matches)
 
 
 def features(df):

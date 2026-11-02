@@ -27,11 +27,10 @@ py = [sys.executable, "-X", "utf8"]
 if a.csv:
     base = os.path.join(out, "_work")
     os.makedirs(base, exist_ok=True)
-    r = subprocess.run(
-        py + [os.path.join(here, "adapters", "generic_csv.py"), os.path.abspath(a.csv), base, "--coords", a.coords]
-        if a.coords == "120x80"
-        else py + [os.path.join(here, "adapters", "generic_csv.py"), os.path.abspath(a.csv), base]
-    )
+    cmd = py + [os.path.join(here, "adapters", "generic_csv.py"), os.path.abspath(a.csv), base]
+    if a.coords == "120x80":
+        cmd += ["--coords", a.coords]
+    r = subprocess.run(cmd)
     if r.returncode:
         sys.exit("Conversione fallita: controlla i messaggi sopra e docs/data_format.md")
     mf = os.path.join(base, "matches", "generic.json")
@@ -67,34 +66,23 @@ env = dict(os.environ, MPLBACKEND="Agg")
 if a.video_offsets:
     env["OPPREPORT_OFFSETS"] = os.path.abspath(a.video_offsets)
 print("Building the report (a few minutes: resampling for the reliability estimates)...")
-r = subprocess.run(py + [os.path.join(here, "report", "make_report.py"), mf, a.team, base], env=env)
-if r.returncode:
-    sys.exit("Generazione del report fallita.")
-r = subprocess.run(py + [os.path.join(here, "report", "restarts.py"), mf, a.team, base], env=env)
-if r.returncode:
-    sys.exit("Restart sheet failed.")
-r = subprocess.run(py + [os.path.join(here, "report", "setpieces.py"), mf, a.team, base], env=env)
-if r.returncode:
-    sys.exit("Scheda delle palle inattive fallita.")
-r = subprocess.run(py + [os.path.join(here, "report", "transitions.py"), mf, a.team, base], env=env)
-if r.returncode:
-    sys.exit("Scheda delle transizioni fallita.")
-r = subprocess.run(py + [os.path.join(here, "report", "defending.py"), mf, a.team, base], env=env)
-if r.returncode:
-    print(
-        "Defending sheet skipped: it needs StatsBomb-style defensive events (Pressure, Duel, ...), not present in the generic CSV."
-    )
-r = subprocess.run(py + [os.path.join(here, "report", "matchups.py"), mf, a.team, base], env=env)
-if r.returncode:
-    print("Matchups sheet skipped: it needs StatsBomb-style defensive events and formations.")
-r = subprocess.run(py + [os.path.join(here, "report", "keyplayers.py"), mf, a.team, base], env=env)
-if r.returncode:
-    print("Key players skipped: they need StatsBomb-style events.")
-r = subprocess.run(py + [os.path.join(here, "report", "xthreat.py"), mf, a.team, base], env=env)
-if r.returncode:
-    print(
-        "Threat (xT) sheet skipped: it needs StatsBomb-style pass outcomes, not present in the generic CSV."
-    )
+# (script, message if it fails, stop if it fails?) - the last four sheets need StatsBomb-style events, so they may be skipped
+SHEETS = [
+    ("make_report.py", "Generazione del report fallita.", True),
+    ("restarts.py", "Restart sheet failed.", True),
+    ("setpieces.py", "Scheda delle palle inattive fallita.", True),
+    ("transitions.py", "Scheda delle transizioni fallita.", True),
+    ("defending.py", "Defending sheet skipped: it needs StatsBomb-style defensive events (Pressure, Duel, ...), not present in the generic CSV.", False),
+    ("matchups.py", "Matchups sheet skipped: it needs StatsBomb-style defensive events and formations.", False),
+    ("keyplayers.py", "Key players skipped: they need StatsBomb-style events.", False),
+    ("xthreat.py", "Threat (xT) sheet skipped: it needs StatsBomb-style pass outcomes, not present in the generic CSV.", False),
+]
+for script, message, fatal in SHEETS:
+    r = subprocess.run(py + [os.path.join(here, "report", script), mf, a.team, base], env=env)
+    if r.returncode:
+        if fatal:
+            sys.exit(message)
+        print(message)
 r = subprocess.run(py + [os.path.join(here, "report", "summary.py"), a.team, base], env=env)
 if r.returncode:
     sys.exit("Pagina di preparazione fallita.")

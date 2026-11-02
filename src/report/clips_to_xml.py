@@ -15,24 +15,27 @@ import sys, os, colorsys, json, re
 import pandas as pd
 from xml.sax.saxutils import escape as E
 
-a = sys.argv[1:]
-opt = lambda k, d=None: a[a.index(k) + 1] if k in a else d
-pos = [x for i, x in enumerate(a) if not x.startswith("--") and (i == 0 or not a[i - 1].startswith("--"))]
+args = sys.argv[1:]
+
+
+def opt(key, default=None):
+    return args[args.index(key) + 1] if key in args else default
+
+
+# positional arguments = everything that is not an option or an option's value
+pos = [x for i, x in enumerate(args) if not x.startswith("--") and (i == 0 or not args[i - 1].startswith("--"))]
 if len(pos) < 2:
     sys.exit(__doc__)
 clips, out = pd.read_csv(pos[0], keep_default_na=False), pos[1]
 pre, post = float(opt("--pre", 3)), float(opt("--post", 3))
 evdir = opt("--events-dir")
 os.makedirs(out, exist_ok=True)
-offs = (
-    pd.read_csv(opt("--video-offsets")).astype({"match_id": str}).set_index("match_id")
-    if opt("--video-offsets")
-    else None
-)
-if offs is None:
-    print(
-        "WARNING: without --video-offsets the times are the match clock (second half from 45:00): shift them in the video tool."
-    )
+offs = None
+if opt("--video-offsets"):
+    offs = pd.read_csv(opt("--video-offsets")).astype({"match_id": str}).set_index("match_id")
+else:
+    print("WARNING: without --video-offsets the times are the match clock (second half from 45:00): shift them in the video tool.")
+
 codes = sorted(clips.family.astype(str).unique())
 col = {c: colorsys.hsv_to_rgb(i / max(len(codes), 1), 0.55, 0.9) for i, c in enumerate(codes)}
 base_name = os.path.basename(pos[0])
@@ -40,24 +43,40 @@ team = base_name.split("clips_", 1)[-1][:-4]
 possession_clips = not base_name.startswith(("transition_clips_", "xt_clips_"))
 STD = {"family", "match", "date", "opponent", "half", "minute", "second", "start_type", "passes", "duration_s", "ended_in_shot", "video_time"}
 extra = [c for c in clips.columns if c not in STD]
-third = lambda x: "Own third" if x < 40 else "Middle third" if x < 80 else "Final third"
+
+
+def third(x):
+    if x < 40:
+        return "Own third"
+    if x < 80:
+        return "Middle third"
+    return "Final third"
 
 
 def is_goal(e):
     return e["type"]["name"] == "Shot" and e["shot"]["outcome"]["name"] == "Goal"
 
 
+def us(e):
+    return e["team"]["name"].replace(" ", "_") == team
+
+
+def our_possession(e):
+    return e.get("possession_team", {}).get("name", "").replace(" ", "_") == team
+
+
 def event_labels(ev, r):
     """Labels from the raw events for one clip (empty list if the clip cannot be matched)."""
-    us = lambda e: e["team"]["name"].replace(" ", "_") == team
-    near = lambda e, d: e.get("period") == r.half and e.get("minute") == r.minute and abs(e.get("second", -9) - r.second) <= d
-    at = [
-        e
-        for d in (0, 1)
-        for e in ev
-        if near(e, d) and us(e) and e.get("possession_team", {}).get("name", "").replace(" ", "_") == team
-    ]
-    anchor = at[0] if at else next((e for d in (0, 1) for e in ev if near(e, d)), None)
+
+    def near(e, d):
+        return e.get("period") == r.half and e.get("minute") == r.minute and abs(e.get("second", -9) - r.second) <= d
+
+    # the team's events at the clip second first, then within one second
+    at = [e for d in (0, 1) for e in ev if near(e, d) and us(e) and our_possession(e)]
+    if at:
+        anchor = at[0]
+    else:
+        anchor = next((e for d in (0, 1) for e in ev if near(e, d)), None)
     if anchor is None:
         return []
     ours = theirs = 0
@@ -69,10 +88,13 @@ def event_labels(ev, r):
                 ours += 1
             else:
                 theirs += 1
-    lab = [
-        ("Score", f"{ours}-{theirs}"),
-        ("Game state", "Winning" if ours > theirs else "Losing" if ours < theirs else "Drawing"),
-    ]
+    if ours > theirs:
+        state = "Winning"
+    elif ours < theirs:
+        state = "Losing"
+    else:
+        state = "Drawing"
+    lab = [("Score", f"{ours}-{theirs}"), ("Game state", state)]
     if not (possession_clips and at):
         return lab
     es = [e for e in ev if e.get("period") == r.half and e.get("possession") == anchor["possession"] and us(e)]
@@ -95,58 +117,70 @@ def event_labels(ev, r):
     return lab
 
 
+def video_second(mid, half, clock):
+    """Second in the video: the match clock, or the half's kick-off in the video + clock when offsets are given."""
+    if offs is None:
+        return clock
+    if half == 1:
+        return float(offs.loc[str(mid), "half1_start"]) + clock
+    return float(offs.loc[str(mid), "half2_start"]) + clock - 2700
+
+
+def csv_labels(r, fam):
+    lab = []
+    if re.fullmatch(r"[AB]\d+", fam):
+        lab.append(("Phase", "Build-up" if fam[0] == "B" else "Advanced"))
+    lab += [
+        ("Start", r.start_type),
+        ("Passes", r.passes),
+        ("Duration (s)", r.duration_s),
+        ("Half", r.half),
+        ("Clock", f"{r.minute:02d}:{r.second:02d}"),
+        ("Shot", "yes" if r.ended_in_shot else "no"),
+        ("Opponent", r.opponent),
+        ("Date", r.date),
+    ]
+    for c in extra:
+        if str(getattr(r, c)) != "":
+            lab.append(("xT" if c == "xt" else c.replace("_", " ").capitalize(), getattr(r, c)))
+    return lab
+
+
 missing = []
 no_events = []
 for mid, g in clips.groupby("match"):
     if offs is not None and str(mid) not in offs.index:
         missing.append(str(mid))
         continue
-    evp = os.path.join(evdir, f"{mid}.json") if evdir else None
-    ev = json.load(open(evp, encoding="utf-8")) if evp and os.path.exists(evp) else None
+    ev_path = os.path.join(evdir, f"{mid}.json") if evdir else None
+    ev = json.load(open(ev_path, encoding="utf-8")) if ev_path and os.path.exists(ev_path) else None
     if evdir and ev is None:
         no_events.append(str(mid))
+
     inst = []
     for i, r in enumerate(g.itertuples(), 1):
-        clock = r.minute * 60 + r.second
-        t = (
-            clock
-            if offs is None
-            else float(offs.loc[str(mid), "half1_start" if r.half == 1 else "half2_start"])
-            + clock
-            - (0 if r.half == 1 else 2700)
-        )
+        t = video_second(mid, r.half, r.minute * 60 + r.second)
         fam = str(r.family)
-        lab = (
-            [("Phase", "Build-up" if fam[0] == "B" else "Advanced")] if re.fullmatch(r"[AB]\d+", fam) else []
-        ) + [
-            ("Start", r.start_type),
-            ("Passes", r.passes),
-            ("Duration (s)", r.duration_s),
-            ("Half", r.half),
-            ("Clock", f"{r.minute:02d}:{r.second:02d}"),
-            ("Shot", "yes" if r.ended_in_shot else "no"),
-            ("Opponent", r.opponent),
-            ("Date", r.date),
-        ]
-        lab += [(c.replace("_", " ").capitalize() if c != "xt" else "xT", getattr(r, c)) for c in extra if str(getattr(r, c)) != ""]
+        lab = csv_labels(r, fam)
         if ev is not None:
-            lab += [x for x in event_labels(ev, r) if x[0] not in {k for k, _ in lab}]
-        inst.append(
-            f"<instance><ID>{i}</ID><start>{max(t - pre, 0):.1f}</start><end>{t + r.duration_s + post:.1f}</end><code>{E(fam)}</code>"
-            + "".join(f"<label><group>{E(k)}</group><text>{E(str(v))}</text></label>" for k, v in lab)
-            + "</instance>"
-        )
+            have = {k for k, _ in lab}
+            lab += [x for x in event_labels(ev, r) if x[0] not in have]
+        labels = "".join(f"<label><group>{E(k)}</group><text>{E(str(v))}</text></label>" for k, v in lab)
+        inst.append(f"<instance><ID>{i}</ID><start>{max(t - pre, 0):.1f}</start><end>{t + r.duration_s + post:.1f}</end><code>{E(fam)}</code>{labels}</instance>")
+
+    used = set(g.family.astype(str))
     rows = "".join(
         f"<row><code>{E(c)}</code><R>{int(col[c][0] * 65535)}</R><G>{int(col[c][1] * 65535)}</G><B>{int(col[c][2] * 65535)}</B></row>"
-        for c in codes
-        if c in set(g.family.astype(str))
+        for c in codes if c in used
     )
     f = os.path.join(out, f"{team}_{g.date.iloc[0]}_{str(g.opponent.iloc[0]).replace(' ', '_')}_{mid}.xml")
     open(f, "w", encoding="utf-8").write(
         f"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<file><ALL_INSTANCES>{''.join(inst)}</ALL_INSTANCES><ROWS>{rows}</ROWS></file>\n"
     )
-print(
-    f"{clips.match.nunique() - len(missing)} file XML in {out}"
-    + (f"; {len(missing)} partite saltate perche' assenti da offsets.csv" if missing else "")
-    + (f"; {len(no_events)} partite senza file eventi (solo etichette del CSV)" if no_events else "")
-)
+
+msg = f"{clips.match.nunique() - len(missing)} file XML in {out}"
+if missing:
+    msg += f"; {len(missing)} partite saltate perche' assenti da offsets.csv"
+if no_events:
+    msg += f"; {len(no_events)} partite senza file eventi (solo etichette del CSV)"
+print(msg)

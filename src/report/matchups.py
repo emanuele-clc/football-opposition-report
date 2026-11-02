@@ -25,6 +25,8 @@ MF, TEAM = sys.argv[1], sys.argv[2]
 BASE = sys.argv[3] if len(sys.argv) > 3 else "."
 PPDA_ACT = ("Duel", "Interception", "Foul Committed")
 MIN_N = 6
+
+# What this data has (set while reading the matches). Measures that need something missing are dropped.
 HAS = {"xg": False, "pressure": False, "formation": False, "score": False}
 NEEDS = {
     "xg_for": "xg",
@@ -47,79 +49,107 @@ METRICS = [
 ]
 
 
+def available(metric):
+    return HAS.get(NEEDS.get(metric, ""), True)
+
+
+def x_of(e):
+    loc = e.get("location")
+    return loc[0] if loc else None
+
+
+def is_type(e, name):
+    return e["type"]["name"] == name
+
+
+def total_xg(shots):
+    return float(sum(e["shot"].get("statsbomb_xg", 0) or 0 for e in shots))
+
+
+def back_line(formation):
+    if formation[:1] == "4":
+        return "back four"
+    if formation[:1] in ("3", "5"):
+        return "back three/five"
+    return "unknown"
+
+
+def points(gf, ga):
+    if gf > ga:
+        return 3
+    return 1 if gf == ga else 0
+
+
+def one_match(g):
+    home = g["home_team"]["home_team_name"] == TEAM
+    opp = g["away_team"]["away_team_name"] if home else g["home_team"]["home_team_name"]
+    ev = json.load(open(f"{BASE}/ev/{g['match_id']}.json", encoding="utf-8"))
+    us = [e for e in ev if e["team"]["name"] == TEAM]
+    them = [e for e in ev if e["team"]["name"] != TEAM]
+
+    my_pass_60 = sum(1 for e in us if is_type(e, "Pass") and x_of(e) is not None and x_of(e) < 72)
+    opp_act = sum(1 for e in them if e["type"]["name"] in PPDA_ACT and x_of(e) is not None and x_of(e) >= 48)
+    own_half = [e for e in us if is_type(e, "Pass") and x_of(e) is not None and x_of(e) < 60]
+    lost = 0
+    for e in us:
+        if x_of(e) is None or x_of(e) >= 60:
+            continue
+        if (is_type(e, "Pass") and "outcome" in e["pass"]) or e["type"]["name"] in ("Dispossessed", "Miscontrol"):
+            lost += 1
+
+    xi = {e["team"]["name"]: e["tactics"]["formation"] for e in ev if is_type(e, "Starting XI")}
+    opp_formation = str(xi.get(opp, ""))
+    scored = "home_score" in g and "away_score" in g
+    if scored:
+        gf, ga = (g["home_score"], g["away_score"]) if home else (g["away_score"], g["home_score"])
+    else:
+        gf = ga = None
+
+    HAS["xg"] |= any("statsbomb_xg" in e.get("shot", {}) for e in ev if is_type(e, "Shot"))
+    HAS["pressure"] |= any(is_type(e, "Pressure") for e in ev)
+    HAS["formation"] |= bool(xi)
+    HAS["score"] |= scored
+
+    our_shots = [e for e in us if is_type(e, "Shot")]
+    their_shots = [e for e in them if is_type(e, "Shot")]
+    n_own = max(len(own_half), 1)
+    return {
+        "match": g["match_id"],
+        "date": g["match_date"],
+        "opponent": opp,
+        "venue": "home" if home else "away",
+        "score": f"{gf}-{ga}" if scored else "",
+        "formation": str(xi.get(TEAM, "")),
+        "opp_formation": opp_formation,
+        "opp_back_line": back_line(opp_formation),
+        "opp_ppda": my_pass_60 / max(opp_act, 1),
+        "xg_for": total_xg(our_shots),
+        "xg_against": total_xg(their_shots),
+        "shots_for": len(our_shots),
+        "shots_against": len(their_shots),
+        "lost_own_half": lost,
+        "under_pressure_share": sum(1 for e in own_half if e.get("under_pressure")) / n_own,
+        "own_half_completion": sum(1 for e in own_half if "outcome" not in e["pass"]) / n_own,
+        "pressures": sum(1 for e in us if is_type(e, "Pressure")),
+        "points": points(gf, ga) if scored else None,
+    }
+
+
 def per_match():
-    ms = sorted(
-        [
-            g
-            for g in json.load(open(MF, encoding="utf-8"))
-            if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])
-        ],
-        key=lambda g: g["match_date"],
-    )
-    out = []
-    for g in ms:
-        home = g["home_team"]["home_team_name"] == TEAM
-        opp = g["away_team"]["away_team_name"] if home else g["home_team"]["home_team_name"]
-        ev = json.load(open(f"{BASE}/ev/{g['match_id']}.json", encoding="utf-8"))
-        us = [e for e in ev if e["team"]["name"] == TEAM]
-        them = [e for e in ev if e["team"]["name"] != TEAM]
-        loc = lambda e: e.get("location") or [None, None]
-        my_pass_60 = sum(1 for e in us if e["type"]["name"] == "Pass" and loc(e)[0] is not None and loc(e)[0] < 72)
-        opp_act = sum(1 for e in them if e["type"]["name"] in PPDA_ACT and loc(e)[0] is not None and loc(e)[0] >= 48)
-        own_half = [e for e in us if e["type"]["name"] == "Pass" and loc(e)[0] is not None and loc(e)[0] < 60]
-        lost = sum(
-            1
-            for e in us
-            if loc(e)[0] is not None
-            and loc(e)[0] < 60
-            and (
-                (e["type"]["name"] == "Pass" and "outcome" in e["pass"])
-                or e["type"]["name"] in ("Dispossessed", "Miscontrol")
-            )
-        )
-        xi = {e["team"]["name"]: e["tactics"]["formation"] for e in ev if e["type"]["name"] == "Starting XI"}
-        f_opp = str(xi.get(opp, ""))
-        scored = "home_score" in g and "away_score" in g
-        gf, ga = ((g["home_score"], g["away_score"]) if home else (g["away_score"], g["home_score"])) if scored else (None, None)
-        HAS["xg"] |= any("statsbomb_xg" in e.get("shot", {}) for e in ev if e["type"]["name"] == "Shot")
-        HAS["pressure"] |= any(e["type"]["name"] == "Pressure" for e in ev)
-        HAS["formation"] |= bool(xi)
-        HAS["score"] |= scored
-        sh = lambda es: [e for e in es if e["type"]["name"] == "Shot"]
-        out.append(
-            dict(
-                match=g["match_id"],
-                date=g["match_date"],
-                opponent=opp,
-                venue="home" if home else "away",
-                score=f"{gf}-{ga}" if scored else "",
-                formation=str(xi.get(TEAM, "")),
-                opp_formation=f_opp,
-                opp_back_line=(
-                    "back four" if f_opp[:1] == "4" else "back three/five" if f_opp[:1] in ("3", "5") else "unknown"
-                ),
-                opp_ppda=my_pass_60 / max(opp_act, 1),
-                xg_for=float(sum(e["shot"].get("statsbomb_xg", 0) or 0 for e in sh(us))),
-                xg_against=float(sum(e["shot"].get("statsbomb_xg", 0) or 0 for e in sh(them))),
-                shots_for=len(sh(us)),
-                shots_against=len(sh(them)),
-                lost_own_half=lost,
-                under_pressure_share=sum(1 for e in own_half if e.get("under_pressure")) / max(len(own_half), 1),
-                own_half_completion=sum(1 for e in own_half if "outcome" not in e["pass"]) / max(len(own_half), 1),
-                pressures=sum(1 for e in us if e["type"]["name"] == "Pressure"),
-                points=(3 if gf > ga else 1 if gf == ga else 0) if scored else None,
-            )
-        )
-    return out
+    matches = [g for g in json.load(open(MF, encoding="utf-8"))
+               if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])]
+    matches.sort(key=lambda g: g["match_date"])
+    return [one_match(g) for g in matches]
 
 
-def compare(rows, key_a, key_b, label, linked=()):
-    A = [r for r in rows if key_a(r)]
-    B = [r for r in rows if key_b(r)]
-    rng = np.random.default_rng(0)
+def compare(rows, in_a, in_b, label, linked=()):
+    """Mean of group A minus mean of group B for each measure, with a bootstrap interval inside each group."""
+    A = [r for r in rows if in_a(r)]
+    B = [r for r in rows if in_b(r)]
+    rng = np.random.default_rng(0)  # one generator for all measures of this split, in METRICS order
     res = []
     for m, lab, unit, direction in METRICS:
-        if not HAS.get(NEEDS.get(m, ""), True):
+        if not available(m):
             continue
         a = np.array([r[m] for r in A], float)
         b = np.array([r[m] for r in B], float)
@@ -127,65 +157,64 @@ def compare(rows, key_a, key_b, label, linked=()):
             continue
         d = [rng.choice(a, len(a)).mean() - rng.choice(b, len(b)).mean() for _ in range(2000)]
         lo, hi = np.percentile(d, [2.5, 97.5])
-        verdict = "small group" if min(len(a), len(b)) < MIN_N else ("clear" if lo > 0 or hi < 0 else "uncertain")
-        res.append(
-            dict(
-                id=m,
-                label=lab,
-                unit=unit,
-                direction=direction,
-                linked=m in linked,
-                a=float(a.mean()),
-                b=float(b.mean()),
-                diff=float(a.mean() - b.mean()),
-                ci=[float(lo), float(hi)],
-                verdict=verdict,
-            )
-        )
-    return dict(label=label, n_a=len(A), n_b=len(B), metrics=res)
+        if min(len(a), len(b)) < MIN_N:
+            verdict = "small group"
+        elif lo > 0 or hi < 0:
+            verdict = "clear"
+        else:
+            verdict = "uncertain"
+        res.append({
+            "id": m,
+            "label": lab,
+            "unit": unit,
+            "direction": direction,
+            "linked": m in linked,
+            "a": float(a.mean()),
+            "b": float(b.mean()),
+            "diff": float(a.mean() - b.mean()),
+            "ci": [float(lo), float(hi)],
+            "verdict": verdict,
+        })
+    return {"label": label, "n_a": len(A), "n_b": len(B), "metrics": res}
 
 
 if __name__ == "__main__":
     rows = per_match()
-    if not any(r["opp_ppda"] != r["opp_ppda"] or r["opp_ppda"] > 0 for r in rows) or not any(
-        r["shots_for"] for r in rows
-    ):
+    # opp_ppda != opp_ppda is the NaN test
+    if not any(r["opp_ppda"] != r["opp_ppda"] or r["opp_ppda"] > 0 for r in rows) or not any(r["shots_for"] for r in rows):
         sys.exit(f"No usable events for {TEAM}: the matchup sheet needs passes, shots and defensive actions.")
     for r in rows:  # measures this data cannot give are removed, not left at zero
         for m, need in NEEDS.items():
             if not HAS[need]:
                 r[m] = None
+
     med = float(np.median([r["opp_ppda"] for r in rows]))
     for r in rows:
         r["opp_press"] = "high press" if r["opp_ppda"] <= med else "lower press"
-    splits = {
-        "opp_press": dict(
-            compare(
-                rows,
-                lambda r: r["opp_press"] == "high press",
-                lambda r: r["opp_press"] == "lower press",
-                "Opponent pressing",
-                linked=("lost_own_half", "own_half_completion", "under_pressure_share"),
-            ),
-            groups=["against a high press", "against a lower press"],
-            rule=f"opponent PPDA in that match at or below the median ({med:.1f}) = high press",
-        ),
-        **({"back_line": dict(
-            compare(
-                rows,
-                lambda r: r["opp_back_line"] == "back three/five",
-                lambda r: r["opp_back_line"] == "back four",
-                "Opponent back line",
-            ),
-            groups=["against a back three/five", "against a back four"],
-            rule="first digit of the opponent's starting formation",
-        )} if HAS["formation"] else {}),
-        "venue": dict(
-            compare(rows, lambda r: r["venue"] == "home", lambda r: r["venue"] == "away", "Venue"),
-            groups=["at home", "away"],
-            rule="home or away",
-        ),
-    }
+
+    splits = {}
+    splits["opp_press"] = compare(
+        rows,
+        lambda r: r["opp_press"] == "high press",
+        lambda r: r["opp_press"] == "lower press",
+        "Opponent pressing",
+        linked=("lost_own_half", "own_half_completion", "under_pressure_share"),
+    )
+    splits["opp_press"]["groups"] = ["against a high press", "against a lower press"]
+    splits["opp_press"]["rule"] = f"opponent PPDA in that match at or below the median ({med:.1f}) = high press"
+    if HAS["formation"]:
+        splits["back_line"] = compare(
+            rows,
+            lambda r: r["opp_back_line"] == "back three/five",
+            lambda r: r["opp_back_line"] == "back four",
+            "Opponent back line",
+        )
+        splits["back_line"]["groups"] = ["against a back three/five", "against a back four"]
+        splits["back_line"]["rule"] = "first digit of the opponent's starting formation"
+    splits["venue"] = compare(rows, lambda r: r["venue"] == "home", lambda r: r["venue"] == "away", "Venue")
+    splits["venue"]["groups"] = ["at home", "away"]
+    splits["venue"]["rule"] = "home or away"
+
     res = {
         "team": TEAM,
         "matches": len(rows),
@@ -196,15 +225,15 @@ if __name__ == "__main__":
         "splits": splits,
         "per_match": rows,
     }
-    unavailable = [
-        {"id": m, "label": lab, "why": WHY[NEEDS[m]]} for m, lab, *_ in METRICS if not HAS.get(NEEDS.get(m, ""), True)
-    ] + ([] if HAS["formation"] else [{"id": "back_line", "label": "Opponent back line", "why": "no formations in this data"}])
-    if unavailable:  # only for data without xG, pressures or formations (StatsBomb output unchanged)
+    # Only for data without xG, pressures or formations (StatsBomb output unchanged).
+    unavailable = [{"id": m, "label": lab, "why": WHY[NEEDS[m]]} for m, lab, *_ in METRICS if not available(m)]
+    if not HAS["formation"]:
+        unavailable.append({"id": "back_line", "label": "Opponent back line", "why": "no formations in this data"})
+    if unavailable:
         res["unavailable"] = unavailable
-    json.dump(
-        res, open(f"{BASE}/matchups_{TEAM.replace(' ', '_')}.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False
-    )
-    for k, s in splits.items():
-        print(
-            f"[{TEAM}] {s['label']}: {s['n_a']} vs {s['n_b']} matches | clear: {[m['label'] + (' (linked)' if m['linked'] else '') for m in s['metrics'] if m['verdict'] == 'clear']}"
-        )
+
+    out = f"{BASE}/matchups_{TEAM.replace(' ', '_')}.json"
+    json.dump(res, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    for s in splits.values():
+        clear = [m["label"] + (" (linked)" if m["linked"] else "") for m in s["metrics"] if m["verdict"] == "clear"]
+        print(f"[{TEAM}] {s['label']}: {s['n_a']} vs {s['n_b']} matches | clear: {clear}")
