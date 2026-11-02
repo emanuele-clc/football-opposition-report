@@ -45,7 +45,9 @@ else:
 for d in (tr, te):
     d["w0"] = (d.y0 - 40).abs()
     d["w1"] = (d.y1 - 40).abs()
-mask = lambda d, fase: (d.x0 < CUT) if fase == "costruzione" else (d.x0 >= CUT)
+def mask(d, fase):
+    """Sequences of the phase: build-up starts before x = CUT, advanced from CUT on."""
+    return (d.x0 < CUT) if fase == "costruzione" else (d.x0 >= CUT)
 models = {}
 for fase, k in K.items():
     sub = tr[mask(tr, fase)]

@@ -46,7 +46,9 @@ else:
 for d in (tr, te):
     d["w0"] = (d.y0 - 40).abs()
     d["w1"] = (d.y1 - 40).abs()
-mask = lambda d, fase: (d.x0 < CUT) if fase == "costruzione" else (d.x0 >= CUT)
+def mask(d, fase):
+    """Sequences of the phase: build-up starts before x = CUT, advanced from CUT on."""
+    return (d.x0 < CUT) if fase == "costruzione" else (d.x0 >= CUT)
 models = {}
 for fase, k in K.items():
     sub = tr[mask(tr, fase)]
@@ -158,7 +160,9 @@ for fase, k in K.items():
     Fa = pd.get_dummies(a.cl, dtype=float)
     Fb = pd.get_dummies(b.cl, dtype=float).reindex(columns=Fa.columns, fill_value=0.0)
     p0 = float(np.clip(sa_.mean(), 1e-6, 1 - 1e-6))
-    ls = lambda p, y: -np.log(np.where(y == 1, p, 1 - p))
+    def ls(p, y):  # log loss of a shot / no-shot outcome
+        return -np.log(np.where(y == 1, p, 1 - p))
+
     pf = np.clip(
         LogisticRegression(max_iter=2000, C=0.5).fit(Fa.values, sa_).predict_proba(Fb.values)[:, 1], 1e-6, 1 - 1e-6
     )

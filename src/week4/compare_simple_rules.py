@@ -38,15 +38,16 @@ else:
 for d in (tr, te):
     d["w0"] = (d.y0 - 40).abs()
     d["w1"] = (d.y1 - 40).abs()
-mask = lambda d, f: (d.x0 < CUT) if f == "costruzione" else (d.x0 >= CUT)
+def mask(d, f):
+    """Sequences of the phase: build-up starts before x = CUT, advanced from CUT on."""
+    return (d.x0 < CUT) if f == "costruzione" else (d.x0 >= CUT)
 
 
 def nll(cells_a, cells_b, ya, yb):
     Fa = pd.get_dummies(cells_a, dtype=float)
     Fb = pd.get_dummies(cells_b, dtype=float).reindex(columns=Fa.columns, fill_value=0.0)
-    p = np.clip(
-        LogisticRegression(max_iter=2000, C=0.5).fit(Fa.values, ya).predict_proba(Fb.values)[:, 1], 1e-6, 1 - 1e-6
-    )
+    model = LogisticRegression(max_iter=2000, C=0.5).fit(Fa.values, ya)
+    p = np.clip(model.predict_proba(Fb.values)[:, 1], 1e-6, 1 - 1e-6)
     return -np.log(np.where(yb == 1, p, 1 - p))
 
 
@@ -90,9 +91,12 @@ for fase, k in K.items():
                 [2.5, 97.5],
             )
             res["diff_x1_ci95"] = [float(ci[0]), float(ci[1])]
-            res["verdetto"] = (
-                "famiglie meglio" if ci[0] > 0 else ("regola semplice meglio" if ci[1] < 0 else "nessuna differenza")
-            )
+            if ci[0] > 0:
+                res["verdetto"] = "famiglie meglio"
+            elif ci[1] < 0:
+                res["verdetto"] = "regola semplice meglio"
+            else:
+                res["verdetto"] = "nessuna differenza"
     out[fase] = res
     print(
         f"[{S.TEAM} {fase}] guadagno sui tiri: famiglie {res['guadagno_famiglie']:+.4f} | x1 in {res['celle_x1']} fasce {res['guadagno_x1']:+.4f} | net_x {res['guadagno_net_x']:+.4f} | n_pass {res['guadagno_n_pass']:+.4f} || differenza (x1 - famiglie) {res['diff_x1']:+.4f} IC95 [{res['diff_x1_ci95'][0]:+.4f}, {res['diff_x1_ci95'][1]:+.4f}] -> {res['verdetto']}"

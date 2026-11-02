@@ -77,15 +77,20 @@ res = dict(
     squadre=rows,
 )
 json.dump(res, open(outp, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+def yes_no(x):
+    if x is None:
+        return "-"
+    return "si" if x else "no"
+
+
 print(f"{'Squadra':26s}{'Lega':26s}{'H1':>5s}{'H2':>5s}{'guadagno':>10s}{'H3 b/a':>9s}{'E1':>7s}")
 for r in rows:
     if r["status"] != "eseguita":
         print(f"{r['team']:26s}{r['league']:26s}  non eseguita")
         continue
-    f = lambda x: "-" if x is None else ("si" if x else "no")
-    print(
-        f"{r['team']:26s}{r['league']:26s}{f(r['H1']):>5s}{f(r['H2']):>5s}{r['gain']:>+10.3f}{f(r['H3_build'])+'/'+f(r['H3_adv']):>9s}{('%+.2f' % r['E1_margin']) if 'E1_margin' in r else '-':>7s}"
-    )
+    h3 = yes_no(r["H3_build"]) + "/" + yes_no(r["H3_adv"])
+    e1 = ("%+.2f" % r["E1_margin"]) if "E1_margin" in r else "-"
+    print(f"{r['team']:26s}{r['league']:26s}{yes_no(r['H1']):>5s}{yes_no(r['H2']):>5s}{r['gain']:>+10.3f}{h3:>9s}{e1:>7s}")
 w = res["intervallo_wilson_95"]
 print(
     f"\nBuild-up (H1 e H2): {k} su {n}"

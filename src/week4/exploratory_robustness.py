@@ -39,7 +39,11 @@ def fit(method, X, k, seed=0):
         return m.predict(X), m.predict
     lab = AgglomerativeClustering(k, linkage="ward").fit_predict(X)
     C = np.array([X[lab == c].mean(0) for c in range(k)])
-    return lab, lambda Z: np.argmin(((Z[:, None, :] - C[None]) ** 2).sum(-1), 1)
+
+    def nearest_centre(Z):  # Ward has no predict: assign to the closest cluster mean
+        return np.argmin(((Z[:, None, :] - C[None]) ** 2).sum(-1), 1)
+
+    return lab, nearest_centre
 
 
 def jaccard(method, X, g, k):

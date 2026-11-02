@@ -73,9 +73,4 @@ for n in NS:
     print(
         f"[{S.TEAM}] n={n:2d} | error P90: passes {out['n'][str(n)]['passes_p90']:.2f}, long {out['n'][str(n)]['long_p90']:.3f}, shot {out['n'][str(n)]['shot_p90']:.3f} | family shares max error P90: build-up {out['n'][str(n)]['shares_build-up_p90']:.3f}, advanced {out['n'][str(n)]['shares_advanced_p90']:.3f}"
     )
-json.dump(
-    out,
-    open(f"{S.BASE}/samplesize_{S.TEAM.replace(' ', '_')}.json", "w", encoding="utf-8"),
-    indent=1,
-    ensure_ascii=False,
-)
+json.dump(out, open(f"{S.BASE}/samplesize_{S.TEAM.replace(' ', '_')}.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
