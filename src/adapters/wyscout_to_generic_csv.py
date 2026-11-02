@@ -28,14 +28,44 @@ import csv, json, sys, codecs
 
 
 def name(s):
-    s = s or ""
     """Some names are stored with literal \\uXXXX escapes."""
+    s = s or ""
     if "\\u" not in s:
         return s
     try:
         return json.loads('"' + s.replace('"', '\\"') + '"')
     except ValueError:
         return codecs.decode(s, "unicode_escape")
+
+
+FOULS = {"Foul", "Hand foul", "Late card foul", "Out of game foul", "Violent Foul"}
+RS = {
+    "Goal kick": "goal_kick",
+    "Throw in": "throw_in",
+    "Corner": "corner",
+    "Free Kick": "free_kick",
+    "Free kick cross": "free_kick",
+    "Free kick shot": "free_kick",
+    "Penalty": "penalty",
+}
+
+
+def event_type(en, sub, tags):
+    if en == "Pass" or sub in ("Goal kick", "Throw in", "Corner", "Free Kick", "Free kick cross"):
+        return "pass"
+    if en == "Shot" or sub in ("Free kick shot", "Penalty"):
+        return "shot"
+    if sub == "Acceleration":
+        return "carry"
+    if 1401 in tags:
+        return "interception"
+    if en == "Duel" and (sub == "Ground defending duel" or (sub == "Air duel" and 701 in tags)):
+        return "duel"
+    if en == "Foul" and sub in FOULS:
+        return "foul"
+    if sub == "Clearance":
+        return "clearance"
+    return "other"
 
 
 def main(ev_path, m_path, t_path, p_path, team, out):
@@ -52,16 +82,6 @@ def main(ev_path, m_path, t_path, p_path, team, out):
     ]
     evs.sort(key=lambda e: (e["matchId"], e["matchPeriod"], e["eventSec"]))
     rows, last_goal, prev = [], False, None
-    FOULS = {"Foul", "Hand foul", "Late card foul", "Out of game foul", "Violent Foul"}
-    RS = {
-        "Goal kick": "goal_kick",
-        "Throw in": "throw_in",
-        "Corner": "corner",
-        "Free Kick": "free_kick",
-        "Free kick cross": "free_kick",
-        "Free kick shot": "free_kick",
-        "Penalty": "penalty",
-    }
     for i, e in enumerate(evs):
         m = matches[e["matchId"]]
         side = {v["side"]: int(k) for k, v in m["teamsData"].items()}
@@ -71,24 +91,7 @@ def main(ev_path, m_path, t_path, p_path, team, out):
         new_half = prev is None or prev["matchId"] != e["matchId"] or prev["matchPeriod"] != e["matchPeriod"]
         tags = {t["id"] for t in e.get("tags", [])}
         en, sub = e["eventName"], e["subEventName"]
-        etype = (
-            "pass"
-            if en == "Pass" or sub in ("Goal kick", "Throw in", "Corner", "Free Kick", "Free kick cross")
-            else (
-                "shot"
-                if en == "Shot" or sub in ("Free kick shot", "Penalty")
-                else "carry" if sub == "Acceleration" else "other"
-            )
-        )
-        if etype == "other":
-            if 1401 in tags:
-                etype = "interception"
-            elif en == "Duel" and (sub == "Ground defending duel" or (sub == "Air duel" and 701 in tags)):
-                etype = "duel"
-            elif en == "Foul" and sub in FOULS:
-                etype = "foul"
-            elif sub == "Clearance":
-                etype = "clearance"
+        etype = event_type(en, sub, tags)
         also = None
         if 102 in tags and etype not in ("pass", "carry", "shot"):
             also = etype if etype != "other" else None  # keep the defensive action the touch also was (interception, clearance...)

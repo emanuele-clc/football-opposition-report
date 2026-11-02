@@ -86,7 +86,7 @@ def derive_possession(g, min_ctrl=2):
     pid, cur, out = 0, None, []
     for i in range(n):
         newp = i == 0 or per[i] != per[i - 1]
-        has_rs = rs[i] is not None and not (isinstance(rs[i], float) and np.isnan(rs[i])) and rs[i] != ""
+        has_rs = has_value(rs[i])
         if not newp and has_rs:
             newp = True
         elif not newp and typ[i] in CTRL and team[i] != cur:
@@ -103,6 +103,60 @@ def derive_possession(g, min_ctrl=2):
     return out
 
 
+def has_value(v):
+    return v is not None and not (isinstance(v, float) and np.isnan(v)) and v != ""
+
+
+def play_pattern(restart):
+    if restart in (None, ""):
+        return "Regular Play"
+    return RESTART.get(str(restart).lower(), "Regular Play")
+
+
+def to_event(i, r, g, sx, sy, pid_team, pattern):
+    """One CSV row -> one StatsBomb-style event."""
+    e = {
+        "index": i,
+        "period": int(r.period),
+        "minute": int(r.minute),
+        "second": int(r.second),
+        "team": {"name": r.team},
+        "possession": int(r._pid),
+        "possession_team": {"name": pid_team},
+        "type": {"name": TYPE.get(r.event_type, DEFT.get(r.event_type, "Other"))},
+        "location": [None, None] if pd.isna(r.x) else [float(r.x) * sx, float(r.y) * sy],
+        "play_pattern": {"name": pattern},
+    }
+    kind = r.event_type
+    if kind in ("pass", "carry") and "end_x" in g.columns and pd.notna(r.end_x):
+        end = [float(r.end_x) * sx, float(r.end_y) * sy]
+        if kind == "pass":
+            if "pass_length" in g.columns and pd.notna(r.pass_length):
+                length = float(r.pass_length)
+            else:
+                length = float(np.hypot(end[0] - e["location"][0], end[1] - e["location"][1]))
+            e["pass"] = {"end_location": end, "length": length}
+        else:
+            e["carry"] = {"end_location": end}
+    elif kind == "pass":
+        e["pass"] = {"end_location": e["location"], "length": 0.0}
+    elif kind == "carry":
+        e["carry"] = {"end_location": e["location"]}
+
+    if kind == "shot":
+        goal = "shot_goal" in g.columns and r.shot_goal == 1
+        e["shot"] = {"outcome": {"name": "Goal" if goal else "Other"}}
+    if kind == "pass" and "pass_outcome" in g.columns and str(r.pass_outcome).strip().lower() == "incomplete":
+        e["pass"]["outcome"] = {"name": "Incomplete"}
+    if kind == "shot" and "xg" in g.columns and pd.notna(r.xg):
+        e["shot"]["statsbomb_xg"] = float(r.xg)
+    if "player" in g.columns and pd.notna(r.player):
+        e["player"] = {"name": str(r.player)}
+    if kind == "pass" and "recipient" in g.columns and pd.notna(r.recipient):
+        e["pass"]["recipient"] = {"name": str(r.recipient)}
+    return e
+
+
 def convert(csv_path, out_dir, coords="100", provider=None):
     df = pd.read_csv(csv_path)
     problems, d = validate(df)
@@ -117,89 +171,43 @@ def convert(csv_path, out_dir, coords="100", provider=None):
     matches = []
     for mid, g in d.groupby("match_id", sort=False):
         g = g.reset_index(drop=True)
-        has_p = "possession_id" in g.columns and g.possession_id.notna().all()
-        g["_pid"] = g.possession_id.astype(int).values if has_p else derive_possession(g)
-        rs = (
-            g["restart"].astype(object).where(g["restart"].notna(), None)
-            if "restart" in g.columns
-            else pd.Series([None] * len(g))
-        )
-        first = {}
-        owner = {}
+        has_pid = "possession_id" in g.columns and g.possession_id.notna().all()
+        g["_pid"] = g.possession_id.astype(int).values if has_pid else derive_possession(g)
+        if "restart" in g.columns:
+            rs = g["restart"].astype(object).where(g["restart"].notna(), None)
+        else:
+            rs = pd.Series([None] * len(g))
+
+        # first row of each possession, and the team of its first control action
+        first, owner = {}, {}
         for i, r in g.iterrows():
             first.setdefault(r._pid, i)
             if r.event_type in CTRL:
                 owner.setdefault(r._pid, r.team)
+
         evs = []
         for i, r in g.iterrows():
-            e = {
-                "index": i,
-                "period": int(r.period),
-                "minute": int(r.minute),
-                "second": int(r.second),
-                "team": {"name": r.team},
-                "possession": int(r._pid),
-                "possession_team": {"name": owner.get(r._pid, r.team)},
-                "type": {"name": TYPE.get(r.event_type, DEFT.get(r.event_type, "Other"))},
-                "location": [None, None] if pd.isna(r.x) else [float(r.x) * sx, float(r.y) * sy],
-            }
-            rest = rs.iloc[i] if first[r._pid] == i else None
-            pp_first = (
-                RESTART.get(str(rs.iloc[first[r._pid]]).lower(), "Regular Play")
-                if rs.iloc[first[r._pid]] not in (None, "")
-                else "Regular Play"
-            )
-            e["play_pattern"] = {"name": pp_first}
-            if r.event_type in ("pass", "carry") and "end_x" in g.columns and pd.notna(r.end_x):
-                end = [float(r.end_x) * sx, float(r.end_y) * sy]
-                if r.event_type == "pass":
-                    L = (
-                        float(r.pass_length)
-                        if "pass_length" in g.columns and pd.notna(r.pass_length)
-                        else float(np.hypot(end[0] - e["location"][0], end[1] - e["location"][1]))
-                    )
-                    e["pass"] = {"end_location": end, "length": L}
-                else:
-                    e["carry"] = {"end_location": end}
-            elif r.event_type == "pass":
-                e["pass"] = {"end_location": e["location"], "length": 0.0}
-            elif r.event_type == "carry":
-                e["carry"] = {"end_location": e["location"]}
-            if r.event_type == "shot":
-                e["shot"] = {"outcome": {"name": "Goal" if "shot_goal" in g.columns and r.shot_goal == 1 else "Other"}}
-            if (
-                r.event_type == "pass"
-                and "pass_outcome" in g.columns
-                and str(r.pass_outcome).strip().lower() == "incomplete"
-            ):
-                e["pass"]["outcome"] = {"name": "Incomplete"}
-            if r.event_type == "shot" and "xg" in g.columns and pd.notna(r.xg):
-                e["shot"]["statsbomb_xg"] = float(r.xg)
-            if "player" in g.columns and pd.notna(r.player):
-                e["player"] = {"name": str(r.player)}
-            if r.event_type == "pass" and "recipient" in g.columns and pd.notna(r.recipient):
-                e["pass"]["recipient"] = {"name": str(r.recipient)}
+            pattern = play_pattern(rs.iloc[first[r._pid]])
+            e = to_event(i, r, g, sx, sy, owner.get(r._pid, r.team), pattern)
             evs.append(e)
-            if r.event_type == "own_goal":  # as in StatsBomb: the other team gets an 'Own Goal For' at the same time
+            if r.event_type == "own_goal":
+                # as in StatsBomb: the other team gets an 'Own Goal For' at the same time
                 other = r.away_team if r.team == r.home_team else r.home_team
-                evs.append(
-                    {
-                        k: v
-                        for k, v in dict(e, index=i + 0.5, team={"name": other}, type={"name": "Own Goal For"}).items()
-                        if k != "player"
-                    }
-                )
+                og = dict(e, index=i + 0.5, team={"name": other}, type={"name": "Own Goal For"})
+                og.pop("player", None)
+                evs.append(og)
         json.dump(evs, open(f"{out_dir}/ev/{mid}.json", "w", encoding="utf-8"))
+
         r0 = g.iloc[0]
-        matches.append(
-            {
-                "match_id": mid if not str(mid).isdigit() else int(mid),
-                "match_date": str(r0.match_date),
-                "home_team": {"home_team_name": r0.home_team},
-                "away_team": {"away_team_name": r0.away_team},
-                **({"data_provider": provider} if provider else {}),
-            }
-        )
+        match = {
+            "match_id": int(mid) if str(mid).isdigit() else mid,
+            "match_date": str(r0.match_date),
+            "home_team": {"home_team_name": r0.home_team},
+            "away_team": {"away_team_name": r0.away_team},
+        }
+        if provider:
+            match["data_provider"] = provider
+        matches.append(match)
     json.dump(matches, open(f"{out_dir}/matches/generic.json", "w", encoding="utf-8"))
     print(f"convertite {len(matches)} partite in {out_dir}")
     return len(problems)
