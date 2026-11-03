@@ -14,6 +14,7 @@ from pydantic import BaseModel
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import gameplan as plan_rules
+import ai_brief
 import tracking as dfl_tracking
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -172,8 +173,9 @@ METRICS = [
     ("corner_shot", "Set pieces", "Corners: shot after", "setpieces", lambda d: d["kinds"]["Corner"]["shot"], lambda d: d["kinds"]["Corner"]["shot_ci"], "pct", None),
     ("losses_pm", "Transitions", "Losses per match", "transitions", lambda d: d["losses"]["per_match"], None, "num", None),
     ("regain5", "Transitions", "Ball regained within 5 s of a loss", "transitions", lambda d: d["losses"]["regain5"], lambda d: d["losses"]["regain5_ci"], "pct", CAUTION_REGAIN),
-    ("high_rec_pm", "Transitions", "Recoveries per match in the final third", "transitions",
-     lambda d: d["recoveries"]["by_third"]["final third"]["per_match"], lambda d: d["recoveries"]["by_third"]["final third"]["per_match_ci"], "num", None),
+    # Share, not per match (changed 3 Nov 2026): the share is the statement the evidence study graded (T21), so the number shown carries a grade.
+    ("high_rec_share", "Transitions", "Share of recoveries in the final third", "transitions",
+     lambda d: d["recoveries"]["by_third"]["final third"]["n"] / max(sum(t["n"] for t in d["recoveries"]["by_third"].values()), 1), None, "pct", None),
     ("xt_pm", "Threat", "xT added per match by passes and carries", "xthreat", lambda d: d["xt"]["per_match"], lambda d: d["xt"]["ci"], "num2", CAUTION_XT),
     ("xt_carry_share", "Threat", "Share of xT added by carries", "xthreat", lambda d: d["xt_carry"]["per_match"] / d["xt"]["per_match"], None, "pct", None),
     ("xt_conc_pm", "Threat", "xT conceded per match", "xthreat", lambda d: d["conceded"]["per_match"], lambda d: d["conceded"]["ci"], "num2", None),
@@ -205,6 +207,7 @@ RANK_STATEMENT = {
     "corner_pm": "P14",
     "corner_shot": "P17",
     "losses_pm": "T18",
+    "high_rec_share": "T21",
     "regain5": "T20",
     "xt_pm": "A31",
     "up_compl": "A32",
@@ -1135,6 +1138,21 @@ def gameplan(key: str, mine: str | None = None, venue: str = ""):
         rq2 = json.load(open(f, encoding="utf-8")) if os.path.exists(f) else None
         res["versus"] = plan_rules.versus(key, mine, venue if venue in ("home", "away") else "", keys, load, rq2)
     return res
+
+
+# Coach brief rewritten by a local model (Ollama), checked against the hints' numbers (app/backend/ai_brief.py). Optional.
+@app.get("/api/ai/status")
+def ai_status():
+    return ai_brief.status()
+
+
+@app.get("/api/teams/{key}/gameplan/ai")
+def gameplan_ai(key: str, mine: str | None = None, lang: str = "en"):
+    need(key)
+    if mine:
+        need(mine)
+    plan = plan_rules.build(key, mine if mine != key else None, teams, ranks, load)
+    return ai_brief.write(plan, lang, os.path.join(D(), "app_cache"))
 
 
 @app.get("/api/teams/{key}/without")

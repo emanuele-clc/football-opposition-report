@@ -721,6 +721,15 @@ export interface Job {
 
 const HEAD = { "X-Provider": PROVIDER };
 
+/* Coach brief by a local model (Ollama), checked against the hints' numbers: app/backend/ai_brief.py. */
+export type AiStatus = { available: boolean; model: string; reason: string | null };
+export type AiBrief = AiStatus & {
+  lang?: string;
+  summary: string | null;
+  points: { hint: string; text: string; grade?: Grade | null; tab: string }[];
+  dropped: number;
+};
+
 async function get<T>(url: string): Promise<T> {
   const r = await fetch(url, { headers: HEAD });
   if (!r.ok) {
@@ -777,6 +786,11 @@ export const api = {
   without: (key: string, player: string) =>
     get<WithoutData>(
       `/api/teams/${encodeURIComponent(key)}/without${player ? `?player=${encodeURIComponent(player)}` : ""}`,
+    ),
+  aiStatus: () => get<AiStatus>("/api/ai/status"),
+  gameplanAi: (key: string, mine: string, lang: string) =>
+    get<AiBrief>(
+      `/api/teams/${encodeURIComponent(key)}/gameplan/ai?lang=${lang}${mine ? `&mine=${encodeURIComponent(mine)}` : ""}`,
     ),
   gameplanEvents: (key: string) => get<GPEvents>(`/api/teams/${encodeURIComponent(key)}/gameplan/events`),
   gameplan: (key: string, mine: string, venue = "") =>

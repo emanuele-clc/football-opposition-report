@@ -33,7 +33,7 @@ const WORDS: Record<string, [string, string]> = {
   corner_shot: ["Most shots after corners", "Fewest shots after corners"],
   losses_pm: ["Most losses per match", "Fewest losses per match"],
   regain5: ["Most balls regained within 5 s of a loss", "Fewest balls regained within 5 s of a loss"],
-  high_rec_pm: ["Most recoveries in the final third", "Fewest recoveries in the final third"],
+  high_rec_share: ["Largest share of recoveries in the final third", "Smallest share of recoveries in the final third"],
   ppda: ["Highest PPDA (least intense pressing)", "Lowest PPDA (most intense pressing)"],
   press_pm: ["Most pressures per match", "Fewest pressures per match"],
   press_final: ["Most pressures in the final third", "Fewest pressures in the final third"],

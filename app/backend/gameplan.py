@@ -104,10 +104,10 @@ RULES = [
     (
         "win_high",
         "opp",
-        lambda O, M: O("high_rec_pm", "top"),
-        ["high_rec_pm"],
+        lambda O, M: O("high_rec_share", "top"),  # share of recoveries (graded T21), not per match: changed 3 Nov 2026
+        ["high_rec_share"],
         "They win the ball high",
-        "They recover the ball in the final third more often than almost every team here.",
+        "A larger share of their recoveries is in the final third than for almost every team here.",
         "Risky passes in your own third are punished more: check which build-up routes they intercept.",
         "transitions",
     ),
