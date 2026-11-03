@@ -333,6 +333,226 @@ export default function GamePlan({
   const P = plan;
   const fo = P?.formations.opponent;
   const fm = P?.formations.mine;
+  /* The three main blocks. Analyst view: where to look first, then the shapes; the coach brief (same hints by phase)
+     moves under "More detail". Full view keeps the original order. */
+  const shapeEl = P && (
+            <>
+          <div className="layout-split" style={{ marginTop: 24 }}>
+            <section className="sticker" style={plain} aria-labelledby="gp-shape">
+              <div className="pitch-wrap">
+                <Pitch
+                  label={`Starting formations: ${fm ? `${P.mine} ${fm.most_used[0]?.formation} against ` : ""}${d.team} ${fo?.most_used[0]?.formation ?? "unknown"}`}
+                >
+                  {fm?.most_used[0] && <Shape raw={fm.most_used[0].raw} side="left" />}
+                  {fo?.most_used[0] && <Shape raw={fo.most_used[0].raw} side="right" />}
+                </Pitch>
+              </div>
+              <div className="replay-cap">
+                <div>
+                  <h2 id="gp-shape">
+                    {fm
+                      ? `${fm.most_used[0]?.formation} vs ${fo?.most_used[0]?.formation ?? "?"}`
+                      : `${d.team}: ${fo?.most_used[0]?.formation ?? "formation unknown"}`}
+                  </h2>
+                  <p>
+                    {fm ? (
+                      <>
+                        {"Most used starting formations:"}{" "}
+                        <b className="team-key" style={{ "--dot": "var(--sky)" } as CSSProperties}>
+                          {P.mine}
+                        </b>{" "}
+                        left,{" "}
+                        <b className="team-key" style={{ "--dot": "var(--coral)" } as CSSProperties}>
+                          {d.team}
+                        </b>{" "}
+                        right
+                      </>
+                    ) : (
+                      <>
+                        {"Most used starting formation,"}{" "}
+                        <b className="team-key" style={{ "--dot": "var(--coral)" } as CSSProperties}>
+                          {d.team}
+                        </b>{" "}
+                        attacking right to left
+                      </>
+                    )}
+                    . Schematic: the formation on the team sheet, not positions in play.
+                  </p>
+                </div>
+              </div>
+            </section>
+            <div className="stack">
+              {fo && (
+                <div className="sticker pad">
+                  <h3>{d.team}: formations</h3>
+                  <table style={{ marginTop: 6 }}>
+                    <thead>
+                      <tr>
+                        <th>Formation</th>
+                        <th>Matches</th>
+                        <th>Share</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {fo.most_used.map((f) => (
+                        <tr key={f.raw}>
+                          <td>
+                            <b>{f.formation}</b>
+                          </td>
+                          <td>{f.matches}</td>
+                          <td>{fmt(f.matches / fo.matches, "pct")}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <p className="s-muted" style={{ fontSize: 12.5, marginTop: 10 }}>
+                    Last 5:{" "}
+                    {fo.last5.map((f, i) => (
+                      <span
+                        key={i}
+                        className="chip"
+                        style={{ ...plain, marginRight: 4 }}
+                        title={`${f.date} vs ${f.opponent}`}
+                      >
+                        {f.formation}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              )}
+              {P.versus && P.mine && <VersusCard v={P.versus} opp={d.team} mine={P.mine} />}
+              {full && (
+              <div className="sticker pad">
+                <h3>How they play</h3>
+                <ul className="read" style={{ marginTop: 6 }}>
+                  {P.profile.map((r) => (
+                    <li key={r.id}>
+                      <GradeMark g={r.grade} href={evidenceHref(d.key)} none />
+                      <b>{r.label}</b>: {fmt(r.value, unit(r.unit))}{" "}
+                      <span className="s-muted">
+                        ({r.provisional ? "not ranked: few matches" : place(r.rank, r.of)})
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              )}
+            </div>
+          </div>
+            </>
+  );
+  const briefEl = P && (
+            <>
+          <section className="section" aria-labelledby="ai-h">
+            <div className="section-head">
+              <h2 id="ai-h">Coach brief</h2>
+              <Explain>{P.brief.intro}</Explain>
+            </div>
+            <div className="sticker pad">
+              <div className="pills" role="group" aria-label="Choose a question">
+                {QUESTIONS.map(([t, label]) => (
+                  <button key={t} type="button" aria-pressed={topic === t} onClick={() => setTopic(t)}>
+                    {label(d.team)}
+                  </button>
+                ))}
+              </div>
+              <div className="brief enter" key={topic} aria-live="polite">
+                <h3>{topic === "priorities" ? "Priorities" : P.brief.phases[topic].title}</h3>
+                <ol>
+                  {(topic === "priorities"
+                    ? P.brief.priorities.length
+                      ? P.brief.priorities
+                      : [
+                          `No rule fired: nothing in ${d.team}'s numbers is at the extremes. Prepare as usual and use the video.`,
+                        ]
+                    : P.brief.phases[topic].lines
+                  ).map((l, i) => (
+                    <li key={i}>
+                      {topic === "priorities" && P.brief.priorities.length > 0 && (
+                        <GradeMark g={P.brief.priority_grades?.[i]} href={evidenceHref(d.key)} none />
+                      )}
+                      {l}
+                    </li>
+                  ))}
+                </ol>
+                {topic === "priorities" && <GradeKey />}
+              </div>
+            </div>
+            {full && (
+            <div style={{ marginTop: 16 }}>
+              <Note kind="caution" tag="Hints, not advice">
+                The rules were fixed in advance and are simple (top or bottom among the teams here). None was tested for
+                whether following it wins matches: data like these cannot say which formation or style will work. Use
+                them to choose what to watch, and decide with the staff.
+              </Note>
+            </div>
+            )}
+          </section>
+            </>
+  );
+  const hintsEl = P && (
+            <>
+          <section className="section" aria-labelledby="gp-h">
+            <div className="section-head">
+              <h2 id="gp-h">Where to look</h2>
+              <Explain>
+                {P.hints.length} hints fired. Each one shows the numbers that triggered it, with their evidence grade
+                (A reliable to D not reliable; the hint takes the weakest grade of its opponent numbers). "Highest" or
+                "lowest" is among the teams in this folder, which can be from other leagues and seasons.
+              </Explain>
+            </div>
+            {!full && (
+              <div style={{ marginBottom: 16 }}>
+                <Note kind="caution" tag="Hints, not advice">
+                  {`Each hint fires when ${d.team} is among the highest or lowest of the teams here. None was tested for whether following it wins matches: use them to choose what to watch, and decide with the staff.`}
+                </Note>
+              </div>
+            )}
+            {P.hints.length === 0 ? (
+              <p>No rule fired: {d.team} is not at the extremes of any measure here.</p>
+            ) : (
+              <div className="fam-row" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}>
+                {P.hints.map((h, n) => (
+                  <article
+                    key={h.id}
+                    className="sticker fam-front enter"
+                    style={{ ...plain, "--i": n } as CSSProperties}
+                  >
+                    <div className="ribbon" />
+                    <div className="body">
+                      {h.side === "both" && (
+                        <span className="chip" style={{ ...plain, marginBottom: 6 }}>
+                          you vs them
+                        </span>
+                      )}
+                      <h3 style={{ margin: "2px 0 6px" }}>
+                        <GradeMark g={h.grade} href={evidenceHref(d.key)} none />
+                        {h.title}
+                      </h3>
+                      <p>{h.why}</p>
+                      {h.grade === "D" && <p className="grade-warn">{`Grade D: ${GRADE_SAYS.D}`}</p>}
+                      <p style={{ color: "var(--sticker-ink)", fontWeight: 650 }}>{h.look}</p>
+                      <p className="gp-ev">
+                        {h.evidence.map((e, i) => (
+                          <span key={i}>
+                            <GradeMark g={e.grade} none />
+                            {e.team && <b>{e.team === "you" ? P.mine : d.team}: </b>}
+                            {e.label} {fmt(e.value, unit(e.unit))} · {place(e.rank, e.of)}
+                            {e.id === "ppda" ? " (lower = more intense pressing)" : ""}
+                          </span>
+                        ))}
+                      </p>
+                      <a href={`#/${d.key}/${h.tab}`} style={{ fontWeight: 750, fontSize: 13 }}>
+                        Check in {TAB_LABEL[h.tab] ?? h.tab} →
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
+            </>
+  );
   return (
     <>
       <div className="section-head">
@@ -418,208 +638,26 @@ export default function GamePlan({
         </div>
       ) : (
         <>
-          <div className="layout-split" style={{ marginTop: 24 }}>
-            <section className="sticker" style={plain} aria-labelledby="gp-shape">
-              <div className="pitch-wrap">
-                <Pitch
-                  label={`Starting formations: ${fm ? `${P.mine} ${fm.most_used[0]?.formation} against ` : ""}${d.team} ${fo?.most_used[0]?.formation ?? "unknown"}`}
-                >
-                  {fm?.most_used[0] && <Shape raw={fm.most_used[0].raw} side="left" />}
-                  {fo?.most_used[0] && <Shape raw={fo.most_used[0].raw} side="right" />}
-                </Pitch>
-              </div>
-              <div className="replay-cap">
-                <div>
-                  <h2 id="gp-shape">
-                    {fm
-                      ? `${fm.most_used[0]?.formation} vs ${fo?.most_used[0]?.formation ?? "?"}`
-                      : `${d.team}: ${fo?.most_used[0]?.formation ?? "formation unknown"}`}
-                  </h2>
-                  <p>
-                    Most used starting formation
-                    {fm ? (
-                      <>
-                        s:{" "}
-                        <b className="team-key" style={{ "--dot": "var(--sky)" } as CSSProperties}>
-                          {P.mine}
-                        </b>{" "}
-                        left,{" "}
-                        <b className="team-key" style={{ "--dot": "var(--coral)" } as CSSProperties}>
-                          {d.team}
-                        </b>{" "}
-                        right
-                      </>
-                    ) : (
-                      <>
-                        ,{" "}
-                        <b className="team-key" style={{ "--dot": "var(--coral)" } as CSSProperties}>
-                          {d.team}
-                        </b>{" "}
-                        attacking right to left
-                      </>
-                    )}
-                    . Schematic: the formation on the team sheet, not positions in play.
-                  </p>
-                </div>
-              </div>
-            </section>
-            <div className="stack">
-              {fo && (
-                <div className="sticker pad">
-                  <h3>{d.team}: formations</h3>
-                  <table style={{ marginTop: 6 }}>
-                    <thead>
-                      <tr>
-                        <th>Formation</th>
-                        <th>Matches</th>
-                        <th>Share</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {fo.most_used.map((f) => (
-                        <tr key={f.raw}>
-                          <td>
-                            <b>{f.formation}</b>
-                          </td>
-                          <td>{f.matches}</td>
-                          <td>{fmt(f.matches / fo.matches, "pct")}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <p className="s-muted" style={{ fontSize: 12.5, marginTop: 10 }}>
-                    Last 5:{" "}
-                    {fo.last5.map((f, i) => (
-                      <span
-                        key={i}
-                        className="chip"
-                        style={{ ...plain, marginRight: 4 }}
-                        title={`${f.date} vs ${f.opponent}`}
-                      >
-                        {f.formation}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-              )}
-              {P.versus && P.mine && <VersusCard v={P.versus} opp={d.team} mine={P.mine} />}
-              <div className="sticker pad">
-                <h3>How they play</h3>
-                <ul className="read" style={{ marginTop: 6 }}>
-                  {P.profile.map((r) => (
-                    <li key={r.id}>
-                      <GradeMark g={r.grade} href={evidenceHref(d.key)} none />
-                      <b>{r.label}</b>: {fmt(r.value, unit(r.unit))}{" "}
-                      <span className="s-muted">
-                        ({r.provisional ? "not ranked: few matches" : place(r.rank, r.of)})
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <section className="section" aria-labelledby="ai-h">
-            <div className="section-head">
-              <h2 id="ai-h">Coach brief</h2>
-              <Explain>{P.brief.intro}</Explain>
-            </div>
-            <div className="sticker pad">
-              <div className="pills" role="group" aria-label="Choose a question">
-                {QUESTIONS.map(([t, label]) => (
-                  <button key={t} type="button" aria-pressed={topic === t} onClick={() => setTopic(t)}>
-                    {label(d.team)}
-                  </button>
-                ))}
-              </div>
-              <div className="brief enter" key={topic} aria-live="polite">
-                <h3>{topic === "priorities" ? "Priorities" : P.brief.phases[topic].title}</h3>
-                <ol>
-                  {(topic === "priorities"
-                    ? P.brief.priorities.length
-                      ? P.brief.priorities
-                      : [
-                          `No rule fired: nothing in ${d.team}'s numbers is at the extremes. Prepare as usual and use the video.`,
-                        ]
-                    : P.brief.phases[topic].lines
-                  ).map((l, i) => (
-                    <li key={i}>
-                      {topic === "priorities" && P.brief.priorities.length > 0 && (
-                        <GradeMark g={P.brief.priority_grades?.[i]} href={evidenceHref(d.key)} none />
-                      )}
-                      {l}
-                    </li>
-                  ))}
-                </ol>
-                {topic === "priorities" && <GradeKey />}
-              </div>
-            </div>
-            <div style={{ marginTop: 16 }}>
-              <Note kind="caution" tag="Hints, not advice">
-                The rules were fixed in advance and are simple (top or bottom among the teams here). None was tested for
-                whether following it wins matches: data like these cannot say which formation or style will work. Use
-                them to choose what to watch, and decide with the staff.
-              </Note>
-            </div>
-          </section>
-
-          <section className="section" aria-labelledby="gp-h">
-            <div className="section-head">
-              <h2 id="gp-h">Where to look</h2>
-              <Explain>
-                {P.hints.length} hints fired. Each one shows the numbers that triggered it, with their evidence grade
-                (A reliable to D not reliable; the hint takes the weakest grade of its opponent numbers). "Highest" or
-                "lowest" is among the teams in this folder, which can be from other leagues and seasons.
-              </Explain>
-            </div>
-            {P.hints.length === 0 ? (
-              <p>No rule fired: {d.team} is not at the extremes of any measure here.</p>
-            ) : (
-              <div className="fam-row" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}>
-                {P.hints.map((h, n) => (
-                  <article
-                    key={h.id}
-                    className="sticker fam-front enter"
-                    style={{ ...plain, "--i": n } as CSSProperties}
-                  >
-                    <div className="ribbon" />
-                    <div className="body">
-                      {h.side === "both" && (
-                        <span className="chip" style={{ ...plain, marginBottom: 6 }}>
-                          you vs them
-                        </span>
-                      )}
-                      <h3 style={{ margin: "2px 0 6px" }}>
-                        <GradeMark g={h.grade} href={evidenceHref(d.key)} none />
-                        {h.title}
-                      </h3>
-                      <p>{h.why}</p>
-                      {h.grade === "D" && <p className="grade-warn">{`Grade D: ${GRADE_SAYS.D}`}</p>}
-                      <p style={{ color: "var(--sticker-ink)", fontWeight: 650 }}>{h.look}</p>
-                      <p className="gp-ev">
-                        {h.evidence.map((e, i) => (
-                          <span key={i}>
-                            <GradeMark g={e.grade} none />
-                            {e.team && <b>{e.team === "you" ? P.mine : d.team}: </b>}
-                            {e.label} {fmt(e.value, unit(e.unit))} · {place(e.rank, e.of)}
-                            {e.id === "ppda" ? " (lower = more intense pressing)" : ""}
-                          </span>
-                        ))}
-                      </p>
-                      <a href={`#/${d.key}/${h.tab}`} style={{ fontWeight: 750, fontSize: 13 }}>
-                        Check in {TAB_LABEL[h.tab] ?? h.tab} →
-                      </a>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            )}
-          </section>
-
+          {full ? (
+            <>
+              {shapeEl}
+              {briefEl}
+              {hintsEl}
+            </>
+          ) : (
+            <>
+              {hintsEl}
+              {shapeEl}
+            </>
+          )}
           <details className="more gp-more">
-            <summary>More detail: key players, matches to watch first, where pressing hurts them, breaks, fouls, when they score, past matches</summary>
+            <summary>
+              {full
+                ? "More detail: key players, matches to watch first, where pressing hurts them, breaks, fouls, when they score, past matches"
+                : "More detail: coach brief by phase, key players, matches to watch first, where pressing hurts them, breaks, fouls, when they score, past matches"}
+            </summary>
             <div>
+          {!full && briefEl}
           {evs && evs !== "none" && (
             <section className="section" aria-labelledby="kp-h">
               <div className="section-head">

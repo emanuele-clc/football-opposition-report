@@ -246,20 +246,29 @@ export default function Overview({
             // one row for both phases: the caveat is the same, only the verdict differs
             const s = (p: "build-up" | "advanced") =>
               d.report.phases[p].verdict === "clear structure" ? "clear structure" : "no clear structure";
-            return (
+            return full ? (
               <li className="caution">
                 <b>Families</b>
                 <span>{`Build-up: ${s("build-up")}; advanced: ${s("advanced")}. Even a clear structure was only slightly better than data with no groups at all: read families as slices of a continuum, not separate behaviours.`}</span>
               </li>
+            ) : (
+              <li className="caution">
+                <b>Families</b>
+                <span>
+                  {"Groups of similar moves found by the computer in this team's matches. Use them to find clips, not as tactical plans: the groups overlap, and they do not tell which moves end in a shot."}
+                </span>
+              </li>
             );
           })()}
-          <li className="caution">
-            <b>Shots</b>
-            <span>
-              Families do not predict whether a sequence ends in a shot better than a one-variable rule based on where
-              it ends (families better in 0 of 10 teams).
-            </span>
-          </li>
+          {full && (
+            <li className="caution">
+              <b>Shots</b>
+              <span>
+                Families do not predict whether a sequence ends in a shot better than a one-variable rule based on where
+                it ends (families better in 0 of 10 teams).
+              </span>
+            </li>
+          )}
           <li className={d.matches < 8 ? "caution" : "ok"}>
             <b>{d.matches} matches</b>
             <span>
@@ -268,7 +277,7 @@ export default function Overview({
                 : "Enough for passes and long-pass tendencies to be reliable."}
             </span>
           </li>
-          {evRows.length > 0 && (
+          {evRows.length > 0 && full && (
             <li className="info">
               <b>Grades</b>
               <span>

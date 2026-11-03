@@ -1022,6 +1022,13 @@ export const Icon = {
       <path d="M8 3v10M3 8h10" />
     </svg>
   ),
+  sliders: (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+      <path d="M2 4h7M13 4h1M2 12h1M7 12h7" />
+      <circle cx="11" cy="4" r="1.8" />
+      <circle cx="5" cy="12" r="1.8" />
+    </svg>
+  ),
 };
 
 /* Every sequence of one family laid over the same pitch: shows how much the sequences inside a family differ. */

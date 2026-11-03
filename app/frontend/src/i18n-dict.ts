@@ -2,6 +2,21 @@
    Football terms follow the usual words of each language (costruzione / Spielaufbau, rimessa dal fondo / Abstoß, ...).
    StatsBomb, xG, xT and PPDA stay as they are. */
 export const DICT: [string, string, string][] = [
+  ["Most used starting formations:", "Moduli iniziali più usati:", "Häufigste Startformationen:"],
+  ["How it is computed", "Come si calcola", "Wie es berechnet wird"],
+  ["Settings: data, view, language, theme, print", "Impostazioni: dati, vista, lingua, tema, stampa", "Einstellungen: Daten, Ansicht, Sprache, Design, Drucken"],
+  ["Data", "Dati", "Daten"],
+  ["View", "Vista", "Ansicht"],
+  ["Language", "Lingua", "Sprache"],
+  ["Theme", "Tema", "Design"],
+  ["Dark", "Scuro", "Dunkel"],
+  ["Light", "Chiaro", "Hell"],
+  ["Print this page", "Stampa questa pagina", "Diese Seite drucken"],
+  ["Presentation tour", "Tour di presentazione", "Präsentationstour"],
+  ["Stop tour", "Ferma il tour", "Tour beenden"],
+  ["Groups of similar moves found by the computer in this team's matches. Use them to find clips, not as tactical plans: the groups overlap, and they do not tell which moves end in a shot.", "Gruppi di azioni simili trovati dal computer nelle partite di questa squadra. Usali per trovare le clip, non come piani tattici: i gruppi si sovrappongono e non dicono quali azioni finiscono in tiro.", "Gruppen ähnlicher Aktionen, die der Computer in den Spielen dieses Teams gefunden hat. Nutze sie, um Clips zu finden, nicht als taktische Pläne: Die Gruppen überschneiden sich und sagen nicht, welche Aktionen mit einem Abschluss enden."],
+  ["Each hint fires when {0} is among the highest or lowest of the teams here. None was tested for whether following it wins matches: use them to choose what to watch, and decide with the staff.", "Ogni spunto scatta quando {0} è tra le squadre più alte o più basse di quelle qui. Nessuno è stato verificato per capire se seguirlo fa vincere le partite: usali per scegliere cosa guardare, e decidi con lo staff.", "Jeder Hinweis erscheint, wenn {0} zu den höchsten oder niedrigsten Teams hier gehört. Keiner wurde darauf geprüft, ob es Spiele gewinnt, ihm zu folgen: Nutze sie, um zu wählen, was du anschaust, und entscheide mit dem Staff."],
+  ["More detail: coach brief by phase, key players, matches to watch first, where pressing hurts them, breaks, fouls, when they score, past matches", "Più dettagli: brief per fase, giocatori chiave, partite da guardare prima, dove il pressing li mette in difficoltà, ripartenze, falli, quando segnano, partite passate", "Mehr Details: Brief nach Phase, Schlüsselspieler, zuerst anzuschauende Spiele, wo Pressing ihnen schadet, Konter, Fouls, wann sie treffen, vergangene Spiele"],
   ["xG per shot conceded", "xG per tiro subito", "xG pro zugelassenem Abschluss"],
   ["# per shot (last 5: #)", "# per tiro (ultime 5: #)", "# pro Abschluss (letzte 5: #)"],
   ["Highest xG per shot conceded", "xG per tiro subito più alto", "Höchste xG pro zugelassenem Abschluss"],

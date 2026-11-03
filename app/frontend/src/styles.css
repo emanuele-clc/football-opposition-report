@@ -381,6 +381,78 @@ h3 {
   height: 17px;
   flex: none;
 }
+/* Settings: data, view, language, theme and print behind one pill, so the bar holds only team and sections.
+   The panel is a slice of the bar (same deep board, same plates), dropped below it. */
+.settings {
+  position: relative;
+  flex: none;
+}
+.settings > summary {
+  list-style: none;
+  user-select: none;
+}
+.settings > summary::-webkit-details-marker {
+  display: none;
+}
+.settings > summary:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+}
+.settings[open] > summary {
+  background: var(--sticker);
+  color: var(--sticker-ink);
+  border-color: var(--sticker);
+}
+.settings-pop {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  z-index: 40;
+  display: grid;
+  gap: 16px;
+  min-width: 300px;
+  padding: 18px;
+  border-radius: var(--radius);
+  background: var(--board-deep);
+  color: var(--bar-ink);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(201, 209, 234, 0.22),
+    0 18px 40px -12px rgba(0, 0, 0, 0.55);
+  animation: set-in 200ms var(--out);
+}
+@keyframes set-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+.set-row {
+  display: grid;
+  gap: 7px;
+  justify-items: start;
+}
+.set-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--bar-ink-2);
+}
+.set-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 14px;
+  box-shadow: inset 0 1.5px 0 rgba(201, 209, 234, 0.16);
+}
+@media (prefers-reduced-motion: reduce) {
+  .settings-pop {
+    animation: none;
+  }
+}
+@media print {
+  .settings {
+    display: none;
+  }
+}
 /* Language: the native select sits invisibly over the pill, so the menu is the system one (keyboard and touch work as usual). */
 .lang {
   position: relative;
@@ -2668,9 +2740,9 @@ footer {
 .layout-matchup {
   grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
 }
-/* The five group links need about 1320px next to brand, edition, team and icons; below that they move to their own row
-   instead of scrolling out of sight behind a hidden scrollbar (Senza palla / Clip / Altro vanished at 1180px). */
-@media (max-width: 1320px) {
+/* The section links need about 1180px next to brand, team and settings; below that they move to their own row
+   instead of scrolling out of sight behind a hidden scrollbar. */
+@media (max-width: 1180px) {
   .bar {
     flex-wrap: wrap;
   }
@@ -2679,7 +2751,7 @@ footer {
     width: 100%;
     margin-left: 0;
   }
-  .bar-actions {
+  .settings {
     margin-left: auto;
   }
 }
@@ -3592,6 +3664,10 @@ a.grade:focus-visible {
 }
 .vs-how {
   margin: 0 0 14px;
+}
+/* A disclosure inside a white sticker reads in sticker ink, not in the board's pale text (it was 1.3:1 on white). */
+.sticker details.more summary {
+  color: var(--sticker-ink-2);
 }
 .vs-steps {
   margin: 10px 0;

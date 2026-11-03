@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { api, type Info, type Provider, type TeamData, type TeamSummary } from "./api";
-import { PROVIDER, switchProvider, type ProviderId } from "./provider";
+import { PROVIDER, PROVIDER_NAME, switchProvider, type ProviderId } from "./provider";
 import { Icon } from "./charts";
 import Clips from "./views/Clips";
 import Compare from "./views/Compare";
@@ -131,6 +131,29 @@ export default function App() {
   const full = view === "full";
   const GROUPS = full ? GROUPS_FULL : GROUPS_ANALYST;
   const group = groupOf(route.tab, GROUPS);
+  const menu = useRef<HTMLDetailsElement>(null);
+  const close = () => {
+    if (menu.current) menu.current.open = false;
+  };
+  // The settings menu closes on Esc, on a click outside it, and when the page changes.
+  useEffect(() => {
+    const out = (e: PointerEvent) => {
+      if (menu.current?.open && !menu.current.contains(e.target as Node)) menu.current.open = false;
+    };
+    const esc = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && menu.current?.open) {
+        menu.current.open = false;
+        menu.current.querySelector("summary")?.focus();
+      }
+    };
+    addEventListener("pointerdown", out);
+    addEventListener("keydown", esc);
+    return () => {
+      removeEventListener("pointerdown", out);
+      removeEventListener("keydown", esc);
+    };
+  }, []);
+  useEffect(close, [route.tab, route.key]);
 
   useEffect(() => {
     try {
@@ -248,23 +271,6 @@ export default function App() {
         <a className="brand" href={current ? href({ key: current.key }) : "#/"}>
           Opposition report
         </a>
-        {providers && providers.length > 1 && (
-          <div className="edition" role="radiogroup" aria-label="Data provider">
-            {providers.map((p) => (
-              <button
-                key={p.id}
-                type="button"
-                role="radio"
-                aria-checked={p.id === PROVIDER}
-                onClick={() => switchProvider(p.id as ProviderId, route.key, route.tab)}
-                title={`${p.name} data: ${p.teams} teams, season ${p.seasons.map(season).join(", ")}. Values and ranks are never mixed between providers.`}
-              >
-                <span className="ed-name">{p.name}</span>
-                <span className="ed-season">{p.seasons.length === 1 ? season(p.seasons[0]) : `${p.teams} teams`}</span>
-              </button>
-            ))}
-          </div>
-        )}
         <label className="sr" htmlFor="team">
           Team
         </label>
@@ -300,74 +306,123 @@ export default function App() {
             </a>
           ))}
         </nav>
-        <div className="bar-actions">
-          <div className="edition viewmode" role="radiogroup" aria-label="Report view">
-            {(
-              [
-                ["analyst", "Analyst", "Only what you need to prepare the next match"],
-                ["full", "Full report", "Every section, including the thesis pages (evidence, families, compare, review)"],
-              ] as const
-            ).map(([k, l, t]) => (
-              <button key={k} type="button" role="radio" aria-checked={view === k} onClick={() => setView(k)} title={t}>
-                <span className="ed-name">{l}</span>
+        {/* Everything that is set once and rarely changed lives behind one button, so the bar keeps only team and
+            sections. The summary names the live data and language, so the state stays visible while closed. */}
+        <details className="settings" ref={menu}>
+          <summary className="icon-btn" aria-label="Settings: data, view, language, theme, print">
+            {Icon.sliders}
+            <span translate="no">
+              {PROVIDER_NAME} · {lang.toUpperCase()}
+            </span>
+          </summary>
+          <div className="settings-pop">
+            {providers && providers.length > 1 && (
+              <div className="set-row">
+                <span className="set-label" id="set-data">
+                  Data
+                </span>
+                <div className="edition" role="radiogroup" aria-labelledby="set-data">
+                  {providers.map((p) => (
+                    <button
+                      key={p.id}
+                      type="button"
+                      role="radio"
+                      aria-checked={p.id === PROVIDER}
+                      onClick={() => switchProvider(p.id as ProviderId, route.key, route.tab)}
+                      title={`${p.name} data: ${p.teams} teams, season ${p.seasons.map(season).join(", ")}. Values and ranks are never mixed between providers.`}
+                    >
+                      <span className="ed-name">{p.name}</span>
+                      <span className="ed-season">
+                        {p.seasons.length === 1 ? season(p.seasons[0]) : `${p.teams} teams`}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="set-row">
+              <span className="set-label" id="set-view">
+                View
+              </span>
+              <div className="edition" role="radiogroup" aria-labelledby="set-view">
+                {(
+                  [
+                    ["analyst", "Analyst", "Only what you need to prepare the next match"],
+                    ["full", "Full report", "Every section, including the thesis pages (evidence, families, compare, review)"],
+                  ] as const
+                ).map(([k, l, t]) => (
+                  <button key={k} type="button" role="radio" aria-checked={view === k} onClick={() => setView(k)} title={t}>
+                    <span className="ed-name">{l}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="set-row">
+              <span className="set-label" id="set-lang">
+                Language
+              </span>
+              <div className="edition" role="radiogroup" aria-labelledby="set-lang" translate="no">
+                {LANGS.map(([k, name]) => (
+                  <button key={k} type="button" role="radio" aria-checked={lang === k} onClick={() => setLang(k)}>
+                    <span className="ed-name">{name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="set-row">
+              <span className="set-label" id="set-theme">
+                Theme
+              </span>
+              <div className="edition" role="radiogroup" aria-labelledby="set-theme">
+                {(
+                  [
+                    ["dark", "Dark"],
+                    ["light", "Light"],
+                  ] as const
+                ).map(([k, l]) => (
+                  <button key={k} type="button" role="radio" aria-checked={theme === k} onClick={() => setTheme(k)}>
+                    <span className="ed-name">{l}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="set-actions">
+              <button
+                className="icon-btn"
+                type="button"
+                onClick={() => {
+                  close();
+                  setTimeout(() => print(), 50);
+                }}
+              >
+                {Icon.print}
+                <span>Print this page</span>
               </button>
-            ))}
+              {full && info?.can_generate && (
+                <a className="icon-btn" href="#/new" onClick={close}>
+                  {Icon.plus}
+                  <span>Add team</span>
+                </a>
+              )}
+              {full && (
+                <button
+                  className="icon-btn"
+                  type="button"
+                  onClick={() => {
+                    close();
+                    if (!tour && route.key !== "new" && !TOUR.includes(route.tab))
+                      location.hash = href({ key: route.key, tab: "overview" });
+                    setTour(!tour);
+                  }}
+                  aria-pressed={tour}
+                >
+                  {Icon.tour}
+                  <span>{tour ? "Stop tour" : "Presentation tour"}</span>
+                </button>
+              )}
+            </div>
           </div>
-          {full && info?.can_generate && (
-            <a
-              className="icon-btn"
-              href="#/new"
-              aria-current={route.key === "new" ? "page" : undefined}
-              aria-label="Add a team"
-            >
-              {Icon.plus}
-              <span>Add team</span>
-            </a>
-          )}
-          {full && (
-          <button
-            className="icon-btn"
-            type="button"
-            onClick={() => {
-              if (!tour && route.key !== "new" && !TOUR.includes(route.tab))
-                location.hash = href({ key: route.key, tab: "overview" });
-              setTour(!tour);
-            }}
-            aria-pressed={tour}
-            aria-label={tour ? "Stop the presentation tour" : "Start the presentation tour"}
-          >
-            {Icon.tour}
-            <span>Tour</span>
-          </button>
-          )}
-          <label className="icon-btn lang" translate="no" title="Language · Lingua · Sprache">
-            {Icon.globe}
-            <span className="lang-code">{lang.toUpperCase()}</span>
-            <select
-              value={lang}
-              onChange={(e) => setLang(e.target.value as Lang)}
-              aria-label="Language · Lingua · Sprache"
-            >
-              {LANGS.map(([k, name]) => (
-                <option key={k} value={k}>
-                  {name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <button
-            className="icon-btn"
-            type="button"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
-          >
-            {theme === "dark" ? Icon.sun : Icon.moon}
-          </button>
-          <button className="icon-btn" type="button" onClick={() => print()} aria-label="Print this page">
-            {Icon.print}
-            <span>Print</span>
-          </button>
-        </div>
+        </details>
       </header>
 
       {route.key === "new" ? (
@@ -426,7 +481,7 @@ export default function App() {
                 <b>{current.matches} matches</b>
                 {current.period.replace(" to ", " – ")}
               </span>
-              {here && providers && providers.length > 1 && (
+              {here && providers && providers.length > 1 && (full || here.missing.length > 0) && (
                 <a className="source-stamp" href={`#/${encodeURIComponent(current.key)}/evidence`}>
                   <b>{here.name} data</b>
                   {here.missing.length
