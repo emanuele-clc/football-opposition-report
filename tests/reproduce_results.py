@@ -3,7 +3,7 @@ and seeds in a SEPARATE work folder and compares every output with results/ in t
 rerun: it only checks that the committed numbers come out of the committed code (it is not a second validation).
 Usage:  python -X utf8 tests/reproduce_results.py <data_dir with matches/ and ev/> <work_dir> [--jobs 6] [--only "Team"] [--tournaments <dir>] [--only-new]
 Since 17 Oct 2026 it also reruns exploratory_clusters.py methods (methods and sensitivity) and, with --tournaments (folder with the Euro 2020/2024 and World Cup 2022 data),
-src/week1/pooled_corners.py. --only-new reruns only these two.
+src/analysis/corners.py pooled. --only-new reruns only these two.
 Takes about 15-20 minutes for 10 teams on a laptop. Exit code 0 if every file is identical."""
 
 import sys, os, json, math, shutil, subprocess, argparse, concurrent.futures as cf
@@ -43,14 +43,14 @@ def scripts(team):
     validate = ["--confirm"]
     if "H3_pass" not in h["costruzione"]:  # the first two teams were validated before H3 existed
         validate.append("--no-h3")
-    new = [("week4/exploratory_clusters.py", ["methods"], [])]
+    new = [("analysis/exploratory_clusters.py", ["methods"], [])]
     if a.only_new:
         return new
     return [
-        ("week4/validate_replication.py", [], validate),
-        ("week4/compare_simple_rules.py", [], ["--confirm"]),
-        ("week3/stability_null_baseline.py", [], []),
-        ("week4/sample_size.py", [], []),
+        ("analysis/validate_replication.py", [], validate),
+        ("analysis/compare_simple_rules.py", [], ["--confirm"]),
+        ("analysis/families.py", ["null"], []),
+        ("analysis/sample_size.py", [], []),
     ] + new
 
 
@@ -91,7 +91,8 @@ if a.tournaments:
             sys.executable,
             "-X",
             "utf8",
-            os.path.join(REPO, "src", "week1", "pooled_corners.py"),
+            os.path.join(REPO, "src", "analysis", "corners.py"),
+            "pooled",
             os.path.abspath(a.tournaments),
         ],
         capture_output=True,
@@ -108,7 +109,7 @@ if not a.only and not a.only_new:
             sys.executable,
             "-X",
             "utf8",
-            os.path.join(REPO, "src", "week4", "ten_teams.py"),
+            os.path.join(REPO, "src", "analysis", "ten_teams.py"),
             "summary",
             "replication",
             os.path.join(REPO, "docs", "replication10_selection.json"),

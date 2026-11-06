@@ -17,7 +17,7 @@ dry = "--dry-run" in flags
 if not dry and "--confirm" not in flags:
     sys.exit("Needs --confirm (after committing docs/protocol_simple_rule.md) or --dry-run.")
 sys.argv = [sys.argv[0]] + args
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "week2"))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import sequences_clustering as S
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler

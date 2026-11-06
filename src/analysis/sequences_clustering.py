@@ -1,14 +1,12 @@
 """Week 2 - open-play sequences of a team, their features, and the choice of k.
-Usage: python sequences_clustering.py <matches.json> "<Team>" [data_folder=.]
+Not run on its own: imported as S, then S.extract().
 Data: StatsBomb Open Data (cite StatsBomb). StatsBomb already turns every event so the team attacks left to right; small y = left.
-Only the first 70% of the matches (exploration) are used to choose k. The other scripts import this file and use extract()."""
+The other scripts import this file and use extract(). The choice of k (done once, on the exploration matches) is in archive/choose_k.py."""
 
 import json, sys
 import numpy as np, pandas as pd
 from sklearn.cluster import KMeans
-from sklearn.decomposition import PCA
-from sklearn.metrics import silhouette_score, adjusted_rand_score
-from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import adjusted_rand_score
 
 # the other scripts change these three before calling extract()
 MF = sys.argv[1]
@@ -146,21 +144,6 @@ def extract():
     return pd.DataFrame(rows), len(matches)
 
 
-def features(df):
-    # wide feature table used only for the choice of k below
-    F = {}
-    for z in range(12):
-        F[f"start_{ZN[z]}"] = (df.zone0 == z).astype(float).values
-        F[f"end_{ZN[z]}"] = (df.zone1 == z).astype(float).values
-    for z in range(12):
-        F[f"occ_{ZN[z]}"] = np.array([np.mean([q == z for q in zs]) for zs in df.zones])
-    for c in ("n_pass", "net_x", "path_len", "directness", "long_share", "width_std", "mean_x", "dur"):
-        F[c] = df[c].values.astype(float)
-    for pattern in sorted(OPEN_PLAY):
-        F[f"pp_{pattern}"] = (df.play_pattern == pattern).astype(float).values
-    return pd.DataFrame(F)
-
-
 def jaccard_stability(X, labels, k, B=200, seed=0):
     # refit K-Means on B bootstrap samples; for each group, how well it is found again (Jaccard)
     rng = np.random.default_rng(seed)
@@ -180,35 +163,3 @@ def jaccard_stability(X, labels, k, B=200, seed=0):
                 best = max(best, jac)
             score[c] += best
     return score / B, float(np.mean(aris)), list(np.percentile(aris, [2.5, 97.5]))
-
-
-if __name__ == "__main__":
-    df, n_matches = extract()
-    k0 = int(round(n_matches * 0.7))
-    print(f"{TEAM}: {n_matches} partite, {len(df)} sequenze di gioco aperto (>=3 passaggi, >=4 punti); esplorazione = prime {k0} partite")
-    ex = df[df.gi < k0].reset_index(drop=True)
-    print("exploration sequences:", len(ex), "| riservate alla validazione:", int((df.gi >= k0).sum()))
-
-    X = StandardScaler().fit_transform(features(ex))
-    pca = PCA(0.90, random_state=0).fit(X)
-    X = pca.transform(X)
-    print("componenti PCA (90% varianza):", X.shape[1])
-
-    results = []
-    for k in range(3, 9):
-        labels = KMeans(k, n_init=10, random_state=0).fit(X).labels_
-        jac, ari, ari_ci = jaccard_stability(X, labels, k, B=100)
-        sizes = sorted(np.bincount(labels).tolist(), reverse=True)
-        sil = float(silhouette_score(X, labels))
-        results.append(
-            {
-                "k": k,
-                "silhouette": sil,
-                "ari": ari,
-                "jaccard_min": float(jac.min()),
-                "jaccard_mean": float(jac.mean()),
-                "sizes": sizes,
-            }
-        )
-        print(f"k={k}: silhouette {sil:.3f} | ARI bootstrap {ari:.2f} | Jaccard min {jac.min():.2f} medio {jac.mean():.2f} | dimensioni {sizes}")
-    json.dump(results, open(f"{BASE}/k_selection_{TEAM.replace(' ', '_')}.json", "w"), indent=1)

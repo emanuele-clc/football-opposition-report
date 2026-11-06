@@ -1,7 +1,7 @@
-"""EXPLORATORY (not a hypothesis test). Same matches, two providers: how much does the report change when the events come from Wyscout instead of StatsBomb?
+"""ARCHIVE (run once, 18 Oct 2026; result: results/exploratory_provider_samematch_Barcelona.json). EXPLORATORY (not a hypothesis test). Same matches, two providers: how much does the report change when the events come from Wyscout instead of StatsBomb?
 The earlier check (results/exploratory_provider_wyscout_napoli.json) compared different seasons; here the matches are the same, so differences come from the data, not the team.
 Usage:
-    python -X utf8 src/week4/exploratory_provider_samematch.py <sb matches.json> <sb data dir> <wyscout dir> "<Team>" <work dir> <out.json>
+    python -X utf8 archive/exploratory_provider_samematch.py <sb matches.json> <sb data dir> <wyscout dir> "<Team>" <work dir> <out.json>
     e.g. matches/11_1.json C:/Users/ecole/sbdata C:/Users/ecole/wyscout_open Barcelona C:/tmp/prov results/exploratory_provider_samematch_Barcelona.json
 Wyscout dir must contain events_<Country>.json, matches_<Country>.json, teams.json, players.json (Pappalardo et al. 2019, CC BY 4.0); country from --country (default Spain).
 Definitions (fixed before the first run):
@@ -40,9 +40,9 @@ COUNTRY = next((x.split("=", 1)[1] for x in sys.argv if x.startswith("--country=
 if not os.path.exists(SB_MF):
     SB_MF = os.path.join(SB_BASE, a[0])
 here = os.path.dirname(os.path.abspath(__file__))
-src = os.path.join(here, "..")
+src = os.path.join(here, "..", "src")
 sys.argv = ["x", SB_MF, TEAM, SB_BASE]
-sys.path[:0] = [os.path.join(src, "week2"), os.path.join(src, "adapters"), os.path.join(src, "report")]
+sys.path[:0] = [os.path.join(src, "analysis"), os.path.join(src, "adapters"), os.path.join(src, "report")]
 import sequences_clustering as S, generic_csv as G, statsbomb_to_generic_csv as E, wyscout_to_generic_csv as W, restarts as RS, setpieces as SP, transitions as TR
 
 COLS = ["x0", "w0", "x1", "w1", "net_x", "path_len", "directness", "n_pass", "long_share", "width_std", "dur"]

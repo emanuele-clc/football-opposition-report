@@ -59,7 +59,7 @@ else:
             missing.append(g["match_id"])
     if missing:
         cid, sid = os.path.basename(mf)[:-5].split("_")
-        download = os.path.join(here, "week1", "download_data.py")
+        download = os.path.join(here, "analysis", "download_data.py")
         sys.exit(
             f"Mancano gli eventi di {len(missing)} partite su {len(games)} di {a.team} (es. ev/{missing[0]}.json). Scaricali prima, dalla cartella dati:\n"
             f'  cd "{base}"; python -X utf8 "{download}" {cid} {sid} "{a.team}"'

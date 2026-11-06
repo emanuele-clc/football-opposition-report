@@ -1,9 +1,9 @@
 """RQ2: does a next-match forecast that knows the opponent and the venue beat the team's season average?
 Uses the per-match values already extracted by evidence_grade.py (StatsBomb) and evidence_grade_wyscout.py (Wyscout).
 Usage:
-    python -X utf8 src/week4/forecast_opponent.py dev <sb_work_dir> <sb_data_dir>               # exploratory, chooses k and venue
-    python -X utf8 src/week4/forecast_opponent.py confirm statsbomb <sb_work_dir> <sb_data_dir>  # 70 teams, once
-    python -X utf8 src/week4/forecast_opponent.py confirm wyscout <wy_work_dir> <wy_dir>         # 96 teams, once
+    python -X utf8 src/analysis/forecast_opponent.py dev <sb_work_dir> <sb_data_dir>               # exploratory, chooses k and venue
+    python -X utf8 src/analysis/forecast_opponent.py confirm statsbomb <sb_work_dir> <sb_data_dir>  # 70 teams, once
+    python -X utf8 src/analysis/forecast_opponent.py confirm wyscout <wy_work_dir> <wy_dir>         # 96 teams, once
 Protocol: docs/protocol_opponent_forecast.md. In short, for team X in match t (date d, opponent Y):
   F     = X's season so far (the grade's forecast)
   L     = league value before d
@@ -190,7 +190,7 @@ if __name__ == "__main__":
     if len(a) == 4 and a[0] == "confirm" and a[1] in ("statsbomb", "wyscout"):
         provider = a[1]
         out = os.path.join(REPO, "results", f"opponent_forecast_{provider}.json")
-        E.guard(out, [PROTOCOL, "src/week4/forecast_opponent.py", "src/week4/evidence_grade.py", "src/week4/evidence_grade_wyscout.py"])
+        E.guard(out, [PROTOCOL, "src/analysis/forecast_opponent.py", "src/analysis/evidence_grade.py", "src/analysis/evidence_grade_wyscout.py"])
         if provider == "statsbomb":  # <sb_work_dir> <events data dir>
             TEAMS = E.load_teams(a[2])
             E.drop_missing(TEAMS, a[3])

@@ -20,6 +20,7 @@ Definitions (fixed before looking at any team; locations on each team's own atta
 
 import sys, json
 import numpy as np
+from common import is_type
 
 MF, TEAM = sys.argv[1], sys.argv[2]
 BASE = sys.argv[3] if len(sys.argv) > 3 else "."
@@ -56,10 +57,6 @@ def available(metric):
 def x_of(e):
     loc = e.get("location")
     return loc[0] if loc else None
-
-
-def is_type(e, name):
-    return e["type"]["name"] == name
 
 
 def total_xg(shots):

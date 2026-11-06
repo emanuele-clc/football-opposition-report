@@ -1,7 +1,7 @@
 """Set-piece sheet: how a team takes corners and free kicks in the attacking half. Descriptive, one page.
 Usage:  python setpieces.py <matches.json> "<Team>" [data_dir=.]
 Output in data_dir: setpieces_<Team>.html, setpieces_<Team>.json and setpiece_clips_<Team>.csv (same columns as clips_<Team>.csv).
-Definitions (same delivery zones as the L3 corner study, src/week1/corners_leverkusen.py; event data only, no 360 frames needed):
+Definitions (same delivery zones as the L3 corner study, src/analysis/corners.py; event data only, no 360 frames needed):
 - corner: possession of the team with play pattern From Corner; delivery = first pass (or shot) of the team. Side: corner taken from y < 40 = left, else right.
   Zone of the delivery end: short / outside box (x < 102 or less than 18 from the corner's touchline), near post (18-30), centre (30-50), far post (> 50).
 - attacking free kick: possession From Free Kick whose first action is at x >= 80. Direct shot, cross into the box (pass ending at x >= 102, 18 <= y <= 62) or played short.
@@ -10,6 +10,7 @@ Intervals are 95% bootstrap over matches. With few corners per match, zone share
 
 import sys, json, html as H
 import numpy as np, pandas as pd
+from common import team_matches, opponent, boot, pc, ci
 
 MF, TEAM = sys.argv[1], sys.argv[2]
 BASE = sys.argv[3] if len(sys.argv) > 3 else "."
@@ -89,13 +90,10 @@ def set_piece_row(es, g, gi, opp):
 
 
 def extract():
-    matches = [g for g in json.load(open(MF, encoding="utf-8"))
-               if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])]
-    matches.sort(key=lambda g: g["match_date"])
+    matches = team_matches(MF, TEAM)
     rows = []
     for gi, g in enumerate(matches):
-        home = g["home_team"]["home_team_name"] == TEAM
-        opp = g["away_team"]["away_team_name"] if home else g["home_team"]["home_team_name"]
+        opp = opponent(g, TEAM)
         poss = {}
         for e in json.load(open(f"{BASE}/ev/{g['match_id']}.json", encoding="utf-8")):
             if (e.get("possession_team", {}).get("name") == TEAM
@@ -108,16 +106,6 @@ def extract():
             if row:
                 rows.append(row)
     return pd.DataFrame(rows), len(matches)
-
-
-def boot(v, gi, games, B=1000, seed=0):
-    rng = np.random.default_rng(seed)
-    by = {g: v[gi == g] for g in games}
-    out = []
-    for _ in range(B):
-        s = np.concatenate([by[g] for g in rng.choice(games, len(games))])
-        out.append(s.mean() if len(s) else np.nan)
-    return [float(np.nanpercentile(out, 2.5)), float(np.nanpercentile(out, 97.5))]
 
 
 def summarise(df, nm):
@@ -177,14 +165,6 @@ def write_clips(df, path):
     clips = df.assign(family=[f"{r.kind} {r.zone}" for r in df.itertuples()], start_type=df.kind)
     clips = clips.sort_values(["family", "data", "tempo", "minuto", "sec"])
     clips[cols].rename(columns=names).to_csv(path, index=False)
-
-
-def pc(x):
-    return "" if x is None else f"{100 * x:.0f}%"
-
-
-def ci(c):
-    return f"{100 * c[0]:.0f}-{100 * c[1]:.0f}%"
 
 
 CSS = "body{font-family:Arial,sans-serif;max-width:980px;margin:24px auto;color:#222;font-size:13px}h1,h2{color:#1F3A5F}h2{border-bottom:1px solid #ccc;padding-top:10px}table{border-collapse:collapse;width:100%;margin:6px 0}th,td{border:1px solid #ccc;padding:4px 6px;text-align:right}th{background:#E6ECF4}td:first-child,th:first-child{text-align:left}.small{color:#666;font-size:11px}"

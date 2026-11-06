@@ -43,7 +43,7 @@ def run(with_h3, protocol):
         sys.exit(f"Refusing to open the reserved matches without --confirm. First commit {protocol}, then rerun with --confirm.")
 
     sys.argv = [sys.argv[0]] + args
-    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "week2"))
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import sequences_clustering as S
     from sklearn.cluster import KMeans
     from sklearn.preprocessing import StandardScaler

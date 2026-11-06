@@ -16,7 +16,7 @@ if len(a) < 3:
 MF, TEAM, BASE = os.path.abspath(a[0]), a[1], os.path.abspath(a[2])
 WORK = os.path.abspath(a[3]) if len(a) > 3 else tempfile.mkdtemp(prefix="roundtrip_")
 sys.argv = ["x", MF, TEAM, BASE]
-sys.path[:0] = [os.path.join(src, "week2"), os.path.join(src, "adapters"), os.path.join(src, "report")]
+sys.path[:0] = [os.path.join(src, "analysis"), os.path.join(src, "adapters"), os.path.join(src, "report")]
 import sequences_clustering as S, generic_csv as G, statsbomb_to_generic_csv as E, restarts as RS, setpieces as SP, transitions as TR
 import defending as DF
 

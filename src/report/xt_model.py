@@ -127,7 +127,7 @@ if __name__ == "__main__":
     files = [os.path.join(data, "ev", f"{m}.json") for m in sorted(ids)]
     miss = [f for f in files if not os.path.exists(f)]
     if miss:
-        sys.exit(f"{len(miss)} event files missing, e.g. {miss[0]}: download them first (src/week1/download_data.py).")
+        sys.exit(f"{len(miss)} event files missing, e.g. {miss[0]}: download them first (src/analysis/download_data.py).")
     res = fit(files)
     res["match_ids"] = sorted(ids)
     json.dump(res, open(out, "w", encoding="utf-8"), indent=0)

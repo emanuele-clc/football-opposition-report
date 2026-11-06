@@ -6,9 +6,10 @@ Reference teams: any other seq_<Team>.csv found in data_dir (written by this scr
 
 import sys, os, io, json, glob, base64, html as H, warnings
 import numpy as np, pandas as pd
+from common import pc, ci
 
 warnings.filterwarnings("ignore")
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "week2"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analysis"))
 import sequences_clustering as S
 import matplotlib
 
@@ -339,14 +340,6 @@ def fig_png():
     fig.savefig(buf, format="png", dpi=140)
     plt.close(fig)
     return base64.b64encode(buf.getvalue()).decode()
-
-
-def pc(x):
-    return f"{100 * x:.0f}%"
-
-
-def ci(c):
-    return f"{100 * c[0]:.0f}-{100 * c[1]:.0f}%"
 
 
 def num1(v):

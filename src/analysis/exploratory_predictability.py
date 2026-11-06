@@ -15,7 +15,7 @@ if len(sys.argv) < 4 or sys.argv[1] not in ("cv", "ablation", "context"):
     sys.exit(__doc__)
 WHAT = sys.argv[1]
 sys.argv = [sys.argv[0]] + sys.argv[2:]
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "week2"))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import sequences_clustering as S
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler

@@ -16,29 +16,21 @@ Definitions (fixed before looking at any team):
 Not done on purpose: xT by sequence family. The families were already tested against a simple end-position rule for shots (pre-registered, negative);
 xT is itself a value of the end position, so splitting it by family would be a new outcome tried after seeing that result (CLAUDE.md rule 3)."""
 
-import sys, os, io, csv, json, base64, html as H
+import sys, os, csv, json, html as H
 import numpy as np
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from common import THIRDS, team_matches, opponent, third, boot_stat, fig_png
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from xt_model import load_grid, zone, move, NX, NY
 
 MF, TEAM = sys.argv[1], sys.argv[2]
 BASE = sys.argv[3] if len(sys.argv) > 3 else "."
-THIRDS = ["own third", "middle third", "final third"]
 CHAN = ["left", "centre", "right"]
 XT, GRID = load_grid()
-
-
-def third(x):
-    if x < 40:
-        return THIRDS[0]
-    if x < 80:
-        return THIRDS[1]
-    return THIRDS[2]
 
 
 def chan(y):
@@ -54,14 +46,11 @@ def val(loc):
 
 
 def extract():
-    matches = [g for g in json.load(open(MF, encoding="utf-8"))
-               if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])]
-    matches.sort(key=lambda g: g["match_date"])
+    matches = team_matches(MF, TEAM)
     per, moves, outcomes = [], [], 0
     for gi, g in enumerate(matches):
         ev = json.load(open(f"{BASE}/ev/{g['match_id']}.json", encoding="utf-8"))
-        home = g["home_team"]["home_team_name"] == TEAM
-        opp = g["away_team"]["away_team_name"] if home else g["home_team"]["home_team_name"]
+        opp = opponent(g, TEAM)
         shot_pos = {e["possession"] for e in ev if e["type"]["name"] == "Shot" and e["team"]["name"] == TEAM}
         m = {
             "gi": gi,
@@ -116,12 +105,6 @@ def extract():
     return per, moves, len(matches), outcomes
 
 
-def boot(stat, games, B=1000, seed=0):
-    rng = np.random.default_rng(seed)
-    out = [stat(rng.choice(games, len(games))) for _ in range(B)]
-    return [float(np.percentile(out, 2.5)), float(np.percentile(out, 97.5))]
-
-
 def write_clips(moves, path):
     best = sorted(moves, key=lambda a: -a["xt"])[:40]
     best.sort(key=lambda a: (a["date"], a["half"], a["minute"], a["second"]))
@@ -165,10 +148,7 @@ def maps(team_grid):
         ax.set_xticks([])
         ax.set_yticks([])
         ax.set_title(title + "\n(attacking left to right; top = left side)", fontsize=8.5)
-    buf = io.BytesIO()
-    fig.savefig(buf, format="png", dpi=110, bbox_inches="tight")
-    plt.close(fig)
-    return base64.b64encode(buf.getvalue()).decode()
+    return fig_png(fig)
 
 
 def f2(v):
@@ -232,7 +212,7 @@ if __name__ == "__main__":
 
     def summary(key):
         stat = per_match(key)
-        return {"per_match": stat(games), "ci": boot(stat, games), "last5": stat(last)}
+        return {"per_match": stat(games), "ci": boot_stat(stat, games), "last5": stat(last)}
 
     origin = {k: sum(m["origin"][k] for m in per) / nm for k in per[0]["origin"]}
     grid = np.zeros((6, 4))

@@ -14,26 +14,18 @@ Definitions (fixed before looking at any team):
   and the location and time of every recovery followed by a shot within 10 s (to replay it).
 - thirds on the team's own attacking direction: own (x < 40), middle (40-80), final (x >= 80). Intervals: 95% bootstrap over matches."""
 
-import sys, io, json, base64, html as H
+import sys, json, html as H
 import numpy as np, pandas as pd
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from common import THIRDS, team_matches, opponent, third, boot, pc, ci, fig_png
 
 MF, TEAM = sys.argv[1], sys.argv[2]
 BASE = sys.argv[3] if len(sys.argv) > 3 else "."
 CTRL = ("Pass", "Carry", "Shot", "Dribble")
 OPEN = ("Regular Play", "From Counter")
-THIRDS = ["own third", "middle third", "final third"]
-
-
-def third(x):
-    if x < 40:
-        return THIRDS[0]
-    if x < 80:
-        return THIRDS[1]
-    return THIRDS[2]
 
 
 def end_of(e):
@@ -69,13 +61,10 @@ def actions(events):
 
 
 def extract():
-    matches = [g for g in json.load(open(MF, encoding="utf-8"))
-               if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])]
-    matches.sort(key=lambda g: g["match_date"])
+    matches = team_matches(MF, TEAM)
     L, R = [], []
     for gi, g in enumerate(matches):
-        home = g["home_team"]["home_team_name"] == TEAM
-        opp = g["away_team"]["away_team_name"] if home else g["home_team"]["home_team_name"]
+        opp = opponent(g, TEAM)
         A = actions(json.load(open(f"{BASE}/ev/{g['match_id']}.json", encoding="utf-8")))
         base = {"match": g["match_id"], "gi": gi, "data": g["match_date"], "avv": opp}
 
@@ -129,16 +118,6 @@ def extract():
     return pd.DataFrame(L), pd.DataFrame(R), len(matches)
 
 
-def boot(v, gi, games, B=1000, seed=0):
-    rng = np.random.default_rng(seed)
-    by = {g: v[gi == g] for g in games}
-    out = []
-    for _ in range(B):
-        s = np.concatenate([by[g] for g in rng.choice(games, len(games))])
-        out.append(s.mean() if len(s) else np.nan)
-    return [float(np.nanpercentile(out, 2.5)), float(np.nanpercentile(out, 97.5))]
-
-
 PITCH_LINES = [
     [[0, 0], [120, 0], [120, 80], [0, 80], [0, 0]],
     [[60, 0], [60, 80]],
@@ -163,10 +142,7 @@ def heat(d, title, cmap):
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_title(title + " (attacking left to right; top = left side)", fontsize=8.5)
-    buf = io.BytesIO()
-    fig.savefig(buf, format="png", dpi=110, bbox_inches="tight")
-    plt.close(fig)
-    return base64.b64encode(buf.getvalue()).decode()
+    return fig_png(fig)
 
 
 def summarise(L, R, nm):
@@ -275,16 +251,6 @@ def write_clips(L, R, path):
     }
     clips = pd.concat([losses, recoveries])
     clips.sort_values(["family", "data", "tempo", "minuto", "sec"])[cols].rename(columns=names).to_csv(path, index=False)
-
-
-def pc(x):
-    if x is None or (isinstance(x, float) and np.isnan(x)):
-        return ""
-    return f"{100 * x:.0f}%"
-
-
-def ci(c):
-    return f"{100 * c[0]:.0f}-{100 * c[1]:.0f}%"
 
 
 CSS = "body{font-family:Arial,sans-serif;max-width:980px;margin:24px auto;color:#222;font-size:13px}h1,h2{color:#1F3A5F}h2{border-bottom:1px solid #ccc;padding-top:10px}table{border-collapse:collapse;width:100%;margin:6px 0}th,td{border:1px solid #ccc;padding:4px 6px;text-align:right}th{background:#E6ECF4}td:first-child,th:first-child{text-align:left}.small{color:#666;font-size:11px}.two{display:flex;gap:8px}.two img{width:50%}"

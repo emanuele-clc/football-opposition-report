@@ -758,7 +758,7 @@ def sheet(name: str):
     return HTMLResponse(open(p, encoding="utf-8").read())
 
 
-# Every sequence of a team as a path on the pitch (start, then the end of each pass and carry), as in src/week2/sequences_clustering.py.
+# Every sequence of a team as a path on the pitch (start, then the end of each pass and carry), as in src/analysis/sequences_clustering.py.
 def clip_index(key):
     p = os.path.join(D(), f"clips_{key}.csv")
     if not os.path.exists(p):
@@ -1300,7 +1300,7 @@ def _run(job):
         # events of some matches not on disk yet: fetch them first (StatsBomb open data on GitHub; files already there are skipped)
         cid, sid = os.path.basename(job["source"])[:-5].split("_")
         job["log"].append(f"Downloading the missing event files ({job['download']} matches) from the StatsBomb open data…")
-        d = subprocess.run(py + [os.path.join(ROOT, "src", "week1", "download_data.py"), cid, sid, job["team"]],
+        d = subprocess.run(py + [os.path.join(ROOT, "src", "analysis", "download_data.py"), cid, sid, job["team"]],
                            cwd=job["dir"], capture_output=True, text=True, encoding="utf-8", errors="replace")
         job["log"] += [x for x in (d.stdout + d.stderr).splitlines() if x.strip()][-20:]
     cmd = py + [os.path.join(ROOT, "src", "oppreport.py"), "--statsbomb", job["source"], "--data-dir", job["dir"],

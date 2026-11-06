@@ -1,10 +1,10 @@
 """Evidence grade (A-D) of the statements of the opposition report. Protocol: docs/protocol_evidence_grade.md (definitions and thresholds are there).
 Usage (from the repo root, data_dir = folder with data_info/ and ev/):
-    python -X utf8 src/week4/evidence_grade.py smoke   <data_dir> <work_dir>          # 2 teams x 8 matches, prints only counts
-    python -X utf8 src/week4/evidence_grade.py extract <data_dir> <work_dir>          # all 80 teams -> <work_dir>/teams/*.pkl
-    python -X utf8 src/week4/evidence_grade.py analyse <work_dir> --set dev|confirm  [--corrected <data_dir>]
+    python -X utf8 src/analysis/evidence_grade.py extract <data_dir> <work_dir>          # all 80 teams -> <work_dir>/teams/*.pkl
+    python -X utf8 src/analysis/evidence_grade.py analyse <work_dir> --set dev|confirm  [--corrected <data_dir>]
 The analyse step stops if the protocol or this script are not committed and pushed, or if the result file already exists (it runs once).
-For every match each statement is a numerator and a denominator, computed with the report's own scripts (imported)."""
+For every match each statement is a numerator and a denominator, computed with the report's own scripts (imported).
+The smoke test run before the protocol (2 teams x 8 matches, counts only) is in archive/smoke_grade.py."""
 
 import sys, os, json, glob, pickle, collections, subprocess, warnings
 import numpy as np, pandas as pd
@@ -19,7 +19,7 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 ARGV = sys.argv
 sys.argv = ["x", "none.json", "none", "."]
 sys.path.insert(0, os.path.join(REPO, "src", "report"))
-sys.path.insert(0, os.path.join(REPO, "src", "week2"))
+sys.path.insert(0, os.path.join(REPO, "src", "analysis"))
 import sequences_clustering as S
 import restarts as RS
 import setpieces as SP
@@ -631,23 +631,11 @@ def load_teams(work):
 
 if __name__ == "__main__":
     a = [x for x in sys.argv[1:] if not x.startswith("--")]
-    if not a or a[0] not in ("smoke", "extract", "analyse"):
+    if not a or a[0] not in ("extract", "analyse"):
         sys.exit(__doc__)
 
     if a[0] == "extract":
         extract(a[1], a[2], all_teams(a[1]))
-
-    elif a[0] == "smoke":  # only checks that the code runs: prints counts, never a value
-        work = os.path.join(a[2], "smoke")
-        T = [t for t in all_teams(a[1]) if t["team"] in ("Leicester City", "Arsenal")]
-        extract(a[1], work, T, max_matches=8)
-        TEAMS = load_teams(work)
-        fr = all_forecasts(TEAMS, list(TEAMS))
-        print("forecast rows per statement:", dict(fr.groupby("claim").size()))
-        print("missing statements:", sorted(set(CLAIMS) - set(fr.claim)))
-        for c in SCALAR + list(LEAD):
-            discrimination(TEAMS, list(TEAMS), c, np.random.default_rng(7))
-        print("smoke test passed (no values printed)")
 
     else:
         which = sys.argv[sys.argv.index("--set") + 1] if "--set" in sys.argv else ""
@@ -662,7 +650,7 @@ if __name__ == "__main__":
             out = os.path.join(REPO, "results", "evidence_grade_corrected.json")
         else:
             out = os.path.join(REPO, "results", "evidence_grade.json")
-        guard(out, ["docs/protocol_evidence_grade.md", "src/week4/evidence_grade.py"])
+        guard(out, ["docs/protocol_evidence_grade.md", "src/analysis/evidence_grade.py"])
 
         TEAMS = load_teams(a[1])
         dropped = {}

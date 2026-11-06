@@ -1,8 +1,8 @@
-"""Evidence grade, part 2 (protocol: docs/protocol_evidence_grade.md, section 'Second provider'): are the statements the same when the events come from Wyscout?
+"""ARCHIVE (run once, 20 Oct 2026; result: results/evidence_provider_Barcelona.json). Evidence grade, part 2 (protocol: docs/protocol_evidence_grade.md, section 'Second provider'): are the statements the same when the events come from Wyscout?
 Same 36 Barcelona 2017/18 matches in StatsBomb and Wyscout public data. Label only: it does not change the grade. Run after the confirmatory run
 (needs the between-team SD from results/evidence_grade.json).
 Usage:
-    python -X utf8 src/week4/evidence_provider.py <sb matches.json> <sb data dir> <wyscout dir> <work dir>
+    python -X utf8 archive/evidence_provider.py <sb matches.json> <sb data dir> <wyscout dir> <work dir>
     e.g. C:/Users/ecole/sbdata/matches/11_1.json C:/Users/ecole/sbdata C:/Users/ecole/wyscout_open C:/Users/ecole/evidence_work/provider
 Output: results/evidence_provider_Barcelona.json (refuses to overwrite). --check: code check only (first 5 matches, prints no value, writes nothing). Wyscout data: Pappalardo et al. 2019 (CC BY 4.0)."""
 
@@ -17,8 +17,8 @@ if len(a) != 4:
 SB_MF, SB_BASE, WY, WORK = (os.path.abspath(x) for x in a)
 TEAM = "Barcelona"
 here = os.path.dirname(os.path.abspath(__file__))
-REPO = os.path.abspath(os.path.join(here, "..", ".."))
-sys.path[:0] = [here, os.path.join(REPO, "src", "adapters")]
+REPO = os.path.abspath(os.path.join(here, ".."))
+sys.path[:0] = [os.path.join(REPO, "src", "analysis"), os.path.join(REPO, "src", "adapters")]
 import evidence_grade as E, generic_csv as G, wyscout_to_generic_csv as W
 
 OUT = os.path.join(REPO, "results", "evidence_provider_Barcelona.json")

@@ -1,4 +1,4 @@
-"""Clip list -> one MP4 per clip, cut from the match video, plus a playlist: the analyst can use them with any video tool (no import needed).
+"""ARCHIVE (not used by the report or the app; kept for cutting MP4 clips by hand). Clip list -> one MP4 per clip, cut from the match video, plus a playlist: the analyst can use them with any video tool (no import needed).
 Usage:  python clips_to_mp4.py <clips.csv> <video.mp4> <out_dir> --match <match_id> [--half1 <s>] [--half2 <s>] [--video-offsets offsets.csv]
                                [--family B1|B2] [--shot] [--pre 3] [--post 3] [--one-file]
 <clips.csv>: any clip list of the pipeline (clips_, restart_clips_, setpiece_clips_, transition_clips_, xt_clips_<Team>.csv). One video is one match,

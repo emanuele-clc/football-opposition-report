@@ -1,15 +1,11 @@
-"""The 10-team replication: choose the teams, run the analyses on all of them, print the summaries.
+"""The 10-team replication: run one analysis on all 10 teams, and print the summaries with the rules of the protocols.
 Run it from the data folder (the one with matches/ and ev/). Protocol: docs/protocol_replication10.md.
-    python ten_teams.py select [data_info] [out]                                   draw the 6 new teams (seed 20261013)
-    python ten_teams.py replicate <selection.json> --confirm [--only "Team"] [--reserves] [--print-only]
-                                                                                   download + E1 + validation, once per team
     python ten_teams.py run simplerule|samplesize|clustertest <selection.json> [--confirm] [--print-only]
-                                                                                   one script on the 10 teams (teams already done are skipped)
+                                                                   one script on the 10 teams (teams already done are skipped)
     python ten_teams.py summary replication|simplerule|samplesize <selection.json> [results_folder=results] [out]
-(Until 6 Nov 2026 these were six files: select_teams.py, run_new_teams.py, summarize_replication10.py,
-run_simple_rule.py, run_sample_size.py, run_cluster_tests.py.)"""
+The draw of the 6 new teams and the first run of the replication (done once, 13 Oct 2026) are in archive/select_and_replicate.py."""
 
-import sys, os, json, glob, math, collections, subprocess
+import sys, os, json, math, collections, subprocess
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -38,101 +34,6 @@ def run_logged(cmd, log):
 
 def show(cmd):
     return " ".join(f'"{c}"' if " " in c else c for c in cmd)
-
-
-# ---------------------------------------------------------------- select
-# the rule as it was written in the selection file on 13 Oct 2026
-RULE = (
-    "Selezione delle squadre per la replica su 10 squadre (protocollo: docs/protocol_replication10.md).\n"
-    "Regola fissata prima: stagioni complete 2015/2016 di La Liga, Serie A e Ligue 1 (competizioni con almeno 300 partite disponibili), squadre con almeno 30 partite,\n"
-    "escluse le 4 squadre gia' usate. Sorteggio stratificato per campionato con seed fisso: 2 squadre primarie + 1 di riserva per campionato (la riserva si usa solo\n"
-    "per un guasto tecnico, mai per un risultato)."
-)
-
-
-def select(data_info, out):
-    seed = 20261013
-    used = {"Bayer Leverkusen", "Leicester City", "Barcelona", "Arsenal"}
-    comps = {}
-    for c in json.load(open(f"{data_info}/competitions.json", encoding="utf-8")):
-        comps[(c["competition_id"], c["season_id"])] = c
-    rng = np.random.default_rng(seed)
-    teams = []
-    for league in ["La Liga", "Serie A", "Ligue 1"]:
-        candidates = []
-        for f in sorted(glob.glob(f"{data_info}/[0-9]*_*.json")):
-            cid, sid = map(int, os.path.basename(f)[:-5].split("_"))
-            c = comps.get((cid, sid))
-            if c is None or c["competition_name"] != league or c["season_name"] != "2015/2016":
-                continue
-            ms = json.load(open(f, encoding="utf-8"))
-            if len(ms) < 300:
-                continue
-            count = collections.Counter()
-            for g in ms:
-                if g.get("match_status") == "available":
-                    count[g["home_team"]["home_team_name"]] += 1
-                    count[g["away_team"]["away_team_name"]] += 1
-            for t, n in count.items():
-                if n >= 30 and t not in used:
-                    candidates.append((t, cid, sid, n))
-        candidates.sort(key=lambda x: x[0])
-        order = rng.permutation(len(candidates))
-        for rank, i in enumerate(order[:3]):  # 2 primary + 1 reserve
-            t, cid, sid, n = candidates[i]
-            teams.append(
-                {
-                    "team": t,
-                    "league": league,
-                    "season": "2015/2016",
-                    "competition_id": cid,
-                    "season_id": sid,
-                    "matches": n,
-                    "role": "primary" if rank < 2 else "reserve",
-                    "candidates_in_stratum": len(candidates),
-                }
-            )
-    os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
-    result = {"seed": seed, "rule": RULE, "already_used": sorted(used), "teams": teams}
-    json.dump(result, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-    for t in teams:
-        print(f"{t['role']:8s} {t['league']:8s} {t['team']:28s} ({t['matches']} partite, {t['candidates_in_stratum']} candidate nello strato)")
-    print("salvato", out)
-
-
-# ---------------------------------------------------------------- replicate
-def replicate(selection, flags, only):
-    if "--confirm" not in flags and "--print-only" not in flags:
-        sys.exit("Needs --confirm (after committing docs/protocol_replication10.md) or --print-only.")
-    print_only = "--print-only" in flags
-    py = [sys.executable, "-X", "utf8"]
-    os.makedirs("run_logs", exist_ok=True)
-    for t in selection["teams"]:
-        if only and t["team"] != only:
-            continue
-        if not only and t["role"] != "primary" and "--reserves" not in flags:
-            continue
-        team = t["team"]
-        fn = team.replace(" ", "_")
-        mf = f"matches/{t['competition_id']}_{t['season_id']}.json"
-        steps = [
-            ("download", py + [os.path.join(HERE, "..", "week1", "download_data.py"), str(t["competition_id"]), str(t["season_id"]), team]),
-            ("E1", py + [os.path.join(HERE, "..", "week3", "stability_null_baseline.py"), mf, team, "."]),
-            ("validazione", py + [os.path.join(HERE, "validate_replication.py"), mf, team, ".", "--confirm"]),
-        ]
-        print(f"\n=== {team} ({t['league']}, {t['role']}) ===")
-        if os.path.exists(f"holdout_{fn}.json") and not print_only:
-            print("gia' validata, salto")
-            continue
-        for label, cmd in steps:
-            print(f"[{label}]", show(cmd))
-            if print_only:
-                continue
-            r = run_logged(cmd, f"run_logs/{fn}_{label}.log")
-            print("\n".join(r.stdout.strip().splitlines()[-4:]))
-            if r.returncode != 0:
-                print(f"ERRORE nel passo {label}: vedi run_logs/{fn}_{label}.log")
-                break
 
 
 # ---------------------------------------------------------------- run one script on the 10 teams
@@ -323,20 +224,10 @@ def summary_samplesize(selection, folder):
 if __name__ == "__main__":
     flags = [a for a in sys.argv[1:] if a.startswith("--")]
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    only = None
-    if "--only" in sys.argv:
-        only = sys.argv[sys.argv.index("--only") + 1]
-        args.remove(only)
     if not args:
         sys.exit(__doc__)
 
-    if args[0] == "select":
-        data_info = args[1] if len(args) > 1 else "data_info"
-        out = args[2] if len(args) > 2 else "docs/replication10_selection.json"
-        select(data_info, out)
-    elif args[0] == "replicate" and len(args) == 2:
-        replicate(json.load(open(args[1], encoding="utf-8")), flags, only)
-    elif args[0] == "run" and len(args) == 3 and args[1] in SCRIPTS:
+    if args[0] == "run" and len(args) == 3 and args[1] in SCRIPTS:
         run_all(args[1], json.load(open(args[2], encoding="utf-8")), flags)
     elif args[0] == "summary" and len(args) >= 3:
         selection = json.load(open(args[2], encoding="utf-8"))

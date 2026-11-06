@@ -124,7 +124,7 @@ The app opens at **http://127.0.0.1:8765** with four example teams, in two versi
 
 ```powershell
 cd <data_folder>                                                              # downloads go into the current folder
-python -X utf8 <repo>\src\week1\download_data.py 9 281 "Bayer Leverkusen"     # StatsBomb events -> matches\ and ev\
+python -X utf8 <repo>\srcnalysis\download_data.py 9 281 "Bayer Leverkusen"     # StatsBomb events -> matches\ and ev\
 python -X utf8 <repo>\src\oppreport.py --statsbomb matches\9_281.json --data-dir . --team "Bayer Leverkusen" --out reports
 python -X utf8 <repo>\src\oppreport.py --csv events.csv --team "Team name" --out reports   # data from any other provider
 ```
@@ -132,7 +132,7 @@ python -X utf8 <repo>\src\oppreport.py --csv events.csv --team "Team name" --out
 To cut the clips of one match from its video (one MP4 per clip plus a playlist, usable in any video tool):
 
 ```powershell
-python -X utf8 <repo>\src\report\clips_to_mp4.py reports\clips_<Team>.csv match.mp4 clips_out --match <match_id> --half1 <s> --half2 <s> --shot
+python -X utf8 <repo>\archive\clips_to_mp4.py reports\clips_<Team>.csv match.mp4 clips_out --match <match_id> --half1 <s> --half2 <s> --shot
 ```
 
 `--half1` / `--half2` = the video second at which each half kicks off. Checked on a test video with a burnt-in match clock: cuts start on the second.
@@ -176,7 +176,7 @@ python -X utf8 src\adapters\generic_csv.py italy.csv <wy_dir>\Italy
 3. Extract the per-match values of all 98 teams (long; teams already done are skipped):
 
 ```powershell
-python -X utf8 src\week4\evidence_grade_wyscout.py extract <wy_dir> <wy_work_dir>
+python -X utf8 srcnalysis\evidence_grade_wyscout.py extract <wy_dir> <wy_work_dir>
 ```
 
 The confirmatory steps (`evidence_grade_wyscout.py analyse --set confirm`, `forecast_opponent.py confirm wyscout ...`) refuse to run when the result file already exists: each test is run once, on purpose. To check a number, read the committed file in `results/`. Wyscout has no pressures and no xG, so 5 statements cannot be tested, and possessions are rebuilt from the event order. Details: [docs/protocol_evidence_grade_wyscout.md](docs/protocol_evidence_grade_wyscout.md).
@@ -189,11 +189,8 @@ The confirmatory steps (`evidence_grade_wyscout.py analyse --set confirm`, `fore
 <br>
 
 ```
-src/week1/        feasibility: data download, corners (L3), goal kicks
-src/week2/        build-up families: sequences, clustering
-src/week3/        robustness and null baselines of the families
-src/week4/        held-out validation, replication on 10 teams, simple-rule test,
-                  evidence grade (RQ1, StatsBomb and Wyscout), opponent-adjusted forecast (RQ2)
+src/analysis/     the thesis analyses: download, sequences, families, held-out validation, 10-team replication,
+                  simple-rule test, corners (L3), evidence grade (RQ1, StatsBomb and Wyscout), opponent-adjusted forecast (RQ2)
 src/report/       report sheets, clip lists, XML and MP4 clip export
 src/adapters/     provider adapters (generic CSV, StatsBomb, Wyscout)
 src/tracking/     tracking data (exploratory)
@@ -207,7 +204,7 @@ examples_wyscout/ the same 4 teams on Wyscout data
 data_info/        competition and match lists (raw events are not included)
 ```
 
-The `week1`-`week4` folder names follow the order of the work and are kept because the protocols, written before each run, cite these paths. Some keys inside older result files are in Italian (for example `nota`, `verdetto`): the files are kept exactly as each run wrote them.
+Until 6 November 2026 the analyses were in four folders `src/week1`-`src/week4` (the order of the work); the protocols, written before each run, cite those old paths, and docs/pipeline.md says which file replaced which. The code at each protocol's commit is in the git history. Simple explanation of every file, in Italian: docs/codice_spiegato.md. Some keys inside older result files are in Italian (for example `nota`, `verdetto`): the files are kept exactly as each run wrote them.
 
 </details>
 

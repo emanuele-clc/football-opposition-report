@@ -14,36 +14,19 @@ Definitions (fixed before looking at any team; locations are on the team's own a
   same shots as above). Shows whether the team concedes few good chances or many poor ones; descriptive, not graded.
 - last 5: the five most recent matches. Intervals: 95% bootstrap over matches."""
 
-import sys, io, json, copy, base64, html as H
+import sys, json, copy, html as H
 import numpy as np
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from common import THIRDS, team_matches, third, is_type, boot_stat, pc, fig_png
 
 MF, TEAM = sys.argv[1], sys.argv[2]
 BASE = sys.argv[3] if len(sys.argv) > 3 else "."
 
-# StatsBomb match lists have competition fields; lists made from the generic CSV can name their provider (--provider=...).
-first_match = (json.load(open(MF, encoding="utf-8")) or [{}])[0]
-IS_SB = "competition" in first_match
-PROVIDER = first_match.get("data_provider") or ("StatsBomb" if IS_SB else "the data provider")
-
 DEF = ("Duel", "Interception", "Foul Committed", "Ball Recovery", "Block", "Clearance")
 PPDA_ACT = ("Duel", "Interception", "Foul Committed")
-THIRDS = ["own third", "middle third", "final third"]
-
-
-def third(x):
-    if x < 40:
-        return THIRDS[0]
-    if x < 80:
-        return THIRDS[1]
-    return THIRDS[2]
-
-
-def is_type(e, name):
-    return e["type"]["name"] == name
 
 
 def match_stats(g, gi):
@@ -75,21 +58,13 @@ def match_stats(g, gi):
 
 
 def extract():
-    matches = [g for g in json.load(open(MF, encoding="utf-8"))
-               if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])]
-    matches.sort(key=lambda g: g["match_date"])
+    matches = team_matches(MF, TEAM)
     per, press = [], []
     for gi, g in enumerate(matches):
         m, points = match_stats(g, gi)
         per.append(m)
         press += points
     return per, press, len(matches)
-
-
-def boot(stat, games, B=1000, seed=0):
-    rng = np.random.default_rng(seed)
-    out = [stat(rng.choice(games, len(games))) for _ in range(B)]
-    return [float(np.nanpercentile(out, 2.5)), float(np.nanpercentile(out, 97.5))]
 
 
 def pressure_map(grid, mean_height):
@@ -114,14 +89,7 @@ def pressure_map(grid, mean_height):
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_title("Pressures per match by zone (attacking left to right; top = left side)", fontsize=8.5)
-    buf = io.BytesIO()
-    fig.savefig(buf, format="png", dpi=110, bbox_inches="tight")
-    plt.close(fig)
-    return base64.b64encode(buf.getvalue()).decode()
-
-
-def pc(x):
-    return f"{100 * x:.0f}%"
+    return fig_png(fig)
 
 
 CSS = "body{font-family:Arial,sans-serif;max-width:980px;margin:24px auto;color:#222;font-size:13px}h1,h2{color:#1F3A5F}h2{border-bottom:1px solid #ccc;padding-top:10px}table{border-collapse:collapse;width:100%;margin:6px 0}th,td{border:1px solid #ccc;padding:4px 6px;text-align:right}th{background:#E6ECF4}td:first-child,th:first-child{text-align:left}.small{color:#666;font-size:11px}img{width:70%}"
@@ -154,7 +122,13 @@ def html_page(r, per, nm, img, no_press, no_xg):
         for t, v in p["by_third"].items():
             h.append(f"<tr><td>{t}</td><td>{pc(v['share'])}</td><td>{v['per_match']:.0f}</td></tr>")
         h.append("</table>")
-    h.append(NOTE_SB if IS_SB else NOTE_OTHER.format(provider=H.escape(PROVIDER)))
+    # StatsBomb match lists have competition fields; lists made from the generic CSV can name their provider (--provider=...)
+    first_match = (json.load(open(MF, encoding="utf-8")) or [{}])[0]
+    if "competition" in first_match:
+        h.append(NOTE_SB)
+    else:
+        provider = first_match.get("data_provider") or "the data provider"
+        h.append(NOTE_OTHER.format(provider=H.escape(provider)))
     return "".join(h)
 
 
@@ -198,36 +172,36 @@ if __name__ == "__main__":
         "matches": int(nm),
         "ppda": {
             "value": ppda(games),
-            "ci": boot(ppda, games),
+            "ci": boot_stat(ppda, games),
             "last5": ppda(last),
             "opp_passes": int(total("opp_pass", games)),
             "actions": int(total("act_hi", games)),
         },
         "pressures": {
             "per_match": pressures(games),
-            "ci": boot(pressures, games),
+            "ci": boot_stat(pressures, games),
             "last5": pressures(last),
             "by_third": {t: {"share": per_third[t] / n_press, "per_match": per_third[t] / nm} for t in THIRDS},
             "counterpress_share": counterpress(games),
-            "counterpress_ci": boot(counterpress, games),
+            "counterpress_ci": boot_stat(counterpress, games),
             "grid_per_match": (grid / nm).round(3).tolist(),
         },
         "height": {
             "mean_x": height(games),
-            "ci": boot(height, games),
+            "ci": boot_stat(height, games),
             "median_x": float(np.median(all_x)) if all_x else None,
             "last5": height(last),
             "actions_per_match": per_match("def_actions")(games),
         },
         "conceded": {
             "shots_per_match": shots(games),
-            "shots_ci": boot(shots, games),
+            "shots_ci": boot_stat(shots, games),
             "xg_per_match": xg(games),
-            "xg_ci": boot(xg, games),
+            "xg_ci": boot_stat(xg, games),
             "last5_shots": shots(last),
             "last5_xg": xg(last),
             "xg_per_shot": xg_per_shot(games),
-            "xg_per_shot_ci": boot(xg_per_shot, games),
+            "xg_per_shot_ci": boot_stat(xg_per_shot, games),
             "last5_xg_per_shot": xg_per_shot(last),
         },
     }

@@ -191,7 +191,7 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
       <div className="state">
         <h2>No evidence grades yet</h2>
         <p className="small">
-          Run <code>src/week4/evidence_grade.py</code> (StatsBomb) or <code>src/week4/evidence_grade_wyscout.py</code>{" "}
+          Run <code>src/analysis/evidence_grade.py</code> (StatsBomb) or <code>src/analysis/evidence_grade_wyscout.py</code>{" "}
           (Wyscout) as described in the protocols in docs/.
         </p>
       </div>

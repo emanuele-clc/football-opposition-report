@@ -64,7 +64,7 @@ export default function NewTeam({
         <p>
           The app is reading <b>{info?.data_dir}</b>. To make a report for a new team it needs StatsBomb match lists in{" "}
           <code>matches/</code> and the event files in <code>ev/</code>, as written by{" "}
-          <code>src/week1/download_data.py</code>.
+          <code>src/analysis/download_data.py</code>.
         </p>
         <p>Start the app on that folder instead:</p>
         <div className="log">python -X utf8 app\run.py --data-dir &lt;folder with matches\ and ev\&gt;</div>

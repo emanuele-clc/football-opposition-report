@@ -7,12 +7,13 @@ Definitions (fixed before looking at any team):
 - outcomes of the possession: reached the opponent half (any team action ending at x >= 60), reached the final third (x >= 80), shot, ended in own half (no shot and the last team action ends at x < 60: ball lost, out of play or foul).
 Intervals are 95% bootstrap over matches. 'Last 5' uses only the five most recent matches and is shown with its own interval: with 5 matches it is wide."""
 
-import sys, io, json, base64, html as H
+import sys, json, html as H
 import numpy as np, pandas as pd
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from common import team_matches, opponent, boot, pc, ci, fig_png
 
 MF, TEAM = sys.argv[1], sys.argv[2]
 BASE = sys.argv[3] if len(sys.argv) > 3 else "."
@@ -87,13 +88,10 @@ def restart_row(es, g, gi, opp):
 
 
 def extract():
-    matches = [g for g in json.load(open(MF, encoding="utf-8"))
-               if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])]
-    matches.sort(key=lambda g: g["match_date"])
+    matches = team_matches(MF, TEAM)
     rows = []
     for gi, g in enumerate(matches):
-        home = g["home_team"]["home_team_name"] == TEAM
-        opp = g["away_team"]["away_team_name"] if home else g["home_team"]["home_team_name"]
+        opp = opponent(g, TEAM)
         poss = {}
         for e in json.load(open(f"{BASE}/ev/{g['match_id']}.json", encoding="utf-8")):
             if (e.get("possession_team", {}).get("name") == TEAM
@@ -106,16 +104,6 @@ def extract():
             if row:
                 rows.append(row)
     return pd.DataFrame(rows), len(matches)
-
-
-def boot(d, col, games, B=1000, seed=0):
-    rng = np.random.default_rng(seed)
-    by = {g: d[col].values[d.gi.values == g] for g in games}
-    out = []
-    for _ in range(B):
-        v = np.concatenate([by[g] for g in rng.choice(games, len(games))])
-        out.append(v.mean() if len(v) else np.nan)
-    return [float(np.nanpercentile(out, 2.5)), float(np.nanpercentile(out, 97.5))]
 
 
 PITCH_LINES = [
@@ -151,10 +139,7 @@ def pitch(d, title):
     ax.set_yticks([])
     ax.legend(loc="lower right", fontsize=8)
     ax.set_title(f"{title}: where the first pass goes (attacking left to right; top = left side)", fontsize=9)
-    buf = io.BytesIO()
-    fig.savefig(buf, format="png", dpi=110, bbox_inches="tight")
-    plt.close(fig)
-    return base64.b64encode(buf.getvalue()).decode()
+    return fig_png(fig)
 
 
 def summarise(df, nm):
@@ -170,9 +155,9 @@ def summarise(df, nm):
         for m, _ in METRICS:
             metrics[m] = {
                 "season": float(d[m].mean()),
-                "ci": boot(d, m, games),
+                "ci": boot(d[m].values, d.gi.values, games),
                 "last5": float(d5[m].mean()) if len(d5) else None,
-                "last5_ci": boot(d5, m, last) if len(d5) else None,
+                "last5_ci": boot(d5[m].values, d5.gi.values, last) if len(d5) else None,
             }
         kind = {
             "n": int(len(d)),
@@ -213,16 +198,6 @@ def write_clips(df, path):
     }
     clips = df.assign(family=family).sort_values(["family", "data", "tempo", "minuto", "sec"])
     clips[cols].rename(columns=names).to_csv(path, index=False)
-
-
-def pc(x):
-    if x is None or (isinstance(x, float) and np.isnan(x)):
-        return ""
-    return f"{100 * x:.0f}%"
-
-
-def ci(c):
-    return f"{100 * c[0]:.0f}-{100 * c[1]:.0f}%" if c else ""
 
 
 CSS = "body{font-family:Arial,sans-serif;max-width:980px;margin:24px auto;color:#222;font-size:13px}h1,h2{color:#1F3A5F}h2{border-bottom:1px solid #ccc;padding-top:10px}table{border-collapse:collapse;width:100%;margin:6px 0}th,td{border:1px solid #ccc;padding:4px 6px;text-align:right}th{background:#E6ECF4}td:first-child,th:first-child{text-align:left}.small{color:#666;font-size:11px}.diff{background:#FFF4D6}"

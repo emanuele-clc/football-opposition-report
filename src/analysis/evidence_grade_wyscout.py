@@ -1,10 +1,9 @@
 """RQ1: the evidence grade on Wyscout 2017/18. Protocol: docs/protocol_evidence_grade_wyscout.md.
 Same measures, thresholds and code as evidence_grade.py (imported); only the data and the list of statements change.
 Usage (from the repo root; wy_dir = one converted league per country, see the protocol):
-    python -X utf8 src/week4/evidence_grade_wyscout.py smoke   <wy_dir> <work_dir>          # 2 teams x 8 matches, prints only counts
-    python -X utf8 src/week4/evidence_grade_wyscout.py extract <wy_dir> <work_dir>          # all 98 teams -> <work_dir>/teams/*.pkl
-    python -X utf8 src/week4/evidence_grade_wyscout.py analyse <work_dir> --set dev|confirm
-The analyse step stops if the protocol or the scripts are not committed and pushed, or if the result file already exists."""
+    python -X utf8 src/analysis/evidence_grade_wyscout.py extract <wy_dir> <work_dir>          # all 98 teams -> <work_dir>/teams/*.pkl
+    python -X utf8 src/analysis/evidence_grade_wyscout.py analyse <work_dir> --set dev|confirm
+The smoke test (2 teams x 8 matches) is in archive/smoke_grade.py. The analyse step stops if the protocol or the scripts are not committed and pushed, or if the result file already exists."""
 
 import sys, os, json, glob, pickle
 import numpy as np, pandas as pd
@@ -156,7 +155,7 @@ def compare(wy, sb):
 
 if __name__ == "__main__":
     a = [x for x in sys.argv[1:] if not x.startswith("--")]
-    if not a or a[0] not in ("smoke", "extract", "analyse"):
+    if not a or a[0] not in ("extract", "analyse"):
         sys.exit(__doc__)
 
     if a[0] == "extract":
@@ -164,27 +163,12 @@ if __name__ == "__main__":
         print(f"{len(T)} teams in {len(COUNTRIES)} leagues", flush=True)
         extract(a[2], T)
 
-    elif a[0] == "smoke":  # only checks that the code runs: prints counts, never a value
-        work = os.path.join(a[2], "smoke")
-        T = []
-        for t in all_teams(a[1]):
-            if t["team"] in DEV:
-                T.append(dict(t, league="smoke"))  # one 'league', so the baseline exists
-        extract(work, T, max_matches=8)
-        TEAMS = load_teams(work)
-        fr = E.all_forecasts(TEAMS, list(TEAMS))
-        print("forecast rows per statement:", dict(fr.groupby("claim").size()))
-        print("statements without forecast rows:", sorted(set(E.CLAIMS) - set(fr.claim)))
-        for c in E.SCALAR + list(E.LEAD):
-            E.discrimination(TEAMS, list(TEAMS), c, np.random.default_rng(7))
-        print(f"smoke test passed: {len(E.CLAIMS)} statements (no values printed)")
-
     else:
         which = sys.argv[sys.argv.index("--set") + 1] if "--set" in sys.argv else ""
         if which not in ("dev", "confirm"):
             sys.exit("--set dev or --set confirm")
         out = os.path.join(REPO, "results", f"evidence_grade_wyscout{'_dev' if which == 'dev' else ''}.json")
-        E.guard(out, [PROTOCOL, "src/week4/evidence_grade_wyscout.py", "src/week4/evidence_grade.py"])
+        E.guard(out, [PROTOCOL, "src/analysis/evidence_grade_wyscout.py", "src/analysis/evidence_grade.py"])
         TEAMS = load_teams(a[1])
         if which == "dev":
             subjects = [t for t in TEAMS if t in DEV]
