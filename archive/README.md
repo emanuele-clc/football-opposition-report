@@ -1,7 +1,7 @@
 # archive/
 
 Code that was run once and is not needed to redo the thesis numbers. Kept so every result can still be traced to its code.
-Moved here on 6 November 2026 (tracking, XML export and the local-model brief later the same day, to keep the thesis to its questions); the code is the same as before (checked where possible: same output files).
+Moved here on 6 November 2026 (XML export and the local-model brief later the same day, to keep the thesis to its questions); the code is the same as before (checked where possible: same output files).
 
 | file | what it did | result |
 |---|---|---|
@@ -13,6 +13,5 @@ Moved here on 6 November 2026 (tracking, XML export and the local-model brief la
 | `clips_to_mp4.py` | cuts MP4 clips from a match video (not used by the report or the app) | none |
 | `clips_to_xml.py` | clip list -> Sportscode/Nacsport-style XML (was `oppreport.py --xml` and a button in the app; never tested in a real video tool) | none |
 | `ai_brief.py` | coach brief written by a local language model (Ollama) from the game-plan hints (was in the app) | none |
-| `tracking/` | DFL open tracking data: `dfl_load.py` (reads the XML), `pitch_control.py`, `ghosting.py`, `app_tracking.py` (was the app's Tracking lab). Exploratory, other matches than the report teams. Paths inside still point to `src/tracking/`. | `results/exploratory_pitch_control.json`, `results/exploratory_ghosting.json` |
 
 Note: until 6 Nov 2026 `evidence_provider.py` and `exploratory_provider_samematch.py` (and `evidence_grade.py extract`) stopped at start because `src/report/defending.py` read the match file when imported; fixed that day, but these two were not rerun.

@@ -38,7 +38,7 @@ Written 22 October 2026 for discussion with the supervisors; updated 30 October 
 | # | Idea | What it would show | Cost | Notes |
 |---|---|---|---|---|
 | 4.1 | **L3 corners redesign.** Data-driven zones, one continuous predictor, protocol first; Euro 2020/WC 2022 for exploration, Euro 2024 held out. | Whether corner set-ups are exploitable, with a test that has power (today p = 0.17 / 0.41, low power). | M | Option A in CLAUDE.md; decide with the supervisor. |
-| 4.2 | **Tracking on the report teams.** Pitch control and defender ghosting are now only on 7 DFL matches of other teams. With tracking for the report teams, add off-ball information (for example the defensive line). | Whether off-ball data changes the families or the grade. | L (needs data) | Today's tracking results say nothing about the 10 teams. |
+| 4.2 | **Tracking on the report teams.** The open StatsBomb data have no tracking for the report teams. With tracking for the report teams, add off-ball information (for example the defensive line). | Whether off-ball data changes the families or the grade. | L (needs data) | |
 | 4.3 | **Families by tracking context.** Split build-up families by the opponent's pressing shape from tracking. | Whether the families mean different things against different blocks. | L | Depends on 4.2. |
 
 ## 5. Maintenance found during the work

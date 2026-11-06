@@ -104,7 +104,6 @@ First written 22 October 2026; updated 30 October 2026 to the current research q
 - C. Exploratory side studies, one page each, labelled exploratory:
   - **L3 corners:** null and weak. Leverkusen p = 0.17; pooled tournaments p = 0.41; low power. Source: `results/results_corners.json`, `results_pooled_corners.json`.
   - **xT model and threat sheet (descriptive):** `src/report/xt_grid.json`.
-  - **Tracking (DFL open data, 7 matches, not the report teams; code in `archive/tracking/`):** ghosting, ridge 3.7 m beats the LSTM at 4.4 m (`results/exploratory_ghosting.json`); pitch control, pass AUC 0.89, +0.04 over a nearest-player margin (`results/exploratory_pitch_control.json`).
 - D. User guide of the app and reproduction commands (`docs/pipeline.md`, `docs/analyst_guide.md`).
 
 ---
