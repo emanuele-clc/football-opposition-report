@@ -1,8 +1,7 @@
-"""Week 2 - L2 module: possession sequences, zones, clustering and stability (bootstrap).
+"""Week 2 - open-play sequences of a team, their features, and the choice of k.
 Usage: python sequences_clustering.py <matches.json> "<Team>" [data_folder=.]
-Data: StatsBomb Open Data (non-commercial licence, cite StatsBomb). Orientation: StatsBomb already normalises the attacking direction
-(left to right for the team performing the event); small y = left flank (checked with the full-backs' positions).
-Method rule: clustering and the choice of k use only the first 70% of matches (exploration). The last matches are NOT touched."""
+Data: StatsBomb Open Data (cite StatsBomb). StatsBomb already turns every event so the team attacks left to right; small y = left.
+Only the first 70% of the matches (exploration) are used to choose k. The other scripts import this file and use extract()."""
 
 import json, sys
 import numpy as np, pandas as pd
@@ -11,111 +10,144 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score, adjusted_rand_score
 from sklearn.preprocessing import StandardScaler
 
-MF, TEAM = sys.argv[1], sys.argv[2]
-BASE = sys.argv[3] if len(sys.argv) > 3 else "."
-OPEN_PLAY = {
-    "Regular Play",
-    "From Counter",
-    "From Goal Kick",
-    "From Keeper",
-    "From Throw In",
-}  # no corners, free kicks, kick-offs
+# the other scripts change these three before calling extract()
+MF = sys.argv[1]
+TEAM = sys.argv[2]
+if len(sys.argv) > 3:
+    BASE = sys.argv[3]
+else:
+    BASE = "."
+
+# play patterns we keep (no corners, free kicks, kick-offs)
+OPEN_PLAY = {"Regular Play", "From Counter", "From Goal Kick", "From Keeper", "From Throw In"}
+
+# 12 zones: 4 bands along the pitch (A = our box ... D = last third) x 3 across (s = left, C = centre, d = right)
 XB = [0, 30, 60, 90, 120]
 YB = [0, 80 / 3, 160 / 3, 80.01]
+ZN = []
+for c in "ABCD":
+    for r in "sCd":
+        ZN.append(c + r)
 
 
 def zone(x, y):
-    col = min(int(np.searchsorted(XB, x, side="right") - 1), 3)
-    row = min(int(np.searchsorted(YB, y, side="right") - 1), 2)
+    col = int(np.searchsorted(XB, x, side="right") - 1)
+    row = int(np.searchsorted(YB, y, side="right") - 1)
+    col = min(col, 3)
+    row = min(row, 2)
     return col * 3 + row
 
 
-# A..D = lunghezza (A: propria area, D: ultimo terzo), s/C/d = sinistra/centro/destra
-ZN = [f"{c}{r}" for c in "ABCD" for r in "sCd"]
+def path_points(events):
+    # start of the sequence, then where every pass and carry ends
+    points = [events[0]["location"]]
+    for e in events:
+        if e["type"]["name"] == "Pass":
+            points.append(e["pass"]["end_location"])
+        elif e["type"]["name"] == "Carry":
+            points.append(e["carry"]["end_location"])
+    # drop a point if it is the same as the one before
+    clean = [points[0]]
+    for p in points[1:]:
+        if p != clean[-1]:
+            clean.append(p)
+    return clean
 
 
-def path_points(es):
-    """Start of the sequence, then the end of every pass and carry; repeated points removed."""
-    pts = [es[0]["location"]]
-    for e in es:
-        t = e["type"]["name"]
-        if t == "Pass":
-            pts.append(e["pass"]["end_location"])
-        elif t == "Carry":
-            pts.append(e["carry"]["end_location"])
-    return [p for k, p in enumerate(pts) if k == 0 or p != pts[k - 1]]
-
-
-def sequence_row(es, pid, g, gi, opp):
-    """Features of one possession, or None if it is not an open-play sequence with 3+ passes and 4+ points."""
-    pp = es[0]["play_pattern"]["name"]
-    if pp not in OPEN_PLAY:
+def sequence_row(events, pid, game, gi, opponent):
+    # one possession -> one row, or None if it is not open play with 3+ passes
+    pattern = events[0]["play_pattern"]["name"]
+    if pattern not in OPEN_PLAY:
         return None
-    passes = [e for e in es if e["type"]["name"] == "Pass"]
+    passes = [e for e in events if e["type"]["name"] == "Pass"]
     if len(passes) < 3:
         return None
-    pts = path_points(es)
-    if len(pts) < 4:
+    points = path_points(events)
+    if len(points) < 4:
         return None
-    P = np.array(pts)[:, :2]
-    L = float(np.sum(np.linalg.norm(np.diff(P, axis=0), axis=1)))
-    t0 = es[0]["minute"] * 60 + es[0]["second"]
-    t1 = es[-1]["minute"] * 60 + es[-1]["second"]
-    long_share = np.mean([p["pass"].get("length", 0) >= 30 for p in passes])
-    return dict(
-        match=g["match_id"],
-        gi=gi,
-        data=g["match_date"],
-        avv=opp,
-        minuto=es[0]["minute"],
-        sec=es[0]["second"],
-        tempo=es[0]["period"],
-        pid=pid,
-        play_pattern=pp,
-        n_pass=len(passes),
-        n_pts=len(P),
-        x0=P[0, 0],
-        y0=P[0, 1],
-        x1=P[-1, 0],
-        y1=P[-1, 1],
-        net_x=P[-1, 0] - P[0, 0],
-        path_len=L,
-        directness=float(np.clip((P[-1, 0] - P[0, 0]) / max(L, 1), -1, 1)),
-        long_share=float(long_share),
-        width_std=float(P[:, 1].std()),
-        mean_x=float(P[:, 0].mean()),
-        dur=max(t1 - t0, 0),
-        shot=int(any(e["type"]["name"] == "Shot" for e in es)),
-        zone0=zone(*P[0]),
-        zone1=zone(*P[-1]),
-        zones=[zone(*p) for p in P],
-        path=P.tolist(),
-    )
+
+    P = np.array(points)[:, :2]
+    x0, y0 = P[0, 0], P[0, 1]
+    x1, y1 = P[-1, 0], P[-1, 1]
+    steps = np.diff(P, axis=0)
+    length = float(np.sum(np.linalg.norm(steps, axis=1)))
+
+    start = events[0]["minute"] * 60 + events[0]["second"]
+    end = events[-1]["minute"] * 60 + events[-1]["second"]
+
+    long_passes = [p["pass"].get("length", 0) >= 30 for p in passes]
+    shot = 0
+    for e in events:
+        if e["type"]["name"] == "Shot":
+            shot = 1
+
+    row = {}
+    row["match"] = game["match_id"]
+    row["gi"] = gi  # match number in date order
+    row["data"] = game["match_date"]
+    row["avv"] = opponent
+    row["minuto"] = events[0]["minute"]
+    row["sec"] = events[0]["second"]
+    row["tempo"] = events[0]["period"]
+    row["pid"] = pid
+    row["play_pattern"] = pattern
+    row["n_pass"] = len(passes)
+    row["n_pts"] = len(P)
+    row["x0"] = x0
+    row["y0"] = y0
+    row["x1"] = x1
+    row["y1"] = y1
+    row["net_x"] = x1 - x0
+    row["path_len"] = length
+    row["directness"] = float(np.clip((x1 - x0) / max(length, 1), -1, 1))
+    row["long_share"] = float(np.mean(long_passes))
+    row["width_std"] = float(P[:, 1].std())
+    row["mean_x"] = float(P[:, 0].mean())
+    row["dur"] = max(end - start, 0)
+    row["shot"] = shot
+    row["zone0"] = zone(*P[0])
+    row["zone1"] = zone(*P[-1])
+    row["zones"] = [zone(*p) for p in P]
+    row["path"] = P.tolist()
+    return row
 
 
 def extract():
-    matches = [g for g in json.load(open(MF, encoding="utf-8"))
-               if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"])]
+    # all open-play sequences of TEAM, plus the number of matches
+    matches = []
+    for g in json.load(open(MF, encoding="utf-8")):
+        if TEAM in (g["home_team"]["home_team_name"], g["away_team"]["away_team_name"]):
+            matches.append(g)
     matches.sort(key=lambda g: g["match_date"])
+
     rows = []
     for gi, g in enumerate(matches):
-        home = g["home_team"]["home_team_name"] == TEAM
-        opp = g["away_team"]["away_team_name"] if home else g["home_team"]["home_team_name"]
-        poss = {}
-        for e in json.load(open(f"{BASE}/ev/{g['match_id']}.json")):
-            if (e.get("possession_team", {}).get("name") == TEAM
-                    and e["team"]["name"] == TEAM
-                    and e["type"]["name"] in ("Pass", "Carry", "Shot", "Dribble")):
-                poss.setdefault(e["possession"], []).append(e)
-        for pid, es in poss.items():
-            row = sequence_row(es, pid, g, gi, opp)
+        if g["home_team"]["home_team_name"] == TEAM:
+            opponent = g["away_team"]["away_team_name"]
+        else:
+            opponent = g["home_team"]["home_team_name"]
+
+        # group our passes, carries, shots and dribbles by possession number
+        possessions = {}
+        events = json.load(open(f"{BASE}/ev/{g['match_id']}.json"))
+        for e in events:
+            if e.get("possession_team", {}).get("name") != TEAM:
+                continue
+            if e["team"]["name"] != TEAM:
+                continue
+            if e["type"]["name"] not in ("Pass", "Carry", "Shot", "Dribble"):
+                continue
+            possessions.setdefault(e["possession"], []).append(e)
+
+        for pid, evs in possessions.items():
+            row = sequence_row(evs, pid, g, gi, opponent)
             if row:
                 rows.append(row)
     return pd.DataFrame(rows), len(matches)
 
 
 def features(df):
-    n = len(df)
+    # wide feature table used only for the choice of k below
     F = {}
     for z in range(12):
         F[f"start_{ZN[z]}"] = (df.zone0 == z).astype(float).values
@@ -124,55 +156,59 @@ def features(df):
         F[f"occ_{ZN[z]}"] = np.array([np.mean([q == z for q in zs]) for zs in df.zones])
     for c in ("n_pass", "net_x", "path_len", "directness", "long_share", "width_std", "mean_x", "dur"):
         F[c] = df[c].values.astype(float)
-    for pp in sorted(OPEN_PLAY):
-        F[f"pp_{pp}"] = (df.play_pattern == pp).astype(float).values
+    for pattern in sorted(OPEN_PLAY):
+        F[f"pp_{pattern}"] = (df.play_pattern == pattern).astype(float).values
     return pd.DataFrame(F)
 
 
-def jaccard_stability(Xp, labels, k, B=200, seed=0):
+def jaccard_stability(X, labels, k, B=200, seed=0):
+    # refit K-Means on B bootstrap samples; for each group, how well it is found again (Jaccard)
     rng = np.random.default_rng(seed)
     n = len(labels)
-    sc = np.zeros(k)
+    score = np.zeros(k)
     aris = []
     for b in range(B):
         idx = rng.integers(0, n, n)
-        km = KMeans(k, n_init=5, random_state=int(rng.integers(1e9))).fit(Xp[idx])
-        lb = km.predict(Xp)
-        aris.append(adjusted_rand_score(labels, lb))
+        km = KMeans(k, n_init=5, random_state=int(rng.integers(1e9))).fit(X[idx])
+        new = km.predict(X)
+        aris.append(adjusted_rand_score(labels, new))
         for c in range(k):
             a = labels == c
-            sc[c] += max((a & (lb == j)).sum() / (a | (lb == j)).sum() for j in range(k))
-    return sc / B, float(np.mean(aris)), list(np.percentile(aris, [2.5, 97.5]))
+            best = 0
+            for j in range(k):
+                jac = (a & (new == j)).sum() / (a | (new == j)).sum()
+                best = max(best, jac)
+            score[c] += best
+    return score / B, float(np.mean(aris)), list(np.percentile(aris, [2.5, 97.5]))
 
 
 if __name__ == "__main__":
-    df, nm = extract()
-    k0 = int(round(nm * 0.7))
-    print(
-        f"{TEAM}: {nm} partite, {len(df)} sequenze di gioco aperto (>=3 passaggi, >=4 punti); esplorazione = prime {k0} partite"
-    )
+    df, n_matches = extract()
+    k0 = int(round(n_matches * 0.7))
+    print(f"{TEAM}: {n_matches} partite, {len(df)} sequenze di gioco aperto (>=3 passaggi, >=4 punti); esplorazione = prime {k0} partite")
     ex = df[df.gi < k0].reset_index(drop=True)
     print("exploration sequences:", len(ex), "| riservate alla validazione:", int((df.gi >= k0).sum()))
+
     X = StandardScaler().fit_transform(features(ex))
     pca = PCA(0.90, random_state=0).fit(X)
-    Xp = pca.transform(X)
-    print("componenti PCA (90% varianza):", Xp.shape[1])
-    sel = []
+    X = pca.transform(X)
+    print("componenti PCA (90% varianza):", X.shape[1])
+
+    results = []
     for k in range(3, 9):
-        km = KMeans(k, n_init=10, random_state=0).fit(Xp)
-        lab = km.labels_
-        sj, ari, ari_ci = jaccard_stability(Xp, lab, k, B=100)
-        sel.append(
-            dict(
-                k=k,
-                silhouette=float(silhouette_score(Xp, lab)),
-                ari=ari,
-                jaccard_min=float(sj.min()),
-                jaccard_mean=float(sj.mean()),
-                sizes=sorted(np.bincount(lab).tolist(), reverse=True),
-            )
+        labels = KMeans(k, n_init=10, random_state=0).fit(X).labels_
+        jac, ari, ari_ci = jaccard_stability(X, labels, k, B=100)
+        sizes = sorted(np.bincount(labels).tolist(), reverse=True)
+        sil = float(silhouette_score(X, labels))
+        results.append(
+            {
+                "k": k,
+                "silhouette": sil,
+                "ari": ari,
+                "jaccard_min": float(jac.min()),
+                "jaccard_mean": float(jac.mean()),
+                "sizes": sizes,
+            }
         )
-        print(
-            f"k={k}: silhouette {sel[-1]['silhouette']:.3f} | ARI bootstrap {ari:.2f} | Jaccard min {sj.min():.2f} medio {sj.mean():.2f} | dimensioni {sel[-1]['sizes']}"
-        )
-    json.dump(sel, open(f"{BASE}/k_selection_{TEAM.replace(' ','_')}.json", "w"), indent=1)
+        print(f"k={k}: silhouette {sil:.3f} | ARI bootstrap {ari:.2f} | Jaccard min {jac.min():.2f} medio {jac.mean():.2f} | dimensioni {sizes}")
+    json.dump(results, open(f"{BASE}/k_selection_{TEAM.replace(' ', '_')}.json", "w"), indent=1)

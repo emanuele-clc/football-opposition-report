@@ -9,36 +9,40 @@ python src/week1/download_data.py 9 281 "Bayer Leverkusen"   # Bundesliga 2023/2
 python src/week1/download_data.py 2 27  "Leicester City"      # PL 2015/16
 python src/week1/download_data.py 11 27 "Barcelona"           # La Liga 2015/16 (events only)
 python src/week1/download_data.py 2 27  "Arsenal"            # PL 2015/16 (events only)
-# 2 — L1: goal kicks & corners
-python src/week1/goalkicks_leverkusen.py .
+# 2 — L1: corners
 FIG_LANG=en python src/week1/corners_leverkusen.py .
-python src/week1/team_events_only.py matches/2_27.json "Leicester City" .
 # 3 — L2: sequences & clustering
 python src/week2/sequences_clustering.py matches/9_281.json "Bayer Leverkusen" .
 FIG_LANG=en python src/week2/final_L2.py matches/9_281.json "Bayer Leverkusen" .
-python src/week2/compare_teams.py matches/9_281.json "Bayer Leverkusen" matches/2_27.json "Leicester City" .
 # 4 — robustness (week 3)
 python src/week3/robustness_L2.py matches/9_281.json "Bayer Leverkusen" .
 python src/week3/robustness_L2.py matches/2_27.json "Leicester City" .
 python src/week3/stability_null_baseline.py matches/9_281.json "Bayer Leverkusen" .
 python src/week3/stability_null_baseline.py matches/2_27.json "Leicester City" .
 # 5 — held-out validation and replication (week 4; run ONCE per team, after committing docs/protocol_*.md)
-python src/week4/validate_holdout.py matches/9_281.json "Bayer Leverkusen" . --confirm
-python src/week4/validate_holdout.py matches/2_27.json "Leicester City" . --confirm
+python src/week4/validate_replication.py matches/9_281.json "Bayer Leverkusen" . --confirm --no-h3
+python src/week4/validate_replication.py matches/2_27.json "Leicester City" . --confirm --no-h3
 python src/week4/validate_replication.py matches/11_27.json "Barcelona" . --confirm
 python src/week4/validate_replication.py matches/2_27.json "Arsenal" . --confirm
 # 5b — replication on 10 teams: seeded selection, run (download + E1 + validation, once per team), summary (docs/protocol_replication10.md)
-python src/week4/select_teams.py data_info docs/replication10_selection.json
-python src/week4/run_new_teams.py docs/replication10_selection.json --confirm
-python src/week4/summarize_replication10.py docs/replication10_selection.json .
-python src/week4/run_cluster_tests.py docs/replication10_selection.json   # exploratory cluster test on the 10 teams
+python src/week4/ten_teams.py select data_info docs/replication10_selection.json
+python src/week4/ten_teams.py replicate docs/replication10_selection.json --confirm
+python src/week4/ten_teams.py summary replication docs/replication10_selection.json .
+python src/week4/ten_teams.py run simplerule docs/replication10_selection.json --confirm   # families vs simple rule (docs/protocol_simple_rule.md)
+python src/week4/ten_teams.py summary simplerule docs/replication10_selection.json .
+python src/week4/ten_teams.py run samplesize docs/replication10_selection.json            # how many matches are needed
+python src/week4/ten_teams.py summary samplesize docs/replication10_selection.json .
+python src/week4/ten_teams.py run clustertest docs/replication10_selection.json           # exploratory copula test on the 10 teams
 # 6 — exploratory analyses, not pre-registered (repeat for each team)
-python src/week4/exploratory_cv_all_matches.py matches/11_27.json "Barcelona" .
-python src/week4/exploratory_ablation.py matches/11_27.json "Barcelona" .
-python src/week4/exploratory_context.py matches/11_27.json "Barcelona" .
+python src/week4/exploratory_predictability.py cv matches/11_27.json "Barcelona" .
+python src/week4/exploratory_predictability.py ablation matches/11_27.json "Barcelona" .
+python src/week4/exploratory_predictability.py context matches/11_27.json "Barcelona" .
+python src/week4/exploratory_clusters.py methods matches/11_27.json "Barcelona" .
 # 7 — automated opposition report (run it for all teams twice so each report finds the others as reference)
 python src/report/make_report.py matches/11_27.json "Barcelona" .
 ```
+Removed on 6 November 2026 (superseded, code still in the git history before that date): `week1/goalkicks_leverkusen.py` (goal kicks are now in `src/report/restarts.py`), `week1/team_events_only.py` (first events-only test, which produced `results/results_Leicester_City.json`), `week2/compare_teams.py` (two-team comparison, which produced `results/L2_confronto_squadre.json`; the report now compares with reference teams), `week4/run_robustness.py` (only a loop; `tests/reproduce_results.py` reruns the same script), `week4/plot_robustness.py` (figures of the robustness checks, already in figures/).
+Merged on 6 November 2026, same code and same outputs (checked: results 51/51 identical, the exploratory files identical): `validate_holdout.py` = `validate_replication.py --no-h3`; `select_teams.py`, `run_new_teams.py`, `summarize_replication10.py`, `run_simple_rule.py`, `run_sample_size.py`, `run_cluster_tests.py` -> `ten_teams.py`; `exploratory_cv_all_matches.py`, `exploratory_ablation.py`, `exploratory_context.py` -> `exploratory_predictability.py`; `exploratory_cluster_test.py`, `exploratory_robustness.py` -> `exploratory_clusters.py`. The protocols keep the old names: the files are in the git history at the commit of each protocol.
 On Windows add `-X utf8` after `python` (data files are UTF-8).
 All scripts use a fixed seed. Results are reproducible on the same data.
 

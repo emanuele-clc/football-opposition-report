@@ -60,10 +60,10 @@ Mean Jaccard of the observed partition vs two structure-free nulls (shuffled fea
 Build-up (both teams) and Leicester advanced are clearly above both nulls. Leverkusen advanced is **not** clearly above the Gaussian null: treat it as a slicing of a continuum, not demonstrated structure. Script: `src/week3/stability_null_baseline.py` (on Windows run with `python -X utf8`).
 
 ## Held-out validation (week 4)
-Protocol: `docs/protocol_holdout.md` (committed before running). Script: `src/week4/validate_holdout.py`. Status: **run once on 12 October 2026**, results unedited in `results/holdout_*.json`.
+Protocol: `docs/protocol_holdout.md` (committed before running). Script: `src/week4/validate_holdout.py` (since 6 Nov 2026: `validate_replication.py --no-h3`, same code). Status: **run once on 12 October 2026**, results unedited in `results/holdout_*.json`.
 ```bash
-python src/week4/validate_holdout.py matches/9_281.json "Bayer Leverkusen" . --confirm
-python src/week4/validate_holdout.py matches/2_27.json "Leicester City" . --confirm
+python src/week4/validate_replication.py matches/9_281.json "Bayer Leverkusen" . --confirm --no-h3
+python src/week4/validate_replication.py matches/2_27.json "Leicester City" . --confirm --no-h3
 ```
 
 Results on held-out matches (Leverkusen 10, Leicester 11), model frozen on exploration:
@@ -110,7 +110,7 @@ Mean Jaccard, match-bootstrap, exploration matches. E1 criterion (descriptive): 
 The size of the stability margin does not line up with held-out predictability (Barcelona has a clear margin and fails H1; Arsenal has the smallest margin and passes). With four teams this is an observation, not a finding. The held-out results (H1, H2) carry more weight than the stability comparison alone.
 
 ### Exploratory, not pre-registered: predictability over all matches
-Grouped 6-fold cross-validation over all matches (families refitted inside each fold; folds do not respect time order, so slightly optimistic). Script: `src/week4/exploratory_cv_all_matches.py`.
+Grouped 6-fold cross-validation over all matches (families refitted inside each fold; folds do not respect time order, so slightly optimistic). Script: `src/week4/exploratory_predictability.py cv`.
 
 | Team | Build-up gain, 95% CI | Advanced gain, 95% CI |
 |---|---|---|
@@ -125,7 +125,7 @@ With all matches, Barcelona's build-up gain is in line with the other teams, and
 Average xG per corner is 0.046. Under no real effect, the exploitability statistic already averages 0.015 (selecting the best setup on the same data biases it upwards) and its 95th percentile is 0.033, i.e. about 70% of the average xG per corner. Observed: 0.026 (p = 0.17). So the test could only flag very large effects. Most corners fall in one cell: 116 of 148 are in the "centre" zone, and only 9 have a "far-post load" setup. Out of sample (41 corners), the setup chosen as best on training data did worse (xG 0.069 vs 0.046 for the others). The null result is therefore weak evidence of absence.
 
 ### Exploratory, not pre-registered: what drives the predictability
-Same cross-validation as above. Build-up gain with different inputs (log-loss gain over the family-frequency baseline). Scripts: `src/week4/exploratory_ablation.py`, `src/week4/exploratory_context.py`.
+Same cross-validation as above. Build-up gain with different inputs (log-loss gain over the family-frequency baseline). Scripts: `src/week4/exploratory_predictability.py ablation` and `context`.
 
 | Team | Full model | Play pattern only | Minute + half only | Previous family only | Full context added on top of play pattern |
 |---|---|---|---|---|---|
@@ -140,7 +140,7 @@ Practically all of the predictability comes from how the sequence starts (play p
 `src/report/make_report.py` turns the validated settings into a report for one team: style with intervals and a comparison with reference teams, the families with share, profile, shot rate, per-match variation and stability, a structure check against structure-free baselines, and how sequence start types map to families. Output: a self-contained HTML file (print to PDF from the browser) plus a JSON with all numbers. Examples in `examples/`. It is descriptive: it does not recommend tactics, family names are numbered labels, and coaches have not yet validated their tactical meaning.
 
 ## Replication on 10 teams (week 4)
-Protocol: `docs/protocol_replication10.md` (committed before running). Six new teams drawn at random with a fixed seed (20261013), stratified by league (La Liga, Serie A, Ligue 1, season 2015/16, two primary teams each), added to the four teams already analysed. Scripts: `src/week4/select_teams.py`, `run_new_teams.py`, `summarize_replication10.py`. Each team run once; results in `results/holdout_<team>.json`, `results/null_baseline_<team>.json` and `results/replication10_summary.json`.
+Protocol: `docs/protocol_replication10.md` (committed before running). Six new teams drawn at random with a fixed seed (20261013), stratified by league (La Liga, Serie A, Ligue 1, season 2015/16, two primary teams each), added to the four teams already analysed. Script: `src/week4/ten_teams.py` (select, replicate, summary replication). Each team run once; results in `results/holdout_<team>.json`, `results/null_baseline_<team>.json` and `results/replication10_summary.json`.
 
 | Team | League | Build-up gain (H1) | H1 | H2 | H3 build-up / advanced | E1 margin over null |
 |---|---|---|---|---|---|---|
@@ -160,7 +160,7 @@ Protocol: `docs/protocol_replication10.md` (committed before running). Six new t
 **How far this goes.** (1) The build-up gain comes from how sequences start (play pattern), see the ablation above; this is a regularity of the families, not tactical predictability from match context. (2) The stability margin over a single Gaussian blob (E1, margin of at least 0.10) holds in only 4 of 10 teams (Leverkusen, Leicester, Barcelona, Napoli), and the advanced phase is often at the level of the structure-free null: for many teams the families are slices of a continuum, not separate clusters. (3) H2 passes everywhere but is a lenient test: its silhouette threshold (0.10) is below what structure-free data already gives (0.12-0.14 in the null baselines), and a frozen partition of a stable distribution keeps stable shares. (4) A model on the raw features predicts shots better than the families (+0.05 to +0.11 against +0.01 to +0.05), so the families keep only part of that information.
 
 ### Exploratory, not pre-registered: are the families real clusters? (Monte Carlo test)
-Stricter than the Gaussian comparison: the null data keep each variable's own distribution (skew, bounded values) and the rank correlations between variables (Gaussian copula) but have no clusters. 100 null datasets per team and phase; exploration matches only. Scripts: `src/week4/exploratory_cluster_test.py`, `src/week4/run_cluster_tests.py`.
+Stricter than the Gaussian comparison: the null data keep each variable's own distribution (skew, bounded values) and the rank correlations between variables (Gaussian copula) but have no clusters. 100 null datasets per team and phase; exploration matches only. Script: `src/week4/exploratory_clusters.py copula` (on the 10 teams: `ten_teams.py run clustertest`).
 
 | Team | Build-up silhouette (observed / null mean / p) | Build-up Jaccard (observed / null) | Advanced silhouette (observed / null mean / p) | Advanced Jaccard (observed / null) |
 |---|---|---|---|---|
@@ -178,7 +178,7 @@ Stricter than the Gaussian comparison: the null data keep each variable's own di
 Silhouette is above the structure-free null in all 10 teams and both phases (p of 0.01-0.02; with 100 simulations 0.01 is the smallest possible), but the gap is small: +0.016 to +0.034 in the build-up, +0.012 to +0.025 in the advanced phase. Stability does not show it: the Jaccard of the observed partition is above the null in 6 of 10 teams in the build-up (by 0.10 or more in 1) and in only 4 of 10 in the advanced phase, where the null is on average higher. So there is some structure beyond marginals and correlations, but it is weak: the families are a convenient partition of a weakly clustered continuum. The null does not reproduce non-linear dependence between variables (for example constraints between path length and distance), so part of the remaining structure may be mechanical rather than tactical.
 
 ## Do the families explain shots better than a simple rule? (week 4, pre-registered)
-Protocol: `docs/protocol_simple_rule.md` (committed before running). Scripts: `src/week4/compare_simple_rules.py`, `run_simple_rule.py`. Families (frozen on exploration) against k equal-frequency bins of the position where the sequence ends (x1), same number of cells, same logistic model, outcome "sequence ends in a shot", evaluated on the held-out matches. Negative difference = the simple rule has lower log-loss than the families.
+Protocol: `docs/protocol_simple_rule.md` (committed before running). Scripts: `src/week4/compare_simple_rules.py`, `ten_teams.py run simplerule` / `summary simplerule`. Families (frozen on exploration) against k equal-frequency bins of the position where the sequence ends (x1), same number of cells, same logistic model, outcome "sequence ends in a shot", evaluated on the held-out matches. Negative difference = the simple rule has lower log-loss than the families.
 
 | Team | Build-up: log-loss difference (rule minus families) | Verdict | Advanced: difference | Verdict |
 |---|---|---|---|---|

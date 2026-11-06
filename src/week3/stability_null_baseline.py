@@ -1,8 +1,10 @@
-"""Null baseline for L2 stability: same match bootstrap, but on data without group structure.
+"""Are the families more stable than K-Means on data with no groups at all?
 Usage: python stability_null_baseline.py <matches.json> "<Team>" [data_folder=.]
-Null 1 (shuffle): each feature is permuted independently (same marginal distributions, correlations destroyed).
-Null 2 (gauss): Gaussian data with the same mean and covariance (same correlation, but a single blob, no real clusters).
-If the observed Jaccard is well above both nulls, the stability is not a K-Means artefact."""
+Same bootstrap over matches on three data sets (exploration matches only):
+- observed: the real features
+- null_shuffle: every feature shuffled on its own (same values, correlations destroyed)
+- null_gauss: Gaussian data with the same mean and covariance (one blob, no groups)
+If the real Jaccard is clearly above both, the stability is not just something K-Means always produces."""
 
 import sys, os, json, warnings
 import numpy as np
@@ -15,39 +17,58 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
 
 COLS = ["x0", "w0", "x1", "w1", "net_x", "path_len", "directness", "n_pass", "long_share", "width_std", "dur"]
-df, nm = S.extract()
-k0 = int(round(nm * 0.7))
+
+df, n_matches = S.extract()
+k0 = int(round(n_matches * 0.7))
 ex = df[df.gi < k0].reset_index(drop=True)
 ex["w0"] = (ex.y0 - 40).abs()
 ex["w1"] = (ex.y1 - 40).abs()
 rng = np.random.default_rng(11)
 
 
-def jaccard_boot(X, games_arr, k, B=100):
-    lab = KMeans(k, n_init=10, random_state=0).fit(X).labels_
-    games = np.unique(games_arr)
-    by = {g: np.where(games_arr == g)[0] for g in games}
-    sc = np.zeros(k)
+def stability(X, match_of_row, k, B=100):
+    # mean and min Jaccard over B bootstrap samples of matches, and the silhouette
+    labels = KMeans(k, n_init=10, random_state=0).fit(X).labels_
+    games = np.unique(match_of_row)
+    rows_of = {}
+    for g in games:
+        rows_of[g] = np.where(match_of_row == g)[0]
+    score = np.zeros(k)
     for _ in range(B):
-        gs = rng.choice(games, len(games))
-        idx = np.concatenate([by[g] for g in gs])
-        lb = KMeans(k, n_init=3, random_state=int(rng.integers(1e9))).fit(X[idx]).predict(X)
+        pick = rng.choice(games, len(games))
+        idx = np.concatenate([rows_of[g] for g in pick])
+        new = KMeans(k, n_init=3, random_state=int(rng.integers(1e9))).fit(X[idx]).predict(X)
         for c in range(k):
-            a = lab == c
-            sc[c] += max((a & (lb == j)).sum() / (a | (lb == j)).sum() for j in range(k))
-    return float((sc / B).mean()), float((sc / B).min()), float(silhouette_score(X, lab))
+            a = labels == c
+            best = 0
+            for j in range(k):
+                best = max(best, (a & (new == j)).sum() / (a | (new == j)).sum())
+            score[c] += best
+    score = score / B
+    return float(score.mean()), float(score.min()), float(silhouette_score(X, labels))
 
 
 out = {}
-for fase, k, sub in [("costruzione", 5, ex[ex.x0 < 45]), ("avanzata", 3, ex[ex.x0 >= 45])]:
-    sub = sub.reset_index(drop=True)
+for phase, k in [("costruzione", 5), ("avanzata", 3)]:
+    if phase == "costruzione":
+        sub = ex[ex.x0 < 45].reset_index(drop=True)
+    else:
+        sub = ex[ex.x0 >= 45].reset_index(drop=True)
     g = sub.gi.values
     X = StandardScaler().fit_transform(sub[COLS].values)
-    r = {"osservato": jaccard_boot(X, g, k)}
-    sh = np.column_stack([rng.permutation(X[:, j]) for j in range(X.shape[1])])
-    r["null_shuffle"] = jaccard_boot(sh, g, k)
-    ga = rng.multivariate_normal(X.mean(0), np.cov(X.T), size=len(X))
-    r["null_gauss"] = jaccard_boot(ga, g, k)
-    out[fase] = {n: dict(jaccard_mean=v[0], jaccard_min=v[1], silhouette=v[2]) for n, v in r.items()}
-    print(f"[{fase} k={k}] " + " | ".join(f"{n}: J {v[0]:.2f} (min {v[1]:.2f}) sil {v[2]:.2f}" for n, v in r.items()))
-json.dump(out, open(f"{S.BASE}/null_baseline_{S.TEAM.replace(' ','_')}.json", "w"), indent=1)
+
+    res = {}
+    res["osservato"] = stability(X, g, k)
+    shuffled = np.column_stack([rng.permutation(X[:, j]) for j in range(X.shape[1])])
+    res["null_shuffle"] = stability(shuffled, g, k)
+    gauss = rng.multivariate_normal(X.mean(0), np.cov(X.T), size=len(X))
+    res["null_gauss"] = stability(gauss, g, k)
+
+    out[phase] = {}
+    line = f"[{phase} k={k}]"
+    for name, (jmean, jmin, sil) in res.items():
+        out[phase][name] = {"jaccard_mean": jmean, "jaccard_min": jmin, "silhouette": sil}
+        line += f" {name}: J {jmean:.2f} (min {jmin:.2f}) sil {sil:.2f} |"
+    print(line)
+
+json.dump(out, open(f"{S.BASE}/null_baseline_{S.TEAM.replace(' ', '_')}.json", "w"), indent=1)

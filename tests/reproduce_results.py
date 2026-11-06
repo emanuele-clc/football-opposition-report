@@ -2,7 +2,7 @@
 and seeds in a SEPARATE work folder and compares every output with results/ in the repo. Nothing in results/ is written or replaced, and no decision depends on the
 rerun: it only checks that the committed numbers come out of the committed code (it is not a second validation).
 Usage:  python -X utf8 tests/reproduce_results.py <data_dir with matches/ and ev/> <work_dir> [--jobs 6] [--only "Team"] [--tournaments <dir>] [--only-new]
-Since 17 Oct 2026 it also reruns exploratory_robustness.py (methods and sensitivity) and, with --tournaments (folder with the Euro 2020/2024 and World Cup 2022 data),
+Since 17 Oct 2026 it also reruns exploratory_clusters.py methods (methods and sensitivity) and, with --tournaments (folder with the Euro 2020/2024 and World Cup 2022 data),
 src/week1/pooled_corners.py. --only-new reruns only these two.
 Takes about 15-20 minutes for 10 teams on a laptop. Exit code 0 if every file is identical."""
 
@@ -40,26 +40,26 @@ shutil.copytree(os.path.join(a.data_dir, "matches"), os.path.join(WD, "matches")
 def scripts(team):
     fn = team.replace(" ", "_")
     h = json.load(open(f"{RES}/holdout_{fn}.json", encoding="utf-8"))
-    hv = (
-        "validate_replication.py" if "H3_pass" in h["costruzione"] else "validate_holdout.py"
-    )  # the first two teams were validated before H3 existed
-    new = [("week4/exploratory_robustness.py", [])]
+    validate = ["--confirm"]
+    if "H3_pass" not in h["costruzione"]:  # the first two teams were validated before H3 existed
+        validate.append("--no-h3")
+    new = [("week4/exploratory_clusters.py", ["methods"], [])]
     if a.only_new:
         return new
     return [
-        (f"week4/{hv}", ["--confirm"]),
-        ("week4/compare_simple_rules.py", ["--confirm"]),
-        ("week3/stability_null_baseline.py", []),
-        ("week4/sample_size.py", []),
+        ("week4/validate_replication.py", [], validate),
+        ("week4/compare_simple_rules.py", [], ["--confirm"]),
+        ("week3/stability_null_baseline.py", [], []),
+        ("week4/sample_size.py", [], []),
     ] + new
 
 
 def job(arg):
-    m, team, (sc, fl) = (
+    m, team, (sc, pre, fl) = (
         arg  # data_dir is passed as the data folder; outputs go to the current folder WD (scripts write to their data folder argument)
     )
     r = subprocess.run(
-        [sys.executable, "-X", "utf8", os.path.join(REPO, "src", sc), f"matches/{m}.json", team, "."] + fl,
+        [sys.executable, "-X", "utf8", os.path.join(REPO, "src", sc)] + pre + [f"matches/{m}.json", team, "."] + fl,
         cwd=WD,
         capture_output=True,
         text=True,
@@ -108,7 +108,9 @@ if not a.only and not a.only_new:
             sys.executable,
             "-X",
             "utf8",
-            os.path.join(REPO, "src", "week4", "summarize_replication10.py"),
+            os.path.join(REPO, "src", "week4", "ten_teams.py"),
+            "summary",
+            "replication",
             os.path.join(REPO, "docs", "replication10_selection.json"),
             WD,
             os.path.join(WD, "replication10_summary.json"),

@@ -1,45 +1,23 @@
-"""Wyscout public soccer-logs (Pappalardo et al., 2019, Scientific Data; CC BY 4.0) -> generic CSV of docs/data_format.md.
-Shows that the report runs on a second provider. Usage:
-    python wyscout_to_generic_csv.py <events_X.json> <matches_X.json> <teams.json> <players.json> "<Team>" <out.csv>
-    Team = ALL: every match of the file (a whole league, needed for league baselines).
-Mapping (from the public data paper; checked on Serie A 2017/18):
-- coordinates 0-100, attacking direction of the team performing the event, y small = left (same convention as StatsBomb) -> used as is (--coords 100).
-- clock: eventSec per half -> cumulative minute (second half from 45). Extra time and penalties are dropped.
-- Pass (all sub-events) -> pass; 'Others on the ball / Acceleration' -> carry; Shot -> shot; everything else -> other.
-- Free Kick sub-events -> restart on the event: Goal kick -> goal_kick, Throw in -> throw_in, Corner -> corner, Free Kick / Free kick cross -> free_kick (pass),
-  Free kick shot -> free_kick (shot), Penalty -> penalty (shot). Kick-off = first event of each half and first event after a goal.
-  keeper = a pass by the goalkeeper right after a 'Save attempt' or 'Goalkeeper leaving line' by the same player.
-- goal = tag 101 (own goals, tag 102, are not shots of the team). Own goal (tag 102, on the event of the player who put the ball into his own net)
-  -> event_type own_goal for that player's team (added 29 Oct 2026, so goal lists match the score; no effect on passes, shots or possessions).
-  Known gap: a goal scored directly from a corner is a corner pass in this data, not a shot, so it is not in the goal lists (1 case in the
-  10 teams checked); it is left as it is because turning it into a shot would change the shot and corner counts used in RQ1. recipient = player of the next event of the same team after an accurate pass (tag 1801).
-- Goal kicks: the start position is a placeholder in this data ((0,0) or (100,100)); it is set to the six-yard box (x 5, y 50), so the first-pass
-  length is approximate (side of the box unknown). Found by comparing with StatsBomb (short goal kicks 6% before the fix).
-- Defensive actions and pass outcome (added 28 Oct 2026, mapping fixed before comparing any value with StatsBomb):
-  pass_outcome = complete if tag 1801 (accurate), incomplete if tag 1802, else empty;
-  interception = any event with tag 1401; on a pass, carry or shot an extra 'interception' row is written right after it (same team, place, time),
-  on any other event the event itself becomes the interception (so a clearance or duel with tag 1401 counts once);
-  duel = 'Ground defending duel', or 'Air duel' lost (tag 701) (StatsBomb Duel = tackles and aerials lost);
-  foul = Foul sub-events Foul, Hand foul, Late card foul, Out of game foul, Violent Foul (not Protest, Simulation, Time lost foul);
-  clearance = 'Clearance'. No Wyscout equivalent of Ball Recovery and Block: the defensive height uses fewer action types than with StatsBomb.
-- No possession identifiers and no xG in this data: possessions are reconstructed by src/adapters/generic_csv.py (biased, see docs/data_format.md)."""
+"""Wyscout public data (Pappalardo et al. 2019, Scientific Data, CC BY 4.0) -> the generic CSV of docs/data_format.md.
+Usage: python wyscout_to_generic_csv.py <events_X.json> <matches_X.json> <teams.json> <players.json> "<Team>" <out.csv>
+       Team = ALL: every match of the file (a whole league, needed for the league baselines).
+How the events are mapped (checked on Serie A 2017/18):
+- coordinates 0-100, the team of the event attacks left to right, small y = left: same as our CSV, used as they are.
+- time: eventSec of each half -> minute from the start (second half from 45). Extra time and penalties are dropped.
+- Pass -> pass, 'Acceleration' -> carry, Shot -> shot. Free kick sub-events give the restart: goal kick, throw-in, corner, free kick, penalty.
+  Kick-off = first action of a half or after a goal. keeper = a goalkeeper pass right after his own save or 'leaving line'.
+- goal = tag 101. Own goal = tag 102 -> an own_goal row for that player's team. A goal scored straight from a corner is a corner
+  pass in this data, not a shot: left as it is (changing it would change shot and corner counts used in RQ1).
+- recipient = player of the next event of the same team after an accurate pass (tag 1801). pass_outcome: 1801 complete, 1802 incomplete.
+- Goal kicks start at a placeholder ((0,0) or (100,100)): moved to the six-yard box (5, 50), so their first-pass length is approximate.
+- Defensive actions: interception = tag 1401 (an extra row if the event is a pass, carry or shot); duel = ground defending duel or
+  air duel lost (tag 701); foul = the Foul sub-events in FOULS; clearance. No Ball Recovery and no Block in this data.
+- No possession ids and no xG: generic_csv.py rebuilds the possessions (biased, see docs/data_format.md)."""
 
 import csv, json, sys, codecs
 
-
-def name(s):
-    """Some names are stored with literal \\uXXXX escapes."""
-    s = s or ""
-    if "\\u" not in s:
-        return s
-    try:
-        return json.loads('"' + s.replace('"', '\\"') + '"')
-    except ValueError:
-        return codecs.decode(s, "unicode_escape")
-
-
 FOULS = {"Foul", "Hand foul", "Late card foul", "Out of game foul", "Violent Foul"}
-RS = {
+RESTARTS = {
     "Goal kick": "goal_kick",
     "Throw in": "throw_in",
     "Corner": "corner",
@@ -48,6 +26,18 @@ RS = {
     "Free kick shot": "free_kick",
     "Penalty": "penalty",
 }
+EMPTY = {"end_x": "", "end_y": "", "restart": "", "shot_goal": "", "recipient": "", "pass_outcome": ""}
+
+
+def name(s):
+    # some names are saved with \uXXXX escapes written out
+    s = s or ""
+    if "\\u" not in s:
+        return s
+    try:
+        return json.loads('"' + s.replace('"', '\\"') + '"')
+    except ValueError:
+        return codecs.decode(s, "unicode_escape")
 
 
 def event_type(en, sub, tags):
@@ -59,7 +49,9 @@ def event_type(en, sub, tags):
         return "carry"
     if 1401 in tags:
         return "interception"
-    if en == "Duel" and (sub == "Ground defending duel" or (sub == "Air duel" and 701 in tags)):
+    if en == "Duel" and sub == "Ground defending duel":
+        return "duel"
+    if en == "Duel" and sub == "Air duel" and 701 in tags:
         return "duel"
     if en == "Foul" and sub in FOULS:
         return "foul"
@@ -69,100 +61,124 @@ def event_type(en, sub, tags):
 
 
 def main(ev_path, m_path, t_path, p_path, team, out):
-    teams = {t["wyId"]: name(t["name"]) for t in json.load(open(t_path, encoding="utf-8"))}
-    players = {p["wyId"]: name(p["shortName"]) for p in json.load(open(p_path, encoding="utf-8"))}
-    tid = None if team == "ALL" else next(k for k, v in teams.items() if v == team)
-    matches = {
-        m["wyId"]: m for m in json.load(open(m_path, encoding="utf-8")) if tid is None or str(tid) in m["teamsData"]
-    }
-    evs = [
-        e
-        for e in json.load(open(ev_path, encoding="utf-8"))
-        if e["matchId"] in matches and e["matchPeriod"] in ("1H", "2H")
-    ]
+    teams = {}
+    for t in json.load(open(t_path, encoding="utf-8")):
+        teams[t["wyId"]] = name(t["name"])
+    players = {}
+    for p in json.load(open(p_path, encoding="utf-8")):
+        players[p["wyId"]] = name(p["shortName"])
+
+    tid = None
+    if team != "ALL":
+        for k, v in teams.items():
+            if v == team:
+                tid = k
+                break
+        if tid is None:
+            sys.exit(f"team not found in {t_path}: {team}")
+    matches = {}
+    for m in json.load(open(m_path, encoding="utf-8")):
+        if tid is None or str(tid) in m["teamsData"]:
+            matches[m["wyId"]] = m
+
+    evs = []
+    for e in json.load(open(ev_path, encoding="utf-8")):
+        if e["matchId"] in matches and e["matchPeriod"] in ("1H", "2H"):
+            evs.append(e)
     evs.sort(key=lambda e: (e["matchId"], e["matchPeriod"], e["eventSec"]))
-    rows, last_goal, prev = [], False, None
+
+    rows = []
+    after_goal = False
+    prev = None
     for i, e in enumerate(evs):
         m = matches[e["matchId"]]
-        side = {v["side"]: int(k) for k, v in m["teamsData"].items()}
-        per = 1 if e["matchPeriod"] == "1H" else 2
+        side = {}
+        for k, v in m["teamsData"].items():
+            side[v["side"]] = int(k)
+        period = 1 if e["matchPeriod"] == "1H" else 2
         sec = e["eventSec"]
-        minute = int(sec // 60) + (45 if per == 2 else 0)
+        minute = int(sec // 60)
+        if period == 2:
+            minute += 45
         new_half = prev is None or prev["matchId"] != e["matchId"] or prev["matchPeriod"] != e["matchPeriod"]
         tags = {t["id"] for t in e.get("tags", [])}
-        en, sub = e["eventName"], e["subEventName"]
+        en = e["eventName"]
+        sub = e["subEventName"]
         etype = event_type(en, sub, tags)
+        on_ball = etype in ("pass", "carry", "shot")
+
+        # own goal on a defensive touch: the row becomes own_goal, and the touch is written again after it
         also = None
-        if 102 in tags and etype not in ("pass", "carry", "shot"):
-            also = etype if etype != "other" else None  # keep the defensive action the touch also was (interception, clearance...)
+        if 102 in tags and not on_ball:
+            if etype != "other":
+                also = etype
             etype = "own_goal"
-        restart = RS.get(sub, "") if en == "Free Kick" else ""
-        if not restart and etype in ("pass", "carry", "shot") and (new_half or last_goal):
+
+        restart = ""
+        if en == "Free Kick":
+            restart = RESTARTS.get(sub, "")
+        if not restart and on_ball and (new_half or after_goal):
             restart = "kick_off"
-        if (
-            not restart
-            and etype == "pass"
-            and prev is not None
-            and prev["teamId"] == e["teamId"]
-            and prev["playerId"] == e["playerId"]
-            and prev["eventName"] in ("Save attempt", "Goalkeeper leaving line")
-        ):
-            restart = "keeper"
-        if etype in ("pass", "carry", "shot"):
-            last_goal = False
+        if not restart and etype == "pass" and prev is not None:
+            same_player = prev["teamId"] == e["teamId"] and prev["playerId"] == e["playerId"]
+            if same_player and prev["eventName"] in ("Save attempt", "Goalkeeper leaving line"):
+                restart = "keeper"
+        if on_ball:
+            after_goal = False
         if 101 in tags or 102 in tags:
-            last_goal = True
-        pos = e.get("positions") or [{}]
-        p0 = pos[0]
-        p1 = pos[1] if len(pos) > 1 else {}
+            after_goal = True
+
+        positions = e.get("positions") or [{}]
+        p0 = positions[0]
+        p1 = positions[1] if len(positions) > 1 else {}
         if sub == "Goal kick" and (p0.get("x"), p0.get("y")) in ((0, 0), (100, 100)):
-            p0 = {"x": 5, "y": 50}  # start is a placeholder in this data: six-yard box, side unknown
+            p0 = {"x": 5, "y": 50}  # placeholder start: six-yard box
+
+        # receiver: next event of the same team (within 5 events) after an accurate pass
         recipient = ""
         if etype == "pass" and 1801 in tags:
-            nxt = next(
-                (
-                    f
-                    for f in evs[i + 1 : i + 6]
-                    if f["matchId"] == e["matchId"] and f["teamId"] == e["teamId"] and f["playerId"]
-                ),
-                None,
-            )
-            recipient = players.get(nxt["playerId"], "") if nxt and nxt["playerId"] != e["playerId"] else ""
-        rows.append(
-            dict(
-                match_id=e["matchId"],
-                match_date=m["dateutc"][:10],
-                home_team=teams[side["home"]],
-                away_team=teams[side["away"]],
-                period=per,
-                minute=minute,
-                second=int(sec % 60),
-                team=teams.get(e["teamId"], str(e["teamId"])),
-                event_type=etype,
-                x=p0.get("x", ""),
-                y=p0.get("y", ""),
-                end_x=p1.get("x", "") if etype in ("pass", "carry") else "",
-                end_y=p1.get("y", "") if etype in ("pass", "carry") else "",
-                restart=restart,
-                shot_goal=int(101 in tags) if etype == "shot" else "",
-                player=players.get(e["playerId"], ""),
-                recipient=recipient,
-                pass_outcome=("complete" if 1801 in tags else "incomplete" if 1802 in tags else "")
-                if etype == "pass"
-                else "",
-            )
-        )
+            for f in evs[i + 1 : i + 6]:
+                if f["matchId"] == e["matchId"] and f["teamId"] == e["teamId"] and f["playerId"]:
+                    if f["playerId"] != e["playerId"]:
+                        recipient = players.get(f["playerId"], "")
+                    break
+
+        outcome = ""
+        if etype == "pass":
+            if 1801 in tags:
+                outcome = "complete"
+            elif 1802 in tags:
+                outcome = "incomplete"
+        moves = etype in ("pass", "carry")
+        row = {
+            "match_id": e["matchId"],
+            "match_date": m["dateutc"][:10],
+            "home_team": teams[side["home"]],
+            "away_team": teams[side["away"]],
+            "period": period,
+            "minute": minute,
+            "second": int(sec % 60),
+            "team": teams.get(e["teamId"], str(e["teamId"])),
+            "event_type": etype,
+            "x": p0.get("x", ""),
+            "y": p0.get("y", ""),
+            "end_x": p1.get("x", "") if moves else "",
+            "end_y": p1.get("y", "") if moves else "",
+            "restart": restart,
+            "shot_goal": int(101 in tags) if etype == "shot" else "",
+            "player": players.get(e["playerId"], ""),
+            "recipient": recipient,
+            "pass_outcome": outcome,
+        }
+        rows.append(row)
         if also:
-            rows.append(dict(rows[-1], event_type=also))
-        if 102 in tags and etype in ("pass", "carry", "shot"):  # own goal on a pass or a touch-like action: keep the action, add the own goal
-            rows.append(
-                dict(rows[-1], event_type="own_goal", end_x="", end_y="", restart="", shot_goal="", recipient="", pass_outcome="")
-            )
-        if etype in ("pass", "carry", "shot") and 1401 in tags:
-            rows.append(
-                dict(rows[-1], event_type="interception", end_x="", end_y="", restart="", shot_goal="", recipient="", pass_outcome="")
-            )
+            rows.append(dict(row, event_type=also))
+        if 102 in tags and on_ball:  # own goal on a pass or shot: keep the action, add the own goal
+            rows.append(dict(rows[-1], event_type="own_goal", **EMPTY))
+        if on_ball and 1401 in tags:  # the action was also an interception
+            rows.append(dict(rows[-1], event_type="interception", **EMPTY))
         prev = e
+
     with open(out, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))
         w.writeheader()
