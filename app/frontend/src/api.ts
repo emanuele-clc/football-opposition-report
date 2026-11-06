@@ -510,73 +510,6 @@ export interface Info {
   is_examples: boolean;
   can_generate: boolean;
   has_events: boolean;
-  has_tracking?: boolean;
-}
-export interface TrackGoal {
-  half: number;
-  frame: number;
-  team: string;
-  side: "home" | "guest";
-  player: string;
-  clock: string;
-  xg: number | null;
-}
-export interface TrackMatch {
-  match: string;
-  date: string;
-  competition: string;
-  home: string;
-  guest: string;
-  result: string;
-  goals: TrackGoal[];
-}
-type Est = { mean: number; ci: CI };
-export interface TrackResults {
-  pitch_control: null | {
-    A_pass_check: {
-      passes: number;
-      completed_share: number;
-      auc: Record<"pc" | "margin" | "length" | "pc_minus_margin" | "pc_minus_length", { value: number; ci: CI }>;
-      pc_adds_over_margin: boolean;
-      pc_adds_over_length: boolean;
-      brier_pc: number;
-      brier_base_rate: number;
-    };
-    B_space: {
-      match: string;
-      team: string;
-      frames: number;
-      opp_half_controlled: number;
-      own_half_controlled_when_defending: number;
-    }[];
-  };
-  ghosting: null | {
-    horizon_s: number;
-    samples: { train: number; test: number };
-    position_error_m: Record<string, Est>;
-    line_height_error_m: Record<string, Est>;
-    position_diff: Record<string, Est & { lstm_beats: boolean }>;
-    line_diff: Record<string, Est & { lstm_beats: boolean }>;
-    test_mean_displacement_m: number;
-  };
-}
-export interface TrackFrame {
-  t: number;
-  alive: number;
-  ball: [number, number] | null;
-  p: ([number, number] | null)[];
-  pc: number[];
-}
-export interface TrackClip {
-  match: string;
-  half: number;
-  clock: string;
-  home: string;
-  guest: string;
-  home_attacks: "left" | "right";
-  grid: [number, number];
-  players: { name: string; side: "home" | "guest"; gk: boolean }[];
-  frames: TrackFrame[];
 }
 export interface ClipRow {
   family: string;
@@ -721,15 +654,6 @@ export interface Job {
 
 const HEAD = { "X-Provider": PROVIDER };
 
-/* Coach brief by a local model (Ollama), checked against the hints' numbers: app/backend/ai_brief.py. */
-export type AiStatus = { available: boolean; model: string; reason: string | null };
-export type AiBrief = AiStatus & {
-  lang?: string;
-  summary: string | null;
-  points: { hint: string; text: string; grade?: Grade | null; tab: string }[];
-  dropped: number;
-};
-
 async function get<T>(url: string): Promise<T> {
   const r = await fetch(url, { headers: HEAD });
   if (!r.ok) {
@@ -747,10 +671,6 @@ async function get<T>(url: string): Promise<T> {
 export const api = {
   info: () => get<Info>("/api/info"),
   providers: () => get<Provider[]>("/api/providers"),
-  trackResults: () => get<TrackResults>("/api/tracking/results"),
-  trackMatches: () => get<TrackMatch[]>("/api/tracking/matches"),
-  trackClip: (match: string, half: number, frame: number) =>
-    get<TrackClip>(`/api/tracking/clip?match=${encodeURIComponent(match)}&half=${half}&frame=${frame}`),
   teams: () => get<TeamSummary[]>("/api/teams"),
   evidence: () => get<Evidence>("/api/evidence"),
   team: (key: string) => get<TeamData>(`/api/teams/${encodeURIComponent(key)}`),
@@ -787,11 +707,6 @@ export const api = {
     get<WithoutData>(
       `/api/teams/${encodeURIComponent(key)}/without${player ? `?player=${encodeURIComponent(player)}` : ""}`,
     ),
-  aiStatus: () => get<AiStatus>("/api/ai/status"),
-  gameplanAi: (key: string, mine: string, lang: string) =>
-    get<AiBrief>(
-      `/api/teams/${encodeURIComponent(key)}/gameplan/ai?lang=${lang}${mine ? `&mine=${encodeURIComponent(mine)}` : ""}`,
-    ),
   gameplanEvents: (key: string) => get<GPEvents>(`/api/teams/${encodeURIComponent(key)}/gameplan/events`),
   gameplan: (key: string, mine: string, venue = "") =>
     get<GamePlan>(
@@ -816,7 +731,6 @@ export const api = {
   exportUrl: (
     key: string,
     kind: string,
-    ext: "csv" | "zip",
     f: { family?: string; opponent?: string; shot?: boolean; goal?: boolean; half?: number },
   ) => {
     const q = new URLSearchParams();
@@ -825,6 +739,6 @@ export const api = {
     if (f.shot) q.set("shot", "true");
     if (f.goal) q.set("goal", "true");
     if (f.half) q.set("half", String(f.half));
-    return `/api/teams/${encodeURIComponent(key)}/export/${kind}.${ext}?${q}`;
+    return `/api/teams/${encodeURIComponent(key)}/export/${kind}.csv?${q}`;
   },
 };

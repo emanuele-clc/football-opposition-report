@@ -20,11 +20,11 @@ Other open tracking data checked: Metrica Sports sample data (3 anonymised match
 ## Commands (PowerShell, from the repo folder)
 
 ```
-python -X utf8 src/tracking/dfl_load.py C:\Users\ecole\dfl_tracking          # once, about 2 minutes; skips matches done
-python -X utf8 src/tracking/pitch_control.py C:\Users\ecole\dfl_tracking     # -> results/exploratory_pitch_control.json
-python -X utf8 src/tracking/ghosting.py C:\Users\ecole\dfl_tracking          # -> results/exploratory_ghosting.json (needs torch)
+python -X utf8 archive/tracking/dfl_load.py C:\Users\ecole\dfl_tracking          # once, about 2 minutes; skips matches done
+python -X utf8 archive/tracking/pitch_control.py C:\Users\ecole\dfl_tracking     # -> results/exploratory_pitch_control.json
+python -X utf8 archive/tracking/ghosting.py C:\Users\ecole\dfl_tracking          # -> results/exploratory_ghosting.json (needs torch)
 ```
-The app shows the matches in the section Context -> Tracking lab when the folder exists (or set `OPPREPORT_TRACKING`).
+The code was moved to `archive/tracking/` on 6 Nov 2026 and the Tracking lab page was taken out of the app (not part of the thesis questions). The results files are unchanged.
 
 ## Event-tracking sync
 
@@ -36,4 +36,4 @@ DFL passes carry only the operator's time. A pass is placed at the frame, within
 - Space (descriptive): the team in possession controls 18-27% of the opponent half, the defending team 13-24% of its own half (every 2 s of play, 14 team-matches).
 - Ghosting (3 s ahead, train 5 / test 2 matches): mean position error, stays put 7.4 m, constant velocity 5.2 m, ridge 3.7 m, LSTM 4.4 m; back-line height error 4.3 / 2.7 / 1.9 / 2.3 m. The LSTM beats the naive baselines, not the linear model.
 
-See `results/exploratory_pitch_control.json` and `results/exploratory_ghosting.json`; summary in CLAUDE.md section 6 (18 Oct).
+See `results/exploratory_pitch_control.json` and `results/exploratory_ghosting.json`.

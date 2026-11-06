@@ -76,7 +76,7 @@ First written 22 October 2026; updated 30 October 2026 to the current research q
 
 ## 7. Prototype: a report that states its uncertainty (about 10 pages)
 - **7.1 Requirements** from the analyst workflow: main facts first; every number traceable to clips; export for the video tool; print.
-- **7.2 Pipeline and outputs:** `src/oppreport.py`, the sheets, clip CSVs, MP4 clips cut from the match video, Sportscode/Nacsport-style XML (never tested in a real video tool), generic CSV adapter with round-trip test.
+- **7.2 Pipeline and outputs:** `src/oppreport.py`, the sheets, clip CSVs, generic CSV adapter with round-trip test.
 - **7.3 Local app:** replays (with 360 freeze frames where available), families, restarts, set pieces, transitions, defending, game plan hints (fixed rules, not tested advice), grades next to the ranks, three languages.
   - Two versions, StatsBomb and Wyscout, chosen with a switch: values and ranks never mix providers, and each version shows the grades computed on its own data.
   - Figures: `docs/img/overview.png`, `clips.png`, `replay.gif`.
@@ -104,7 +104,7 @@ First written 22 October 2026; updated 30 October 2026 to the current research q
 - C. Exploratory side studies, one page each, labelled exploratory:
   - **L3 corners:** null and weak. Leverkusen p = 0.17; pooled tournaments p = 0.41; low power. Source: `results/results_corners.json`, `results_pooled_corners.json`.
   - **xT model and threat sheet (descriptive):** `src/report/xt_grid.json`.
-  - **Tracking (DFL open data, 7 matches, not the report teams):** ghosting, ridge 3.7 m beats the LSTM at 4.4 m (`results/exploratory_ghosting.json`); pitch control, pass AUC 0.89, +0.04 over a nearest-player margin (`results/exploratory_pitch_control.json`).
+  - **Tracking (DFL open data, 7 matches, not the report teams; code in `archive/tracking/`):** ghosting, ridge 3.7 m beats the LSTM at 4.4 m (`results/exploratory_ghosting.json`); pitch control, pass AUC 0.89, +0.04 over a nearest-player margin (`results/exploratory_pitch_control.json`).
 - D. User guide of the app and reproduction commands (`docs/pipeline.md`, `docs/analyst_guide.md`).
 
 ---

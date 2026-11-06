@@ -19,7 +19,6 @@ import Restarts from "./views/Restarts";
 import SetPieces from "./views/SetPieces";
 import Threat from "./views/Threat";
 import Transitions from "./views/Transitions";
-import TrackingLab from "./views/TrackingLab";
 import { LANGS, setLanguage, storedLanguage, type Lang } from "./i18n";
 
 const TABS: [string, string][] = [
@@ -37,20 +36,19 @@ const TABS: [string, string][] = [
   ["matchups", "Matchups"],
   ["clips", "Clips"],
   ["compare", "Compare"],
-  ["tracking", "Tracking lab"],
   ["review", "Review"],
 ];
 /* The top bar names the group, the row under the team name the section.
    Two views of the same report. Analyst (default): only what an analyst opens to prepare the next match (summary,
    game plan, set pieces and restarts, without the ball, clips). Full: every section, including the thesis pages
-   (evidence, families, threat, compare, matchups, review, tracking lab). Pages outside the analyst view still open
+   (evidence, families, threat, compare, matchups, review). Pages outside the analyst view still open
    from links (grades, key points, "every number per family"); they just have no menu entry there. */
 const GROUPS_FULL: [string, string[]][] = [
   ["Summary", ["overview", "gameplan", "coach", "evidence"]],
   ["With the ball", ["build-up", "threat", "restarts", "setpieces", "goals"]],
   ["Without the ball", ["transitions", "defending"]],
   ["Clips", ["clips"]],
-  ["More", ["compare", "matchups", "review", "tracking"]],
+  ["More", ["compare", "matchups", "review"]],
 ];
 const GROUPS_ANALYST: [string, string[]][] = [
   ["Summary", ["overview"]],
@@ -535,7 +533,6 @@ export default function App() {
             {route.tab === "goals" && <Goals d={current} events={events} />}
             {route.tab === "matchups" && <Matchups d={current} />}
             {route.tab === "compare" && teams && <Compare d={current} teams={teams} events={events} />}
-            {route.tab === "tracking" && <TrackingLab />}
             {route.tab === "review" && <Review d={current} events={events} />}
             {route.tab === "clips" && (
               <Clips

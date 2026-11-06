@@ -29,7 +29,7 @@ Written 22 October 2026 for discussion with the supervisors; updated 30 October 
 | 3.2 | **Provenance of every number.** Click a number to see the script, the result file, the protocol and the commit it comes from. | Reproducibility made visible; useful to examiners and other researchers. | S-M | |
 | 3.3 | **Only-trusted-statements mode.** The coach sheet and key points can be limited to A/B statements, with C/D available on demand. | An application of the grade to the report itself. | S | Needs a careful default: hiding C/D must not hide negative results. |
 | 3.4 | **Keyboard shortcuts** for clips and replays (play/pause, next clip, mark yes/partly/no). | Faster use for analysts; found in the design critique of 22 Oct. | S | |
-| 3.5 | **Test the XML export in a real video tool** (Sportscode, Nacsport). | Whether the clip export works in practice; today it is untested. | S (needs access to the software) | |
+| 3.5 | **Export for a real video tool** (Sportscode, Nacsport XML). An untested XML export was written and then removed (`archive/clips_to_xml.py`). | Whether the clip lists can be used in the analyst's video tool. | S (needs access to the software) | |
 | 3.6 | **Club data through the adapter.** Map a real club or provider export to the generic CSV (`src/adapters/generic_csv.py`) and run the round-trip check. | Whether the tool works outside open data. | M (needs data) | |
 | 3.7 | **Reference set option for CSV reports.** With `--csv` the report has no other teams to rank against; allow choosing a reference folder. | Ranks for club data. | S | |
 

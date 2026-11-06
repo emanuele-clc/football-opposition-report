@@ -1,11 +1,11 @@
 """Local API for the opposition report app.
 Serves the files that src/oppreport.py writes (report_/restarts_/setpieces_/transitions_<Team>.json and the clip CSVs),
-ranks each team against the other teams found in the same folder, exports filtered clip lists (CSV, video-tool XML)
+ranks each team against the other teams found in the same folder, exports filtered clip lists (CSV)
 and can run the pipeline for a new team when the folder holds StatsBomb match lists and events.
 No new estimates: every number comes from the pipeline files.
 Run:  python -X utf8 app/run.py [--data-dir <data_folder>]"""
 
-import contextvars, csv, functools, glob, io, json, os, re, subprocess, sys, tempfile, threading, time, uuid, zipfile
+import contextvars, csv, functools, glob, io, json, os, re, subprocess, sys, tempfile, threading, time, uuid
 from urllib.parse import quote
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, StreamingResponse
@@ -14,8 +14,6 @@ from pydantic import BaseModel
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import gameplan as plan_rules
-import ai_brief
-import tracking as dfl_tracking
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DATA = os.path.abspath(os.environ.get("OPPREPORT_DATA") or os.path.join(ROOT, "examples"))
@@ -319,25 +317,6 @@ def ranks(key):
     return out
 
 
-@app.get("/api/tracking/matches")
-def tracking_matches():
-    if not dfl_tracking.available():
-        raise HTTPException(404, f"No tracking data in {dfl_tracking.TRACK}: download the DFL open data and run src/tracking/dfl_load.py.")
-    return dfl_tracking.matches()
-
-
-@app.get("/api/tracking/results")
-def tracking_results():
-    return dfl_tracking.results()
-
-
-@app.get("/api/tracking/clip")
-def tracking_clip(match: str, half: int, frame: int, before: float = 10.0, after: float = 3.0):
-    if not dfl_tracking.available() or dfl_tracking.meta(match) is None:
-        raise HTTPException(404, f"Match {match} not in {dfl_tracking.TRACK}.")
-    return dfl_tracking.clip(match, half, frame, min(max(before, 1.0), 20.0), min(max(after, 0.0), 8.0))
-
-
 @app.get("/api/providers")
 def providers():
     out = []
@@ -368,7 +347,6 @@ def info():
         "attribution": P()["attribution"],
         "missing": P()["missing"],
         "data_dir": D(),
-        "has_tracking": dfl_tracking.available(),
         "is_examples": os.path.normcase(D())
         in (os.path.normcase(os.path.join(ROOT, "examples")), os.path.normcase(os.path.join(ROOT, "examples_wyscout"))),
         "can_generate": bool(sources()),
@@ -713,37 +691,6 @@ def export_csv(key: str, kind: str, family: str = "", opponent: str = "", shot: 
         iter([buf.getvalue().encode("utf-8")]),
         media_type="text/csv",
         headers={"Content-Disposition": f"attachment; filename*=UTF-8''{quote(name)}"},
-    )
-
-
-@app.get("/api/teams/{key}/export/{kind}.zip")
-def export_xml(key: str, kind: str, family: str = "", opponent: str = "", shot: bool = False, half: int = 0, goal: bool = False):
-    """Video-tool XML (one file per match) through src/report/clips_to_xml.py, zipped."""
-    need(key)
-    cols, rows = filtered(key, kind, family, opponent, shot, half, goal)
-    if not rows:
-        raise HTTPException(400, "No clips match these filters: nothing to export.")
-    with tempfile.TemporaryDirectory() as tmp:
-        src = os.path.join(tmp, f"{CLIPS[kind]}_{key}.csv")
-        with open(src, "w", encoding="utf-8", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=cols)
-            w.writeheader()
-            w.writerows(rows)
-        outd = os.path.join(tmp, "xml")
-        cmd = [sys.executable, "-X", "utf8", os.path.join(ROOT, "src", "report", "clips_to_xml.py"), src, outd]
-        if os.path.isdir(os.path.join(D(), "ev")):
-            cmd += ["--events-dir", os.path.join(D(), "ev")]
-        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
-        if r.returncode:
-            raise HTTPException(500, "XML export failed: " + (r.stderr or r.stdout)[-500:])
-        buf = io.BytesIO()
-        with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
-            for p in sorted(glob.glob(os.path.join(outd, "*"))):
-                z.write(p, os.path.basename(p))
-    return StreamingResponse(
-        iter([buf.getvalue()]),
-        media_type="application/zip",
-        headers={"Content-Disposition": f"attachment; filename*=UTF-8''{quote(f'xml_{CLIPS[kind]}_{key}.zip')}"},
     )
 
 
@@ -1138,21 +1085,6 @@ def gameplan(key: str, mine: str | None = None, venue: str = ""):
         rq2 = json.load(open(f, encoding="utf-8")) if os.path.exists(f) else None
         res["versus"] = plan_rules.versus(key, mine, venue if venue in ("home", "away") else "", keys, load, rq2)
     return res
-
-
-# Coach brief rewritten by a local model (Ollama), checked against the hints' numbers (app/backend/ai_brief.py). Optional.
-@app.get("/api/ai/status")
-def ai_status():
-    return ai_brief.status()
-
-
-@app.get("/api/teams/{key}/gameplan/ai")
-def gameplan_ai(key: str, mine: str | None = None, lang: str = "en"):
-    need(key)
-    if mine:
-        need(mine)
-    plan = plan_rules.build(key, mine if mine != key else None, teams, ranks, load)
-    return ai_brief.write(plan, lang, os.path.join(D(), "app_cache"))
 
 
 @app.get("/api/teams/{key}/without")

@@ -22,7 +22,7 @@ Opens http://127.0.0.1:8765. Ctrl+C stops it.
 - **Overview**: the team's typical build-up replayed pass by pass on the pitch (actual possessions rebuilt from the StatsBomb events), five key points where the team is furthest from the other teams, family stickers (hover to turn over, click to replay), every fact placed among all teams in the folder, reliability and how to read.
 - **Build-up / Advanced**: share strip, replay of each family's typical sequences, start type -> family, every number per family, typical sequences with a play button.
 - **Restarts, Set pieces, Transitions**: interactive sheets with replays of recent goal kicks, corners, high recoveries and losses (transitions show 6 s before to 10 s after, opponent in red); last-5 values outside the season interval are highlighted.
-- **Clips**: filter by label, opponent, half, shot; click a row to watch it; export CSV or video-tool XML (zip, via `src/report/clips_to_xml.py`; XML import still untested in Sportscode/Nacsport).
+- **Clips**: filter by label, opponent, half, shot; click a row to watch it; export CSV.
 - **Families → All sequences**: every sequence of a family drawn over the pitch (computed once from the events, cached in `<data>/app_cache`).
 - **Compare**: two teams on the same scales, every fact as a row of dots, and their build-up replays side by side (families are fitted per team: same label, different groups).
 - **Review**: the analyst sheet inside the app (yes / partly / no per sequence with its replay, five questions). Saves `review_<Team>_filled.csv` (readable by `src/report/summarize_review.py`) and `review_<Team>_answers.json`; the original sheet is not changed.

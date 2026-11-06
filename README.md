@@ -64,7 +64,7 @@ The grades live inside a working prototype: a local web app that builds the repo
 flowchart LR
     A["Match events<br/>StatsBomb or any provider"] --> B["Analysis<br/>possessions, restarts,<br/>set pieces, transitions"]
     B --> C["Report<br/>numbers with ranges<br/>and ranks vs other teams"]
-    C --> D["Clips<br/>replays, CSV,<br/>XML for video tools"]
+    C --> D["Clips<br/>replays, CSV"]
 ```
 
 ### What you get
@@ -124,7 +124,7 @@ The app opens at **http://127.0.0.1:8765** with four example teams, in two versi
 
 ```powershell
 cd <data_folder>                                                              # downloads go into the current folder
-python -X utf8 <repo>\srcnalysis\download_data.py 9 281 "Bayer Leverkusen"     # StatsBomb events -> matches\ and ev\
+python -X utf8 <repo>\src\analysis\download_data.py 9 281 "Bayer Leverkusen"     # StatsBomb events -> matches\ and ev\
 python -X utf8 <repo>\src\oppreport.py --statsbomb matches\9_281.json --data-dir . --team "Bayer Leverkusen" --out reports
 python -X utf8 <repo>\src\oppreport.py --csv events.csv --team "Team name" --out reports   # data from any other provider
 ```
@@ -191,9 +191,8 @@ The confirmatory steps (`evidence_grade_wyscout.py analyse --set confirm`, `fore
 ```
 src/analysis/     the thesis analyses: download, sequences, families, held-out validation, 10-team replication,
                   simple-rule test, corners (L3), evidence grade (RQ1, StatsBomb and Wyscout), opponent-adjusted forecast (RQ2)
-src/report/       report sheets, clip lists, XML and MP4 clip export
+src/report/       report sheets and clip lists
 src/adapters/     provider adapters (generic CSV, StatsBomb, Wyscout)
-src/tracking/     tracking data (exploratory)
 src/oppreport.py  one command for the whole report
 app/              local web app (FastAPI + React), see app/README.md
 tests/            reproducibility and app tests
@@ -212,7 +211,7 @@ Until 6 November 2026 the analyses were in four folders `src/week1`-`src/week4` 
 
 - It **describes** how a team plays. It does not say what will work against them.
 - Families are numbered (B1, A2), not named: an analyst names them after watching the clips.
-- The families were tested on ten teams, nine of them from one season (2015/16); the grades on public StatsBomb and Wyscout data only. Not yet tried on real club data or reviewed by an analyst. The XML export has not yet been tested in a real video tool.
+- The families were tested on ten teams, nine of them from one season (2015/16); the grades on public StatsBomb and Wyscout data only. Not yet tried on real club data or reviewed by an analyst.
 
 ---
 

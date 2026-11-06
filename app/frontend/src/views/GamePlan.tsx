@@ -1,5 +1,5 @@
 import { useEffect, useState, type CSSProperties } from "react";
-import { api, type AiBrief, type AiStatus, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSummary, type Versus } from "../api";
+import { api, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSummary, type Versus } from "../api";
 import { evidenceHref, Explain, GRADE_SAYS, GradeKey, GradeMark, Icon } from "../charts";
 import { Note, Pitch, Replay, plain } from "../charts";
 import { PROVIDER_NAME } from "../provider";
@@ -199,84 +199,6 @@ const sign = (x: number, n = 1) => `${x >= 0 ? "+" : "−"}${Math.abs(x).toFixed
 
 /* Next match against your team (thesis RQ2): season value, then the forecast that knows the opponent and the venue, with the
    grade each one got in the confirmatory test. An approximation in the app, said so on the card. */
-/* The same hints rewritten by a local model (Ollama, app/backend/ai_brief.py), on request. The model sees only the hints; every number it
-   writes is checked against them and a line with an unknown number is dropped. Hidden when Ollama is not running, except for a setup
-   note in the full view. English only (the small local model wrote poor Italian and German), so the dictionary leaves it alone
-   (translate="no") and the button says so in the other languages. */
-function AiBriefCard({ teamKey, mine, team, full }: { teamKey: string; mine: string; team: string; full: boolean }) {
-  const [st, setSt] = useState<AiStatus | null>(null);
-  const [res, setRes] = useState<AiBrief | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [err, setErr] = useState("");
-  useEffect(() => {
-    api
-      .aiStatus()
-      .then(setSt)
-      .catch(() => setSt(null));
-  }, []);
-  useEffect(() => {
-    setRes(null);
-    setErr("");
-  }, [teamKey, mine]);
-  if (!st) return null;
-  if (!st.available)
-    return full ? (
-      <p className="small" style={{ marginBottom: 16 }}>
-        {st.reason === "model_not_pulled"
-          ? `Local AI brief: run "ollama pull ${st.model}" once to turn it on.`
-          : "Local AI brief: install and start Ollama (ollama.com) to turn it on. Nothing leaves this computer."}
-      </p>
-    ) : null;
-  const run = () => {
-    setBusy(true);
-    setErr("");
-    api
-      .gameplanAi(teamKey, mine, "en")
-      .then((r) => {
-        setRes(r);
-        if (!r.points.length) setErr("The local model gave no usable text: use the hints below.");
-      })
-      .catch((e) => setErr(String(e.message ?? e)))
-      .finally(() => setBusy(false));
-  };
-  return (
-    <div className="sticker pad ai-brief" style={{ marginBottom: 16 }}>
-      <div className="ai-head">
-        <h3>{`Brief for the coach against ${team}`}</h3>
-        <button type="button" className="btn" onClick={run} disabled={busy} aria-busy={busy}>
-          {busy
-            ? "Writing… up to a minute on this computer"
-            : res?.points.length
-              ? "Write again"
-              : document.documentElement.lang && document.documentElement.lang !== "en"
-                ? "Write it with the local AI (in English)"
-                : "Write it with the local AI"}
-        </button>
-      </div>
-      {err && <p className="small">{err}</p>}
-      {res && res.points.length > 0 && (
-        <>
-          <div translate="no" lang={res.lang}>
-            {res.summary && <p className="ai-sum">{res.summary}</p>}
-            <ol className="ai-points">
-              {res.points.map((p) => (
-                <li key={p.hint}>
-                  <GradeMark g={p.grade ?? undefined} none />
-                  <span>{p.text}</span>{" "}
-                  <a href={`#/${encodeURIComponent(teamKey)}/${p.tab}`}>{TAB_LABEL[p.tab] ?? p.tab} →</a>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <p className="s-muted ai-note">
-            {`Written by a local AI model (${res.model}) from the hints below only; nothing left this computer. Every number was checked against the hints${res.dropped ? ` and ${res.dropped} line(s) with a number not in them were dropped` : ""}. Grades are those of the hints. Same caution as the hints: where to look, not advice.`}
-          </p>
-        </>
-      )}
-    </div>
-  );
-}
-
 function VersusCard({ v, opp, mine }: { v: Versus; opp: string; mine: string }) {
   if (!v.rows.length) return null;
   return (
@@ -586,7 +508,6 @@ export default function GamePlan({
                 </Note>
               </div>
             )}
-            {P.hints.length > 0 && <AiBriefCard teamKey={d.key} mine={my} team={d.team} full={full} />}
             {P.hints.length === 0 ? (
               <p>No rule fired: {d.team} is not at the extremes of any measure here.</p>
             ) : (

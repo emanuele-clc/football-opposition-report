@@ -146,19 +146,11 @@ export default function Clips({
         <span style={{ marginLeft: "auto", display: "flex", gap: 10, flexWrap: "wrap" }}>
           <a
             className="btn"
-            href={api.exportUrl(d.key, kind, "csv", filters)}
+            href={api.exportUrl(d.key, kind, filters)}
             aria-disabled={!shown.length}
             onClick={(e) => !shown.length && e.preventDefault()}
           >
             {Icon.download} CSV · {shown.length} clips
-          </a>
-          <a
-            className="btn ghost"
-            href={api.exportUrl(d.key, kind, "zip", filters)}
-            aria-disabled={!shown.length}
-            onClick={(e) => !shown.length && e.preventDefault()}
-          >
-            {Icon.download} XML for video tool
           </a>
         </span>
       </div>
@@ -170,9 +162,8 @@ export default function Clips({
       )}
       {!hasVideo && rows && rows.length > 0 && (
         <p className="small measure" style={{ marginBottom: 14 }}>
-          Times are the match clock (no video offsets in this list). XML clips start 3 s before the possession and end 3
-          s after; without offsets the times must be shifted in the tool. Not yet tested by importing into Sportscode or
-          Nacsport: try one match first.
+          Times are the match clock (no video offsets in this list): to find a clip in the match video, add the time the
+          half kicks off in the video.
         </p>
       )}
       {error && (

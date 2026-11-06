@@ -225,7 +225,7 @@ def html_page(res, df, nm, fn):
             for lb, q in r["by_length"].items():
                 h.append(f"<tr><td>{lb}</td><td>{q['n']}</td><td>{pc(q['opp_half'])}</td><td>{pc(q['lost_own_half'])}</td><td>{pc(q['shot'])}</td></tr>")
             h.append("</table>")
-    h.append(f"<p class='small'>Clips: restart_clips_{fn}.csv lists every possession above, labelled e.g. 'Goal kick short left'; convert it with src/report/clips_to_xml.py to import into a video tool. Limits: event data only, so the opponent's press and off-ball positions are not seen; 'ended in own half' uses the last recorded action of the possession.</p></body></html>")
+    h.append(f"<p class='small'>Clips: restart_clips_{fn}.csv lists every possession above, labelled e.g. 'Goal kick short left', for tagging clips in a video tool. Limits: event data only, so the opponent's press and off-ball positions are not seen; 'ended in own half' uses the last recorded action of the possession.</p></body></html>")
     return "".join(h)
 
 

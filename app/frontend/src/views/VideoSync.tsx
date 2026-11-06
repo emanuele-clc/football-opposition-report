@@ -3,7 +3,7 @@ import type { ClipRow } from "../api";
 import { Icon } from "../charts";
 
 /* The match video next to the replay. Video time = half kick-off in the video + match clock (minus 45:00 in the second half),
-   as in docs/data_format.md; each clip starts 3 s early, like the XML export. Offsets stay in this browser only. */
+   as in docs/data_format.md; each clip starts 3 s early. Offsets stay in this browser only. */
 type Offsets = Record<string, [number | null, number | null]>;
 const load = (): Offsets => {
   try {
