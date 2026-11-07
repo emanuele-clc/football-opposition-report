@@ -12,7 +12,7 @@ import sys, os, json
 # - loses the ball in own half: incomplete passes, Dispossessed and Miscontrol at x < 60.
 # Per match = per match in which the player has at least one event. Top 3 by total.
 # - timeline: goals (shots scored + own goals in their favour) and xG for and against by 15-minute slot; stoppage time goes to the slot before
-#   the half ends (45+ in 30-45, 90+ in 75-90); extra time left out.
+#   the half ends (45+ in 30-45, 90+ in 75-90); extra time (if played) in its own slot 90-120, the penalty shootout left out.
 # - goals: every goal scored and conceded (shots scored + own goals), with scorer, xG, shot location (team view: goals scored towards x = 120, conceded
 #   towards x = 0) and origin = StatsBomb play pattern of the possession (how it started: regular play, counter, corner, free kick, throw-in, goal kick,
 #   keeper, kick-off, other); penalties and own goals separately. Origin is StatsBomb's label, not a definition of ours.
@@ -35,6 +35,7 @@ ORIGIN = {
 ZX, ZY = (20, 40, 60), (80 / 3, 160 / 3, 80)
 SET = {"Corner", "Free Kick", "Throw-in", "Goal Kick", "Kick Off"}
 SLOTS = ["0-15", "15-30", "30-45", "45-60", "60-75", "75-90"]
+ET = "90-120"  # extra time (periods 3-4; the shootout, period 5, is not a goal); slot written only if the team played extra time
 
 ROLES = [
     ("buildup", "Builds through", "passes received in own half",
@@ -69,6 +70,8 @@ def zone_box(i, j):
 
 def time_slot(e):
     minute = e["minute"]
+    if e["period"] in (3, 4):
+        return ET
     if e["period"] == 1:
         minute = min(minute, 44)
     else:
@@ -101,7 +104,7 @@ def match_goals(ev, m, team_name, meta):
     for e in ev:
         t = e["type"]["name"]
         is_goal = t == "Shot" and e["shot"]["outcome"]["name"] == "Goal"
-        if not (is_goal or t == "Own Goal For") or e.get("period") not in (1, 2):
+        if not (is_goal or t == "Own Goal For") or e.get("period") not in (1, 2, 3, 4):
             continue
         us = e["team"]["name"] == team_name
         loc = e.get("location") or [None, None]
@@ -132,7 +135,8 @@ def match_goals(ev, m, team_name, meta):
 def events_view(team_name, match_ids, ev_dir, meta=None):
     counts = {k: {} for k in ("buildup", "final_third", "shots", "xg", "corners", "free_kicks", "losses")}
     played, shirt, pos, starters = {}, {}, {}, {}
-    timeline = {s: {"goals_for": 0, "goals_against": 0, "xg_for": 0.0, "xg_against": 0.0} for s in SLOTS}
+    timeline = {s: {"goals_for": 0, "goals_against": 0, "xg_for": 0.0, "xg_against": 0.0} for s in SLOTS + [ET]}
+    extra_time = False
     goals = []
     zones = [(i, j) for i in range(3) for j in range(3)]
     press = {z: {"passes": 0, "under_pressure": 0, "up_ok": 0, "free_ok": 0, "up_long": 0, "up_lost": 0} for z in zones}
@@ -159,7 +163,8 @@ def events_view(team_name, match_ids, ev_dir, meta=None):
                     shirt[pl["player"]["name"]] = pl.get("jersey_number")
                     pos[pl["player"]["name"]] = pl.get("position", {}).get("name")
 
-            if e.get("period") in (1, 2):
+            if e.get("period") in (1, 2, 3, 4):
+                extra_time = extra_time or e["period"] > 2
                 slot = timeline[time_slot(e)]
                 side = "for" if us else "against"
                 if t == "Shot":
@@ -265,7 +270,7 @@ def events_view(team_name, match_ids, ev_dir, meta=None):
         by_origin[side] = {o: sum(1 for g in goals if g["side"] == side and g["origin"] == o) for o in origins}
 
     slots = []
-    for s in SLOTS:
+    for s in SLOTS + ([ET] if extra_time else []):
         row = {"slot": s}
         for k, v in timeline[s].items():
             row[k] = round(v / max(n, 1), 3) if k.startswith("xg") else v
