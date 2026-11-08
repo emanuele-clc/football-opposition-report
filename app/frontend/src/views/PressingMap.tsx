@@ -1,10 +1,9 @@
+/* Where the first pass of each restart goes and who gets it. Only a description. */
 import { useEffect, useMemo, useState } from "react";
 import { api, type ClipRef, type RestartPass } from "../api";
 import { Note, Pitch } from "../charts";
 import { clock, pc } from "../format";
 
-/* Where the first pass of each restart goes, who receives it, and how often the possession then ends in the own half.
-   Same definitions as the restart sheet (src/report/restarts.py); descriptive, it does not say where pressing works. */
 const cache = new Map<string, Promise<{ restarts: RestartPass[] }>>();
 const lastName = (n: string) => n.split(" ").slice(-1)[0] ?? "";
 const OUT = { lost: "var(--coral)", opp: "var(--lime)", other: "var(--on-board-3)" };

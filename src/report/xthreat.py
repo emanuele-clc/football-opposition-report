@@ -1,9 +1,11 @@
-"""Threat sheet: how much a team moves the ball into dangerous zones with passes and carries (Expected Threat, xT), where it does it from, who does it,
-and how much threat it concedes. Descriptive, one page; no hypothesis was tested.
+"""How much a team moves the ball into dangerous zones (xT), from where and with which players.
+
+Each completed pass or carry gets the xT of where it ends minus where it starts. Same for the opponents (xT conceded).
+Needs StatsBomb pass outcomes, so it does not work with the generic CSV.
+
 Usage:  python xthreat.py <matches.json> "<Team>" [data_dir=.]
-Output in data_dir: xthreat_<Team>.html, xthreat_<Team>.json and xt_clips_<Team>.csv (same columns as clips_<Team>.csv, plus player and xt).
-Uses the grid of xt_model.py (xt_grid.json, fitted once on the matches of the 10 thesis teams), so the same zone values for every team.
-Needs StatsBomb-style pass outcomes (completed or not) and pass types: the generic CSV has neither, so with it the script stops with a message.
+Output in data_dir: xthreat_<Team>.html, xthreat_<Team>.json and xt_clips_<Team>.csv.
+
 Definitions (fixed before looking at any team):
 - xT added: for each completed open-play pass and carry of the team (as in xt_model.py), xT(end zone) - xT(start zone); summed per match. Back passes count negative.
   Failed passes are NOT subtracted (Singh's definition); 'threat given up' reports them separately: the xT of the start zone of each incomplete open-play pass.

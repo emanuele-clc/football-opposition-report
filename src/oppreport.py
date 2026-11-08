@@ -1,10 +1,12 @@
-"""One command for the whole opposition report.
+"""One command for the whole report.
+
+Runs all the sheets for one team and puts everything in one folder.
+Works with StatsBomb data or with a generic CSV from any provider. If some match events are missing it tells you what to download.
+
 From a generic CSV of events (any provider, see docs/data_format.md):
     python src/oppreport.py --csv events.csv --team "LASK" --out reports [--video-offsets offsets.csv] [--coords 120x80]
 From StatsBomb open data already downloaded:
-    python src/oppreport.py --statsbomb matches/9_281.json --data-dir <data folder> --team "Bayer Leverkusen" --out reports
-Writes in --out: prep_<Team>.html (one page with the main facts and links), report_<Team>.html, the other sheets (restarts, set pieces,
-transitions, defending, xthreat), the clip lists (*.csv) and the analyst review sheet."""
+    python src/oppreport.py --statsbomb matches/9_281.json --data-dir <data folder> --team "Bayer Leverkusen" --out reports"""
 
 import argparse, json, os, sys, subprocess, shutil
 

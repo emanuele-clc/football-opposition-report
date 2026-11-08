@@ -1,8 +1,11 @@
-"""Automated opposition report (L2, open play). Descriptive: it applies the validated settings and states how reliable each part is.
+"""The main report of a team.
+
+Same method as the thesis (cut 45, k = 5 and 3), but on the whole season, because here I only describe.
+It writes the style of the team compared with the other teams, the families with how much to trust them,
+the list of all sequences for video (clips) and a review sheet for an analyst.
+
 Usage:  python make_report.py <matches.json> "<Team>" [data_dir=.]
-Output: report_<Team>.html (self-contained, print to PDF from the browser) and report_<Team>.json (all numbers) in data_dir.
-Frozen settings (same as the validated protocol): phase cut x = 45, k = 5 build-up and k = 3 advanced, 11 features, K-Means n_init = 20, random_state = 0.
-Reference teams: any other seq_<Team>.csv found in data_dir (written by this script) are used as a comparison."""
+Output in data_dir: report_<Team>.html, report_<Team>.json, clips_<Team>.csv and review_<Team>.csv/.html."""
 
 import sys, os, io, json, glob, base64, html as H, warnings
 import numpy as np, pandas as pd
@@ -18,16 +21,14 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
-COLS = ["x0", "w0", "x1", "w1", "net_x", "path_len", "directness", "n_pass", "long_share", "width_std", "dur"]
-CUT = 45
+COLS, CUT = S.COLS, S.CUT  # same settings as the thesis
 K = {"build-up": 5, "advanced": 3}
 B_CI, B_STAB = 1000, 100
 # One generator for the whole report: the order of the calls below decides every interval, so do not reorder them.
 rng = np.random.default_rng(0)
 
 df, nm = S.extract()
-df["w0"] = (df.y0 - 40).abs()
-df["w1"] = (df.y1 - 40).abs()
+S.add_width(df)
 TEAM = S.TEAM
 BASE = S.BASE
 FN = TEAM.replace(" ", "_")
@@ -55,10 +56,7 @@ def video_time(match, half, minute, sec):
     """Video time = video second at which the half kicks off + match clock (cumulative minute) - 2700 s in the second half. Empty if data are missing."""
     if OFFS is None or str(match) not in OFFS.index or half not in (1, 2):
         return ""
-    if half == 1:
-        v = float(OFFS.loc[str(match), "half1_start"]) + minute * 60 + sec
-    else:
-        v = float(OFFS.loc[str(match), "half2_start"]) + minute * 60 + sec - 2700
+    v = float(OFFS.loc[str(match), f"half{half}_start"]) + minute * 60 + sec - (2700 if half == 2 else 0)
     if v < 0:
         return ""
     return f"{int(v // 3600)}:{int(v % 3600 // 60):02d}:{int(v % 60):02d}"
@@ -115,7 +113,7 @@ def examples(d, dist):
 def fit_phase(phase, k):
     in_phase = df[df.x0 < CUT] if phase == "build-up" else df[df.x0 >= CUT]
     sub = in_phase.reset_index(drop=True)
-    X = StandardScaler().fit(sub[COLS].values).transform(sub[COLS].values)
+    X = StandardScaler().fit_transform(sub[COLS].values)
     km = KMeans(k, n_init=20, random_state=0).fit(X)
     # families ordered by mean start x (bigger first on ties) and named B1.. / A1..
     order = sorted(range(k), key=lambda c: (sub.x0.values[km.labels_ == c].mean(), -(km.labels_ == c).sum()))

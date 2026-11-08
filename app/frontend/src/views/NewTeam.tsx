@@ -1,3 +1,4 @@
+/* Add a new team: downloads what is missing and runs the report in the background. */
 import { useEffect, useRef, useState } from "react";
 import { api, type Info, type Job, type Source } from "../api";
 import { Note } from "../charts";

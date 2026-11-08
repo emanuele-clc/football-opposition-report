@@ -1,6 +1,4 @@
-/* English -> [Italian, German] for the interface (see i18n.ts for the key syntax: '#' number, '#th' ordinal, '{0}' any text).
-   Football terms follow the usual words of each language (costruzione / Spielaufbau, rimessa dal fondo / Abstoß, ...).
-   StatsBomb, xG, xT and PPDA stay as they are. */
+/* The dictionary of the app: English, Italian, German. New text on screen needs a line here. */
 export const DICT: [string, string, string][] = [
   ["Second-largest share of recoveries in the final third", "Quota più alta di recuperi nell'ultimo terzo (secondo posto)", "Höchster Anteil an Ballgewinnen im letzten Drittel (zweiter Platz)"],
   ["Second-smallest share of recoveries in the final third", "Quota più bassa di recuperi nell'ultimo terzo (secondo posto)", "Niedrigster Anteil an Ballgewinnen im letzten Drittel (zweiter Platz)"],

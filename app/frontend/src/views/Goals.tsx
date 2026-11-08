@@ -1,9 +1,9 @@
+/* All goals scored and conceded, on one pitch, with replay. Origin = how the possession started. */
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { api, type ClipRef, type GPEvents, type TeamData } from "../api";
 import { PROVIDER } from "../provider";
 import { Explain, Note, Pitch, plain, Replay } from "../charts";
 
-/* Every goal scored and conceded, on one pitch and replayable. Origin = StatsBomb play pattern (how the possession started). */
 const COLOR: Record<string, string> = {
   "Open play": "var(--lime)",
   "Counter-attack": "var(--yellow)",

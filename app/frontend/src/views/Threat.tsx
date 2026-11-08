@@ -1,3 +1,4 @@
+/* Threat page (xT): how the team moves the ball into dangerous zones and who does it. */
 import { useEffect, useState, type CSSProperties } from "react";
 import type { ClipRow, TeamData } from "../api";
 import { Explain, Note, Pitch, plain, RankRow, Replay } from "../charts";

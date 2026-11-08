@@ -1,9 +1,11 @@
-"""RQ1: the evidence grade on Wyscout 2017/18. Protocol: docs/protocol_evidence_grade_wyscout.md.
-Same measures, thresholds and code as evidence_grade.py (imported); only the data and the list of statements change.
+"""RQ1 on a second provider: the same A-D grades, computed on Wyscout 2017/18 data.
+
+Same code as evidence_grade.py, only the data changes. Statements Wyscout cannot compute (pressures, xG) are left out.
+At the end it compares letter by letter with the StatsBomb grades. Protocol: docs/protocol_evidence_grade_wyscout.md.
+
 Usage (from the repo root; wy_dir = one converted league per country, see the protocol):
-    python -X utf8 src/analysis/evidence_grade_wyscout.py extract <wy_dir> <work_dir>          # all 98 teams -> <work_dir>/teams/*.pkl
-    python -X utf8 src/analysis/evidence_grade_wyscout.py analyse <work_dir> --set dev|confirm
-The smoke test (2 teams x 8 matches) is in archive/smoke_grade.py. The analyse step stops if the protocol or the scripts are not committed and pushed, or if the result file already exists."""
+    python -X utf8 src/analysis/evidence_grade_wyscout.py extract <wy_dir> <work_dir>
+    python -X utf8 src/analysis/evidence_grade_wyscout.py analyse <work_dir> --set dev|confirm"""
 
 import sys, os, json, glob, pickle
 import numpy as np, pandas as pd

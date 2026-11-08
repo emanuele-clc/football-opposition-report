@@ -1,3 +1,4 @@
+/* Summary page: a replay, the 5 things where the team stands out most, the families and how much to trust them. */
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type ClipRef, type Evidence, type Family, type Rank, type TeamData } from "../api";
 import { evidenceHref, FamilyLanes, GradeKey, GradeMark, Replay, rib, ShareStrip, third } from "../charts";

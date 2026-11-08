@@ -1,9 +1,11 @@
-"""L3: corners with 360 frames. Can a defence exploit where a team sends its corners? Two commands:
-  leverkusen  Bayer Leverkusen 2023/24: zones, xG, predictability, defensive set-up from 360, permutation test -> results_corners.json, fig_corners.png
-  pooled      World Cup 2022 + Euro 2020 + Euro 2024 pooled, same test; set-up chosen on Euro 2020 + WC 2022, tested on Euro 2024
-              -> results_pooled_corners.json
+"""Corners (L3): can a defence use where a team sends its corners?
+
+I look at where the corner lands (short, near post, centre, far post), the xG that comes from it and how the defence is set up (from 360 data).
+Then a permutation test checks if picking the best set-up would really help or if it is just chance.
+leverkusen: only Leverkusen 2023/24. pooled: World Cup 2022 + Euro 2020 + Euro 2024 together.
+
 Usage: python corners.py leverkusen|pooled [data_folder=.]      (the folder with matches/, ev/ and t360/)
-Zones and set-ups are defined by hand (author); delivery zone = where the corner pass ends, measured from the taker's side."""
+Zones and set-ups are defined by hand."""
 
 import json, sys
 import numpy as np, pandas as pd

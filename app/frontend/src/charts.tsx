@@ -1,3 +1,4 @@
+/* Pieces used on many pages: the pitch, the replay, grades, bars, icons and the "How to read" box. */
 import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import {
   api,

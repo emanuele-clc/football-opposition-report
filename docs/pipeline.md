@@ -11,6 +11,7 @@ python src/analysis/download_data.py 11 27 "Barcelona"           # La Liga 2015/
 python src/analysis/download_data.py 2 27  "Arsenal"            # PL 2015/16 (events only)
 # 2 — L1: corners
 FIG_LANG=en python src/analysis/corners.py leverkusen .
+# archive/ was removed on 8 Nov 2026: the one-off scripts below are in git commit 7d6a28f (git show 7d6a28f:archive/<file>)
 # 3 — L2: sequences & clustering
 python archive/choose_k.py matches/9_281.json "Bayer Leverkusen" .   # choice of k (done once)
 FIG_LANG=en python src/analysis/families.py final matches/9_281.json "Bayer Leverkusen" .

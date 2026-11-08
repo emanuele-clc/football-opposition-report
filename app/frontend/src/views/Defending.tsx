@@ -1,3 +1,4 @@
+/* Defending page: pressing, where and how high the team defends, what it concedes. */
 import type { CSSProperties } from "react";
 import type { TeamData } from "../api";
 import { Explain, Note, Pitch, plain, RankRow } from "../charts";

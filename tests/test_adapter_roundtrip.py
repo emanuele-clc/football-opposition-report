@@ -1,9 +1,6 @@
-"""Adapter test: StatsBomb -> generic CSV -> generic_csv.py -> sequence extraction, compared with the direct extraction.
-Usage:  python -X utf8 tests/test_adapter_roundtrip.py <matches.json> "<Team>" <data_folder> [work_folder]
-Two cases: with possession_id and restart (must reproduce the sequences), without possession_id (reconstructed possessions: the difference is measured).
-Also checks the restart, set-piece (with player names and xG) and transition sheets and (since 28 Oct 2026) the part of the defending
-sheet that does not use pressures: PPDA, defensive actions and their height, shots conceded.
-Exits with code 1 if in the first case less than 99% of sequences/actions are reproduced or the features differ."""
+"""Checks the adapter: StatsBomb -> CSV -> back again. With possessions the sequences must come out the same (at least 99%).
+
+Usage:  python -X utf8 tests/test_adapter_roundtrip.py <matches.json> "<Team>" <data_folder> [work_folder]"""
 
 import sys, os, tempfile
 import numpy as np

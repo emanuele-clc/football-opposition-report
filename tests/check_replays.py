@@ -1,9 +1,6 @@
-"""What the replays would draw, checked for things that look wrong on the pitch (complements check_clips.py, which checks the numbers).
-Usage:  python -X utf8 tests/check_replays.py <data_dir> [--wyscout] [--per-list N]
-For every team and clip list (first N clips per list, default all): actions outside the pitch, end points on a pitch corner (placeholder
-coordinates), passes and carries of zero length (drawn as a dot), completed passes whose receiver's next action starts far from the end
-point (a long 'ball moved, not recorded' link), and failed passes that end on a line (ball out of play: fine, counted for information).
-Added 29 Oct 2026 after clips with gaps and a player 'off the pitch' (a failed pass labelled with the passer's name)."""
+"""Checks that the replays do not draw strange things: actions outside the pitch, fake points in a corner, passes of zero length.
+
+Usage:  python -X utf8 tests/check_replays.py <data_dir> [--wyscout] [--per-list N]"""
 
 import os, sys, math, collections
 

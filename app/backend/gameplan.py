@@ -1,6 +1,8 @@
-"""Game plan: the opponent's formations and style in a few lines, plus rule-based hints on how to approach them, optionally against your own team.
-HINTS, NOT ADVICE. Each hint fires from a fixed rule on where the opponent (and your team) ranks among the teams in the data folder, and shows the numbers
-that made it fire. No rule was tested for whether following it changes results: they say where to look on video, not what will work.
+"""The game plan page: the opponent's formations, style and some hints.
+
+A hint shows up when the team is among the highest or lowest for a number. It only says where to look on video,
+it is not advice: nobody tested if following it wins matches.
+
 Rules (fixed before looking at their output): 'top' = among the k highest of n teams, 'bottom' = among the k lowest, k = max(1, n // 5); no rank-based hint
 with fewer than 4 teams. Matchup facts come from matchups_<Team>.json (only 'clear' differences not linked to how the groups are formed).
 Coach brief: the fired hints rewritten as a short plan by phase (with the ball, without the ball, transitions, set pieces) and three priorities. Written by

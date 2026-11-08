@@ -1,3 +1,4 @@
+/* The review sheet for the analyst: yes / partly / no for each example sequence, and five questions. */
 import { useEffect, useMemo, useState } from "react";
 import { api, type ClipRef, type ClipRow, type ReviewData, type TeamData } from "../api";
 import { FamilyLanes, Note, PlayIcon, Replay, rib } from "../charts";

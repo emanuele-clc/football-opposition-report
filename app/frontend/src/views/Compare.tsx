@@ -1,3 +1,4 @@
+/* Two teams side by side, on the same scale. */
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type Rank, type TeamData, type TeamSummary } from "../api";
 import { Explain, FamilyLanes, Note, Replay, ShareStrip } from "../charts";

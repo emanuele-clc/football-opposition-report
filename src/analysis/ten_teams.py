@@ -1,9 +1,9 @@
-"""The 10-team replication: run one analysis on all 10 teams, and print the summaries with the rules of the protocols.
-Run it from the data folder (the one with matches/ and ev/). Protocol: docs/protocol_replication10.md.
+"""Runs one analysis on all 10 teams, or prints the summary table with the rule of the protocol (at least 7 of 10).
+
+Run it from the data folder (the one with matches/ and ev/). Teams already done are skipped. Protocol: docs/protocol_replication10.md.
     python ten_teams.py run simplerule|samplesize|clustertest <selection.json> [--confirm] [--print-only]
-                                                                   one script on the 10 teams (teams already done are skipped)
     python ten_teams.py summary replication|simplerule|samplesize <selection.json> [results_folder=results] [out]
-The draw of the 6 new teams and the first run of the replication (done once, 13 Oct 2026) are in archive/select_and_replicate.py."""
+The draw of the 6 new teams was made once with archive/select_and_replicate.py (removed on 8 Nov 2026; see git commit 7d6a28f)."""
 
 import sys, os, json, math, collections, subprocess
 import numpy as np
@@ -81,9 +81,7 @@ def wilson(k, n, z=1.96):
 
 
 def yes_no(x):
-    if x is None:
-        return "-"
-    return "si" if x else "no"
+    return "-" if x is None else ("si" if x else "no")
 
 
 def summary_replication(selection, folder, out):
@@ -143,27 +141,15 @@ def summary_replication(selection, folder, out):
     }
     json.dump(res, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
 
-    print(f"{'Squadra':26s}{'Lega':26s}{'H1':>5s}{'H2':>5s}{'guadagno':>10s}{'H3 b/a':>9s}{'E1':>7s}")
-    for r in rows:
-        if r["status"] != "eseguita":
-            print(f"{r['team']:26s}{r['league']:26s}  non eseguita")
-            continue
-        h3 = yes_no(r["H3_build"]) + "/" + yes_no(r["H3_adv"])
-        e1 = ("%+.2f" % r["E1_margin"]) if "E1_margin" in r else "-"
-        print(f"{r['team']:26s}{r['league']:26s}{yes_no(r['H1']):>5s}{yes_no(r['H2']):>5s}{r['gain']:>+10.3f}{h3:>9s}{e1:>7s}")
-    w = res["intervallo_wilson_95"]
-    line = f"\nBuild-up (H1 e H2): {k} su {n}"
-    if w[0] is not None:
-        line += f", intervallo di Wilson 95% [{w[0]:.2f}, {w[1]:.2f}]"
-    print(line)
-    print(f"H3 build-up: {res['H3_build_up'][0]} su {res['H3_build_up'][1]} | H3 advanced: {res['H3_advanced'][0]} su {res['H3_advanced'][1]}")
+    for r in done:
+        print(f"{r['team']:26s} H1 {yes_no(r['H1'])}  H2 {yes_no(r['H2'])}  guadagno {r['gain']:+.3f}  H3 {yes_no(r['H3_build'])}/{yes_no(r['H3_adv'])}")
+    print(f"\nBuild-up (H1 e H2): {k} su {n}, Wilson 95% {res['intervallo_wilson_95']}")
     print(verdict)
     print("salvato", out)
 
 
 def summary_simplerule(selection, folder):
     # families vs end-position rule: count of verdicts per phase, rule of the protocol (>= 7 of 10 'families better')
-    print(f"\n{'Squadra':20s}{'build-up (x1 - famiglie, IC95)':48s}advanced (x1 - famiglie, IC95)")
     count = {"costruzione": collections.Counter(), "avanzata": collections.Counter()}
     done = 0
     for _, team, _ in ten_teams(selection):
@@ -173,26 +159,12 @@ def summary_simplerule(selection, folder):
             continue
         d = json.load(open(p, encoding="utf-8"))
         done += 1
-        cells = []
-        for phase in ("costruzione", "avanzata"):
-            r = d[phase]
-            count[phase][r["verdetto"]] += 1
-            c = r["diff_x1_ci95"]
-            cells.append(f"{r['diff_x1']:+.4f} [{c[0]:+.4f}, {c[1]:+.4f}] {r['verdetto']}")
-        print(f"{team:20s}{cells[0]:48s}{cells[1]}")
-    print(f"\nSquadre valutate: {done} su 10")
-    for phase, label in (("costruzione", "Build-up"), ("avanzata", "Advanced")):
-        better = count[phase]["famiglie meglio"]
-        if done < 10:
-            decision = "decisione incompleta"
-        elif better >= 7:
-            decision = "regola del protocollo SODDISFATTA (almeno 7 su 10)"
-        else:
-            decision = "regola NON soddisfatta"
-        print(
-            f"{label}: famiglie meglio {better}, nessuna differenza {count[phase]['nessuna differenza']}, "
-            f"regola semplice meglio {count[phase]['regola semplice meglio']} -> {decision}"
-        )
+        for phase in count:
+            count[phase][d[phase]["verdetto"]] += 1
+        print(f"{team:20s} build-up: {d['costruzione']['verdetto']:24s} advanced: {d['avanzata']['verdetto']}")
+    print(f"\nSquadre valutate: {done} su 10 (regola: almeno 7 'famiglie meglio')")
+    for phase in count:
+        print(phase, dict(count[phase]))
 
 
 def summary_samplesize(selection, folder):
@@ -203,22 +175,13 @@ def summary_samplesize(selection, folder):
         if os.path.exists(p):
             T.append(json.load(open(p, encoding="utf-8")))
     metrics = ["passes", "long", "buildup_share", "shot"]
-    sd = {}
-    for m in metrics:
-        sd[m] = np.std([t["full"][m] for t in T])
-    print(f"\nSquadre: {len(T)}. Deviazione standard tra squadre: " + ", ".join(f"{m} {sd[m]:.3f}" for m in metrics))
+    sd = {m: np.std([t["full"][m] for t in T]) for m in metrics}
     for n in ["3", "5", "8", "10", "15"]:
         row = []
         for m in metrics:
             r = [t["n"][n][m + "_p90"] / sd[m] for t in T if n in t["n"]]
             row.append(f"{m} {np.median(r):.2f} ({sum(x <= 0.5 for x in r)}/{len(r)})")
-        sb = [t["n"][n]["shares_build-up_p90"] for t in T if n in t["n"]]
-        sa = [t["n"][n]["shares_advanced_p90"] for t in T if n in t["n"]]
-        print(
-            f"n={n:>2}: errore P90 / SD tra squadre, mediana (squadre sotto 0.5): "
-            + " | ".join(row)
-            + f" || quote famiglie errore P90: build-up {np.median(sb):.3f}, advanced {np.median(sa):.3f}"
-        )
+        print(f"n={n:>2} (errore P90 / SD tra squadre, mediana; squadre sotto 0.5): " + " | ".join(row))
 
 
 if __name__ == "__main__":

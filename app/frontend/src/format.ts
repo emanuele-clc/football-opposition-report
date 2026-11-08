@@ -1,4 +1,4 @@
-// Same rounding as the pipeline sheets: percentages to whole points (one decimal under 1%), counts to one decimal.
+/* Rounds numbers the same way as the report sheets (percentages, intervals, "3rd highest of 10"). */
 export const pc = (x: number) => (x > 0 && x < 0.01 ? `${(100 * x).toFixed(1)}%` : `${Math.round(100 * x)}%`);
 export const n1 = (x: number) => x.toFixed(1);
 export const fmt = (x: number, unit: "pct" | "num" | "num2") =>

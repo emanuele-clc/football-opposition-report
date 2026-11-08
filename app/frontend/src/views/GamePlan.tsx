@@ -1,3 +1,5 @@
+/* Game plan page: formations, style, hints with the numbers behind them, and which matches to watch first.
+   Hints say where to look, not what will work. */
 import { useEffect, useState, type CSSProperties } from "react";
 import { api, type GamePlan as Plan, type GPEvents, type TeamData, type TeamSummary, type Versus } from "../api";
 import { evidenceHref, Explain, GRADE_SAYS, GradeKey, GradeMark, Icon } from "../charts";

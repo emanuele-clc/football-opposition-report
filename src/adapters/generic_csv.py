@@ -1,5 +1,7 @@
-"""Generic CSV of events (any provider) -> the files the pipeline reads: matches/generic.json and ev/<match id>.json, StatsBomb style.
-A new provider only has to map its columns to this CSV (docs/data_format.md has the full description).
+"""Turns a simple CSV of events (from any provider) into files that look like StatsBomb, so the rest of the code works the same.
+
+If the CSV has no possession numbers, they are rebuilt. --validate-only just checks the file.
+
 Usage:  python generic_csv.py events.csv out_folder [--coords 100|120x80] [--validate-only] [--provider="Provider name"]
 Required columns: match_id, match_date, home_team, away_team, period, minute, second, team, event_type, x, y
 Optional columns: end_x, end_y, possession_id, restart, pass_length, shot_goal, player, recipient, xg, pass_outcome

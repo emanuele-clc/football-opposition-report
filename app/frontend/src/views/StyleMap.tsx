@@ -1,9 +1,8 @@
+/* All teams on one map, placed by their numbers (first two principal components). Only a description. */
 import { useEffect, useState } from "react";
 import { api, type StyleMapData } from "../api";
 import { Note } from "../charts";
 
-/* Every team placed by its numbers: first two principal components of the standardised facts used for the ranks.
-   Descriptive; teams come from different leagues and seasons. */
 let cache: Promise<StyleMapData> | null = null;
 const side = (l: { label: string; weight: number }[], sign: 1 | -1) =>
   l

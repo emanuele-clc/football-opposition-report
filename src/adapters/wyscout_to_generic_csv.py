@@ -1,6 +1,7 @@
-"""Wyscout public data (Pappalardo et al. 2019, Scientific Data, CC BY 4.0) -> the generic CSV of docs/data_format.md.
+"""Turns the Wyscout public data (Pappalardo et al. 2019) into the generic CSV. Team = ALL converts a whole league.
+
 Usage: python wyscout_to_generic_csv.py <events_X.json> <matches_X.json> <teams.json> <players.json> "<Team>" <out.csv>
-       Team = ALL: every match of the file (a whole league, needed for the league baselines).
+
 How the events are mapped (checked on Serie A 2017/18):
 - coordinates 0-100, the team of the event attacks left to right, small y = left: same as our CSV, used as they are.
 - time: eventSec of each half -> minute from the start (second half from 45). Extra time and penalties are dropped.

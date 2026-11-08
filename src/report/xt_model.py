@@ -1,8 +1,10 @@
-"""Expected Threat (xT) grid, as in Karun Singh (2018, "Introducing Expected Threat"): the pitch is split into zones, and the value of a zone is the
-probability that a possession holding the ball there ends in a goal within the next actions, estimated with a Markov chain over ball moves. Descriptive model.
+"""The xT grid (Expected Threat, Karun Singh 2018). Fitted only once.
+
+The pitch is split into 16 x 12 zones. Each zone gets the chance that having the ball there leads to a goal soon.
+The grid is saved in xt_grid.json, so every team is measured with the same values.
+
 Usage:  python xt_model.py <data_dir> [out=src/report/xt_grid.json]
-Fits the grid once on all matches of the 10 thesis teams (both teams' events) found in <data_dir>/matches and <data_dir>/ev, so every team sheet uses the
-same grid (same ruler). The grid is written to xt_grid.json next to this script and read by xthreat.py.
+
 Definitions (fixed before the first fit, not tuned afterwards):
 - grid: 16 x 12 zones on the StatsBomb pitch 120 x 80 (Singh's size), each team attacking left to right (StatsBomb locations are already on the acting team's direction).
 - moves: open-play passes (StatsBomb pass type not Corner, Free Kick, Goal Kick, Kick Off, Throw-in) and all carries, with a start and end location.

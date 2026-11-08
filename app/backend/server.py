@@ -1,8 +1,9 @@
-"""Local API for the opposition report app.
-Serves the files that src/oppreport.py writes (report_/restarts_/setpieces_/transitions_<Team>.json and the clip CSVs),
-ranks each team against the other teams found in the same folder, exports filtered clip lists (CSV)
-and can run the pipeline for a new team when the folder holds StatsBomb match lists and events.
-No new estimates: every number comes from the pipeline files.
+"""The backend of the app (FastAPI).
+
+When the page asks for something, it reads the files made by the report scripts and sends them back.
+It does not compute new numbers. It also ranks each team against the others, gives the replays from the raw events,
+the clip lists, and can add a new team. StatsBomb and Wyscout are kept separate.
+
 Run:  python -X utf8 app/run.py [--data-dir <data_folder>]"""
 
 import contextvars, csv, functools, glob, io, json, os, re, subprocess, sys, tempfile, threading, time, uuid

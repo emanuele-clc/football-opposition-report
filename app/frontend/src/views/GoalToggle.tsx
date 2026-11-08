@@ -1,5 +1,4 @@
-/* "Only goals" switch for the replays of a sheet. Hidden while the goal list loads or without event files;
-   disabled when none of these clips ended in a goal. */
+/* The "only goals" switch for the replays. */
 export default function GoalToggle({
   count,
   on,

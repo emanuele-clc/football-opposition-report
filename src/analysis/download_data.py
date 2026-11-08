@@ -1,7 +1,11 @@
-"""Downloads StatsBomb open data (one competition and season) from GitHub. Licence: non-commercial, cite StatsBomb.
+"""Downloads the StatsBomb open data of one competition and season.
+
+It gets the match list and then the events (and the 360 files when there are any) of every match, or only of one team if you give a name.
+Files already on disk are skipped, so if the download stops you can just run it again.
+Run it from the data folder: it creates matches/, ev/ and t360/ there. StatsBomb data is non-commercial, cite StatsBomb.
+
 Usage: python download_data.py <competition_id> <season_id> [Team]      e.g. python download_data.py 9 281 "Bayer Leverkusen"
-Makes the folders matches/, ev/ (events) and t360/ (360 frames, when they exist) in the current folder.
-A file already on disk (more than 100 bytes) is not downloaded again, so the script can be stopped and restarted."""
+"""
 
 import json, os, subprocess, sys
 from concurrent.futures import ThreadPoolExecutor

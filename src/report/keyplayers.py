@@ -1,6 +1,9 @@
-"""Key players and goal timeline of a team, from the StatsBomb events. Descriptive.
-Usage:  python keyplayers.py <matches.json> "<Team>" [data_dir=.]   ->  keyplayers_<Team>.json (read by the app, section Game plan)
-"""
+"""The key players of a team and all its goals.
+
+Top 3 players for each role (who receives in the build-up, who enters the final third, xG, set pieces, losses in own half),
+and every goal scored and conceded with how it started and in which 15 minutes.
+
+Usage:  python keyplayers.py <matches.json> "<Team>" [data_dir=.]   ->  keyplayers_<Team>.json"""
 
 import sys, os, json
 

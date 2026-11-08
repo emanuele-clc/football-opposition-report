@@ -1,9 +1,9 @@
+/* The sequences most similar to the one selected. Click to replay. */
 import { useEffect, useState } from "react";
 import { api, type ClipRef, type ClipRow, type SimilarData } from "../api";
 import { rib } from "../charts";
 import { clock } from "../format";
 
-/* The sequences of the season closest to the selected one, on the same numbers the families are built from. Click to replay. */
 const famIdx = (f: string) => {
   const m = /^[AB](\d+)$/.exec(f);
   return m ? Number(m[1]) - 1 : 0;

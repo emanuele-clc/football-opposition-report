@@ -1,7 +1,10 @@
-"""Defending sheet: how a team defends without the ball (pressing intensity, where it presses and wins duels, how high it defends, what it concedes). Descriptive, one page.
+"""How a team defends: how much it presses (PPDA), where, how high, and what it concedes.
+
+Needs StatsBomb defensive events (pressures, duels...). With other providers it stops and says so.
+
 Usage:  python defending.py <matches.json> "<Team>" [data_dir=.]
-Output in data_dir: defending_<Team>.html and defending_<Team>.json. Needs StatsBomb-style defensive events (Pressure, Duel, Interception, ...): with the generic CSV
-of another provider these events are missing and the script stops with a message.
+Output in data_dir: defending_<Team>.html and defending_<Team>.json.
+
 Definitions (fixed before looking at any team; locations are on the team's own attacking direction, 0-120 x 0-80):
 - defensive actions: Duel, Interception, Foul Committed, Ball Recovery, Block, Clearance by the team. Pressures are counted separately.
 - PPDA (passes per defensive action): opponent passes in the opponent's own 60% of the pitch (opponent x < 72) divided by the team's Duels, Interceptions

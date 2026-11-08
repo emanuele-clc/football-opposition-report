@@ -1,9 +1,9 @@
+/* What happened against different opponents, and with or without a player. Only a description, not advice. */
 import { useEffect, useState } from "react";
 import { api, type MatchupMetric, type TeamData, type WithoutData } from "../api";
 import { Explain, Note } from "../charts";
 import { fmt } from "../format";
 
-/* What happened in past matches against different opponents. Descriptive: never a recommendation. */
 const SPLITS: [string, string][] = [
   ["opp_press", "Opponent pressing"],
   ["back_line", "Opponent back line"],

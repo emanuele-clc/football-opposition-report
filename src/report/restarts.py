@@ -1,6 +1,11 @@
-"""Restart sheet: how a team plays out from goal kicks, keeper distributions and throw-ins. Descriptive, one page, for pressing plans.
+"""How a team restarts play: goal kicks, keeper and throw-ins.
+
+For each one I look at the first pass (short or long, which side, who gets it) and how the action ends.
+Season and last 5 matches. Useful to plan the pressing.
+
 Usage:  python restarts.py <matches.json> "<Team>" [data_dir=.]
-Output in data_dir: restarts_<Team>.html, restarts_<Team>.json and restart_clips_<Team>.csv (every restart possession with its label, same columns as clips_<Team>.csv).
+Output in data_dir: restarts_<Team>.html, restarts_<Team>.json and restart_clips_<Team>.csv.
+
 Definitions (fixed before looking at any team):
 - restart possession: possession of the team whose play pattern is From Goal Kick, From Keeper or From Throw In; throw-ins split by own half (x < 60) and opponent half.
 - first pass: first pass of the team in the possession. Short = under 30 m (as in the long-pass share of the report). Side = end of the first pass, y in thirds (left, centre, right; StatsBomb y small = left).

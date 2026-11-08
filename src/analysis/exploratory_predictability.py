@@ -1,11 +1,11 @@
-"""EXPLORATORY (not pre-registered). How predictable is the family of the next sequence, using all matches?
-Three analyses, all with cross-validation by match (6 groups) and the families refitted inside each fold (no leak):
-  cv        gain of the protocol model (play pattern, minute, half, previous family) over the family shares -> exploratory_cv_<Team>.json
-  ablation  the same model with some inputs removed: where does the gain come from?                      -> exploratory_ablation_<Team>.json
-  context   for the same play pattern, does context help (previous family, minute, score, home/away)?    -> exploratory_context_<Team>.json
+"""EXPLORATORY. How predictable is the family of the next sequence, using all the matches?
+
+Cross-validation by match (6 groups), with the families fitted again in each group so nothing leaks.
+cv: the gain of the model. ablation: remove one input at a time, to see where the gain comes from.
+context: with the same start type, do minute, score or home/away help?
+
 Usage: python exploratory_predictability.py cv|ablation|context <matches.json> "<Team>" [data_folder=.]
-Settings as in the protocol (x = 45, k = 5/3, logistic C = 0.5). Note: GroupKFold does not keep the time order.
-(Until 6 Nov 2026 these were three files: exploratory_cv_all_matches.py, exploratory_ablation.py, exploratory_context.py.)"""
+Same settings as the protocol (x = 45, k = 5/3, C = 0.5)."""
 
 import sys, os, json, warnings
 import numpy as np, pandas as pd
@@ -17,54 +17,12 @@ WHAT = sys.argv[1]
 sys.argv = [sys.argv[0]] + sys.argv[2:]
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import sequences_clustering as S
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GroupKFold
 
-COLS = ["x0", "w0", "x1", "w1", "net_x", "path_len", "directness", "n_pass", "long_share", "width_std", "dur"]
-CUT = 45
-K = {"costruzione": 5, "avanzata": 3}
 FN = S.TEAM.replace(" ", "_")
-
 df, n_matches = S.extract()
-df["w0"] = (df.y0 - 40).abs()
-df["w1"] = (df.y1 - 40).abs()
-
-
-def in_phase(d, phase):
-    if phase == "costruzione":
-        return d.x0 < CUT
-    return d.x0 >= CUT
-
-
-def fit(train):
-    # families of each phase, numbered by mean start x
-    models = {}
-    for phase, k in K.items():
-        sub = train[in_phase(train, phase)]
-        scaler = StandardScaler().fit(sub[COLS].values)
-        km = KMeans(k, n_init=20, random_state=0).fit(scaler.transform(sub[COLS].values))
-        lab = km.labels_
-        order = sorted(range(k), key=lambda c: (sub.x0.values[lab == c].mean(), -(lab == c).sum()))
-        rank = {}
-        for i, c in enumerate(order):
-            rank[c] = i + 1
-        models[phase] = (scaler, km, rank)
-    return models
-
-
-def assign(d, models):
-    d = d.copy()
-    d["cl"] = ""
-    for phase, (scaler, km, rank) in models.items():
-        m = in_phase(d, phase)
-        if m.sum():
-            letter = "C" if phase == "costruzione" else "A"
-            d.loc[m, "cl"] = [f"{letter}{rank[l]}" for l in km.predict(scaler.transform(d.loc[m, COLS].values))]
-    d = d.sort_values(["gi", "pid"]).reset_index(drop=True)
-    d["prev_cl"] = d.groupby("gi").cl.shift(1).fillna("start")
-    return d
+S.add_width(df)
 
 
 def blocks(d):
@@ -76,22 +34,6 @@ def blocks(d):
         "st": pd.get_dummies(d.stato, prefix="st", dtype=float) if "stato" in d else None,
         "ha": d[["casa"]].astype(float) if "casa" in d else None,
     }
-
-
-def protocol_inputs(d, cols=None):
-    # the inputs of the protocol model, in the same column order as validate_replication.py
-    X = pd.concat(
-        [
-            pd.get_dummies(d.play_pattern, dtype=float),
-            d[["minuto"]].astype(float) / 90,
-            (d.tempo == 2).astype(float).rename("t2"),
-            pd.get_dummies(d.prev_cl, prefix="prev", dtype=float),
-        ],
-        axis=1,
-    )
-    if cols is None:
-        return X
-    return X.reindex(columns=cols, fill_value=0.0)
 
 
 def proba(Xa, Xb, ya, classes, nb):
@@ -108,15 +50,6 @@ def loss(names, ba, bb, ya, classes, yi, nb):
     Xb = pd.concat([bb[x] for x in names], axis=1).reindex(columns=Xa.columns, fill_value=0.0)
     p = proba(Xa, Xb, ya, classes, nb)
     return -np.log(p[np.arange(nb), yi])
-
-
-def boot_ci(d, g, rng, B):
-    games = np.unique(g)
-    means = []
-    for _ in range(B):
-        pick = rng.choice(games, len(games))
-        means.append(np.mean(np.concatenate([d[g == x] for x in pick])))
-    return np.percentile(means, [2.5, 97.5])
 
 
 if WHAT == "context":
@@ -170,17 +103,17 @@ else:
 
 # cross-validation: d = gain of each test sequence, gi = its match
 res = {}
-for phase in K:
+for phase in S.K:
     res[phase] = {}
     for name in SETS:
         res[phase][name] = {"gi": [], "d": []}
 for tr, te in GroupKFold(6).split(df, groups=df.gi):
-    models = fit(df.iloc[tr])
-    A = assign(df.iloc[tr], models)
-    Bm = assign(df.iloc[te], models)
-    for phase in K:
-        a = A[in_phase(A, phase)].reset_index(drop=True)
-        b = Bm[in_phase(Bm, phase)].reset_index(drop=True)
+    models = S.fit_families(df.iloc[tr])
+    A = S.assign(df.iloc[tr], models)
+    Bm = S.assign(df.iloc[te], models)
+    for phase in S.K:
+        a = A[S.in_phase(A, phase)].reset_index(drop=True)
+        b = Bm[S.in_phase(Bm, phase)].reset_index(drop=True)
         ya = a.cl.values
         classes = np.unique(ya)
         yi = np.array([list(classes).index(c) for c in b.cl.values])
@@ -188,8 +121,8 @@ for tr, te in GroupKFold(6).split(df, groups=df.gi):
         base = pd.Series(ya).value_counts(normalize=True).reindex(classes).fillna(1e-6).values
         base = base / base.sum()
         if WHAT == "cv":
-            Xa = protocol_inputs(a)
-            p = proba(Xa, protocol_inputs(b, Xa.columns), ya, classes, len(b))
+            Xa = S.context(a)
+            p = proba(Xa, S.context(b, Xa.columns), ya, classes, len(b))
             gains = {"cv": -np.log(base[yi]) + np.log(p[np.arange(len(b)), yi])}
         else:
             ba = blocks(a)
@@ -210,10 +143,10 @@ for tr, te in GroupKFold(6).split(df, groups=df.gi):
 if WHAT == "cv":
     rng = np.random.default_rng(99)
     out = {"team": S.TEAM, "n_partite": int(n_matches), "nota": "ESPLORATIVO, non pre-registrato"}
-    for phase in K:
+    for phase in S.K:
         d = np.array(res[phase]["cv"]["d"])
         g = np.array(res[phase]["cv"]["gi"])
-        ci = boot_ci(d, g, rng, 1000)
+        ci = S.boot_ci(d, g, rng, 1000)
         per_match = np.array([d[g == x].mean() for x in np.unique(g)])
         k0 = int(round(n_matches * 0.7))
         early = d[g < k0]
@@ -239,12 +172,12 @@ else:
     else:
         rng = np.random.default_rng(5)
         out = {"team": S.TEAM, "nota": "ESPLORATIVO, non pre-registrato", "baseline": "solo play pattern"}
-    for phase in K:
+    for phase in S.K:
         out[phase] = {}
         for name in SETS:
             d = np.array(res[phase][name]["d"])
             g = np.array(res[phase][name]["gi"])
-            ci = boot_ci(d, g, rng, 500)
+            ci = S.boot_ci(d, g, rng, 500)
             out[phase][name] = {"guadagno": float(d.mean()), "ci95": [float(ci[0]), float(ci[1])]}
             print(f"[{S.TEAM} {phase}] {name:28s} {d.mean():+.4f} [{ci[0]:+.4f}, {ci[1]:+.4f}]")
     json.dump(out, open(f"{S.BASE}/exploratory_{WHAT}_{FN}.json", "w"), indent=1)

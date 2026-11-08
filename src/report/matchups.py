@@ -1,7 +1,9 @@
-"""Matchup sheet: how the team's numbers differed in past matches depending on the opponent (pressing intensity, back line) and on home/away.
-DESCRIPTIVE ONLY: it shows what happened, it does not say which formation or style would work. Groups are small, matches differ in many ways at once
-(opponent strength, score, venue), so a difference here is a hint to check on video, never a recommendation.
-Usage:  python matchups.py <matches.json> "<Team>" [data_dir=.]   ->  matchups_<Team>.json (needs StatsBomb-style events: Pressure, Duel, formations)
+"""How the team did in past matches against different opponents: high or low pressing, back three or four, home or away.
+
+Only a description of what happened, not advice. The groups are small, so a difference is something to check on video.
+
+Usage:  python matchups.py <matches.json> "<Team>" [data_dir=.]   ->  matchups_<Team>.json
+
 Definitions (fixed before looking at any team; locations on each team's own attacking direction, 0-120 x 0-80):
 - opponent pressing in that match: opponent PPDA = our passes in our own 60% (x < 72) / opponent Duels, Interceptions and Fouls Committed at x >= 48.
   Split at the median over the team's matches: 'high press' = PPDA at or below the median (fewer passes allowed), 'lower press' = above.

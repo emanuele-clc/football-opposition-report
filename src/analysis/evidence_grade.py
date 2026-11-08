@@ -1,10 +1,15 @@
-"""Evidence grade (A-D) of the statements of the opposition report. Protocol: docs/protocol_evidence_grade.md (definitions and thresholds are there).
+"""Gives a grade from A to D to each type of statement in the report (RQ1).
+
+For each statement (34 types) two questions:
+does the team's season so far predict the next match better than the league average?
+and does the number really separate teams, or is it mostly noise?
+Yes to both = A, neither = D. The numbers come from the same scripts the report uses, so the grade fits what the report says.
+extract computes the values for every match, analyse gives the grades. The confirm run works only once.
+Protocol: docs/protocol_evidence_grade.md.
+
 Usage (from the repo root, data_dir = folder with data_info/ and ev/):
-    python -X utf8 src/analysis/evidence_grade.py extract <data_dir> <work_dir>          # all 80 teams -> <work_dir>/teams/*.pkl
-    python -X utf8 src/analysis/evidence_grade.py analyse <work_dir> --set dev|confirm  [--corrected <data_dir>]
-The analyse step stops if the protocol or this script are not committed and pushed, or if the result file already exists (it runs once).
-For every match each statement is a numerator and a denominator, computed with the report's own scripts (imported).
-The smoke test run before the protocol (2 teams x 8 matches, counts only) is in archive/smoke_grade.py."""
+    python -X utf8 src/analysis/evidence_grade.py extract <data_dir> <work_dir>
+    python -X utf8 src/analysis/evidence_grade.py analyse <work_dir> --set dev|confirm  [--corrected <data_dir>]"""
 
 import sys, os, json, glob, pickle, collections, subprocess, warnings
 import numpy as np, pandas as pd
@@ -121,16 +126,11 @@ def match_values(g, team, base, tmp, full=True):
     V = {}
     V["S01"] = (n, 1)
     for c, col in (("S02", "n_pass"), ("S03", "long_share"), ("S06", "dur"), ("S05", "shot")):
-        if n:
-            V[c] = (float(seq[col].sum()), n)
-        else:
-            V[c] = (0.0, n)
+        V[c] = (float(seq[col].sum()) if n else 0.0, n)
     V["S04"] = (int((seq.x0 < CUT).sum()) if n else 0, n)
 
     def restarts_of(kind):
-        if len(rs):
-            return rs[rs.kind == kind]
-        return pd.DataFrame(columns=["short", "opp_half", "lost_own_half"])
+        return rs[rs.kind == kind] if len(rs) else pd.DataFrame(columns=["short", "opp_half", "lost_own_half"])
 
     gk = restarts_of("Goal kick")
     keeper = restarts_of("Keeper")
@@ -141,10 +141,7 @@ def match_values(g, team, base, tmp, full=True):
     V["R12"] = (int(keeper.short.sum()), len(keeper))
     V["R13"] = (int(throw.lost_own_half.sum()), len(throw))
 
-    if len(sp):
-        co = sp[sp.kind == "Corner"]
-    else:
-        co = pd.DataFrame(columns=["zone", "shot", "taker"])
+    co = sp[sp.kind == "Corner"] if len(sp) else pd.DataFrame(columns=["zone", "shot", "taker"])
     V["P14"] = (len(co), 1)
     V["P15"] = (int((co.zone == SP.ZONES[0]).sum()), len(co))
     V["P16"] = (int((co.zone == "far post").sum()), len(co))
@@ -184,19 +181,9 @@ def match_values(g, team, base, tmp, full=True):
             continue
         if pa.get("recipient") and pa["end_location"][0] < 60:
             recv[pa["recipient"]["name"]] += 1
-    # who takes the corners
-    if len(co):
-        ctak = collections.Counter(co.taker.dropna())
-    else:
-        ctak = collections.Counter()
-
-    if n:
-        seq = seq.assign(w0=(seq.y0 - 40).abs(), w1=(seq.y1 - 40).abs())[COLS]
-    else:
-        seq = pd.DataFrame(columns=COLS)
-    values = {}
-    for c, (a, b) in V.items():
-        values[c] = (float(a), float(b))
+    ctak = collections.Counter(co.taker.dropna()) if len(co) else collections.Counter()  # who takes the corners
+    seq = seq.assign(w0=(seq.y0 - 40).abs(), w1=(seq.y1 - 40).abs())[COLS] if n else pd.DataFrame(columns=COLS)
+    values = {c: (float(a), float(b)) for c, (a, b) in V.items()}
     return values, recv, ctak, seq
 
 
@@ -258,10 +245,7 @@ def forecast_rows(nums, dens, t, B, team, claim, item=""):
     F = nums[:t].sum() / dens[:t].sum()
     start = max(t - 5, 0)
     s5 = dens[start:t].sum()
-    if s5 > 0:
-        L = float(nums[start:t].sum() / s5)
-    else:
-        L = np.nan
+    L = float(nums[start:t].sum() / s5) if s5 > 0 else np.nan
     return {
         "team": team,
         "claim": claim,
@@ -292,9 +276,7 @@ def leader(counters):
 
 
 def in_phase(s, phase):
-    if phase == "build-up":
-        return s[s.x0 < CUT]
-    return s[s.x0 >= CUT]
+    return s[s.x0 < CUT] if phase == "build-up" else s[s.x0 >= CUT]
 
 
 def fit_families(R, phase):
@@ -308,9 +290,7 @@ def fit_families(R, phase):
     lab = km.labels_
     order = sorted(range(k), key=lambda c: (sub.x0.values[lab == c].mean(), -(lab == c).sum()))
     letter = "B" if phase == "build-up" else "A"
-    name = {}
-    for i, c in enumerate(order):
-        name[c] = f"{letter}{i + 1}"
+    name = {c: f"{letter}{i + 1}" for i, c in enumerate(order)}
 
     def assign(d):
         if not len(d):
@@ -409,10 +389,7 @@ def ratio_ci(d, num, den, B, seed, one_minus):
 
 def se(col):
     # squared error of the forecast in column col, weighted by the denominator of the match
-    def f(d):
-        return d.w * (d.y - d[col]) ** 2
-
-    return f
+    return lambda d: d.w * (d.y - d[col]) ** 2
 
 
 def season_series(R, c):
@@ -463,10 +440,7 @@ def matches_needed(TEAMS, subjects, c, sd, rng):
             ok = s > 0
             if ok.any():
                 p90.append(np.percentile(np.abs(nums[i].sum(1)[ok] / s[ok] - full), 90))
-        if p90 and sd > 0:
-            ratio[str(n)] = float(np.median(p90) / sd)
-        else:
-            ratio[str(n)] = None
+        ratio[str(n)] = float(np.median(p90) / sd) if p90 and sd > 0 else None
     need = ">20"
     for n, r in ratio.items():
         if r is not None and r <= 0.5:
@@ -493,14 +467,6 @@ def grade(fc, disc):
     return "D"
 
 
-def inside_share(x):
-    return x.inside.astype(float)
-
-
-def ones(x):
-    return 0 * x.w + 1
-
-
 def analyse(TEAMS, subjects, label):
     fr = all_forecasts(TEAMS, subjects)
     out = {}
@@ -520,7 +486,7 @@ def analyse(TEAMS, subjects, label):
                 r["forecast"] = "none"
             # how often the 80% interval contains the next match
             dc = d[d.inside.notna()]
-            r["coverage_80"], r["coverage_ci"] = ratio_ci(dc, inside_share, ones, 1000, 2031, False)
+            r["coverage_80"], r["coverage_ci"] = ratio_ci(dc, lambda x: x.inside.astype(float), lambda x: 0 * x.w + 1, 1000, 2031, False)
             if 0.75 <= r["coverage_80"] <= 0.85:
                 r["calibration"] = "about right"
             elif r["coverage_80"] < 0.75:
@@ -611,9 +577,7 @@ def drop_missing(TEAMS, data_dir):
         if len(keep) == len(R["ids"]):
             continue
         dropped[name] = [R["ids"][i] for i in range(len(R["ids"])) if i not in keep]
-        new_index = {}
-        for j, i in enumerate(keep):
-            new_index[i] = j
+        new_index = {i: j for j, i in enumerate(keep)}
         for k in ("dates", "ids", "V", "recv", "ctak"):
             R[k] = [R[k][i] for i in keep]
         seq = R["seq"][R["seq"].mi.isin(keep)]

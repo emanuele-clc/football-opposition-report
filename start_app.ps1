@@ -1,4 +1,9 @@
-# Starts the opposition-report app, after rebuilding and testing it.
+# Starts the opposition-report app on Windows, after rebuilding and testing it.
+# What it does: one script for the whole start-up, so the app is never opened on an old build or broken data.
+# It stops a previous instance on the same port, installs missing Python and npm packages, rebuilds the React frontend,
+# clears the app cache, runs the app tests on the data folder (skip with -SkipTests), then starts app/run.py and opens the browser.
+# -DataDir / -WyscoutDir choose the StatsBomb and Wyscout folders (default examples/ and examples_wyscout/); -Lan makes the app
+# reachable from tablets on the same Wi-Fi.
 # Usage (PowerShell, from the project folder):
 #   powershell -ExecutionPolicy Bypass -File .\start_app.ps1
 #   powershell -ExecutionPolicy Bypass -File .\start_app.ps1 -DataDir D:\other_data -Port 8770 -SkipTests

@@ -1,7 +1,5 @@
-/* Interface language (English, Italian, German) without touching every view: the app is written in English and a MutationObserver
-   translates the rendered text with the dictionary in i18n-dict.ts. Text the dictionary does not know (team and player names, rare
-   sentences) stays in English. Keys: '#' = a number (ordinal suffix allowed in '#th'), '{0}', '{1}'... = any text, itself translated.
-   Long strings are tried whole, then sentence by sentence, then piece by piece around ' · '. */
+/* Languages (English, Italian, German). The app is written in English and the text on screen is swapped
+   with the words in i18n-dict.ts. '#' = a number, '{0}' = any text. Text not in the dictionary stays in English. */
 import { DICT } from "./i18n-dict";
 
 export type Lang = "en" | "it" | "de";

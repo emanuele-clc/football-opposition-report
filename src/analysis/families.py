@@ -1,11 +1,12 @@
-"""The families of sequences on the exploration matches (first 70%). Three commands:
-  final       families in two phases (build-up x0 < 45, k = 5; advanced, k = 3), stability, profiles, figure
-              -> L2_results_<Team>.json, L2_profili_<Team>.csv, L2_sequenze_<Team>.csv, fig_L2_<Team>.png
-  robustness  how much the families change with another cut, another k, another algorithm; can the family be predicted?
-              -> robustness_<Team>.json
-  null        are the families more stable than K-Means on data with no groups? (E1) -> null_baseline_<Team>.json
+"""Groups the sequences into families with K-Means, using only the first 70% of the matches.
+
+Two phases: build-up (starts before x = 45, 5 families) and advanced (from 45 on, 3 families).
+final: the families with their share, profile, shot rate and stability, plus a figure.
+robustness: checks if the families change with another cut, another k or another algorithm.
+null: checks if the families are more stable than on fake data with no groups (E1).
+
 Usage: python families.py final|robustness|null <matches.json> "<Team>" [data_folder=.]
-The choices made here (cut 45, k = 5 and 3) were made on the exploration matches only and are declared in the thesis."""
+Cut 45 and k = 5 and 3 were chosen on the exploration matches only."""
 
 import sys, os, json, collections, warnings
 import numpy as np, pandas as pd
@@ -24,23 +25,22 @@ from sklearn.metrics import silhouette_score, adjusted_rand_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GroupKFold
 
-COLS = ["x0", "w0", "x1", "w1", "net_x", "path_len", "directness", "n_pass", "long_share", "width_std", "dur"]
+COLS = S.COLS
 FN = S.TEAM.replace(" ", "_")
 
 # exploration matches only
 df, n_matches = S.extract()
 k0 = int(round(n_matches * 0.7))
-ex = df[df.gi < k0].reset_index(drop=True)
-ex["w0"] = (ex.y0 - 40).abs()  # distance from the middle of the pitch
-ex["w1"] = (ex.y1 - 40).abs()
+ex = S.add_width(df[df.gi < k0].reset_index(drop=True))
 
 
 def best_jaccard(labels, new, c, k):
-    # how well group c is found again among the new groups
-    a = labels == c
+    # how well group c is found again among the new groups (Jaccard = in both / in at least one)
+    old_group = labels == c
     best = 0
     for j in range(k):
-        best = max(best, (a & (new == j)).sum() / (a | (new == j)).sum())
+        new_group = new == j
+        best = max(best, (old_group & new_group).sum() / (old_group | new_group).sum())
     return best
 
 
@@ -51,6 +51,21 @@ def collapse(zones):
         if not out or z != out[-1]:
             out.append(z)
     return out
+
+
+def top_zone_runs(m, n=3):
+    # the n most common runs of 3 zones in a family, each counted once per sequence
+    counts = collections.Counter()
+    for zs in m.zones:
+        zc = collapse(zs)
+        runs = set()
+        for i in range(len(zc) - 2):
+            runs.add(tuple(zc[i : i + 3]))
+        counts.update(runs)
+    top = []
+    for run, count in counts.most_common(n):
+        top.append((" > ".join(S.ZN[z] for z in run), round(count / len(m), 2)))
+    return top
 
 
 # ---------------------------------------------------------------- final
@@ -91,17 +106,7 @@ def final():
 
         for c in order:
             m = sub[lab == c]
-            # the 3 most common runs of 3 zones (each counted once per sequence)
-            trigrams = collections.Counter()
-            for zs in m.zones:
-                zc = collapse(zs)
-                seen = set()
-                for i in range(len(zc) - 2):
-                    seen.add(tuple(zc[i : i + 3]))
-                trigrams.update(seen)
-            top = []
-            for t, n in trigrams.most_common(3):
-                top.append((" > ".join(S.ZN[z] for z in t), round(n / len(m), 2)))
+            top = top_zone_runs(m)
             profiles.append(
                 {
                     "cl": name[c],
@@ -214,10 +219,7 @@ def robustness():
     # 3) other k (cut 45)
     out["k_sensitivity"] = {}
     for phase, ks in (("costruzione", (3, 4, 5, 6, 7)), ("avanzata", (2, 3, 4, 5))):
-        if phase == "costruzione":
-            sub = ex[ex.x0 < 45].reset_index(drop=True)
-        else:
-            sub = ex[ex.x0 >= 45].reset_index(drop=True)
+        sub = S.phase_rows(ex, phase)
         for k in ks:
             X, labels, jac, ari = match_bootstrap(sub, k, 60)
             sil = float(silhouette_score(X, labels))
@@ -255,10 +257,7 @@ def robustness():
 
     out["pred"] = {}
     for phase in ("costruzione", "avanzata"):
-        if phase == "costruzione":
-            sub = data[data.x0 < 45].reset_index(drop=True)
-        else:
-            sub = data[data.x0 >= 45].reset_index(drop=True)
+        sub = S.phase_rows(data, phase)
         counts = sub.cl.value_counts().values
         out["pred"][phase] = {"entropy": entropy(counts), "entropy_max": float(np.log2(len(counts)))}
         X = pd.concat(
@@ -325,10 +324,7 @@ def null():
 
     out = {}
     for phase, k in [("costruzione", 5), ("avanzata", 3)]:
-        if phase == "costruzione":
-            sub = ex[ex.x0 < 45].reset_index(drop=True)
-        else:
-            sub = ex[ex.x0 >= 45].reset_index(drop=True)
+        sub = S.phase_rows(ex, phase)
         g = sub.gi.values
         X = StandardScaler().fit_transform(sub[COLS].values)
         res = {}

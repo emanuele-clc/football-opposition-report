@@ -1,7 +1,9 @@
-"""Start the opposition report app on http://127.0.0.1:8765
+"""Starts the app on http://127.0.0.1:8765
+
     python -X utf8 app/run.py                                  # the example teams in examples/
     python -X utf8 app/run.py --data-dir <data_folder>  # every team the pipeline has processed there
-    python -X utf8 app/run.py --wyscout-dir <folder>    # second provider (Wyscout); default examples_wyscout/ if present
+    python -X utf8 app/run.py --wyscout-dir <folder>    # second provider (Wyscout)
+--lan: other devices on the same Wi-Fi can open it.
 Build the frontend once first: cd app/frontend; npm install; npm run build"""
 
 import argparse, os, sys, webbrowser, threading

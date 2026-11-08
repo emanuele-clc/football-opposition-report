@@ -1,8 +1,11 @@
-"""Transition sheet: where a team loses and wins back the ball in open play, how quickly it counter-presses and what happens in the seconds after. Descriptive, one page.
+"""Where a team loses and wins back the ball, and what happens right after.
+
+I do not use the possessions of the provider, only the order of the actions, so it works with any data.
+(With StatsBomb possessions I got about 4% regains, which was wrong.)
+
 Usage:  python transitions.py <matches.json> "<Team>" [data_dir=.]
-Output in data_dir: transitions_<Team>.html, transitions_<Team>.json and transition_clips_<Team>.csv (same columns as clips_<Team>.csv).
-Built only from the order of pass/carry/shot/dribble events of both teams, so it works with the generic CSV of any provider and does not depend on how a
-provider defines possessions (StatsBomb, for example, does not open a new possession when the ball is lost and won back before the opponent controls it).
+Output in data_dir: transitions_<Team>.html, transitions_<Team>.json and transition_clips_<Team>.csv.
+
 Definitions (fixed before looking at any team):
 - loss: an action of the team followed by at least two consecutive actions of the opponent (or an opponent shot), in open play (the opponent action does not start a goal kick, throw-in, corner, free kick,
   kick-off or keeper restart) and not after a shot. Location: the team's last action. Balls out of play, fouls and keeper catches are not losses here.

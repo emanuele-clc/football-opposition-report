@@ -1,8 +1,8 @@
-"""Match-preparation page: one printable page with the main facts from the four sheets (report, restarts, set pieces, transitions) and links to them.
-Usage:  python summary.py "<Team>" [data_dir=.]
-Reads report_/restarts_/setpieces_/transitions_<Team>.json from data_dir and writes prep_<Team>.html there. No new estimates: every number comes from those files.
-Each fact is compared with the other teams whose sheets are in data_dir (rank and mean). The reference teams can come from other leagues and seasons: the page says
-which and how many. A fact is marked 'check on video' when the last 5 matches fall outside the season interval in the restart sheet."""
+"""One printable page with the main facts of the other sheets, before a match.
+
+It does not compute anything new: it reads the JSON files and ranks the team against the other teams in the folder.
+
+Usage:  python summary.py "<Team>" [data_dir=.]"""
 
 import sys, os, json, glob, html as H
 import numpy as np

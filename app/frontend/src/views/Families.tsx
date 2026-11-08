@@ -1,3 +1,4 @@
+/* The families of the team: share, profile, shots, replays and all their paths on the pitch. */
 import { useEffect, useState } from "react";
 import type { ClipRef, TeamData } from "../api";
 import { AllPaths, evidenceHref, Explain, FamilyLanes, GradeKey, GradeMark, Interval, Note, PassNetwork, PlayIcon, Replay, rib, RIBS, ShareStrip, useGrades } from "../charts";

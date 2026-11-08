@@ -1,10 +1,8 @@
-"""Reproducibility check: reruns the result scripts (held-out validation, simple-rule comparison, null baselines, sample size, 10-team summary) with the same code
-and seeds in a SEPARATE work folder and compares every output with results/ in the repo. Nothing in results/ is written or replaced, and no decision depends on the
-rerun: it only checks that the committed numbers come out of the committed code (it is not a second validation).
-Usage:  python -X utf8 tests/reproduce_results.py <data_dir with matches/ and ev/> <work_dir> [--jobs 6] [--only "Team"] [--tournaments <dir>] [--only-new]
-Since 17 Oct 2026 it also reruns exploratory_clusters.py methods (methods and sensitivity) and, with --tournaments (folder with the Euro 2020/2024 and World Cup 2022 data),
-src/analysis/corners.py pooled. --only-new reruns only these two.
-Takes about 15-20 minutes for 10 teams on a laptop. Exit code 0 if every file is identical."""
+"""Runs the thesis analyses again in another folder and checks the results are identical to the ones in results/.
+
+It never writes in results/. Takes about 15-20 minutes. Exit code 0 if everything is the same.
+
+Usage:  python -X utf8 tests/reproduce_results.py <data_dir with matches/ and ev/> <work_dir> [--jobs 6] [--only "Team"] [--tournaments <dir>] [--only-new]"""
 
 import sys, os, json, math, shutil, subprocess, argparse, concurrent.futures as cf
 

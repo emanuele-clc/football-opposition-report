@@ -1,6 +1,6 @@
-"""Reruns the descriptive sheets of the app (defending, matchups, key players, transitions, threat) in an empty folder and checks the JSON files are identical
-to the ones in the data folder. The raw events are linked, not copied.
-Usage:  python -X utf8 tests/reproduce_sheets.py <data_folder>      (the folder with matches/, ev/ and the sheets of the 10 thesis teams)"""
+"""Runs the sheets again (defending, matchups, key players, transitions, threat) in an empty folder and checks the files are identical.
+
+Usage:  python -X utf8 tests/reproduce_sheets.py <data_folder>"""
 
 import filecmp, os, shutil, subprocess, sys, tempfile
 

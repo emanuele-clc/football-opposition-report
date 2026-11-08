@@ -1,3 +1,4 @@
+/* The shapes of the data and the calls to the backend (api.team(), api.clips(), ...). */
 import { PROVIDER } from "./provider";
 // Shapes of the pipeline files (src/report/*.py) as served by app/backend/server.py.
 export type CI = [number, number];

@@ -1,3 +1,4 @@
+/* Clip lists with filters, replay, the match video next to it and CSV export. */
 import { useEffect, useMemo, useState } from "react";
 import { api, type ClipRef, type ClipRow, type TeamData } from "../api";
 import { Explain, Icon, Note, PlayIcon, Replay, rib } from "../charts";

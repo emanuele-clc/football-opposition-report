@@ -1,17 +1,14 @@
-"""RQ2: does a next-match forecast that knows the opponent and the venue beat the team's season average?
-Uses the per-match values already extracted by evidence_grade.py (StatsBomb) and evidence_grade_wyscout.py (Wyscout).
+"""RQ2: if the forecast knows the opponent and home/away, is it better than the season average?
+
+The grade uses the team's season so far (F). Here F is moved a bit depending on what the opponent usually allows:
+  F_adj = F + w_Y (A_Y - L) [+ V]
+A_Y = what Y's opponents did against Y, L = league value, w_Y = less weight if Y played few matches, V = home advantage.
+Then I check if F_adj has a smaller error than F. Protocol: docs/protocol_opponent_forecast.md.
+
 Usage:
-    python -X utf8 src/analysis/forecast_opponent.py dev <sb_work_dir> <sb_data_dir>               # exploratory, chooses k and venue
-    python -X utf8 src/analysis/forecast_opponent.py confirm statsbomb <sb_work_dir> <sb_data_dir>  # 70 teams, once
-    python -X utf8 src/analysis/forecast_opponent.py confirm wyscout <wy_work_dir> <wy_dir>         # 96 teams, once
-Protocol: docs/protocol_opponent_forecast.md. In short, for team X in match t (date d, opponent Y):
-  F     = X's season so far (the grade's forecast)
-  L     = league value before d
-  A_Y   = what Y's opponents did against Y before d
-  w_Y   = n_Y / (n_Y + k), n_Y = Y's matches before d (less weight if Y has played little)
-  V     = (home value - away value) / 2 in the league before d; + V at home, - V away
-  F_adj = F + w_Y (A_Y - L) [+ V], shares kept in [0, 1], other values >= 0
-  improvement = 1 - sum w (y - F_adj)^2 / sum w (y - F)^2, 95% interval resampling teams (2000, seed 2029)."""
+    python -X utf8 src/analysis/forecast_opponent.py dev <sb_work_dir> <sb_data_dir>
+    python -X utf8 src/analysis/forecast_opponent.py confirm statsbomb <sb_work_dir> <sb_data_dir>
+    python -X utf8 src/analysis/forecast_opponent.py confirm wyscout <wy_work_dir> <wy_dir>"""
 
 import sys, os, json, collections
 import numpy as np, pandas as pd

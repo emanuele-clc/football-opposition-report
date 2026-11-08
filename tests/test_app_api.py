@@ -1,7 +1,6 @@
-"""Smoke test of the app API on the example files (no raw events needed).
-Usage:  python -X utf8 tests/test_app_api.py [data_dir]
-Checks that every team in the folder loads, that the ranks agree with the JSON files they come from, that clip lists and the CSV export
-match the clip CSVs row for row, and that the review sheet round-trips without touching the original file."""
+"""Quick test of the app on the example files: every team opens, ranks and clips match the files, goals match the real scores.
+
+Usage:  python -X utf8 tests/test_app_api.py [data_dir]"""
 
 import csv, io, json, os, sys, tempfile, shutil
 

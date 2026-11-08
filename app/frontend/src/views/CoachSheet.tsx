@@ -1,3 +1,4 @@
+/* One A4 page for the coach, made from the same numbers as the game plan. */
 import { useEffect, useState } from "react";
 import { api, type GamePlan as Plan, type GPEvents, type TeamData } from "../api";
 import { GradeMark, Icon, Pitch } from "../charts";

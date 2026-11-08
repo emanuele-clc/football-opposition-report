@@ -1,10 +1,6 @@
-"""Every clip of every list, checked against its replay (the actions the app draws from the raw events).
-Usage:  python -X utf8 tests/check_clips.py <data_dir> [--wyscout] [--team "<Team key>"]
-Per clip: the replay opens; it starts at the clip time (within 1 s); for possession lists (sequences, restarts, set pieces, xT) the replay holds
-the same number of the team's passes as the list, lasts as long as the list says (within 2 s), and has a shot of the team exactly when the list
-says ended_in_shot; for transitions (window of 6 s before to 16 s after) a shot of the right team is in the window when the list says so.
-Clips marked as goals by the app must show the goal. Prints counts of mismatches per list, with examples; read-only.
-Added 29 Oct 2026 after a report of clips not showing shots (Wyscout events have no shot end point)."""
+"""Checks every clip against its replay: right time, same passes, same length, shot when the list says shot.
+
+Usage:  python -X utf8 tests/check_clips.py <data_dir> [--wyscout] [--team "<Team key>"]"""
 
 import os, sys, collections
 

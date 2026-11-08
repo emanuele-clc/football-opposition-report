@@ -1,11 +1,10 @@
-"""EXPLORATORY (not pre-registered). Are the families real groups, and do they depend on the method? Exploration matches only.
-  copula   real groups or slices of a continuum? K-Means silhouette and Jaccard stability on the real data against 100 null data
-           sets with the same distribution of each variable and the same correlations (Gaussian copula) but no groups.
-           p = (1 + nulls with silhouette >= observed) / 101                                  -> exploratory_cluster_test_<Team>.json
-  methods  K-Means vs Gaussian mixture vs Ward (same k), and K-Means with other k and cut; Jaccard against a Gaussian null.
-           The thesis method does not change: this only shows how much the results move.     -> exploratory_robustness_<Team>.json
-Usage: python exploratory_clusters.py copula|methods <matches.json> "<Team>" [data_folder=.]
-(Until 6 Nov 2026 these were two files: exploratory_cluster_test.py and exploratory_robustness.py.)"""
+"""EXPLORATORY. Are the families real groups, or just slices of a continuum?
+
+copula: compares the real data with 100 fake data sets that have the same numbers and correlations but no groups.
+methods: tries other algorithms (Gaussian mixture, Ward), other k and other cuts, to see how much things move.
+Exploration matches only. The thesis method does not change.
+
+Usage: python exploratory_clusters.py copula|methods <matches.json> "<Team>" [data_folder=.]"""
 
 import sys, os, json, warnings
 import numpy as np
@@ -23,24 +22,16 @@ from sklearn.mixture import GaussianMixture
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score, adjusted_rand_score
 
-COLS = ["x0", "w0", "x1", "w1", "net_x", "path_len", "directness", "n_pass", "long_share", "width_std", "dur"]
-CUT = 45
-K = {"costruzione": 5, "avanzata": 3}
+COLS, CUT, K = S.COLS, S.CUT, S.K
 FN = S.TEAM.replace(" ", "_")
 
+# exploration matches only
 df, n_matches = S.extract()
-k0 = int(round(n_matches * 0.7))
-ex = df[df.gi < k0].reset_index(drop=True)
-ex["w0"] = (ex.y0 - 40).abs()
-ex["w1"] = (ex.y1 - 40).abs()
+ex = S.add_width(df[df.gi < int(round(n_matches * 0.7))].reset_index(drop=True))
 
 
 def phase_data(cut, phase):
-    if phase == "costruzione":
-        sub = ex[ex.x0 < cut]
-    else:
-        sub = ex[ex.x0 >= cut]
-    return sub.reset_index(drop=True)
+    return S.phase_rows(ex, phase, cut)
 
 
 def best_jaccard(labels, new, c, k, safe):

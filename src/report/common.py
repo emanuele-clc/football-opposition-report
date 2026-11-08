@@ -1,4 +1,5 @@
-"""Small functions used by several report sheets (restarts, setpieces, transitions, defending, xthreat, matchups, make_report)."""
+"""Small functions used by many report sheets: the team's matches, the opponent, the third of the pitch,
+bootstrap intervals by match, percentage formatting and figures saved inside the HTML."""
 
 import io, json, base64
 import numpy as np

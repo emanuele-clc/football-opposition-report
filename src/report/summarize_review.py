@@ -1,6 +1,6 @@
-"""Summarises one or more review sheets filled in by an analyst (review_<Team>.csv, column coherent_with_family = yes / partly / no).
-Usage:  python summarize_review.py review_Barcelona.csv [more sheets ...] [--out summary.json]
-Prints, per family and in total, how many sequences the analyst judges coherent. Descriptive: with 3 sequences per family it is not a precise estimate."""
+"""Counts the answers of the analyst in the review sheet (yes / partly / no for each sequence), per family and in total.
+
+Usage:  python summarize_review.py review_Barcelona.csv [more sheets ...] [--out summary.json]"""
 
 import sys, json
 import pandas as pd

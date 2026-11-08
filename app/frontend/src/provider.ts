@@ -1,7 +1,4 @@
-/* Data provider of this page: StatsBomb or Wyscout, never mixed. Chosen in the top bar; kept in a cookie so links, images
-   and downloads ask the backend for the same provider as the page's own fetches (which also send the X-Provider header).
-   ?provider=wyscout in the URL overrides the cookie. Switching reloads the page, so no list or grade read for one provider
-   survives into the other. */
+/* StatsBomb or Wyscout, never mixed. The choice is kept in a cookie; changing it reloads the page. */
 export type ProviderId = "statsbomb" | "wyscout";
 
 const read = (): ProviderId => {

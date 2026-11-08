@@ -1,3 +1,4 @@
+/* Transitions page: where the team loses and wins back the ball, and what happens in the next seconds. */
 import { useEffect, useState } from "react";
 import type { TeamData, Third } from "../api";
 import { evidenceHref, Explain, GradeKey, GradeMark, Note, Pitch, plain, Replay, useGrades } from "../charts";

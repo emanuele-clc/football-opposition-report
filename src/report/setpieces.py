@@ -1,6 +1,11 @@
-"""Set-piece sheet: how a team takes corners and free kicks in the attacking half. Descriptive, one page.
+"""Corners and free kicks of a team in the attacking half.
+
+Corners: side, where they land, who takes them, who receives, shot and xG.
+Free kicks: direct shot, cross into the box or played short.
+
 Usage:  python setpieces.py <matches.json> "<Team>" [data_dir=.]
-Output in data_dir: setpieces_<Team>.html, setpieces_<Team>.json and setpiece_clips_<Team>.csv (same columns as clips_<Team>.csv).
+Output in data_dir: setpieces_<Team>.html, setpieces_<Team>.json and setpiece_clips_<Team>.csv.
+
 Definitions (same delivery zones as the L3 corner study, src/analysis/corners.py; event data only, no 360 frames needed):
 - corner: possession of the team with play pattern From Corner; delivery = first pass (or shot) of the team. Side: corner taken from y < 40 = left, else right.
   Zone of the delivery end: short / outside box (x < 102 or less than 18 from the corner's touchline), near post (18-30), centre (30-50), far post (> 50).

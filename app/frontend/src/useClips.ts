@@ -1,3 +1,4 @@
+/* Loads the clip lists of a team once and keeps them, plus small helpers to open a clip in the replay. */
 import { useEffect, useState } from "react";
 import { api, type ClipRef, type ClipRow } from "./api";
 import { clock } from "./format";

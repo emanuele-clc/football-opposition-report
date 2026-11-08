@@ -1,3 +1,4 @@
+/* The main frame of the app: top bar, menu, and which page to show (address #/<team>/<section>). */
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { api, type Info, type Provider, type TeamData, type TeamSummary } from "./api";

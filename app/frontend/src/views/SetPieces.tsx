@@ -1,3 +1,4 @@
+/* Corners and free kicks: where they go, who takes them, shots and xG. */
 import { useEffect, useState } from "react";
 import type { SetPieceKind, TeamData } from "../api";
 import { Bars, evidenceHref, Explain, GradeKey, GradeMark, Interval, Note, Pitch, plain, Replay, useGrades } from "../charts";

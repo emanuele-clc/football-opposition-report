@@ -1,3 +1,4 @@
+/* The A-D grades: how much each number of the report can be trusted, and why. */
 import { useEffect, useRef, useState } from "react";
 import { api, type Evidence as EvData, type EvStatement, type Grade, type TeamData } from "../api";
 import { Explain, GRADE_SAYS, GRADE_TITLE, GradeMark, Note, plain } from "../charts";

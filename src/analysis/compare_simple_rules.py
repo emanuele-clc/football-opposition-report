@@ -1,7 +1,8 @@
-"""Do the families explain shots better than a simple rule? Protocol: docs/protocol_simple_rule.md.
-In each phase the K-Means families (fitted on the exploration matches) are compared with a trivial split into the same number of
-cells: equal-frequency bins of the end position x1 (main comparison), and bins of net_x and n_pass (descriptive only).
-The same logistic model (C = 0.5) is used on all of them and scored on the reserved matches.
+"""Do the families predict shots better than a very simple rule?
+
+The simple rule just splits the sequences by where they end (x1) into the same number of groups.
+Both get the same logistic model, and I compare them on the reserved matches. Protocol: docs/protocol_simple_rule.md.
+
 Usage: python compare_simple_rules.py <matches.json> "<Team>" [data_folder=.] --confirm   (reserved matches, once only)
        python compare_simple_rules.py <matches.json> "<Team>" [data_folder=.] --dry-run   (exploration matches only)"""
 
@@ -23,23 +24,9 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 
-COLS = ["x0", "w0", "x1", "w1", "net_x", "path_len", "directness", "n_pass", "long_share", "width_std", "dur"]
-CUT = 45
-K = {"costruzione": 5, "avanzata": 3}
-B = 1000
-
+COLS = S.COLS
 df, n_matches = S.extract()
-k0 = int(round(n_matches * 0.7))
-if dry:
-    k1 = int(round(k0 * 0.7))
-    train = df[df.gi < k1].copy()
-    test = df[(df.gi >= k1) & (df.gi < k0)].copy()
-else:
-    train = df[df.gi < k0].copy()
-    test = df[df.gi >= k0].copy()
-for d in (train, test):
-    d["w0"] = (d.y0 - 40).abs()
-    d["w1"] = (d.y1 - 40).abs()
+train, test = S.split(df, n_matches, dry)
 
 
 def loss_per_sequence(cells_a, cells_b, ya, yb):
@@ -63,13 +50,9 @@ out = {
     "modo": "DRY-RUN (solo esplorazione)" if dry else "PARTITE RISERVATE",
     "partite_test": int(test.gi.nunique()),
 }
-for phase, k in K.items():
-    if phase == "costruzione":
-        a = train[train.x0 < CUT].reset_index(drop=True)
-        b = test[test.x0 < CUT].reset_index(drop=True)
-    else:
-        a = train[train.x0 >= CUT].reset_index(drop=True)
-        b = test[test.x0 >= CUT].reset_index(drop=True)
+for phase, k in S.K.items():
+    a = S.phase_rows(train, phase)
+    b = S.phase_rows(test, phase)
     ya = a.shot.astype(int).values
     yb = b.shot.astype(int).values
 
@@ -83,8 +66,6 @@ for phase, k in K.items():
     loss_fam = loss_per_sequence(fam_a, fam_b, ya, yb)
     res = {"n_test": int(len(b)), "tiro_test": float(yb.mean()), "guadagno_famiglie": float((loss_0 - loss_fam).mean())}
 
-    g = b.gi.values
-    games = np.unique(g)
     for col in ("x1", "net_x", "n_pass"):
         cells_a, cells_b = bins(a, b, col, k)
         loss_rule = loss_per_sequence(cells_a, cells_b, ya, yb)
@@ -94,12 +75,7 @@ for phase, k in K.items():
         res[f"diff_{col}"] = float(d.mean())
         if col != "x1":
             continue
-        # 95% interval resampling matches, only for the main comparison
-        means = []
-        for _ in range(B):
-            pick = rng.choice(games, len(games))
-            means.append(np.mean(np.concatenate([d[np.where(g == x)[0]] for x in pick])))
-        ci = np.percentile(means, [2.5, 97.5])
+        ci = S.boot_ci(d, b.gi.values, rng)  # 95% interval resampling matches, only for the main comparison
         res["diff_x1_ci95"] = [float(ci[0]), float(ci[1])]
         if ci[0] > 0:
             res["verdetto"] = "famiglie meglio"
@@ -108,9 +84,7 @@ for phase, k in K.items():
         else:
             res["verdetto"] = "nessuna differenza"
     out[phase] = res
-    print(
-        f"[{S.TEAM} {phase}] guadagno sui tiri: famiglie {res['guadagno_famiglie']:+.4f} | x1 in {res['celle_x1']} fasce {res['guadagno_x1']:+.4f} | net_x {res['guadagno_net_x']:+.4f} | n_pass {res['guadagno_n_pass']:+.4f} || differenza (x1 - famiglie) {res['diff_x1']:+.4f} IC95 [{res['diff_x1_ci95'][0]:+.4f}, {res['diff_x1_ci95'][1]:+.4f}] -> {res['verdetto']}"
-    )
+    print(f"[{S.TEAM} {phase}] famiglie {res['guadagno_famiglie']:+.4f} | x1 {res['guadagno_x1']:+.4f} | x1 - famiglie {res['diff_x1']:+.4f} -> {res['verdetto']}")
 
 fn = f"{S.BASE}/{'dryrun_' if dry else ''}simplerule_{S.TEAM.replace(' ', '_')}.json"
 json.dump(out, open(fn, "w", encoding="utf-8"), indent=1, ensure_ascii=False)

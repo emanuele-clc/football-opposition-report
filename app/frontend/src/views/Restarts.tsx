@@ -1,3 +1,4 @@
+/* Restarts page: goal kicks, keeper and throw-ins, first pass and how the action ends. */
 import { useEffect, useState } from "react";
 import type { ClipRef, RestartKind, TeamData } from "../api";
 import { Bars, evidenceHref, Explain, GradeKey, GradeMark, Interval, Note, plain, Replay, useGrades } from "../charts";
