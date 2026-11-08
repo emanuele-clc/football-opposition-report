@@ -47,13 +47,9 @@ Every confirmatory test follows the same rule: the protocol (hypotheses, thresho
 
 | To see | Open |
 |---|---|
-| The plan of the thesis, chapter by chapter, with every number and its source file | [docs/thesis_outline.md](docs/thesis_outline.md) |
 | RQ1: how the grade is computed, then the check on Wyscout | [docs/protocol_evidence_grade.md](docs/protocol_evidence_grade.md), [docs/protocol_evidence_grade_wyscout.md](docs/protocol_evidence_grade_wyscout.md) |
 | RQ2: the forecast with opponent and venue | [docs/protocol_opponent_forecast.md](docs/protocol_opponent_forecast.md) |
 | The result files of RQ1 and RQ2 | `results/evidence_grade_corrected.json`, `results/evidence_grade_wyscout.json`, `results/opponent_forecast_statsbomb.json`, `results/opponent_forecast_wyscout.json` |
-| Related work and the gap | [docs/related_work_evidence_grade.md](docs/related_work_evidence_grade.md) |
-| Earlier results (build-up families) and the declared researcher degrees of freedom | [docs/results.md](docs/results.md) |
-| What is planned next, and what is not done | [docs/future_work.md](docs/future_work.md) |
 | A finished report, without installing anything | [examples/prep_Bayer_Leverkusen.html](examples/prep_Bayer_Leverkusen.html) (download and open in a browser) |
 
 ## The report tool
@@ -102,8 +98,6 @@ Before the evidence grade, the thesis tested the report's main analysis (build-u
 | Do they explain shots better than a simple rule? | **No**, in 0 of 10 teams |
 | Can corner set-ups be exploited? | Not shown. The test could only have found very large effects |
 
-All tables and details: [docs/results.md](docs/results.md).
-
 ## Try it
 
 You need **Python 3.13** and **Node.js**. On Windows, in PowerShell:
@@ -137,7 +131,7 @@ python -X utf8 <repo>\archive\clips_to_mp4.py reports\clips_<Team>.csv match.mp4
 
 `--half1` / `--half2` = the video second at which each half kicks off. Checked on a test video with a burnt-in match clock: cuts start on the second.
 
-Then start the app on that folder: `.\start_app.ps1 -DataDir <data_folder>`. Always use `python -X utf8` on Windows (team names have accents). Format for other providers: [docs/data_format.md](docs/data_format.md). How to read the report: [docs/analyst_guide.md](docs/analyst_guide.md).
+Then start the app on that folder: `.\start_app.ps1 -DataDir <data_folder>`. Always use `python -X utf8` on Windows (team names have accents). Format for other providers: [docs/data_format.md](docs/data_format.md).
 
 </details>
 
@@ -203,7 +197,7 @@ examples_wyscout/ the same 4 teams on Wyscout data
 data_info/        competition and match lists (raw events are not included)
 ```
 
-Until 6 November 2026 the analyses were in four folders `src/week1`-`src/week4` (the order of the work); the protocols, written before each run, cite those old paths, and docs/pipeline.md says which file replaced which. The code at each protocol's commit is in the git history. Simple explanation of every file, in Italian: docs/codice_spiegato.md. Some keys inside older result files are in Italian (for example `nota`, `verdetto`): the files are kept exactly as each run wrote them.
+Until 6 November 2026 the analyses were in four folders `src/week1`-`src/week4` (the order of the work); the protocols, written before each run, cite those old paths, and docs/pipeline.md says which file replaced which. The code at each protocol's commit is in the git history. Some keys inside older result files are in Italian (for example `nota`, `verdetto`): the files are kept exactly as each run wrote them.
 
 </details>
 
