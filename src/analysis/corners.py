@@ -40,6 +40,7 @@ def corner_xg(ev, i, e, team):
 
 
 def is_corner(e):
+    # check if the event is a corner (not a short corner) with an end location
     return e["type"]["name"] == "Pass" and e["pass"].get("type", {}).get("name") == "Corner" and "end_location" in e["pass"]
 
 
