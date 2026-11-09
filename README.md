@@ -123,10 +123,10 @@ python -X utf8 <repo>\src\oppreport.py --statsbomb matches\9_281.json --data-dir
 python -X utf8 <repo>\src\oppreport.py --csv events.csv --team "Team name" --out reports   # data from any other provider
 ```
 
-To cut the clips of one match from its video (one MP4 per clip plus a playlist, usable in any video tool):
+To cut the clips of one match from its video (one MP4 per clip plus a playlist, usable in any video tool), use `clips_to_mp4.py`. It was removed with `archive/` on 8 Nov 2026 and is kept in git commit 7d6a28f: get it with `git show 7d6a28f:archive/clips_to_mp4.py > clips_to_mp4.py`, then:
 
 ```powershell
-python -X utf8 <repo>\archive\clips_to_mp4.py reports\clips_<Team>.csv match.mp4 clips_out --match <match_id> --half1 <s> --half2 <s> --shot
+python -X utf8 clips_to_mp4.py reports\clips_<Team>.csv match.mp4 clips_out --match <match_id> --half1 <s> --half2 <s> --shot
 ```
 
 `--half1` / `--half2` = the video second at which each half kicks off. Checked on a test video with a burnt-in match clock: cuts start on the second.
@@ -170,7 +170,7 @@ python -X utf8 src\adapters\generic_csv.py italy.csv <wy_dir>\Italy
 3. Extract the per-match values of all 98 teams (long; teams already done are skipped):
 
 ```powershell
-python -X utf8 srcnalysis\evidence_grade_wyscout.py extract <wy_dir> <wy_work_dir>
+python -X utf8 src\analysis\evidence_grade_wyscout.py extract <wy_dir> <wy_work_dir>
 ```
 
 The confirmatory steps (`evidence_grade_wyscout.py analyse --set confirm`, `forecast_opponent.py confirm wyscout ...`) refuse to run when the result file already exists: each test is run once, on purpose. To check a number, read the committed file in `results/`. Wyscout has no pressures and no xG, so 5 statements cannot be tested, and possessions are rebuilt from the event order. Details: [docs/protocol_evidence_grade_wyscout.md](docs/protocol_evidence_grade_wyscout.md).
