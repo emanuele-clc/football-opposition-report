@@ -228,6 +228,23 @@ def evidence():
     return _evidence(f, os.path.getmtime(f)) if os.path.exists(f) else None
 
 
+# Matches needed per statement (exploratory, docs/protocol_trust_n.md): computed on StatsBomb 2015/16 only, read from the committed results.
+TRUST = os.path.join(ROOT, "results", "exploratory_trust_n.json")
+
+
+def trust():
+    if P()["id"] != "statsbomb" or not os.path.exists(TRUST):
+        return None
+    t = _evidence(TRUST, os.path.getmtime(TRUST))
+    keep = ("matches_starts", "matches_reliable", "flag_uncertain", "curve", "n_star")
+    return {
+        "source": os.path.relpath(TRUST, ROOT).replace(os.sep, "/"),
+        "n_teams": t["n_teams"],
+        "grid": t["grid_first_n"],
+        "statements": {c: {k: r.get(k) for k in keep} for c, r in t["statements"].items()},
+    }
+
+
 def cross_provider():
     """Letter of each statement on both providers (results/evidence_grade_wyscout.json, comparison with StatsBomb)."""
     if not os.path.exists(CROSS):
@@ -270,6 +287,7 @@ def get_evidence():
         "provider": provider_statements,
         "provider_matches": prov["matches"] if prov else None,
         "shown_in_app": shown,
+        "trust": trust(),
     }
 
 

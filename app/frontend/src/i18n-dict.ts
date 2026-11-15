@@ -3240,4 +3240,56 @@ export const DICT: [string, string, string][] = [
   ["right, around their own box", "destra, vicino alla loro area", "rechts, rund um den eigenen Strafraum"],
   ["right, in their own third", "destra, nel loro terzo", "rechts, im eigenen Drittel"],
   ["right, just inside their half", "destra, appena dentro la loro metà", "rechts, knapp in der eigenen Hälfte"],
+  // ---- matches needed per statement (exploratory, docs/protocol_trust_n.md)
+  ["How many matches do you need?", "Quante partite servono?", "Wie viele Spiele braucht man?"],
+  [
+    "A number needs enough matches before it says more about the team than about chance. This team has # matches here.",
+    "Un numero ha bisogno di abbastanza partite prima di dire più sulla squadra che sul caso. Qui questa squadra ha # partite.",
+    "Eine Zahl braucht genug Spiele, bevor sie mehr über das Team als über den Zufall sagt. Dieses Team hat hier # Spiele.",
+  ],
+  ["Says something after", "Dice qualcosa dopo", "Sagt etwas nach"],
+  ["Reliable after", "Affidabile dopo", "Verlässlich nach"],
+  ["With the matches here", "Con le partite qui", "Mit den Spielen hier"],
+  ["not within a season", "non entro una stagione", "nicht innerhalb einer Saison"],
+  ["reliable now", "già affidabile", "jetzt verlässlich"],
+  ["use as a hint", "usala come indizio", "als Hinweis nutzen"],
+  ["not enough yet", "non ancora abbastanza", "noch nicht genug"],
+  ["Exploratory", "Esplorativo", "Explorativ"],
+  ["Teams differ a lot in this number.", "Le squadre sono molto diverse in questo numero.", "Die Teams unterscheiden sich in dieser Zahl stark."],
+  ["Teams differ somewhat in this number.", "Le squadre sono abbastanza diverse in questo numero.", "Die Teams unterscheiden sich in dieser Zahl etwas."],
+  [
+    "Teams differ little in this number: it is mostly chance.",
+    "Le squadre si distinguono poco in questo numero: è soprattutto caso.",
+    "Die Teams unterscheiden sich in dieser Zahl kaum: Es ist vor allem Zufall.",
+  ],
+  [
+    "The season so far predicts the next match much better than the league average.",
+    "La stagione finora prevede la prossima partita molto meglio della media del campionato.",
+    "Die bisherige Saison sagt das nächste Spiel viel besser voraus als der Ligaschnitt.",
+  ],
+  [
+    "The season so far predicts the next match a little better than the league average.",
+    "La stagione finora prevede la prossima partita un po' meglio della media del campionato.",
+    "Die bisherige Saison sagt das nächste Spiel etwas besser voraus als der Ligaschnitt.",
+  ],
+  [
+    "The season so far does not predict the next match better than the league average.",
+    "La stagione finora non prevede la prossima partita meglio della media del campionato.",
+    "Die bisherige Saison sagt das nächste Spiel nicht besser voraus als der Ligaschnitt.",
+  ],
+  [
+    "This estimate is uncertain on the first matches of a season.",
+    "Questa stima è incerta sulle prime partite di una stagione.",
+    "Diese Schätzung ist in den ersten Spielen einer Saison unsicher.",
+  ],
+  [
+    "It predicts worse than its spread suggests: it may change during the season.",
+    "Prevede peggio di quanto dica la differenza tra le squadre: può cambiare durante la stagione.",
+    "Sie sagt schlechter voraus, als die Unterschiede vermuten lassen: Sie kann sich während der Saison ändern.",
+  ],
+  [
+    'Not part of the graded check. "Says something" means that half of the difference between teams is style and half is chance; "reliable" means three quarters is style. The numbers come from how much each number differs between teams, and the rule was checked on the first # to # matches of the # teams (docs/protocol_trust_n.md). One number per type of statement, not per team.',
+    'Non fa parte della verifica dei voti. "Dice qualcosa" vuol dire che metà della differenza tra le squadre è stile e metà è caso; "affidabile" vuol dire che tre quarti sono stile. I numeri vengono da quanto ogni dato è diverso tra le squadre, e la regola è stata verificata sulle prime # - # partite delle # squadre (docs/protocol_trust_n.md). Un numero per tipo di frase, non per squadra.',
+    'Nicht Teil der Notenprüfung. "Sagt etwas" heißt: Die Hälfte des Unterschieds zwischen Teams ist Stil, die Hälfte Zufall; "verlässlich" heißt: drei Viertel sind Stil. Die Zahlen kommen daraus, wie stark sich jede Zahl zwischen Teams unterscheidet, und die Regel wurde an den ersten # bis # Spielen der # Teams geprüft (docs/protocol_trust_n.md). Eine Zahl pro Art von Aussage, nicht pro Team.',
+  ],
 ];

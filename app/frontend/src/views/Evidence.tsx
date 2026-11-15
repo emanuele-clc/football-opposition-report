@@ -1,6 +1,6 @@
 /* The A-D grades: how much each number of the report can be trusted, and why. */
 import { useEffect, useRef, useState } from "react";
-import { api, type Evidence as EvData, type EvStatement, type Grade, type TeamData } from "../api";
+import { api, type Evidence as EvData, type EvStatement, type Grade, type TeamData, type TrustN } from "../api";
 import { Explain, GRADE_SAYS, GRADE_TITLE, GradeMark, Note, plain } from "../charts";
 import { pc } from "../format";
 import { PROVIDER } from "../provider";
@@ -153,6 +153,95 @@ function EvidenceMap({
   );
 }
 
+/* Why a number got its grade, and after how many matches it can be trusted (exploratory, docs/protocol_trust_n.md).
+   Each sentence comes from one number, with the rules of the protocol: D for "teams differ", the lower end of the skill
+   interval for "predicts", the matches needed for the last part. No language model. */
+function why(r: EvStatement, t?: TrustN): string[] {
+  const out: string[] = [];
+  const D = r.D ?? null;
+  if (D != null)
+    out.push(
+      D >= 0.7
+        ? "Teams differ a lot in this number."
+        : D >= 0.5
+          ? "Teams differ somewhat in this number."
+          : "Teams differ little in this number: it is mostly chance.",
+    );
+  const lo = r.skill_ci[0];
+  out.push(
+    lo >= 0.1
+      ? "The season so far predicts the next match much better than the league average."
+      : lo > 0
+        ? "The season so far predicts the next match a little better than the league average."
+        : "The season so far does not predict the next match better than the league average.",
+  );
+  if (t?.flag_uncertain) out.push("This estimate is uncertain on the first matches of a season.");
+  if (t?.curve === "below") out.push("It predicts worse than its spread suggests: it may change during the season.");
+  return out;
+}
+
+function TrustSection({ ev, seen }: { ev: EvData; seen: number }) {
+  const T = ev.trust!;
+  const S = ev.statements!;
+  const order: Grade[] = ["A", "B", "C", "D"];
+  const rows = Object.entries(T.statements)
+    .filter(([id]) => S[id])
+    .sort(
+      (a, b) =>
+        order.indexOf(S[a[0]].grade) - order.indexOf(S[b[0]].grade) ||
+        (a[1].matches_starts ?? 999) - (b[1].matches_starts ?? 999),
+    );
+  const status = (t: TrustN) =>
+    t.matches_reliable != null && seen >= t.matches_reliable
+      ? "reliable now"
+      : t.matches_starts != null && seen >= t.matches_starts
+        ? "use as a hint"
+        : "not enough yet";
+  const n = (x: number | null) => (x == null ? "not within a season" : `${x} matches`);
+  return (
+    <section className="section" aria-labelledby="ev-n">
+      <div className="section-head">
+        <h2 id="ev-n">How many matches do you need?</h2>
+        <Explain>{`A number needs enough matches before it says more about the team than about chance. This team has ${seen} matches here.`}</Explain>
+      </div>
+      <div className="table-wrap">
+        <table className="ev-table ev-trust">
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Says something after</th>
+              <th>Reliable after</th>
+              <th>With the matches here</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(([id, t]) => (
+              <tr key={id}>
+                <td>
+                  <GradeMark g={S[id].grade} /> {NAME[id]}
+                  {why(S[id], t).map((s) => (
+                    <small key={s}>{s}</small>
+                  ))}
+                </td>
+                <td>{n(t.matches_starts)}</td>
+                <td>{n(t.matches_reliable)}</td>
+                <td>
+                  <b>{status(t)}</b>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div style={{ marginTop: 18 }}>
+        <Note kind="info" tag="Exploratory">
+          {`Not part of the graded check. "Says something" means that half of the difference between teams is style and half is chance; "reliable" means three quarters is style. The numbers come from how much each number differs between teams, and the rule was checked on the first ${T.grid[0]} to ${T.grid[T.grid.length - 1]} matches of the ${T.n_teams} teams (docs/protocol_trust_n.md). One number per type of statement, not per team.`}
+        </Note>
+      </div>
+    </section>
+  );
+}
+
 export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
   const [ev, setEv] = useState<EvData | null>(null);
   const [err, setErr] = useState<string | null>(null);
@@ -262,6 +351,8 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
           </p>
         )}
       </section>
+
+      {ev.trust && <TrustSection ev={ev} seen={d.matches} />}
 
       {cross && (
         <section className="section" aria-labelledby="ev-x">

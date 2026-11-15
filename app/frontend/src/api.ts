@@ -478,6 +478,21 @@ export interface Evidence {
   provider?: Record<string, { label: string; seen_before?: boolean; why?: string }> | null;
   shown_in_app?: Record<string, string[]>;
   provider_matches?: number | null;
+  trust?: Trust | null;
+}
+// Matches needed per statement (exploratory, docs/protocol_trust_n.md; StatsBomb only). null = not within a season.
+export interface TrustN {
+  matches_starts: number | null;
+  matches_reliable: number | null;
+  flag_uncertain?: boolean;
+  curve?: "below" | "above" | "on";
+  n_star: number | null;
+}
+export interface Trust {
+  source: string;
+  n_teams: number;
+  grid: number[];
+  statements: Record<string, TrustN>;
 }
 export interface TeamSummary {
   key: string;
