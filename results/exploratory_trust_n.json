@@ -1,0 +1,1747 @@
+{
+ "protocol": "docs/protocol_trust_n.md",
+ "exploratory": true,
+ "levels": {
+  "starts": 0.5,
+  "reliable": 0.75
+ },
+ "levels_sensitivity": [
+  0.6,
+  0.8
+ ],
+ "grid_first_n": [
+  3,
+  5,
+  8,
+  12,
+  20
+ ],
+ "median_abs_gap": {
+  "3": 0.04925497990192265,
+  "5": 0.04827352198796725,
+  "8": 0.04432989516425165,
+  "12": 0.04290384289423527,
+  "20": 0.027189536193774178
+ },
+ "formula_holds": true,
+ "formula_holds_sensitivity": {
+  "0.1": true,
+  "0.05": true,
+  "0.15": true
+ },
+ "statements": {
+  "S01": {
+   "statement": "open-play sequences per match",
+   "grade": "B",
+   "D": 0.8862104676278947,
+   "N": 37.65714285714286,
+   "R_N": 0.8831063104704328,
+   "n_star": 4.98454411832764,
+   "D_first_n": {
+    "3": 0.5258223461937126,
+    "5": 0.6090195309098634,
+    "8": 0.6634754222634547,
+    "12": 0.7099491887908148,
+    "20": 0.8028283802402656
+   },
+   "R_first_n": {
+    "3": 0.2887335192905689,
+    "5": 0.5112744136373293,
+    "8": 0.6154004825868054,
+    "12": 0.6835809332263434,
+    "20": 0.7924509265687006
+   },
+   "D_pred_first_n": {
+    "3": 0.5838172645836123,
+    "5": 0.6006191922831604,
+    "8": 0.664102484939731,
+    "12": 0.7309809783549119,
+    "20": 0.8104701494658202
+   },
+   "gap": {
+    "3": -0.057994918389899675,
+    "5": 0.008400338626702974,
+    "8": -0.0006270626762763243,
+    "12": -0.021031789564097125,
+    "20": -0.0076417692255545955
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.11363350055332631,
+   "skill": 0.0926100745211691,
+   "skill_ci": [
+    0.0347448716232609,
+    0.1462677946156722
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.10799614577349748,
+   "matches_starts_exact": 4.98454411832764,
+   "matches_starts_observed": 5,
+   "matches_reliable_exact": 14.953632354982918,
+   "matches_reliable_observed": 20,
+   "matches_sens_0.6_exact": 7.476816177491459,
+   "matches_sens_0.6_observed": 8,
+   "matches_sens_0.8_exact": 19.938176473310566,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 5,
+   "matches_reliable": 15,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match a little better than the league average; starts to say something after about 5 matches, reliable after about 15; you have seen {seen}"
+  },
+  "S02": {
+   "statement": "passes per sequence",
+   "grade": "A",
+   "D": 0.9600954108629619,
+   "N": 37.65714285714286,
+   "R_N": 0.9590068211359188,
+   "n_star": 1.6096715462614304,
+   "D_first_n": {
+    "3": 0.8179444890291522,
+    "5": 0.8409625428178855,
+    "8": 0.8756742217043318,
+    "12": 0.9021661163333166,
+    "20": 0.9333427416048857
+   },
+   "R_first_n": {
+    "3": 0.7269167335437283,
+    "5": 0.801203178522357,
+    "8": 0.8579133962335221,
+    "12": 0.8932721269090727,
+    "20": 0.9298344648472482
+   },
+   "D_pred_first_n": {
+    "3": 0.7672037251667937,
+    "5": 0.8051737929795444,
+    "8": 0.8534328050445487,
+    "12": 0.8915820822182169,
+    "20": 0.9292359457812807
+   },
+   "gap": {
+    "3": 0.050740763862358484,
+    "5": 0.03578874983834113,
+    "8": 0.022241416659783186,
+    "12": 0.010584034115099672,
+    "20": 0.0041067958236050695
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.34359726966273935,
+   "skill": 0.3573759950408939,
+   "skill_ci": [
+    0.2127491701906753,
+    0.505975077384279
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.07077547839919807,
+   "matches_starts_exact": 1.6096715462614304,
+   "matches_starts_observed": 3,
+   "matches_reliable_exact": 4.829014638784291,
+   "matches_reliable_observed": 5,
+   "matches_sens_0.6_exact": 2.414507319392145,
+   "matches_sens_0.6_observed": 3,
+   "matches_sens_0.8_exact": 6.438686185045723,
+   "matches_sens_0.8_observed": 5,
+   "matches_starts": 2,
+   "matches_reliable": 5,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match much better than the league average; starts to say something after about 2 matches, reliable after about 5; you have seen {seen}"
+  },
+  "S03": {
+   "statement": "long-pass share of a sequence",
+   "grade": "A",
+   "D": 0.9410098908533142,
+   "N": 37.65714285714286,
+   "R_N": 0.9394006517105754,
+   "n_star": 2.429206655785555,
+   "D_first_n": {
+    "3": 0.7877697350504157,
+    "5": 0.7758799723517923,
+    "8": 0.8258917325448981,
+    "12": 0.8616679188090973,
+    "20": 0.9072301375931003
+   },
+   "R_first_n": {
+    "3": 0.6816546025756236,
+    "5": 0.7198499654397403,
+    "8": 0.801019122908455,
+    "12": 0.8490922750644697,
+    "20": 0.902347513255895
+   },
+   "D_pred_first_n": {
+    "3": 0.7017112800207613,
+    "5": 0.7384154978223642,
+    "8": 0.7961919929323467,
+    "12": 0.8456760083264471,
+    "20": 0.8971097659220594
+   },
+   "gap": {
+    "3": 0.08605845502965437,
+    "5": 0.03746447452942814,
+    "8": 0.029699739612551457,
+    "12": 0.01599191048265025,
+    "20": 0.010120371671040962
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.2461416207774929,
+   "skill": 0.24315454155446425,
+   "skill_ci": [
+    0.15785670403761864,
+    0.32319097292687193
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.08142853843406117,
+   "matches_starts_exact": 2.429206655785555,
+   "matches_starts_observed": 3,
+   "matches_reliable_exact": 7.287619967356665,
+   "matches_reliable_observed": 8,
+   "matches_sens_0.6_exact": 3.643809983678332,
+   "matches_sens_0.6_observed": 3,
+   "matches_sens_0.8_exact": 9.716826623142223,
+   "matches_sens_0.8_observed": 8,
+   "matches_starts": 2,
+   "matches_reliable": 7,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match much better than the league average; starts to say something after about 2 matches, reliable after about 7; you have seen {seen}"
+  },
+  "S04": {
+   "statement": "share of sequences starting in the build-up zone",
+   "grade": "C",
+   "D": 0.8001260995991324,
+   "N": 37.65714285714286,
+   "R_N": 0.7946735769849232,
+   "n_star": 9.729789271666679,
+   "D_first_n": {
+    "3": 0.4415470114165214,
+    "5": 0.4999106165571834,
+    "8": 0.47906020487591283,
+    "12": 0.4780740903524534,
+    "20": 0.6624440139242145
+   },
+   "R_first_n": {
+    "3": 0.16232051712478213,
+    "5": 0.37488827069647923,
+    "8": 0.4046402341439004,
+    "12": 0.43062628038449463,
+    "20": 0.64467790939391
+   },
+   "D_pred_first_n": {
+    "3": 0.4904451249991623,
+    "5": 0.4715585353073689,
+    "8": 0.5198157472568747,
+    "12": 0.5895508517122541,
+    "20": 0.689089629138661
+   },
+   "gap": {
+    "3": -0.0488981135826409,
+    "5": 0.028352081249814476,
+    "8": -0.04075554238096191,
+    "12": -0.11147676135980067,
+    "20": -0.026645615214446527
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.03499135553831168,
+   "skill": 0.007118820080766031,
+   "skill_ci": [
+    -0.02464575314379225,
+    0.04168240320685279
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.09134567117026116,
+   "matches_starts_exact": 9.729789271666679,
+   "matches_starts_observed": 20,
+   "matches_reliable_exact": 29.189367815000036,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 14.594683907500016,
+   "matches_sens_0.6_observed": 20,
+   "matches_sens_0.8_exact": 38.91915708666672,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 10,
+   "matches_reliable": 29,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far does not predict the next match better than the league average; starts to say something after about 10 matches, reliable after about 29; you have seen {seen}"
+  },
+  "S05": {
+   "statement": "shot rate per sequence",
+   "grade": "C",
+   "D": 0.7434545607022773,
+   "N": 37.65714285714286,
+   "R_N": 0.7364560491080293,
+   "n_star": 13.475769830249577,
+   "D_first_n": {
+    "3": 0.41045393391964846,
+    "5": 0.4333400773870125,
+    "8": 0.37861173217210964,
+    "12": 0.5177490007882916,
+    "20": 0.5725792116022601
+   },
+   "R_first_n": {
+    "3": 0.11568090087947269,
+    "5": 0.2916750967337657,
+    "8": 0.28984197962526814,
+    "12": 0.4739080008599545,
+    "20": 0.550083380633958
+   },
+   "D_pred_first_n": {
+    "3": 0.45472371573161086,
+    "5": 0.4164997743937562,
+    "8": 0.4509487345659753,
+    "12": 0.5151161635793011,
+    "20": 0.6175746994421949
+   },
+   "gap": {
+    "3": -0.044269781811962394,
+    "5": 0.01684030299325634,
+    "8": -0.07233700239386565,
+    "12": 0.002632837208990435,
+    "20": -0.04499548783993479
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.009325743843843418,
+   "skill": -0.005008684788975426,
+   "skill_ci": [
+    -0.03780969350147867,
+    0.03010394492940216
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.11491653441038596,
+   "matches_starts_exact": 13.475769830249577,
+   "matches_starts_observed": 20,
+   "matches_reliable_exact": 40.42730949074873,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 20.213654745374363,
+   "matches_sens_0.6_observed": null,
+   "matches_sens_0.8_exact": 53.90307932099832,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 13,
+   "matches_reliable": null,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far does not predict the next match better than the league average; starts to say something after about 13 matches, not reliable within a season; you have seen {seen}"
+  },
+  "S06": {
+   "statement": "sequence duration (s)",
+   "grade": "A",
+   "D": 0.9402398707990591,
+   "N": 37.65714285714286,
+   "R_N": 0.9386096256532813,
+   "n_star": 2.4629899733010285,
+   "D_first_n": {
+    "3": 0.784531476616754,
+    "5": 0.8048332478913052,
+    "8": 0.8482045492047926,
+    "12": 0.8687788039775202,
+    "20": 0.9028625776179577
+   },
+   "R_first_n": {
+    "3": 0.6767972149251311,
+    "5": 0.7560415598641315,
+    "8": 0.8265194848054772,
+    "12": 0.856849604339113,
+    "20": 0.8977500817031134
+   },
+   "D_pred_first_n": {
+    "3": 0.6994332181536406,
+    "5": 0.7359782090435693,
+    "8": 0.7940248215722537,
+    "12": 0.8438952932258744,
+    "20": 0.8958357512772318
+   },
+   "gap": {
+    "3": 0.08509825846311347,
+    "5": 0.06885503884773592,
+    "8": 0.054179727632538865,
+    "12": 0.024883510751645743,
+    "20": 0.0070268263407259335
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.2431141750600612,
+   "skill": 0.23546283291729142,
+   "skill_ci": [
+    0.13121953957560084,
+    0.3497414199439346
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.08387981855234394,
+   "matches_starts_exact": 2.4629899733010285,
+   "matches_starts_observed": 3,
+   "matches_reliable_exact": 7.388969919903086,
+   "matches_reliable_observed": 5,
+   "matches_sens_0.6_exact": 3.694484959951543,
+   "matches_sens_0.6_observed": 3,
+   "matches_sens_0.8_exact": 9.851959893204116,
+   "matches_sens_0.8_observed": 8,
+   "matches_starts": 2,
+   "matches_reliable": 7,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match much better than the league average; starts to say something after about 2 matches, reliable after about 7; you have seen {seen}"
+  },
+  "R09": {
+   "statement": "goal kicks: first pass short",
+   "grade": "A",
+   "D": 0.9365386405958487,
+   "N": 37.628571428571426,
+   "R_N": 0.9348060761815387,
+   "n_star": 2.6242386326074927,
+   "D_first_n": {
+    "3": 0.7325918551301804,
+    "5": 0.7260744959626388,
+    "8": 0.796987520381385,
+    "12": 0.83354939347258,
+    "20": 0.889472895971959
+   },
+   "R_first_n": {
+    "3": 0.5988877826952708,
+    "5": 0.6575931199532985,
+    "8": 0.7679857375787257,
+    "12": 0.8184175201519054,
+    "20": 0.8836556799704831
+   },
+   "D_pred_first_n": {
+    "3": 0.6889370213427032,
+    "5": 0.7246425502597363,
+    "8": 0.7838707428423036,
+    "12": 0.8355092432281178,
+    "20": 0.8898072663809331
+   },
+   "gap": {
+    "3": 0.043654833787477254,
+    "5": 0.001431945702902504,
+    "8": 0.013116777539081359,
+    "12": -0.001959849755537868,
+    "20": -0.0003343704089741051
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.22944170267391967,
+   "skill": 0.22443588492175492,
+   "skill_ci": [
+    0.14953084891499646,
+    0.30085217162734545
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.09101677151781917,
+   "matches_starts_exact": 2.6242386326074927,
+   "matches_starts_observed": 3,
+   "matches_reliable_exact": 7.872715897822478,
+   "matches_reliable_observed": 8,
+   "matches_sens_0.6_exact": 3.9363579489112386,
+   "matches_sens_0.6_observed": 5,
+   "matches_sens_0.8_exact": 10.496954530429974,
+   "matches_sens_0.8_observed": 12,
+   "matches_starts": 3,
+   "matches_reliable": 8,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match much better than the league average; starts to say something after about 3 matches, reliable after about 8; you have seen {seen}"
+  },
+  "R10": {
+   "statement": "goal kicks: reached the opponent half",
+   "grade": "B",
+   "D": 0.890949488182137,
+   "N": 37.628571428571426,
+   "R_N": 0.8879722901215871,
+   "n_star": 4.747268276312914,
+   "D_first_n": {
+    "3": 0.635605549039435,
+    "5": 0.6720488542920072,
+    "8": 0.7340185818272082,
+    "12": 0.8074639593238482,
+    "20": 0.8427065327772923
+   },
+   "R_first_n": {
+    "3": 0.4534083235591525,
+    "5": 0.590061067865009,
+    "8": 0.6960212363739523,
+    "12": 0.7899606828987434,
+    "20": 0.8344279292392551
+   },
+   "D_pred_first_n": {
+    "3": 0.5914888442396681,
+    "5": 0.6103713867936211,
+    "8": 0.6741372620600965,
+    "12": 0.7401568712686655,
+    "20": 0.8177615075675254
+   },
+   "gap": {
+    "3": 0.044116704799766926,
+    "5": 0.061677467498386096,
+    "8": 0.05988131976711175,
+    "12": 0.0673070880551827,
+    "20": 0.024945025209766936
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.12097491838434625,
+   "skill": 0.10556593278418802,
+   "skill_ci": [
+    0.053210842982143736,
+    0.15540886253713415
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.10227736671562249,
+   "matches_starts_exact": 4.747268276312914,
+   "matches_starts_observed": 5,
+   "matches_reliable_exact": 14.241804828938742,
+   "matches_reliable_observed": 12,
+   "matches_sens_0.6_exact": 7.120902414469371,
+   "matches_sens_0.6_observed": 8,
+   "matches_sens_0.8_exact": 18.989073105251663,
+   "matches_sens_0.8_observed": 20,
+   "matches_starts": 5,
+   "matches_reliable": 14,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match a little better than the league average; starts to say something after about 5 matches, reliable after about 14; you have seen {seen}"
+  },
+  "R11": {
+   "statement": "goal kicks: ended in own half",
+   "grade": "B",
+   "D": 0.8517716977801186,
+   "N": 37.628571428571426,
+   "R_N": 0.847724903257735,
+   "n_star": 6.759143600169637,
+   "D_first_n": {
+    "3": 0.5694106678249361,
+    "5": 0.6315800493908017,
+    "8": 0.6502310093972588,
+    "12": 0.7264889333464655,
+    "20": 0.8032241003696613
+   },
+   "R_first_n": {
+    "3": 0.3541160017374041,
+    "5": 0.5394750617385021,
+    "8": 0.6002640107397242,
+    "12": 0.7016242909234168,
+    "20": 0.7928674740733278
+   },
+   "D_pred_first_n": {
+    "3": 0.5382693484120781,
+    "5": 0.5401608259926596,
+    "8": 0.5992822611956661,
+    "12": 0.6697140463580222,
+    "20": 0.7600376710067639
+   },
+   "gap": {
+    "3": 0.031141319412858026,
+    "5": 0.09141922339814212,
+    "8": 0.050948748201592675,
+    "12": 0.05677488698844324,
+    "20": 0.043186429362897405
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.07296347456519012,
+   "skill": 0.05748459717446952,
+   "skill_ci": [
+    0.01824658535213608,
+    0.09567607494886465
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.10169029353219505,
+   "matches_starts_exact": 6.759143600169637,
+   "matches_starts_observed": 5,
+   "matches_reliable_exact": 20.27743080050891,
+   "matches_reliable_observed": 20,
+   "matches_sens_0.6_exact": 10.138715400254453,
+   "matches_sens_0.6_observed": 8,
+   "matches_sens_0.8_exact": 27.036574400678553,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 7,
+   "matches_reliable": 20,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match a little better than the league average; starts to say something after about 7 matches, reliable after about 20; you have seen {seen}"
+  },
+  "R12": {
+   "statement": "keeper: first pass short",
+   "grade": "B",
+   "D": 0.823527480115069,
+   "N": 35.62857142857143,
+   "R_N": 0.818431326488029,
+   "n_star": 7.904184803349958,
+   "D_first_n": {
+    "3": 0.553018274719154,
+    "5": 0.5274552663694203,
+    "8": 0.6204874137795993,
+    "12": 0.6625193769404831,
+    "20": 0.7374975695310262
+   },
+   "R_first_n": {
+    "3": 0.32952741207873104,
+    "5": 0.40931908296177544,
+    "8": 0.5662713300338277,
+    "12": 0.6318393202987088,
+    "20": 0.7236816521379223
+   },
+   "D_pred_first_n": {
+    "3": 0.516749153595804,
+    "5": 0.5099769618117674,
+    "8": 0.565135730724505,
+    "12": 0.635980935266202,
+    "20": 0.7309014538105771
+   },
+   "gap": {
+    "3": 0.03626912112335001,
+    "5": 0.01747830455765287,
+    "8": 0.0553516830550943,
+    "12": 0.0265384416742811,
+    "20": 0.006596115720449047
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.05321935813571663,
+   "skill": 0.05584655665843452,
+   "skill_ci": [
+    0.011921215203502089,
+    0.09913764975185102
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.1532158562749213,
+   "matches_starts_exact": 7.904184803349958,
+   "matches_starts_observed": 8,
+   "matches_reliable_exact": 23.712554410049876,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 11.856277205024936,
+   "matches_sens_0.6_observed": 12,
+   "matches_sens_0.8_exact": 31.61673921339984,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 8,
+   "matches_reliable": 24,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match a little better than the league average; starts to say something after about 8 matches, reliable after about 24; you have seen {seen}"
+  },
+  "R13": {
+   "statement": "throw-ins in own half: ended in own half",
+   "grade": "D",
+   "D": 0.4880285761553199,
+   "N": 37.65714285714286,
+   "R_N": 0.4740620914830177,
+   "n_star": 41.77790063966847,
+   "D_first_n": {
+    "3": 0.46326446649541553,
+    "5": 0.2651551529380757,
+    "8": 0.10109230222956689,
+    "12": 0.1559266624018143,
+    "20": 0.2917479616404526
+   },
+   "R_first_n": {
+    "3": 0.1948966997431233,
+    "5": 0.08144394117259457,
+    "8": -0.02732308316620927,
+    "12": 0.07919272262016105,
+    "20": 0.2544715385688974
+   },
+   "D_pred_first_n": {
+    "3": 0.377998223188134,
+    "5": 0.2855104642427654,
+    "8": 0.2656246529091594,
+    "12": 0.28787832057082346,
+    "20": 0.3575533451811703
+   },
+   "gap": {
+    "3": 0.08526624330728155,
+    "5": -0.020355311304689705,
+    "8": -0.1645323506795925,
+    "12": -0.13195165816900917,
+    "20": -0.06580538354071774
+   },
+   "flag_uncertain": false,
+   "skill_pred": -0.03931239626824046,
+   "skill": -0.027353599474067014,
+   "skill_ci": [
+    -0.04866412452604796,
+    -0.005698688384559336
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.13435248221824136,
+   "matches_starts_exact": 41.77790063966847,
+   "matches_starts_observed": null,
+   "matches_reliable_exact": 125.33370191900539,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 62.666850959502696,
+   "matches_sens_0.6_observed": null,
+   "matches_sens_0.8_exact": 167.11160255867392,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": null,
+   "matches_reliable": null,
+   "source": "formula",
+   "text": "teams differ little in this number: it is mostly chance; the season so far does not predict the next match better than the league average; it does not become reliable within a season"
+  },
+  "P14": {
+   "statement": "corners per match",
+   "grade": "C",
+   "D": 0.7051316311323073,
+   "N": 37.65714285714286,
+   "R_N": 0.6970876771881379,
+   "n_star": 16.36352640650204,
+   "D_first_n": {
+    "3": 0.42105089185217215,
+    "5": 0.4006786959114227,
+    "8": 0.3840474823462371,
+    "12": 0.4300932793651395,
+    "20": 0.5023058328782888
+   },
+   "R_first_n": {
+    "3": 0.13157633777825817,
+    "5": 0.2508483698892784,
+    "8": 0.2960542655385567,
+    "12": 0.37828357748924313,
+    "20": 0.47611140302977767
+   },
+   "D_pred_first_n": {
+    "3": 0.4366203048287952,
+    "5": 0.3872350062386044,
+    "8": 0.41231472953487835,
+    "12": 0.4711553496210671,
+    "20": 0.5725015799513513
+   },
+   "gap": {
+    "3": -0.015569412976623065,
+    "5": 0.013443689672818282,
+    "8": -0.028267247188641265,
+    "12": -0.04106207025592756,
+    "20": -0.07019574707306253
+   },
+   "flag_uncertain": false,
+   "skill_pred": -0.00290069395213076,
+   "skill": -0.002724193941815445,
+   "skill_ci": [
+    -0.030514758466905212,
+    0.022973159270011867
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.1399586669883588,
+   "matches_starts_exact": 16.36352640650204,
+   "matches_starts_observed": null,
+   "matches_reliable_exact": 49.09057921950612,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 24.545289609753056,
+   "matches_sens_0.6_observed": null,
+   "matches_sens_0.8_exact": 65.45410562600817,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 16,
+   "matches_reliable": null,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far does not predict the next match better than the league average; starts to say something after about 16 matches, not reliable within a season; you have seen {seen}"
+  },
+  "P15": {
+   "statement": "corners played short / outside the box",
+   "grade": "B",
+   "D": 0.8517434599721557,
+   "N": 36.957142857142856,
+   "R_N": 0.8476203142423389,
+   "n_star": 6.6439155839560735,
+   "D_first_n": {
+    "3": 0.6041750631455949,
+    "5": 0.46903133367058636,
+    "8": 0.6377767457134924,
+    "12": 0.7180837657438284,
+    "20": 0.7563135883719861
+   },
+   "R_first_n": {
+    "3": 0.4062625947183923,
+    "5": 0.336289167088233,
+    "8": 0.5860305665297056,
+    "12": 0.6924550171750855,
+    "20": 0.7434879877599855
+   },
+   "D_pred_first_n": {
+    "3": 0.5407179773183205,
+    "5": 0.5435270524901025,
+    "8": 0.6030142278113939,
+    "12": 0.6733381502112854,
+    "20": 0.7631083995567476
+   },
+   "gap": {
+    "3": 0.06345708582727438,
+    "5": -0.07449571881951611,
+    "8": 0.0347625179020985,
+    "12": 0.04474561553254297,
+    "20": -0.00679481118476144
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.07402158495093034,
+   "skill": 0.07038816900141587,
+   "skill_ci": [
+    0.019898170003008198,
+    0.11958063444883404
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.11319613117343996,
+   "matches_starts_exact": 6.6439155839560735,
+   "matches_starts_observed": 8,
+   "matches_reliable_exact": 19.93174675186822,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 9.965873375934109,
+   "matches_sens_0.6_observed": 12,
+   "matches_sens_0.8_exact": 26.5756623358243,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 7,
+   "matches_reliable": 20,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match a little better than the league average; starts to say something after about 7 matches, reliable after about 20; you have seen {seen}"
+  },
+  "P16": {
+   "statement": "corners to the far post",
+   "grade": "C",
+   "D": 0.5942306612475453,
+   "N": 36.957142857142856,
+   "R_N": 0.5829458564352006,
+   "n_star": 26.440070536123553,
+   "D_first_n": {
+    "3": 0.1675265177289602,
+    "5": 0.33610597599560954,
+    "8": 0.5002644395396871,
+    "12": 0.5966548120574834,
+    "20": 0.5950610612992477
+   },
+   "R_first_n": {
+    "3": -0.24871022340655968,
+    "5": 0.17013246999451193,
+    "8": 0.42887364518821386,
+    "12": 0.5599870676990727,
+    "20": 0.5737484855781555
+   },
+   "D_pred_first_n": {
+    "3": 0.40126795317556363,
+    "5": 0.3272261776704393,
+    "8": 0.3282516162432893,
+    "12": 0.36949305797959514,
+    "20": 0.4591294388801755
+   },
+   "gap": {
+    "3": -0.23374143544660342,
+    "5": 0.008879798325170218,
+    "8": 0.17201282329639783,
+    "12": 0.22716175407788824,
+    "20": 0.13593162241907225
+   },
+   "flag_uncertain": true,
+   "skill_pred": -0.02652617012479498,
+   "skill": -0.020717156491234956,
+   "skill_ci": [
+    -0.05364210391137991,
+    0.021187483527475792
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.15386742367281325,
+   "matches_starts_exact": 26.440070536123553,
+   "matches_starts_observed": 12,
+   "matches_reliable_exact": 79.32021160837066,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 39.66010580418532,
+   "matches_sens_0.6_observed": null,
+   "matches_sens_0.8_exact": 105.76028214449425,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 26,
+   "matches_reliable": null,
+   "source": "formula",
+   "text": "teams differ somewhat in this number; the season so far does not predict the next match better than the league average; starts to say something after about 26 matches, not reliable within a season; you have seen {seen}; this estimate is uncertain on the first matches of a season"
+  },
+  "P17": {
+   "statement": "corners ending in a shot",
+   "grade": "D",
+   "D": 0.3385148433298517,
+   "N": 36.957142857142856,
+   "R_N": 0.3201183550633001,
+   "n_star": 78.49122888597373,
+   "D_first_n": {
+    "3": 0.3817326355769002,
+    "5": 0.18914680026786979,
+    "8": 0.31422846658908044,
+    "12": 0.35542014507020836,
+    "20": 0.20740373386245026
+   },
+   "R_first_n": {
+    "3": 0.07259895336535027,
+    "5": -0.013566499665162768,
+    "8": 0.21626110467323478,
+    "12": 0.2968219764402273,
+    "20": 0.16568814090784234
+   },
+   "D_pred_first_n": {
+    "3": 0.35787585192510096,
+    "5": 0.24790922415889832,
+    "8": 0.20593306211695173,
+    "12": 0.20489207593656278,
+    "20": 0.24291057909325992
+   },
+   "gap": {
+    "3": 0.023856783651799218,
+    "5": -0.05876242389102854,
+    "8": 0.10829540447212871,
+    "12": 0.15052806913364558,
+    "20": -0.03550684523080966
+   },
+   "flag_uncertain": false,
+   "skill_pred": -0.051948690500637607,
+   "skill": -0.05399066097680927,
+   "skill_ci": [
+    -0.07665907880665768,
+    -0.030616849879192776
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.12629136975914657,
+   "matches_starts_exact": 78.49122888597373,
+   "matches_starts_observed": null,
+   "matches_reliable_exact": 235.47368665792118,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 117.73684332896057,
+   "matches_sens_0.6_observed": null,
+   "matches_sens_0.8_exact": 313.96491554389496,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": null,
+   "matches_reliable": null,
+   "source": "formula",
+   "text": "teams differ little in this number: it is mostly chance; the season so far does not predict the next match better than the league average; it does not become reliable within a season"
+  },
+  "T18": {
+   "statement": "open-play losses per match",
+   "grade": "C",
+   "D": 0.8063272062059157,
+   "N": 37.65714285714286,
+   "R_N": 0.8010438486199508,
+   "n_star": 9.352946443235759,
+   "D_first_n": {
+    "3": 0.5927473025137323,
+    "5": 0.6137063013438935,
+    "8": 0.6382563538761821,
+    "12": 0.6819644333032309,
+    "20": 0.6716441785495217
+   },
+   "R_first_n": {
+    "3": 0.3891209537705984,
+    "5": 0.5171328766798668,
+    "8": 0.586578690144208,
+    "12": 0.65305210905807,
+    "20": 0.6543622932100228
+   },
+   "D_pred_first_n": {
+    "3": 0.4952380262088669,
+    "5": 0.4786884223263521,
+    "8": 0.5283897080762688,
+    "12": 0.5984847214212573,
+    "20": 0.6972944730350386
+   },
+   "gap": {
+    "3": 0.09750927630486539,
+    "5": 0.13501787901754136,
+    "8": 0.10986664579991323,
+    "12": 0.08347971188197356,
+    "20": -0.02565029448551681
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.0386014956440175,
+   "skill": 0.016836795573276664,
+   "skill_ci": [
+    -0.029451542473319936,
+    0.06369003494647252
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.07816325813653235,
+   "matches_starts_exact": 9.352946443235759,
+   "matches_starts_observed": 5,
+   "matches_reliable_exact": 28.058839329707276,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 14.029419664853636,
+   "matches_sens_0.6_observed": 12,
+   "matches_sens_0.8_exact": 37.41178577294304,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 9,
+   "matches_reliable": 28,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far does not predict the next match better than the league average; starts to say something after about 9 matches, reliable after about 28; you have seen {seen}"
+  },
+  "T19": {
+   "statement": "losses in own third",
+   "grade": "C",
+   "D": 0.813210106704969,
+   "N": 37.65714285714286,
+   "R_N": 0.8081145133570921,
+   "n_star": 8.941627780828357,
+   "D_first_n": {
+    "3": 0.4512028419748967,
+    "5": 0.5449766652869958,
+    "8": 0.5811228812615554,
+    "12": 0.6280592837667899,
+    "20": 0.7203693259920891
+   },
+   "R_first_n": {
+    "3": 0.17680426296234497,
+    "5": 0.4312208316087448,
+    "8": 0.521283292870349,
+    "12": 0.5942464913819525,
+    "20": 0.705651922096936
+   },
+   "D_pred_first_n": {
+    "3": 0.5008146881961011,
+    "5": 0.4869105432222589,
+    "8": 0.5381834373035516,
+    "12": 0.6086029119508218,
+    "20": 0.7064938276410999
+   },
+   "gap": {
+    "3": -0.0496118462212044,
+    "5": 0.058066122064736936,
+    "8": 0.042939443958003864,
+    "12": 0.019456371815968043,
+    "20": 0.013875498350989224
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.042854304959638746,
+   "skill": 0.028374259501534604,
+   "skill_ci": [
+    -0.006697386491782087,
+    0.0659492641317232
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.12204982134744036,
+   "matches_starts_exact": 8.941627780828357,
+   "matches_starts_observed": 8,
+   "matches_reliable_exact": 26.824883342485073,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 13.412441671242533,
+   "matches_sens_0.6_observed": 20,
+   "matches_sens_0.8_exact": 35.766511123313435,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 9,
+   "matches_reliable": 27,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far does not predict the next match better than the league average; starts to say something after about 9 matches, reliable after about 27; you have seen {seen}"
+  },
+  "T20": {
+   "statement": "counter-press regains within 5 s",
+   "grade": "C",
+   "D": 0.714884013676137,
+   "N": 37.65714285714286,
+   "R_N": 0.7071061029034673,
+   "n_star": 15.598150376104394,
+   "D_first_n": {
+    "3": -0.21091837083584686,
+    "5": 0.12377662417431479,
+    "8": 0.375913071437035,
+    "12": 0.3604273379815053,
+    "20": 0.5094956029504594
+   },
+   "R_first_n": {
+    "3": -0.8163775562537703,
+    "5": -0.09527921978210652,
+    "8": 0.28675779592804,
+    "12": 0.3022843687070967,
+    "20": 0.4836795820531152
+   },
+   "D_pred_first_n": {
+    "3": 0.44087090882093,
+    "5": 0.39419219332626776,
+    "8": 0.42163341780753444,
+    "12": 0.48191076878075556,
+    "20": 0.5837355957896604
+   },
+   "gap": {
+    "3": -0.6517892796567768,
+    "5": -0.270415569151953,
+    "8": -0.04572034637049943,
+    "12": -0.12148343079925028,
+    "20": -0.07423999283920102
+   },
+   "flag_uncertain": false,
+   "skill_pred": -7.453755028684626e-05,
+   "skill": 0.003035916284764073,
+   "skill_ci": [
+    -0.023482165605796634,
+    0.028485141713111672
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.1326251305209467,
+   "matches_starts_exact": 15.598150376104394,
+   "matches_starts_observed": null,
+   "matches_reliable_exact": 46.794451128313185,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 23.39722556415659,
+   "matches_sens_0.6_observed": null,
+   "matches_sens_0.8_exact": 62.3926015044176,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 16,
+   "matches_reliable": null,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far does not predict the next match better than the league average; starts to say something after about 16 matches, not reliable within a season; you have seen {seen}"
+  },
+  "T21": {
+   "statement": "recoveries in the final third",
+   "grade": "C",
+   "D": 0.6621631916350043,
+   "N": 37.65714285714286,
+   "R_N": 0.6529470666990924,
+   "n_star": 20.015438547525545,
+   "D_first_n": {
+    "3": 0.37529261529577973,
+    "5": 0.12578349866926075,
+    "8": 0.3874333780146185,
+    "12": 0.48670003430328623,
+    "20": 0.5843847717732535
+   },
+   "R_first_n": {
+    "3": 0.06293892294366965,
+    "5": -0.09277062666342406,
+    "8": 0.29992386058813547,
+    "12": 0.4400364010581304,
+    "20": 0.562510286077109
+   },
+   "D_pred_first_n": {
+    "3": 0.42023152542600695,
+    "5": 0.35990125427545894,
+    "8": 0.3748622317878466,
+    "12": 0.42691756953459514,
+    "20": 0.524816737980619
+   },
+   "gap": {
+    "3": -0.044938910130227216,
+    "5": -0.23411775560619819,
+    "8": 0.012571146226771912,
+    "12": 0.05978246476869109,
+    "20": 0.059568033792634534
+   },
+   "flag_uncertain": false,
+   "skill_pred": -0.01355101975703292,
+   "skill": -0.0002784755166689301,
+   "skill_ci": [
+    -0.02235888400062014,
+    0.023358537815170943
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.12606055620300505,
+   "matches_starts_exact": 20.015438547525545,
+   "matches_starts_observed": 20,
+   "matches_reliable_exact": 60.04631564257663,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 30.023157821288315,
+   "matches_sens_0.6_observed": null,
+   "matches_sens_0.8_exact": 80.06175419010219,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 20,
+   "matches_reliable": null,
+   "source": "formula",
+   "text": "teams differ somewhat in this number; the season so far does not predict the next match better than the league average; starts to say something after about 20 matches, not reliable within a season; you have seen {seen}"
+  },
+  "T22": {
+   "statement": "recoveries followed by a shot within 10 s",
+   "grade": "C",
+   "D": 0.6141218962297565,
+   "N": 37.65714285714286,
+   "R_N": 0.60359521374187,
+   "n_star": 24.7309311365106,
+   "D_first_n": {
+    "3": 0.4431916107967888,
+    "5": 0.3625379291538632,
+    "8": 0.5106208009299851,
+    "12": 0.44159245048856355,
+    "20": 0.5011497851869336
+   },
+   "R_first_n": {
+    "3": 0.16478741619518322,
+    "5": 0.203172411442329,
+    "8": 0.4407094867771258,
+    "12": 0.3908281278057057,
+    "20": 0.474894510723088
+   },
+   "D_pred_first_n": {
+    "3": 0.4054549649566868,
+    "5": 0.33454001765480745,
+    "8": 0.33886498205031695,
+    "12": 0.3828084530660314,
+    "20": 0.47476200511041194
+   },
+   "gap": {
+    "3": 0.037736645840102,
+    "5": 0.027997911499055728,
+    "8": 0.17175581887966812,
+    "12": 0.05878399742253215,
+    "20": 0.026387780076521705
+   },
+   "flag_uncertain": false,
+   "skill_pred": -0.022831107210571255,
+   "skill": -0.017485672355620707,
+   "skill_ci": [
+    -0.0446041333291185,
+    0.008970679187477182
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.12021931469700786,
+   "matches_starts_exact": 24.7309311365106,
+   "matches_starts_observed": null,
+   "matches_reliable_exact": 74.19279340953179,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 37.096396704765894,
+   "matches_sens_0.6_observed": null,
+   "matches_sens_0.8_exact": 98.92372454604242,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 25,
+   "matches_reliable": null,
+   "source": "formula",
+   "text": "teams differ somewhat in this number; the season so far does not predict the next match better than the league average; starts to say something after about 25 matches, not reliable within a season; you have seen {seen}"
+  },
+  "D23": {
+   "statement": "PPDA",
+   "grade": "C",
+   "D": 0.8052166206599611,
+   "N": 37.65714285714286,
+   "R_N": 0.7999029665080505,
+   "n_star": 9.419995788227904,
+   "D_first_n": {
+    "3": 0.27193914306160416,
+    "5": 0.5324809745053769,
+    "8": 0.5606757549652568,
+    "12": 0.6151558131543432,
+    "20": 0.7283524584727679
+   },
+   "R_first_n": {
+    "3": -0.09209128540759376,
+    "5": 0.41560121813172113,
+    "8": 0.49791514853172203,
+    "12": 0.5801699779865562,
+    "20": 0.7140552194450188
+   },
+   "D_pred_first_n": {
+    "3": 0.4943639837539775,
+    "5": 0.47739259142263357,
+    "8": 0.526837066156495,
+    "12": 0.5968721831423248,
+    "20": 0.6958192630878162
+   },
+   "gap": {
+    "3": -0.22242484069237334,
+    "5": 0.05508838308274333,
+    "8": 0.03383868880876184,
+    "12": 0.01828363001201838,
+    "20": 0.032533195384951696
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.03794006853495826,
+   "skill": 0.016447014176513952,
+   "skill_ci": [
+    -0.017187227495888635,
+    0.04889200329396859
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.06138042953575451,
+   "matches_starts_exact": 9.419995788227904,
+   "matches_starts_observed": 12,
+   "matches_reliable_exact": 28.259987364683713,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 14.129993682341857,
+   "matches_sens_0.6_observed": 20,
+   "matches_sens_0.8_exact": 37.67998315291163,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 9,
+   "matches_reliable": 28,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far does not predict the next match better than the league average; starts to say something after about 9 matches, reliable after about 28; you have seen {seen}"
+  },
+  "D24": {
+   "statement": "pressures per match",
+   "grade": "C",
+   "D": 0.8403235384227444,
+   "N": 37.65714285714286,
+   "R_N": 0.8359675944202472,
+   "n_star": 7.389032507176744,
+   "D_first_n": {
+    "3": 0.5349651436332787,
+    "5": 0.6123731219666108,
+    "8": 0.6471105026619282,
+    "12": 0.7491606732544116,
+    "20": 0.8228328950038095
+   },
+   "R_first_n": {
+    "3": 0.3024477154499181,
+    "5": 0.5154664024582635,
+    "8": 0.5966977173279179,
+    "12": 0.7263570980957218,
+    "20": 0.8135083105303259
+   },
+   "D_pred_first_n": {
+    "3": 0.5258440410068728,
+    "5": 0.5228662123279499,
+    "8": 0.5798694010968863,
+    "12": 0.6506643745252242,
+    "20": 0.7437083299682613
+   },
+   "gap": {
+    "3": 0.009121102626405975,
+    "5": 0.08950690963866081,
+    "8": 0.06724110156504182,
+    "12": 0.09849629872918741,
+    "20": 0.07912456503554821
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.06266537099560036,
+   "skill": -0.0015175469059542923,
+   "skill_ci": [
+    -0.03513738556318846,
+    0.033042626398810615
+   ],
+   "curve": "below",
+   "last5_vs_season": -0.07650936073026204,
+   "matches_starts_exact": 7.389032507176744,
+   "matches_starts_observed": 5,
+   "matches_reliable_exact": 22.167097521530234,
+   "matches_reliable_observed": 20,
+   "matches_sens_0.6_exact": 11.083548760765115,
+   "matches_sens_0.6_observed": 12,
+   "matches_sens_0.8_exact": 29.556130028706985,
+   "matches_sens_0.8_observed": 20,
+   "matches_starts": 7,
+   "matches_reliable": 22,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far does not predict the next match better than the league average; starts to say something after about 7 matches, reliable after about 22; you have seen {seen}; it predicts worse than its spread suggests: it may change during the season"
+  },
+  "D25": {
+   "statement": "pressures in the final third",
+   "grade": "B",
+   "D": 0.7995683491307213,
+   "N": 37.65714285714286,
+   "R_N": 0.7941006111880675,
+   "n_star": 9.76398026830514,
+   "D_first_n": {
+    "3": 0.3288087509216877,
+    "5": 0.38948841222353436,
+    "8": 0.48111489122529916,
+    "12": 0.5414240409852086,
+    "20": 0.6606220258209716
+   },
+   "R_first_n": {
+    "3": -0.006786873617468436,
+    "5": 0.23686051527941798,
+    "8": 0.4069884471146276,
+    "12": 0.4997353174384093,
+    "20": 0.6427600271799702
+   },
+   "D_pred_first_n": {
+    "3": 0.49002426813259004,
+    "5": 0.4709296495462729,
+    "8": 0.5190558306343959,
+    "12": 0.5887555890233592,
+    "20": 0.6883554829940735
+   },
+   "gap": {
+    "3": -0.16121551721090233,
+    "5": -0.08144123732273856,
+    "8": -0.03794093940909671,
+    "12": -0.04733154803815065,
+    "20": -0.027733457173101828
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.03467631485798028,
+   "skill": 0.043071441420464485,
+   "skill_ci": [
+    0.007005623041796194,
+    0.08614315465099054
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.11488978890613155,
+   "matches_starts_exact": 9.76398026830514,
+   "matches_starts_observed": 20,
+   "matches_reliable_exact": 29.29194080491542,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 14.645970402457708,
+   "matches_sens_0.6_observed": 20,
+   "matches_sens_0.8_exact": 39.05592107322057,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 10,
+   "matches_reliable": 29,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match a little better than the league average; starts to say something after about 10 matches, reliable after about 29; you have seen {seen}"
+  },
+  "D26": {
+   "statement": "height of defensive actions",
+   "grade": "B",
+   "D": 0.7822782106121169,
+   "N": 37.65714285714286,
+   "R_N": 0.7763388009249961,
+   "n_star": 10.848925385581756,
+   "D_first_n": {
+    "3": 0.2232245511074592,
+    "5": 0.3717703573926676,
+    "8": 0.5688383214878356,
+    "12": 0.6196842950844395,
+    "20": 0.7076930159612946
+   },
+   "R_first_n": {
+    "3": -0.1651631733388112,
+    "5": 0.21471294674083452,
+    "8": 0.5072437959860979,
+    "12": 0.5851101400921158,
+    "20": 0.6923084378539943
+   },
+   "D_pred_first_n": {
+    "3": 0.47774887059099075,
+    "5": 0.45238304192149964,
+    "8": 0.4963739567007125,
+    "12": 0.5647564118533094,
+    "20": 0.6659047604582125
+   },
+   "gap": {
+    "3": -0.25452431948353155,
+    "5": -0.08061268452883202,
+    "8": 0.07246436478712315,
+    "12": 0.05492788323113007,
+    "20": 0.04178825550308218
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.02562368269377815,
+   "skill": 0.03570186587137725,
+   "skill_ci": [
+    0.004952933497779477,
+    0.06997937766273077
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.0981904284699402,
+   "matches_starts_exact": 10.848925385581756,
+   "matches_starts_observed": 8,
+   "matches_reliable_exact": 32.54677615674527,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 16.273388078372633,
+   "matches_sens_0.6_observed": 20,
+   "matches_sens_0.8_exact": 43.39570154232703,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 11,
+   "matches_reliable": 33,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match a little better than the league average; starts to say something after about 11 matches, reliable after about 33; you have seen {seen}"
+  },
+  "D27": {
+   "statement": "shots conceded per match",
+   "grade": "C",
+   "D": 0.8532713961754235,
+   "N": 37.65714285714286,
+   "R_N": 0.8492686673103726,
+   "n_star": 6.683528483532808,
+   "D_first_n": {
+    "3": 0.5488053214695527,
+    "5": 0.6093793950338182,
+    "8": 0.6758963629053952,
+    "12": 0.7231210918318626,
+    "20": 0.7775902763046361
+   },
+   "R_first_n": {
+    "3": 0.3232079822043291,
+    "5": 0.5117242437922728,
+    "8": 0.6295958433204517,
+    "12": 0.6979502819983956,
+    "20": 0.7658845013733011
+   },
+   "D_pred_first_n": {
+    "3": 0.5398696184695905,
+    "5": 0.5423623270690654,
+    "8": 0.6017246515611229,
+    "12": 0.6720872193937274,
+    "20": 0.7620497580267716
+   },
+   "gap": {
+    "3": 0.00893570299996227,
+    "5": 0.06701706796475282,
+    "8": 0.07417171134427236,
+    "12": 0.051033872438135175,
+    "20": 0.015540518277864512
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.07431322381053311,
+   "skill": 0.058256529730356776,
+   "skill_ci": [
+    -0.004697689829631813,
+    0.12431234439985384
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.1070210436770429,
+   "matches_starts_exact": 6.683528483532808,
+   "matches_starts_observed": 5,
+   "matches_reliable_exact": 20.050585450598426,
+   "matches_reliable_observed": 20,
+   "matches_sens_0.6_exact": 10.025292725299213,
+   "matches_sens_0.6_observed": 8,
+   "matches_sens_0.8_exact": 26.73411393413124,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 7,
+   "matches_reliable": 20,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far does not predict the next match better than the league average; starts to say something after about 7 matches, reliable after about 20; you have seen {seen}"
+  },
+  "D28": {
+   "statement": "xG conceded per match",
+   "grade": "C",
+   "D": 0.7324491150179024,
+   "N": 37.65714285714286,
+   "R_N": 0.7251503769240806,
+   "n_star": 14.272972682306643,
+   "D_first_n": {
+    "3": 0.5244841818926282,
+    "5": 0.47951025582670004,
+    "8": 0.5196887562880667,
+    "12": 0.5217549459179899,
+    "20": 0.6506381221521758
+   },
+   "R_first_n": {
+    "3": 0.28672627283894236,
+    "5": 0.3493878197833751,
+    "8": 0.45107286432921906,
+    "12": 0.47827812281962534,
+    "20": 0.6322506548970271
+   },
+   "D_pred_first_n": {
+    "3": 0.4491211619129891,
+    "5": 0.4075445270397835,
+    "8": 0.4392822514015252,
+    "12": 0.502014543602618,
+    "20": 0.6043726882438976
+   },
+   "gap": {
+    "3": 0.07536301997963912,
+    "5": 0.07196572878691654,
+    "8": 0.08040650488654144,
+    "12": 0.019740402315371885,
+    "20": 0.0462654339082782
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.005488472046356355,
+   "skill": 0.015756123525940913,
+   "skill_ci": [
+    -0.02130980838713592,
+    0.05850823683156603
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.12390477594579008,
+   "matches_starts_exact": 14.272972682306643,
+   "matches_starts_observed": 20,
+   "matches_reliable_exact": 42.818918046919926,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 21.409459023459963,
+   "matches_sens_0.6_observed": 20,
+   "matches_sens_0.8_exact": 57.09189072922659,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 14,
+   "matches_reliable": null,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far does not predict the next match better than the league average; starts to say something after about 14 matches, not reliable within a season; you have seen {seen}"
+  },
+  "A29": {
+   "statement": "shots per match",
+   "grade": "B",
+   "D": 0.8082848022967704,
+   "N": 37.65714285714286,
+   "R_N": 0.803054847565973,
+   "n_star": 9.235224421729994,
+   "D_first_n": {
+    "3": 0.4611579032791657,
+    "5": 0.4580056496713939,
+    "8": 0.5735420009779053,
+    "12": 0.6189962746169531,
+    "20": 0.6799995003279077
+   },
+   "R_first_n": {
+    "3": 0.1917368549187486,
+    "5": 0.3225070620892424,
+    "8": 0.5126194296890346,
+    "12": 0.5843595723094034,
+    "20": 0.6631573687662186
+   },
+   "D_pred_first_n": {
+    "3": 0.4967958029262867,
+    "5": 0.48099311127782585,
+    "8": 0.5311449870751013,
+    "12": 0.6013405736403256,
+    "20": 0.6999009457193581
+   },
+   "gap": {
+    "3": -0.035637899647120996,
+    "5": -0.022987461606431947,
+    "8": 0.04239701390280404,
+    "12": 0.017655700976627497,
+    "20": -0.019901445391450445
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.03978376201423813,
+   "skill": 0.04827613944936837,
+   "skill_ci": [
+    0.00901443764214771,
+    0.08932589485479359
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.12103188089422634,
+   "matches_starts_exact": 9.235224421729994,
+   "matches_starts_observed": 8,
+   "matches_reliable_exact": 27.70567326518998,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 13.852836632594988,
+   "matches_sens_0.6_observed": 20,
+   "matches_sens_0.8_exact": 36.94089768691998,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 9,
+   "matches_reliable": 28,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match a little better than the league average; starts to say something after about 9 matches, reliable after about 28; you have seen {seen}"
+  },
+  "A30": {
+   "statement": "xG per match",
+   "grade": "B",
+   "D": 0.7855664817152574,
+   "N": 37.65714285714286,
+   "R_N": 0.7797167754487212,
+   "n_star": 10.638782077230207,
+   "D_first_n": {
+    "3": 0.4568558146709998,
+    "5": 0.4143157325503961,
+    "8": 0.4798538271444097,
+    "12": 0.5990143522129006,
+    "20": 0.6375671510738841
+   },
+   "R_first_n": {
+    "3": 0.18528372200649967,
+    "5": 0.26789466568799514,
+    "8": 0.40554723102218254,
+    "12": 0.5625611115049824,
+    "20": 0.6184917379725094
+   },
+   "D_pred_first_n": {
+    "3": 0.47997399293731496,
+    "5": 0.4557743934435873,
+    "8": 0.5005610195449115,
+    "12": 0.5692251963529282,
+    "20": 0.6701290884248369
+   },
+   "gap": {
+    "3": -0.02311817826631518,
+    "5": -0.04145866089319117,
+    "8": -0.020707192400501784,
+    "12": 0.029789155859972327,
+    "20": -0.03256193735095281
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.027245298713242844,
+   "skill": 0.04870601551949849,
+   "skill_ci": [
+    0.0014441818748633928,
+    0.10334207020346553
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.11572067697212618,
+   "matches_starts_exact": 10.638782077230207,
+   "matches_starts_observed": 12,
+   "matches_reliable_exact": 31.91634623169062,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 15.95817311584531,
+   "matches_sens_0.6_observed": 20,
+   "matches_sens_0.8_exact": 42.555128308920835,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 11,
+   "matches_reliable": 32,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match a little better than the league average; starts to say something after about 11 matches, reliable after about 32; you have seen {seen}"
+  },
+  "A31": {
+   "statement": "xT added per match",
+   "grade": "B",
+   "D": 0.8397396995247447,
+   "N": 37.65714285714286,
+   "R_N": 0.8353678285063239,
+   "n_star": 7.421374141142273,
+   "D_first_n": {
+    "3": 0.49462937021583364,
+    "5": 0.5274119261959793,
+    "8": 0.5616646457684664,
+    "12": 0.6602156692347885,
+    "20": 0.7553927298716541
+   },
+   "R_first_n": {
+    "3": 0.2419440553237504,
+    "5": 0.40926490774497415,
+    "8": 0.4990453094496759,
+    "12": 0.6293261846197692,
+    "20": 0.7425186630227938
+   },
+   "D_pred_first_n": {
+    "3": 0.5252466043581449,
+    "5": 0.5220255629166773,
+    "8": 0.5789154511091775,
+    "12": 0.6497196209388834,
+    "20": 0.7428901484733738
+   },
+   "gap": {
+    "3": -0.03061723414231121,
+    "5": 0.0053863632793019756,
+    "8": -0.017250805340711106,
+    "12": 0.010496048295905114,
+    "20": 0.01250258139828031
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.062178194777281204,
+   "skill": 0.08326852421778008,
+   "skill_ci": [
+    0.033021951645218595,
+    0.1373970592153394
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.11960132493899356,
+   "matches_starts_exact": 7.421374141142273,
+   "matches_starts_observed": 12,
+   "matches_reliable_exact": 22.26412242342682,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 11.132061211713408,
+   "matches_sens_0.6_observed": 12,
+   "matches_sens_0.8_exact": 29.685496564569103,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 7,
+   "matches_reliable": 22,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match a little better than the league average; starts to say something after about 7 matches, reliable after about 22; you have seen {seen}"
+  },
+  "A32": {
+   "statement": "pass completion under pressure in own half",
+   "grade": "B",
+   "D": 0.8513207093586749,
+   "N": 37.65714285714286,
+   "R_N": 0.8472647661221617,
+   "n_star": 6.78840045217648,
+   "D_first_n": {
+    "3": 0.42160552619351355,
+    "5": 0.5144547563734077,
+    "8": 0.6097688063436537,
+    "12": 0.6605800189086564,
+    "20": 0.7105485674608794
+   },
+   "R_first_n": {
+    "3": 0.13240828929027026,
+    "5": 0.39306844546675956,
+    "8": 0.5540214929641757,
+    "12": 0.6297236569912615,
+    "20": 0.6953142815377678
+   },
+   "D_pred_first_n": {
+    "3": 0.5376568088359416,
+    "5": 0.5393166033192811,
+    "8": 0.5983439578294472,
+    "12": 0.6688009482055585,
+    "20": 0.7592622060029084
+   },
+   "gap": {
+    "3": -0.11605128264242803,
+    "5": -0.024861846945873456,
+    "8": 0.011424848514206554,
+    "12": -0.008220929296902102,
+    "20": -0.048713638542029036
+   },
+   "flag_uncertain": false,
+   "skill_pred": 0.07244826431586925,
+   "skill": 0.07582062986414062,
+   "skill_ci": [
+    0.027349538756796687,
+    0.13409826002906955
+   ],
+   "curve": "on",
+   "last5_vs_season": -0.11203141105654146,
+   "matches_starts_exact": 6.78840045217648,
+   "matches_starts_observed": 8,
+   "matches_reliable_exact": 20.36520135652944,
+   "matches_reliable_observed": null,
+   "matches_sens_0.6_exact": 10.182600678264718,
+   "matches_sens_0.6_observed": 12,
+   "matches_sens_0.8_exact": 27.153601808705925,
+   "matches_sens_0.8_observed": null,
+   "matches_starts": 7,
+   "matches_reliable": 20,
+   "source": "formula",
+   "text": "teams differ a lot in this number; the season so far predicts the next match a little better than the league average; starts to say something after about 7 matches, reliable after about 20; you have seen {seen}"
+  }
+ },
+ "note": "Exploratory. Numbers of matches per type of statement, not per team. The grade is unchanged.",
+ "set": "confirm",
+ "n_teams": 70
+}
