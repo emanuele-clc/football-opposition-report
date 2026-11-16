@@ -134,8 +134,8 @@ function PressureZones({ pz, team }: { pz: NonNullable<Plan["pressure_zones"]>; 
               y={cy - 1.6}
               textAnchor="middle"
               fontSize="4.4"
-              fontWeight="900"
-              fontStyle="italic"
+              fontWeight="700"
+             
               fill="var(--sticker-ink)"
             >
               {Math.round(100 * z.up_completion)}%
@@ -182,8 +182,8 @@ export function Shape({ raw, side }: { raw: string; side: "left" | "right" }) {
               y={y + 0.9}
               textAnchor="middle"
               fontSize="2.5"
-              fontWeight="900"
-              fontStyle="italic"
+              fontWeight="700"
+             
               style={{ fontStretch: "62%" }}
               fill="var(--sticker-ink)"
             >
@@ -240,8 +240,7 @@ function VersusCard({ v, opp, mine }: { v: Versus; opp: string; mine: string }) 
         <summary>How it is computed</summary>
         <p className="small">
           Each forecast is the season value of {opp}, plus how {mine} changes what its opponents do, plus the home or
-          away effect. It is the forecast tested in the thesis (RQ2): on 70 StatsBomb and 96 Wyscout teams it guessed the
-          next match better than the season value for these three numbers.
+          away effect.
         </p>
         <ol className="vs-steps">
           {v.rows.map((r) => {
@@ -527,11 +526,10 @@ export default function GamePlan({
                           you vs them
                         </span>
                       )}
-                      <h3 style={{ margin: "2px 0 6px" }}>
+                      <h3 style={{ margin: "2px 0 6px" }} title={h.why}>
                         <GradeMark g={h.grade} href={evidenceHref(d.key)} none />
                         {h.title}
                       </h3>
-                      <p>{h.why}</p>
                       {h.grade === "D" && <p className="grade-warn">{`Grade D: ${GRADE_SAYS.D}`}</p>}
                       <p style={{ color: "var(--sticker-ink)", fontWeight: 650 }}>{h.look}</p>
                       <p className="gp-ev">
@@ -570,21 +568,6 @@ export default function GamePlan({
           {Icon.print}
           <span>Coach sheet · one A4 page</span>
         </a>
-        {full && (
-        <button
-          type="button"
-          className="icon-btn"
-          onClick={() => {
-            document.querySelectorAll<HTMLDetailsElement>("details.gp-more").forEach((x) => (x.open = true));
-            setTimeout(() => window.print(), 50);
-          }}
-          aria-label="Print the whole game plan, details included"
-          style={{ order: 3 }}
-        >
-          {Icon.print}
-          <span>Print all</span>
-        </button>
-        )}
         <label htmlFor="mine" style={{ fontWeight: 750 }}>
           Your team
         </label>
@@ -640,26 +623,14 @@ export default function GamePlan({
         </div>
       ) : (
         <>
-          {full ? (
-            <>
-              {shapeEl}
-              {briefEl}
-              {hintsEl}
-            </>
-          ) : (
-            <>
-              {hintsEl}
-              {shapeEl}
-            </>
-          )}
+          {hintsEl}
+          {shapeEl}
           <details className="more gp-more">
             <summary>
-              {full
-                ? "More detail: key players, matches to watch first, where pressing hurts them, breaks, fouls, when they score, past matches"
-                : "More detail: coach brief by phase, key players, matches to watch first, where pressing hurts them, breaks, fouls, when they score, past matches"}
+More detail: coach brief by phase, key players, matches to watch first, where pressing hurts them, breaks, fouls, when they score, past matches
             </summary>
             <div>
-          {!full && briefEl}
+          {briefEl}
           {evs && evs !== "none" && (
             <section className="section" aria-labelledby="kp-h">
               <div className="section-head">
@@ -961,8 +932,8 @@ export default function GamePlan({
                                   y={cy - 1}
                                   textAnchor="middle"
                                   fontSize="4.2"
-                                  fontWeight="900"
-                                  fontStyle="italic"
+                                  fontWeight="700"
+                                 
                                   fill="var(--sticker-ink)"
                                 >
                                   {z.per_match.toFixed(2)}

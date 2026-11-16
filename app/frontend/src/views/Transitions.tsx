@@ -56,8 +56,8 @@ function Thirds({
               y="33"
               textAnchor="middle"
               fontSize="13"
-              fontWeight="900"
-              fontStyle="italic"
+              fontWeight="700"
+             
               fill={fig}
               style={halo}
             >

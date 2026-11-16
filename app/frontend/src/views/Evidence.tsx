@@ -352,38 +352,6 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
         )}
       </section>
 
-      {ev.trust && <TrustSection ev={ev} seen={d.matches} />}
-
-      {cross && (
-        <section className="section" aria-labelledby="ev-x">
-          <div className="section-head">
-            <h2 id="ev-x">Same grade with the other provider?</h2>
-            <Explain>
-              The same check, with the same rules, was run on a second data provider: StatsBomb 2015/16 (70 teams) and
-              Wyscout 2017/18 (96 teams). A grade says how far a type of number can be trusted, not what its value is.
-            </Explain>
-          </div>
-          <div className="ev-cross">
-            <div className="ev-cross-fig" aria-label={`${cross.same} of ${cross.of} numbers keep their grade`}>
-              <b>{cross.same}</b>
-              <span>{`of ${cross.of}`}</span>
-            </div>
-            <div className="stack">
-              <p>{`${cross.same} of ${cross.of} numbers get the same grade on both providers, and none moves by two letters. The ${moved} that change move by one letter, almost all on the line between a weak forecast and none.`}</p>
-              <Note kind="caution" tag="Values">
-                {ev.provider
-                  ? `The grades travel, the values do not: on the same ${ev.provider_matches} Barcelona matches only ${prov?.same} of ${prov?.total} numbers came out the same in both providers. Compare numbers and ranks only within one provider, which is why this app never mixes them.`
-                  : "The grades travel, the values do not: each provider defines events in its own way. Compare numbers and ranks only within one provider, which is why this app never mixes them."}
-              </Note>
-              <p className="small s-muted">
-                Provider, season, leagues and teams all change between the two checks: a changed letter cannot be
-                pinned on one of them. Protocol written and pushed before the run: docs/protocol_evidence_grade_wyscout.md.
-              </p>
-            </div>
-          </div>
-        </section>
-      )}
-
       <section className="section" aria-labelledby="ev-m">
         <div className="section-head">
           <h2 id="ev-m">What this means</h2>
@@ -417,6 +385,40 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
           )}
         </ol>
       </section>
+
+      <details className="more section">
+        <summary>More detail: how many matches you need, the other provider, how we checked</summary>
+      {ev.trust && <TrustSection ev={ev} seen={d.matches} />}
+
+      {cross && (
+        <section className="section" aria-labelledby="ev-x">
+          <div className="section-head">
+            <h2 id="ev-x">Same grade with the other provider?</h2>
+            <Explain>
+              The same check, with the same rules, was run on a second data provider: StatsBomb 2015/16 (70 teams) and
+              Wyscout 2017/18 (96 teams). A grade says how far a type of number can be trusted, not what its value is.
+            </Explain>
+          </div>
+          <div className="ev-cross">
+            <div className="ev-cross-fig" aria-label={`${cross.same} of ${cross.of} numbers keep their grade`}>
+              <b>{cross.same}</b>
+              <span>{`of ${cross.of}`}</span>
+            </div>
+            <div className="stack">
+              <p>{`${cross.same} of ${cross.of} numbers get the same grade on both providers, and none moves by two letters. The ${moved} that change move by one letter, almost all on the line between a weak forecast and none.`}</p>
+              <Note kind="caution" tag="Values">
+                {ev.provider
+                  ? `The grades travel, the values do not: on the same ${ev.provider_matches} Barcelona matches only ${prov?.same} of ${prov?.total} numbers came out the same in both providers. Compare numbers and ranks only within one provider, which is why this app never mixes them.`
+                  : "The grades travel, the values do not: each provider defines events in its own way. Compare numbers and ranks only within one provider, which is why this app never mixes them."}
+              </Note>
+              <p className="small s-muted">
+                Provider, season, leagues and teams all change between the two checks: a changed letter cannot be
+                pinned on one of them. Protocol written and pushed before the run: docs/protocol_evidence_grade_wyscout.md.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="section" aria-labelledby="ev-how">
         <div className="section-head">
@@ -459,6 +461,8 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
           </Note>
         </div>
       </section>
+
+      </details>
 
       <details className="more section ev-expert">
         <summary>Details for experts: map, full table, notes</summary>

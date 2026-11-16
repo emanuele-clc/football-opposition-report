@@ -37,7 +37,7 @@ function PressureMap({ grid, height }: { grid: number[][]; height: number }) {
           );
         }),
       )}
-      <line x1={height} x2={height} y1="-1" y2="81" stroke="var(--yellow)" strokeWidth="0.9" strokeDasharray="2 1.4" />
+      <line x1={height} x2={height} y1="-1" y2="81" stroke="var(--sticker-ink)" strokeWidth="0.6" strokeDasharray="2 1.4" />
       {/* numbers on top of the line, on a small label so the line never hides them */}
       {grid.map((col, i) =>
         col.map((v, j) => (
@@ -57,7 +57,7 @@ function PressureMap({ grid, height }: { grid: number[][]; height: number }) {
               textAnchor="middle"
               fontSize="4.2"
               fontWeight="850"
-              fontStyle="italic"
+             
               fill="var(--sticker-ink)"
             >
               {v.toFixed(1)}
@@ -65,8 +65,17 @@ function PressureMap({ grid, height }: { grid: number[][]; height: number }) {
           </g>
         )),
       )}
-      <rect x={height - 13} y="-2.6" width="26" height="4.6" rx="1.2" fill="var(--sticker-ink)" />
-      <text x={height} y="0.6" textAnchor="middle" fontSize="2.8" fontWeight="750" fill="var(--yellow)">
+      <text
+        x={height}
+        y="0.6"
+        textAnchor="middle"
+        fontSize="2.8"
+        fontWeight="700"
+        fill="var(--sticker-ink)"
+        stroke="var(--pitch)"
+        strokeWidth="0.9"
+        paintOrder="stroke"
+      >
         defensive actions, mean x {height.toFixed(0)}
       </text>
     </Pitch>

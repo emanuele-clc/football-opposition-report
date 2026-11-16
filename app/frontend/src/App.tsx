@@ -1,5 +1,5 @@
 /* The main frame of the app: top bar, menu, and which page to show (address #/<team>/<section>). */
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { api, type Info, type Provider, type TeamData, type TeamSummary } from "./api";
 import { PROVIDER, PROVIDER_NAME, switchProvider, type ProviderId } from "./provider";
@@ -71,20 +71,6 @@ const storedView = (): View => {
     return "analyst";
   }
 };
-const TOUR = [
-  "overview",
-  "gameplan",
-  "goals",
-  "build-up",
-  "threat",
-  "restarts",
-  "setpieces",
-  "transitions",
-  "defending",
-  "compare",
-  "evidence",
-];
-const TOUR_MS = 15000;
 
 // Route: #/<team key>/<tab>[/<clip list>][?family=B1]
 interface Route {
@@ -110,9 +96,9 @@ const stored = (): "dark" | "light" => {
   const q = new URLSearchParams(location.search).get("theme");
   if (q === "light" || q === "dark") return q;
   try {
-    return localStorage.getItem("theme") === "light" ? "light" : "dark";
+    return localStorage.getItem("theme") === "dark" ? "dark" : "light";
   } catch {
-    return "dark";
+    return "light";
   }
 };
 
@@ -123,7 +109,6 @@ export default function App() {
   const [data, setData] = useState<TeamData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [theme, setTheme] = useState(stored);
-  const [tour, setTour] = useState(false);
   const [lang, setLang] = useState<Lang>(storedLanguage);
   const [providers, setProviders] = useState<Provider[] | null>(null);
   const [view, setView] = useState<View>(storedView);
@@ -160,7 +145,6 @@ export default function App() {
     } catch {
       /* private window */
     }
-    if (view === "analyst") setTour(false);
   }, [view]);
 
   useEffect(() => {
@@ -232,28 +216,6 @@ export default function App() {
     const t = TABS.find(([k]) => k === (route.tab === "advanced" ? "build-up" : route.tab))?.[1] ?? "";
     document.title = current ? `${current.team} · ${t} · Opposition report` : "Opposition report";
   }, [current, route.tab]);
-
-  // Presentation tour: walks through the sections, then to the next team. Esc or a click on the pill stops it.
-  useEffect(() => {
-    if (!tour) return;
-    const stop = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setTour(false);
-    };
-    addEventListener("keydown", stop);
-    const t = setTimeout(() => {
-      const r = parse(),
-        i = TOUR.indexOf(r.tab);
-      if (i >= 0 && i < TOUR.length - 1) location.hash = href({ key: r.key, tab: TOUR[i + 1] });
-      else if (teams?.length) {
-        const k = teams.findIndex((x) => x.key === r.key);
-        location.hash = href({ key: teams[(k + 1) % teams.length].key, tab: "overview" });
-      }
-    }, TOUR_MS);
-    return () => {
-      clearTimeout(t);
-      removeEventListener("keydown", stop);
-    };
-  }, [tour, route, teams]);
 
   const go = (tab: string, family = "") => {
     if (!current) return;
@@ -403,22 +365,6 @@ export default function App() {
                   <span>Add team</span>
                 </a>
               )}
-              {full && (
-                <button
-                  className="icon-btn"
-                  type="button"
-                  onClick={() => {
-                    close();
-                    if (!tour && route.key !== "new" && !TOUR.includes(route.tab))
-                      location.hash = href({ key: route.key, tab: "overview" });
-                    setTour(!tour);
-                  }}
-                  aria-pressed={tour}
-                >
-                  {Icon.tour}
-                  <span>{tour ? "Stop tour" : "Presentation tour"}</span>
-                </button>
-              )}
             </div>
           </div>
         </details>
@@ -480,7 +426,7 @@ export default function App() {
                 <b>{current.matches} matches</b>
                 {current.period.replace(" to ", " – ")}
               </span>
-              {here && providers && providers.length > 1 && (full || here.missing.length > 0) && (
+              {here && providers && providers.length > 1 && here.missing.length > 0 && (
                 <a className="source-stamp" href={`#/${encodeURIComponent(current.key)}/evidence`}>
                   <b>{here.name} data</b>
                   {here.missing.length
@@ -494,14 +440,6 @@ export default function App() {
                 </span>
               )}
             </div>
-            {!group && !full && route.tab !== "coach" && (
-              <p className="view-note no-print">
-                This page is part of the full report.{" "}
-                <button type="button" className="linkish" onClick={() => setView("full")}>
-                  Show every section
-                </button>
-              </p>
-            )}
             {group && group[1].length > 1 && (
               <nav className="subnav no-print" aria-label={group[0]}>
                 {group[1].map((k) => (
@@ -548,20 +486,6 @@ export default function App() {
             )}
           </main>
         </>
-      )}
-      {tour && (
-        <button
-          type="button"
-          className="tour-pill no-print"
-          onClick={() => setTour(false)}
-          aria-label="Stop the presentation tour"
-        >
-          Tour · {TABS.find(([k]) => k === route.tab)?.[1]}{" "}
-          <span className="bar-t" key={route.key + route.tab}>
-            <i style={{ "--tour": `${TOUR_MS}ms` } as React.CSSProperties} />
-          </span>{" "}
-          Esc to stop
-        </button>
       )}
       <footer>
         <span>Master's thesis prototype · descriptive only</span>

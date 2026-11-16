@@ -149,7 +149,6 @@ export default function Overview({
                 {fam.fam} · {pc(fam.share)} of {phase === "build-up" ? "build-up" : "advanced"} sequences
               </h2>
               <p>{famLine(fam)}</p>
-              {clips[idx] && <p>Replaying {clips[idx].detail}.</p>}
               {!events && (
                 <p>
                   Replays need the raw event files: start the app on the data folder that holds them (ev/).
@@ -187,9 +186,8 @@ export default function Overview({
                     <b className="kp-fig">{fmt(r.value, r.unit)}</b>
                     <KpTrack r={r} current={d.key} />
                   </span>
-                  <p className="sub">
+                  <p className="sub" title={r.caution ?? undefined}>
                     {where(r, d.key)}
-                    {r.caution ? ` · rough: ${r.caution}` : ""}
                   </p>
                 </span>
                 {r.provisional ? (
@@ -206,11 +204,11 @@ export default function Overview({
               </a>
             ))}
           </div>
-          <p className="small" style={{ marginTop: 12, marginBottom: 4 }}>
-            {d.provisional
-              ? `Only ${d.matches} matches: ${d.team} is not ranked. Each line compares it with the average of the ${d.references.length} reference teams (${d.min_matches ?? 8}+ matches each); read the numbers as rough.`
-              : `Where ${d.team} differs most from the other ${d.references.length} teams. 1st = highest value.`}
-          </p>
+          {d.provisional && (
+            <p className="small" style={{ marginTop: 12, marginBottom: 4 }}>
+              {`Only ${d.matches} matches: ${d.team} is not ranked. Each line compares it with the average of the ${d.references.length} reference teams (${d.min_matches ?? 8}+ matches each); read the numbers as rough.`}
+            </p>
+          )}
           {evRows.length > 0 && <GradeKey n={ev!.n_teams} href={evidenceHref(d.key)} />}
           <div className="fam-head">
             <h3 style={{ color: "var(--accent-text)" }}>Families</h3>
@@ -232,16 +230,14 @@ export default function Overview({
           </div>
           <ShareStrip families={P.families} pick={fam.fam} onPick={choose} />
           <p className="small" style={{ marginTop: 10 }}>
-            B1, A2… are labels, not tactical categories.{" "}
             <a href={`#/${encodeURIComponent(d.key)}/${phase}`}>Every number per family →</a>
           </p>
         </section>
       </div>
 
       <section className="section" aria-labelledby="trust-h">
-        <div className="section-head">
-          <h2 id="trust-h">How much can you trust this?</h2>
-        </div>
+        <details className="more">
+        <summary id="trust-h">How much can you trust this?</summary>
         <ul className="trust">
           {(() => {
             // one row for both phases: the caveat is the same, only the verdict differs
@@ -297,6 +293,7 @@ export default function Overview({
             </li>
           )}
         </ul>
+        </details>
         {full && (
           <p className="small no-print" style={{ marginTop: 14 }}>
             <a href={`#/${encodeURIComponent(d.key)}/compare`}>All {d.ranks.length} measures against the other teams →</a>

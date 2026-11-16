@@ -44,7 +44,7 @@ function CornerZones({ k }: { k: SetPieceKind }) {
           <text x={x + w / 2} y={y + h / 2 - 0.6} fontSize="2.6" textAnchor="middle" fontWeight="750">
             {n}
           </text>
-          <text x={x + w / 2} y={y + h / 2 + 3.4} fontSize="4" textAnchor="middle" fontWeight="900" fontStyle="italic">
+          <text x={x + w / 2} y={y + h / 2 + 3.4} fontSize="4" textAnchor="middle" fontWeight="700">
             {pc(share(n))}
           </text>
         </g>
@@ -53,7 +53,7 @@ function CornerZones({ k }: { k: SetPieceKind }) {
         <text x="90.5" y="38" fontSize="2.6" textAnchor="middle" fontWeight="750">
           short / outside
         </text>
-        <text x="90.5" y="42.5" fontSize="4" textAnchor="middle" fontWeight="900" fontStyle="italic">
+        <text x="90.5" y="42.5" fontSize="4" textAnchor="middle" fontWeight="700">
           {pc(share("short / outside box"))}
         </text>
       </g>

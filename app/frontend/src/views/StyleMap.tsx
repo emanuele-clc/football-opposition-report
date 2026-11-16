@@ -106,7 +106,7 @@ export default function StyleMap({ current, other }: { current: string; other?: 
         )}
         {!!d.left_out?.length && (
           <Note kind="caution" tag="Left out">
-            {d.left_out.map((t) => `${t.team} (${t.matches} matches)`).join(", ")}: fewer than {d.min_matches ?? 8}{" "}
+            {d.left_out.map((t) => `${t.team} (${t.matches})`).join(", ")}: fewer than {d.min_matches ?? 8}{" "}
             matches, too few to place on the map.
           </Note>
         )}

@@ -44,7 +44,7 @@ function ThreatMap({ grid }: { grid: number[][] }) {
                 textAnchor="middle"
                 fontSize="4.2"
                 fontWeight="850"
-                fontStyle="italic"
+               
                 fill="var(--sticker-ink)"
               >
                 {v.toFixed(2)}

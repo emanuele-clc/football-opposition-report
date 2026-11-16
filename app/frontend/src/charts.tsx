@@ -592,8 +592,8 @@ export function FamilyLanes({
               y={y + 1.5}
               textAnchor="end"
               fontSize="4.2"
-              fontWeight="900"
-              fontStyle="italic"
+              fontWeight="700"
+             
               fill="var(--run)"
             >
               {f.fam}
@@ -777,23 +777,13 @@ export function useGrades() {
 }
 
 /* One-line key printed next to the first grades of a page, so the letters never depend on a hover or a footnote. */
-export function GradeKey({ n, href }: { n?: number; href?: string }) {
-  return (
+export function GradeKey({ href }: { n?: number; href?: string }) {
+  /* The letters carry their meaning in a tooltip; the page shows only one link to what the grades mean. */
+  return href ? (
     <p className="grade-key">
-      <span>{n ? `Evidence grade, checked on ${n} unseen teams:` : "Evidence grade:"}</span>
-      {(["A", "B", "C", "D"] as Grade[]).map((g) => (
-        <span key={g}>
-          <GradeMark g={g} />
-          {GRADE_TITLE[g].toLowerCase()}
-        </span>
-      ))}
-      <span>
-        <GradeMark none />
-        not graded
-      </span>
-      {href && <a href={href}>What the grades mean</a>}
+      <a href={href}>What the grades mean</a>
     </p>
-  );
+  ) : null;
 }
 export const evidenceHref = (key: string, statement?: string | null) =>
   `#/${encodeURIComponent(key)}/evidence${statement ? `?family=${statement}` : ""}`;
@@ -943,12 +933,15 @@ export function Interval({
   );
 }
 
+/* A caution or remark: one line with its tag, the full text opens on click (never removed, only folded). */
 export function Note({ kind, tag, children }: { kind: "caution" | "ok" | "info"; tag: string; children: ReactNode }) {
   return (
-    <div className={`note ${kind}`}>
-      <span className="tag">{tag}</span>
-      <div>{children}</div>
-    </div>
+    <details className={`note ${kind}`}>
+      <summary>
+        <span className="tag">{tag}</span>
+        <span className="note-text">{children}</span>
+      </summary>
+    </details>
   );
 }
 
@@ -1199,8 +1192,8 @@ export function PassNetwork({ teamKey, family, color }: { teamKey: string; famil
                     y={n.y + 1.3}
                     textAnchor="middle"
                     fontSize="3.6"
-                    fontWeight="900"
-                    fontStyle="italic"
+                    fontWeight="700"
+                   
                     fill="var(--sticker-ink)"
                   >
                     {n.shirt ??

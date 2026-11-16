@@ -279,7 +279,7 @@ export default function Goals({ d, events }: { d: TeamData; events: boolean }) {
                         <b>{g.scorer}</b>
                       </td>
                       <td className="l">
-                        <span className="chip" style={{ background: COLOR[g.origin] }}>
+                        <span className="team-key" style={{ "--dot": COLOR[g.origin] } as CSSProperties}>
                           {g.origin}
                         </span>
                       </td>
