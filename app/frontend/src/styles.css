@@ -4156,3 +4156,10 @@ details.note > summary:hover .note-text {
     white-space: normal;
   }
 }
+
+/* Native dropdown lists: always dark ink on white, whatever the theme (the list is drawn by the system). */
+select option,
+select optgroup {
+  background: #ffffff;
+  color: #15171b;
+}

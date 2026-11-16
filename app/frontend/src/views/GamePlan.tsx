@@ -531,18 +531,8 @@ export default function GamePlan({
                         {h.title}
                       </h3>
                       {h.grade === "D" && <p className="grade-warn">{`Grade D: ${GRADE_SAYS.D}`}</p>}
-                      <p style={{ color: "var(--sticker-ink)", fontWeight: 650 }}>{h.look}</p>
-                      <p className="gp-ev">
-                        {h.evidence.map((e, i) => (
-                          <span key={i}>
-                            <GradeMark g={e.grade} none />
-                            {e.team && <b>{e.team === "you" ? P.mine : d.team}: </b>}
-                            {e.label} {fmt(e.value, unit(e.unit))} · {place(e.rank, e.of)}
-                            {e.id === "ppda" ? " (lower = more intense pressing)" : ""}
-                          </span>
-                        ))}
-                      </p>
-                      <a href={`#/${d.key}/${h.tab}`} style={{ fontWeight: 750, fontSize: 13 }}>
+                      <p>{h.look}</p>
+                      <a href={`#/${d.key}/${h.tab}`} style={{ fontWeight: 650, fontSize: 13 }}>
                         Check in {TAB_LABEL[h.tab] ?? h.tab} →
                       </a>
                     </div>

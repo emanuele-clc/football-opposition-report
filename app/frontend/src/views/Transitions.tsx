@@ -36,58 +36,24 @@ function Thirds({
       {THIRDS.map(([name, x]) => {
         const t = data[name];
         if (!t) return null;
-        const a = 0.14 + 0.62 * (t.per_match / max);
-        /* figures switch to ink as soon as the fill is pale enough; pale figures get a pitch halo so they stay legible on mid fills */
-        const ink = a > 0.42;
-        const fig = ink ? "var(--sticker-ink)" : "var(--run)";
-        const halo = ink ? undefined : { stroke: "rgba(11,17,36,0.6)", strokeWidth: 0.6, paintOrder: "stroke" as const };
+        const a = 0.05 + 0.27 * (t.per_match / max);
         return (
           <g key={name}>
+            {/* the per-third details stay one hover away, the pitch shows only the count */}
+            <title>{lines(t).join(" · ")}</title>
             <rect
               x={x + 0.8}
               y="0.8"
               width="38.4"
               height="78.4"
-              rx="2"
               fill={`color-mix(in srgb, ${color} ${Math.round(a * 100)}%, transparent)`}
             />
-            <text
-              x={x + 20}
-              y="33"
-              textAnchor="middle"
-              fontSize="13"
-              fontWeight="700"
-             
-              fill={fig}
-              style={halo}
-            >
+            <text x={x + 20} y="40" textAnchor="middle" fontSize="11" fontWeight="650" fill="var(--sticker-ink)" stroke="var(--pitch)" strokeWidth="1.4" paintOrder="stroke">
               {t.per_match.toFixed(1)}
             </text>
-            <text
-              x={x + 20}
-              y="39.5"
-              textAnchor="middle"
-              fontSize="3"
-              fontWeight="750"
-              fill={fig}
-              style={halo}
-            >
-              per match · {name}
+            <text x={x + 20} y="47" textAnchor="middle" fontSize="3" fontWeight="600" fill="var(--sticker-ink-2)" stroke="var(--pitch)" strokeWidth="0.8" paintOrder="stroke">
+              {name}
             </text>
-            <rect x={x + 1.6} y="47.6" width="36.8" height="11.6" rx="2" fill="#121a33" fillOpacity="0.88" />
-            {lines(t).map((l, i) => (
-              <text
-                key={i}
-                x={x + 20}
-                y={52.4 + i * 4.6}
-                textAnchor="middle"
-                fontSize="2.6"
-                fontWeight="650"
-                fill="var(--sticker)"
-              >
-                {l}
-              </text>
-            ))}
           </g>
         );
       })}
