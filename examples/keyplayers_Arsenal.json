@@ -1,6 +1,66 @@
 {
  "team": "Arsenal",
  "matches": 38,
+ "ranked_by": "per90",
+ "min_minutes": 270,
+ "red_cards": [
+  {
+   "match": 3754205,
+   "date": "2015-08-29",
+   "opponent": "Newcastle United",
+   "side": "against",
+   "player": "Aleksandar Mitrović",
+   "minute": 15
+  },
+  {
+   "match": 3754217,
+   "date": "2015-09-19",
+   "opponent": "Chelsea",
+   "side": "for",
+   "player": "Gabriel Armando de Abreu",
+   "minute": 45
+  },
+  {
+   "match": 3754217,
+   "date": "2015-09-19",
+   "opponent": "Chelsea",
+   "side": "for",
+   "player": "Santiago Cazorla González",
+   "minute": 78
+  },
+  {
+   "match": 3754126,
+   "date": "2015-10-24",
+   "opponent": "Everton",
+   "side": "against",
+   "player": "Gareth Barry",
+   "minute": 93
+  },
+  {
+   "match": 3754111,
+   "date": "2016-01-24",
+   "opponent": "Chelsea",
+   "side": "for",
+   "player": "Per Mertesacker",
+   "minute": 17
+  },
+  {
+   "match": 3754261,
+   "date": "2016-02-14",
+   "opponent": "Leicester City",
+   "side": "against",
+   "player": "Danny Simpson",
+   "minute": 53
+  },
+  {
+   "match": 3754318,
+   "date": "2016-03-05",
+   "opponent": "Tottenham Hotspur",
+   "side": "for",
+   "player": "Francis Joseph Coquelin",
+   "minute": 54
+  }
+ ],
  "players": [
   {
    "id": "buildup",
@@ -9,13 +69,15 @@
    "note": "Who the build-up goes through: pressing or marking them may disrupt it.",
    "top": [
     {
-     "player": "Laurent Koscielny",
-     "full": "Laurent Koscielny",
-     "shirt": 6,
+     "player": "Gabriel Armando de Abreu",
+     "full": "Gabriel Armando de Abreu",
+     "shirt": 5,
      "keeper": false,
-     "total": 962,
-     "matches": 33,
-     "per_match": 29.15
+     "total": 658,
+     "matches": 21,
+     "per_match": 31.33,
+     "minutes": 1874,
+     "per90": 31.61
     },
     {
      "player": "Per Mertesacker",
@@ -24,16 +86,20 @@
      "keeper": false,
      "total": 744,
      "matches": 24,
-     "per_match": 31.0
+     "per_match": 31.0,
+     "minutes": 2178,
+     "per90": 30.74
     },
     {
-     "player": "Aaron Ramsey",
-     "full": "Aaron Ramsey",
-     "shirt": 16,
+     "player": "Laurent Koscielny",
+     "full": "Laurent Koscielny",
+     "shirt": 6,
      "keeper": false,
-     "total": 686,
-     "matches": 31,
-     "per_match": 22.13
+     "total": 962,
+     "matches": 33,
+     "per_match": 29.15,
+     "minutes": 3032,
+     "per90": 28.55
     }
    ]
   },
@@ -44,13 +110,15 @@
    "note": "Who moves the ball into the final third: watch how they receive.",
    "top": [
     {
-     "player": "Mesut Özil",
-     "full": "Mesut Özil",
-     "shirt": 10,
+     "player": "Santiago Cazorla González",
+     "full": "Santiago Cazorla González",
+     "shirt": 19,
      "keeper": false,
-     "total": 323,
-     "matches": 35,
-     "per_match": 9.23
+     "total": 203,
+     "matches": 15,
+     "per_match": 13.53,
+     "minutes": 1364,
+     "per90": 13.4
     },
     {
      "player": "Aaron Ramsey",
@@ -59,16 +127,20 @@
      "keeper": false,
      "total": 293,
      "matches": 31,
-     "per_match": 9.45
+     "per_match": 9.45,
+     "minutes": 2795,
+     "per90": 9.44
     },
     {
-     "player": "Héctor Bellerín Moruno",
-     "full": "Héctor Bellerín Moruno",
-     "shirt": 2,
+     "player": "Mesut Özil",
+     "full": "Mesut Özil",
+     "shirt": 10,
      "keeper": false,
-     "total": 238,
-     "matches": 36,
-     "per_match": 6.61
+     "total": 323,
+     "matches": 35,
+     "per_match": 9.23,
+     "minutes": 3200,
+     "per90": 9.08
     }
    ]
   },
@@ -85,25 +157,31 @@
      "keeper": false,
      "total": 13.02,
      "matches": 38,
-     "per_match": 0.34
+     "per_match": 0.34,
+     "minutes": 2596,
+     "per90": 0.45
     },
     {
-     "player": "Alexis Alejandro Sánchez Sánchez",
-     "full": "Alexis Alejandro Sánchez Sánchez",
-     "shirt": 17,
+     "player": "Daniel Nii Tackie Mensah Welbeck",
+     "full": "Daniel Nii Tackie Mensah Welbeck",
+     "shirt": 23,
      "keeper": false,
-     "total": 11.26,
-     "matches": 30,
-     "per_match": 0.38
+     "total": 3.02,
+     "matches": 11,
+     "per_match": 0.27,
+     "minutes": 607,
+     "per90": 0.45
     },
     {
-     "player": "Aaron Ramsey",
-     "full": "Aaron Ramsey",
-     "shirt": 16,
+     "player": "Theo Walcott",
+     "full": "Theo Walcott",
+     "shirt": 14,
      "keeper": false,
-     "total": 7.37,
-     "matches": 31,
-     "per_match": 0.24
+     "total": 6.7,
+     "matches": 28,
+     "per_match": 0.24,
+     "minutes": 1459,
+     "per90": 0.41
     }
    ]
   },
@@ -120,7 +198,9 @@
      "keeper": false,
      "total": 141,
      "matches": 35,
-     "per_match": 4.03
+     "per_match": 4.03,
+     "minutes": 3200,
+     "per90": 3.97
     },
     {
      "player": "Santiago Cazorla González",
@@ -129,16 +209,20 @@
      "keeper": false,
      "total": 42,
      "matches": 15,
-     "per_match": 2.8
+     "per_match": 2.8,
+     "minutes": 1364,
+     "per90": 2.77
     },
     {
-     "player": "Alexis Alejandro Sánchez Sánchez",
-     "full": "Alexis Alejandro Sánchez Sánchez",
-     "shirt": 17,
+     "player": "Mohamed Naser Elsayed Elneny",
+     "full": "Mohamed Naser Elsayed Elneny",
+     "shirt": 35,
      "keeper": false,
-     "total": 15,
-     "matches": 30,
-     "per_match": 0.5
+     "total": 6,
+     "matches": 11,
+     "per_match": 0.55,
+     "minutes": 838,
+     "per90": 0.64
     }
    ]
   },
@@ -149,22 +233,26 @@
    "note": "Direct and indirect free kicks.",
    "top": [
     {
-     "player": "Mesut Özil",
-     "full": "Mesut Özil",
-     "shirt": 10,
-     "keeper": false,
-     "total": 80,
-     "matches": 35,
-     "per_match": 2.29
-    },
-    {
      "player": "Santiago Cazorla González",
      "full": "Santiago Cazorla González",
      "shirt": 19,
      "keeper": false,
      "total": 39,
      "matches": 15,
-     "per_match": 2.6
+     "per_match": 2.6,
+     "minutes": 1364,
+     "per90": 2.57
+    },
+    {
+     "player": "Mesut Özil",
+     "full": "Mesut Özil",
+     "shirt": 10,
+     "keeper": false,
+     "total": 80,
+     "matches": 35,
+     "per_match": 2.29,
+     "minutes": 3200,
+     "per90": 2.25
     },
     {
      "player": "Aaron Ramsey",
@@ -173,7 +261,9 @@
      "keeper": false,
      "total": 25,
      "matches": 31,
-     "per_match": 0.81
+     "per_match": 0.81,
+     "minutes": 2795,
+     "per90": 0.81
     }
    ]
   },
@@ -184,31 +274,37 @@
    "note": "Where pressure may pay. Players who have the ball most also lose it most (a goalkeeper here is mostly long balls that do not arrive): read it with Builds through.",
    "top": [
     {
+     "player": "David Ospina Ramírez",
+     "full": "David Ospina Ramírez",
+     "shirt": 13,
+     "keeper": true,
+     "total": 53,
+     "matches": 4,
+     "per_match": 13.25,
+     "minutes": 382,
+     "per90": 12.48
+    },
+    {
      "player": "Petr Čech",
      "full": "Petr Čech",
      "shirt": 33,
      "keeper": true,
      "total": 383,
      "matches": 34,
-     "per_match": 11.26
+     "per_match": 11.26,
+     "minutes": 3261,
+     "per90": 10.57
     },
     {
-     "player": "Ignacio Monreal Eraso",
-     "full": "Ignacio Monreal Eraso",
-     "shirt": 18,
+     "player": "Kieran Gibbs",
+     "full": "Kieran Gibbs",
+     "shirt": 3,
      "keeper": false,
-     "total": 200,
-     "matches": 37,
-     "per_match": 5.41
-    },
-    {
-     "player": "Laurent Koscielny",
-     "full": "Laurent Koscielny",
-     "shirt": 6,
-     "keeper": false,
-     "total": 174,
-     "matches": 33,
-     "per_match": 5.27
+     "total": 35,
+     "matches": 15,
+     "per_match": 2.33,
+     "minutes": 441,
+     "per90": 7.14
     }
    ]
   }

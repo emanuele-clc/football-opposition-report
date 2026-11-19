@@ -626,10 +626,26 @@ More detail: coach brief by phase, key players, matches to watch first, where pr
               <div className="section-head">
                 <h2 id="kp-h">Key players</h2>
                 <Explain>
-                  From all {evs.matches} matches: top 3 per role. Per match = matches in which the player appears. Names
-                  and shirt numbers as in the {PROVIDER_NAME} data.
+                  From all {evs.matches} matches: top 3 per role.{" "}
+                  {evs.ranked_by === "per90" ? (
+                    <>
+                      Ranked per 90 minutes played, only players with at least {evs.min_minutes} minutes (minutes from lineups,
+                      substitutions and sending-offs).
+                    </>
+                  ) : (
+                    <>Per match = matches in which the player appears.</>
+                  )}{" "}
+                  Names and shirt numbers as in the {PROVIDER_NAME} data.
                 </Explain>
               </div>
+              {evs.red_cards && evs.red_cards.length > 0 && (
+                <p className="s-muted" style={{ fontSize: 12.5, margin: "0 0 10px" }}>
+                  Sending-offs in these matches (numbers in those matches are partly with ten men):{" "}
+                  {evs.red_cards
+                    .map((r) => `${r.side === "for" ? r.player : "opponent"} ${r.minute}' vs ${r.opponent ?? "?"}`)
+                    .join(" · ")}
+                </p>
+              )}
               <div className="fam-row" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
                 {evs.players.map((r, n) => (
                   <article
@@ -651,10 +667,21 @@ More detail: coach brief by phase, key players, matches to watch first, where pr
                               {p.keeper && <small> GK</small>}
                             </span>
                             <span className="pval">
-                              <b>{r.id === "xg" ? p.total.toFixed(1) : p.total}</b>
-                              <small>
-                                in {p.matches} · {r.id === "xg" ? p.per_match.toFixed(2) : p.per_match.toFixed(1)}/match
-                              </small>
+                              {p.per90 != null ? (
+                                <>
+                                  <b>{p.per90.toFixed(2)}</b>
+                                  <small>
+                                    per 90 · {r.id === "xg" ? p.total.toFixed(1) : p.total} in {p.minutes}'
+                                  </small>
+                                </>
+                              ) : (
+                                <>
+                                  <b>{r.id === "xg" ? p.total.toFixed(1) : p.total}</b>
+                                  <small>
+                                    in {p.matches} · {r.id === "xg" ? p.per_match.toFixed(2) : p.per_match.toFixed(1)}/match
+                                  </small>
+                                </>
+                              )}
                             </span>
                           </li>
                         ))}

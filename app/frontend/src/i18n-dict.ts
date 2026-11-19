@@ -812,6 +812,18 @@ export const DICT: [string, string, string][] = [
     "Aus allen # Spielen: die Top # je Rolle.",
   ],
   [
+    "Ranked per 90 minutes played, only players with at least # minutes (minutes from lineups, substitutions and sending-offs).",
+    "Classifica per 90 minuti giocati, solo giocatori con almeno # minuti (minuti da formazioni, sostituzioni ed espulsioni).",
+    "Rangfolge pro 90 gespielte Minuten, nur Spieler mit mindestens # Minuten (Minuten aus Aufstellungen, Wechseln und Platzverweisen).",
+  ],
+  [
+    "Sending-offs in these matches (numbers in those matches are partly with ten men): {0}",
+    "Espulsioni in queste partite (i numeri di quelle partite sono in parte in dieci): {0}",
+    "Platzverweise in diesen Spielen (die Zahlen dieser Spiele sind teils in Unterzahl): {0}",
+  ],
+  ["per 90 · # in #'", "per 90 · # in #'", "pro 90 · # in #'"],
+  ["opponent", "avversario", "Gegner"],
+  [
     "Per match = matches in which the player appears.",
     "Per partita = partite in cui il giocatore compare.",
     "Pro Spiel = Spiele, in denen der Spieler auftaucht.",

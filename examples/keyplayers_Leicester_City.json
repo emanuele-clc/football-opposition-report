@@ -1,6 +1,50 @@
 {
  "team": "Leicester City",
  "matches": 38,
+ "ranked_by": "per90",
+ "min_minutes": 270,
+ "red_cards": [
+  {
+   "match": 3754203,
+   "date": "2015-08-15",
+   "opponent": "West Ham United",
+   "side": "against",
+   "player": "Adrián San Miguel del Castillo",
+   "minute": 91
+  },
+  {
+   "match": 3754058,
+   "date": "2016-01-02",
+   "opponent": "AFC Bournemouth",
+   "side": "against",
+   "player": "Simon Francis",
+   "minute": 56
+  },
+  {
+   "match": 3754261,
+   "date": "2016-02-14",
+   "opponent": "Arsenal",
+   "side": "for",
+   "player": "Danny Simpson",
+   "minute": 53
+  },
+  {
+   "match": 3754227,
+   "date": "2016-04-17",
+   "opponent": "West Ham United",
+   "side": "for",
+   "player": "Jamie Vardy",
+   "minute": 55
+  },
+  {
+   "match": 3754165,
+   "date": "2016-05-01",
+   "opponent": "Manchester United",
+   "side": "for",
+   "player": "Danny Drinkwater",
+   "minute": 85
+  }
+ ],
  "players": [
   {
    "id": "buildup",
@@ -15,7 +59,9 @@
      "keeper": false,
      "total": 644,
      "matches": 35,
-     "per_match": 18.4
+     "per_match": 18.4,
+     "minutes": 3232,
+     "per90": 17.93
     },
     {
      "player": "Christian Fuchs",
@@ -24,7 +70,9 @@
      "keeper": false,
      "total": 420,
      "matches": 32,
-     "per_match": 13.12
+     "per_match": 13.12,
+     "minutes": 2904,
+     "per90": 13.02
     },
     {
      "player": "N''Golo Kanté",
@@ -33,7 +81,9 @@
      "keeper": false,
      "total": 400,
      "matches": 36,
-     "per_match": 11.11
+     "per_match": 11.11,
+     "minutes": 3142,
+     "per90": 11.46
     }
    ]
   },
@@ -50,25 +100,31 @@
      "keeper": false,
      "total": 294,
      "matches": 35,
-     "per_match": 8.4
+     "per_match": 8.4,
+     "minutes": 3232,
+     "per90": 8.19
     },
     {
-     "player": "Riyad Mahrez",
-     "full": "Riyad Mahrez",
-     "shirt": 26,
+     "player": "Christian Fuchs",
+     "full": "Christian Fuchs",
+     "shirt": 28,
      "keeper": false,
-     "total": 190,
-     "matches": 37,
-     "per_match": 5.14
+     "total": 183,
+     "matches": 32,
+     "per_match": 5.72,
+     "minutes": 2904,
+     "per90": 5.67
     },
     {
-     "player": "N''Golo Kanté",
-     "full": "N''Golo Kanté",
-     "shirt": 14,
+     "player": "Nathan Dyer",
+     "full": "Nathan Dyer",
+     "shirt": 24,
      "keeper": false,
-     "total": 186,
-     "matches": 36,
-     "per_match": 5.17
+     "total": 17,
+     "matches": 12,
+     "per_match": 1.42,
+     "minutes": 273,
+     "per90": 5.6
     }
    ]
   },
@@ -85,7 +141,20 @@
      "keeper": false,
      "total": 22.3,
      "matches": 36,
-     "per_match": 0.62
+     "per_match": 0.62,
+     "minutes": 3342,
+     "per90": 0.6
+    },
+    {
+     "player": "José Leonardo Ulloa",
+     "full": "José Leonardo Ulloa",
+     "shirt": 23,
+     "keeper": false,
+     "total": 6.42,
+     "matches": 29,
+     "per_match": 0.22,
+     "minutes": 1089,
+     "per90": 0.53
     },
     {
      "player": "Riyad Mahrez",
@@ -94,16 +163,9 @@
      "keeper": false,
      "total": 12.16,
      "matches": 37,
-     "per_match": 0.33
-    },
-    {
-     "player": "Shinji Okazaki",
-     "full": "Shinji Okazaki",
-     "shirt": 20,
-     "keeper": false,
-     "total": 7.12,
-     "matches": 36,
-     "per_match": 0.2
+     "per_match": 0.33,
+     "minutes": 3177,
+     "per90": 0.34
     }
    ]
   },
@@ -120,7 +182,9 @@
      "keeper": false,
      "total": 75,
      "matches": 38,
-     "per_match": 1.97
+     "per_match": 1.97,
+     "minutes": 2907,
+     "per90": 2.32
     },
     {
      "player": "Christian Fuchs",
@@ -129,7 +193,9 @@
      "keeper": false,
      "total": 66,
      "matches": 32,
-     "per_match": 2.06
+     "per_match": 2.06,
+     "minutes": 2904,
+     "per90": 2.05
     },
     {
      "player": "Riyad Mahrez",
@@ -138,7 +204,9 @@
      "keeper": false,
      "total": 35,
      "matches": 37,
-     "per_match": 0.95
+     "per_match": 0.95,
+     "minutes": 3177,
+     "per90": 0.99
     }
    ]
   },
@@ -155,7 +223,9 @@
      "keeper": false,
      "total": 55,
      "matches": 38,
-     "per_match": 1.45
+     "per_match": 1.45,
+     "minutes": 2907,
+     "per90": 1.7
     },
     {
      "player": "Danny Drinkwater",
@@ -164,7 +234,9 @@
      "keeper": false,
      "total": 46,
      "matches": 35,
-     "per_match": 1.31
+     "per_match": 1.31,
+     "minutes": 3232,
+     "per90": 1.28
     },
     {
      "player": "Riyad Mahrez",
@@ -173,7 +245,9 @@
      "keeper": false,
      "total": 44,
      "matches": 37,
-     "per_match": 1.19
+     "per_match": 1.19,
+     "minutes": 3177,
+     "per90": 1.25
     }
    ]
   },
@@ -190,7 +264,20 @@
      "keeper": true,
      "total": 741,
      "matches": 38,
-     "per_match": 19.5
+     "per_match": 19.5,
+     "minutes": 3671,
+     "per90": 18.17
+    },
+    {
+     "player": "Ritchie De Laet",
+     "full": "Ritchie De Laet",
+     "shirt": 2,
+     "keeper": false,
+     "total": 69,
+     "matches": 12,
+     "per_match": 5.75,
+     "minutes": 712,
+     "per90": 8.72
     },
     {
      "player": "Christian Fuchs",
@@ -199,16 +286,9 @@
      "keeper": false,
      "total": 270,
      "matches": 32,
-     "per_match": 8.44
-    },
-    {
-     "player": "Danny Drinkwater",
-     "full": "Danny Drinkwater",
-     "shirt": 4,
-     "keeper": false,
-     "total": 254,
-     "matches": 35,
-     "per_match": 7.26
+     "per_match": 8.44,
+     "minutes": 2904,
+     "per90": 8.37
     }
    ]
   }

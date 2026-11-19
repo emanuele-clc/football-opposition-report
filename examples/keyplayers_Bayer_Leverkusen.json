@@ -1,6 +1,50 @@
 {
  "team": "Bayer Leverkusen",
  "matches": 34,
+ "ranked_by": "per90",
+ "min_minutes": 270,
+ "red_cards": [
+  {
+   "match": 3895250,
+   "date": "2024-02-23",
+   "opponent": "FSV Mainz 05",
+   "side": "against",
+   "player": "Jessic Ngankam",
+   "minute": 77
+  },
+  {
+   "match": 3895258,
+   "date": "2024-03-03",
+   "opponent": "FC Köln",
+   "side": "against",
+   "player": "Jan Thielmann",
+   "minute": 11
+  },
+  {
+   "match": 3895266,
+   "date": "2024-03-10",
+   "opponent": "Wolfsburg",
+   "side": "against",
+   "player": "Moritz Jenz",
+   "minute": 27
+  },
+  {
+   "match": 3895292,
+   "date": "2024-04-06",
+   "opponent": "Union Berlin",
+   "side": "against",
+   "player": "Robin Gosens",
+   "minute": 47
+  },
+  {
+   "match": 3895340,
+   "date": "2024-05-12",
+   "opponent": "Bochum",
+   "side": "against",
+   "player": "Felix Passlack",
+   "minute": 14
+  }
+ ],
  "players": [
   {
    "id": "buildup",
@@ -9,22 +53,15 @@
    "note": "Who the build-up goes through: pressing or marking them may disrupt it.",
    "top": [
     {
-     "player": "Granit Xhaka",
-     "full": "Granit Xhaka",
-     "shirt": 34,
+     "player": "Piero Martín Hincapié Reyna",
+     "full": "Piero Martín Hincapié Reyna",
+     "shirt": 3,
      "keeper": false,
-     "total": 1167,
-     "matches": 33,
-     "per_match": 35.36
-    },
-    {
-     "player": "Jonathan Tah",
-     "full": "Jonathan Tah",
-     "shirt": 4,
-     "keeper": false,
-     "total": 1165,
-     "matches": 31,
-     "per_match": 37.58
+     "total": 696,
+     "matches": 25,
+     "per_match": 27.84,
+     "minutes": 1622,
+     "per90": 38.61
     },
     {
      "player": "Edmond Fayçal Tapsoba",
@@ -33,7 +70,20 @@
      "keeper": false,
      "total": 967,
      "matches": 27,
-     "per_match": 35.81
+     "per_match": 35.81,
+     "minutes": 2263,
+     "per90": 38.47
+    },
+    {
+     "player": "Jonathan Tah",
+     "full": "Jonathan Tah",
+     "shirt": 4,
+     "keeper": false,
+     "total": 1165,
+     "matches": 31,
+     "per_match": 37.58,
+     "minutes": 2848,
+     "per90": 36.81
     }
    ]
   },
@@ -50,7 +100,9 @@
      "keeper": false,
      "total": 413,
      "matches": 33,
-     "per_match": 12.52
+     "per_match": 12.52,
+     "minutes": 3035,
+     "per90": 12.25
     },
     {
      "player": "Edmond Fayçal Tapsoba",
@@ -59,16 +111,20 @@
      "keeper": false,
      "total": 240,
      "matches": 27,
-     "per_match": 8.89
+     "per_match": 8.89,
+     "minutes": 2263,
+     "per90": 9.55
     },
     {
-     "player": "Florian Wirtz",
-     "full": "Florian Wirtz",
-     "shirt": 10,
+     "player": "Exequiel Alejandro Palacios",
+     "full": "Exequiel Alejandro Palacios",
+     "shirt": 25,
      "keeper": false,
-     "total": 229,
-     "matches": 32,
-     "per_match": 7.16
+     "total": 189,
+     "matches": 24,
+     "per_match": 7.88,
+     "minutes": 1950,
+     "per90": 8.72
     }
    ]
   },
@@ -85,25 +141,31 @@
      "keeper": false,
      "total": 15.97,
      "matches": 23,
-     "per_match": 0.69
+     "per_match": 0.69,
+     "minutes": 1654,
+     "per90": 0.87
     },
     {
-     "player": "Jeremie Frimpong",
-     "full": "Jeremie Frimpong",
-     "shirt": 30,
+     "player": "Adam Hložek",
+     "full": "Adam Hložek",
+     "shirt": 23,
      "keeper": false,
-     "total": 8.72,
-     "matches": 31,
-     "per_match": 0.28
+     "total": 3.01,
+     "matches": 22,
+     "per_match": 0.14,
+     "minutes": 544,
+     "per90": 0.5
     },
     {
-     "player": "Florian Wirtz",
-     "full": "Florian Wirtz",
-     "shirt": 10,
+     "player": "Patrik Schick",
+     "full": "Patrik Schick",
+     "shirt": 14,
      "keeper": false,
-     "total": 8.47,
-     "matches": 32,
-     "per_match": 0.26
+     "total": 5.45,
+     "matches": 20,
+     "per_match": 0.27,
+     "minutes": 1144,
+     "per90": 0.43
     }
    ]
   },
@@ -114,22 +176,26 @@
    "note": "Check their deliveries in Set pieces.",
    "top": [
     {
-     "player": "Alejandro Grimaldo García",
-     "full": "Alejandro Grimaldo García",
-     "shirt": 20,
-     "keeper": false,
-     "total": 112,
-     "matches": 33,
-     "per_match": 3.39
-    },
-    {
      "player": "Jonas Hofmann",
      "full": "Jonas Hofmann",
      "shirt": 7,
      "keeper": false,
      "total": 97,
      "matches": 32,
-     "per_match": 3.03
+     "per_match": 3.03,
+     "minutes": 2335,
+     "per90": 3.74
+    },
+    {
+     "player": "Alejandro Grimaldo García",
+     "full": "Alejandro Grimaldo García",
+     "shirt": 20,
+     "keeper": false,
+     "total": 112,
+     "matches": 33,
+     "per_match": 3.39,
+     "minutes": 2995,
+     "per90": 3.37
     },
     {
      "player": "Florian Wirtz",
@@ -138,7 +204,9 @@
      "keeper": false,
      "total": 21,
      "matches": 32,
-     "per_match": 0.66
+     "per_match": 0.66,
+     "minutes": 2529,
+     "per90": 0.75
     }
    ]
   },
@@ -155,7 +223,9 @@
      "keeper": false,
      "total": 51,
      "matches": 33,
-     "per_match": 1.55
+     "per_match": 1.55,
+     "minutes": 2995,
+     "per90": 1.53
     },
     {
      "player": "Jonas Hofmann",
@@ -164,16 +234,20 @@
      "keeper": false,
      "total": 26,
      "matches": 32,
-     "per_match": 0.81
+     "per_match": 0.81,
+     "minutes": 2335,
+     "per90": 1.0
     },
     {
-     "player": "Granit Xhaka",
-     "full": "Granit Xhaka",
-     "shirt": 34,
+     "player": "Robert Andrich",
+     "full": "Robert Andrich",
+     "shirt": 8,
      "keeper": false,
-     "total": 24,
-     "matches": 33,
-     "per_match": 0.73
+     "total": 15,
+     "matches": 28,
+     "per_match": 0.54,
+     "minutes": 1849,
+     "per90": 0.73
     }
    ]
   },
@@ -184,13 +258,26 @@
    "note": "Where pressure may pay. Players who have the ball most also lose it most (a goalkeeper here is mostly long balls that do not arrive): read it with Builds through.",
    "top": [
     {
+     "player": "Josip Stanišić",
+     "full": "Josip Stanišić",
+     "shirt": 2,
+     "keeper": false,
+     "total": 76,
+     "matches": 20,
+     "per_match": 3.8,
+     "minutes": 1377,
+     "per90": 4.97
+    },
+    {
      "player": "Lukáš Hrádecký",
      "full": "Lukáš Hrádecký",
      "shirt": 1,
      "keeper": true,
      "total": 177,
      "matches": 33,
-     "per_match": 5.36
+     "per_match": 5.36,
+     "minutes": 3215,
+     "per90": 4.96
     },
     {
      "player": "Edmond Fayçal Tapsoba",
@@ -199,16 +286,9 @@
      "keeper": false,
      "total": 116,
      "matches": 27,
-     "per_match": 4.3
-    },
-    {
-     "player": "Granit Xhaka",
-     "full": "Granit Xhaka",
-     "shirt": 34,
-     "keeper": false,
-     "total": 108,
-     "matches": 33,
-     "per_match": 3.27
+     "per_match": 4.3,
+     "minutes": 2263,
+     "per90": 4.61
     }
    ]
   }

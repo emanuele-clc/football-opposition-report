@@ -1,6 +1,90 @@
 {
  "team": "Barcelona",
  "matches": 38,
+ "ranked_by": "per90",
+ "min_minutes": 270,
+ "red_cards": [
+  {
+   "match": 3825637,
+   "date": "2015-10-25",
+   "opponent": "Eibar",
+   "side": "for",
+   "player": "Javier Alejandro Mascherano",
+   "minute": 82
+  },
+  {
+   "match": 266424,
+   "date": "2015-11-21",
+   "opponent": "Real Madrid",
+   "side": "against",
+   "player": "Francisco Román Alarcón Suárez",
+   "minute": 83
+  },
+  {
+   "match": 266149,
+   "date": "2016-01-17",
+   "opponent": "Athletic Club",
+   "side": "against",
+   "player": "Gorka Iraizoz Moreno",
+   "minute": 3
+  },
+  {
+   "match": 267576,
+   "date": "2016-01-30",
+   "opponent": "Atlético Madrid",
+   "side": "against",
+   "player": "Filipe Luís Kasmirski",
+   "minute": 43
+  },
+  {
+   "match": 267576,
+   "date": "2016-01-30",
+   "opponent": "Atlético Madrid",
+   "side": "against",
+   "player": "Diego Roberto Godín Leal",
+   "minute": 64
+  },
+  {
+   "match": 266653,
+   "date": "2016-03-03",
+   "opponent": "Rayo Vallecano",
+   "side": "against",
+   "player": "Diego Javier Llorente Ríos",
+   "minute": 41
+  },
+  {
+   "match": 266653,
+   "date": "2016-03-03",
+   "opponent": "Rayo Vallecano",
+   "side": "against",
+   "player": "Manuel Rolando Iturra Urrutia",
+   "minute": 66
+  },
+  {
+   "match": 267533,
+   "date": "2016-04-02",
+   "opponent": "Real Madrid",
+   "side": "against",
+   "player": "Sergio Ramos García",
+   "minute": 82
+  },
+  {
+   "match": 265944,
+   "date": "2016-04-23",
+   "opponent": "Sporting Gijón",
+   "side": "against",
+   "player": "Ognjen Vranješ",
+   "minute": 83
+  },
+  {
+   "match": 266986,
+   "date": "2016-04-30",
+   "opponent": "Real Betis",
+   "side": "against",
+   "player": "Heiko Westermann",
+   "minute": 34
+  }
+ ],
  "players": [
   {
    "id": "buildup",
@@ -9,13 +93,15 @@
    "note": "Who the build-up goes through: pressing or marking them may disrupt it.",
    "top": [
     {
-     "player": "Javier Alejandro Mascherano",
-     "full": "Javier Alejandro Mascherano",
-     "shirt": 14,
+     "player": "Marc Bartra Aregall",
+     "full": "Marc Bartra Aregall",
+     "shirt": 15,
      "keeper": false,
-     "total": 1256,
-     "matches": 32,
-     "per_match": 39.25
+     "total": 245,
+     "matches": 13,
+     "per_match": 18.85,
+     "minutes": 531,
+     "per90": 41.51
     },
     {
      "player": "Gerard Piqué Bernabéu",
@@ -24,16 +110,20 @@
      "keeper": false,
      "total": 1218,
      "matches": 30,
-     "per_match": 40.6
+     "per_match": 40.6,
+     "minutes": 2672,
+     "per90": 41.02
     },
     {
-     "player": "Sergio Busquets i Burgos",
-     "full": "Sergio Busquets i Burgos",
-     "shirt": 5,
+     "player": "Javier Alejandro Mascherano",
+     "full": "Javier Alejandro Mascherano",
+     "shirt": 14,
      "keeper": false,
-     "total": 952,
-     "matches": 35,
-     "per_match": 27.2
+     "total": 1256,
+     "matches": 32,
+     "per_match": 39.25,
+     "minutes": 2791,
+     "per90": 40.49
     }
    ]
   },
@@ -44,31 +134,37 @@
    "note": "Who moves the ball into the final third: watch how they receive.",
    "top": [
     {
-     "player": "Lionel Andrés Messi Cuccittini",
-     "full": "Lionel Andrés Messi Cuccittini",
-     "shirt": 10,
-     "keeper": false,
-     "total": 364,
-     "matches": 33,
-     "per_match": 11.03
-    },
-    {
      "player": "Andrés Iniesta Luján",
      "full": "Andrés Iniesta Luján",
      "shirt": 8,
      "keeper": false,
      "total": 337,
      "matches": 28,
-     "per_match": 12.04
+     "per_match": 12.04,
+     "minutes": 2329,
+     "per90": 13.02
     },
     {
-     "player": "Neymar da Silva Santos Junior",
-     "full": "Neymar da Silva Santos Junior",
-     "shirt": 11,
+     "player": "Lionel Andrés Messi Cuccittini",
+     "full": "Lionel Andrés Messi Cuccittini",
+     "shirt": 10,
      "keeper": false,
-     "total": 285,
-     "matches": 34,
-     "per_match": 8.38
+     "total": 364,
+     "matches": 33,
+     "per_match": 11.03,
+     "minutes": 2831,
+     "per90": 11.57
+    },
+    {
+     "player": "Daniel Alves da Silva",
+     "full": "Daniel Alves da Silva",
+     "shirt": 6,
+     "keeper": false,
+     "total": 213,
+     "matches": 29,
+     "per_match": 7.34,
+     "minutes": 2219,
+     "per90": 8.64
     }
    ]
   },
@@ -85,7 +181,9 @@
      "keeper": false,
      "total": 27.65,
      "matches": 35,
-     "per_match": 0.79
+     "per_match": 0.79,
+     "minutes": 3273,
+     "per90": 0.76
     },
     {
      "player": "Lionel Andrés Messi Cuccittini",
@@ -94,7 +192,9 @@
      "keeper": false,
      "total": 21.26,
      "matches": 33,
-     "per_match": 0.64
+     "per_match": 0.64,
+     "minutes": 2831,
+     "per90": 0.68
     },
     {
      "player": "Neymar da Silva Santos Junior",
@@ -103,7 +203,9 @@
      "keeper": false,
      "total": 20.47,
      "matches": 34,
-     "per_match": 0.6
+     "per_match": 0.6,
+     "minutes": 3163,
+     "per90": 0.58
     }
    ]
   },
@@ -120,7 +222,9 @@
      "keeper": false,
      "total": 125,
      "matches": 34,
-     "per_match": 3.68
+     "per_match": 3.68,
+     "minutes": 3163,
+     "per90": 3.56
     },
     {
      "player": "Ivan Rakitić",
@@ -129,7 +233,9 @@
      "keeper": false,
      "total": 53,
      "matches": 36,
-     "per_match": 1.47
+     "per_match": 1.47,
+     "minutes": 2667,
+     "per90": 1.79
     },
     {
      "player": "Lionel Andrés Messi Cuccittini",
@@ -138,7 +244,9 @@
      "keeper": false,
      "total": 33,
      "matches": 33,
-     "per_match": 1.0
+     "per_match": 1.0,
+     "minutes": 2831,
+     "per90": 1.05
     }
    ]
   },
@@ -155,7 +263,9 @@
      "keeper": false,
      "total": 91,
      "matches": 33,
-     "per_match": 2.76
+     "per_match": 2.76,
+     "minutes": 2831,
+     "per90": 2.89
     },
     {
      "player": "Neymar da Silva Santos Junior",
@@ -164,7 +274,9 @@
      "keeper": false,
      "total": 54,
      "matches": 34,
-     "per_match": 1.59
+     "per_match": 1.59,
+     "minutes": 3163,
+     "per90": 1.54
     },
     {
      "player": "Sergio Busquets i Burgos",
@@ -173,7 +285,9 @@
      "keeper": false,
      "total": 44,
      "matches": 35,
-     "per_match": 1.26
+     "per_match": 1.26,
+     "minutes": 3006,
+     "per90": 1.32
     }
    ]
   },
@@ -184,31 +298,37 @@
    "note": "Where pressure may pay. Players who have the ball most also lose it most (a goalkeeper here is mostly long balls that do not arrive): read it with Builds through.",
    "top": [
     {
+     "player": "Marc Bartra Aregall",
+     "full": "Marc Bartra Aregall",
+     "shirt": 15,
+     "keeper": false,
+     "total": 41,
+     "matches": 13,
+     "per_match": 3.15,
+     "minutes": 531,
+     "per90": 6.95
+    },
+    {
      "player": "Jordi Alba Ramos",
      "full": "Jordi Alba Ramos",
      "shirt": 18,
      "keeper": false,
      "total": 164,
      "matches": 31,
-     "per_match": 5.29
+     "per_match": 5.29,
+     "minutes": 2684,
+     "per90": 5.5
     },
     {
-     "player": "Claudio Andrés Bravo Muñoz",
-     "full": "Claudio Andrés Bravo Muñoz",
-     "shirt": 13,
-     "keeper": true,
-     "total": 157,
-     "matches": 32,
-     "per_match": 4.91
-    },
-    {
-     "player": "Gerard Piqué Bernabéu",
-     "full": "Gerard Piqué Bernabéu",
-     "shirt": 3,
+     "player": "Thomas Vermaelen",
+     "full": "Thomas Vermaelen",
+     "shirt": 23,
      "keeper": false,
-     "total": 139,
-     "matches": 30,
-     "per_match": 4.63
+     "total": 28,
+     "matches": 10,
+     "per_match": 2.8,
+     "minutes": 530,
+     "per90": 4.75
     }
    ]
   }

@@ -6,6 +6,9 @@ and every goal scored and conceded with how it started and in which 15 minutes.
 Usage:  python keyplayers.py <matches.json> "<Team>" [data_dir=.]   ->  keyplayers_<Team>.json"""
 
 import sys, os, json
+from minutes import match_minutes
+
+MIN_MINUTES = 270
 
 # From the events (needs <data>/ev): key players and when goals and chances come. Definitions fixed before looking at the output.
 # - builds through: completed open-play passes received in the own half (end x < 60); set-piece passes (corner, free kick, throw-in, goal kick, kick-off) excluded.
@@ -13,7 +16,10 @@ import sys, os, json
 # - shots and xG: all shots by the player, penalties included (StatsBomb xG).
 # - set-piece takers: corners taken; free kicks taken in the opponent half (passes and direct shots).
 # - loses the ball in own half: incomplete passes, Dispossessed and Miscontrol at x < 60.
-# Per match = per match in which the player has at least one event. Top 3 by total.
+# Per match = per match in which the player has at least one event.
+# Per 90 (added 19 Nov 2026, after the expert call of 13 Nov): count / minutes on the pitch x 90, minutes from minutes.py (lineups,
+# substitutions, sending-offs). Top 3 by per 90 among the players with at least MIN_MINUTES (270 = three full matches; if the team has
+# played fewer than 9 matches, a third of its total time). Data without lineups (generic CSV): top 3 by total, as before.
 # - timeline: goals (shots scored + own goals in their favour) and xG for and against by 15-minute slot; stoppage time goes to the slot before
 #   the half ends (45+ in 30-45, 90+ in 75-90); extra time (if played) in its own slot 90-120, the penalty shootout left out.
 # - goals: every goal scored and conceded (shots scored + own goals), with scorer, xG, shot location (team view: goals scored towards x = 120, conceded
@@ -138,6 +144,7 @@ def match_goals(ev, m, team_name, meta):
 def events_view(team_name, match_ids, ev_dir, meta=None):
     counts = {k: {} for k in ("buildup", "final_third", "shots", "xg", "corners", "free_kicks", "losses")}
     played, shirt, pos, starters = {}, {}, {}, {}
+    seconds, team_seconds, lineups, reds = {}, 0, True, []
     timeline = {s: {"goals_for": 0, "goals_against": 0, "xg_for": 0.0, "xg_against": 0.0} for s in SLOTS + [ET]}
     extra_time = False
     goals = []
@@ -151,6 +158,14 @@ def events_view(team_name, match_ids, ev_dir, meta=None):
     for m in match_ids:
         ev = json.load(open(os.path.join(ev_dir, f"{m}.json"), encoding="utf-8"))
         goals += match_goals(ev, m, team_name, meta)
+        mm = match_minutes(ev, team_name)
+        lineups = lineups and mm["has_lineup"]
+        team_seconds += mm["length"]
+        for p, v in mm["players"].items():
+            seconds[p] = seconds.get(p, 0) + v
+        for r in mm["reds"]:
+            reds.append({"match": m, "date": (meta or {}).get(m, {}).get("date"), "opponent": (meta or {}).get(m, {}).get("opponent") or next((e["team"]["name"] for e in ev if e["team"]["name"] != team_name), None),
+                         "side": r["side"], "player": r["player"], "minute": r["minute"]})
         seen = set()
         for e in ev:
             t = e["type"]["name"]
@@ -231,8 +246,14 @@ def events_view(team_name, match_ids, ev_dir, meta=None):
 
     n = len(match_ids)
 
+    min_sec = min(MIN_MINUTES * 60, team_seconds / 3)
+
     def top(k):
-        best = sorted(counts[k].items(), key=lambda x: -x[1])[:3]
+        if lineups and seconds:
+            ok = [(p, v) for p, v in counts[k].items() if seconds.get(p, 0) >= min_sec]
+            best = sorted(ok, key=lambda x: (-x[1] / seconds[x[0]], x[0]))[:3]
+        else:
+            best = sorted(counts[k].items(), key=lambda x: -x[1])[:3]
         return [{
             "player": short(p),
             "full": p,
@@ -241,6 +262,8 @@ def events_view(team_name, match_ids, ev_dir, meta=None):
             "total": round(v, 2),
             "matches": played.get(p, 0),
             "per_match": round(v / max(played.get(p, 1), 1), 2),
+            "minutes": round(seconds[p] / 60) if lineups and p in seconds else None,
+            "per90": round(v / seconds[p] * 5400, 2) if lineups and seconds.get(p) else None,
         } for p, v in best]
 
     foul_zones = []
@@ -281,6 +304,9 @@ def events_view(team_name, match_ids, ev_dir, meta=None):
 
     return {
         "matches": n,
+        "ranked_by": "per90" if lineups and seconds else "total",
+        "min_minutes": round(min_sec / 60) if lineups and seconds else None,
+        "red_cards": reds,
         "players": [{"id": k, "role": r, "unit": u, "note": note, "top": top(k)} for k, r, u, note in ROLES],
         "goals": goals,
         "starters": starters,

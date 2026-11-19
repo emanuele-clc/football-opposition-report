@@ -235,9 +235,14 @@ export interface GPPlayer {
   total: number;
   matches: number;
   per_match: number;
+  minutes?: number | null;
+  per90?: number | null;
 }
 export interface GPEvents {
   matches: number;
+  ranked_by?: "per90" | "total";
+  min_minutes?: number | null;
+  red_cards?: { match: number; date: string | null; opponent: string | null; side: "for" | "against"; player: string; minute: number }[];
   players: { id: string; role: string; unit: string; note: string; top: GPPlayer[] }[];
   goals: {
     side: "for" | "against";
