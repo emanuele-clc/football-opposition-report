@@ -1,0 +1,6942 @@
+{
+ "protocol": "docs/protocol_red_cards.md",
+ "exploratory": true,
+ "baseline_equals_official_file": true,
+ "team_matches_with_sending_off": {
+  "all_80": 699,
+  "subjects": 614
+ },
+ "team_matches_uneven_15min": {
+  "all_80": 476,
+  "subjects": 420
+ },
+ "variant_T": {
+  "cut": 697,
+  "dropped": 2
+ },
+ "sensitive": [
+  "P16",
+  "D26"
+ ],
+ "reading": "matches with ten men do not change the grades in a meaningful way",
+ "statements": {
+  "S01": {
+   "statement": "open-play sequences per match",
+   "official": {
+    "skill": 0.0926100745211691,
+    "D": 0.8862104676278947,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.09075476231728041,
+    "skill_ci": [
+     0.024099599807075656,
+     0.15587434433469216
+    ],
+    "D": 0.8716040190815622,
+    "grade": "B",
+    "forecasts": 1866,
+    "d_skill": -0.0018553122038886816,
+    "d_D": -0.014606448546332529,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.09142881668017211,
+    "skill_ci": [
+     0.03360046199448563,
+     0.14630483833115826
+    ],
+    "D": 0.8866976440452261,
+    "grade": "B",
+    "forecasts": 2284,
+    "d_skill": -0.0011812578409969854,
+    "d_D": 0.00048717641733142525,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "S02": {
+   "statement": "passes per sequence",
+   "official": {
+    "skill": 0.3573759950408939,
+    "D": 0.9600954108629619,
+    "grade": "A"
+   },
+   "E": {
+    "skill": 0.38034748731125234,
+    "skill_ci": [
+     0.23021785117023075,
+     0.525792852233593
+    ],
+    "D": 0.9578964437546136,
+    "grade": "A",
+    "forecasts": 1866,
+    "d_skill": 0.02297149227035844,
+    "d_D": -0.0021989671083483264,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.3703249408312591,
+    "skill_ci": [
+     0.2201607693132822,
+     0.5198923553810098
+    ],
+    "D": 0.9619446454226718,
+    "grade": "A",
+    "forecasts": 2283,
+    "d_skill": 0.012948945790365207,
+    "d_D": 0.001849234559709867,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "S03": {
+   "statement": "long-pass share of a sequence",
+   "official": {
+    "skill": 0.24315454155446425,
+    "D": 0.9410098908533142,
+    "grade": "A"
+   },
+   "E": {
+    "skill": 0.23855774494650228,
+    "skill_ci": [
+     0.14268552968596848,
+     0.3231172056709364
+    ],
+    "D": 0.9289678976460686,
+    "grade": "A",
+    "forecasts": 1866,
+    "d_skill": -0.004596796607961973,
+    "d_D": -0.012041993207245638,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.2373049827378445,
+    "skill_ci": [
+     0.14822397339850124,
+     0.31863781040414696
+    ],
+    "D": 0.9363276716222401,
+    "grade": "A",
+    "forecasts": 2283,
+    "d_skill": -0.005849558816619749,
+    "d_D": -0.004682219231074147,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "S04": {
+   "statement": "share of sequences starting in the build-up zone",
+   "official": {
+    "skill": 0.007118820080766031,
+    "D": 0.8001260995991324,
+    "grade": "C"
+   },
+   "E": {
+    "skill": 0.004513997699893246,
+    "skill_ci": [
+     -0.030530437300815505,
+     0.04259939580719885
+    ],
+    "D": 0.7655424366001717,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.0026048223808727844,
+    "d_D": -0.03458366299896065,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": -0.0006647989608383753,
+    "skill_ci": [
+     -0.03152965247870987,
+     0.03292762078176481
+    ],
+    "D": 0.783910482022157,
+    "grade": "C",
+    "forecasts": 2283,
+    "d_skill": -0.007783619041604406,
+    "d_D": -0.016215617576975427,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "S05": {
+   "statement": "shot rate per sequence",
+   "official": {
+    "skill": -0.005008684788975426,
+    "D": 0.7434545607022773,
+    "grade": "C"
+   },
+   "E": {
+    "skill": -0.0038702790055678005,
+    "skill_ci": [
+     -0.03906491771451481,
+     0.03489537112455798
+    ],
+    "D": 0.7066806977409463,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": 0.0011384057834076255,
+    "d_D": -0.036773862961331005,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": -0.0010591603117116044,
+    "skill_ci": [
+     -0.033602825609353015,
+     0.0345124933227039
+    ],
+    "D": 0.7450751634860749,
+    "grade": "C",
+    "forecasts": 2283,
+    "d_skill": 0.003949524477263822,
+    "d_D": 0.001620602783797609,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "S06": {
+   "statement": "sequence duration (s)",
+   "official": {
+    "skill": 0.23546283291729142,
+    "D": 0.9402398707990591,
+    "grade": "A"
+   },
+   "E": {
+    "skill": 0.25824454072704395,
+    "skill_ci": [
+     0.15228029530514453,
+     0.37208691791356363
+    ],
+    "D": 0.9375304772931287,
+    "grade": "A",
+    "forecasts": 1866,
+    "d_skill": 0.022781707809752527,
+    "d_D": -0.0027093935059304686,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.2490303764597207,
+    "skill_ci": [
+     0.14029782027325466,
+     0.3653150365708817
+    ],
+    "D": 0.943098974475777,
+    "grade": "A",
+    "forecasts": 2283,
+    "d_skill": 0.013567543542429283,
+    "d_D": 0.0028591036767178224,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "F07": {
+   "statement": "share of each build-up family",
+   "official": {
+    "skill": 0.05852610515654433,
+    "D": null,
+    "grade": "C"
+   },
+   "E": {
+    "skill": 0.05433354540055668,
+    "skill_ci": [
+     0.008490858160564052,
+     0.10582902746728495
+    ],
+    "D": null,
+    "grade": "C",
+    "forecasts": 5620,
+    "d_skill": -0.004192559755987646,
+    "d_D": null,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.0625501829527727,
+    "skill_ci": [
+     0.021477593086915547,
+     0.10680103114263328
+    ],
+    "D": null,
+    "grade": "C",
+    "forecasts": 6590,
+    "d_skill": 0.004024077796228376,
+    "d_D": null,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "F08": {
+   "statement": "share of each advanced family",
+   "official": {
+    "skill": 0.06948240567140695,
+    "D": null,
+    "grade": "C"
+   },
+   "E": {
+    "skill": 0.07292653102930191,
+    "skill_ci": [
+     0.02776992705804504,
+     0.12026733234119535
+    ],
+    "D": null,
+    "grade": "C",
+    "forecasts": 3372,
+    "d_skill": 0.003444125357894956,
+    "d_D": null,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.07837004861029795,
+    "skill_ci": [
+     0.0369463199102259,
+     0.12406398007621755
+    ],
+    "D": null,
+    "grade": "C",
+    "forecasts": 3954,
+    "d_skill": 0.008887642938890994,
+    "d_D": null,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "R09": {
+   "statement": "goal kicks: first pass short",
+   "official": {
+    "skill": 0.22443588492175492,
+    "D": 0.9365386405958487,
+    "grade": "A"
+   },
+   "E": {
+    "skill": 0.21887251110765082,
+    "skill_ci": [
+     0.13967827429132462,
+     0.3007801079727034
+    ],
+    "D": 0.9281386661763766,
+    "grade": "A",
+    "forecasts": 1864,
+    "d_skill": -0.0055633738141041,
+    "d_D": -0.008399974419472045,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.2245812694782795,
+    "skill_ci": [
+     0.14769908788462638,
+     0.30296241616928377
+    ],
+    "D": 0.936733237159138,
+    "grade": "A",
+    "forecasts": 2261,
+    "d_skill": 0.00014538455652457483,
+    "d_D": 0.00019459656328935093,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "R10": {
+   "statement": "goal kicks: reached the opponent half",
+   "official": {
+    "skill": 0.10556593278418802,
+    "D": 0.890949488182137,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.09741030676349727,
+    "skill_ci": [
+     0.04552581706380354,
+     0.1506216015083126
+    ],
+    "D": 0.8791161895125784,
+    "grade": "B",
+    "forecasts": 1864,
+    "d_skill": -0.008155626020690754,
+    "d_D": -0.011833298669558623,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.10043766626959705,
+    "skill_ci": [
+     0.05225091636528223,
+     0.1489084250616889
+    ],
+    "D": 0.8875526729414371,
+    "grade": "B",
+    "forecasts": 2261,
+    "d_skill": -0.005128266514590973,
+    "d_D": -0.003396815240699902,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "R11": {
+   "statement": "goal kicks: ended in own half",
+   "official": {
+    "skill": 0.05748459717446952,
+    "D": 0.8517716977801186,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.048683786246965344,
+    "skill_ci": [
+     0.010289109842320343,
+     0.08637763751576133
+    ],
+    "D": 0.8286979940497313,
+    "grade": "B",
+    "forecasts": 1864,
+    "d_skill": -0.008800810927504177,
+    "d_D": -0.023073703730387307,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.05900128563647644,
+    "skill_ci": [
+     0.021467588304997953,
+     0.09586603518187675
+    ],
+    "D": 0.8474053126560976,
+    "grade": "B",
+    "forecasts": 2261,
+    "d_skill": 0.001516688462006921,
+    "d_D": -0.004366385124020988,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "R12": {
+   "statement": "keeper: first pass short",
+   "official": {
+    "skill": 0.05584655665843452,
+    "D": 0.823527480115069,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.04762861544527308,
+    "skill_ci": [
+     0.00021571763840189107,
+     0.09423650212627421
+    ],
+    "D": 0.8020506408787456,
+    "grade": "B",
+    "forecasts": 1745,
+    "d_skill": -0.00821794121316144,
+    "d_D": -0.021476839236323486,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.05470810025721051,
+    "skill_ci": [
+     0.010077051303013396,
+     0.101267932592917
+    ],
+    "D": 0.8282887174159144,
+    "grade": "B",
+    "forecasts": 2087,
+    "d_skill": -0.0011384564012240084,
+    "d_D": 0.004761237300845322,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "R13": {
+   "statement": "throw-ins in own half: ended in own half",
+   "official": {
+    "skill": -0.027353599474067014,
+    "D": 0.4880285761553199,
+    "grade": "D"
+   },
+   "E": {
+    "skill": -0.036662352320791625,
+    "skill_ci": [
+     -0.062393988642139186,
+     -0.010354094530195868
+    ],
+    "D": 0.3997059345819761,
+    "grade": "D",
+    "forecasts": 1866,
+    "d_skill": -0.00930875284672461,
+    "d_D": -0.0883226415733438,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": -0.03358003317675351,
+    "skill_ci": [
+     -0.05667390794726801,
+     -0.011100200634561963
+    ],
+    "D": 0.4918348655171687,
+    "grade": "D",
+    "forecasts": 2275,
+    "d_skill": -0.006226433702686496,
+    "d_D": 0.0038062893618487914,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "P14": {
+   "statement": "corners per match",
+   "official": {
+    "skill": -0.002724193941815445,
+    "D": 0.7051316311323073,
+    "grade": "C"
+   },
+   "E": {
+    "skill": -0.010479009320183197,
+    "skill_ci": [
+     -0.042333232635239915,
+     0.01873176861502235
+    ],
+    "D": 0.6595296874540668,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.007754815378367752,
+    "d_D": -0.04560194367824044,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": -0.0033690194652076233,
+    "skill_ci": [
+     -0.03384574079146563,
+     0.02475059058313034
+    ],
+    "D": 0.7027380589508609,
+    "grade": "C",
+    "forecasts": 2284,
+    "d_skill": -0.0006448255233921785,
+    "d_D": -0.002393572181446313,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "P15": {
+   "statement": "corners played short / outside the box",
+   "official": {
+    "skill": 0.07038816900141587,
+    "D": 0.8517434599721557,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.04488985021146141,
+    "skill_ci": [
+     -0.015368846320781282,
+     0.10356194060689872
+    ],
+    "D": 0.8275564048893053,
+    "grade": "C",
+    "forecasts": 1826,
+    "d_skill": -0.025498318789954455,
+    "d_D": -0.02418705508285046,
+    "grade_changed": true
+   },
+   "T": {
+    "skill": 0.0653780691159831,
+    "skill_ci": [
+     0.013553160979342782,
+     0.11558547236189076
+    ],
+    "D": 0.8522495442007889,
+    "grade": "B",
+    "forecasts": 2201,
+    "d_skill": -0.005010099885432773,
+    "d_D": 0.0005060842286331857,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "P16": {
+   "statement": "corners to the far post",
+   "official": {
+    "skill": -0.020717156491234956,
+    "D": 0.5942306612475453,
+    "grade": "C"
+   },
+   "E": {
+    "skill": -0.036886878975738835,
+    "skill_ci": [
+     -0.06839107296062119,
+     -0.00028595779804119204
+    ],
+    "D": 0.5064380431239099,
+    "grade": "C",
+    "forecasts": 1826,
+    "d_skill": -0.01616972248450388,
+    "d_D": -0.08779261812363537,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": -0.032314702183452226,
+    "skill_ci": [
+     -0.06292768669838233,
+     0.004314778127949892
+    ],
+    "D": 0.5422772847146231,
+    "grade": "C",
+    "forecasts": 2201,
+    "d_skill": -0.01159754569221727,
+    "d_D": -0.0519533765329222,
+    "grade_changed": false
+   },
+   "sensitive": true
+  },
+  "P17": {
+   "statement": "corners ending in a shot",
+   "official": {
+    "skill": -0.05399066097680927,
+    "D": 0.3385148433298517,
+    "grade": "D"
+   },
+   "E": {
+    "skill": -0.06573068406687876,
+    "skill_ci": [
+     -0.0930823742232223,
+     -0.036546389316646666
+    ],
+    "D": 0.30892134448882946,
+    "grade": "D",
+    "forecasts": 1826,
+    "d_skill": -0.011740023090069496,
+    "d_D": -0.029593498841022248,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": -0.060942529150033176,
+    "skill_ci": [
+     -0.08452349676515447,
+     -0.035701876235100016
+    ],
+    "D": 0.33163723487010033,
+    "grade": "D",
+    "forecasts": 2201,
+    "d_skill": -0.006951868173223907,
+    "d_D": -0.006877608459751383,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "T18": {
+   "statement": "open-play losses per match",
+   "official": {
+    "skill": 0.016836795573276664,
+    "D": 0.8063272062059157,
+    "grade": "C"
+   },
+   "E": {
+    "skill": 0.014280068696629789,
+    "skill_ci": [
+     -0.030368950874177347,
+     0.05863610664700003
+    ],
+    "D": 0.7853390140220752,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.0025567268766468754,
+    "d_D": -0.020988192183840515,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.014257113733557869,
+    "skill_ci": [
+     -0.03246338404325044,
+     0.0597009802108609
+    ],
+    "D": 0.8073878358460532,
+    "grade": "C",
+    "forecasts": 2284,
+    "d_skill": -0.002579681839718795,
+    "d_D": 0.0010606296401375337,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "T19": {
+   "statement": "losses in own third",
+   "official": {
+    "skill": 0.028374259501534604,
+    "D": 0.813210106704969,
+    "grade": "C"
+   },
+   "E": {
+    "skill": 0.021417333072010103,
+    "skill_ci": [
+     -0.01750814973766257,
+     0.06021820537474987
+    ],
+    "D": 0.7811488973737373,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.0069569264295245015,
+    "d_D": -0.03206120933123169,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.021078722758535506,
+    "skill_ci": [
+     -0.0156851225287995,
+     0.05752961191063766
+    ],
+    "D": 0.8038015660028598,
+    "grade": "C",
+    "forecasts": 2284,
+    "d_skill": -0.007295536742999098,
+    "d_D": -0.00940854070210917,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "T20": {
+   "statement": "counter-press regains within 5 s",
+   "official": {
+    "skill": 0.003035916284764073,
+    "D": 0.714884013676137,
+    "grade": "C"
+   },
+   "E": {
+    "skill": -0.010785306048241905,
+    "skill_ci": [
+     -0.03464235024070139,
+     0.013456209001549646
+    ],
+    "D": 0.6938749461614866,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.013821222333005978,
+    "d_D": -0.02100906751465037,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": -0.0030982836692525773,
+    "skill_ci": [
+     -0.026763360053970064,
+     0.019573724224942635
+    ],
+    "D": 0.7045408995557094,
+    "grade": "C",
+    "forecasts": 2284,
+    "d_skill": -0.00613419995401665,
+    "d_D": -0.010343114120427543,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "T21": {
+   "statement": "recoveries in the final third",
+   "official": {
+    "skill": -0.0002784755166689301,
+    "D": 0.6621631916350043,
+    "grade": "C"
+   },
+   "E": {
+    "skill": -0.0017916403822040294,
+    "skill_ci": [
+     -0.02530562082812038,
+     0.0231667835182503
+    ],
+    "D": 0.6183337566797651,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.0015131648655350993,
+    "d_D": -0.043829434955239166,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": -0.005372613851376551,
+    "skill_ci": [
+     -0.02703494336534118,
+     0.018171523507373055
+    ],
+    "D": 0.6337959885461178,
+    "grade": "C",
+    "forecasts": 2284,
+    "d_skill": -0.005094138334707621,
+    "d_D": -0.028367203088886406,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "T22": {
+   "statement": "recoveries followed by a shot within 10 s",
+   "official": {
+    "skill": -0.017485672355620707,
+    "D": 0.6141218962297565,
+    "grade": "C"
+   },
+   "E": {
+    "skill": -0.03673431512125647,
+    "skill_ci": [
+     -0.06526227577065669,
+     -0.007468177566154255
+    ],
+    "D": 0.5451278002494264,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.01924864276563576,
+    "d_D": -0.06899409598033013,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": -0.0244802850870951,
+    "skill_ci": [
+     -0.04821487601078234,
+     0.0006381798007066841
+    ],
+    "D": 0.5992601754956428,
+    "grade": "C",
+    "forecasts": 2284,
+    "d_skill": -0.006994612731474392,
+    "d_D": -0.014861720734113737,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "D23": {
+   "statement": "PPDA",
+   "official": {
+    "skill": 0.016447014176513952,
+    "D": 0.8052166206599611,
+    "grade": "C"
+   },
+   "E": {
+    "skill": 0.015535273425175466,
+    "skill_ci": [
+     -0.017424930984836662,
+     0.04676985736554218
+    ],
+    "D": 0.7782030477138149,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.0009117407513384856,
+    "d_D": -0.027013572946146258,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.016055477301279875,
+    "skill_ci": [
+     -0.016605135966985873,
+     0.046606990014361194
+    ],
+    "D": 0.8051355715898287,
+    "grade": "C",
+    "forecasts": 2284,
+    "d_skill": -0.00039153687523407754,
+    "d_D": -8.104907013239959e-05,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "D24": {
+   "statement": "pressures per match",
+   "official": {
+    "skill": -0.0015175469059542923,
+    "D": 0.8403235384227444,
+    "grade": "C"
+   },
+   "E": {
+    "skill": 0.002922471175370145,
+    "skill_ci": [
+     -0.03219916827871505,
+     0.038199222601869476
+    ],
+    "D": 0.8075557498783962,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": 0.004440018081324437,
+    "d_D": -0.03276778854434825,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": -0.0017289374286397763,
+    "skill_ci": [
+     -0.0374029261004305,
+     0.03320713044008439
+    ],
+    "D": 0.8376504570317791,
+    "grade": "C",
+    "forecasts": 2284,
+    "d_skill": -0.00021139052268548397,
+    "d_D": -0.0026730813909653373,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "D25": {
+   "statement": "pressures in the final third",
+   "official": {
+    "skill": 0.043071441420464485,
+    "D": 0.7995683491307213,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.04277498559557158,
+    "skill_ci": [
+     -0.001245858336282879,
+     0.09208921678482318
+    ],
+    "D": 0.7740876444113532,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.000296455824892905,
+    "d_D": -0.02548070471936803,
+    "grade_changed": true
+   },
+   "T": {
+    "skill": 0.03817061577809189,
+    "skill_ci": [
+     0.0018116683789904942,
+     0.07931228913022326
+    ],
+    "D": 0.792427036896849,
+    "grade": "B",
+    "forecasts": 2284,
+    "d_skill": -0.004900825642372597,
+    "d_D": -0.007141312233872266,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "D26": {
+   "statement": "height of defensive actions",
+   "official": {
+    "skill": 0.03570186587137725,
+    "D": 0.7822782106121169,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.027942343225461852,
+    "skill_ci": [
+     -0.007792576345776681,
+     0.06669463361588124
+    ],
+    "D": 0.7612940303926404,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.007759522645915395,
+    "d_D": -0.020984180219476456,
+    "grade_changed": true
+   },
+   "T": {
+    "skill": 0.029244164663636107,
+    "skill_ci": [
+     -0.0038701557467739622,
+     0.06718359712424149
+    ],
+    "D": 0.7789559151041516,
+    "grade": "C",
+    "forecasts": 2284,
+    "d_skill": -0.00645770120774114,
+    "d_D": -0.003322295507965256,
+    "grade_changed": true
+   },
+   "sensitive": true
+  },
+  "D27": {
+   "statement": "shots conceded per match",
+   "official": {
+    "skill": 0.058256529730356776,
+    "D": 0.8532713961754235,
+    "grade": "C"
+   },
+   "E": {
+    "skill": 0.06415648513257821,
+    "skill_ci": [
+     -0.0058352840493738345,
+     0.13697680513735144
+    ],
+    "D": 0.8492872152540699,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": 0.005899955402221435,
+    "d_D": -0.003984180921353553,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.05316679603562169,
+    "skill_ci": [
+     -0.004048434317895255,
+     0.11347655457355177
+    ],
+    "D": 0.8488197063830054,
+    "grade": "C",
+    "forecasts": 2284,
+    "d_skill": -0.005089733694735088,
+    "d_D": -0.0044516897924180565,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "D28": {
+   "statement": "xG conceded per match",
+   "official": {
+    "skill": 0.015756123525940913,
+    "D": 0.7324491150179024,
+    "grade": "C"
+   },
+   "E": {
+    "skill": 0.007247229138646172,
+    "skill_ci": [
+     -0.03205837291720637,
+     0.04982895579223068
+    ],
+    "D": 0.7065295595540253,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.008508894387294741,
+    "d_D": -0.025919555463877142,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.006228144878379194,
+    "skill_ci": [
+     -0.02716678793123073,
+     0.045484590241737566
+    ],
+    "D": 0.7157240456049695,
+    "grade": "C",
+    "forecasts": 2284,
+    "d_skill": -0.009527978647561719,
+    "d_D": -0.016725069412932947,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "A29": {
+   "statement": "shots per match",
+   "official": {
+    "skill": 0.04827613944936837,
+    "D": 0.8082848022967704,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.04099737999493147,
+    "skill_ci": [
+     -0.003742691722883773,
+     0.08643501012899568
+    ],
+    "D": 0.7823392575074686,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.0072787594544369005,
+    "d_D": -0.025945544789301778,
+    "grade_changed": true
+   },
+   "T": {
+    "skill": 0.04983997310264765,
+    "skill_ci": [
+     0.011758615510518933,
+     0.09089087082076541
+    ],
+    "D": 0.80869247007296,
+    "grade": "B",
+    "forecasts": 2284,
+    "d_skill": 0.0015638336532792785,
+    "d_D": 0.00040766777618961303,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "A30": {
+   "statement": "xG per match",
+   "official": {
+    "skill": 0.04870601551949849,
+    "D": 0.7855664817152574,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.0427988011610162,
+    "skill_ci": [
+     -0.0009978708089946053,
+     0.09504547650139195
+    ],
+    "D": 0.7499150225989717,
+    "grade": "C",
+    "forecasts": 1866,
+    "d_skill": -0.005907214358482293,
+    "d_D": -0.035651459116285755,
+    "grade_changed": true
+   },
+   "T": {
+    "skill": 0.04495476830276923,
+    "skill_ci": [
+     0.0006518743963177531,
+     0.09849962803973511
+    ],
+    "D": 0.7751405408665287,
+    "grade": "B",
+    "forecasts": 2284,
+    "d_skill": -0.0037512472167292588,
+    "d_D": -0.01042594084872872,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "A31": {
+   "statement": "xT added per match",
+   "official": {
+    "skill": 0.08326852421778008,
+    "D": 0.8397396995247447,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.10167518547151899,
+    "skill_ci": [
+     0.0484885919928173,
+     0.1564502935017923
+    ],
+    "D": 0.842055203775569,
+    "grade": "B",
+    "forecasts": 1866,
+    "d_skill": 0.01840666125373891,
+    "d_D": 0.002315504250824274,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.10387173090057444,
+    "skill_ci": [
+     0.053905218449030734,
+     0.15640695002326666
+    ],
+    "D": 0.8514676980879665,
+    "grade": "B",
+    "forecasts": 2284,
+    "d_skill": 0.02060320668279436,
+    "d_D": 0.01172799856322182,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "A32": {
+   "statement": "pass completion under pressure in own half",
+   "official": {
+    "skill": 0.07582062986414062,
+    "D": 0.8513207093586749,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.07102879134960272,
+    "skill_ci": [
+     0.015065961274480899,
+     0.13543391624768786
+    ],
+    "D": 0.8362121904958043,
+    "grade": "B",
+    "forecasts": 1866,
+    "d_skill": -0.004791838514537905,
+    "d_D": -0.015108518862870568,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.07669388718582215,
+    "skill_ci": [
+     0.025822228688153093,
+     0.13494516751925012
+    ],
+    "D": 0.853259596940576,
+    "grade": "B",
+    "forecasts": 2284,
+    "d_skill": 0.0008732573216815309,
+    "d_D": 0.0019388875819010831,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "K33": {
+   "statement": "share of build-up receptions of the main receiver",
+   "official": {
+    "skill": 0.06939092873333763,
+    "D": 0.7290290144246401,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.04710017916149323,
+    "skill_ci": [
+     0.0058969708422531575,
+     0.09053819078122172
+    ],
+    "D": 0.6569322217466558,
+    "grade": "B",
+    "forecasts": 1866,
+    "d_skill": -0.022290749571844404,
+    "d_D": -0.0720967926779843,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.05836850660771975,
+    "skill_ci": [
+     0.01723452155012828,
+     0.10084397402314416
+    ],
+    "D": 0.7024703773951814,
+    "grade": "B",
+    "forecasts": 2284,
+    "d_skill": -0.011022422125617881,
+    "d_D": -0.02655863702945871,
+    "grade_changed": false
+   },
+   "sensitive": false
+  },
+  "K34": {
+   "statement": "share of corners taken by the main taker",
+   "official": {
+    "skill": 0.08275678255033203,
+    "D": 0.7389152221908463,
+    "grade": "B"
+   },
+   "E": {
+    "skill": 0.07576079145457904,
+    "skill_ci": [
+     0.02318983611508929,
+     0.1307374145504886
+    ],
+    "D": 0.6881173430594695,
+    "grade": "B",
+    "forecasts": 1826,
+    "d_skill": -0.006995991095752996,
+    "d_D": -0.05079787913137679,
+    "grade_changed": false
+   },
+   "T": {
+    "skill": 0.07206696138120872,
+    "skill_ci": [
+     0.023394270996604516,
+     0.12343559399218285
+    ],
+    "D": 0.7169521310736615,
+    "grade": "B",
+    "forecasts": 2201,
+    "d_skill": -0.010689821169123315,
+    "d_D": -0.021963091117184752,
+    "grade_changed": false
+   },
+   "sensitive": false
+  }
+ },
+ "sending_offs": [
+  {
+   "team": "AC Milan",
+   "match": 3878542,
+   "minute": 35,
+   "side": "for",
+   "player": "Rodrigo Ely"
+  },
+  {
+   "team": "AC Milan",
+   "match": 3879537,
+   "minute": 91,
+   "side": "against",
+   "player": "Bruno Miguel Borges Fernandes"
+  },
+  {
+   "team": "AC Milan",
+   "match": 3879549,
+   "minute": 41,
+   "side": "for",
+   "player": "Alessio Romagnoli"
+  },
+  {
+   "team": "AC Milan",
+   "match": 3879585,
+   "minute": 28,
+   "side": "against",
+   "player": "Andrea Consigli"
+  },
+  {
+   "team": "AC Milan",
+   "match": 3879652,
+   "minute": 55,
+   "side": "for",
+   "player": "Nigel de Jong"
+  },
+  {
+   "team": "AC Milan",
+   "match": 3879771,
+   "minute": 75,
+   "side": "against",
+   "player": "Gregoire Defrel"
+  },
+  {
+   "team": "AC Milan",
+   "match": 3879791,
+   "minute": 82,
+   "side": "against",
+   "player": "Senad Lulić"
+  },
+  {
+   "team": "AC Milan",
+   "match": 3879858,
+   "minute": 11,
+   "side": "against",
+   "player": "Amadou Diawara"
+  },
+  {
+   "team": "AFC Bournemouth",
+   "match": 3754131,
+   "minute": 78,
+   "side": "against",
+   "player": "Carl Jenkinson"
+  },
+  {
+   "team": "AFC Bournemouth",
+   "match": 3754169,
+   "minute": 73,
+   "side": "against",
+   "player": "Younes Kaboul"
+  },
+  {
+   "team": "AFC Bournemouth",
+   "match": 3754191,
+   "minute": 77,
+   "side": "against",
+   "player": "Victor Wanyama"
+  },
+  {
+   "team": "AFC Bournemouth",
+   "match": 3754219,
+   "minute": 33,
+   "side": "against",
+   "player": "James McClean"
+  },
+  {
+   "team": "AFC Bournemouth",
+   "match": 3754219,
+   "minute": 94,
+   "side": "against",
+   "player": "José Salomón Rondón Giménez"
+  },
+  {
+   "team": "AFC Bournemouth",
+   "match": 3754058,
+   "minute": 56,
+   "side": "for",
+   "player": "Simon Francis"
+  },
+  {
+   "team": "AS Monaco",
+   "match": 3829416,
+   "minute": 43,
+   "side": "against",
+   "player": "Olivier Boscagli"
+  },
+  {
+   "team": "AS Monaco",
+   "match": 3829502,
+   "minute": 65,
+   "side": "for",
+   "player": "Wallace Fortuna dos Santos"
+  },
+  {
+   "team": "AS Monaco",
+   "match": 3829520,
+   "minute": 68,
+   "side": "against",
+   "player": "Antoine Devaux"
+  },
+  {
+   "team": "AS Monaco",
+   "match": 3900558,
+   "minute": 62,
+   "side": "against",
+   "player": "Kévin Malcuit"
+  },
+  {
+   "team": "AS Monaco",
+   "match": 3900564,
+   "minute": 2,
+   "side": "against",
+   "player": "Mouhamadou Dabo"
+  },
+  {
+   "team": "AS Monaco",
+   "match": 3900625,
+   "minute": 47,
+   "side": "for",
+   "player": "Nabil Dirar"
+  },
+  {
+   "team": "AS Monaco",
+   "match": 3901212,
+   "minute": 53,
+   "side": "against",
+   "player": "Renato Civelli"
+  },
+  {
+   "team": "AS Monaco",
+   "match": 3901212,
+   "minute": 63,
+   "side": "for",
+   "player": "Elderson Uwa Echiejile"
+  },
+  {
+   "team": "AS Monaco",
+   "match": 3901252,
+   "minute": 22,
+   "side": "for",
+   "player": "Lacina Traoré"
+  },
+  {
+   "team": "AS Roma",
+   "match": 3878555,
+   "minute": 65,
+   "side": "against",
+   "player": "Rubens Fernando Moedim"
+  },
+  {
+   "team": "AS Roma",
+   "match": 3878555,
+   "minute": 76,
+   "side": "against",
+   "player": "Patrice Evra"
+  },
+  {
+   "team": "AS Roma",
+   "match": 3879583,
+   "minute": 86,
+   "side": "for",
+   "player": "Mohamed Salah"
+  },
+  {
+   "team": "AS Roma",
+   "match": 3879598,
+   "minute": 72,
+   "side": "for",
+   "player": "Miralem Pjanić"
+  },
+  {
+   "team": "AS Roma",
+   "match": 3879632,
+   "minute": 80,
+   "side": "for",
+   "player": "Maicon Douglas Sisenando"
+  },
+  {
+   "team": "AS Roma",
+   "match": 3879632,
+   "minute": 86,
+   "side": "against",
+   "player": "Guglielmo Stendardo"
+  },
+  {
+   "team": "AS Roma",
+   "match": 3879632,
+   "minute": 92,
+   "side": "against",
+   "player": "Alberto Grassi"
+  },
+  {
+   "team": "AS Roma",
+   "match": 3879657,
+   "minute": 73,
+   "side": "for",
+   "player": "Edin Džeko"
+  },
+  {
+   "team": "AS Roma",
+   "match": 3879717,
+   "minute": 86,
+   "side": "for",
+   "player": "Radja Nainggolan"
+  },
+  {
+   "team": "AS Roma",
+   "match": 3879757,
+   "minute": 93,
+   "side": "against",
+   "player": "Mário Rui Silva Duarte"
+  },
+  {
+   "team": "AS Roma",
+   "match": 3879799,
+   "minute": 93,
+   "side": "against",
+   "player": "Wesley Hoedt"
+  },
+  {
+   "team": "Angers",
+   "match": 3829466,
+   "minute": 32,
+   "side": "for",
+   "player": "Cheikh N''Doye"
+  },
+  {
+   "team": "Angers",
+   "match": 3829514,
+   "minute": 80,
+   "side": "for",
+   "player": "Slimane Sissoko"
+  },
+  {
+   "team": "Angers",
+   "match": 3900518,
+   "minute": 31,
+   "side": "against",
+   "player": "Alaeddine Yahia"
+  },
+  {
+   "team": "Angers",
+   "match": 3900526,
+   "minute": 65,
+   "side": "against",
+   "player": "Renato Civelli"
+  },
+  {
+   "team": "Angers",
+   "match": 3900617,
+   "minute": 90,
+   "side": "for",
+   "player": "Pierrick Capelle"
+  },
+  {
+   "team": "Angers",
+   "match": 3900624,
+   "minute": 13,
+   "side": "for",
+   "player": "Thomas Mangani"
+  },
+  {
+   "team": "Angers",
+   "match": 3901156,
+   "minute": 40,
+   "side": "for",
+   "player": "Cheikh N''Doye"
+  },
+  {
+   "team": "Angers",
+   "match": 3901218,
+   "minute": 33,
+   "side": "for",
+   "player": "Ismaël Traoré"
+  },
+  {
+   "team": "Arsenal",
+   "match": 3754205,
+   "minute": 15,
+   "side": "against",
+   "player": "Aleksandar Mitrović"
+  },
+  {
+   "team": "Arsenal",
+   "match": 3754217,
+   "minute": 45,
+   "side": "for",
+   "player": "Gabriel Armando de Abreu"
+  },
+  {
+   "team": "Arsenal",
+   "match": 3754217,
+   "minute": 78,
+   "side": "for",
+   "player": "Santiago Cazorla González"
+  },
+  {
+   "team": "Arsenal",
+   "match": 3754126,
+   "minute": 93,
+   "side": "against",
+   "player": "Gareth Barry"
+  },
+  {
+   "team": "Arsenal",
+   "match": 3754111,
+   "minute": 17,
+   "side": "for",
+   "player": "Per Mertesacker"
+  },
+  {
+   "team": "Arsenal",
+   "match": 3754261,
+   "minute": 53,
+   "side": "against",
+   "player": "Danny Simpson"
+  },
+  {
+   "team": "Arsenal",
+   "match": 3754318,
+   "minute": 54,
+   "side": "for",
+   "player": "Francis Joseph Coquelin"
+  },
+  {
+   "team": "Aston Villa",
+   "match": 3753997,
+   "minute": 16,
+   "side": "for",
+   "player": "Jordan Ayew"
+  },
+  {
+   "team": "Aston Villa",
+   "match": 3754075,
+   "minute": 84,
+   "side": "for",
+   "player": "Alan Hutton"
+  },
+  {
+   "team": "Aston Villa",
+   "match": 3754063,
+   "minute": 72,
+   "side": "for",
+   "player": "Aly Cissokho"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3878543,
+   "minute": 70,
+   "side": "for",
+   "player": "Carlos Emilio Carmona Tello"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3878599,
+   "minute": 47,
+   "side": "for",
+   "player": "Mauricio Ricardo Pinilla Ferreira"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3878599,
+   "minute": 83,
+   "side": "against",
+   "player": "Šime Vrsaljko"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3878610,
+   "minute": 78,
+   "side": "against",
+   "player": "Boško Janković"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879561,
+   "minute": 3,
+   "side": "for",
+   "player": "Gabriel Alejandro Paletta"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879580,
+   "minute": 72,
+   "side": "for",
+   "player": "Rafael Tolói"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879632,
+   "minute": 80,
+   "side": "against",
+   "player": "Maicon Douglas Sisenando"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879632,
+   "minute": 86,
+   "side": "for",
+   "player": "Guglielmo Stendardo"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879632,
+   "minute": 92,
+   "side": "for",
+   "player": "Alberto Grassi"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879644,
+   "minute": 75,
+   "side": "for",
+   "player": "Giulio Migliaccio"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879654,
+   "minute": 65,
+   "side": "for",
+   "player": "Nicolò Cherubin"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879654,
+   "minute": 90,
+   "side": "for",
+   "player": "Jasmin Kurtič"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879661,
+   "minute": 72,
+   "side": "against",
+   "player": "Jorge Luiz Frello Filho"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879661,
+   "minute": 89,
+   "side": "for",
+   "player": "Gabriel Alejandro Paletta"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879722,
+   "minute": 53,
+   "side": "for",
+   "player": "Boukary Dramé"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879750,
+   "minute": 91,
+   "side": "for",
+   "player": "Andrea Conti"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879794,
+   "minute": 77,
+   "side": "against",
+   "player": "Ibrahima Mbaye"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879794,
+   "minute": 84,
+   "side": "against",
+   "player": "Daniele Gastaldello"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879815,
+   "minute": 90,
+   "side": "for",
+   "player": "Marten de Roon"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879832,
+   "minute": 88,
+   "side": "against",
+   "player": "Roberto Vitiello"
+  },
+  {
+   "team": "Atalanta",
+   "match": 3879842,
+   "minute": 74,
+   "side": "for",
+   "player": "Alejandro Darío Gómez"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 3825675,
+   "minute": 63,
+   "side": "for",
+   "player": "Aymeric Laporte"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 3825686,
+   "minute": 17,
+   "side": "for",
+   "player": "Mikel San José Domínguez"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 266149,
+   "minute": 3,
+   "side": "for",
+   "player": "Gorka Iraizoz Moreno"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 3825751,
+   "minute": 91,
+   "side": "against",
+   "player": "Juan Torres Ruiz"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 3825761,
+   "minute": 89,
+   "side": "for",
+   "player": "Iñaki Williams Arthuer"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 3825761,
+   "minute": 93,
+   "side": "against",
+   "player": "Daniele Bonera"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 3825770,
+   "minute": 82,
+   "side": "against",
+   "player": "Raphaël Varane"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 3825808,
+   "minute": 73,
+   "side": "for",
+   "player": "Aymeric Laporte"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 3825870,
+   "minute": 39,
+   "side": "against",
+   "player": "Gustavo Daniel Cabral Cáceres"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 3825869,
+   "minute": 33,
+   "side": "against",
+   "player": "Jorge Andújar Moreno"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 3825869,
+   "minute": 57,
+   "side": "against",
+   "player": "Timothée Kolodziejczak"
+  },
+  {
+   "team": "Athletic Club",
+   "match": 3825869,
+   "minute": 89,
+   "side": "for",
+   "player": "Mikel Rico Moreno"
+  },
+  {
+   "team": "Atlético Madrid",
+   "match": 3825631,
+   "minute": 88,
+   "side": "against",
+   "player": "Diego Antonio Reyes Rosales"
+  },
+  {
+   "team": "Atlético Madrid",
+   "match": 3825631,
+   "minute": 91,
+   "side": "against",
+   "player": "Jonathas Cristian de Jesus"
+  },
+  {
+   "team": "Atlético Madrid",
+   "match": 3825701,
+   "minute": 55,
+   "side": "for",
+   "player": "Gabriel Fernández Arenas"
+  },
+  {
+   "team": "Atlético Madrid",
+   "match": 3825748,
+   "minute": 60,
+   "side": "against",
+   "player": "Víctor Machín Pérez"
+  },
+  {
+   "team": "Atlético Madrid",
+   "match": 267576,
+   "minute": 43,
+   "side": "for",
+   "player": "Filipe Luís Kasmirski"
+  },
+  {
+   "team": "Atlético Madrid",
+   "match": 267576,
+   "minute": 64,
+   "side": "for",
+   "player": "Diego Roberto Godín Leal"
+  },
+  {
+   "team": "Atlético Madrid",
+   "match": 3825807,
+   "minute": 79,
+   "side": "against",
+   "player": "Aderllan Leandro de Jesus Santos"
+  },
+  {
+   "team": "Barcelona",
+   "match": 3825637,
+   "minute": 82,
+   "side": "for",
+   "player": "Javier Alejandro Mascherano"
+  },
+  {
+   "team": "Barcelona",
+   "match": 266424,
+   "minute": 83,
+   "side": "against",
+   "player": "Francisco Román Alarcón Suárez"
+  },
+  {
+   "team": "Barcelona",
+   "match": 266149,
+   "minute": 3,
+   "side": "against",
+   "player": "Gorka Iraizoz Moreno"
+  },
+  {
+   "team": "Barcelona",
+   "match": 267576,
+   "minute": 43,
+   "side": "against",
+   "player": "Filipe Luís Kasmirski"
+  },
+  {
+   "team": "Barcelona",
+   "match": 267576,
+   "minute": 64,
+   "side": "against",
+   "player": "Diego Roberto Godín Leal"
+  },
+  {
+   "team": "Barcelona",
+   "match": 266653,
+   "minute": 41,
+   "side": "against",
+   "player": "Diego Javier Llorente Ríos"
+  },
+  {
+   "team": "Barcelona",
+   "match": 266653,
+   "minute": 66,
+   "side": "against",
+   "player": "Manuel Rolando Iturra Urrutia"
+  },
+  {
+   "team": "Barcelona",
+   "match": 267533,
+   "minute": 82,
+   "side": "against",
+   "player": "Sergio Ramos García"
+  },
+  {
+   "team": "Barcelona",
+   "match": 265944,
+   "minute": 83,
+   "side": "against",
+   "player": "Ognjen Vranješ"
+  },
+  {
+   "team": "Barcelona",
+   "match": 266986,
+   "minute": 34,
+   "side": "against",
+   "player": "Heiko Westermann"
+  },
+  {
+   "team": "Bastia",
+   "match": 3829415,
+   "minute": 77,
+   "side": "for",
+   "player": "Evaeverson Lemos da Silva Brandão"
+  },
+  {
+   "team": "Bastia",
+   "match": 3829451,
+   "minute": 2,
+   "side": "for",
+   "player": "Alexander Djiku"
+  },
+  {
+   "team": "Bastia",
+   "match": 3829451,
+   "minute": 69,
+   "side": "for",
+   "player": "François Kamano"
+  },
+  {
+   "team": "Bastia",
+   "match": 3829476,
+   "minute": 44,
+   "side": "for",
+   "player": "François Kamano"
+  },
+  {
+   "team": "Bastia",
+   "match": 3900503,
+   "minute": 81,
+   "side": "against",
+   "player": "Sofiane Boufal"
+  },
+  {
+   "team": "Bastia",
+   "match": 3900525,
+   "minute": 90,
+   "side": "against",
+   "player": "Alejandro Bedoya"
+  },
+  {
+   "team": "Bastia",
+   "match": 3900584,
+   "minute": 64,
+   "side": "for",
+   "player": "Seko Fofana"
+  },
+  {
+   "team": "Bastia",
+   "match": 3900584,
+   "minute": 66,
+   "side": "against",
+   "player": "Daniel Congré"
+  },
+  {
+   "team": "Bastia",
+   "match": 3900596,
+   "minute": 67,
+   "side": "for",
+   "player": "Floyd Ayité"
+  },
+  {
+   "team": "Bastia",
+   "match": 3900596,
+   "minute": 91,
+   "side": "for",
+   "player": "Yannick Cahuzac"
+  },
+  {
+   "team": "Bastia",
+   "match": 3900605,
+   "minute": 86,
+   "side": "for",
+   "player": "Gilles Cioni"
+  },
+  {
+   "team": "Bastia",
+   "match": 3900622,
+   "minute": 45,
+   "side": "for",
+   "player": "Jean-Louis Leca"
+  },
+  {
+   "team": "Bastia",
+   "match": 3900622,
+   "minute": 58,
+   "side": "against",
+   "player": "Brayan Andrés Perea Vargas"
+  },
+  {
+   "team": "Bastia",
+   "match": 3900622,
+   "minute": 80,
+   "side": "against",
+   "player": "Fabien Camus"
+  },
+  {
+   "team": "Bastia",
+   "match": 3901153,
+   "minute": 57,
+   "side": "against",
+   "player": "Paul Baysse"
+  },
+  {
+   "team": "Bastia",
+   "match": 3901201,
+   "minute": 84,
+   "side": "against",
+   "player": "Romain Alessandrini"
+  },
+  {
+   "team": "Bastia",
+   "match": 3901206,
+   "minute": 66,
+   "side": "for",
+   "player": "Yannick Cahuzac"
+  },
+  {
+   "team": "Bologna",
+   "match": 3878601,
+   "minute": 61,
+   "side": "for",
+   "player": "Luca Rizzo"
+  },
+  {
+   "team": "Bologna",
+   "match": 3879578,
+   "minute": 36,
+   "side": "against",
+   "player": "Lorenzo Lollo"
+  },
+  {
+   "team": "Bologna",
+   "match": 3879587,
+   "minute": 59,
+   "side": "against",
+   "player": "Felipe Melo de Carvalho"
+  },
+  {
+   "team": "Bologna",
+   "match": 3879647,
+   "minute": 79,
+   "side": "against",
+   "player": "Diego Perotti"
+  },
+  {
+   "team": "Bologna",
+   "match": 3879647,
+   "minute": 92,
+   "side": "for",
+   "player": "Amadou Diawara"
+  },
+  {
+   "team": "Bologna",
+   "match": 3879694,
+   "minute": 68,
+   "side": "for",
+   "player": "Adam Masina"
+  },
+  {
+   "team": "Bologna",
+   "match": 3879725,
+   "minute": 63,
+   "side": "for",
+   "player": "Marios Oikonomou"
+  },
+  {
+   "team": "Bologna",
+   "match": 3879728,
+   "minute": 56,
+   "side": "against",
+   "player": "Matías Ariel Fernández Fernández"
+  },
+  {
+   "team": "Bologna",
+   "match": 3879794,
+   "minute": 77,
+   "side": "for",
+   "player": "Ibrahima Mbaye"
+  },
+  {
+   "team": "Bologna",
+   "match": 3879794,
+   "minute": 84,
+   "side": "for",
+   "player": "Daniele Gastaldello"
+  },
+  {
+   "team": "Bologna",
+   "match": 3879858,
+   "minute": 11,
+   "side": "for",
+   "player": "Amadou Diawara"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3829452,
+   "minute": 49,
+   "side": "against",
+   "player": "Ermir Lenjani"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3829453,
+   "minute": 76,
+   "side": "for",
+   "player": "Henri Saivet"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3829471,
+   "minute": 74,
+   "side": "against",
+   "player": "Óscar Guido Trejo"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3829475,
+   "minute": 49,
+   "side": "for",
+   "player": "Enzo Crivelli"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3829498,
+   "minute": 80,
+   "side": "for",
+   "player": "André Biyogo Poko"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3829498,
+   "minute": 81,
+   "side": "against",
+   "player": "Lamine Gassama"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3900494,
+   "minute": 63,
+   "side": "against",
+   "player": "Roderic Filippi"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3900519,
+   "minute": 94,
+   "side": "for",
+   "player": "Nicolas Pallois"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3900528,
+   "minute": 80,
+   "side": "for",
+   "player": "André Biyogo Poko"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3900627,
+   "minute": 91,
+   "side": "for",
+   "player": "Cheick Tidiane Diabaté"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3901176,
+   "minute": 48,
+   "side": "for",
+   "player": "Ludovic Lamine Sané"
+  },
+  {
+   "team": "Bordeaux",
+   "match": 3901218,
+   "minute": 33,
+   "side": "against",
+   "player": "Ismaël Traoré"
+  },
+  {
+   "team": "Carpi",
+   "match": 3878545,
+   "minute": 80,
+   "side": "against",
+   "player": "Dávid Ivan"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879578,
+   "minute": 36,
+   "side": "for",
+   "player": "Lorenzo Lollo"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879589,
+   "minute": 71,
+   "side": "for",
+   "player": "Marco Borriello"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879589,
+   "minute": 71,
+   "side": "against",
+   "player": "Danilo Soddimo"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879634,
+   "minute": 5,
+   "side": "against",
+   "player": "Leonardo Pavoletti"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879689,
+   "minute": 85,
+   "side": "for",
+   "player": "Riccardo Gagliolo"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879704,
+   "minute": 82,
+   "side": "for",
+   "player": "Lorenzo Pasciuti"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879731,
+   "minute": 55,
+   "side": "for",
+   "player": "Raffaele Bianco"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879795,
+   "minute": 88,
+   "side": "against",
+   "player": "Ante Rebić"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879819,
+   "minute": 45,
+   "side": "against",
+   "player": "Armando Izzo"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879844,
+   "minute": 24,
+   "side": "against",
+   "player": "Levan Mchedlidze"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879844,
+   "minute": 89,
+   "side": "for",
+   "player": "Lorenzo Lollo"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879859,
+   "minute": 81,
+   "side": "against",
+   "player": "Lucas Rodrigo Biglia"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879859,
+   "minute": 89,
+   "side": "against",
+   "player": "Filip Đorđević"
+  },
+  {
+   "team": "Carpi",
+   "match": 3879871,
+   "minute": 36,
+   "side": "against",
+   "player": "Cyril Théréau"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825569,
+   "minute": 3,
+   "side": "against",
+   "player": "Simão Mate"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825574,
+   "minute": 8,
+   "side": "against",
+   "player": "Antonio Rodríguez Martínez"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825585,
+   "minute": 10,
+   "side": "against",
+   "player": "Javier Varas Herrera"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825594,
+   "minute": 90,
+   "side": "for",
+   "player": "Jonathan Castro Otto"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825629,
+   "minute": 46,
+   "side": "against",
+   "player": "Eric Bertrand Bailly"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825635,
+   "minute": 56,
+   "side": "for",
+   "player": "Gustavo Daniel Cabral Cáceres"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825679,
+   "minute": 47,
+   "side": "for",
+   "player": "Jonathan Castro Otto"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825689,
+   "minute": 45,
+   "side": "for",
+   "player": "Pedro Pablo Hernández"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825715,
+   "minute": 62,
+   "side": "for",
+   "player": "Rubén Blanco Veiga"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825754,
+   "minute": 73,
+   "side": "for",
+   "player": "Fabián Ariel Orellana Valenzuela"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825765,
+   "minute": 24,
+   "side": "against",
+   "player": "Federico Julián Fazio"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825898,
+   "minute": 67,
+   "side": "against",
+   "player": "Alejandro Arribas Garrido"
+  },
+  {
+   "team": "Celta Vigo",
+   "match": 3825870,
+   "minute": 39,
+   "side": "for",
+   "player": "Gustavo Daniel Cabral Cáceres"
+  },
+  {
+   "team": "Chelsea",
+   "match": 3754078,
+   "minute": 51,
+   "side": "for",
+   "player": "Thibaut Courtois"
+  },
+  {
+   "team": "Chelsea",
+   "match": 3754059,
+   "minute": 53,
+   "side": "for",
+   "player": "John Terry"
+  },
+  {
+   "team": "Chelsea",
+   "match": 3754217,
+   "minute": 45,
+   "side": "against",
+   "player": "Gabriel Armando de Abreu"
+  },
+  {
+   "team": "Chelsea",
+   "match": 3754217,
+   "minute": 78,
+   "side": "against",
+   "player": "Santiago Cazorla González"
+  },
+  {
+   "team": "Chelsea",
+   "match": 3754288,
+   "minute": 43,
+   "side": "for",
+   "player": "Nemanja Matić"
+  },
+  {
+   "team": "Chelsea",
+   "match": 3754111,
+   "minute": 17,
+   "side": "against",
+   "player": "Per Mertesacker"
+  },
+  {
+   "team": "Chelsea",
+   "match": 3754075,
+   "minute": 84,
+   "side": "against",
+   "player": "Alan Hutton"
+  },
+  {
+   "team": "Chelsea",
+   "match": 3754322,
+   "minute": 77,
+   "side": "for",
+   "player": "Thibaut Courtois"
+  },
+  {
+   "team": "Chelsea",
+   "match": 3754108,
+   "minute": 93,
+   "side": "for",
+   "player": "John Terry"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879570,
+   "minute": 53,
+   "side": "against",
+   "player": "Blerim Džemaili"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879640,
+   "minute": 91,
+   "side": "for",
+   "player": "Simone Pepe"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879654,
+   "minute": 65,
+   "side": "against",
+   "player": "Nicolò Cherubin"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879654,
+   "minute": 90,
+   "side": "against",
+   "player": "Jasmin Kurtič"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879703,
+   "minute": 45,
+   "side": "for",
+   "player": "Boštjan Cesar"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879703,
+   "minute": 81,
+   "side": "against",
+   "player": "Ştefan Daniel Radu"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879748,
+   "minute": 69,
+   "side": "against",
+   "player": "Vangelis Moras"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879748,
+   "minute": 78,
+   "side": "for",
+   "player": "Nicolás Federico Spolli"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879822,
+   "minute": 76,
+   "side": "against",
+   "player": "Felipe Dias da Silva dal Belo"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879822,
+   "minute": 84,
+   "side": "for",
+   "player": "Riccardo Meggiorini"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879835,
+   "minute": 16,
+   "side": "against",
+   "player": "Arlind Afrim Ajeti"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879835,
+   "minute": 51,
+   "side": "against",
+   "player": "Yussif Raman Chibsah"
+  },
+  {
+   "team": "Chievo",
+   "match": 3879842,
+   "minute": 74,
+   "side": "against",
+   "player": "Alejandro Darío Gómez"
+  },
+  {
+   "team": "Crystal Palace",
+   "match": 3754067,
+   "minute": 43,
+   "side": "for",
+   "player": "Dwight Gayle"
+  },
+  {
+   "team": "Crystal Palace",
+   "match": 3754039,
+   "minute": 93,
+   "side": "for",
+   "player": "Pape N''Diaye Souaré"
+  },
+  {
+   "team": "Crystal Palace",
+   "match": 3754220,
+   "minute": 60,
+   "side": "against",
+   "player": "James Philip Milner"
+  },
+  {
+   "team": "Crystal Palace",
+   "match": 3754176,
+   "minute": 66,
+   "side": "against",
+   "player": "Cheikhou Kouyaté"
+  },
+  {
+   "team": "Crystal Palace",
+   "match": 3754048,
+   "minute": 51,
+   "side": "against",
+   "player": "James McCarthy"
+  },
+  {
+   "team": "Eibar",
+   "match": 3825570,
+   "minute": 55,
+   "side": "against",
+   "player": "Salvador Ruiz Rodríguez"
+  },
+  {
+   "team": "Eibar",
+   "match": 3825637,
+   "minute": 82,
+   "side": "against",
+   "player": "Javier Alejandro Mascherano"
+  },
+  {
+   "team": "Eibar",
+   "match": 3825653,
+   "minute": 59,
+   "side": "against",
+   "player": "Damián Nicolás Suárez Suárez"
+  },
+  {
+   "team": "Eibar",
+   "match": 3825667,
+   "minute": 75,
+   "side": "for",
+   "player": "Sergio Gontán Gallardo"
+  },
+  {
+   "team": "Eibar",
+   "match": 3825694,
+   "minute": 62,
+   "side": "against",
+   "player": "Lucas Alfonso Orbán Alegre"
+  },
+  {
+   "team": "Eibar",
+   "match": 3825694,
+   "minute": 91,
+   "side": "for",
+   "player": "Iván Ramis Barrios"
+  },
+  {
+   "team": "Eibar",
+   "match": 3825698,
+   "minute": 67,
+   "side": "against",
+   "player": "Luis Carlos Correia Pinto"
+  },
+  {
+   "team": "Eibar",
+   "match": 3825801,
+   "minute": 86,
+   "side": "for",
+   "player": "Manuel Castellano Castro"
+  },
+  {
+   "team": "Eibar",
+   "match": 3825858,
+   "minute": 84,
+   "side": "for",
+   "player": "Josip Radošević"
+  },
+  {
+   "team": "Empoli",
+   "match": 3878603,
+   "minute": 70,
+   "side": "against",
+   "player": "Panagiotis Giorgios Kone"
+  },
+  {
+   "team": "Empoli",
+   "match": 3879556,
+   "minute": 75,
+   "side": "for",
+   "player": "Riccardo Saponara"
+  },
+  {
+   "team": "Empoli",
+   "match": 3879563,
+   "minute": 89,
+   "side": "for",
+   "player": "Piotr Zieliński"
+  },
+  {
+   "team": "Empoli",
+   "match": 3879596,
+   "minute": 87,
+   "side": "for",
+   "player": "Assane Dioussé El Hadji"
+  },
+  {
+   "team": "Empoli",
+   "match": 3879753,
+   "minute": 30,
+   "side": "against",
+   "player": "Simone Missiroli"
+  },
+  {
+   "team": "Empoli",
+   "match": 3879753,
+   "minute": 37,
+   "side": "for",
+   "player": "Lorenzo Tonelli"
+  },
+  {
+   "team": "Empoli",
+   "match": 3879757,
+   "minute": 93,
+   "side": "for",
+   "player": "Mário Rui Silva Duarte"
+  },
+  {
+   "team": "Empoli",
+   "match": 3879829,
+   "minute": 89,
+   "side": "against",
+   "player": "Federico Viviani"
+  },
+  {
+   "team": "Empoli",
+   "match": 3879844,
+   "minute": 24,
+   "side": "for",
+   "player": "Levan Mchedlidze"
+  },
+  {
+   "team": "Empoli",
+   "match": 3879844,
+   "minute": 89,
+   "side": "against",
+   "player": "Lorenzo Lollo"
+  },
+  {
+   "team": "Espanyol",
+   "match": 3825565,
+   "minute": 81,
+   "side": "against",
+   "player": "Santiago Vergini"
+  },
+  {
+   "team": "Espanyol",
+   "match": 3825592,
+   "minute": 41,
+   "side": "against",
+   "player": "Gerónimo Rulli"
+  },
+  {
+   "team": "Espanyol",
+   "match": 3825611,
+   "minute": 76,
+   "side": "for",
+   "player": "Papa Kouly Diop"
+  },
+  {
+   "team": "Espanyol",
+   "match": 3825633,
+   "minute": 65,
+   "side": "for",
+   "player": "Víctor Sánchez Mata"
+  },
+  {
+   "team": "Espanyol",
+   "match": 3825633,
+   "minute": 91,
+   "side": "against",
+   "player": "Roberto Román Triguero"
+  },
+  {
+   "team": "Espanyol",
+   "match": 3825651,
+   "minute": 67,
+   "side": "for",
+   "player": "Roberto Antonio Correa Silva"
+  },
+  {
+   "team": "Espanyol",
+   "match": 3825689,
+   "minute": 45,
+   "side": "against",
+   "player": "Pedro Pablo Hernández"
+  },
+  {
+   "team": "Espanyol",
+   "match": 3825744,
+   "minute": 88,
+   "side": "for",
+   "player": "Gerard Moreno Balaguero"
+  },
+  {
+   "team": "Espanyol",
+   "match": 3825790,
+   "minute": 82,
+   "side": "against",
+   "player": "Ignacio Cases Mora"
+  },
+  {
+   "team": "Espanyol",
+   "match": 3825811,
+   "minute": 88,
+   "side": "for",
+   "player": "Víctor Sánchez Mata"
+  },
+  {
+   "team": "Espanyol",
+   "match": 3825881,
+   "minute": 26,
+   "side": "against",
+   "player": "David Barral Torres"
+  },
+  {
+   "team": "Everton",
+   "match": 3754298,
+   "minute": 92,
+   "side": "for",
+   "player": "Kevin Mirallas"
+  },
+  {
+   "team": "Everton",
+   "match": 3754126,
+   "minute": 93,
+   "side": "for",
+   "player": "Gareth Barry"
+  },
+  {
+   "team": "Everton",
+   "match": 3754252,
+   "minute": 92,
+   "side": "against",
+   "player": "Jamaal Lascelles"
+  },
+  {
+   "team": "Everton",
+   "match": 3754277,
+   "minute": 33,
+   "side": "for",
+   "player": "Kevin Mirallas"
+  },
+  {
+   "team": "Everton",
+   "match": 3754048,
+   "minute": 51,
+   "side": "for",
+   "player": "James McCarthy"
+  },
+  {
+   "team": "Everton",
+   "match": 3754294,
+   "minute": 48,
+   "side": "for",
+   "player": "José Ramiro Funes Mori"
+  },
+  {
+   "team": "Fiorentina",
+   "match": 3878542,
+   "minute": 35,
+   "side": "against",
+   "player": "Rodrigo Ely"
+  },
+  {
+   "team": "Fiorentina",
+   "match": 3878592,
+   "minute": 62,
+   "side": "for",
+   "player": "Milan Badelj"
+  },
+  {
+   "team": "Fiorentina",
+   "match": 3879550,
+   "minute": 30,
+   "side": "against",
+   "player": "João Miranda de Souza Filho"
+  },
+  {
+   "team": "Fiorentina",
+   "match": 3879561,
+   "minute": 3,
+   "side": "against",
+   "player": "Gabriel Alejandro Paletta"
+  },
+  {
+   "team": "Fiorentina",
+   "match": 3879583,
+   "minute": 86,
+   "side": "against",
+   "player": "Mohamed Salah"
+  },
+  {
+   "team": "Fiorentina",
+   "match": 3879728,
+   "minute": 56,
+   "side": "for",
+   "player": "Matías Ariel Fernández Fernández"
+  },
+  {
+   "team": "Fiorentina",
+   "match": 3879746,
+   "minute": 81,
+   "side": "against",
+   "player": "Alex Nicolao Telles"
+  },
+  {
+   "team": "Fiorentina",
+   "match": 3879746,
+   "minute": 94,
+   "side": "for",
+   "player": "Mauro Matías Zárate"
+  },
+  {
+   "team": "Fiorentina",
+   "match": 3879746,
+   "minute": 96,
+   "side": "against",
+   "player": "Geoffrey Kondogbia"
+  },
+  {
+   "team": "Fiorentina",
+   "match": 3879750,
+   "minute": 91,
+   "side": "against",
+   "player": "Andrea Conti"
+  },
+  {
+   "team": "Fiorentina",
+   "match": 3879800,
+   "minute": 70,
+   "side": "against",
+   "player": "Carlos Joaquín Correa"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879556,
+   "minute": 75,
+   "side": "against",
+   "player": "Riccardo Saponara"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879589,
+   "minute": 71,
+   "side": "against",
+   "player": "Marco Borriello"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879589,
+   "minute": 71,
+   "side": "for",
+   "player": "Danilo Soddimo"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879612,
+   "minute": 35,
+   "side": "against",
+   "player": "Sebastian De Maio"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879629,
+   "minute": 18,
+   "side": "against",
+   "player": "Rafael de Andrade Bittencourt Pinheiro"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879640,
+   "minute": 91,
+   "side": "against",
+   "player": "Simone Pepe"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879667,
+   "minute": 92,
+   "side": "against",
+   "player": "Lorenzo Pellegrini"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879725,
+   "minute": 63,
+   "side": "against",
+   "player": "Marios Oikonomou"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879808,
+   "minute": 79,
+   "side": "for",
+   "player": "Leonardo Blanchard"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879835,
+   "minute": 16,
+   "side": "for",
+   "player": "Arlind Afrim Ajeti"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879835,
+   "minute": 51,
+   "side": "for",
+   "player": "Yussif Raman Chibsah"
+  },
+  {
+   "team": "Frosinone",
+   "match": 3879867,
+   "minute": 12,
+   "side": "for",
+   "player": "Mirko Gori"
+  },
+  {
+   "team": "Gazélec Ajaccio",
+   "match": 3829468,
+   "minute": 38,
+   "side": "for",
+   "player": "Issiaga Sylla"
+  },
+  {
+   "team": "Gazélec Ajaccio",
+   "match": 3829517,
+   "minute": 87,
+   "side": "for",
+   "player": "Jérôme Le Moigne"
+  },
+  {
+   "team": "Gazélec Ajaccio",
+   "match": 3900494,
+   "minute": 63,
+   "side": "for",
+   "player": "Roderic Filippi"
+  },
+  {
+   "team": "Gazélec Ajaccio",
+   "match": 3900559,
+   "minute": 50,
+   "side": "against",
+   "player": "Abdelaziz Barrada"
+  },
+  {
+   "team": "Gazélec Ajaccio",
+   "match": 3900615,
+   "minute": 50,
+   "side": "for",
+   "player": "Amos Youga"
+  },
+  {
+   "team": "Gazélec Ajaccio",
+   "match": 3900626,
+   "minute": 5,
+   "side": "against",
+   "player": "Lionel Mathis"
+  },
+  {
+   "team": "Gazélec Ajaccio",
+   "match": 3901147,
+   "minute": 78,
+   "side": "for",
+   "player": "Issiaga Sylla"
+  },
+  {
+   "team": "Gazélec Ajaccio",
+   "match": 3901215,
+   "minute": 66,
+   "side": "for",
+   "player": "Roderic Filippi"
+  },
+  {
+   "team": "Genoa",
+   "match": 3878592,
+   "minute": 62,
+   "side": "against",
+   "player": "Milan Badelj"
+  },
+  {
+   "team": "Genoa",
+   "match": 3878609,
+   "minute": 42,
+   "side": "for",
+   "player": "Armando Izzo"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879538,
+   "minute": 55,
+   "side": "for",
+   "player": "Issa Cissokho"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879538,
+   "minute": 84,
+   "side": "for",
+   "player": "Goran Pandev"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879549,
+   "minute": 41,
+   "side": "against",
+   "player": "Alessio Romagnoli"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879570,
+   "minute": 53,
+   "side": "for",
+   "player": "Blerim Džemaili"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879612,
+   "minute": 35,
+   "side": "for",
+   "player": "Sebastian De Maio"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879619,
+   "minute": 40,
+   "side": "against",
+   "player": "Domenico Berardi"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879619,
+   "minute": 40,
+   "side": "for",
+   "player": "Diego Perotti"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879634,
+   "minute": 5,
+   "side": "for",
+   "player": "Leonardo Pavoletti"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879638,
+   "minute": 85,
+   "side": "against",
+   "player": "Danilo D''Ambrosio"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879647,
+   "minute": 79,
+   "side": "for",
+   "player": "Diego Perotti"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879647,
+   "minute": 92,
+   "side": "against",
+   "player": "Amadou Diawara"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879657,
+   "minute": 73,
+   "side": "against",
+   "player": "Edin Džeko"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879695,
+   "minute": 64,
+   "side": "against",
+   "player": "Siniša Anđelković"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879726,
+   "minute": 90,
+   "side": "against",
+   "player": "Simone Zaza"
+  },
+  {
+   "team": "Genoa",
+   "match": 3879819,
+   "minute": 45,
+   "side": "for",
+   "player": "Armando Izzo"
+  },
+  {
+   "team": "Getafe",
+   "match": 3825565,
+   "minute": 81,
+   "side": "for",
+   "player": "Santiago Vergini"
+  },
+  {
+   "team": "Getafe",
+   "match": 3825628,
+   "minute": 79,
+   "side": "against",
+   "player": "Juan Emmanuel Culio"
+  },
+  {
+   "team": "Getafe",
+   "match": 3825874,
+   "minute": 58,
+   "side": "for",
+   "player": "Carlos Martín Vigaray"
+  },
+  {
+   "team": "Getafe",
+   "match": 3825653,
+   "minute": 59,
+   "side": "for",
+   "player": "Damián Nicolás Suárez Suárez"
+  },
+  {
+   "team": "Getafe",
+   "match": 3825751,
+   "minute": 91,
+   "side": "for",
+   "player": "Juan Torres Ruiz"
+  },
+  {
+   "team": "Getafe",
+   "match": 3825796,
+   "minute": 64,
+   "side": "for",
+   "player": "Álvaro Daniel Pereira Barragán"
+  },
+  {
+   "team": "Getafe",
+   "match": 3825885,
+   "minute": 14,
+   "side": "against",
+   "player": "Yoel Rodríguez Oterino"
+  },
+  {
+   "team": "Getafe",
+   "match": 3825894,
+   "minute": 63,
+   "side": "against",
+   "player": "Celso Borges Mora"
+  },
+  {
+   "team": "Getafe",
+   "match": 3825865,
+   "minute": 55,
+   "side": "against",
+   "player": "Ignacio Cases Mora"
+  },
+  {
+   "team": "Getafe",
+   "match": 3825876,
+   "minute": 74,
+   "side": "for",
+   "player": "Emiliano Buendía"
+  },
+  {
+   "team": "Granada",
+   "match": 3825570,
+   "minute": 55,
+   "side": "for",
+   "player": "Salvador Ruiz Rodríguez"
+  },
+  {
+   "team": "Granada",
+   "match": 3825632,
+   "minute": 80,
+   "side": "for",
+   "player": "Hugo Miguel Almeida Costa Lopes"
+  },
+  {
+   "team": "Granada",
+   "match": 3825632,
+   "minute": 91,
+   "side": "for",
+   "player": "Matheus Dória Macedo"
+  },
+  {
+   "team": "Granada",
+   "match": 3825651,
+   "minute": 67,
+   "side": "against",
+   "player": "Roberto Antonio Correa Silva"
+  },
+  {
+   "team": "Granada",
+   "match": 3825655,
+   "minute": 18,
+   "side": "against",
+   "player": "José Eduardo Rosa Vale de Castro"
+  },
+  {
+   "team": "Granada",
+   "match": 3825672,
+   "minute": 51,
+   "side": "against",
+   "player": "Fernando Damián Tissone"
+  },
+  {
+   "team": "Granada",
+   "match": 3825707,
+   "minute": 84,
+   "side": "for",
+   "player": "Cristiano Biraghi"
+  },
+  {
+   "team": "Granada",
+   "match": 3825717,
+   "minute": 85,
+   "side": "against",
+   "player": "Adil Rami"
+  },
+  {
+   "team": "Granada",
+   "match": 3825792,
+   "minute": 92,
+   "side": "against",
+   "player": "Germán Darío Lux"
+  },
+  {
+   "team": "Granada",
+   "match": 3825803,
+   "minute": 83,
+   "side": "against",
+   "player": "Sergio Álvarez Díaz"
+  },
+  {
+   "team": "Granada",
+   "match": 3825809,
+   "minute": 52,
+   "side": "against",
+   "player": "Juan Manuel Vargas Risco"
+  },
+  {
+   "team": "Granada",
+   "match": 3825809,
+   "minute": 92,
+   "side": "for",
+   "player": "Andrés Eduardo Fernández Moreno"
+  },
+  {
+   "team": "Granada",
+   "match": 3825881,
+   "minute": 26,
+   "side": "for",
+   "player": "David Barral Torres"
+  },
+  {
+   "team": "Granada",
+   "match": 3825887,
+   "minute": 69,
+   "side": "for",
+   "player": "Isaac Ajayi Success"
+  },
+  {
+   "team": "Granada",
+   "match": 3825896,
+   "minute": 90,
+   "side": "against",
+   "player": "Simão Mate"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3829468,
+   "minute": 38,
+   "side": "against",
+   "player": "Issiaga Sylla"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3829497,
+   "minute": 84,
+   "side": "against",
+   "player": "Thomas Ayasse"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3829506,
+   "minute": 88,
+   "side": "against",
+   "player": "Stopilla Sunzu"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3829514,
+   "minute": 80,
+   "side": "against",
+   "player": "Slimane Sissoko"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900492,
+   "minute": 42,
+   "side": "against",
+   "player": "Abdul Majeed Waris"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900492,
+   "minute": 44,
+   "side": "for",
+   "player": "Younousse Sankharé"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900514,
+   "minute": 85,
+   "side": "against",
+   "player": "Jean-Armel Kana-Biyik"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900529,
+   "minute": 88,
+   "side": "against",
+   "player": "Moustapha Bayal Sall"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900538,
+   "minute": 50,
+   "side": "for",
+   "player": "Yannis Salibur"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900538,
+   "minute": 88,
+   "side": "against",
+   "player": "Hamari Traoré"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900552,
+   "minute": 33,
+   "side": "for",
+   "player": "Nicolas Benezet"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900586,
+   "minute": 94,
+   "side": "for",
+   "player": "Younousse Sankharé"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900596,
+   "minute": 67,
+   "side": "against",
+   "player": "Floyd Ayité"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900596,
+   "minute": 91,
+   "side": "against",
+   "player": "Yannick Cahuzac"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900603,
+   "minute": 91,
+   "side": "against",
+   "player": "Issa Diop"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3900626,
+   "minute": 5,
+   "side": "for",
+   "player": "Lionel Mathis"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3901156,
+   "minute": 40,
+   "side": "against",
+   "player": "Cheikh N''Doye"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3901229,
+   "minute": 78,
+   "side": "for",
+   "player": "Thibault Giresse"
+  },
+  {
+   "team": "Guingamp",
+   "match": 3901229,
+   "minute": 91,
+   "side": "against",
+   "player": "Nicolas Seube"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3878610,
+   "minute": 78,
+   "side": "for",
+   "player": "Boško Janković"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879551,
+   "minute": 80,
+   "side": "against",
+   "player": "Maurício dos Santos Nascimento"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879629,
+   "minute": 18,
+   "side": "for",
+   "player": "Rafael de Andrade Bittencourt Pinheiro"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879652,
+   "minute": 55,
+   "side": "against",
+   "player": "Nigel de Jong"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879722,
+   "minute": 53,
+   "side": "against",
+   "player": "Boukary Dramé"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879748,
+   "minute": 69,
+   "side": "for",
+   "player": "Vangelis Moras"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879748,
+   "minute": 78,
+   "side": "against",
+   "player": "Nicolás Federico Spolli"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879795,
+   "minute": 88,
+   "side": "for",
+   "player": "Ante Rebić"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879811,
+   "minute": 44,
+   "side": "for",
+   "player": "Samuel Souprayen"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879829,
+   "minute": 89,
+   "side": "for",
+   "player": "Federico Viviani"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879864,
+   "minute": 91,
+   "side": "against",
+   "player": "Alex Sandro Lobo Silva"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879875,
+   "minute": 33,
+   "side": "for",
+   "player": "Paweł Wszołek"
+  },
+  {
+   "team": "Hellas Verona",
+   "match": 3879875,
+   "minute": 33,
+   "side": "against",
+   "player": "Michel Morganella"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3878543,
+   "minute": 70,
+   "side": "against",
+   "player": "Carlos Emilio Carmona Tello"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879550,
+   "minute": 30,
+   "side": "for",
+   "player": "João Miranda de Souza Filho"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879579,
+   "minute": 78,
+   "side": "for",
+   "player": "Jeison Fabián Murillo Cerón"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879587,
+   "minute": 59,
+   "side": "for",
+   "player": "Felipe Melo de Carvalho"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879598,
+   "minute": 72,
+   "side": "against",
+   "player": "Miralem Pjanić"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879635,
+   "minute": 43,
+   "side": "for",
+   "player": "Yuto Nagatomo"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879638,
+   "minute": 85,
+   "side": "for",
+   "player": "Danilo D''Ambrosio"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879659,
+   "minute": 89,
+   "side": "for",
+   "player": "Felipe Melo de Carvalho"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879659,
+   "minute": 92,
+   "side": "against",
+   "player": "Sergej Milinković-Savić"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879704,
+   "minute": 82,
+   "side": "against",
+   "player": "Lorenzo Pasciuti"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879746,
+   "minute": 81,
+   "side": "for",
+   "player": "Alex Nicolao Telles"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879746,
+   "minute": 94,
+   "side": "against",
+   "player": "Mauro Matías Zárate"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879746,
+   "minute": 96,
+   "side": "for",
+   "player": "Geoffrey Kondogbia"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879801,
+   "minute": 56,
+   "side": "for",
+   "player": "João Miranda de Souza Filho"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879801,
+   "minute": 71,
+   "side": "for",
+   "player": "Yuto Nagatomo"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879808,
+   "minute": 79,
+   "side": "against",
+   "player": "Leonardo Blanchard"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879853,
+   "minute": 82,
+   "side": "for",
+   "player": "Jeison Fabián Murillo Cerón"
+  },
+  {
+   "team": "Inter Milan",
+   "match": 3879868,
+   "minute": 59,
+   "side": "for",
+   "player": "Jeison Fabián Murillo Cerón"
+  },
+  {
+   "team": "Juventus",
+   "match": 3878555,
+   "minute": 65,
+   "side": "for",
+   "player": "Rubens Fernando Moedim"
+  },
+  {
+   "team": "Juventus",
+   "match": 3878555,
+   "minute": 76,
+   "side": "for",
+   "player": "Patrice Evra"
+  },
+  {
+   "team": "Juventus",
+   "match": 3878609,
+   "minute": 42,
+   "side": "against",
+   "player": "Armando Izzo"
+  },
+  {
+   "team": "Juventus",
+   "match": 3879580,
+   "minute": 72,
+   "side": "against",
+   "player": "Rafael Tolói"
+  },
+  {
+   "team": "Juventus",
+   "match": 3879591,
+   "minute": 38,
+   "side": "for",
+   "player": "Giorgio Chiellini"
+  },
+  {
+   "team": "Juventus",
+   "match": 3879684,
+   "minute": 93,
+   "side": "against",
+   "player": "Niklas Moisander"
+  },
+  {
+   "team": "Juventus",
+   "match": 3879693,
+   "minute": 24,
+   "side": "against",
+   "player": "Danilo Larangeira"
+  },
+  {
+   "team": "Juventus",
+   "match": 3879726,
+   "minute": 90,
+   "side": "for",
+   "player": "Simone Zaza"
+  },
+  {
+   "team": "Juventus",
+   "match": 3879790,
+   "minute": 86,
+   "side": "for",
+   "player": "Sami Khedira"
+  },
+  {
+   "team": "Juventus",
+   "match": 3879833,
+   "minute": 47,
+   "side": "against",
+   "player": "Patricio Gabarrón Gil"
+  },
+  {
+   "team": "Juventus",
+   "match": 3879864,
+   "minute": 91,
+   "side": "for",
+   "player": "Alex Sandro Lobo Silva"
+  },
+  {
+   "team": "Juventus",
+   "match": 3879870,
+   "minute": 13,
+   "side": "against",
+   "player": "Milan Škriniar"
+  },
+  {
+   "team": "Las Palmas",
+   "match": 3825585,
+   "minute": 10,
+   "side": "for",
+   "player": "Javier Varas Herrera"
+  },
+  {
+   "team": "Las Palmas",
+   "match": 3825628,
+   "minute": 79,
+   "side": "for",
+   "player": "Juan Emmanuel Culio"
+  },
+  {
+   "team": "Las Palmas",
+   "match": 3825685,
+   "minute": 70,
+   "side": "for",
+   "player": "Aythami Artiles Oliva"
+  },
+  {
+   "team": "Las Palmas",
+   "match": 3825707,
+   "minute": 84,
+   "side": "against",
+   "player": "Cristiano Biraghi"
+  },
+  {
+   "team": "Las Palmas",
+   "match": 3825749,
+   "minute": 92,
+   "side": "against",
+   "player": "Deyverson Brum Silva Acosta"
+  },
+  {
+   "team": "Las Palmas",
+   "match": 3825754,
+   "minute": 73,
+   "side": "against",
+   "player": "Fabián Ariel Orellana Valenzuela"
+  },
+  {
+   "team": "Las Palmas",
+   "match": 3825796,
+   "minute": 64,
+   "side": "against",
+   "player": "Álvaro Daniel Pereira Barragán"
+  },
+  {
+   "team": "Las Palmas",
+   "match": 3825879,
+   "minute": 90,
+   "side": "against",
+   "player": "Sergio Ramos García"
+  },
+  {
+   "team": "Las Palmas",
+   "match": 3825837,
+   "minute": 40,
+   "side": "for",
+   "player": "Aythami Artiles Oliva"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879538,
+   "minute": 55,
+   "side": "against",
+   "player": "Issa Cissokho"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879538,
+   "minute": 84,
+   "side": "against",
+   "player": "Goran Pandev"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879551,
+   "minute": 80,
+   "side": "for",
+   "player": "Maurício dos Santos Nascimento"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879573,
+   "minute": 91,
+   "side": "for",
+   "player": "Danilo Cataldi"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879659,
+   "minute": 89,
+   "side": "against",
+   "player": "Felipe Melo de Carvalho"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879659,
+   "minute": 92,
+   "side": "for",
+   "player": "Sergej Milinković-Savić"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879694,
+   "minute": 68,
+   "side": "against",
+   "player": "Adam Masina"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879703,
+   "minute": 45,
+   "side": "against",
+   "player": "Boštjan Cesar"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879703,
+   "minute": 81,
+   "side": "for",
+   "player": "Ştefan Daniel Radu"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879711,
+   "minute": 41,
+   "side": "against",
+   "player": "Danilo Larangeira"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879711,
+   "minute": 83,
+   "side": "for",
+   "player": "Alessandro Matri"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879791,
+   "minute": 82,
+   "side": "for",
+   "player": "Senad Lulić"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879799,
+   "minute": 93,
+   "side": "for",
+   "player": "Wesley Hoedt"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879833,
+   "minute": 47,
+   "side": "for",
+   "player": "Patricio Gabarrón Gil"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879853,
+   "minute": 82,
+   "side": "against",
+   "player": "Jeison Fabián Murillo Cerón"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879859,
+   "minute": 81,
+   "side": "for",
+   "player": "Lucas Rodrigo Biglia"
+  },
+  {
+   "team": "Lazio",
+   "match": 3879859,
+   "minute": 89,
+   "side": "for",
+   "player": "Filip Đorđević"
+  },
+  {
+   "team": "Leicester City",
+   "match": 3754203,
+   "minute": 91,
+   "side": "against",
+   "player": "Adrián San Miguel del Castillo"
+  },
+  {
+   "team": "Leicester City",
+   "match": 3754058,
+   "minute": 56,
+   "side": "against",
+   "player": "Simon Francis"
+  },
+  {
+   "team": "Leicester City",
+   "match": 3754261,
+   "minute": 53,
+   "side": "for",
+   "player": "Danny Simpson"
+  },
+  {
+   "team": "Leicester City",
+   "match": 3754227,
+   "minute": 55,
+   "side": "for",
+   "player": "Jamie Vardy"
+  },
+  {
+   "team": "Leicester City",
+   "match": 3754165,
+   "minute": 85,
+   "side": "for",
+   "player": "Danny Drinkwater"
+  },
+  {
+   "team": "Levante UD",
+   "match": 3825569,
+   "minute": 3,
+   "side": "for",
+   "player": "Simão Mate"
+  },
+  {
+   "team": "Levante UD",
+   "match": 3825619,
+   "minute": 34,
+   "side": "against",
+   "player": "Bojan Jokić"
+  },
+  {
+   "team": "Levante UD",
+   "match": 3825640,
+   "minute": 89,
+   "side": "for",
+   "player": "Deyverson Brum Silva Acosta"
+  },
+  {
+   "team": "Levante UD",
+   "match": 3825670,
+   "minute": 78,
+   "side": "against",
+   "player": "Heiko Westermann"
+  },
+  {
+   "team": "Levante UD",
+   "match": 3825670,
+   "minute": 80,
+   "side": "for",
+   "player": "Juan Francisco García García"
+  },
+  {
+   "team": "Levante UD",
+   "match": 3825749,
+   "minute": 92,
+   "side": "for",
+   "player": "Deyverson Brum Silva Acosta"
+  },
+  {
+   "team": "Levante UD",
+   "match": 3825794,
+   "minute": 55,
+   "side": "for",
+   "player": "David Navarro Pedrós"
+  },
+  {
+   "team": "Levante UD",
+   "match": 3825825,
+   "minute": 93,
+   "side": "for",
+   "player": "Zouhair Feddal"
+  },
+  {
+   "team": "Levante UD",
+   "match": 3825896,
+   "minute": 90,
+   "side": "for",
+   "player": "Simão Mate"
+  },
+  {
+   "team": "Lille",
+   "match": 3829413,
+   "minute": 26,
+   "side": "against",
+   "player": "Adrien Rabiot"
+  },
+  {
+   "team": "Lille",
+   "match": 3829463,
+   "minute": 68,
+   "side": "for",
+   "player": "Vincent Enyeama"
+  },
+  {
+   "team": "Lille",
+   "match": 3829506,
+   "minute": 88,
+   "side": "for",
+   "player": "Stopilla Sunzu"
+  },
+  {
+   "team": "Lille",
+   "match": 3900503,
+   "minute": 81,
+   "side": "for",
+   "player": "Sofiane Boufal"
+  },
+  {
+   "team": "Lille",
+   "match": 3900526,
+   "minute": 65,
+   "side": "for",
+   "player": "Renato Civelli"
+  },
+  {
+   "team": "Lille",
+   "match": 3900561,
+   "minute": 66,
+   "side": "against",
+   "player": "Tongo Hamed Doumbia"
+  },
+  {
+   "team": "Lille",
+   "match": 3900600,
+   "minute": 82,
+   "side": "against",
+   "player": "Abdelaziz Barrada"
+  },
+  {
+   "team": "Lille",
+   "match": 3900614,
+   "minute": 83,
+   "side": "against",
+   "player": "Michaël Jordan Nkololo"
+  },
+  {
+   "team": "Lille",
+   "match": 3900628,
+   "minute": 69,
+   "side": "for",
+   "player": "Sofiane Boufal"
+  },
+  {
+   "team": "Lille",
+   "match": 3901151,
+   "minute": 59,
+   "side": "against",
+   "player": "Christophe Jallet"
+  },
+  {
+   "team": "Lille",
+   "match": 3901151,
+   "minute": 86,
+   "side": "against",
+   "player": "Clément Grenier"
+  },
+  {
+   "team": "Lille",
+   "match": 3901168,
+   "minute": 83,
+   "side": "against",
+   "player": "Antoine Devaux"
+  },
+  {
+   "team": "Lille",
+   "match": 3901212,
+   "minute": 53,
+   "side": "for",
+   "player": "Renato Civelli"
+  },
+  {
+   "team": "Lille",
+   "match": 3901212,
+   "minute": 63,
+   "side": "against",
+   "player": "Elderson Uwa Echiejile"
+  },
+  {
+   "team": "Lille",
+   "match": 3901215,
+   "minute": 66,
+   "side": "against",
+   "player": "Roderic Filippi"
+  },
+  {
+   "team": "Liverpool",
+   "match": 3753984,
+   "minute": 51,
+   "side": "for",
+   "player": "Philippe Coutinho Correia"
+  },
+  {
+   "team": "Liverpool",
+   "match": 3753984,
+   "minute": 77,
+   "side": "against",
+   "player": "Mark Noble"
+  },
+  {
+   "team": "Liverpool",
+   "match": 3754230,
+   "minute": 92,
+   "side": "against",
+   "player": "Sadio Mané"
+  },
+  {
+   "team": "Liverpool",
+   "match": 3754220,
+   "minute": 60,
+   "side": "for",
+   "player": "James Philip Milner"
+  },
+  {
+   "team": "Liverpool",
+   "match": 3754294,
+   "minute": 48,
+   "side": "against",
+   "player": "José Ramiro Funes Mori"
+  },
+  {
+   "team": "Liverpool",
+   "match": 3754018,
+   "minute": 75,
+   "side": "for",
+   "player": "Bradley Shaun Smith"
+  },
+  {
+   "team": "Lorient",
+   "match": 3829440,
+   "minute": 0,
+   "side": "for",
+   "player": "Benjamin Lecomte"
+  },
+  {
+   "team": "Lorient",
+   "match": 3829489,
+   "minute": 91,
+   "side": "for",
+   "player": "Rafidine Abdullah"
+  },
+  {
+   "team": "Lorient",
+   "match": 3829498,
+   "minute": 80,
+   "side": "against",
+   "player": "André Biyogo Poko"
+  },
+  {
+   "team": "Lorient",
+   "match": 3829498,
+   "minute": 81,
+   "side": "for",
+   "player": "Lamine Gassama"
+  },
+  {
+   "team": "Lorient",
+   "match": 3829516,
+   "minute": 66,
+   "side": "for",
+   "player": "Lamine Koné"
+  },
+  {
+   "team": "Lorient",
+   "match": 3829516,
+   "minute": 83,
+   "side": "against",
+   "player": "Giovanni-Guy Yann Sio"
+  },
+  {
+   "team": "Lorient",
+   "match": 3900492,
+   "minute": 42,
+   "side": "for",
+   "player": "Abdul Majeed Waris"
+  },
+  {
+   "team": "Lorient",
+   "match": 3900492,
+   "minute": 44,
+   "side": "against",
+   "player": "Younousse Sankharé"
+  },
+  {
+   "team": "Lorient",
+   "match": 3900623,
+   "minute": 36,
+   "side": "for",
+   "player": "François Bellugou"
+  },
+  {
+   "team": "Lorient",
+   "match": 3900636,
+   "minute": 84,
+   "side": "for",
+   "player": "Lamine Gassama"
+  },
+  {
+   "team": "Lorient",
+   "match": 3901154,
+   "minute": 89,
+   "side": "against",
+   "player": "Fabien Camus"
+  },
+  {
+   "team": "Lyon",
+   "match": 3829444,
+   "minute": 72,
+   "side": "against",
+   "player": "Damien Da Silva"
+  },
+  {
+   "team": "Lyon",
+   "match": 3829472,
+   "minute": 42,
+   "side": "against",
+   "player": "Romain Alessandrini"
+  },
+  {
+   "team": "Lyon",
+   "match": 3829476,
+   "minute": 44,
+   "side": "against",
+   "player": "François Kamano"
+  },
+  {
+   "team": "Lyon",
+   "match": 3829502,
+   "minute": 65,
+   "side": "against",
+   "player": "Wallace Fortuna dos Santos"
+  },
+  {
+   "team": "Lyon",
+   "match": 3900493,
+   "minute": 35,
+   "side": "against",
+   "player": "Corentin Jean"
+  },
+  {
+   "team": "Lyon",
+   "match": 3900605,
+   "minute": 86,
+   "side": "against",
+   "player": "Gilles Cioni"
+  },
+  {
+   "team": "Lyon",
+   "match": 3900624,
+   "minute": 13,
+   "side": "against",
+   "player": "Thomas Mangani"
+  },
+  {
+   "team": "Lyon",
+   "match": 3901151,
+   "minute": 59,
+   "side": "for",
+   "player": "Christophe Jallet"
+  },
+  {
+   "team": "Lyon",
+   "match": 3901151,
+   "minute": 86,
+   "side": "for",
+   "player": "Clément Grenier"
+  },
+  {
+   "team": "Lyon",
+   "match": 3901214,
+   "minute": 24,
+   "side": "for",
+   "player": "Gnaly Maxwell Cornet"
+  },
+  {
+   "team": "Lyon",
+   "match": 3901252,
+   "minute": 22,
+   "side": "against",
+   "player": "Lacina Traoré"
+  },
+  {
+   "team": "Manchester City",
+   "match": 3754167,
+   "minute": 87,
+   "side": "against",
+   "player": "Russell Martin"
+  },
+  {
+   "team": "Manchester City",
+   "match": 3754322,
+   "minute": 77,
+   "side": "against",
+   "player": "Thibaut Courtois"
+  },
+  {
+   "team": "Manchester United",
+   "match": 3754297,
+   "minute": 89,
+   "side": "against",
+   "player": "Gareth McAuley"
+  },
+  {
+   "team": "Manchester United",
+   "match": 3754081,
+   "minute": 25,
+   "side": "for",
+   "player": "Juan Manuel Mata García"
+  },
+  {
+   "team": "Manchester United",
+   "match": 3754165,
+   "minute": 85,
+   "side": "against",
+   "player": "Danny Drinkwater"
+  },
+  {
+   "team": "Montpellier",
+   "match": 3829489,
+   "minute": 91,
+   "side": "against",
+   "player": "Rafidine Abdullah"
+  },
+  {
+   "team": "Montpellier",
+   "match": 3900552,
+   "minute": 33,
+   "side": "against",
+   "player": "Nicolas Benezet"
+  },
+  {
+   "team": "Montpellier",
+   "match": 3900584,
+   "minute": 64,
+   "side": "against",
+   "player": "Seko Fofana"
+  },
+  {
+   "team": "Montpellier",
+   "match": 3900584,
+   "minute": 66,
+   "side": "for",
+   "player": "Daniel Congré"
+  },
+  {
+   "team": "Montpellier",
+   "match": 3900610,
+   "minute": 68,
+   "side": "against",
+   "player": "Florian Thauvin"
+  },
+  {
+   "team": "Montpellier",
+   "match": 3900623,
+   "minute": 36,
+   "side": "against",
+   "player": "François Bellugou"
+  },
+  {
+   "team": "Montpellier",
+   "match": 3901226,
+   "minute": 40,
+   "side": "for",
+   "player": "Vitorino Hilton da Silva"
+  },
+  {
+   "team": "Málaga",
+   "match": 3825562,
+   "minute": 68,
+   "side": "against",
+   "player": "Steven N''Kemboanza Mike Christopher Nzonzi"
+  },
+  {
+   "team": "Málaga",
+   "match": 3825606,
+   "minute": 76,
+   "side": "for",
+   "player": "Nordin Amrabat"
+  },
+  {
+   "team": "Málaga",
+   "match": 3825616,
+   "minute": 70,
+   "side": "for",
+   "player": "Fernando Damián Tissone"
+  },
+  {
+   "team": "Málaga",
+   "match": 3825672,
+   "minute": 51,
+   "side": "for",
+   "player": "Fernando Damián Tissone"
+  },
+  {
+   "team": "Málaga",
+   "match": 3825686,
+   "minute": 17,
+   "side": "against",
+   "player": "Mikel San José Domínguez"
+  },
+  {
+   "team": "Málaga",
+   "match": 3825701,
+   "minute": 55,
+   "side": "against",
+   "player": "Gabriel Fernández Arenas"
+  },
+  {
+   "team": "Málaga",
+   "match": 3825715,
+   "minute": 62,
+   "side": "against",
+   "player": "Rubén Blanco Veiga"
+  },
+  {
+   "team": "Málaga",
+   "match": 3825733,
+   "minute": 82,
+   "side": "against",
+   "player": "Vicente Iborra De La Fuente"
+  },
+  {
+   "team": "Málaga",
+   "match": 3825733,
+   "minute": 91,
+   "side": "for",
+   "player": "Arthur Etienne Boka"
+  },
+  {
+   "team": "Málaga",
+   "match": 3825804,
+   "minute": 92,
+   "side": "for",
+   "player": "Ignacio Camacho Barnola"
+  },
+  {
+   "team": "Nantes",
+   "match": 3829452,
+   "minute": 49,
+   "side": "for",
+   "player": "Ermir Lenjani"
+  },
+  {
+   "team": "Nantes",
+   "match": 3829460,
+   "minute": 50,
+   "side": "for",
+   "player": "Adryan Oliveira Tavares"
+  },
+  {
+   "team": "Nantes",
+   "match": 3829460,
+   "minute": 77,
+   "side": "for",
+   "player": "Kolbeinn Sigþórsson"
+  },
+  {
+   "team": "Nantes",
+   "match": 3900525,
+   "minute": 90,
+   "side": "for",
+   "player": "Alejandro Bedoya"
+  },
+  {
+   "team": "Nantes",
+   "match": 3900555,
+   "minute": 90,
+   "side": "against",
+   "player": "Issa Diop"
+  },
+  {
+   "team": "Nantes",
+   "match": 3900586,
+   "minute": 94,
+   "side": "against",
+   "player": "Younousse Sankharé"
+  },
+  {
+   "team": "Nantes",
+   "match": 3900615,
+   "minute": 50,
+   "side": "against",
+   "player": "Amos Youga"
+  },
+  {
+   "team": "Nantes",
+   "match": 3900636,
+   "minute": 84,
+   "side": "against",
+   "player": "Lamine Gassama"
+  },
+  {
+   "team": "Nantes",
+   "match": 3901170,
+   "minute": 66,
+   "side": "against",
+   "player": "Giovanni-Guy Yann Sio"
+  },
+  {
+   "team": "Nantes",
+   "match": 3901207,
+   "minute": 84,
+   "side": "for",
+   "player": "Yacine Bammou"
+  },
+  {
+   "team": "Nantes",
+   "match": 3901227,
+   "minute": 55,
+   "side": "against",
+   "player": "Jacques-Alaixys Romao"
+  },
+  {
+   "team": "Napoli",
+   "match": 3879635,
+   "minute": 43,
+   "side": "against",
+   "player": "Yuto Nagatomo"
+  },
+  {
+   "team": "Napoli",
+   "match": 3879661,
+   "minute": 72,
+   "side": "for",
+   "player": "Jorge Luiz Frello Filho"
+  },
+  {
+   "team": "Napoli",
+   "match": 3879661,
+   "minute": 89,
+   "side": "against",
+   "player": "Gabriel Alejandro Paletta"
+  },
+  {
+   "team": "Napoli",
+   "match": 3879699,
+   "minute": 57,
+   "side": "against",
+   "player": "Mattia Cassani"
+  },
+  {
+   "team": "Napoli",
+   "match": 3879731,
+   "minute": 55,
+   "side": "against",
+   "player": "Raffaele Bianco"
+  },
+  {
+   "team": "Napoli",
+   "match": 3879803,
+   "minute": 74,
+   "side": "for",
+   "player": "Gonzalo Gerardo Higuaín"
+  },
+  {
+   "team": "Napoli",
+   "match": 3879811,
+   "minute": 44,
+   "side": "against",
+   "player": "Samuel Souprayen"
+  },
+  {
+   "team": "Napoli",
+   "match": 3879862,
+   "minute": 91,
+   "side": "against",
+   "player": "Giuseppe Vives"
+  },
+  {
+   "team": "Napoli",
+   "match": 3879867,
+   "minute": 12,
+   "side": "against",
+   "player": "Mirko Gori"
+  },
+  {
+   "team": "Newcastle United",
+   "match": 3754344,
+   "minute": 40,
+   "side": "for",
+   "player": "Daryl Janmaat"
+  },
+  {
+   "team": "Newcastle United",
+   "match": 3754205,
+   "minute": 15,
+   "side": "for",
+   "player": "Aleksandar Mitrović"
+  },
+  {
+   "team": "Newcastle United",
+   "match": 3754119,
+   "minute": 45,
+   "side": "for",
+   "player": "Fabricio Coloccini"
+  },
+  {
+   "team": "Newcastle United",
+   "match": 3754252,
+   "minute": 92,
+   "side": "for",
+   "player": "Jamaal Lascelles"
+  },
+  {
+   "team": "Newcastle United",
+   "match": 3754333,
+   "minute": 64,
+   "side": "for",
+   "player": "Aleksandar Mitrović"
+  },
+  {
+   "team": "Norwich City",
+   "match": 3754337,
+   "minute": 29,
+   "side": "for",
+   "player": "Steven Whittaker"
+  },
+  {
+   "team": "Norwich City",
+   "match": 3754167,
+   "minute": 87,
+   "side": "for",
+   "player": "Russell Martin"
+  },
+  {
+   "team": "Norwich City",
+   "match": 3754101,
+   "minute": 72,
+   "side": "against",
+   "player": "Victor Wanyama"
+  },
+  {
+   "team": "Norwich City",
+   "match": 3754032,
+   "minute": 30,
+   "side": "for",
+   "player": "Gary O''Neil"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3829416,
+   "minute": 43,
+   "side": "for",
+   "player": "Olivier Boscagli"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3829427,
+   "minute": 30,
+   "side": "against",
+   "player": "Chris Mavinga"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3829475,
+   "minute": 49,
+   "side": "against",
+   "player": "Enzo Crivelli"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3829490,
+   "minute": 61,
+   "side": "for",
+   "player": "Nampalys Mendy"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3829490,
+   "minute": 80,
+   "side": "for",
+   "player": "Maxime Le Marchand"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3829517,
+   "minute": 87,
+   "side": "against",
+   "player": "Jérôme Le Moigne"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3900522,
+   "minute": 28,
+   "side": "for",
+   "player": "Mouez Hassen"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3900540,
+   "minute": 42,
+   "side": "for",
+   "player": "Niklas Hult"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3900553,
+   "minute": 93,
+   "side": "against",
+   "player": "Aïssa Mandi"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3900625,
+   "minute": 47,
+   "side": "against",
+   "player": "Nabil Dirar"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3901153,
+   "minute": 57,
+   "side": "for",
+   "player": "Paul Baysse"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3901214,
+   "minute": 24,
+   "side": "against",
+   "player": "Gnaly Maxwell Cornet"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3901250,
+   "minute": 54,
+   "side": "against",
+   "player": "Kévin Malcuit"
+  },
+  {
+   "team": "OGC Nice",
+   "match": 3901250,
+   "minute": 71,
+   "side": "against",
+   "player": "Franck Tabanou"
+  },
+  {
+   "team": "Olympique de Marseille",
+   "match": 3829472,
+   "minute": 42,
+   "side": "for",
+   "player": "Romain Alessandrini"
+  },
+  {
+   "team": "Olympique de Marseille",
+   "match": 3900559,
+   "minute": 50,
+   "side": "for",
+   "player": "Abdelaziz Barrada"
+  },
+  {
+   "team": "Olympique de Marseille",
+   "match": 3900600,
+   "minute": 82,
+   "side": "for",
+   "player": "Abdelaziz Barrada"
+  },
+  {
+   "team": "Olympique de Marseille",
+   "match": 3900610,
+   "minute": 68,
+   "side": "for",
+   "player": "Florian Thauvin"
+  },
+  {
+   "team": "Olympique de Marseille",
+   "match": 3901150,
+   "minute": 59,
+   "side": "for",
+   "player": "Nicolas Alexis Julio N'Koulou Ndoubena"
+  },
+  {
+   "team": "Olympique de Marseille",
+   "match": 3901227,
+   "minute": 55,
+   "side": "for",
+   "player": "Jacques-Alaixys Romao"
+  },
+  {
+   "team": "Palermo",
+   "match": 3878557,
+   "minute": 69,
+   "side": "for",
+   "player": "Aljaž Struna"
+  },
+  {
+   "team": "Palermo",
+   "match": 3879544,
+   "minute": 84,
+   "side": "for",
+   "player": "Luca Rigoni"
+  },
+  {
+   "team": "Palermo",
+   "match": 3879554,
+   "minute": 60,
+   "side": "against",
+   "player": "Cristian Molinaro"
+  },
+  {
+   "team": "Palermo",
+   "match": 3879554,
+   "minute": 88,
+   "side": "against",
+   "player": "Joel Chukwuma Obi"
+  },
+  {
+   "team": "Palermo",
+   "match": 3879579,
+   "minute": 78,
+   "side": "against",
+   "player": "Jeison Fabián Murillo Cerón"
+  },
+  {
+   "team": "Palermo",
+   "match": 3879644,
+   "minute": 75,
+   "side": "against",
+   "player": "Giulio Migliaccio"
+  },
+  {
+   "team": "Palermo",
+   "match": 3879695,
+   "minute": 64,
+   "side": "for",
+   "player": "Siniša Anđelković"
+  },
+  {
+   "team": "Palermo",
+   "match": 3879729,
+   "minute": 74,
+   "side": "for",
+   "player": "Achraf Lazaar"
+  },
+  {
+   "team": "Palermo",
+   "match": 3879832,
+   "minute": 88,
+   "side": "for",
+   "player": "Roberto Vitiello"
+  },
+  {
+   "team": "Palermo",
+   "match": 3879875,
+   "minute": 33,
+   "side": "against",
+   "player": "Paweł Wszołek"
+  },
+  {
+   "team": "Palermo",
+   "match": 3879875,
+   "minute": 33,
+   "side": "for",
+   "player": "Michel Morganella"
+  },
+  {
+   "team": "Paris Saint-Germain",
+   "match": 3829413,
+   "minute": 26,
+   "side": "for",
+   "player": "Adrien Rabiot"
+  },
+  {
+   "team": "Paris Saint-Germain",
+   "match": 3829453,
+   "minute": 76,
+   "side": "against",
+   "player": "Henri Saivet"
+  },
+  {
+   "team": "Paris Saint-Germain",
+   "match": 3900540,
+   "minute": 42,
+   "side": "against",
+   "player": "Niklas Hult"
+  },
+  {
+   "team": "Paris Saint-Germain",
+   "match": 3901183,
+   "minute": 73,
+   "side": "against",
+   "player": "Lossémy Karaboué"
+  },
+  {
+   "team": "RC Deportivo La Coruña",
+   "match": 3825576,
+   "minute": 83,
+   "side": "against",
+   "player": "Antonio Barragán Fernández"
+  },
+  {
+   "team": "RC Deportivo La Coruña",
+   "match": 3825588,
+   "minute": 76,
+   "side": "against",
+   "player": "Patrick Ebert"
+  },
+  {
+   "team": "RC Deportivo La Coruña",
+   "match": 3825611,
+   "minute": 76,
+   "side": "against",
+   "player": "Papa Kouly Diop"
+  },
+  {
+   "team": "RC Deportivo La Coruña",
+   "match": 3825698,
+   "minute": 67,
+   "side": "for",
+   "player": "Luis Carlos Correia Pinto"
+  },
+  {
+   "team": "RC Deportivo La Coruña",
+   "match": 3825792,
+   "minute": 92,
+   "side": "for",
+   "player": "Germán Darío Lux"
+  },
+  {
+   "team": "RC Deportivo La Coruña",
+   "match": 3825804,
+   "minute": 92,
+   "side": "against",
+   "player": "Ignacio Camacho Barnola"
+  },
+  {
+   "team": "RC Deportivo La Coruña",
+   "match": 3825898,
+   "minute": 67,
+   "side": "for",
+   "player": "Alejandro Arribas Garrido"
+  },
+  {
+   "team": "RC Deportivo La Coruña",
+   "match": 3825894,
+   "minute": 63,
+   "side": "for",
+   "player": "Celso Borges Mora"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825574,
+   "minute": 8,
+   "side": "for",
+   "player": "Antonio Rodríguez Martínez"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825588,
+   "minute": 76,
+   "side": "for",
+   "player": "Patrick Ebert"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825601,
+   "minute": 37,
+   "side": "against",
+   "player": "Bernardo José Espinosa Zúñiga"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825605,
+   "minute": 82,
+   "side": "for",
+   "player": "Antonio Amaya Carazo"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825633,
+   "minute": 65,
+   "side": "against",
+   "player": "Víctor Sánchez Mata"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825633,
+   "minute": 91,
+   "side": "for",
+   "player": "Roberto Román Triguero"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825655,
+   "minute": 18,
+   "side": "for",
+   "player": "José Eduardo Rosa Vale de Castro"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825675,
+   "minute": 63,
+   "side": "against",
+   "player": "Aymeric Laporte"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825700,
+   "minute": 13,
+   "side": "for",
+   "player": "Roberto Román Triguero"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825700,
+   "minute": 27,
+   "side": "for",
+   "player": "José Raúl Baena Urdiales"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 266653,
+   "minute": 41,
+   "side": "for",
+   "player": "Diego Javier Llorente Ríos"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 266653,
+   "minute": 66,
+   "side": "for",
+   "player": "Manuel Rolando Iturra Urrutia"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825811,
+   "minute": 88,
+   "side": "against",
+   "player": "Víctor Sánchez Mata"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825858,
+   "minute": 84,
+   "side": "against",
+   "player": "Josip Radošević"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825887,
+   "minute": 69,
+   "side": "against",
+   "player": "Isaac Ajayi Success"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825885,
+   "minute": 14,
+   "side": "for",
+   "player": "Yoel Rodríguez Oterino"
+  },
+  {
+   "team": "Rayo Vallecano",
+   "match": 3825861,
+   "minute": 74,
+   "side": "against",
+   "player": "Esteban Félix Granero Molina"
+  },
+  {
+   "team": "Real Betis",
+   "match": 3825568,
+   "minute": 91,
+   "side": "against",
+   "player": "Bruno Soriano Llido"
+  },
+  {
+   "team": "Real Betis",
+   "match": 3825582,
+   "minute": 44,
+   "side": "for",
+   "player": "Petros Matheus dos Santos Araújo"
+  },
+  {
+   "team": "Real Betis",
+   "match": 3825591,
+   "minute": 47,
+   "side": "for",
+   "player": "Daniel Ceballos Fernández"
+  },
+  {
+   "team": "Real Betis",
+   "match": 3825670,
+   "minute": 78,
+   "side": "for",
+   "player": "Heiko Westermann"
+  },
+  {
+   "team": "Real Betis",
+   "match": 3825670,
+   "minute": 80,
+   "side": "against",
+   "player": "Juan Francisco García García"
+  },
+  {
+   "team": "Real Betis",
+   "match": 3825679,
+   "minute": 47,
+   "side": "against",
+   "player": "Jonathan Castro Otto"
+  },
+  {
+   "team": "Real Betis",
+   "match": 3825766,
+   "minute": 84,
+   "side": "against",
+   "player": "José Luis Gayà Peña"
+  },
+  {
+   "team": "Real Betis",
+   "match": 3825809,
+   "minute": 52,
+   "side": "for",
+   "player": "Juan Manuel Vargas Risco"
+  },
+  {
+   "team": "Real Betis",
+   "match": 3825809,
+   "minute": 92,
+   "side": "against",
+   "player": "Andrés Eduardo Fernández Moreno"
+  },
+  {
+   "team": "Real Betis",
+   "match": 3825837,
+   "minute": 40,
+   "side": "against",
+   "player": "Aythami Artiles Oliva"
+  },
+  {
+   "team": "Real Betis",
+   "match": 266986,
+   "minute": 34,
+   "side": "for",
+   "player": "Heiko Westermann"
+  },
+  {
+   "team": "Real Betis",
+   "match": 3825876,
+   "minute": 74,
+   "side": "against",
+   "player": "Emiliano Buendía"
+  },
+  {
+   "team": "Real Madrid",
+   "match": 3825606,
+   "minute": 76,
+   "side": "against",
+   "player": "Nordin Amrabat"
+  },
+  {
+   "team": "Real Madrid",
+   "match": 3825635,
+   "minute": 56,
+   "side": "against",
+   "player": "Gustavo Daniel Cabral Cáceres"
+  },
+  {
+   "team": "Real Madrid",
+   "match": 266424,
+   "minute": 83,
+   "side": "for",
+   "player": "Francisco Román Alarcón Suárez"
+  },
+  {
+   "team": "Real Madrid",
+   "match": 3825700,
+   "minute": 13,
+   "side": "against",
+   "player": "Roberto Román Triguero"
+  },
+  {
+   "team": "Real Madrid",
+   "match": 3825700,
+   "minute": 27,
+   "side": "against",
+   "player": "José Raúl Baena Urdiales"
+  },
+  {
+   "team": "Real Madrid",
+   "match": 3825718,
+   "minute": 67,
+   "side": "for",
+   "player": "Mateo Kovačić"
+  },
+  {
+   "team": "Real Madrid",
+   "match": 3825770,
+   "minute": 82,
+   "side": "for",
+   "player": "Raphaël Varane"
+  },
+  {
+   "team": "Real Madrid",
+   "match": 3825879,
+   "minute": 90,
+   "side": "for",
+   "player": "Sergio Ramos García"
+  },
+  {
+   "team": "Real Madrid",
+   "match": 267533,
+   "minute": 82,
+   "side": "for",
+   "player": "Sergio Ramos García"
+  },
+  {
+   "team": "Real Madrid",
+   "match": 3825901,
+   "minute": 82,
+   "side": "against",
+   "player": "Rodrigo Moreno Machado"
+  },
+  {
+   "team": "Real Sociedad",
+   "match": 3825582,
+   "minute": 44,
+   "side": "against",
+   "player": "Petros Matheus dos Santos Araújo"
+  },
+  {
+   "team": "Real Sociedad",
+   "match": 3825592,
+   "minute": 41,
+   "side": "for",
+   "player": "Gerónimo Rulli"
+  },
+  {
+   "team": "Real Sociedad",
+   "match": 3825616,
+   "minute": 70,
+   "side": "against",
+   "player": "Fernando Damián Tissone"
+  },
+  {
+   "team": "Real Sociedad",
+   "match": 3825631,
+   "minute": 88,
+   "side": "for",
+   "player": "Diego Antonio Reyes Rosales"
+  },
+  {
+   "team": "Real Sociedad",
+   "match": 3825631,
+   "minute": 91,
+   "side": "for",
+   "player": "Jonathas Cristian de Jesus"
+  },
+  {
+   "team": "Real Sociedad",
+   "match": 3825640,
+   "minute": 89,
+   "side": "against",
+   "player": "Deyverson Brum Silva Acosta"
+  },
+  {
+   "team": "Real Sociedad",
+   "match": 3825823,
+   "minute": 67,
+   "side": "for",
+   "player": "Markel Bergara Larrañaga"
+  },
+  {
+   "team": "Real Sociedad",
+   "match": 3825861,
+   "minute": 74,
+   "side": "for",
+   "player": "Esteban Félix Granero Molina"
+  },
+  {
+   "team": "Rennes",
+   "match": 3829415,
+   "minute": 77,
+   "side": "against",
+   "player": "Evaeverson Lemos da Silva Brandão"
+  },
+  {
+   "team": "Rennes",
+   "match": 3829460,
+   "minute": 50,
+   "side": "against",
+   "player": "Adryan Oliveira Tavares"
+  },
+  {
+   "team": "Rennes",
+   "match": 3829460,
+   "minute": 77,
+   "side": "against",
+   "player": "Kolbeinn Sigþórsson"
+  },
+  {
+   "team": "Rennes",
+   "match": 3829463,
+   "minute": 68,
+   "side": "against",
+   "player": "Vincent Enyeama"
+  },
+  {
+   "team": "Rennes",
+   "match": 3829485,
+   "minute": 91,
+   "side": "for",
+   "player": "Yacouba Sylla"
+  },
+  {
+   "team": "Rennes",
+   "match": 3829516,
+   "minute": 66,
+   "side": "against",
+   "player": "Lamine Koné"
+  },
+  {
+   "team": "Rennes",
+   "match": 3829516,
+   "minute": 83,
+   "side": "for",
+   "player": "Giovanni-Guy Yann Sio"
+  },
+  {
+   "team": "Rennes",
+   "match": 3900519,
+   "minute": 94,
+   "side": "against",
+   "player": "Nicolas Pallois"
+  },
+  {
+   "team": "Rennes",
+   "match": 3900523,
+   "minute": 62,
+   "side": "against",
+   "player": "Jaba Kankava"
+  },
+  {
+   "team": "Rennes",
+   "match": 3900550,
+   "minute": 35,
+   "side": "against",
+   "player": "Emmanuel Imorou"
+  },
+  {
+   "team": "Rennes",
+   "match": 3900628,
+   "minute": 69,
+   "side": "against",
+   "player": "Sofiane Boufal"
+  },
+  {
+   "team": "Rennes",
+   "match": 3901170,
+   "minute": 66,
+   "side": "for",
+   "player": "Giovanni-Guy Yann Sio"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3829421,
+   "minute": 84,
+   "side": "against",
+   "player": "Aleksandar Pešić"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3829440,
+   "minute": 0,
+   "side": "against",
+   "player": "Benjamin Lecomte"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3829451,
+   "minute": 2,
+   "side": "against",
+   "player": "Alexander Djiku"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3829451,
+   "minute": 69,
+   "side": "against",
+   "player": "François Kamano"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3829490,
+   "minute": 61,
+   "side": "against",
+   "player": "Nampalys Mendy"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3829490,
+   "minute": 80,
+   "side": "against",
+   "player": "Maxime Le Marchand"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3900529,
+   "minute": 88,
+   "side": "for",
+   "player": "Moustapha Bayal Sall"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3900558,
+   "minute": 62,
+   "side": "for",
+   "player": "Kévin Malcuit"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3900627,
+   "minute": 91,
+   "side": "against",
+   "player": "Cheick Tidiane Diabaté"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3901150,
+   "minute": 59,
+   "side": "against",
+   "player": "Nicolas Alexis Julio N'Koulou Ndoubena"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3901237,
+   "minute": 76,
+   "side": "for",
+   "player": "Loïc Perrin"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3901250,
+   "minute": 54,
+   "side": "for",
+   "player": "Kévin Malcuit"
+  },
+  {
+   "team": "Saint-Étienne",
+   "match": 3901250,
+   "minute": 71,
+   "side": "for",
+   "player": "Franck Tabanou"
+  },
+  {
+   "team": "Sampdoria",
+   "match": 3878545,
+   "minute": 80,
+   "side": "for",
+   "player": "Dávid Ivan"
+  },
+  {
+   "team": "Sampdoria",
+   "match": 3878601,
+   "minute": 61,
+   "side": "against",
+   "player": "Luca Rizzo"
+  },
+  {
+   "team": "Sampdoria",
+   "match": 3879596,
+   "minute": 87,
+   "side": "against",
+   "player": "Assane Dioussé El Hadji"
+  },
+  {
+   "team": "Sampdoria",
+   "match": 3879625,
+   "minute": 89,
+   "side": "for",
+   "player": "Ervin Zukanović"
+  },
+  {
+   "team": "Sampdoria",
+   "match": 3879684,
+   "minute": 93,
+   "side": "for",
+   "player": "Niklas Moisander"
+  },
+  {
+   "team": "Sampdoria",
+   "match": 3879689,
+   "minute": 85,
+   "side": "against",
+   "player": "Riccardo Gagliolo"
+  },
+  {
+   "team": "Sampdoria",
+   "match": 3879699,
+   "minute": 57,
+   "side": "for",
+   "player": "Mattia Cassani"
+  },
+  {
+   "team": "Sampdoria",
+   "match": 3879800,
+   "minute": 70,
+   "side": "for",
+   "player": "Carlos Joaquín Correa"
+  },
+  {
+   "team": "Sampdoria",
+   "match": 3879831,
+   "minute": 25,
+   "side": "for",
+   "player": "Andrea Ranocchia"
+  },
+  {
+   "team": "Sampdoria",
+   "match": 3879870,
+   "minute": 13,
+   "side": "for",
+   "player": "Milan Škriniar"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3878599,
+   "minute": 47,
+   "side": "against",
+   "player": "Mauricio Ricardo Pinilla Ferreira"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3878599,
+   "minute": 83,
+   "side": "for",
+   "player": "Šime Vrsaljko"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879544,
+   "minute": 84,
+   "side": "against",
+   "player": "Luca Rigoni"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879563,
+   "minute": 89,
+   "side": "against",
+   "player": "Piotr Zieliński"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879573,
+   "minute": 91,
+   "side": "against",
+   "player": "Danilo Cataldi"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879585,
+   "minute": 28,
+   "side": "for",
+   "player": "Andrea Consigli"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879591,
+   "minute": 38,
+   "side": "against",
+   "player": "Giorgio Chiellini"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879619,
+   "minute": 40,
+   "side": "for",
+   "player": "Domenico Berardi"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879619,
+   "minute": 40,
+   "side": "against",
+   "player": "Diego Perotti"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879667,
+   "minute": 92,
+   "side": "for",
+   "player": "Lorenzo Pellegrini"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879717,
+   "minute": 86,
+   "side": "against",
+   "player": "Radja Nainggolan"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879729,
+   "minute": 74,
+   "side": "against",
+   "player": "Achraf Lazaar"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879753,
+   "minute": 30,
+   "side": "for",
+   "player": "Simone Missiroli"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879753,
+   "minute": 37,
+   "side": "against",
+   "player": "Lorenzo Tonelli"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879771,
+   "minute": 75,
+   "side": "for",
+   "player": "Gregoire Defrel"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879831,
+   "minute": 25,
+   "side": "against",
+   "player": "Andrea Ranocchia"
+  },
+  {
+   "team": "Sassuolo",
+   "match": 3879868,
+   "minute": 59,
+   "side": "against",
+   "player": "Jeison Fabián Murillo Cerón"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825562,
+   "minute": 68,
+   "side": "for",
+   "player": "Steven N''Kemboanza Mike Christopher Nzonzi"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825594,
+   "minute": 90,
+   "side": "against",
+   "player": "Jonathan Castro Otto"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825605,
+   "minute": 82,
+   "side": "against",
+   "player": "Antonio Amaya Carazo"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825874,
+   "minute": 58,
+   "side": "against",
+   "player": "Carlos Martín Vigaray"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825677,
+   "minute": 34,
+   "side": "against",
+   "player": "João Pedro Cavaco Cancelo"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825677,
+   "minute": 76,
+   "side": "against",
+   "player": "Javier Fuego Martínez"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825692,
+   "minute": 73,
+   "side": "against",
+   "player": "Luis Hernández Rodríguez"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825717,
+   "minute": 85,
+   "side": "for",
+   "player": "Adil Rami"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825733,
+   "minute": 82,
+   "side": "for",
+   "player": "Vicente Iborra De La Fuente"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825733,
+   "minute": 91,
+   "side": "against",
+   "player": "Arthur Etienne Boka"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825748,
+   "minute": 60,
+   "side": "for",
+   "player": "Víctor Machín Pérez"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825765,
+   "minute": 24,
+   "side": "for",
+   "player": "Federico Julián Fazio"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825801,
+   "minute": 86,
+   "side": "against",
+   "player": "Manuel Castellano Castro"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825816,
+   "minute": 78,
+   "side": "for",
+   "player": "Éver Maximiliano David Banega"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825823,
+   "minute": 67,
+   "side": "against",
+   "player": "Markel Bergara Larrañaga"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825869,
+   "minute": 33,
+   "side": "for",
+   "player": "Jorge Andújar Moreno"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825869,
+   "minute": 57,
+   "side": "for",
+   "player": "Timothée Kolodziejczak"
+  },
+  {
+   "team": "Sevilla",
+   "match": 3825869,
+   "minute": 89,
+   "side": "against",
+   "player": "Mikel Rico Moreno"
+  },
+  {
+   "team": "Southampton",
+   "match": 3754337,
+   "minute": 29,
+   "side": "against",
+   "player": "Steven Whittaker"
+  },
+  {
+   "team": "Southampton",
+   "match": 3754230,
+   "minute": 92,
+   "side": "for",
+   "player": "Sadio Mané"
+  },
+  {
+   "team": "Southampton",
+   "match": 3754191,
+   "minute": 77,
+   "side": "for",
+   "player": "Victor Wanyama"
+  },
+  {
+   "team": "Southampton",
+   "match": 3754101,
+   "minute": 72,
+   "side": "for",
+   "player": "Victor Wanyama"
+  },
+  {
+   "team": "Southampton",
+   "match": 3754120,
+   "minute": 52,
+   "side": "for",
+   "player": "Victor Wanyama"
+  },
+  {
+   "team": "Southampton",
+   "match": 3754164,
+   "minute": 78,
+   "side": "for",
+   "player": "José Miguel da Rocha Fonte"
+  },
+  {
+   "team": "Southampton",
+   "match": 3754196,
+   "minute": 90,
+   "side": "for",
+   "player": "Sadio Mané"
+  },
+  {
+   "team": "Sporting Gijón",
+   "match": 3825601,
+   "minute": 37,
+   "side": "for",
+   "player": "Bernardo José Espinosa Zúñiga"
+  },
+  {
+   "team": "Sporting Gijón",
+   "match": 3825632,
+   "minute": 80,
+   "side": "against",
+   "player": "Hugo Miguel Almeida Costa Lopes"
+  },
+  {
+   "team": "Sporting Gijón",
+   "match": 3825632,
+   "minute": 91,
+   "side": "against",
+   "player": "Matheus Dória Macedo"
+  },
+  {
+   "team": "Sporting Gijón",
+   "match": 3825685,
+   "minute": 70,
+   "side": "against",
+   "player": "Aythami Artiles Oliva"
+  },
+  {
+   "team": "Sporting Gijón",
+   "match": 3825692,
+   "minute": 73,
+   "side": "for",
+   "player": "Luis Hernández Rodríguez"
+  },
+  {
+   "team": "Sporting Gijón",
+   "match": 3825790,
+   "minute": 82,
+   "side": "for",
+   "player": "Ignacio Cases Mora"
+  },
+  {
+   "team": "Sporting Gijón",
+   "match": 3825803,
+   "minute": 83,
+   "side": "for",
+   "player": "Sergio Álvarez Díaz"
+  },
+  {
+   "team": "Sporting Gijón",
+   "match": 3825808,
+   "minute": 73,
+   "side": "against",
+   "player": "Aymeric Laporte"
+  },
+  {
+   "team": "Sporting Gijón",
+   "match": 3825825,
+   "minute": 93,
+   "side": "against",
+   "player": "Zouhair Feddal"
+  },
+  {
+   "team": "Sporting Gijón",
+   "match": 265944,
+   "minute": 83,
+   "side": "for",
+   "player": "Ognjen Vranješ"
+  },
+  {
+   "team": "Sporting Gijón",
+   "match": 3825865,
+   "minute": 55,
+   "side": "for",
+   "player": "Ignacio Cases Mora"
+  },
+  {
+   "team": "Stade Malherbe Caen",
+   "match": 3829428,
+   "minute": 88,
+   "side": "against",
+   "player": "Uroš Spajić"
+  },
+  {
+   "team": "Stade Malherbe Caen",
+   "match": 3829444,
+   "minute": 72,
+   "side": "for",
+   "player": "Damien Da Silva"
+  },
+  {
+   "team": "Stade Malherbe Caen",
+   "match": 3900518,
+   "minute": 31,
+   "side": "for",
+   "player": "Alaeddine Yahia"
+  },
+  {
+   "team": "Stade Malherbe Caen",
+   "match": 3900528,
+   "minute": 80,
+   "side": "against",
+   "player": "André Biyogo Poko"
+  },
+  {
+   "team": "Stade Malherbe Caen",
+   "match": 3900550,
+   "minute": 35,
+   "side": "for",
+   "player": "Emmanuel Imorou"
+  },
+  {
+   "team": "Stade Malherbe Caen",
+   "match": 3900614,
+   "minute": 83,
+   "side": "for",
+   "player": "Michaël Jordan Nkololo"
+  },
+  {
+   "team": "Stade de Reims",
+   "match": 3829430,
+   "minute": 72,
+   "side": "against",
+   "player": "Jacques-Alaixys Romao"
+  },
+  {
+   "team": "Stade de Reims",
+   "match": 3829520,
+   "minute": 68,
+   "side": "for",
+   "player": "Antoine Devaux"
+  },
+  {
+   "team": "Stade de Reims",
+   "match": 3900523,
+   "minute": 62,
+   "side": "for",
+   "player": "Jaba Kankava"
+  },
+  {
+   "team": "Stade de Reims",
+   "match": 3900538,
+   "minute": 50,
+   "side": "against",
+   "player": "Yannis Salibur"
+  },
+  {
+   "team": "Stade de Reims",
+   "match": 3900538,
+   "minute": 88,
+   "side": "for",
+   "player": "Hamari Traoré"
+  },
+  {
+   "team": "Stade de Reims",
+   "match": 3900553,
+   "minute": 93,
+   "side": "for",
+   "player": "Aïssa Mandi"
+  },
+  {
+   "team": "Stade de Reims",
+   "match": 3900575,
+   "minute": 78,
+   "side": "for",
+   "player": "Antoine Devaux"
+  },
+  {
+   "team": "Stade de Reims",
+   "match": 3900617,
+   "minute": 90,
+   "side": "against",
+   "player": "Pierrick Capelle"
+  },
+  {
+   "team": "Stade de Reims",
+   "match": 3901168,
+   "minute": 83,
+   "side": "for",
+   "player": "Antoine Devaux"
+  },
+  {
+   "team": "Stade de Reims",
+   "match": 3901207,
+   "minute": 84,
+   "side": "against",
+   "player": "Yacine Bammou"
+  },
+  {
+   "team": "Stoke City",
+   "match": 3754007,
+   "minute": 24,
+   "side": "for",
+   "player": "Ibrahim Afellay"
+  },
+  {
+   "team": "Stoke City",
+   "match": 3754007,
+   "minute": 30,
+   "side": "for",
+   "player": "Charlie Adam"
+  },
+  {
+   "team": "Stoke City",
+   "match": 3754150,
+   "minute": 46,
+   "side": "for",
+   "player": "Ryan Shawcross"
+  },
+  {
+   "team": "Stoke City",
+   "match": 3754122,
+   "minute": 82,
+   "side": "for",
+   "player": "Geoff Cameron"
+  },
+  {
+   "team": "Stoke City",
+   "match": 3754032,
+   "minute": 30,
+   "side": "against",
+   "player": "Gary O''Neil"
+  },
+  {
+   "team": "Stoke City",
+   "match": 3754196,
+   "minute": 90,
+   "side": "against",
+   "player": "Sadio Mané"
+  },
+  {
+   "team": "Sunderland",
+   "match": 3754169,
+   "minute": 73,
+   "side": "for",
+   "player": "Younes Kaboul"
+  },
+  {
+   "team": "Sunderland",
+   "match": 3754076,
+   "minute": 56,
+   "side": "for",
+   "player": "Jeremain Lens"
+  },
+  {
+   "team": "Sunderland",
+   "match": 3754119,
+   "minute": 45,
+   "side": "against",
+   "player": "Fabricio Coloccini"
+  },
+  {
+   "team": "Sunderland",
+   "match": 3754150,
+   "minute": 46,
+   "side": "against",
+   "player": "Ryan Shawcross"
+  },
+  {
+   "team": "Sunderland",
+   "match": 3754071,
+   "minute": 36,
+   "side": "against",
+   "player": "Kyle Naughton"
+  },
+  {
+   "team": "Sunderland",
+   "match": 3754164,
+   "minute": 78,
+   "side": "against",
+   "player": "José Miguel da Rocha Fonte"
+  },
+  {
+   "team": "Sunderland",
+   "match": 3754108,
+   "minute": 93,
+   "side": "against",
+   "player": "John Terry"
+  },
+  {
+   "team": "Swansea City",
+   "match": 3754078,
+   "minute": 51,
+   "side": "against",
+   "player": "Thibaut Courtois"
+  },
+  {
+   "team": "Swansea City",
+   "match": 3754344,
+   "minute": 40,
+   "side": "against",
+   "player": "Daryl Janmaat"
+  },
+  {
+   "team": "Swansea City",
+   "match": 3754213,
+   "minute": 63,
+   "side": "against",
+   "player": "Valon Behrami"
+  },
+  {
+   "team": "Swansea City",
+   "match": 3754298,
+   "minute": 92,
+   "side": "against",
+   "player": "Kevin Mirallas"
+  },
+  {
+   "team": "Swansea City",
+   "match": 3754071,
+   "minute": 36,
+   "side": "for",
+   "player": "Kyle Naughton"
+  },
+  {
+   "team": "Swansea City",
+   "match": 3754018,
+   "minute": 75,
+   "side": "against",
+   "player": "Bradley Shaun Smith"
+  },
+  {
+   "team": "Torino",
+   "match": 3879554,
+   "minute": 60,
+   "side": "for",
+   "player": "Cristian Molinaro"
+  },
+  {
+   "team": "Torino",
+   "match": 3879554,
+   "minute": 88,
+   "side": "for",
+   "player": "Joel Chukwuma Obi"
+  },
+  {
+   "team": "Torino",
+   "match": 3879658,
+   "minute": 63,
+   "side": "against",
+   "player": "Molla Wagué"
+  },
+  {
+   "team": "Torino",
+   "match": 3879790,
+   "minute": 86,
+   "side": "against",
+   "player": "Sami Khedira"
+  },
+  {
+   "team": "Torino",
+   "match": 3879801,
+   "minute": 56,
+   "side": "against",
+   "player": "João Miranda de Souza Filho"
+  },
+  {
+   "team": "Torino",
+   "match": 3879801,
+   "minute": 71,
+   "side": "against",
+   "player": "Yuto Nagatomo"
+  },
+  {
+   "team": "Torino",
+   "match": 3879815,
+   "minute": 90,
+   "side": "against",
+   "player": "Marten de Roon"
+  },
+  {
+   "team": "Torino",
+   "match": 3879862,
+   "minute": 91,
+   "side": "for",
+   "player": "Giuseppe Vives"
+  },
+  {
+   "team": "Tottenham Hotspur",
+   "match": 3754291,
+   "minute": 61,
+   "side": "against",
+   "player": "Nathan Aké"
+  },
+  {
+   "team": "Tottenham Hotspur",
+   "match": 3754318,
+   "minute": 54,
+   "side": "against",
+   "player": "Francis Joseph Coquelin"
+  },
+  {
+   "team": "Tottenham Hotspur",
+   "match": 3754333,
+   "minute": 64,
+   "side": "against",
+   "player": "Aleksandar Mitrović"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3829421,
+   "minute": 84,
+   "side": "for",
+   "player": "Aleksandar Pešić"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3829428,
+   "minute": 88,
+   "side": "for",
+   "player": "Uroš Spajić"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3829471,
+   "minute": 74,
+   "side": "for",
+   "player": "Óscar Guido Trejo"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3829477,
+   "minute": 76,
+   "side": "against",
+   "player": "Benjamin Mendy"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3829477,
+   "minute": 83,
+   "side": "for",
+   "player": "Jacques François Moubandje"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3829477,
+   "minute": 86,
+   "side": "for",
+   "player": "Steeve Yago"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3900514,
+   "minute": 85,
+   "side": "for",
+   "player": "Jean-Armel Kana-Biyik"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3900522,
+   "minute": 28,
+   "side": "against",
+   "player": "Mouez Hassen"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3900537,
+   "minute": 65,
+   "side": "for",
+   "player": "Marcel Tisserand"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3900537,
+   "minute": 78,
+   "side": "against",
+   "player": "Stéphane Darbion"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3900555,
+   "minute": 90,
+   "side": "for",
+   "player": "Issa Diop"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3900561,
+   "minute": 66,
+   "side": "for",
+   "player": "Tongo Hamed Doumbia"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3900575,
+   "minute": 78,
+   "side": "against",
+   "player": "Antoine Devaux"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3900603,
+   "minute": 91,
+   "side": "for",
+   "player": "Issa Diop"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3901147,
+   "minute": 78,
+   "side": "against",
+   "player": "Issiaga Sylla"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3901176,
+   "minute": 48,
+   "side": "against",
+   "player": "Ludovic Lamine Sané"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3901206,
+   "minute": 66,
+   "side": "against",
+   "player": "Yannick Cahuzac"
+  },
+  {
+   "team": "Toulouse",
+   "match": 3901237,
+   "minute": 76,
+   "side": "against",
+   "player": "Loïc Perrin"
+  },
+  {
+   "team": "Troyes",
+   "match": 3829427,
+   "minute": 30,
+   "side": "for",
+   "player": "Chris Mavinga"
+  },
+  {
+   "team": "Troyes",
+   "match": 3829455,
+   "minute": 54,
+   "side": "against",
+   "player": "Syam Ben Youssef"
+  },
+  {
+   "team": "Troyes",
+   "match": 3829466,
+   "minute": 32,
+   "side": "against",
+   "player": "Cheikh N''Doye"
+  },
+  {
+   "team": "Troyes",
+   "match": 3829485,
+   "minute": 91,
+   "side": "against",
+   "player": "Yacouba Sylla"
+  },
+  {
+   "team": "Troyes",
+   "match": 3829497,
+   "minute": 84,
+   "side": "for",
+   "player": "Thomas Ayasse"
+  },
+  {
+   "team": "Troyes",
+   "match": 3900493,
+   "minute": 35,
+   "side": "for",
+   "player": "Corentin Jean"
+  },
+  {
+   "team": "Troyes",
+   "match": 3900537,
+   "minute": 65,
+   "side": "against",
+   "player": "Marcel Tisserand"
+  },
+  {
+   "team": "Troyes",
+   "match": 3900537,
+   "minute": 78,
+   "side": "for",
+   "player": "Stéphane Darbion"
+  },
+  {
+   "team": "Troyes",
+   "match": 3900564,
+   "minute": 2,
+   "side": "for",
+   "player": "Mouhamadou Dabo"
+  },
+  {
+   "team": "Troyes",
+   "match": 3900622,
+   "minute": 45,
+   "side": "against",
+   "player": "Jean-Louis Leca"
+  },
+  {
+   "team": "Troyes",
+   "match": 3900622,
+   "minute": 58,
+   "side": "for",
+   "player": "Brayan Andrés Perea Vargas"
+  },
+  {
+   "team": "Troyes",
+   "match": 3900622,
+   "minute": 80,
+   "side": "for",
+   "player": "Fabien Camus"
+  },
+  {
+   "team": "Troyes",
+   "match": 3901154,
+   "minute": 89,
+   "side": "for",
+   "player": "Fabien Camus"
+  },
+  {
+   "team": "Troyes",
+   "match": 3901183,
+   "minute": 73,
+   "side": "for",
+   "player": "Lossémy Karaboué"
+  },
+  {
+   "team": "Troyes",
+   "match": 3901226,
+   "minute": 40,
+   "side": "against",
+   "player": "Vitorino Hilton da Silva"
+  },
+  {
+   "team": "Udinese",
+   "match": 3878557,
+   "minute": 69,
+   "side": "against",
+   "player": "Aljaž Struna"
+  },
+  {
+   "team": "Udinese",
+   "match": 3878603,
+   "minute": 70,
+   "side": "for",
+   "player": "Panagiotis Giorgios Kone"
+  },
+  {
+   "team": "Udinese",
+   "match": 3879537,
+   "minute": 91,
+   "side": "for",
+   "player": "Bruno Miguel Borges Fernandes"
+  },
+  {
+   "team": "Udinese",
+   "match": 3879625,
+   "minute": 89,
+   "side": "against",
+   "player": "Ervin Zukanović"
+  },
+  {
+   "team": "Udinese",
+   "match": 3879658,
+   "minute": 63,
+   "side": "for",
+   "player": "Molla Wagué"
+  },
+  {
+   "team": "Udinese",
+   "match": 3879693,
+   "minute": 24,
+   "side": "for",
+   "player": "Danilo Larangeira"
+  },
+  {
+   "team": "Udinese",
+   "match": 3879711,
+   "minute": 41,
+   "side": "for",
+   "player": "Danilo Larangeira"
+  },
+  {
+   "team": "Udinese",
+   "match": 3879711,
+   "minute": 83,
+   "side": "against",
+   "player": "Alessandro Matri"
+  },
+  {
+   "team": "Udinese",
+   "match": 3879803,
+   "minute": 74,
+   "side": "against",
+   "player": "Gonzalo Gerardo Higuaín"
+  },
+  {
+   "team": "Udinese",
+   "match": 3879822,
+   "minute": 76,
+   "side": "for",
+   "player": "Felipe Dias da Silva dal Belo"
+  },
+  {
+   "team": "Udinese",
+   "match": 3879822,
+   "minute": 84,
+   "side": "against",
+   "player": "Riccardo Meggiorini"
+  },
+  {
+   "team": "Udinese",
+   "match": 3879871,
+   "minute": 36,
+   "side": "for",
+   "player": "Cyril Théréau"
+  },
+  {
+   "team": "Valencia",
+   "match": 3825576,
+   "minute": 83,
+   "side": "for",
+   "player": "Antonio Barragán Fernández"
+  },
+  {
+   "team": "Valencia",
+   "match": 3825591,
+   "minute": 47,
+   "side": "against",
+   "player": "Daniel Ceballos Fernández"
+  },
+  {
+   "team": "Valencia",
+   "match": 3825677,
+   "minute": 34,
+   "side": "for",
+   "player": "João Pedro Cavaco Cancelo"
+  },
+  {
+   "team": "Valencia",
+   "match": 3825677,
+   "minute": 76,
+   "side": "for",
+   "player": "Javier Fuego Martínez"
+  },
+  {
+   "team": "Valencia",
+   "match": 3825694,
+   "minute": 62,
+   "side": "for",
+   "player": "Lucas Alfonso Orbán Alegre"
+  },
+  {
+   "team": "Valencia",
+   "match": 3825694,
+   "minute": 91,
+   "side": "against",
+   "player": "Iván Ramis Barrios"
+  },
+  {
+   "team": "Valencia",
+   "match": 3825718,
+   "minute": 67,
+   "side": "against",
+   "player": "Mateo Kovačić"
+  },
+  {
+   "team": "Valencia",
+   "match": 3825766,
+   "minute": 84,
+   "side": "for",
+   "player": "José Luis Gayà Peña"
+  },
+  {
+   "team": "Valencia",
+   "match": 3825807,
+   "minute": 79,
+   "side": "for",
+   "player": "Aderllan Leandro de Jesus Santos"
+  },
+  {
+   "team": "Valencia",
+   "match": 3825901,
+   "minute": 82,
+   "side": "for",
+   "player": "Rodrigo Moreno Machado"
+  },
+  {
+   "team": "Villarreal",
+   "match": 3825568,
+   "minute": 91,
+   "side": "for",
+   "player": "Bruno Soriano Llido"
+  },
+  {
+   "team": "Villarreal",
+   "match": 3825619,
+   "minute": 34,
+   "side": "for",
+   "player": "Bojan Jokić"
+  },
+  {
+   "team": "Villarreal",
+   "match": 3825629,
+   "minute": 46,
+   "side": "for",
+   "player": "Eric Bertrand Bailly"
+  },
+  {
+   "team": "Villarreal",
+   "match": 3825667,
+   "minute": 75,
+   "side": "against",
+   "player": "Sergio Gontán Gallardo"
+  },
+  {
+   "team": "Villarreal",
+   "match": 3825744,
+   "minute": 88,
+   "side": "against",
+   "player": "Gerard Moreno Balaguero"
+  },
+  {
+   "team": "Villarreal",
+   "match": 3825761,
+   "minute": 89,
+   "side": "against",
+   "player": "Iñaki Williams Arthuer"
+  },
+  {
+   "team": "Villarreal",
+   "match": 3825761,
+   "minute": 93,
+   "side": "for",
+   "player": "Daniele Bonera"
+  },
+  {
+   "team": "Villarreal",
+   "match": 3825794,
+   "minute": 55,
+   "side": "against",
+   "player": "David Navarro Pedrós"
+  },
+  {
+   "team": "Villarreal",
+   "match": 3825816,
+   "minute": 78,
+   "side": "against",
+   "player": "Éver Maximiliano David Banega"
+  },
+  {
+   "team": "Watford",
+   "match": 3754213,
+   "minute": 63,
+   "side": "for",
+   "player": "Valon Behrami"
+  },
+  {
+   "team": "Watford",
+   "match": 3754273,
+   "minute": 83,
+   "side": "against",
+   "player": "James Collins"
+  },
+  {
+   "team": "Watford",
+   "match": 3754291,
+   "minute": 61,
+   "side": "for",
+   "player": "Nathan Aké"
+  },
+  {
+   "team": "Watford",
+   "match": 3754039,
+   "minute": 93,
+   "side": "against",
+   "player": "Pape N''Diaye Souaré"
+  },
+  {
+   "team": "Watford",
+   "match": 3754086,
+   "minute": 92,
+   "side": "for",
+   "player": "Nordin Amrabat"
+  },
+  {
+   "team": "Watford",
+   "match": 3754063,
+   "minute": 72,
+   "side": "against",
+   "player": "Aly Cissokho"
+  },
+  {
+   "team": "West Bromwich Albion",
+   "match": 3754059,
+   "minute": 53,
+   "side": "against",
+   "player": "John Terry"
+  },
+  {
+   "team": "West Bromwich Albion",
+   "match": 3754007,
+   "minute": 24,
+   "side": "against",
+   "player": "Ibrahim Afellay"
+  },
+  {
+   "team": "West Bromwich Albion",
+   "match": 3754007,
+   "minute": 30,
+   "side": "against",
+   "player": "Charlie Adam"
+  },
+  {
+   "team": "West Bromwich Albion",
+   "match": 3754297,
+   "minute": 89,
+   "side": "for",
+   "player": "Gareth McAuley"
+  },
+  {
+   "team": "West Bromwich Albion",
+   "match": 3754219,
+   "minute": 33,
+   "side": "for",
+   "player": "James McClean"
+  },
+  {
+   "team": "West Bromwich Albion",
+   "match": 3754219,
+   "minute": 94,
+   "side": "for",
+   "player": "José Salomón Rondón Giménez"
+  },
+  {
+   "team": "West Bromwich Albion",
+   "match": 3754122,
+   "minute": 82,
+   "side": "against",
+   "player": "Geoff Cameron"
+  },
+  {
+   "team": "West Bromwich Albion",
+   "match": 3754081,
+   "minute": 25,
+   "side": "against",
+   "player": "Juan Manuel Mata García"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3754203,
+   "minute": 91,
+   "side": "for",
+   "player": "Adrián San Miguel del Castillo"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3754131,
+   "minute": 78,
+   "side": "for",
+   "player": "Carl Jenkinson"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3753984,
+   "minute": 51,
+   "side": "against",
+   "player": "Philippe Coutinho Correia"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3753984,
+   "minute": 77,
+   "side": "for",
+   "player": "Mark Noble"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3754076,
+   "minute": 56,
+   "side": "against",
+   "player": "Jeremain Lens"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3754067,
+   "minute": 43,
+   "side": "against",
+   "player": "Dwight Gayle"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3754288,
+   "minute": 43,
+   "side": "against",
+   "player": "Nemanja Matić"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3754273,
+   "minute": 83,
+   "side": "for",
+   "player": "James Collins"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3753997,
+   "minute": 16,
+   "side": "against",
+   "player": "Jordan Ayew"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3754120,
+   "minute": 52,
+   "side": "against",
+   "player": "Victor Wanyama"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3754277,
+   "minute": 33,
+   "side": "against",
+   "player": "Kevin Mirallas"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3754176,
+   "minute": 66,
+   "side": "for",
+   "player": "Cheikhou Kouyaté"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3754227,
+   "minute": 55,
+   "side": "against",
+   "player": "Jamie Vardy"
+  },
+  {
+   "team": "West Ham United",
+   "match": 3754086,
+   "minute": 92,
+   "side": "against",
+   "player": "Nordin Amrabat"
+  }
+ ]
+}
