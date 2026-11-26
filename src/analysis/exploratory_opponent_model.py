@@ -76,7 +76,12 @@ def fit_mixed(y, w, X, blocks, start=None):
         Q, logdet, _, _ = solve(par)
         return (n - p) * np.log(Q) + logdet
 
-    x0 = np.array(start if start is not None else [np.log(0.1)] * len(blocks))
+    # start from the best point of a coarse grid (and the previous date's solution): a single start can stop at a
+    # variance of zero, where the objective is flat (fix of 26 Nov after the development run, code only)
+    grid = [np.array(p, float) for p in np.array(np.meshgrid(*[[-10, -6, -3, 0]] * len(blocks))).T.reshape(-1, len(blocks))]
+    if start is not None:
+        grid.append(np.array(start, float))
+    x0 = min(grid, key=obj)
     r = minimize(obj, x0, method="L-BFGS-B", bounds=[(-25, 10)] * len(blocks))
     Q, _, th, s = solve(r.x)
     u = s * th[p:]
@@ -85,7 +90,7 @@ def fit_mixed(y, w, X, blocks, start=None):
     for nl in sizes:
         us.append(u[off:off + nl])
         off += nl
-    return {"beta": th[:p], "u": us, "s2": s2, "lam": np.exp(r.x), "par": r.x}
+    return {"beta": th[:p], "u": us, "s2": s2, "lam": np.exp(r.x), "par": r.x, "obj": float(r.fun)}
 
 
 def effect_coding(g, k=K_GROUPS):
