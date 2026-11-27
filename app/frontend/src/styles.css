@@ -4163,3 +4163,19 @@ select optgroup {
   background: #ffffff;
   color: #15171b;
 }
+
+/* Opponent style groups (Evidence, exploratory) */
+.ev-style td b {
+  font-size: 15px;
+}
+.ev-style td:not(:first-child) {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.ev-style-groups {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 6px;
+  display: grid;
+  gap: 4px;
+}

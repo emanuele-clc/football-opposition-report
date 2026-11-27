@@ -242,6 +242,106 @@ function TrustSection({ ev, seen }: { ev: EvData; seen: number }) {
   );
 }
 
+/* Does a number change with the style of the next opponent? (exploratory, docs/protocol_opponent_model.md)
+   Teams grouped in three per league by how they attack or defend (k-means on the whole season). "Changes" = the model with
+   the opponent's group forecast the second half of the season better than the season so far. Group effects: how far the
+   league's teams moved, on average, against each group. Nothing is recomputed here. */
+const SHARE = new Set(["S03", "S04", "S05", "R09", "R10", "R11", "R12", "R13", "P15", "P16", "P17", "T19", "T20", "T21", "T22", "D25", "A32"]);
+const TWO = new Set(["D28", "A30", "A31"]);
+const eff = (id: string, x: number) =>
+  SHARE.has(id)
+    ? `${x >= 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(1)} pts`
+    : `${x >= 0 ? "+" : "−"}${Math.abs(x).toFixed(TWO.has(id) ? 2 : 1)}`;
+
+function StyleSection({ ev, team, period }: { ev: EvData; team: string; period: string }) {
+  const T = ev.style!;
+  const S = ev.statements!;
+  // groups are from the 2015/16 season: only a team of that season is placed in one
+  const season1516 = period.startsWith("2015-") && period.includes("2016-");
+  const league = season1516
+    ? Object.entries(T.leagues).find(([, l]) => l.attack.some((g) => g.teams.includes(team)))
+    : undefined;
+  const blocks = [
+    { style: "attack" as const, title: "Without the ball: against how the opponent attacks", by: "passes per sequence" },
+    { style: "defence" as const, title: "With the ball: against how the opponent defends", by: "PPDA" },
+  ];
+  return (
+    <section className="section" aria-labelledby="ev-s">
+      <div className="section-head">
+        <h2 id="ev-s">Does it change with the opponent's style?</h2>
+        <Explain>
+          In each league the teams were put in three groups by how they attack, and in three groups by how they defend.
+          For each number: does knowing the group of the next opponent forecast the match better than the season so
+          far? If yes, read the number together with the next opponent.
+        </Explain>
+      </div>
+      {blocks.map(({ style, title, by }) => {
+        const groups = league?.[1][style];
+        const rows = Object.entries(T.statements)
+          .filter(([id, r]) => r.style === style && S[id])
+          .sort((a, b) => Number(b[1].changes) - Number(a[1].changes) || b[1].improvement - a[1].improvement);
+        return (
+          <div key={style} style={{ marginTop: 18 }}>
+            <h3>{title}</h3>
+            <div className="table-wrap">
+              <table className="ev-table ev-style">
+                <thead>
+                  <tr>
+                    <th>Number</th>
+                    <th>Answer</th>
+                    {groups?.map((g) => (
+                      <th key={g.label}>{`vs ${g.label}`}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map(([id, r]) => (
+                    <tr key={id}>
+                      <td>
+                        <GradeMark g={S[id].grade} /> {NAME[id]}
+                      </td>
+                      <td>
+                        <b>{r.changes ? "changes with the style" : "stable"}</b>
+                        {r.changes && <small>{`forecast error ${Math.round(r.improvement * 100)}% lower`}</small>}
+                      </td>
+                      {groups?.map((g) => (
+                        <td key={g.label}>{r.changes ? eff(id, g.effects[id]) : "·"}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {groups && (
+              <ul className="ev-style-groups small">
+                {groups.map((g) => (
+                  <li key={g.label}>
+                    <b>{`${g.label}:`}</b>{" "}
+                    {g.teams.map((t, i) => (
+                      <span key={t}>
+                        {t === team ? <b>{t}</b> : t}
+                        {i < g.teams.length - 1 ? ", " : ""}
+                      </span>
+                    ))}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {groups && (
+              <p className="small s-muted">{`${league![0]} 2015/16, whole season. Groups named by ${by}. Columns: how far the teams of the league moved, on average, against each group.`}</p>
+            )}
+          </div>
+        );
+      })}
+      <div style={{ marginTop: 18 }}>
+        <Note kind="info" tag="Exploratory">
+          {`Not part of the graded check. Groups: k-means with 3 groups per league, remade at every date with past matches only; ${T.n_teams} teams, StatsBomb 2015/16, compared on the second half of the season (docs/protocol_opponent_model.md). The groups help to read a number, not to forecast it: the forecast on the Game plan keeps the single opponent, because the groups were worse than it for ${T.worse_than_single_opponent} of ${T.n_statements} numbers. PPDA changes most, partly by construction: it counts the opponent's passes.`}
+        </Note>
+      </div>
+    </section>
+  );
+}
+
 export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
   const [ev, setEv] = useState<EvData | null>(null);
   const [err, setErr] = useState<string | null>(null);
@@ -387,8 +487,9 @@ export default function Evidence({ d, focus }: { d: TeamData; focus: string }) {
       </section>
 
       <details className="more section">
-        <summary>More detail: how many matches you need, the other provider, how we checked</summary>
+        <summary>More detail: how many matches you need, the opponent's style, the other provider, how we checked</summary>
       {ev.trust && <TrustSection ev={ev} seen={d.matches} />}
+      {ev.style && <StyleSection ev={ev} team={d.team} period={d.period} />}
 
       {cross && (
         <section className="section" aria-labelledby="ev-x">

@@ -484,6 +484,22 @@ export interface Evidence {
   shown_in_app?: Record<string, string[]>;
   provider_matches?: number | null;
   trust?: Trust | null;
+  style?: StyleGroups | null;
+}
+// Opponent style groups (exploratory, docs/protocol_opponent_model.md; StatsBomb 2015/16 only).
+export interface StyleGroup {
+  label: string;
+  teams: string[];
+  effects: Record<string, number>;
+}
+export interface StyleGroups {
+  source: string;
+  n_teams: number;
+  n_statements: number;
+  worse_than_single_opponent: number;
+  style_statements: { attack: string[]; defence: string[] };
+  statements: Record<string, { style: "attack" | "defence"; changes: boolean; improvement: number }>;
+  leagues: Record<string, { attack: StyleGroup[]; defence: StyleGroup[] }>;
 }
 // Matches needed per statement (exploratory, docs/protocol_trust_n.md; StatsBomb only). null = not within a season.
 export interface TrustN {

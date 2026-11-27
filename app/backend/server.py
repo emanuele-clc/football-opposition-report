@@ -245,6 +245,57 @@ def trust():
     }
 
 
+# Opponent style groups (exploratory, docs/protocol_opponent_model.md): StatsBomb 2015/16 only, read from the committed results.
+STYLE = os.path.join(ROOT, "results", "exploratory_opponent_model.json")
+# Groups are named by their rank on one style value (whole season): attack by passes per sequence, defence by PPDA.
+STYLE_RANK = {
+    "attack": ("S02", True, ["most passes per sequence", "in between", "fewest passes per sequence"]),
+    "defence": ("D23", False, ["presses most (low PPDA)", "in between", "presses least (high PPDA)"]),
+}
+
+
+def style_groups():
+    if P()["id"] != "statsbomb" or not os.path.exists(STYLE):
+        return None
+    s = _evidence(STYLE, os.path.getmtime(STYLE))
+    st = s["statements"]
+    leagues = {}
+    for style, (key, desc, names) in STYLE_RANK.items():
+        ref = next(c for c, r in st.items() if r["opponent_style"] == style)
+        for lg, gs in st[ref]["groups"].items():
+            ordered = sorted(gs, key=lambda g: g["style_means"][key], reverse=desc)
+            label = {g["group"]: names[i] for i, g in enumerate(ordered)}
+            leagues.setdefault(lg, {})[style] = [
+                {
+                    "label": label[g["group"]],
+                    "teams": g["teams"],
+                    # effect of this group on every statement paired with this style (same whole-season groups)
+                    "effects": {
+                        c: next(x["effect"] for x in r["groups"][lg] if x["group"] == g["group"])
+                        for c, r in st.items()
+                        if r["opponent_style"] == style
+                    },
+                }
+                for g in ordered
+            ]
+    return {
+        "source": os.path.relpath(STYLE, ROOT).replace(os.sep, "/"),
+        "n_teams": s["n_teams"],
+        "style_statements": s["style_statements"],
+        "worse_than_single_opponent": s["Q2_groups_vs_single_opponent"]["worse_than_R"],
+        "n_statements": s["n_statements"],
+        "statements": {
+            c: {
+                "style": r["opponent_style"],
+                "changes": r["G_vs_F"]["verdict"] == "better",
+                "improvement": r["G_vs_F"]["improvement"],
+            }
+            for c, r in st.items()
+        },
+        "leagues": leagues,
+    }
+
+
 def cross_provider():
     """Letter of each statement on both providers (results/evidence_grade_wyscout.json, comparison with StatsBomb)."""
     if not os.path.exists(CROSS):
@@ -288,6 +339,7 @@ def get_evidence():
         "provider_matches": prov["matches"] if prov else None,
         "shown_in_app": shown,
         "trust": trust(),
+        "style": style_groups(),
     }
 
 
