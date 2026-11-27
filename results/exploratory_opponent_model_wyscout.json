@@ -1,0 +1,8710 @@
+{
+ "protocol": "docs/protocol_opponent_model_wyscout.md",
+ "exploratory": true,
+ "development_run": false,
+ "provider": "wyscout",
+ "n_teams": 96,
+ "n_statements": 25,
+ "k_groups": 3,
+ "style_statements": {
+  "attack": [
+   "S02",
+   "S03",
+   "R09",
+   "R12"
+  ],
+  "defence": [
+   "D23",
+   "D26"
+  ]
+ },
+ "Q1_changes_with_style": [
+  "S01",
+  "S02",
+  "S04",
+  "S05",
+  "S06",
+  "R10",
+  "R12",
+  "P14",
+  "P16",
+  "P17",
+  "T18",
+  "T19",
+  "T20",
+  "T21",
+  "T22",
+  "D23",
+  "D26",
+  "D27",
+  "A29",
+  "A31"
+ ],
+ "Q1_stable": [
+  "S03",
+  "R09",
+  "R11",
+  "R13",
+  "P15"
+ ],
+ "Q2_groups_vs_single_opponent": {
+  "worse_than_R": 8,
+  "worse_than_M": 19,
+  "better_than_R": 4,
+  "better_than_M": 0,
+  "reading": "keep the single opponent: the group model is worse for too many statements"
+ },
+ "Q3_forest_vs_groups": {
+  "better": 6,
+  "worse": 2,
+  "reading": "the random forest adds something over the group model"
+ },
+ "median_improvement": {
+  "G_vs_F": 0.05305398825938967,
+  "G_vs_R": -0.014151785564739283,
+  "G_vs_M": -0.02746052651042974,
+  "RF_vs_G": 0.006190827271164601,
+  "R_vs_F": 0.05773015111779756,
+  "M_vs_F": 0.07848862990464234
+ },
+ "silhouette_whole_season": {
+  "Premier League attack": {
+   "2": 0.5796642438831443,
+   "3": 0.35727179773033013,
+   "4": 0.31991901321960975,
+   "5": 0.3384261204207729
+  },
+  "Premier League defence": {
+   "2": 0.5174342999533178,
+   "3": 0.5013148206886409,
+   "4": 0.4028325185970368,
+   "5": 0.39059582176637914
+  },
+  "Ligue 1 attack": {
+   "2": 0.49273317351347784,
+   "3": 0.38056379466564216,
+   "4": 0.3437034501210291,
+   "5": 0.30173783655618375
+  },
+  "Ligue 1 defence": {
+   "2": 0.42565342118997407,
+   "3": 0.35304351096500286,
+   "4": 0.40052099735894087,
+   "5": 0.36143201485654836
+  },
+  "Bundesliga attack": {
+   "2": 0.39002681376420517,
+   "3": 0.35777920211007763,
+   "4": 0.29416675040819107,
+   "5": 0.2760538266554366
+  },
+  "Bundesliga defence": {
+   "2": 0.47008418295644855,
+   "3": 0.39853531092249944,
+   "4": 0.4140546300190139,
+   "5": 0.358202484791952
+  },
+  "Serie A attack": {
+   "2": 0.45652911773393806,
+   "3": 0.33004940115124104,
+   "4": 0.3401804802646885,
+   "5": 0.21844482036672072
+  },
+  "Serie A defence": {
+   "2": 0.5293494264414071,
+   "3": 0.46680260102369003,
+   "4": 0.4426306993336403,
+   "5": 0.4273905392165792
+  },
+  "La Liga attack": {
+   "2": 0.48877365865353095,
+   "3": 0.43093181726724933,
+   "4": 0.36552120996304677,
+   "5": 0.3622369458296843
+  },
+  "La Liga defence": {
+   "2": 0.42102340396698884,
+   "3": 0.3939614995452356,
+   "4": 0.432543330173685,
+   "5": 0.42083185874836343
+  }
+ },
+ "replication": {
+  "statements_compared": 25,
+  "same_label": 18,
+  "share": 0.72,
+  "wilson_95": [
+   0.5242302810344169,
+   0.8571632616261843
+  ],
+  "R1_reading": "replicates",
+  "changed": {
+   "S03": {
+    "statsbomb": "changes",
+    "wyscout": "stable",
+    "G_vs_F_statsbomb": 0.038918087298188575,
+    "G_vs_F_wyscout": 0.009505846361413606
+   },
+   "R09": {
+    "statsbomb": "changes",
+    "wyscout": "stable",
+    "G_vs_F_statsbomb": 0.029320541588238602,
+    "G_vs_F_wyscout": 0.0060581245936544015
+   },
+   "R10": {
+    "statsbomb": "stable",
+    "wyscout": "changes",
+    "G_vs_F_statsbomb": 0.007281916687526091,
+    "G_vs_F_wyscout": 0.024245599544359675
+   },
+   "R12": {
+    "statsbomb": "stable",
+    "wyscout": "changes",
+    "G_vs_F_statsbomb": 0.007458167325098186,
+    "G_vs_F_wyscout": 0.02335594719800005
+   },
+   "R13": {
+    "statsbomb": "changes",
+    "wyscout": "stable",
+    "G_vs_F_statsbomb": 0.028425497257893895,
+    "G_vs_F_wyscout": 0.021095736623209294
+   },
+   "P16": {
+    "statsbomb": "stable",
+    "wyscout": "changes",
+    "G_vs_F_statsbomb": 0.014962460609846628,
+    "G_vs_F_wyscout": 0.061663503775684414
+   },
+   "P17": {
+    "statsbomb": "stable",
+    "wyscout": "changes",
+    "G_vs_F_statsbomb": 0.011266860188325345,
+    "G_vs_F_wyscout": 0.027134682946600597
+   }
+  },
+  "R2_Q2": {
+   "statsbomb": "keep the single opponent: the group model is worse for too many statements",
+   "wyscout": "keep the single opponent: the group model is worse for too many statements",
+   "reading": "same"
+  },
+  "R2_Q3": {
+   "statsbomb": "the random forest adds something over the group model",
+   "wyscout": "the random forest adds something over the group model",
+   "reading": "same"
+  }
+ },
+ "statements": {
+  "S01": {
+   "statement": "open-play sequences per match",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.053904129320496486,
+    "ci": [
+     0.023445647722973195,
+     0.08321747011332503
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.0631786747995624,
+    "ci": [
+     -0.09429522309074168,
+     -0.031789679976594654
+    ],
+    "verdict": "worse"
+   },
+   "G_vs_M": {
+    "improvement": -0.07687051483760676,
+    "ci": [
+     -0.10643034881237345,
+     -0.04620192235330878
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.04585166981470146,
+    "ci": [
+     0.02039194358551777,
+     0.06943879651726281
+    ],
+    "verdict": "better"
+   },
+   "R_vs_F": {
+    "improvement": 0.11012523754968284,
+    "ci": [
+     0.07661750351784924,
+     0.14052500194866335
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.12143952532475466,
+    "ci": [
+     0.08781519814109173,
+     0.15224554462134698
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.1608099429353541,
+    "R": 0.2532259473189301,
+    "G": 0.20604575229584166,
+    "M": 0.2627207851225386,
+    "RF": 0.2424498803095524
+   },
+   "shares": {
+    "team": 0.23833984533295946,
+    "style_group": 0.037666103877947936,
+    "rest_of_opponent": 0.05979148262853514,
+    "venue": 0.017055824927232326,
+    "chance": 0.6600085138316447,
+    "style_part_of_opponent": 0.4980511275161117
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 1.2288206836641231,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": -4.657381160083618,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": 3.428560476419495,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.5051565240072636,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -2.4110130059410646,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": 1.9058564819338009,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 0.5844663010530964,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -2.329474558639383,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 1.7450082575862866,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 2.1653328616235576,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -2.2301438417178243,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.06481098009426667,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -2.4041388138574633,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": 1.6926975109520814,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.7114413029053819,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "rf_importance": {
+    "F": 0.007850214386317233,
+    "L5": -0.0007179959640008171,
+    "nX": -3.660973793540023e-06,
+    "oppA": 0.09304214652297066,
+    "nY": -1.509729960813555e-06,
+    "home": 0.01926513890251136,
+    "Vd": -0.0021112929366938317,
+    "Lg": 0.0014382972053843535,
+    "gY": 0.00036584444105944856,
+    "z_D23": 0.005657972289036539,
+    "z_D26": 0.0013076380161061718
+   },
+   "label": "changes with the opponent's style"
+  },
+  "S02": {
+   "statement": "passes per sequence",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.08922855804861951,
+    "ci": [
+     0.057117731495245794,
+     0.11904766514890308
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.03932344491680673,
+    "ci": [
+     -0.06724961112268368,
+     -0.011926885693801514
+    ],
+    "verdict": "worse"
+   },
+   "G_vs_M": {
+    "improvement": -0.052594323272858734,
+    "ci": [
+     -0.08065084676373635,
+     -0.025807970607132802
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.029260326359958455,
+    "ci": [
+     0.0014350070020541228,
+     0.057414115189129866
+    ],
+    "verdict": "better"
+   },
+   "R_vs_F": {
+    "improvement": 0.12368815847863057,
+    "ci": [
+     0.0936938653387861,
+     0.1530189237266738
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.13473650596984477,
+    "ci": [
+     0.10486807517503638,
+     0.16396733000502095
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.39486140436335004,
+    "R": 0.4697098828819919,
+    "G": 0.44885704867157494,
+    "M": 0.4763956643669309,
+    "RF": 0.4649836712984353
+   },
+   "shares": {
+    "team": 0.4123970975623873,
+    "style_group": 0.07297337702879533,
+    "rest_of_opponent": 0.03722649385749897,
+    "venue": 0.003257829934969444,
+    "chance": 0.469335953621952,
+    "style_part_of_opponent": 0.7027429143780829
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 0.019754867275795437,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.7741300695338095,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.754375202258014,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.05097771271006981,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.4144315557134071,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.4654092684234769,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 0.4820037770080641,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.6487000092461123,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.16669623223804814,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.22278842948186628,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.5332263225950704,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.31043789311320413,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.166504989173114,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.8108183802919877,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.6443133911188738,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "rf_importance": {
+    "F": 0.005308759978740718,
+    "L5": 0.00578573243124918,
+    "nX": -1.1546657802818939e-05,
+    "oppA": 0.08036814945429642,
+    "nY": 1.4990456329710966e-05,
+    "home": 0.0036621724978284863,
+    "Vd": 0.001134472079498794,
+    "Lg": 0.001337079307195177,
+    "gY": 0.004557393150566158,
+    "z_D23": 0.026288000226399256,
+    "z_D26": 0.005369862600167341
+   },
+   "label": "changes with the opponent's style"
+  },
+  "S03": {
+   "statement": "long-pass share of a sequence",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.009505846361413606,
+    "ci": [
+     -0.006482400219632645,
+     0.0259771098905498
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_R": {
+    "improvement": -0.01769296808784504,
+    "ci": [
+     -0.040404395333178966,
+     0.004427782338614961
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.02746052651042974,
+    "ci": [
+     -0.04387725427836142,
+     -0.01116885055178396
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.008898381258917842,
+    "ci": [
+     -0.016223963807446395,
+     0.032220670066743784
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.02672595301543934,
+    "ci": [
+     0.0004284764749922232,
+     0.05300706575126213
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.03597838741055326,
+    "ci": [
+     0.01455288608581995,
+     0.056892301604619666
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.2348237787673252,
+    "R": 0.255273842504521,
+    "G": 0.24209742636577003,
+    "M": 0.26235358529217756,
+    "RF": 0.2488415324230825
+   },
+   "shares": {
+    "team": 0.22950049603347047,
+    "style_group": 0.00962800706880643,
+    "rest_of_opponent": 0.03867986929412012,
+    "venue": 0.005991971946585171,
+    "chance": 0.7126448309569734,
+    "style_part_of_opponent": 0.17833523833986384
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": -0.007038381592360558,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.012790630154882566,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.005752248562522008,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.002721871971640114,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.0027427158369457004,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": 2.084386530558629e-05,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 0.0032683211182539446,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.0003286802950359797,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.002939640823217965,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": -0.003988073634246195,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.006727342057557766,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.002739268423311571,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -0.008939979506424032,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.013939575854701096,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.004999596348277064,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "stable with respect to style"
+  },
+  "S04": {
+   "statement": "share of sequences starting in the build-up zone",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.05509460482878492,
+    "ci": [
+     0.0291699874844068,
+     0.07962967691255873
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.015141087534386255,
+    "ci": [
+     -0.038034998772144446,
+     0.007676329591132847
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.0329818751176123,
+    "ci": [
+     -0.049679924902500394,
+     -0.015906936936635807
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.011145697405538724,
+    "ci": [
+     -0.006108396369530311,
+     0.028040819949848972
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.06918810914624907,
+    "ci": [
+     0.03915164188222453,
+     0.09856517453828295
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.08526430334159452,
+    "ci": [
+     0.059242467452260805,
+     0.11108150249089355
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.0491277767451711,
+    "R": 0.11491682791186275,
+    "G": 0.10151570612806404,
+    "M": 0.1302032344278672,
+    "RF": 0.11152994019118978
+   },
+   "shares": {
+    "team": 0.0922503492504645,
+    "style_group": 0.018155315556048966,
+    "rest_of_opponent": 0.042240554778155456,
+    "venue": 0.035263442396729835,
+    "chance": 0.8063899981170947,
+    "style_part_of_opponent": 0.2279651959195625
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 0.001616775370759734,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.015340564031759643,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.016957339402519377,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.002758595596555986,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.01301674565121713,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.010258150054661144,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": -0.015679177816101963,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.018650019382917573,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.00297084156681561,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.0056150422763463935,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.009870320476236781,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.015485362752583175,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -0.018263671551553468,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.05317897204973998,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.034915300498186516,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "S05": {
+   "statement": "shot rate per sequence",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.05431961827670029,
+    "ci": [
+     0.028467326743746746,
+     0.07882680583173896
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.021910230018335364,
+    "ci": [
+     -0.04783316626202283,
+     0.00444230580230498
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.026227578315654476,
+    "ci": [
+     -0.049017410295626895,
+     -0.00456417895827399
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.019595179713421618,
+    "ci": [
+     -0.0007892788555987629,
+     0.0394466314519234
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.07459544493812131,
+    "ci": [
+     0.04312645398668191,
+     0.10193425011092783
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.07848862990464234,
+    "ci": [
+     0.04823833779202269,
+     0.10577896718957647
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.1044479823943234,
+    "R": 0.17125208361285116,
+    "G": 0.1530940261375926,
+    "M": 0.1747386332645311,
+    "RF": 0.1696893008957968
+   },
+   "shares": {
+    "team": 0.13064173327419584,
+    "style_group": 0.047032785662372886,
+    "rest_of_opponent": 0.0346633776577128,
+    "venue": 0.02078737629140239,
+    "chance": 0.7828058611305317,
+    "style_part_of_opponent": 0.5025510398164353
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 0.009573188886766552,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.024643995525218454,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.015070806638451902,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.009606155003354806,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.004146407548399711,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.005459747454955095,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 0.019629777768966794,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.01376840774307339,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.005861370025893405,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": -0.004166856385695709,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.01376692376345866,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.01793378014915437,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.010702575450557753,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.02368988276894477,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.012987307318387018,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "S06": {
+   "statement": "sequence duration (s)",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.10153720344451589,
+    "ci": [
+     0.06442085278555931,
+     0.1354573360813558
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.06936479951393326,
+    "ci": [
+     -0.09949074148296377,
+     -0.04075503728292329
+    ],
+    "verdict": "worse"
+   },
+   "G_vs_M": {
+    "improvement": -0.07928469501902735,
+    "ci": [
+     -0.10887953682539986,
+     -0.05000215266656527
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.05438399746208156,
+    "ci": [
+     0.026909256805912607,
+     0.08226237665767133
+    ],
+    "verdict": "better"
+   },
+   "R_vs_F": {
+    "improvement": 0.1598163723325573,
+    "ci": [
+     0.12806194434490792,
+     0.19044746857165107
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.1675386478637645,
+    "ci": [
+     0.13598648715760453,
+     0.1988940805463547
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.3104765290654221,
+    "R": 0.4206736688283399,
+    "G": 0.3804888140134751,
+    "M": 0.42599835905613104,
+    "RF": 0.4141803087798974
+   },
+   "shares": {
+    "team": 0.3285233468143168,
+    "style_group": 0.10213867309933658,
+    "rest_of_opponent": 0.05622455113219146,
+    "venue": 0.007938886377744345,
+    "chance": 0.5485054836881581,
+    "style_part_of_opponent": 0.6331219591707313
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 0.3261181082455701,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": -2.892517453128451,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": 2.566399344882881,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.12012606448365126,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -1.3216494848699087,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": 1.44177554935356,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 1.9254526954595081,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -2.4984008221582856,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.5729481266987775,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.905817926592275,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -1.9607835562385523,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 1.0549656296462773,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.6346863481369404,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": -2.952598282293369,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 2.3179119341564287,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "rf_importance": {
+    "F": 0.005811193413775307,
+    "L5": 0.003640848499321503,
+    "nX": 5.222030275420231e-07,
+    "oppA": 0.11161820074730004,
+    "nY": 1.7036250181823308e-05,
+    "home": 0.015388604745360713,
+    "Vd": 0.0009327294507053274,
+    "Lg": 0.0008819184268917702,
+    "gY": 0.009214250584252681,
+    "z_D23": 0.019643607455050692,
+    "z_D26": 0.010618370668130383
+   },
+   "label": "changes with the opponent's style"
+  },
+  "R09": {
+   "statement": "goal kicks: first pass short",
+   "opponent_style": "defence",
+   "forecasts_test": 1771,
+   "forecasts_train": 1320,
+   "G_vs_F": {
+    "improvement": 0.0060581245936544015,
+    "ci": [
+     -0.014224502461243071,
+     0.024597963974629433
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_R": {
+    "improvement": -0.0007884248487257661,
+    "ci": [
+     -0.022597272468397378,
+     0.022259226276745148
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.019478707049199073,
+    "ci": [
+     -0.034711200971010436,
+     -0.003960107424336945
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.0036455522882857805,
+    "ci": [
+     -0.01445290980218128,
+     0.02278454138155317
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.006841155705228252,
+    "ci": [
+     -0.018289422303165104,
+     0.030630544688498573
+    ],
+    "verdict": "no difference"
+   },
+   "M_vs_F": {
+    "improvement": 0.02504891123892894,
+    "ci": [
+     0.0064239701346007205,
+     0.042407498585184555
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.23058347441143057,
+    "R": 0.23584717266515764,
+    "G": 0.23524469558786276,
+    "M": 0.24985652066666375,
+    "RF": 0.2380326510378411
+   },
+   "shares": {
+    "team": 0.30042519414857605,
+    "style_group": 0.010593878155151858,
+    "rest_of_opponent": 0.020224875607265408,
+    "venue": 0.00528626185241513,
+    "chance": 0.6654966610279468,
+    "style_part_of_opponent": 0.3069620214453557
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 0.0005261153485233315,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.019625758761520114,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.019099643412996782,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.00763343002576112,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.008292704954676162,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.0006592749289150426,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 0.004010500227470075,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.022786333868754203,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.01877583364128413,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": -0.009099341311496027,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.023590398240600195,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.032689739552096225,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.008430698393082242,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.011023636344515083,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.0025929379514328405,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "stable with respect to style"
+  },
+  "R10": {
+   "statement": "goal kicks: reached the opponent half",
+   "opponent_style": "defence",
+   "forecasts_test": 1771,
+   "forecasts_train": 1320,
+   "G_vs_F": {
+    "improvement": 0.024245599544359675,
+    "ci": [
+     0.00426107317727098,
+     0.04520688843138576
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": 0.021212601672472187,
+    "ci": [
+     0.0017498595601989075,
+     0.04226121886987022
+    ],
+    "verdict": "better"
+   },
+   "G_vs_M": {
+    "improvement": 0.0023826982570271937,
+    "ci": [
+     -0.012832620230860403,
+     0.01702926949510708
+    ],
+    "verdict": "no difference"
+   },
+   "RF_vs_G": {
+    "improvement": -0.0052999841589220775,
+    "ci": [
+     -0.0176166785616807,
+     0.006397733664074812
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.0030987299970045568,
+    "ci": [
+     -0.01896119509130134,
+     0.026230646963056214
+    ],
+    "verdict": "no difference"
+   },
+   "M_vs_F": {
+    "improvement": 0.021915118401750866,
+    "ci": [
+     0.002989056643516008,
+     0.0413807351155876
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.14078698275078239,
+    "R": 0.14344945190114922,
+    "G": 0.16161911749030788,
+    "M": 0.1596167377561245,
+    "RF": 0.15717571209386327
+   },
+   "shares": {
+    "team": 0.2039021517778744,
+    "style_group": 0.00520251049190868,
+    "rest_of_opponent": 0.006274984110792532,
+    "venue": 9.012832378505048e-05,
+    "chance": 0.7786314569868417,
+    "style_part_of_opponent": 0.6811604888263876
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 0.0018502485124866476,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.0005752463220046654,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.001275002190481982,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.007601890028811827,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.016566564788488142,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.02416845481729997,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 0.011544916428997206,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.015444639914172357,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.003899723485175151,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.022640397653718346,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.054791701879016635,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.032151304225298286,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -0.004449221312888843,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.0035499991801312527,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.007999220493020095,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "R11": {
+   "statement": "goal kicks: ended in own half",
+   "opponent_style": "defence",
+   "forecasts_test": 1771,
+   "forecasts_train": 1320,
+   "G_vs_F": {
+    "improvement": 0.01712722403627187,
+    "ci": [
+     -0.0022186777886756825,
+     0.03726683519282559
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_R": {
+    "improvement": 0.012338474765675178,
+    "ci": [
+     -0.006889441300852672,
+     0.03174047649267253
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.006024112048856001,
+    "ci": [
+     -0.02114332372909744,
+     0.008591826850825268
+    ],
+    "verdict": "no difference"
+   },
+   "RF_vs_G": {
+    "improvement": -0.006387700930121865,
+    "ci": [
+     -0.019895973925922128,
+     0.006509503158634078
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.0048485732695323636,
+    "ci": [
+     -0.015832757160647803,
+     0.025977587155621706
+    ],
+    "verdict": "no difference"
+   },
+   "M_vs_F": {
+    "improvement": 0.02301270497183039,
+    "ci": [
+     0.0036210737517649028,
+     0.042500531803221775
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.10152456051889958,
+    "R": 0.10588088451809896,
+    "G": 0.11691295066198026,
+    "M": 0.12220091073211381,
+    "RF": 0.11127205469554524
+   },
+   "shares": {
+    "team": 0.13037525621558305,
+    "style_group": 0.007824323583000581,
+    "rest_of_opponent": 0.002247122566243512,
+    "venue": 0.0029142251903305693,
+    "chance": 0.8226778360761006,
+    "style_part_of_opponent": 0.77688183673482
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": -0.0013004101358603916,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.007261992127756331,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.005961581991895939,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.007023503638197928,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.01710762483022013,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.02413112846841806,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": -0.017264678479499303,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.01968265390745466,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.002417975427955358,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": -0.025143283734604435,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.057661925913483535,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.0325186421788791,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.0027793175257306876,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.003217509515664222,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.00599682704139491,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "stable with respect to style"
+  },
+  "R12": {
+   "statement": "keeper: first pass short",
+   "opponent_style": "defence",
+   "forecasts_test": 1360,
+   "forecasts_train": 985,
+   "G_vs_F": {
+    "improvement": 0.02335594719800005,
+    "ci": [
+     0.006108539311964867,
+     0.04083617007561735
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": 0.04729851754821901,
+    "ci": [
+     0.023113123896999266,
+     0.07087828318543554
+    ],
+    "verdict": "better"
+   },
+   "G_vs_M": {
+    "improvement": 0.0007892243156468748,
+    "ci": [
+     -0.012996165928269354,
+     0.01400553021801032
+    ],
+    "verdict": "no difference"
+   },
+   "RF_vs_G": {
+    "improvement": -0.01034365666259962,
+    "ci": [
+     -0.029365266205147567,
+     0.009805492042018193
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": -0.025131240783422104,
+    "ci": [
+     -0.05135218364894856,
+     0.0014116682502942624
+    ],
+    "verdict": "no difference"
+   },
+   "M_vs_F": {
+    "improvement": 0.022584547156126678,
+    "ci": [
+     0.004087085495683596,
+     0.04135454638933156
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.030501353622802818,
+    "R": 0.006136649701495633,
+    "G": 0.053144912816121104,
+    "M": 0.052397041519709586,
+    "RF": 0.0433509688850553
+   },
+   "shares": {
+    "team": 0.0654216834655548,
+    "style_group": 0.007952355774899424,
+    "rest_of_opponent": 0.0051533241085698735,
+    "venue": 0.0010207577593420141,
+    "chance": 0.8952887078282894,
+    "style_part_of_opponent": 0.5095690266281812
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 0.004129717385080823,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.04088631151414902,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.03675659412906819,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.01394332633450035,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.009581710347671153,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.0043616159868291975,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 0.04423617294666435,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.06075124052315676,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.01651506757649241,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.011043808970045539,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.08883795681790273,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.07779414784785718,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.00615088406836118,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.020132225997022808,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.013981341928661628,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "R13": {
+   "statement": "throw-ins in own half: ended in own half",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1321,
+   "G_vs_F": {
+    "improvement": 0.021095736623209294,
+    "ci": [
+     -0.003658438615837145,
+     0.04202979584183486
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_R": {
+    "improvement": 0.02133511117328324,
+    "ci": [
+     -0.0027196360160157695,
+     0.04313901267541165
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.004035413192929438,
+    "ci": [
+     -0.01733859939369342,
+     0.009230639781845573
+    ],
+    "verdict": "no difference"
+   },
+   "RF_vs_G": {
+    "improvement": -0.004994229834972552,
+    "ci": [
+     -0.022237724009116056,
+     0.012349092503431969
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": -0.0002445929682437509,
+    "ci": [
+     -0.020505026981715524,
+     0.020451266761861597
+    ],
+    "verdict": "no difference"
+   },
+   "M_vs_F": {
+    "improvement": 0.025030142847471182,
+    "ci": [
+     0.0009930583808073212,
+     0.0455377101778669
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": -0.008453272225721786,
+    "R": -0.008699932804910437,
+    "G": 0.012820792401965653,
+    "M": 0.01678845723308786,
+    "RF": 0.007890592550915065
+   },
+   "shares": {
+    "team": 0.015564000711724603,
+    "style_group": 0.012402152311056638,
+    "rest_of_opponent": 0.0043024387167525545,
+    "venue": 0.002865769643267672,
+    "chance": 0.9612780839070761,
+    "style_part_of_opponent": 0.5395242766825549
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": -0.01297559753807946,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.02941002611268778,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.01643442857460832,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.0018441504999180747,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.02487734044058302,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.026721490940501094,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": -0.010716514830749606,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.010493091146171031,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.00022342368457857475,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": -0.00233894711323959,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.04458496135460689,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.0422460142413673,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.0007174014030175894,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.03211286976963441,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.032830271172652,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "stable with respect to style"
+  },
+  "P14": {
+   "statement": "corners per match",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.050832631081495716,
+    "ci": [
+     0.022315439103100965,
+     0.08054789907057458
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.007320111159753395,
+    "ci": [
+     -0.03468879171206618,
+     0.020647080804233275
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.032486969910157315,
+    "ci": [
+     -0.05299404046528222,
+     -0.011286729946645702
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": -0.000937553248010925,
+    "ci": [
+     -0.026274057606231693,
+     0.02129939118261337
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.05773015111779756,
+    "ci": [
+     0.022582376811115634,
+     0.08796449452370536
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.08069796851664202,
+    "ci": [
+     0.047569800891652525,
+     0.10945188573306996
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.04851873923629335,
+    "R": 0.10344789620593464,
+    "G": 0.09688503514565128,
+    "M": 0.12530134406157778,
+    "RF": 0.0960383167770249
+   },
+   "shares": {
+    "team": 0.0925128938456948,
+    "style_group": 0.02616882273818141,
+    "rest_of_opponent": 0.032369945792682285,
+    "venue": 0.03848322946301244,
+    "chance": 0.7777180809312478,
+    "style_part_of_opponent": 0.44062237249139596
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 0.45696179956044225,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": -1.0328692372780082,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.5759074377175659,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.5622418567421182,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.4444319373595762,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.11780991938254204,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 0.4861858119263255,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.5866173025942706,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.1004314906679451,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.1450340189289003,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.6557739273828298,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.5107399084539295,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.1387703974451242,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.8340683577470718,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.6952979603019476,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "P15": {
+   "statement": "corners played short / outside the box",
+   "opponent_style": "defence",
+   "forecasts_test": 1743,
+   "forecasts_train": 1292,
+   "G_vs_F": {
+    "improvement": 0.016400385071396517,
+    "ci": [
+     -0.008920076524335574,
+     0.0407231213973247
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_R": {
+    "improvement": -0.007422965553788741,
+    "ci": [
+     -0.03425693343231706,
+     0.01677072150397041
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.013456298632332775,
+    "ci": [
+     -0.026932543510479467,
+     -0.00015812520946512088
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": -0.0005560383970202309,
+    "ci": [
+     -0.024405014389261126,
+     0.023913511433042656
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.023647813718530197,
+    "ci": [
+     -0.003952081205438773,
+     0.05143677754113585
+    ],
+    "verdict": "no difference"
+   },
+   "M_vs_F": {
+    "improvement": 0.02946025767862026,
+    "ci": [
+     0.005034971990263815,
+     0.054555560325193375
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.0943171846962777,
+    "R": 0.1157346032006541,
+    "G": 0.10917073161980528,
+    "M": 0.12099883381022358,
+    "RF": 0.10867539634139645
+   },
+   "shares": {
+    "team": 0.09472601072991065,
+    "style_group": 0.003972122038921563,
+    "rest_of_opponent": 0.01783425183880508,
+    "venue": 0.025380176950247368,
+    "chance": 0.8626061546493766,
+    "style_part_of_opponent": 0.15466085552313225
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": -0.001173441089467172,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.010864149729623743,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.009690708640156571,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.023249022370578958,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.008905662954761894,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.014343359415817063,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": -0.01228223660799504,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.017081670484599628,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.004799433876604588,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.010101171919895345,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.020774921737165743,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.010673749817270399,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -0.004230731905364482,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.017519073865902464,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.013288341960537981,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "stable with respect to style"
+  },
+  "P16": {
+   "statement": "corners to the far post",
+   "opponent_style": "defence",
+   "forecasts_test": 1743,
+   "forecasts_train": 1292,
+   "G_vs_F": {
+    "improvement": 0.061663503775684414,
+    "ci": [
+     0.03705661262258064,
+     0.087208648893642
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": 0.044432241932004235,
+    "ci": [
+     0.02643953176212943,
+     0.0637887708382201
+    ],
+    "verdict": "better"
+   },
+   "G_vs_M": {
+    "improvement": -0.0020134484516705076,
+    "ci": [
+     -0.007770576403106411,
+     0.003483089169555753
+    ],
+    "verdict": "no difference"
+   },
+   "RF_vs_G": {
+    "improvement": -0.023520438077384354,
+    "ci": [
+     -0.040235245906498074,
+     -0.006682496901707413
+    ],
+    "verdict": "worse"
+   },
+   "R_vs_F": {
+    "improvement": 0.018032485606796822,
+    "ci": [
+     -0.00585667881861518,
+     0.04010515596344777
+    ],
+    "verdict": "no difference"
+   },
+   "M_vs_F": {
+    "improvement": 0.06354899959252025,
+    "ci": [
+     0.03892902837267209,
+     0.08887589257175865
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": -0.022671035309028698,
+    "R": -0.004229734584330513,
+    "G": 0.040390443938032705,
+    "M": 0.04231868589710708,
+    "RF": 0.017820006796210985
+   },
+   "shares": {
+    "team": 0.0328795608432964,
+    "style_group": 0.0026904198048792165,
+    "rest_of_opponent": 7.190991326538419e-07,
+    "venue": 0.030612782600819625,
+    "chance": 0.9272662886085619,
+    "style_part_of_opponent": 0.9998343266648976
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 0.003135719224197235,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.010478191271366196,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.01361391049556343,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.0034940038632392113,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.005257533064894332,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.008751536928133543,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": -0.004783272384994462,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.0002059200372167864,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.0049891924222112485,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": -0.010004722971137846,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.0031701124216877803,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.006834610549450066,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.011907168818576312,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.023123457108790692,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.01121628829021438,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "P17": {
+   "statement": "corners ending in a shot",
+   "opponent_style": "defence",
+   "forecasts_test": 1743,
+   "forecasts_train": 1292,
+   "G_vs_F": {
+    "improvement": 0.027134682946600597,
+    "ci": [
+     0.01048775513330491,
+     0.043221219164880975
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": 0.020545115137480252,
+    "ci": [
+     0.0011209829031765262,
+     0.037536532220801666
+    ],
+    "verdict": "better"
+   },
+   "G_vs_M": {
+    "improvement": -0.0062208087721142835,
+    "ci": [
+     -0.012187909446897516,
+     -0.0003736593785628184
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": -0.030379640035636646,
+    "ci": [
+     -0.04951983118409631,
+     -0.011503943126142335
+    ],
+    "verdict": "worse"
+   },
+   "R_vs_F": {
+    "improvement": 0.006727791050881615,
+    "ci": [
+     -0.011771570225889816,
+     0.025767789484957393
+    ],
+    "verdict": "no difference"
+   },
+   "M_vs_F": {
+    "improvement": 0.03314927640923904,
+    "ci": [
+     0.01731054796389697,
+     0.04876653186803981
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": -0.021227154540832016,
+    "R": -0.014356551629594927,
+    "G": 0.006483520514092511,
+    "M": 0.012625786681662698,
+    "RF": -0.02369915250216237
+   },
+   "shares": {
+    "team": 0.015353498503857062,
+    "style_group": 0.0023471983442396225,
+    "rest_of_opponent": 0.008005247508235416,
+    "venue": 0.004418255173083902,
+    "chance": 0.9612839728388262,
+    "style_part_of_opponent": 0.5337927110070572
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 0.013326754717486707,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.02387346235266203,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.010546707635175323,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.008364814644940925,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.0024802584602624605,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.010845073105203386,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 0.006631326559384649,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.014619581864720583,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.007988255305335933,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.0011442567399260126,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.03406122877428574,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.032916972034359726,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.011577780042712309,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.016458294910136215,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.004880514867423906,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "T18": {
+   "statement": "open-play losses per match",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.04751293233817,
+    "ci": [
+     0.022587561640610376,
+     0.07229458415511902
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.059750288585405764,
+    "ci": [
+     -0.09005615462533378,
+     -0.031202627192631338
+    ],
+    "verdict": "worse"
+   },
+   "G_vs_M": {
+    "improvement": -0.07150294479776598,
+    "ci": [
+     -0.10142936270212544,
+     -0.043628890686061794
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.020353828078422564,
+    "ci": [
+     -0.01302466929581736,
+     0.05201238660695362
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.10121556189124026,
+    "ci": [
+     0.07132617238075445,
+     0.131736138244831
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.11107377512471417,
+    "ci": [
+     0.08060488775818353,
+     0.14235368265975368
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.0981868203990166,
+    "R": 0.18946434809325607,
+    "G": 0.14103460898306808,
+    "M": 0.19835461471451965,
+    "RF": 0.15851784287714166
+   },
+   "shares": {
+    "team": 0.13767084963504905,
+    "style_group": 0.06258019660887995,
+    "rest_of_opponent": 0.07431868404533105,
+    "venue": 0.016919092595379267,
+    "chance": 0.7361649568306317,
+    "style_part_of_opponent": 0.45712716064457454
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": -0.8458491588981251,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": 3.485208996226628,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": -2.6393598373285028,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.41948442401635944,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.19912385856535467,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.22036056545100477,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": -2.552667381361339,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": 2.9188156863422807,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.36614830498094175,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 1.2810785926963473,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": 2.713441096005143,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": -3.99451968870149,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -2.5695935354078125,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": 6.510625397494862,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": -3.9410318620870495,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "T19": {
+   "statement": "losses in own third",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.11203871035661683,
+    "ci": [
+     0.0770361204614014,
+     0.14506986292025337
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.014151785564739283,
+    "ci": [
+     -0.03441732538267517,
+     0.0075858219890666545
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.03109493035516442,
+    "ci": [
+     -0.0526884130965124,
+     -0.00922290777182222
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": -0.0016936763941794997,
+    "ci": [
+     -0.02655066443386822,
+     0.02213362228578286
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.12442959497535755,
+    "ci": [
+     0.09042204426285949,
+     0.1567591770604404
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.1388171316703869,
+    "ci": [
+     0.10608577909569461,
+     0.17195568496664315
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.08958547713627552,
+    "R": 0.20286798747589208,
+    "G": 0.19158714616786177,
+    "M": 0.21596660983128158,
+    "RF": 0.19021795640057504
+   },
+   "shares": {
+    "team": 0.16113589274869514,
+    "style_group": 0.06766342129698734,
+    "rest_of_opponent": 0.022281397138716203,
+    "venue": 0.03125140016261271,
+    "chance": 0.7370257945107491,
+    "style_part_of_opponent": 0.7522770346727209
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": -0.008570129522598792,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.0482382878694998,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.03966815834690101,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.005181942124235038,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.028172242879524485,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.022990300755289447,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": -0.01922469776692325,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.03525977257903285,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.0160350748121096,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": -0.007104737439533604,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.05650338538675831,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.049398647947224705,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -0.02595868452471931,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.0770528764062626,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.051094191881543294,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "T20": {
+   "statement": "counter-press regains within 5 s",
+   "opponent_style": "attack",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.038296110631623526,
+    "ci": [
+     0.015947476821372986,
+     0.060505984634300014
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": 0.003083322218078499,
+    "ci": [
+     -0.018440873280698433,
+     0.02389913235260921
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.016170238629108935,
+    "ci": [
+     -0.03269920345720667,
+     -0.0007392167578639253
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": -0.015777863813424275,
+    "ci": [
+     -0.0340423469541522,
+     0.0026349503909093297
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.03532169658540707,
+    "ci": [
+     0.011472819960100855,
+     0.059083044430272014
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.05359963044598881,
+    "ci": [
+     0.029806868311882173,
+     0.07785890385219985
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.008339909839261472,
+    "R": 0.04336702665977643,
+    "G": 0.04631663436102296,
+    "M": 0.06149252419991291,
+    "RF": 0.031269548096843125
+   },
+   "shares": {
+    "team": 0.04232951800677201,
+    "style_group": 0.0360915938543565,
+    "rest_of_opponent": 0.02755756598141317,
+    "venue": 0.0046338714848285795,
+    "chance": 0.8897562352256172,
+    "style_part_of_opponent": 0.5436298050338553
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": -0.007414424317189348,
+      "teams": [
+       "Arsenal",
+       "Chelsea",
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur"
+      ],
+      "style_means": {
+       "S02": 8.84488062609025,
+       "S03": 0.2333357458980816,
+       "R09": 0.22851841326770037,
+       "R12": 0.4424510889627168
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.01070952546923483,
+      "teams": [
+       "Brighton & Hove Albion",
+       "Burnley",
+       "Crystal Palace",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "S02": 6.350157514738356,
+       "S03": 0.27534876518547907,
+       "R09": 0.038950162098842646,
+       "R12": 0.16540890941186645
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.003295101152045483,
+      "teams": [
+       "AFC Bournemouth",
+       "Manchester United",
+       "Southampton",
+       "Watford"
+      ],
+      "style_means": {
+       "S02": 7.167265944372291,
+       "S03": 0.24598714607520578,
+       "R09": 0.07773710133994516,
+       "R12": 0.2918644973088459
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.002234522259165578,
+      "teams": [
+       "Lille",
+       "Monaco",
+       "Olympique Lyonnais",
+       "Olympique Marseille",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "S02": 7.1241634228267845,
+       "S03": 0.23762076314010877,
+       "R09": 0.2182886673746876,
+       "R12": 0.3079931541377393
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.01436787609949133,
+      "teams": [
+       "Nice",
+       "PSG"
+      ],
+      "style_means": {
+       "S02": 8.764695980910203,
+       "S03": 0.20598494958955296,
+       "R09": 0.2778333448299648,
+       "R12": 0.5595238095238095
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.012133353840325753,
+      "teams": [
+       "Amiens SC",
+       "Angers",
+       "Bordeaux",
+       "Caen",
+       "Dijon",
+       "Guingamp",
+       "Metz",
+       "Montpellier",
+       "Nantes",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse",
+       "Troyes"
+      ],
+      "style_means": {
+       "S02": 6.209079806999278,
+       "S03": 0.26451139957893915,
+       "R09": 0.07030899911746369,
+       "R12": 0.2584178223106931
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 0.016977374556830665,
+      "teams": [
+       "Augsburg",
+       "Eintracht Frankfurt",
+       "Freiburg",
+       "Hamburger SV",
+       "Hannover 96",
+       "Hertha BSC",
+       "Köln",
+       "Mainz 05",
+       "Stuttgart",
+       "Werder Bremen",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "S02": 6.267156698811022,
+       "S03": 0.2765098767931769,
+       "R09": 0.11809182186715833,
+       "R12": 0.2354378356152723
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.008205583489456724,
+      "teams": [
+       "Bayer Leverkusen",
+       "Borussia Dortmund",
+       "Borussia M'gladbach",
+       "Hoffenheim",
+       "RB Leipzig",
+       "Schalke 04"
+      ],
+      "style_means": {
+       "S02": 7.103004456787727,
+       "S03": 0.23727097381525966,
+       "R09": 0.1787663848342804,
+       "R12": 0.35500992063492065
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.02518295804628739,
+      "teams": [
+       "Bayern München"
+      ],
+      "style_means": {
+       "S02": 8.98919197117859,
+       "S03": 0.25272228259777957,
+       "R09": 0.32222222222222224,
+       "R12": 0.53125
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.013475029053525123,
+      "teams": [
+       "Atalanta",
+       "Bologna",
+       "Cagliari",
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Hellas Verona",
+       "SPAL",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "S02": 6.207063124458848,
+       "S03": 0.26475748630076446,
+       "R09": 0.08727935128133327,
+       "R12": 0.24284209566973347
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.01282435035757791,
+      "teams": [
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Sampdoria"
+      ],
+      "style_means": {
+       "S02": 8.18390391069407,
+       "S03": 0.22555005237927683,
+       "R09": 0.28560420522786195,
+       "R12": 0.4357473068803118
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.0006506786959472131,
+      "teams": [
+       "Benevento",
+       "Fiorentina",
+       "Lazio",
+       "Roma",
+       "Torino"
+      ],
+      "style_means": {
+       "S02": 6.880145252906973,
+       "S03": 0.2490814403863928,
+       "R09": 0.22504463437059014,
+       "R12": 0.3837112193362193
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.00986223472696505,
+      "teams": [
+       "Athletic Club",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Eibar",
+       "Espanyol",
+       "Getafe",
+       "Girona",
+       "Leganés",
+       "Levante",
+       "Málaga"
+      ],
+      "style_means": {
+       "S02": 5.959397333096042,
+       "S03": 0.28281963060936743,
+       "R09": 0.03562175095006239,
+       "R12": 0.15069995033956124
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.013015821635949172,
+      "teams": [
+       "Barcelona",
+       "Las Palmas",
+       "Real Betis",
+       "Real Madrid"
+      ],
+      "style_means": {
+       "S02": 8.059234190133784,
+       "S03": 0.2239271971894036,
+       "R09": 0.23398159445750438,
+       "R12": 0.462318099104585
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.0031535869089841222,
+      "teams": [
+       "Atlético Madrid",
+       "Celta de Vigo",
+       "Real Sociedad",
+       "Sevilla",
+       "Valencia",
+       "Villarreal"
+      ],
+      "style_means": {
+       "S02": 7.2176885925383125,
+       "S03": 0.2471841958623835,
+       "R09": 0.1319572458028442,
+       "R12": 0.2806381993356783
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "T21": {
+   "statement": "recoveries in the final third",
+   "opponent_style": "attack",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.04418507949603345,
+    "ci": [
+     0.02518544969904446,
+     0.06426064754548744
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": 0.018251830562305504,
+    "ci": [
+     -0.003564230775193078,
+     0.03892468770677571
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.005689005012887938,
+    "ci": [
+     -0.018935894419716437,
+     0.008192467655999125
+    ],
+    "verdict": "no difference"
+   },
+   "RF_vs_G": {
+    "improvement": 0.006190827271164601,
+    "ci": [
+     -0.01292239385613092,
+     0.0244402199207584
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.026415377936056195,
+    "ci": [
+     0.0018149343571913779,
+     0.05225715216588345
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.049591955624773254,
+    "ci": [
+     0.02782092471367059,
+     0.07159231801834975
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.008376196812431957,
+    "R": 0.034570314344020914,
+    "G": 0.05219117338643364,
+    "M": 0.057552760456578644,
+    "RF": 0.058058894118083515
+   },
+   "shares": {
+    "team": 0.0487862691109375,
+    "style_group": 0.004347646633449211,
+    "rest_of_opponent": 0.02805714333834072,
+    "venue": 0.020628732042880932,
+    "chance": 0.8807279107569111,
+    "style_part_of_opponent": 0.0832976709373428
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": -0.0049629905142443385,
+      "teams": [
+       "Arsenal",
+       "Chelsea",
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur"
+      ],
+      "style_means": {
+       "S02": 8.84488062609025,
+       "S03": 0.2333357458980816,
+       "R09": 0.22851841326770037,
+       "R12": 0.4424510889627168
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.0026462935976282105,
+      "teams": [
+       "Brighton & Hove Albion",
+       "Burnley",
+       "Crystal Palace",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "S02": 6.350157514738356,
+       "S03": 0.27534876518547907,
+       "R09": 0.038950162098842646,
+       "R12": 0.16540890941186645
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.002316696916616128,
+      "teams": [
+       "AFC Bournemouth",
+       "Manchester United",
+       "Southampton",
+       "Watford"
+      ],
+      "style_means": {
+       "S02": 7.167265944372291,
+       "S03": 0.24598714607520578,
+       "R09": 0.07773710133994516,
+       "R12": 0.2918644973088459
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.00154903783766475,
+      "teams": [
+       "Lille",
+       "Monaco",
+       "Olympique Lyonnais",
+       "Olympique Marseille",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "S02": 7.1241634228267845,
+       "S03": 0.23762076314010877,
+       "R09": 0.2182886673746876,
+       "R12": 0.3079931541377393
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.008297767026493163,
+      "teams": [
+       "Nice",
+       "PSG"
+      ],
+      "style_means": {
+       "S02": 8.764695980910203,
+       "S03": 0.20598494958955296,
+       "R09": 0.2778333448299648,
+       "R12": 0.5595238095238095
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.006748729188828413,
+      "teams": [
+       "Amiens SC",
+       "Angers",
+       "Bordeaux",
+       "Caen",
+       "Dijon",
+       "Guingamp",
+       "Metz",
+       "Montpellier",
+       "Nantes",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse",
+       "Troyes"
+      ],
+      "style_means": {
+       "S02": 6.209079806999278,
+       "S03": 0.26451139957893915,
+       "R09": 0.07030899911746369,
+       "R12": 0.2584178223106931
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": -0.00013971976757068364,
+      "teams": [
+       "Augsburg",
+       "Eintracht Frankfurt",
+       "Freiburg",
+       "Hamburger SV",
+       "Hannover 96",
+       "Hertha BSC",
+       "Köln",
+       "Mainz 05",
+       "Stuttgart",
+       "Werder Bremen",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "S02": 6.267156698811022,
+       "S03": 0.2765098767931769,
+       "R09": 0.11809182186715833,
+       "R12": 0.2354378356152723
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.001167945911488077,
+      "teams": [
+       "Bayer Leverkusen",
+       "Borussia Dortmund",
+       "Borussia M'gladbach",
+       "Hoffenheim",
+       "RB Leipzig",
+       "Schalke 04"
+      ],
+      "style_means": {
+       "S02": 7.103004456787727,
+       "S03": 0.23727097381525966,
+       "R09": 0.1787663848342804,
+       "R12": 0.35500992063492065
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.0010282261439173933,
+      "teams": [
+       "Bayern München"
+      ],
+      "style_means": {
+       "S02": 8.98919197117859,
+       "S03": 0.25272228259777957,
+       "R09": 0.32222222222222224,
+       "R12": 0.53125
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.0024659188437911295,
+      "teams": [
+       "Atalanta",
+       "Bologna",
+       "Cagliari",
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Hellas Verona",
+       "SPAL",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "S02": 6.207063124458848,
+       "S03": 0.26475748630076446,
+       "R09": 0.08727935128133327,
+       "R12": 0.24284209566973347
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.003675456595711764,
+      "teams": [
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Sampdoria"
+      ],
+      "style_means": {
+       "S02": 8.18390391069407,
+       "S03": 0.22555005237927683,
+       "R09": 0.28560420522786195,
+       "R12": 0.4357473068803118
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.0012095377519206344,
+      "teams": [
+       "Benevento",
+       "Fiorentina",
+       "Lazio",
+       "Roma",
+       "Torino"
+      ],
+      "style_means": {
+       "S02": 6.880145252906973,
+       "S03": 0.2490814403863928,
+       "R09": 0.22504463437059014,
+       "R12": 0.3837112193362193
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -0.010249156439497911,
+      "teams": [
+       "Athletic Club",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Eibar",
+       "Espanyol",
+       "Getafe",
+       "Girona",
+       "Leganés",
+       "Levante",
+       "Málaga"
+      ],
+      "style_means": {
+       "S02": 5.959397333096042,
+       "S03": 0.28281963060936743,
+       "R09": 0.03562175095006239,
+       "R12": 0.15069995033956124
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.007376702873456925,
+      "teams": [
+       "Barcelona",
+       "Las Palmas",
+       "Real Betis",
+       "Real Madrid"
+      ],
+      "style_means": {
+       "S02": 8.059234190133784,
+       "S03": 0.2239271971894036,
+       "R09": 0.23398159445750438,
+       "R12": 0.462318099104585
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.0028724535660409863,
+      "teams": [
+       "Atlético Madrid",
+       "Celta de Vigo",
+       "Real Sociedad",
+       "Sevilla",
+       "Valencia",
+       "Villarreal"
+      ],
+      "style_means": {
+       "S02": 7.2176885925383125,
+       "S03": 0.2471841958623835,
+       "R09": 0.1319572458028442,
+       "R12": 0.2806381993356783
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "T22": {
+   "statement": "recoveries followed by a shot within 10 s",
+   "opponent_style": "attack",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.05305398825938967,
+    "ci": [
+     0.03165911290981238,
+     0.07188379835184389
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": 0.010286500160307077,
+    "ci": [
+     -0.009863845671812754,
+     0.030770927125126968
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.018298051552606998,
+    "ci": [
+     -0.034564875189783795,
+     -0.002554001525705507
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": -0.017585943294947892,
+    "ci": [
+     -0.037870539284888816,
+     0.0024390130289169143
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.043211988222864206,
+    "ci": [
+     0.01920955732661256,
+     0.06558548998279135
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.07006989722037249,
+    "ci": [
+     0.04584010076322309,
+     0.092007618750925
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": -0.013254429762206366,
+    "R": 0.0305303087234432,
+    "G": 0.04050275885817234,
+    "M": 0.057744203989318565,
+    "RF": 0.02362909478379316
+   },
+   "shares": {
+    "team": 0.026601913408278492,
+    "style_group": 0.0060625923733791404,
+    "rest_of_opponent": 0.043341065412609056,
+    "venue": 0.01676764408126837,
+    "chance": 0.881367255524351,
+    "style_part_of_opponent": 0.12304998618738419
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": -0.002664706985795196,
+      "teams": [
+       "Arsenal",
+       "Chelsea",
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur"
+      ],
+      "style_means": {
+       "S02": 8.84488062609025,
+       "S03": 0.2333357458980816,
+       "R09": 0.22851841326770037,
+       "R12": 0.4424510889627168
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.001089074326062288,
+      "teams": [
+       "Brighton & Hove Albion",
+       "Burnley",
+       "Crystal Palace",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "S02": 6.350157514738356,
+       "S03": 0.27534876518547907,
+       "R09": 0.038950162098842646,
+       "R12": 0.16540890941186645
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.001575632659732908,
+      "teams": [
+       "AFC Bournemouth",
+       "Manchester United",
+       "Southampton",
+       "Watford"
+      ],
+      "style_means": {
+       "S02": 7.167265944372291,
+       "S03": 0.24598714607520578,
+       "R09": 0.07773710133994516,
+       "R12": 0.2918644973088459
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.0068729625657347965,
+      "teams": [
+       "Lille",
+       "Monaco",
+       "Olympique Lyonnais",
+       "Olympique Marseille",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "S02": 7.1241634228267845,
+       "S03": 0.23762076314010877,
+       "R09": 0.2182886673746876,
+       "R12": 0.3079931541377393
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.015934159085197973,
+      "teams": [
+       "Nice",
+       "PSG"
+      ],
+      "style_means": {
+       "S02": 8.764695980910203,
+       "S03": 0.20598494958955296,
+       "R09": 0.2778333448299648,
+       "R12": 0.5595238095238095
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.009061196519463178,
+      "teams": [
+       "Amiens SC",
+       "Angers",
+       "Bordeaux",
+       "Caen",
+       "Dijon",
+       "Guingamp",
+       "Metz",
+       "Montpellier",
+       "Nantes",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse",
+       "Troyes"
+      ],
+      "style_means": {
+       "S02": 6.209079806999278,
+       "S03": 0.26451139957893915,
+       "R09": 0.07030899911746369,
+       "R12": 0.2584178223106931
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": -0.0012997986470866837,
+      "teams": [
+       "Augsburg",
+       "Eintracht Frankfurt",
+       "Freiburg",
+       "Hamburger SV",
+       "Hannover 96",
+       "Hertha BSC",
+       "Köln",
+       "Mainz 05",
+       "Stuttgart",
+       "Werder Bremen",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "S02": 6.267156698811022,
+       "S03": 0.2765098767931769,
+       "R09": 0.11809182186715833,
+       "R12": 0.2354378356152723
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.004543071953554741,
+      "teams": [
+       "Bayer Leverkusen",
+       "Borussia Dortmund",
+       "Borussia M'gladbach",
+       "Hoffenheim",
+       "RB Leipzig",
+       "Schalke 04"
+      ],
+      "style_means": {
+       "S02": 7.103004456787727,
+       "S03": 0.23727097381525966,
+       "R09": 0.1787663848342804,
+       "R12": 0.35500992063492065
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.0058428706006414255,
+      "teams": [
+       "Bayern München"
+      ],
+      "style_means": {
+       "S02": 8.98919197117859,
+       "S03": 0.25272228259777957,
+       "R09": 0.32222222222222224,
+       "R12": 0.53125
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": -0.0016318926250499736,
+      "teams": [
+       "Atalanta",
+       "Bologna",
+       "Cagliari",
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Hellas Verona",
+       "SPAL",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "S02": 6.207063124458848,
+       "S03": 0.26475748630076446,
+       "R09": 0.08727935128133327,
+       "R12": 0.24284209566973347
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.0026383243399658203,
+      "teams": [
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Sampdoria"
+      ],
+      "style_means": {
+       "S02": 8.18390391069407,
+       "S03": 0.22555005237927683,
+       "R09": 0.28560420522786195,
+       "R12": 0.4357473068803118
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.004270216965015794,
+      "teams": [
+       "Benevento",
+       "Fiorentina",
+       "Lazio",
+       "Roma",
+       "Torino"
+      ],
+      "style_means": {
+       "S02": 6.880145252906973,
+       "S03": 0.2490814403863928,
+       "R09": 0.22504463437059014,
+       "R12": 0.3837112193362193
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -0.007655469509724139,
+      "teams": [
+       "Athletic Club",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Eibar",
+       "Espanyol",
+       "Getafe",
+       "Girona",
+       "Leganés",
+       "Levante",
+       "Málaga"
+      ],
+      "style_means": {
+       "S02": 5.959397333096042,
+       "S03": 0.28281963060936743,
+       "R09": 0.03562175095006239,
+       "R12": 0.15069995033956124
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.010040081532424926,
+      "teams": [
+       "Barcelona",
+       "Las Palmas",
+       "Real Betis",
+       "Real Madrid"
+      ],
+      "style_means": {
+       "S02": 8.059234190133784,
+       "S03": 0.2239271971894036,
+       "R09": 0.23398159445750438,
+       "R12": 0.462318099104585
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.002384612022700788,
+      "teams": [
+       "Atlético Madrid",
+       "Celta de Vigo",
+       "Real Sociedad",
+       "Sevilla",
+       "Valencia",
+       "Villarreal"
+      ],
+      "style_means": {
+       "S02": 7.2176885925383125,
+       "S03": 0.2471841958623835,
+       "R09": 0.1319572458028442,
+       "R12": 0.2806381993356783
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "D23": {
+   "statement": "PPDA",
+   "opponent_style": "attack",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.2032334512193288,
+    "ci": [
+     0.1667153236266955,
+     0.23831176215581917
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.0866799106544549,
+    "ci": [
+     -0.12468370337541224,
+     -0.04999424280618503
+    ],
+    "verdict": "worse"
+   },
+   "G_vs_M": {
+    "improvement": -0.1176199774082054,
+    "ci": [
+     -0.15761676822580695,
+     -0.07935557712150754
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.08631404976669721,
+    "ci": [
+     0.05091716945734248,
+     0.12295280398590769
+    ],
+    "verdict": "better"
+   },
+   "R_vs_F": {
+    "improvement": 0.2667881857677693,
+    "ci": [
+     0.2322732549266705,
+     0.30298822772579515
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.2870863398233119,
+    "ci": [
+     0.24758458068405087,
+     0.32712732336396066
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.012752372370096188,
+    "R": 0.27613837584901246,
+    "G": 0.21339411494141625,
+    "M": 0.2961776802856132,
+    "RF": 0.2812892544511397
+   },
+   "shares": {
+    "team": 0.0677056884231729,
+    "style_group": 0.21767375571803277,
+    "rest_of_opponent": 0.097826138410977,
+    "venue": 0.008497816274523383,
+    "chance": 0.654185439480666,
+    "style_part_of_opponent": 0.6827094014524144
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 1.5472978956888321,
+      "teams": [
+       "Arsenal",
+       "Chelsea",
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur"
+      ],
+      "style_means": {
+       "S02": 8.84488062609025,
+       "S03": 0.2333357458980816,
+       "R09": 0.22851841326770037,
+       "R12": 0.4424510889627168
+      }
+     },
+     {
+      "group": 1,
+      "effect": -1.0123400493655685,
+      "teams": [
+       "Brighton & Hove Albion",
+       "Burnley",
+       "Crystal Palace",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "S02": 6.350157514738356,
+       "S03": 0.27534876518547907,
+       "R09": 0.038950162098842646,
+       "R12": 0.16540890941186645
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.5349578463232636,
+      "teams": [
+       "AFC Bournemouth",
+       "Manchester United",
+       "Southampton",
+       "Watford"
+      ],
+      "style_means": {
+       "S02": 7.167265944372291,
+       "S03": 0.24598714607520578,
+       "R09": 0.07773710133994516,
+       "R12": 0.2918644973088459
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.410969891677744,
+      "teams": [
+       "Lille",
+       "Monaco",
+       "Olympique Lyonnais",
+       "Olympique Marseille",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "S02": 7.1241634228267845,
+       "S03": 0.23762076314010877,
+       "R09": 0.2182886673746876,
+       "R12": 0.3079931541377393
+      }
+     },
+     {
+      "group": 1,
+      "effect": 1.5146511587664007,
+      "teams": [
+       "Nice",
+       "PSG"
+      ],
+      "style_means": {
+       "S02": 8.764695980910203,
+       "S03": 0.20598494958955296,
+       "R09": 0.2778333448299648,
+       "R12": 0.5595238095238095
+      }
+     },
+     {
+      "group": 2,
+      "effect": -1.1036812670886567,
+      "teams": [
+       "Amiens SC",
+       "Angers",
+       "Bordeaux",
+       "Caen",
+       "Dijon",
+       "Guingamp",
+       "Metz",
+       "Montpellier",
+       "Nantes",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse",
+       "Troyes"
+      ],
+      "style_means": {
+       "S02": 6.209079806999278,
+       "S03": 0.26451139957893915,
+       "R09": 0.07030899911746369,
+       "R12": 0.2584178223106931
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": -1.3351048599023496,
+      "teams": [
+       "Augsburg",
+       "Eintracht Frankfurt",
+       "Freiburg",
+       "Hamburger SV",
+       "Hannover 96",
+       "Hertha BSC",
+       "Köln",
+       "Mainz 05",
+       "Stuttgart",
+       "Werder Bremen",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "S02": 6.267156698811022,
+       "S03": 0.2765098767931769,
+       "R09": 0.11809182186715833,
+       "R12": 0.2354378356152723
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.6214017410752796,
+      "teams": [
+       "Bayer Leverkusen",
+       "Borussia Dortmund",
+       "Borussia M'gladbach",
+       "Hoffenheim",
+       "RB Leipzig",
+       "Schalke 04"
+      ],
+      "style_means": {
+       "S02": 7.103004456787727,
+       "S03": 0.23727097381525966,
+       "R09": 0.1787663848342804,
+       "R12": 0.35500992063492065
+      }
+     },
+     {
+      "group": 2,
+      "effect": 1.956506600977629,
+      "teams": [
+       "Bayern München"
+      ],
+      "style_means": {
+       "S02": 8.98919197117859,
+       "S03": 0.25272228259777957,
+       "R09": 0.32222222222222224,
+       "R12": 0.53125
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": -0.9456645714646119,
+      "teams": [
+       "Atalanta",
+       "Bologna",
+       "Cagliari",
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Hellas Verona",
+       "SPAL",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "S02": 6.207063124458848,
+       "S03": 0.26475748630076446,
+       "R09": 0.08727935128133327,
+       "R12": 0.24284209566973347
+      }
+     },
+     {
+      "group": 1,
+      "effect": 1.1879159571759899,
+      "teams": [
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Sampdoria"
+      ],
+      "style_means": {
+       "S02": 8.18390391069407,
+       "S03": 0.22555005237927683,
+       "R09": 0.28560420522786195,
+       "R12": 0.4357473068803118
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.24225138571137794,
+      "teams": [
+       "Benevento",
+       "Fiorentina",
+       "Lazio",
+       "Roma",
+       "Torino"
+      ],
+      "style_means": {
+       "S02": 6.880145252906973,
+       "S03": 0.2490814403863928,
+       "R09": 0.22504463437059014,
+       "R12": 0.3837112193362193
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -0.7018762476779454,
+      "teams": [
+       "Athletic Club",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Eibar",
+       "Espanyol",
+       "Getafe",
+       "Girona",
+       "Leganés",
+       "Levante",
+       "Málaga"
+      ],
+      "style_means": {
+       "S02": 5.959397333096042,
+       "S03": 0.28281963060936743,
+       "R09": 0.03562175095006239,
+       "R12": 0.15069995033956124
+      }
+     },
+     {
+      "group": 1,
+      "effect": 0.6990538607542487,
+      "teams": [
+       "Barcelona",
+       "Las Palmas",
+       "Real Betis",
+       "Real Madrid"
+      ],
+      "style_means": {
+       "S02": 8.059234190133784,
+       "S03": 0.2239271971894036,
+       "R09": 0.23398159445750438,
+       "R12": 0.462318099104585
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.0028223869236967403,
+      "teams": [
+       "Atlético Madrid",
+       "Celta de Vigo",
+       "Real Sociedad",
+       "Sevilla",
+       "Valencia",
+       "Villarreal"
+      ],
+      "style_means": {
+       "S02": 7.2176885925383125,
+       "S03": 0.2471841958623835,
+       "R09": 0.1319572458028442,
+       "R12": 0.2806381993356783
+      }
+     }
+    ]
+   },
+   "rf_importance": {
+    "F": 0.023834253928817394,
+    "L5": 0.0027096432099770196,
+    "nX": 3.898747891328824e-06,
+    "oppA": 0.06375064168295427,
+    "nY": 0.0,
+    "home": 0.011819141163464785,
+    "Vd": -0.00018402250512729036,
+    "Lg": 0.003096182084429211,
+    "gY": 0.004781373734326499,
+    "z_S02": 0.09555969229136184,
+    "z_S03": 0.0024752950996081657,
+    "z_R09": 0.006187868909576122,
+    "z_R12": 0.0006737736758585355
+   },
+   "label": "changes with the opponent's style"
+  },
+  "D26": {
+   "statement": "height of defensive actions",
+   "opponent_style": "attack",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.14611718867015966,
+    "ci": [
+     0.11105939977000279,
+     0.17714699095890418
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.024166279676031355,
+    "ci": [
+     -0.058411236377523545,
+     0.008841282338509338
+    ],
+    "verdict": "no difference"
+   },
+   "G_vs_M": {
+    "improvement": -0.05161381615526306,
+    "ci": [
+     -0.08521540872634858,
+     -0.019677064378471387
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.01444036435143381,
+    "ci": [
+     -0.015877481655270476,
+     0.04479695706094111
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.16626545095788137,
+    "ci": [
+     0.12872645765407187,
+     0.19926797051730794
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.1880262524016033,
+    "ci": [
+     0.15051750173977851,
+     0.22133627859649463
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.03143386403310455,
+    "R": 0.19247294941217308,
+    "G": 0.17295802486170686,
+    "M": 0.21354972478206158,
+    "RF": 0.18490081231663336
+   },
+   "shares": {
+    "team": 0.08576708099938839,
+    "style_group": 0.048078081994529315,
+    "rest_of_opponent": 0.07386296753618575,
+    "venue": 0.06318156010428602,
+    "chance": 0.6956331154815987,
+    "style_part_of_opponent": 0.39427315231052845
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": -2.393967019757577,
+      "teams": [
+       "Arsenal",
+       "Chelsea",
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur"
+      ],
+      "style_means": {
+       "S02": 8.84488062609025,
+       "S03": 0.2333357458980816,
+       "R09": 0.22851841326770037,
+       "R12": 0.4424510889627168
+      }
+     },
+     {
+      "group": 1,
+      "effect": 1.9990780187448427,
+      "teams": [
+       "Brighton & Hove Albion",
+       "Burnley",
+       "Crystal Palace",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "S02": 6.350157514738356,
+       "S03": 0.27534876518547907,
+       "R09": 0.038950162098842646,
+       "R12": 0.16540890941186645
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.39488900101273416,
+      "teams": [
+       "AFC Bournemouth",
+       "Manchester United",
+       "Southampton",
+       "Watford"
+      ],
+      "style_means": {
+       "S02": 7.167265944372291,
+       "S03": 0.24598714607520578,
+       "R09": 0.07773710133994516,
+       "R12": 0.2918644973088459
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": -0.027716559005638325,
+      "teams": [
+       "Lille",
+       "Monaco",
+       "Olympique Lyonnais",
+       "Olympique Marseille",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "S02": 7.1241634228267845,
+       "S03": 0.23762076314010877,
+       "R09": 0.2182886673746876,
+       "R12": 0.3079931541377393
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.5897402666980094,
+      "teams": [
+       "Nice",
+       "PSG"
+      ],
+      "style_means": {
+       "S02": 8.764695980910203,
+       "S03": 0.20598494958955296,
+       "R09": 0.2778333448299648,
+       "R12": 0.5595238095238095
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.6174568257036477,
+      "teams": [
+       "Amiens SC",
+       "Angers",
+       "Bordeaux",
+       "Caen",
+       "Dijon",
+       "Guingamp",
+       "Metz",
+       "Montpellier",
+       "Nantes",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse",
+       "Troyes"
+      ],
+      "style_means": {
+       "S02": 6.209079806999278,
+       "S03": 0.26451139957893915,
+       "R09": 0.07030899911746369,
+       "R12": 0.2584178223106931
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 2.7367266843833478,
+      "teams": [
+       "Augsburg",
+       "Eintracht Frankfurt",
+       "Freiburg",
+       "Hamburger SV",
+       "Hannover 96",
+       "Hertha BSC",
+       "Köln",
+       "Mainz 05",
+       "Stuttgart",
+       "Werder Bremen",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "S02": 6.267156698811022,
+       "S03": 0.2765098767931769,
+       "R09": 0.11809182186715833,
+       "R12": 0.2354378356152723
+      }
+     },
+     {
+      "group": 1,
+      "effect": 1.2167125366177498,
+      "teams": [
+       "Bayer Leverkusen",
+       "Borussia Dortmund",
+       "Borussia M'gladbach",
+       "Hoffenheim",
+       "RB Leipzig",
+       "Schalke 04"
+      ],
+      "style_means": {
+       "S02": 7.103004456787727,
+       "S03": 0.23727097381525966,
+       "R09": 0.1787663848342804,
+       "R12": 0.35500992063492065
+      }
+     },
+     {
+      "group": 2,
+      "effect": -3.953439221001098,
+      "teams": [
+       "Bayern München"
+      ],
+      "style_means": {
+       "S02": 8.98919197117859,
+       "S03": 0.25272228259777957,
+       "R09": 0.32222222222222224,
+       "R12": 0.53125
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 1.6412158332505473,
+      "teams": [
+       "Atalanta",
+       "Bologna",
+       "Cagliari",
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Hellas Verona",
+       "SPAL",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "S02": 6.207063124458848,
+       "S03": 0.26475748630076446,
+       "R09": 0.08727935128133327,
+       "R12": 0.24284209566973347
+      }
+     },
+     {
+      "group": 1,
+      "effect": -1.7677102804210478,
+      "teams": [
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Sampdoria"
+      ],
+      "style_means": {
+       "S02": 8.18390391069407,
+       "S03": 0.22555005237927683,
+       "R09": 0.28560420522786195,
+       "R12": 0.4357473068803118
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.1264944471705005,
+      "teams": [
+       "Benevento",
+       "Fiorentina",
+       "Lazio",
+       "Roma",
+       "Torino"
+      ],
+      "style_means": {
+       "S02": 6.880145252906973,
+       "S03": 0.2490814403863928,
+       "R09": 0.22504463437059014,
+       "R12": 0.3837112193362193
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -0.5121868929660358,
+      "teams": [
+       "Athletic Club",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Eibar",
+       "Espanyol",
+       "Getafe",
+       "Girona",
+       "Leganés",
+       "Levante",
+       "Málaga"
+      ],
+      "style_means": {
+       "S02": 5.959397333096042,
+       "S03": 0.28281963060936743,
+       "R09": 0.03562175095006239,
+       "R12": 0.15069995033956124
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.28730452774773274,
+      "teams": [
+       "Barcelona",
+       "Las Palmas",
+       "Real Betis",
+       "Real Madrid"
+      ],
+      "style_means": {
+       "S02": 8.059234190133784,
+       "S03": 0.2239271971894036,
+       "R09": 0.23398159445750438,
+       "R12": 0.462318099104585
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.7994914207137686,
+      "teams": [
+       "Atlético Madrid",
+       "Celta de Vigo",
+       "Real Sociedad",
+       "Sevilla",
+       "Valencia",
+       "Villarreal"
+      ],
+      "style_means": {
+       "S02": 7.2176885925383125,
+       "S03": 0.2471841958623835,
+       "R09": 0.1319572458028442,
+       "R12": 0.2806381993356783
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  },
+  "D27": {
+   "statement": "shots conceded per match",
+   "opponent_style": "attack",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.1862988796376398,
+    "ci": [
+     0.14925646881277743,
+     0.22230890001048875
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.06281817559110903,
+    "ci": [
+     -0.10051095394283438,
+     -0.025542511295440606
+    ],
+    "verdict": "worse"
+   },
+   "G_vs_M": {
+    "improvement": -0.07159492884006657,
+    "ci": [
+     -0.10705824988232315,
+     -0.036966278146559395
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.047227746461585784,
+    "ci": [
+     0.01782463183313765,
+     0.07646644360578025
+    ],
+    "verdict": "better"
+   },
+   "R_vs_F": {
+    "improvement": 0.23439291964516595,
+    "ci": [
+     0.1986536015443704,
+     0.2716956009865126
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.24066352082951714,
+    "ci": [
+     0.20280275750912147,
+     0.2793121899240889
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.08821816569090257,
+    "R": 0.3019333719140369,
+    "G": 0.25808209989663944,
+    "M": 0.3076507921641254,
+    "RF": 0.29312121037803307
+   },
+   "shares": {
+    "team": 0.10425419772434494,
+    "style_group": 0.09588435073098021,
+    "rest_of_opponent": 0.07776663474309262,
+    "venue": 0.06079711482350143,
+    "chance": 0.6218299008333289,
+    "style_part_of_opponent": 0.5408070703352604
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 3.2971434557365273,
+      "teams": [
+       "Arsenal",
+       "Chelsea",
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur"
+      ],
+      "style_means": {
+       "S02": 8.84488062609025,
+       "S03": 0.2333357458980816,
+       "R09": 0.22851841326770037,
+       "R12": 0.4424510889627168
+      }
+     },
+     {
+      "group": 1,
+      "effect": -2.5595894773306225,
+      "teams": [
+       "Brighton & Hove Albion",
+       "Burnley",
+       "Crystal Palace",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "S02": 6.350157514738356,
+       "S03": 0.27534876518547907,
+       "R09": 0.038950162098842646,
+       "R12": 0.16540890941186645
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.7375539784059049,
+      "teams": [
+       "AFC Bournemouth",
+       "Manchester United",
+       "Southampton",
+       "Watford"
+      ],
+      "style_means": {
+       "S02": 7.167265944372291,
+       "S03": 0.24598714607520578,
+       "R09": 0.07773710133994516,
+       "R12": 0.2918644973088459
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.2489871129088738,
+      "teams": [
+       "Lille",
+       "Monaco",
+       "Olympique Lyonnais",
+       "Olympique Marseille",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "S02": 7.1241634228267845,
+       "S03": 0.23762076314010877,
+       "R09": 0.2182886673746876,
+       "R12": 0.3079931541377393
+      }
+     },
+     {
+      "group": 1,
+      "effect": 1.3178581323842962,
+      "teams": [
+       "Nice",
+       "PSG"
+      ],
+      "style_means": {
+       "S02": 8.764695980910203,
+       "S03": 0.20598494958955296,
+       "R09": 0.2778333448299648,
+       "R12": 0.5595238095238095
+      }
+     },
+     {
+      "group": 2,
+      "effect": -1.56684524529317,
+      "teams": [
+       "Amiens SC",
+       "Angers",
+       "Bordeaux",
+       "Caen",
+       "Dijon",
+       "Guingamp",
+       "Metz",
+       "Montpellier",
+       "Nantes",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse",
+       "Troyes"
+      ],
+      "style_means": {
+       "S02": 6.209079806999278,
+       "S03": 0.26451139957893915,
+       "R09": 0.07030899911746369,
+       "R12": 0.2584178223106931
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": -2.5184378459520245,
+      "teams": [
+       "Augsburg",
+       "Eintracht Frankfurt",
+       "Freiburg",
+       "Hamburger SV",
+       "Hannover 96",
+       "Hertha BSC",
+       "Köln",
+       "Mainz 05",
+       "Stuttgart",
+       "Werder Bremen",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "S02": 6.267156698811022,
+       "S03": 0.2765098767931769,
+       "R09": 0.11809182186715833,
+       "R12": 0.2354378356152723
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.4798372299060564,
+      "teams": [
+       "Bayer Leverkusen",
+       "Borussia Dortmund",
+       "Borussia M'gladbach",
+       "Hoffenheim",
+       "RB Leipzig",
+       "Schalke 04"
+      ],
+      "style_means": {
+       "S02": 7.103004456787727,
+       "S03": 0.23727097381525966,
+       "R09": 0.1787663848342804,
+       "R12": 0.35500992063492065
+      }
+     },
+     {
+      "group": 2,
+      "effect": 2.9982750758580807,
+      "teams": [
+       "Bayern München"
+      ],
+      "style_means": {
+       "S02": 8.98919197117859,
+       "S03": 0.25272228259777957,
+       "R09": 0.32222222222222224,
+       "R12": 0.53125
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": -2.463004545010987,
+      "teams": [
+       "Atalanta",
+       "Bologna",
+       "Cagliari",
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Hellas Verona",
+       "SPAL",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "S02": 6.207063124458848,
+       "S03": 0.26475748630076446,
+       "R09": 0.08727935128133327,
+       "R12": 0.24284209566973347
+      }
+     },
+     {
+      "group": 1,
+      "effect": 1.5206759486111157,
+      "teams": [
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Sampdoria"
+      ],
+      "style_means": {
+       "S02": 8.18390391069407,
+       "S03": 0.22555005237927683,
+       "R09": 0.28560420522786195,
+       "R12": 0.4357473068803118
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.9423285963998715,
+      "teams": [
+       "Benevento",
+       "Fiorentina",
+       "Lazio",
+       "Roma",
+       "Torino"
+      ],
+      "style_means": {
+       "S02": 6.880145252906973,
+       "S03": 0.2490814403863928,
+       "R09": 0.22504463437059014,
+       "R12": 0.3837112193362193
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": -1.5083734832939666,
+      "teams": [
+       "Athletic Club",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Eibar",
+       "Espanyol",
+       "Getafe",
+       "Girona",
+       "Leganés",
+       "Levante",
+       "Málaga"
+      ],
+      "style_means": {
+       "S02": 5.959397333096042,
+       "S03": 0.28281963060936743,
+       "R09": 0.03562175095006239,
+       "R12": 0.15069995033956124
+      }
+     },
+     {
+      "group": 1,
+      "effect": 1.4983112070426563,
+      "teams": [
+       "Barcelona",
+       "Las Palmas",
+       "Real Betis",
+       "Real Madrid"
+      ],
+      "style_means": {
+       "S02": 8.059234190133784,
+       "S03": 0.2239271971894036,
+       "R09": 0.23398159445750438,
+       "R12": 0.462318099104585
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.010062276251310287,
+      "teams": [
+       "Atlético Madrid",
+       "Celta de Vigo",
+       "Real Sociedad",
+       "Sevilla",
+       "Valencia",
+       "Villarreal"
+      ],
+      "style_means": {
+       "S02": 7.2176885925383125,
+       "S03": 0.2471841958623835,
+       "R09": 0.1319572458028442,
+       "R12": 0.2806381993356783
+      }
+     }
+    ]
+   },
+   "rf_importance": {
+    "F": 0.018218910279694765,
+    "L5": 0.0013769517829503419,
+    "nX": -3.980264649583454e-06,
+    "oppA": 0.09075784643541698,
+    "nY": 4.102701699659761e-06,
+    "home": 0.13441012572783015,
+    "Vd": 0.0010818264560100265,
+    "Lg": 0.0009310571950187474,
+    "gY": 0.0034398081805238844,
+    "z_S02": -0.008228746143284426,
+    "z_S03": -0.0009369335814210622,
+    "z_R09": -6.727727440680731e-05,
+    "z_R12": -0.007593176226387066
+   },
+   "label": "changes with the opponent's style"
+  },
+  "A29": {
+   "statement": "shots per match",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.13456668141133243,
+    "ci": [
+     0.0998209173192498,
+     0.16581139408967993
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.05780547852123474,
+    "ci": [
+     -0.08695677734097518,
+     -0.03089845092101795
+    ],
+    "verdict": "worse"
+   },
+   "G_vs_M": {
+    "improvement": -0.0664809092216121,
+    "ci": [
+     -0.09413634751533095,
+     -0.03896495065159633
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.03007072255730936,
+    "ci": [
+     0.007583103522854628,
+     0.05211625734943004
+    ],
+    "verdict": "better"
+   },
+   "R_vs_F": {
+    "improvement": 0.18185967442851125,
+    "ci": [
+     0.14482902399600495,
+     0.21555971305239086
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.188514945644627,
+    "ci": [
+     0.1484200846960939,
+     0.22371038877770943
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.14301407205793348,
+    "R": 0.2988652539032932,
+    "G": 0.2583358243973086,
+    "M": 0.30456872768214227,
+    "RF": 0.28063820205255274
+   },
+   "shares": {
+    "team": 0.19371412586781162,
+    "style_group": 0.07282687499087843,
+    "rest_of_opponent": 0.049643944380942724,
+    "venue": 0.060124707036459425,
+    "chance": 0.6265025964086391,
+    "style_part_of_opponent": 0.486890642433346
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 1.1064499023610692,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": -2.841747900622508,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": 1.7352979982614387,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 1.116600944572457,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.8521233359765891,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.2644776085958679,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 1.7153676727546971,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -1.7190466902209367,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.0036790174662395536,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.015599983994267316,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -1.9990254543949375,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 1.9834254704006702,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.7893821556700369,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": -2.2587900538189594,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 1.4694078981489225,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "rf_importance": {
+    "F": 0.009729764387108963,
+    "L5": 0.0005905487814831578,
+    "nX": -1.207118973600707e-06,
+    "oppA": 0.07300173501802831,
+    "nY": 3.3907148329404e-06,
+    "home": 0.14491935374952453,
+    "Vd": 0.0017139211000139043,
+    "Lg": 0.00042481869788458805,
+    "gY": -0.0001272277170416114,
+    "z_D23": -4.512223753656563e-05,
+    "z_D26": 0.007085888500185345
+   },
+   "label": "changes with the opponent's style"
+  },
+  "A31": {
+   "statement": "xT added per match",
+   "opponent_style": "defence",
+   "forecasts_test": 1774,
+   "forecasts_train": 1322,
+   "G_vs_F": {
+    "improvement": 0.14474887232238576,
+    "ci": [
+     0.11156974594508551,
+     0.17590696076392498
+    ],
+    "verdict": "better"
+   },
+   "G_vs_R": {
+    "improvement": -0.046117220975619766,
+    "ci": [
+     -0.07764424796318381,
+     -0.015457178215975143
+    ],
+    "verdict": "worse"
+   },
+   "G_vs_M": {
+    "improvement": -0.06512689499274504,
+    "ci": [
+     -0.09440516607062177,
+     -0.03721851544753774
+    ],
+    "verdict": "worse"
+   },
+   "RF_vs_G": {
+    "improvement": 0.02666202632741288,
+    "ci": [
+     -0.008638811375225153,
+     0.05892832548826554
+    ],
+    "verdict": "no difference"
+   },
+   "R_vs_F": {
+    "improvement": 0.18245191788354453,
+    "ci": [
+     0.15091697543059268,
+     0.21254738977134546
+    ],
+    "verdict": "better"
+   },
+   "M_vs_F": {
+    "improvement": 0.19704297046837815,
+    "ci": [
+     0.16383871297657804,
+     0.22692026849572566
+    ],
+    "verdict": "better"
+   },
+   "skill_vs_league": {
+    "F": 0.06377119323621949,
+    "R": 0.23458793460809368,
+    "G": 0.19928925725100954,
+    "M": 0.24824849835901996,
+    "RF": 0.22063782815482547
+   },
+   "shares": {
+    "team": 0.10618728310549148,
+    "style_group": 0.06228357940620242,
+    "rest_of_opponent": 0.07082296190235728,
+    "venue": 0.05012452766346089,
+    "chance": 0.7179660572820369,
+    "style_part_of_opponent": 0.40734371797746816
+   },
+   "groups": {
+    "Premier League": [
+     {
+      "group": 0,
+      "effect": 0.08154176786384651,
+      "teams": [
+       "Arsenal",
+       "Burnley",
+       "Everton",
+       "Huddersfield Town",
+       "Leicester City",
+       "Manchester United",
+       "Southampton"
+      ],
+      "style_means": {
+       "D23": 4.555414191697175,
+       "D26": 45.66420769343226
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.3053138880548729,
+      "teams": [
+       "Liverpool",
+       "Manchester City",
+       "Tottenham Hotspur",
+       "Watford"
+      ],
+      "style_means": {
+       "D23": 4.185844564679131,
+       "D26": 48.88794719070217
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.2237721201910264,
+      "teams": [
+       "AFC Bournemouth",
+       "Brighton & Hove Albion",
+       "Chelsea",
+       "Crystal Palace",
+       "Newcastle United",
+       "Stoke City",
+       "Swansea City",
+       "West Bromwich Albion",
+       "West Ham United"
+      ],
+      "style_means": {
+       "D23": 5.425253102650948,
+       "D26": 44.05079820820503
+      }
+     }
+    ],
+    "Ligue 1": [
+     {
+      "group": 0,
+      "effect": 0.11068407360334535,
+      "teams": [
+       "Amiens SC",
+       "Dijon",
+       "Guingamp",
+       "Lille",
+       "Metz",
+       "Nantes",
+       "Olympique Lyonnais",
+       "Saint-Étienne"
+      ],
+      "style_means": {
+       "D23": 4.821065743898812,
+       "D26": 45.73964408039834
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.06142642957236278,
+      "teams": [
+       "Bordeaux",
+       "Caen",
+       "Monaco",
+       "Olympique Marseille",
+       "PSG",
+       "Rennes",
+       "Strasbourg",
+       "Toulouse"
+      ],
+      "style_means": {
+       "D23": 4.417101442548967,
+       "D26": 47.87780405669147
+      }
+     },
+     {
+      "group": 2,
+      "effect": -0.049257644030982574,
+      "teams": [
+       "Angers",
+       "Montpellier",
+       "Nice",
+       "Troyes"
+      ],
+      "style_means": {
+       "D23": 5.59954096133447,
+       "D26": 45.53047777343143
+      }
+     }
+    ],
+    "Bundesliga": [
+     {
+      "group": 0,
+      "effect": 0.19201202616100818,
+      "teams": [
+       "Borussia M'gladbach",
+       "Freiburg",
+       "Köln",
+       "Wolfsburg"
+      ],
+      "style_means": {
+       "D23": 5.135245137629669,
+       "D26": 45.24422854688301
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.21422413079587013,
+      "teams": [
+       "Bayer Leverkusen",
+       "Bayern München",
+       "Borussia Dortmund",
+       "Eintracht Frankfurt",
+       "Hamburger SV",
+       "RB Leipzig"
+      ],
+      "style_means": {
+       "D23": 4.213937415419079,
+       "D26": 48.82293091759315
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.02221210463486195,
+      "teams": [
+       "Augsburg",
+       "Hannover 96",
+       "Hertha BSC",
+       "Hoffenheim",
+       "Mainz 05",
+       "Schalke 04",
+       "Stuttgart",
+       "Werder Bremen"
+      ],
+      "style_means": {
+       "D23": 4.7473732383084615,
+       "D26": 46.793214257284134
+      }
+     }
+    ],
+    "Serie A": [
+     {
+      "group": 0,
+      "effect": 0.0755882735742513,
+      "teams": [
+       "Chievo",
+       "Crotone",
+       "Genoa",
+       "Lazio",
+       "Sassuolo",
+       "Udinese"
+      ],
+      "style_means": {
+       "D23": 5.330828681358131,
+       "D26": 45.67958537818793
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.26140272380616947,
+      "teams": [
+       "Atalanta",
+       "Cagliari",
+       "Fiorentina",
+       "Internazionale",
+       "Juventus",
+       "Milan",
+       "Napoli",
+       "Roma",
+       "Sampdoria",
+       "Torino"
+      ],
+      "style_means": {
+       "D23": 4.598369752103143,
+       "D26": 48.537632449999634
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.18581445023191817,
+      "teams": [
+       "Benevento",
+       "Bologna",
+       "Hellas Verona",
+       "SPAL"
+      ],
+      "style_means": {
+       "D23": 5.694593408471901,
+       "D26": 42.87135907239461
+      }
+     }
+    ],
+    "La Liga": [
+     {
+      "group": 0,
+      "effect": 0.008819959381913588,
+      "teams": [
+       "Athletic Club",
+       "Barcelona",
+       "Celta de Vigo",
+       "Getafe",
+       "Girona",
+       "Las Palmas",
+       "Málaga",
+       "Real Madrid",
+       "Real Sociedad",
+       "Sevilla",
+       "Villarreal"
+      ],
+      "style_means": {
+       "D23": 4.3702436452652345,
+       "D26": 47.365713093630525
+      }
+     },
+     {
+      "group": 1,
+      "effect": -0.16529891523969248,
+      "teams": [
+       "Eibar"
+      ],
+      "style_means": {
+       "D23": 3.8358925143953937,
+       "D26": 53.469753295032106
+      }
+     },
+     {
+      "group": 2,
+      "effect": 0.15647895585777888,
+      "teams": [
+       "Atlético Madrid",
+       "Deportivo Alavés",
+       "Deportivo La Coruña",
+       "Espanyol",
+       "Leganés",
+       "Levante",
+       "Real Betis",
+       "Valencia"
+      ],
+      "style_means": {
+       "D23": 4.9167674885076424,
+       "D26": 45.51889824891937
+      }
+     }
+    ]
+   },
+   "label": "changes with the opponent's style"
+  }
+ }
+}
