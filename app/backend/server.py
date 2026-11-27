@@ -247,6 +247,7 @@ def trust():
 
 # Opponent style groups (exploratory, docs/protocol_opponent_model.md): StatsBomb 2015/16 only, read from the committed results.
 STYLE = os.path.join(ROOT, "results", "exploratory_opponent_model.json")
+STYLE_WY = os.path.join(ROOT, "results", "exploratory_opponent_model_wyscout.json")
 # Groups are named by their rank on one style value (whole season): attack by passes per sequence, defence by PPDA.
 STYLE_RANK = {
     "attack": ("S02", True, ["most passes per sequence", "in between", "fewest passes per sequence"]),
@@ -259,6 +260,12 @@ def style_groups():
         return None
     s = _evidence(STYLE, os.path.getmtime(STYLE))
     st = s["statements"]
+    # replication on Wyscout 2017/18 (docs/protocol_opponent_model_wyscout.md): label of the same statement there
+    wy = {}
+    if os.path.exists(STYLE_WY):
+        w = _evidence(STYLE_WY, os.path.getmtime(STYLE_WY))
+        wy = {c: r["G_vs_F"]["verdict"] == "better" for c, r in w["statements"].items()}
+        wy_rep = w["replication"]
     leagues = {}
     for style, (key, desc, names) in STYLE_RANK.items():
         ref = next(c for c, r in st.items() if r["opponent_style"] == style)
@@ -289,10 +296,12 @@ def style_groups():
                 "style": r["opponent_style"],
                 "changes": r["G_vs_F"]["verdict"] == "better",
                 "improvement": r["G_vs_F"]["improvement"],
+                "wyscout_changes": wy.get(c),  # None = not computable on Wyscout
             }
             for c, r in st.items()
         },
         "leagues": leagues,
+        "wyscout": {"same": wy_rep["same_label"], "of": wy_rep["statements_compared"], "n_teams": w["n_teams"]} if wy else None,
     }
 
 

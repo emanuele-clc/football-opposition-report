@@ -498,8 +498,9 @@ export interface StyleGroups {
   n_statements: number;
   worse_than_single_opponent: number;
   style_statements: { attack: string[]; defence: string[] };
-  statements: Record<string, { style: "attack" | "defence"; changes: boolean; improvement: number }>;
+  statements: Record<string, { style: "attack" | "defence"; changes: boolean; improvement: number; wyscout_changes?: boolean | null }>;
   leagues: Record<string, { attack: StyleGroup[]; defence: StyleGroup[] }>;
+  wyscout?: { same: number; of: number; n_teams: number } | null;
 }
 // Matches needed per statement (exploratory, docs/protocol_trust_n.md; StatsBomb only). null = not within a season.
 export interface TrustN {

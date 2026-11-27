@@ -303,6 +303,15 @@ function StyleSection({ ev, team, period }: { ev: EvData; team: string; period: 
                       <td>
                         <b>{r.changes ? "changes with the style" : "stable"}</b>
                         {r.changes && <small>{`forecast error ${Math.round(r.improvement * 100)}% lower`}</small>}
+                        {T.wyscout && (
+                          <small>
+                            {r.wyscout_changes == null
+                              ? "not checked on Wyscout"
+                              : r.wyscout_changes === r.changes
+                                ? "same on Wyscout 2017/18"
+                                : "different on Wyscout 2017/18"}
+                          </small>
+                        )}
                       </td>
                       {groups?.map((g) => (
                         <td key={g.label}>{r.changes ? eff(id, g.effects[id]) : "·"}</td>
@@ -335,7 +344,7 @@ function StyleSection({ ev, team, period }: { ev: EvData; team: string; period: 
       })}
       <div style={{ marginTop: 18 }}>
         <Note kind="info" tag="Exploratory">
-          {`Not part of the graded check. Groups: k-means with 3 groups per league, remade at every date with past matches only; ${T.n_teams} teams, StatsBomb 2015/16, compared on the second half of the season (docs/protocol_opponent_model.md). The groups help to read a number, not to forecast it: the forecast on the Game plan keeps the single opponent, because the groups were worse than it for ${T.worse_than_single_opponent} of ${T.n_statements} numbers. PPDA changes most, partly by construction: it counts the opponent's passes.`}
+          {`Not part of the graded check. Groups: k-means with 3 groups per league, remade at every date with past matches only; ${T.n_teams} teams, StatsBomb 2015/16, compared on the second half of the season (docs/protocol_opponent_model.md). The groups help to read a number, not to forecast it: the forecast on the Game plan keeps the single opponent, because the groups were worse than it for ${T.worse_than_single_opponent} of ${T.n_statements} numbers. PPDA changes most, partly by construction: it counts the opponent's passes.${T.wyscout ? ` Repeated with the same method on Wyscout 2017/18 (${T.wyscout.n_teams} teams, docs/protocol_opponent_model_wyscout.md): same answer for ${T.wyscout.same} of ${T.wyscout.of} numbers, just at the threshold fixed in advance; the numbers that differ are mostly restarts and corners.` : ""}`}
         </Note>
       </div>
     </section>

@@ -3350,6 +3350,14 @@ export const DICT: [string, string, string][] = [
   ["in between:", "in mezzo:", "dazwischen:"],
   ["presses most (low PPDA):", "pressa di più (PPDA basso):", "presst am meisten (niedriger PPDA):"],
   ["presses least (high PPDA):", "pressa di meno (PPDA alto):", "presst am wenigsten (hoher PPDA):"],
+  ["not checked on Wyscout", "non verificato su Wyscout", "nicht auf Wyscout geprüft"],
+  ["same on Wyscout #/#", "uguale su Wyscout #/#", "gleich auf Wyscout #/#"],
+  ["different on Wyscout #/#", "diverso su Wyscout #/#", "anders auf Wyscout #/#"],
+  [
+    "Repeated with the same method on Wyscout #/# (# teams, docs/protocol_opponent_model_wyscout.md): same answer for # of # numbers, just at the threshold fixed in advance; the numbers that differ are mostly restarts and corners.",
+    "Ripetuto con lo stesso metodo su Wyscout #/# (# squadre, docs/protocol_opponent_model_wyscout.md): stessa risposta per # numeri su #, proprio sulla soglia fissata prima; i numeri diversi sono soprattutto rimesse e calci d'angolo.",
+    "Mit derselben Methode auf Wyscout #/# wiederholt (# Teams, docs/protocol_opponent_model_wyscout.md): gleiche Antwort bei # von # Zahlen, genau an der vorab festgelegten Schwelle; die abweichenden Zahlen sind vor allem Standards und Ecken.",
+  ],
   ["+# pts", "+# punti", "+# Pkt."],
   ["−# pts", "−# punti", "−# Pkt."],
   [
